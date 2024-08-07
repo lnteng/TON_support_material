@@ -1,19 +1,37 @@
 # Enhancing The Open Network: Definition and Automated Detection of Smart Contract Defects
 
-Supplementary materials for TONScanner, including:
+# Supplementary Materials for TONScanner
+
+The supplementary materials for TONScanner include the following directories and files:
 
 - `TONScanner` - the executable file of TONScanner. The usage is described below.
-- `blogs/` - the blogs are sourced from official documentations, official blogs, and TON research community.
-        - `blogs.txt` - 82 related blogs filtered by "func secure" and "func develop".
-        - `tips.txt` - 1327 possible safety tips from blogs. 
-- `contracts/` - the on-chain contract source code obtained from [ton verifier](https://verifier.ton.org/), including `FunC` and `Tact` contracts on mainnet and testnet.
-        - `uniqueFunCompilerSettings.txt` - list of compilation commands for `FunC` contracts.
-        - `uniqueTactCompilerSettings.txt` - list of compilation commands for `Tact` contracts.
-- `repo/` -  the on-chain contract source code obtained from [ton verifier](https://verifier.ton.org/), including `FunC` and `Tact` contracts on mainnet and testnet.
-        - `uniqueFunCompilerSettings.txt` - list of compilation commands for `FunC` contracts.
-        - `uniqueTactCompilerSettings.txt` - list of compilation commands for `Tact` contracts.
-- `results/` - the smart contract source code obtained from github, including `FunC` and `Tact` contracts.
-- `samples/`
+- `blogs/` - blogs sourced from official documentation, official blogs, and the TON research community.
+  - `blogs.txt` - 82 related blogs filtered by "func secure" and "func develop".
+  - `tips.txt` - 1327 possible safety tips from blogs.
+- `contracts/` - on-chain contract source code obtained from [ton-verifier](https://verifier.ton.org/), including `FunC` and `Tact` contracts on mainnet and testnet.
+  - `unique_fun_compiler_settings.txt` - list of compilation commands for `FunC` contracts.
+  - `unique_tact_compiler_settings.txt` - list of compilation commands for `Tact` contracts.
+- `repo/` - smart contract source code obtained from GitHub, including `FunC` and `Tact` contracts.
+  - `unique_fun_compiler_settings.txt` - list of compilation commands for `FunC` contracts.
+  - `unique_tact_compiler_settings.txt` - list of compilation commands for `Tact` contracts.
+- `results/` - results of TONScanner.
+  - `raw/` - raw results of TONScanner.
+    - `contracts/` - raw results of on-chain contracts.
+      - `func/` - from [compiler settings](contracts/unique_fun_compiler_settings.txt)
+      - `tact/` - from [compiler settings](contracts/unique_tact_compiler_settings.txt)
+    - `repo/` - raw results of GitHub contracts.
+      - `func/` - from [compiler settings](repo/unique_fun_compiler_settings.txt)
+      - `tact/` - from [compiler settings](repo/unique_tact_compiler_settings.txt)
+  - `samples/` - sampling results of defects and their labels from the raw results to quantify the false positive rate.
+    - `func/` - sample from [contracts func](results/raw/contracts/func) and [repo func](results/raw/repo/func)
+    - `tact/` - sample from [contracts tact](results/raw/contracts/tact) and [repo tact](results/raw/repo/tact)
+- `samples/` - results of manual audits of sampled contracts to quantify the false negative rate.
+  - `func/` - source code and labels of [sampled `FunC` contracts](samples/func_sampled_compiler_settings.txt).
+  - `tact/` - source code and labels of [sampled `Tact` contracts](samples/tact_sampled_compiler_settings.txt).
+  - `func_sampled_compiler_settings.txt` - list of sampled `FunC` contracts.
+  - `tact_sampled_compiler_settings.txt` - list of sampled `Tact` contracts.
+
+> The defect labels are marked in the source code as comments (e.g., ";; DEFECT: LackEndParse").
 
 ## Usage
 ```
@@ -28,6 +46,11 @@ OPTIONS
         -c, --cfg       visualize cfg
         -f, --functions specified functions
 ```
+
+- `-s, --source` - Specifies the path to the `FunC` source code.
+- `-o, --output` - Specifies the output directory where the detection results will be redirected to a file.
+- `-c, --cfg` - Visualizes the control flow graph (CFG) of the functions, used for debugging.
+- `-f, --functions` - Specifies the functions for which the CFG should be output, used in conjunction with `-c`.
 
 
 ## Example
@@ -50,6 +73,16 @@ recv_external & get_public_key: InconsistentData
               .store_uint(stored_subwallet, 32)
               ^
 ```
+This output shows the function where the defect is detected, the type of defect, and the specific location in the source code where the defect occurs.
+
+- **Function:** `get_public_key`
+  - **Defect Type:** LackEndParse
+  - **Location:** `./contracts/EQCTSH2DwiH4hAWFYECzhbncxH2hqRetH1G4_XKQRQylqY1g/bridge-wallet-v2.fc:139:13`
+  - **Warning:** Lack of end_parse.
+    ```
+              .skip_bits(32 + 64)
+              ^
+    ```
 
 In order to analyze the `Tact` contract, you first need to use the `Tact` compiler to compile the `Tact` contract into a `FunC` contract(already prepared), and then test the generated `FunC` contract.
 
