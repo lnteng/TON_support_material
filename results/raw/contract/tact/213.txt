@@ -1,0 +1,26 @@
+$__gen_MyContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCS9Y4JHLZUuNXy-nH4heGSZtVk2qGs4T-tfTiKASe4bDBJ/output/verifier_MyContract.code.fc:73:37: warning: Local variable '$self'id' is not used
+      var (($self'id, $self'counter)) = (null(), null());
+                                      ^
+$__gen_MyContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCS9Y4JHLZUuNXy-nH4heGSZtVk2qGs4T-tfTiKASe4bDBJ/output/verifier_MyContract.code.fc:73:37: warning: Local variable '$self'counter' is not used
+      var (($self'id, $self'counter)) = (null(), null());
+                                      ^
+__gen_load_MyContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCS9Y4JHLZUuNXy-nH4heGSZtVk2qGs4T-tfTiKASe4bDBJ/output/verifier_MyContract.code.fc:84:19: warning: Lack of end_parse.
+          return $sc~__gen_read_MyContract();
+                    ^
+__gen_store_MyContract & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCS9Y4JHLZUuNXy-nH4heGSZtVk2qGs4T-tfTiKASe4bDBJ/output/verifier_MyContract.code.fc:260:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCS9Y4JHLZUuNXy-nH4heGSZtVk2qGs4T-tfTiKASe4bDBJ/output/verifier_MyContract.code.fc:95:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+__gen_store_MyContract & __gen_load_MyContract: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCS9Y4JHLZUuNXy-nH4heGSZtVk2qGs4T-tfTiKASe4bDBJ/output/verifier_MyContract.code.fc:80:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCS9Y4JHLZUuNXy-nH4heGSZtVk2qGs4T-tfTiKASe4bDBJ/output/verifier_MyContract.code.fc:95:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

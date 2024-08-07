@@ -1,0 +1,92 @@
+globalState: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./serokell/ton-paychan/src/contract/paychan.fc:55:33: warning: Local variable 'localState' is not used
+    var (globalState, localState) = getState();
+                                  ^
+handle_timeout: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./serokell/ton-paychan/src/contract/Handlers/timeout_handler.fc:14:5: warning: Local variable 'pk1' is not used
+      = parseGlobalState(globalState);
+      ^
+handle_timeout: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./serokell/ton-paychan/src/contract/Handlers/timeout_handler.fc:14:5: warning: Local variable 'pk2' is not used
+      = parseGlobalState(globalState);
+      ^
+handle_timeout: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./serokell/ton-paychan/src/contract/Handlers/timeout_handler.fc:14:5: warning: Local variable 'share1' is not used
+      = parseGlobalState(globalState);
+      ^
+handle_timeout: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./serokell/ton-paychan/src/contract/Handlers/timeout_handler.fc:14:5: warning: Local variable 'share2' is not used
+      = parseGlobalState(globalState);
+      ^
+handle_timeout: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./serokell/ton-paychan/src/contract/Handlers/timeout_handler.fc:28:24: warning: Local variable 'reqPayout' is not used
+      var (reqPayout, _) = parseCloseReq(closeReq);
+                         ^
+handle_close: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./serokell/ton-paychan/src/contract/Handlers/close_handler.fc:148:65: warning: Lack of end_parse.
+      var (addr1, addr2) = parseOpenState(openState.begin_parse());
+                                                                  ^
+handle_close: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./serokell/ton-paychan/src/contract/Handlers/close_handler.fc:116:22: warning: Local variable 'mIou' is not used
+    var (payout, mIou) = parseCloseReq(closeReq);
+                       ^
+handle_close: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./serokell/ton-paychan/src/contract/Handlers/close_handler.fc:139:62: warning: Local variable 'prevTimestamp' is not used
+      var (prevReqPkn, openState, prevCloseReq, prevTimestamp) =
+                                                               ^
+handle_close: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./serokell/ton-paychan/src/contract/Handlers/close_handler.fc:148:24: warning: Local variable 'addr1' is not used
+      var (addr1, addr2) = parseOpenState(openState.begin_parse());
+                         ^
+handle_close: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./serokell/ton-paychan/src/contract/Handlers/close_handler.fc:148:24: warning: Local variable 'addr2' is not used
+      var (addr1, addr2) = parseOpenState(openState.begin_parse());
+                         ^
+handle_close: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./serokell/ton-paychan/src/contract/Handlers/close_handler.fc:120:7: warning: Local variable 'fine' is not used
+        = parseGlobalState(globalState);
+        ^
+parseMIou: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./serokell/ton-paychan/src/contract/Handlers/close_handler.fc:59:17: warning: Lack of end_parse.
+      var iouC = s~load_ref();
+                  ^
+getState: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./serokell/ton-paychan/src/lib/State/State.fc:8:26: warning: Lack of end_parse.
+    return (s~load_ref(), s~load_ref());
+                           ^
+parseCloseReq: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./serokell/ton-paychan/src/lib/Request/Close.fc:15:19: warning: Lack of end_parse.
+        .store_ref(s~load_ref())
+                    ^
+putLocalState: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./serokell/ton-paychan/src/lib/State/State.fc:12:50: warning: Lack of end_parse.
+    var (_, globalState) = get_data().begin_parse().load_ref();
+                                                   ^
+disputeOccured: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./serokell/ton-paychan/src/contract/Handlers/close_handler.fc:73:5: warning: Local variable 'share1' is not used
+      = parseGlobalState(globalState);
+      ^
+disputeOccured: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./serokell/ton-paychan/src/contract/Handlers/close_handler.fc:73:5: warning: Local variable 'share2' is not used
+      = parseGlobalState(globalState);
+      ^
+getSignedData: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./serokell/ton-paychan/src/lib/Sign.fc:10:41: warning: Lack of end_parse.
+    return preload_ref(begin_parse(signed));
+                                          ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./serokell/ton-paychan/src/contract/paychan.fc:22:27: warning: Lack of end_parse.
+    var msg_src_addr = msg_s~load_msg_addr();
+                            ^
+parseIouQ: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./serokell/ton-paychan/src/lib/Iou.fc:22:24: warning: Lack of end_parse.
+        var iouTotal = ps~load_uint(248);
+                         ^
+parseIouQ: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./serokell/ton-paychan/src/lib/Iou.fc:21:19: warning: Local variable '_amount' is not used
+        var _amount = ps~load_uint(120);
+                    ^
+getOpenState: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./serokell/ton-paychan/src/lib/State/Local/Open.fc:15:11: warning: Lack of end_parse.
+    return s~load_ref();
+            ^

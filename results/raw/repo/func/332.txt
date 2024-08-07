@@ -1,0 +1,12 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/hack-challenge-1/6.vault/vault.func:10:29: warning: Lack of end_parse.
+  	slice database_address = ds~load_msg_addr();
+  	                           ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/hack-challenge-1/6.vault/vault.func:7:27: warning: Lack of end_parse.
+  	slice sender_address = cs~load_msg_addr();
+  	                         ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/hack-challenge-1/6.vault/vault.func:17:12: warning: Local variable 'mode' is not used
+  		int mode = null(); 
+  		         ^

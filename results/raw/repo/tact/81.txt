@@ -1,0 +1,34 @@
+$Minter$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./paprikashio/moneybox_twa/contract/build/Minter/tact_Minter.storage.fc:154:19: warning: Lack of end_parse.
+          return $sc~$Minter$_load();
+                    ^
+$Safe$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./paprikashio/moneybox_twa/contract/build/Minter/tact_Minter.storage.fc:112:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$Minter$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./paprikashio/moneybox_twa/contract/build/Minter/tact_Minter.code.fc:14:35: warning: Local variable '$self'seqno' is not used
+      var (($self'seqno, $self'id)) = (null(), null());
+                                    ^
+$Minter$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./paprikashio/moneybox_twa/contract/build/Minter/tact_Minter.code.fc:14:35: warning: Local variable '$self'id' is not used
+      var (($self'seqno, $self'id)) = (null(), null());
+                                    ^
+$Minter$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./paprikashio/moneybox_twa/contract/build/Minter/tact_Minter.code.fc:114:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./paprikashio/moneybox_twa/contract/build/Minter/tact_Minter.storage.fc:165:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Minter$_contract_store & $Minter$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./paprikashio/moneybox_twa/contract/build/Minter/tact_Minter.storage.fc:150:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./paprikashio/moneybox_twa/contract/build/Minter/tact_Minter.storage.fc:165:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Minter$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./paprikashio/moneybox_twa/contract/build/Minter/tact_Minter.code.fc:56:313: warning: UnHandle bounced message with op: 0x8b3217a2
+  ... ry_id, $msg'name, $msg'amount, $msg'deadline, $msg'image)), $contractInit'code, $contractInit'data));
+  ...                                                                                                     ^

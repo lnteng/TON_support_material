@@ -1,0 +1,71 @@
+#include "imports/stdlib.fc";
+
+global int storage::nft_counter;
+global int storage::max_nft_supply;
+global slice storage::admin_address;
+global cell storage::nft_dict;
+global cell storage::account_code;
+global cell storage::sbt_item_code;
+
+() load_data() impure inline {
+    slice ds = get_data().begin_parse();
+
+    storage::nft_counter = ds~load_uint(16);
+    storage::max_nft_supply = ds~load_uint(16);
+    storage:admin_address = ds~load_msg_addr();
+    storage::nft_dict = ds~load_dict();
+    storage::account_code = ds~load_ref();
+    storage::sbt_item_code = ds~load_ref();
+}
+
+() store_data() impure inline {
+    set_data(
+        begin_cell()
+            .store_uint(storage::nft_counter, 16)
+            .store_uint(storage::max_nft_supply, 16)
+            .store_slice(storage::admin_address)
+            .store_dict(storage::nft_dict)
+            .store_ref(storage::account_code)
+            .store_ref(storage::sbt_item_code)
+        .end_cell()
+    );
+}
+
+() send_mint() impure inline {
+
+}
+
+() convert_to_sbt() impure inline {
+
+}
+
+() recv_internal(int my_balance, int msg_value, cell in_msg_full, slice in_msg_body) impure {
+    if (in_msg_body.slice_empty?()) { ;; ignore empty messages
+        return ();
+    }
+
+    slice cs = in_msg_full.begin_parse();
+    int flags = cs~load_uint(4);
+
+    if (flags & 1) { ;; ignore all bounced messages
+        return ();
+    }
+    slice sender_address = cs~load_msg_addr();
+
+    load_data();
+
+    int op = in_msg_body~load_uint(32);
+    int query_id = in_msg_body~load_uint(64);
+
+    if (op == send_mint) {
+
+        return ();
+    }
+
+    if (op == convert_to_sbt) {
+
+        return ();
+    }
+
+    throw(0xffff);
+}

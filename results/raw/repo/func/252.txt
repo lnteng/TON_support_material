@@ -1,0 +1,20 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/ton-bet-dao/contracts/bet-jetton-master.fc:75:28: warning: Lack of end_parse.
+      int fwd_fee = muldiv(cs~load_coins(), 3, 2); ;; we use message fwd_fee for estimation of forward_payload costs
+                             ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/ton-bet-dao/contracts/bet-jetton-master.fc:33:15: warning: Lack of end_parse.
+              ds~load_ref() ;; jetton_wallet_code
+                ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/ton-bet-dao/contracts/bet-jetton-master.fc:136:84: warning: Local variable 'total_supply' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code) = load_data();
+                                                                                     ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/ton-bet-dao/contracts/bet-jetton-master.fc:136:84: warning: Local variable 'admin_address' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code) = load_data();
+                                                                                     ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/ton-bet-dao/contracts/bet-jetton-master.fc:136:84: warning: Local variable 'content' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code) = load_data();
+                                                                                     ^

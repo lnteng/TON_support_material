@@ -1,0 +1,19 @@
+$TicketSeller$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBnLMX4opy98SUhMkrqHcUlsujomBGt3Gb0jQKDsstfjWZR/output/verifier_TicketSeller.code.fc:14:38: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'total)) = (null(), 0);
+                                       ^
+$TicketSeller$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBnLMX4opy98SUhMkrqHcUlsujomBGt3Gb0jQKDsstfjWZR/output/verifier_TicketSeller.storage.fc:85:19: warning: Lack of end_parse.
+          return $sc~$TicketSeller$_load();
+                    ^
+__tact_string_builder_append: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBnLMX4opy98SUhMkrqHcUlsujomBGt3Gb0jQKDsstfjWZR/output/verifier_TicketSeller.stdlib.fc:90:31: warning: Lack of end_parse.
+              sc = sc~load_ref().begin_parse();
+                                ^
+$TicketSeller$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBnLMX4opy98SUhMkrqHcUlsujomBGt3Gb0jQKDsstfjWZR/output/verifier_TicketSeller.code.fc:66:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBnLMX4opy98SUhMkrqHcUlsujomBGt3Gb0jQKDsstfjWZR/output/verifier_TicketSeller.storage.fc:96:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

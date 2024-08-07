@@ -1,0 +1,34 @@
+__tact_dict_set_uint_slice: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./VladPavly/tact-challenge/contracts/output/sample_Task5.stdlib.fc:45:21: warning: Local variable 'ok' is not used
+          var (r, ok) = udict_delete?(d, kl, k);
+                      ^
+$Task5$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./VladPavly/tact-challenge/contracts/output/sample_Task5.storage.fc:134:19: warning: Lack of end_parse.
+          return $sc~$Task5$_load();
+                    ^
+$Task5$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./VladPavly/tact-challenge/contracts/output/sample_Task5.code.fc:14:65: warning: Local variable '$self'nftCount' is not used
+      var (($self'nftCount, $self'seed, $self'owner, $self'nfts)) = (null(), null(), null(), null());
+                                                                  ^
+$Task5$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./VladPavly/tact-challenge/contracts/output/sample_Task5.code.fc:14:65: warning: Local variable '$self'seed' is not used
+      var (($self'nftCount, $self'seed, $self'owner, $self'nfts)) = (null(), null(), null(), null());
+                                                                  ^
+$Task5$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./VladPavly/tact-challenge/contracts/output/sample_Task5.code.fc:14:65: warning: Local variable '$self'owner' is not used
+      var (($self'nftCount, $self'seed, $self'owner, $self'nfts)) = (null(), null(), null(), null());
+                                                                  ^
+$Task5$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./VladPavly/tact-challenge/contracts/output/sample_Task5.code.fc:117:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./VladPavly/tact-challenge/contracts/output/sample_Task5.storage.fc:145:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task5$_contract_store & $Task5$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./VladPavly/tact-challenge/contracts/output/sample_Task5.storage.fc:130:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./VladPavly/tact-challenge/contracts/output/sample_Task5.storage.fc:145:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

@@ -1,0 +1,35 @@
+get_public_key: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBYTuYbLf8INxFtD8tQeNk5ZLy-nAX9ahQbG_yl1qQ-GEMS/nft-marketplace-v2.fc:106:7: warning: Lack of end_parse.
+      cs~load_uint(64);
+        ^
+seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBYTuYbLf8INxFtD8tQeNk5ZLy-nAX9ahQbG_yl1qQ-GEMS/nft-marketplace-v2.fc:101:22: warning: Lack of end_parse.
+      return get_data().begin_parse().preload_uint(32);
+                       ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBYTuYbLf8INxFtD8tQeNk5ZLy-nAX9ahQbG_yl1qQ-GEMS/nft-marketplace-v2.fc:46:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBYTuYbLf8INxFtD8tQeNk5ZLy-nAX9ahQbG_yl1qQ-GEMS/nft-marketplace-v2.fc:46:26: warning: Local variable 'sender_address' is not used
+      slice sender_address = cs~load_msg_addr();
+                           ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBYTuYbLf8INxFtD8tQeNk5ZLy-nAX9ahQbG_yl1qQ-GEMS/nft-marketplace-v2.fc:47:40: warning: Local variable 'seqno' is not used
+      var (seqno, subwallet, public_key) = load_data();
+                                         ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBYTuYbLf8INxFtD8tQeNk5ZLy-nAX9ahQbG_yl1qQ-GEMS/nft-marketplace-v2.fc:47:40: warning: Local variable 'subwallet' is not used
+      var (seqno, subwallet, public_key) = load_data();
+                                         ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBYTuYbLf8INxFtD8tQeNk5ZLy-nAX9ahQbG_yl1qQ-GEMS/nft-marketplace-v2.fc:15:11: warning: Lack of end_parse.
+          ds~load_uint(256)   ;; public_key
+            ^
+store_data & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBYTuYbLf8INxFtD8tQeNk5ZLy-nAX9ahQbG_yl1qQ-GEMS/nft-marketplace-v2.fc:105:24: warning: Cell of get_data and set_data are inconsistent.
+      var cs = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBYTuYbLf8INxFtD8tQeNk5ZLy-nAX9ahQbG_yl1qQ-GEMS/nft-marketplace-v2.fc:28:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(seqno, 32)
+              ^

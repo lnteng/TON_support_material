@@ -1,0 +1,170 @@
+;;
+;; Type: StateInit
+;; TLB: _ code:^cell data:^cell = StateInit
+;;
+
+((cell, cell)) $StateInit$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (cell vvv'code, cell vvv'data) = __tact_tuple_destroy_2(v);
+    return (vvv'code, vvv'data);
+}
+
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_body_value_mode_code_data(slice to, cell body, int value, int mode, cell code, cell data) inline {
+    return (true, to, value, mode, body, code, data);
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline {
+    return (bounce, to, value, mode, body, code, data);
+}
+
+;;
+;; Type: Deploy
+;; Header: 0x946a98b6
+;; TLB: deploy#946a98b6 queryId:uint64 = Deploy
+;;
+
+(slice, ((int))) $Deploy$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2490013878);
+    var v'queryId = sc_0~load_uint(64);
+    return (sc_0, (v'queryId));
+}
+
+;;
+;; Type: DeployOk
+;; Header: 0xaff90f57
+;; TLB: deploy_ok#aff90f57 queryId:uint64 = DeployOk
+;;
+
+builder $DeployOk$_store(builder build_0, (int) v) inline {
+    var (v'queryId) = v;
+    build_0 = store_uint(build_0, 2952335191, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    return build_0;
+}
+
+cell $DeployOk$_store_cell((int) v) inline {
+    return $DeployOk$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $DeployOk$_constructor_queryId(int queryId) inline {
+    return (queryId);
+}
+
+;;
+;; Type: Metadata
+;; TLB: _ name:^string symbol:^string totalSupply:int257 = Metadata
+;;
+
+(slice, slice, int) $Metadata$_to_external(((slice, slice, int)) v) inline {
+    var (v'name, v'symbol, v'totalSupply) = v; 
+    return (v'name, v'symbol, v'totalSupply);
+}
+
+((slice, slice, int)) $Metadata$_constructor_name_symbol_totalSupply(slice name, slice symbol, int totalSupply) inline {
+    return (name, symbol, totalSupply);
+}
+
+;;
+;; Type: InternalAddTokens
+;; Header: 0xf813c89b
+;; TLB: internal_add_tokens#f813c89b amount:coins origin:address = InternalAddTokens
+;;
+
+builder $InternalAddTokens$_store(builder build_0, (int, slice) v) inline {
+    var (v'amount, v'origin) = v;
+    build_0 = store_uint(build_0, 4162046107, 32);
+    build_0 = build_0.store_coins(v'amount);
+    build_0 = __tact_store_address(build_0, v'origin);
+    return build_0;
+}
+
+cell $InternalAddTokens$_store_cell((int, slice) v) inline {
+    return $InternalAddTokens$_store(begin_cell(), v).end_cell();
+}
+
+((int, slice)) $InternalAddTokens$_constructor_amount_origin(int amount, slice origin) inline {
+    return (amount, origin);
+}
+
+;;
+;; Type: TokenParent
+;;
+
+builder $TokenParent$_store(builder build_0, (slice, slice, int) v) inline {
+    var (v'name, v'symbol, v'totalSupply) = v;
+    build_0 = build_0.store_ref(begin_cell().store_slice(v'name).end_cell());
+    build_0 = build_0.store_ref(begin_cell().store_slice(v'symbol).end_cell());
+    build_0 = build_0.store_coins(v'totalSupply);
+    return build_0;
+}
+
+(slice, ((slice, slice, int))) $TokenParent$_load(slice sc_0) inline {
+    var v'name = sc_0~load_ref().begin_parse();
+    var v'symbol = sc_0~load_ref().begin_parse();
+    var v'totalSupply = sc_0~load_coins();
+    return (sc_0, (v'name, v'symbol, v'totalSupply));
+}
+
+(slice, ((slice, slice, int, int))) $TokenParent$init$_load(slice sc_0) inline {
+    var v'_name = sc_0~load_ref().begin_parse();
+    var v'_symbol = sc_0~load_ref().begin_parse();
+    var v'_decimals = sc_0~load_int(257);
+    var v'_totalSupply = sc_0~load_int(257);
+    return (sc_0, (v'_name, v'_symbol, v'_decimals, v'_totalSupply));
+}
+
+(slice, slice, int) $TokenParent$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$TokenParent$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (slice _name, slice _symbol, int _decimals, int _totalSupply) = $sc~$TokenParent$init$_load();
+        $sc.end_parse();
+        return $TokenParent$_contract_init(_name, _symbol, _decimals, _totalSupply);
+    }
+}
+
+() $TokenParent$_contract_store((slice, slice, int) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $TokenParent$_store(b, v);
+    set_data(b.end_cell());
+}
+
+;;
+;; Type: TokenChild
+;;
+
+builder $TokenChild$init$_store(builder build_0, (slice, slice) v) inline {
+    var (v'parent, v'owner) = v;
+    build_0 = __tact_store_address(build_0, v'parent);
+    build_0 = __tact_store_address(build_0, v'owner);
+    return build_0;
+}
+
+(cell, cell) $TokenChild$_init_child(cell sys', slice $parent, slice $owner) inline_ref {
+    slice sc' = sys'.begin_parse();
+    cell source = sc'~load_dict();
+    cell contracts = new_dict();
+    
+    ;; Contract Code: TokenChild
+    cell mine = __tact_dict_get_code(source, 8685);
+    contracts = __tact_dict_set_code(contracts, 8685, mine);
+    
+    ;; Build cell
+    builder b = begin_cell();
+    b = b.store_ref(begin_cell().store_dict(contracts).end_cell());
+    b = b.store_int(false, 1);
+    b = $TokenChild$init$_store(b, ($parent, $owner));
+    return (mine, b.end_cell());
+}

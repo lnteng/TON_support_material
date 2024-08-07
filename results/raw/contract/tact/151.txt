@@ -1,0 +1,23 @@
+$Factory$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQD_etdEwhXfZQNuauZLaR_fV0MkBcvrc-S3p8iG75encxwt/output/sample_Factory.code.fc:14:25: warning: Local variable '$self'owner' is not used
+      var (($self'owner)) = (null());
+                          ^
+$Vault$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQD_etdEwhXfZQNuauZLaR_fV0MkBcvrc-S3p8iG75encxwt/output/sample_Factory.storage.fc:166:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$Factory$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQD_etdEwhXfZQNuauZLaR_fV0MkBcvrc-S3p8iG75encxwt/output/sample_Factory.storage.fc:205:19: warning: Lack of end_parse.
+          return $sc~$Factory$_load();
+                    ^
+$Factory$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQD_etdEwhXfZQNuauZLaR_fV0MkBcvrc-S3p8iG75encxwt/output/sample_Factory.code.fc:116:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQD_etdEwhXfZQNuauZLaR_fV0MkBcvrc-S3p8iG75encxwt/output/sample_Factory.storage.fc:214:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Factory$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQD_etdEwhXfZQNuauZLaR_fV0MkBcvrc-S3p8iG75encxwt/output/sample_Factory.code.fc:54:242: warning: UnHandle bounced message with op: 0x71d03a9b
+  ... ultUpdateContent$_store_cell($VaultUpdateContent$_constructor_name_symbol($msg'name, $msg'symbol))));
+  ...                                                                                                     ^

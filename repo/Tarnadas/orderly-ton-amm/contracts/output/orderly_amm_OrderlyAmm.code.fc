@@ -1,0 +1,274 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "orderly_amm_OrderlyAmm.headers.fc";
+#include "orderly_amm_OrderlyAmm.stdlib.fc";
+#include "orderly_amm_OrderlyAmm.constants.fc";
+#include "orderly_amm_OrderlyAmm.storage.fc";
+
+;;
+;; Contract OrderlyAmm functions
+;;
+
+(slice, cell, int) $OrderlyAmm$_contract_init(slice $owner) impure inline_ref {
+    var (($self'owner, $self'lps, $self'lpsLength)) = (null(), null(), 0);
+    $self'owner = $owner;
+    $self'lps = null();
+    return ($self'owner, $self'lps, $self'lpsLength);
+}
+
+((slice, cell, int), (slice, int, int)) $OrderlyAmm$_fun_readSwap((slice, cell, int) $self, slice $msg) impure inline_ref {
+    var (($self'owner, $self'lps, $self'lpsLength)) = $self;
+    slice $lpAddress = $msg~__tact_load_address();
+    int $sideInt = $msg~load_uint(1);
+    int $side = false;
+    if (($sideInt == 1)) {
+        $side = true;
+    }
+    return (($self'owner, $self'lps, $self'lpsLength), $Swap$_constructor_lpAddress_side_minOut($lpAddress, $side, $msg~load_coins()));
+}
+
+((slice, cell, int), slice) $OrderlyAmm$_fun_get_deposit_address((slice, cell, int) $self, slice $owner, slice $jetton_wallet) impure inline_ref {
+    var (($self'owner, $self'lps, $self'lpsLength)) = $self;
+    var ($stateInit'code, $stateInit'data) = $OrderlyAmmDeposit$_init_child(__tact_context_sys, my_address(), $owner, $jetton_wallet);
+    return (($self'owner, $self'lps, $self'lpsLength), $global_contractAddress(($stateInit'code, $stateInit'data)));
+}
+
+((slice, cell, int), slice) $OrderlyAmm$_fun_get_lp_address((slice, cell, int) $self, slice $base, slice $quote) impure inline_ref {
+    var (($self'owner, $self'lps, $self'lpsLength)) = $self;
+    var ($stateInit'code, $stateInit'data) = $OrderlyAmmLiquidityPool$_init_child(__tact_context_sys, my_address(), $base, $quote);
+    return (($self'owner, $self'lps, $self'lpsLength), $global_contractAddress(($stateInit'code, $stateInit'data)));
+}
+
+((slice, cell, int), cell) $OrderlyAmm$_fun_get_liquidity_pools((slice, cell, int) $self) impure inline_ref {
+    var (($self'owner, $self'lps, $self'lpsLength)) = $self;
+    return (($self'owner, $self'lps, $self'lpsLength), $self'lps);
+}
+
+;;
+;; Receivers of a Contract OrderlyAmm
+;;
+
+((slice, cell, int), ()) $OrderlyAmm$_internal_text_b0ff00cda639475b5e711360e99508a2790d5ee34d0598e7d8066850f3ac6c11((slice, cell, int) $self) impure inline {
+    var ($self'owner, $self'lps, $self'lpsLength) = $self;
+    return (($self'owner, $self'lps, $self'lpsLength), ());
+}
+
+(((slice, cell, int)), ()) $OrderlyAmm$_internal_binary_WithdrawInternal((slice, cell, int) $self, (int, int, slice, slice, slice) $msg) impure inline {
+    var ($self'owner, $self'lps, $self'lpsLength) = $self;
+    var ($msg'queryId, $msg'amount, $msg'destination, $msg'jetton_wallet, $msg'responseDestination) = $msg;
+    __tact_nop();
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    var ($stateInit'code, $stateInit'data) = $OrderlyAmmDeposit$_init_child(__tact_context_sys, my_address(), $msg'destination, $msg'jetton_wallet);
+    throw_unless(4429, ( __tact_slice_eq_bits($ctx'sender, $global_contractAddress(($stateInit'code, $stateInit'data))) ));
+    $global_send($SendParameters$_constructor_to_value_mode_body($msg'jetton_wallet, 0, 64, $TokenTransfer$_store_cell($TokenTransfer$_constructor_queryId_amount_destination_response_destination_custom_payload_forward_ton_amount_forward_payload($msg'queryId, $msg'amount, $msg'destination, $msg'responseDestination, null(), 0, $global_emptySlice()))));
+    return (($self'owner, $self'lps, $self'lpsLength), ());
+}
+
+(((slice, cell, int)), ()) $OrderlyAmm$_internal_binary_TokenNotification((slice, cell, int) $self, (int, int, slice, slice) $msg) impure inline {
+    var ($self'owner, $self'lps, $self'lpsLength) = $self;
+    var ($msg'queryId, $msg'amount, $msg'from, $msg'forward_payload) = $msg;
+    __tact_nop();
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    if (($ctx'value <= 400000000)) {
+        $global_send($SendParameters$_constructor_to_value_mode_body($ctx'sender, 0, 64, $TokenTransfer$_store_cell($TokenTransfer$_constructor_queryId_amount_destination_response_destination_custom_payload_forward_ton_amount_forward_payload($msg'queryId, $msg'amount, $msg'from, $msg'from, __gen_cell_comment_88c3a05f72e9e999180c0580d83e5198234b2ab223b9e6802e77f0072d83f8f2(), 0, $global_emptySlice()))));
+        return (($self'owner, $self'lps, $self'lpsLength), ());
+    }
+    int $enum = $msg'forward_payload~load_uint(8);
+    if (($enum == 0)) {
+        var ($stateInit'code, $stateInit'data) = $OrderlyAmmDeposit$_init_child(__tact_context_sys, my_address(), $msg'from, $ctx'sender);
+        $global_send($SendParameters$_constructor_to_value_bounce_mode_body_code_data($global_contractAddress(($stateInit'code, $stateInit'data)), 0, false, (64 + 2), $DepositInternal$_store_cell($DepositInternal$_constructor_queryId_amount_responseDestination($msg'queryId, $msg'amount, $msg'from)), $stateInit'code, $stateInit'data));
+    } elseif (($enum == 1)) {
+        var ($swap'lpAddress, $swap'side, $swap'minOut) = ($self'owner, $self'lps, $self'lpsLength)~$OrderlyAmm$_fun_readSwap($msg'forward_payload);
+        var ($routeInit'code, $routeInit'data) = $OrderlyAmmDeposit$_init_child(__tact_context_sys, my_address(), $msg'from, $ctx'sender);
+        $global_send($SendParameters$_constructor_to_value_bounce_mode_body($global_contractAddress(($routeInit'code, $routeInit'data)), 150000000, false, 2, $SwapInternal$_store_cell($SwapInternal$_constructor_amount_lpAddress_side_minOut($msg'amount, $swap'lpAddress, $swap'side, $swap'minOut))));
+    }
+    return (($self'owner, $self'lps, $self'lpsLength), ());
+}
+
+(((slice, cell, int)), ()) $OrderlyAmm$_internal_binary_CreateLp((slice, cell, int) $self, (slice, slice) $msg) impure inline {
+    var ($self'owner, $self'lps, $self'lpsLength) = $self;
+    var ($msg'base, $msg'quote) = $msg;
+    __tact_nop();
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    var ($stateInit'code, $stateInit'data) = $OrderlyAmmLiquidityPool$_init_child(__tact_context_sys, my_address(), $msg'base, $msg'quote);
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body_code_data($global_contractAddress(($stateInit'code, $stateInit'data)), 0, false, (64 + 2), $CreateLpInternal$_store_cell($CreateLpInternal$_constructor_responseDestination($ctx'sender)), $stateInit'code, $stateInit'data));
+    return (($self'owner, $self'lps, $self'lpsLength), ());
+}
+
+(((slice, cell, int)), ()) $OrderlyAmm$_internal_binary_CreateLpSuccessInternal((slice, cell, int) $self, (slice, slice, slice) $msg) impure inline {
+    var ($self'owner, $self'lps, $self'lpsLength) = $self;
+    var ($msg'base, $msg'quote, $msg'responseDestination) = $msg;
+    __tact_nop();
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    var ($stateInit'code, $stateInit'data) = $OrderlyAmmLiquidityPool$_init_child(__tact_context_sys, my_address(), $msg'base, $msg'quote);
+    throw_unless(4429, ( __tact_slice_eq_bits($ctx'sender, $global_contractAddress(($stateInit'code, $stateInit'data))) ));
+    $self'lps~__tact_dict_set_uint_cell(16, $self'lpsLength, $LiquidityPool$_store_cell($LiquidityPool$_constructor_base_quote($msg'base, $msg'quote)));
+    $self'lpsLength = ($self'lpsLength + 1);
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body($msg'responseDestination, 0, false, (64 + 2), $TokenExcesses$_store_cell($TokenExcesses$_constructor_queryId(0))));
+    return (($self'owner, $self'lps, $self'lpsLength), ());
+}
+
+(((slice, cell, int)), ()) $OrderlyAmm$_internal_binary_AddLiquidity((slice, cell, int) $self, (slice, int, slice, slice, int, slice) $msg) impure inline {
+    var ($self'owner, $self'lps, $self'lpsLength) = $self;
+    var ($msg'base, $msg'baseAmount, $msg'baseWallet, $msg'quote, $msg'quoteAmount, $msg'quoteWallet) = $msg;
+    __tact_nop();
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    int $queryId = $global_randomInt();
+    var ($lpInit'code, $lpInit'data) = $OrderlyAmmLiquidityPool$_init_child(__tact_context_sys, my_address(), $msg'base, $msg'quote);
+    slice $lpAddress = $global_contractAddress(($lpInit'code, $lpInit'data));
+    var ($baseInit'code, $baseInit'data) = $OrderlyAmmDeposit$_init_child(__tact_context_sys, my_address(), $ctx'sender, $msg'baseWallet);
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body($global_contractAddress(($baseInit'code, $baseInit'data)), 300000000, false, 2, $AddLiquidityInternal$_store_cell($AddLiquidityInternal$_constructor_queryId_amount_lpAddress_isBase_responseDestination($queryId, $msg'baseAmount, $lpAddress, true, $ctx'sender))));
+    var ($quoteInit'code, $quoteInit'data) = $OrderlyAmmDeposit$_init_child(__tact_context_sys, my_address(), $ctx'sender, $msg'quoteWallet);
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body($global_contractAddress(($quoteInit'code, $quoteInit'data)), 300000000, false, 2, $AddLiquidityInternal$_store_cell($AddLiquidityInternal$_constructor_queryId_amount_lpAddress_isBase_responseDestination($queryId, $msg'quoteAmount, $lpAddress, false, $ctx'sender))));
+    int $value = ((($ctx'value - (2 * 300000000)) - 60000000) - $Context$_fun_readForwardFee(($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw)));
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body($ctx'sender, $value, false, 2, $TokenExcesses$_store_cell($TokenExcesses$_constructor_queryId(0))));
+    return (($self'owner, $self'lps, $self'lpsLength), ());
+}
+
+(((slice, cell, int)), ()) $OrderlyAmm$_internal_binary_Deploy((slice, cell, int) $self, (int) $deploy) impure inline {
+    var ($self'owner, $self'lps, $self'lpsLength) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'owner, $self'lps, $self'lpsLength)~$OrderlyAmm$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'owner, $self'lps, $self'lpsLength), ());
+}
+
+;;
+;; Get methods of a Contract OrderlyAmm
+;;
+
+_ %get_deposit_address(slice $$owner, slice $$jetton_wallet) method_id(65831) {
+    slice $owner = __tact_verify_address($$owner);
+    slice $jetton_wallet = __tact_verify_address($$jetton_wallet);
+    var self = $OrderlyAmm$_contract_load();
+    var res = self~$OrderlyAmm$_fun_get_deposit_address($owner, $jetton_wallet);
+    return res;
+}
+
+_ %get_lp_address(slice $$base, slice $$quote) method_id(129483) {
+    slice $base = __tact_verify_address($$base);
+    slice $quote = __tact_verify_address($$quote);
+    var self = $OrderlyAmm$_contract_load();
+    var res = self~$OrderlyAmm$_fun_get_lp_address($base, $quote);
+    return res;
+}
+
+_ %get_liquidity_pools() method_id(70629) {
+    var self = $OrderlyAmm$_contract_load();
+    var res = self~$OrderlyAmm$_fun_get_liquidity_pools();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmYXLy2kJ1SDXrmueHYN2T8MYyTVM8UMmvgXPw9Bz8s2Bv";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract OrderlyAmm
+;;
+
+((slice, cell, int), int) $OrderlyAmm$_contract_router_internal((slice, cell, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive WithdrawInternal message
+    if (op == 2445898473) {
+        var msg = in_msg~$WithdrawInternal$_load();
+        self~$OrderlyAmm$_internal_binary_WithdrawInternal(msg);
+        return (self, true);
+    }
+    
+    ;; Receive TokenNotification message
+    if (op == 1935855772) {
+        var msg = in_msg~$TokenNotification$_load();
+        self~$OrderlyAmm$_internal_binary_TokenNotification(msg);
+        return (self, true);
+    }
+    
+    ;; Receive CreateLp message
+    if (op == 3152499195) {
+        var msg = in_msg~$CreateLp$_load();
+        self~$OrderlyAmm$_internal_binary_CreateLp(msg);
+        return (self, true);
+    }
+    
+    ;; Receive CreateLpSuccessInternal message
+    if (op == 2468653919) {
+        var msg = in_msg~$CreateLpSuccessInternal$_load();
+        self~$OrderlyAmm$_internal_binary_CreateLpSuccessInternal(msg);
+        return (self, true);
+    }
+    
+    ;; Receive AddLiquidity message
+    if (op == 2275276346) {
+        var msg = in_msg~$AddLiquidity$_load();
+        self~$OrderlyAmm$_internal_binary_AddLiquidity(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$OrderlyAmm$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "refund" message
+        if (text_op == 0xb0ff00cda639475b5e711360e99508a2790d5ee34d0598e7d8066850f3ac6c11) {
+            self~$OrderlyAmm$_internal_text_b0ff00cda639475b5e711360e99508a2790d5ee34d0598e7d8066850f3ac6c11();
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $OrderlyAmm$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$OrderlyAmm$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $OrderlyAmm$_contract_store(self);
+}

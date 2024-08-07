@@ -1,0 +1,170 @@
+#include "imports/stdlib.fc";
+
+(slice, cell, slice) load_data() inline_ref {
+    slice ds = get_data().begin_parse();
+    return (
+        ds~load_msg_addr(),
+        ds~load_dict(),
+        ds
+    );
+}
+
+builder store_slice_r(slice s, builder b) asm "STSLICE";
+
+builder STBREFR(builder s, builder b) asm "STBREFR";
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    if (in_msg.slice_bits() < 32) {
+        return ();
+    }
+
+    int op = in_msg~load_uint(32);
+
+    (slice admin_address, cell users, slice slice_else) = load_data();
+
+    if (op == 0x368ddef3) {
+        in_msg~load_uint(64);
+
+        var cs = in_msg_cell.begin_parse();
+        cs~load_uint(4);
+        var sender_address = cs~load_msg_addr();
+
+        throw_unless(120, equal_slices(sender_address, admin_address));
+
+        int total_shares = slice_empty?(slice_else) ? 0 : slice_else~load_uint(32);
+
+        (slice address, int share) = (in_msg~load_msg_addr(), in_msg~load_uint(32));
+
+        (_, int y) = address.parse_std_addr();
+
+        (slice val, int f) = users.udict_get?(256, y);
+
+        if (f) {
+            total_shares -= val~load_uint(32);
+        }
+
+        total_shares += share;
+        users~udict_set(256, y, begin_cell().store_uint(share, 32).end_cell().begin_parse());
+
+        set_data(begin_cell().store_slice(admin_address).store_dict(users).store_uint(total_shares, 32).end_cell());
+    } elseif (op == 0x278205c8) {
+        in_msg~load_uint(64);
+
+        var cs = in_msg_cell.begin_parse();
+        cs~load_uint(4);
+        var sender_address = cs~load_msg_addr();
+
+        throw_unless(120, equal_slices(sender_address, admin_address));
+
+        slice address = in_msg~load_msg_addr();
+
+        (_, int y) = address.parse_std_addr();
+
+        (slice val, int f) = users.udict_get?(256, y);
+
+        throw_unless(121, f);
+
+        users~udict_delete?(256, y);
+
+        set_data(begin_cell().store_slice(admin_address).store_dict(users).store_uint(slice_else~load_uint(32) - val~load_uint(32), 32).end_cell());
+    } elseif (op == 0x068530b3) {
+        throw_unless(122, users.dict_empty?() == false);
+
+        int total_shares = slice_else~load_uint(32);
+
+        builder msg_def = begin_cell()
+        .store_uint(0x18, 6);
+
+        builder msg_end = begin_cell()
+        .store_uint(0, 32 + 1 + 4 + 4 + 64 + 32 + 1 + 1);
+
+
+        builder dest_addr_beg = begin_cell().store_uint(4, 3).store_uint(0, 8);
+
+        (int key, slice val, int flag) = users.udict_get_min?(256);
+        while (flag) {
+            int amount = muldiv(msg_value, val~load_uint(32), total_shares);
+
+            slice destination_address = dest_addr_beg.store_uint(key, 256).end_cell().begin_parse();
+
+            builder msg_mid = msg_def
+            .store_slice(destination_address)
+            .store_coins(amount);
+
+            var msg = store_builder(msg_mid, msg_end);
+
+            send_raw_message(msg.end_cell(), 1);
+
+
+            (key, val, flag) = users.udict_get_next?(256, key);
+        }
+
+    } elseif (op == 0x7362d09c) {
+
+        throw_unless(122, users.dict_empty?() == false);
+
+        int query_id = in_msg~load_uint(64);
+
+        int total_shares = slice_else~load_uint(32);
+
+        int amount = in_msg~load_coins();
+
+        var cs = in_msg_cell.begin_parse();
+        cs~load_uint(4);
+        var sender_address = cs~load_msg_addr();
+
+        var msg_def = begin_cell()
+        .store_uint(0x18, 6)
+        .store_slice(sender_address)
+        .store_coins(20000000)
+        .store_uint(1, 1 + 4 + 4 + 64 + 32 + 1 + 1);
+
+        var dest_addr_beg = begin_cell().store_uint(4, 3).store_uint(0, 8);
+
+        var msg_body_beg = begin_cell()
+        .store_uint(0x0f8a7ea5, 32)
+        .store_uint(query_id, 64);
+
+        var msg_body_end = begin_cell()
+        .store_uint(0, 1)
+        .store_coins(1)
+        .store_uint(0, 1);
+
+        (int key, slice val, int flag) = users.udict_get_min?(256);
+        while (flag) {
+            int jetton_amount = muldiv(amount, val.preload_uint(32), total_shares);
+
+            slice destination_address = dest_addr_beg.store_uint(key, 256).end_cell().begin_parse();
+
+            var msg_body_mid = msg_body_beg
+            .store_coins(jetton_amount)
+            .store_slice(destination_address)
+            .store_slice(destination_address);
+
+            var msg_body = store_builder(msg_body_mid, msg_body_end);
+
+            var msg = STBREFR(msg_def, msg_body);
+
+            send_raw_message(msg.end_cell(), 1);
+
+            (key, val, flag) = users.udict_get_next?(256, key);
+        }
+    }
+}
+
+cell get_users() method_id {
+    (_, cell users, _) = load_data();
+
+    return users;
+}
+
+int get_user_share(slice user_address) method_id {
+    (_, cell users, _) = load_data();
+
+    (int x, int y) = user_address.parse_std_addr();
+
+    (slice val, int key) = users.udict_get?(256, y);
+
+    return val~load_uint(32);
+}
+

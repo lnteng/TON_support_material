@@ -1,0 +1,16 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAIFunALREOeQ99syMbO6sSzM_Fa1RsPD5TBoS0qVeKQ-AR/deployer/deployer.fc:21:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAIFunALREOeQ99syMbO6sSzM_Fa1RsPD5TBoS0qVeKQ-AR/deployer/deployer.fc:83:27: warning: Lack of end_parse.
+        send_raw_message(msg~load_ref(), mode);
+                            ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAIFunALREOeQ99syMbO6sSzM_Fa1RsPD5TBoS0qVeKQ-AR/deployer/deployer.fc:77:29: warning: Lack of end_parse.
+        var owner_address = ds~load_msg_addr();
+                              ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAIFunALREOeQ99syMbO6sSzM_Fa1RsPD5TBoS0qVeKQ-AR/deployer/deployer.fc:66:42: warning: UnHandle bounced message with op: 0x5fcc3d14
+        send_raw_message(transfer_msg, 128); ;; paying fees, revert on errors
+                                           ^

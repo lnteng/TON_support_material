@@ -1,0 +1,14 @@
+;; ~load_op returns opcode stored in cell slice. 
+(slice, int) ~load_op(slice s) inline { return s.load_uint(32); }
+
+;; ~load_body_header returns cell slice and tuple (opcode, query_id) stored in it.
+(slice, (int, int)) ~load_body_header(slice s) inline {
+    int op = s~load_uint(32);
+    int query_id = s~load_uint(64);
+    return (s, (op, query_id));
+}
+
+builder store_body_header(builder b, int op, int query_id) inline {
+    return b.store_uint(op, 32)
+          .store_uint(query_id, 64);
+}

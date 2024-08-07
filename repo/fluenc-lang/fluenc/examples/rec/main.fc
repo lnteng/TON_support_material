@@ -1,0 +1,67 @@
+struct Struct
+{
+    values: []
+};
+
+function sum(i32 product, i32 v)
+{
+    return product + v;
+}
+
+function sum(i32 product, (i32 v, ...values))
+{
+    return tail sum(product + v, ...values);
+}
+
+function add(i32 addend, i32 v)
+{
+    return v + addend;
+}
+
+function add(i32 addend, (i32 v, ...values))
+{
+    return v + addend -> add(addend, ...values);
+}
+
+function noop(i32 v)
+{
+    return v;
+}
+
+function noop((i32 v, ...values))
+{
+    return v -> noop(...values);
+}
+
+function first(i32 v)
+{
+    return v;
+}
+
+function first((i32 v, ...values))
+{
+    return v;
+}
+
+function createStruct()
+{
+    return Struct
+    {
+        values: [1, 2]
+    };
+}
+
+function foo(Struct s)
+{
+	if (sum(0, ...s.values) < 20)
+	{
+		return tail foo(s with { values: add(1, ...s.values) });
+	}
+
+	return first(...s.values);
+}
+
+export i32 main()
+{
+    return foo(createStruct());
+}

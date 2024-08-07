@@ -1,0 +1,161 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_Optionals.headers.fc";
+#include "sample_Optionals.stdlib.fc";
+#include "sample_Optionals.storage.fc";
+
+;;
+;; Contract Optionals functions
+;;
+
+(int, int, slice, tuple) $Optionals$_contract_init(int $a, int $b, slice $c) impure inline_ref {
+    var (($self'ca, $self'cb, $self'cc, $self'cd)) = (null(), null(), null(), null());
+    $self'ca = $a;
+    $self'cb = $b;
+    $self'cc = $c;
+    $self'cd = $StrctOpts$_as_optional($StrctOpts$_constructor_sa_sb_sc(null(), true, null()));
+    return ($self'ca, $self'cb, $self'cc, $self'cd);
+}
+
+((int, int, slice, tuple), int) $Optionals$_fun_optInt((int, int, slice, tuple) $self) impure inline_ref {
+    var (($self'ca, $self'cb, $self'cc, $self'cd)) = $self;
+    return (($self'ca, $self'cb, $self'cc, $self'cd), $self'ca);
+}
+
+((int, int, slice, tuple), int) $Optionals$_fun_optIntVal((int, int, slice, tuple) $self) impure inline_ref {
+    var (($self'ca, $self'cb, $self'cc, $self'cd)) = $self;
+    if (null?($self'ca)) {
+        return (($self'ca, $self'cb, $self'cc, $self'cd), (- 1));
+    } else {
+        return (($self'ca, $self'cb, $self'cc, $self'cd), __tact_not_null($self'ca));
+    }
+}
+
+((int, int, slice, tuple), int) $Optionals$_fun_optNested((int, int, slice, tuple) $self) impure inline_ref {
+    var (($self'ca, $self'cb, $self'cc, $self'cd)) = $self;
+    if (( ((~ null?($self'cd))) ? ((~ null?($StrctOpts$_get_sa($StrctOpts$_not_null($self'cd))))) : (false) )) {
+        return (($self'ca, $self'cb, $self'cc, $self'cd), __tact_not_null($StrctOpts$_get_sa($StrctOpts$_not_null($self'cd))));
+    } else {
+        return (($self'ca, $self'cb, $self'cc, $self'cd), null());
+    }
+}
+
+;;
+;; Receivers of a Contract Optionals
+;;
+
+(((int, int, slice, tuple)), ()) $Optionals$_internal_binary_MsgOpts((int, int, slice, tuple) $self, (int, int, slice, tuple) $msg) impure inline {
+    var ($self'ca, $self'cb, $self'cc, $self'cd) = $self;
+    var ($msg'ma, $msg'mb, $msg'mc, $msg'md) = $msg;
+    int $i = 12;
+    if ((~ null?($msg'ma))) {
+        $i = ($i + __tact_not_null($msg'ma));
+        $self'ca = $i;
+    }
+    return (($self'ca, $self'cb, $self'cc, $self'cd), ());
+}
+
+(((int, int, slice, tuple)), ()) $Optionals$_internal_binary_Deploy((int, int, slice, tuple) $self, (int) $deploy) impure inline {
+    var ($self'ca, $self'cb, $self'cc, $self'cd) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'ca, $self'cb, $self'cc, $self'cd)~$Optionals$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'ca, $self'cb, $self'cc, $self'cd), ());
+}
+
+;;
+;; Get methods of a Contract Optionals
+;;
+
+_ %optInt() method_id(104979) {
+    var self = $Optionals$_contract_load();
+    var res = self~$Optionals$_fun_optInt();
+    return res;
+}
+
+_ %optIntVal() method_id(102535) {
+    var self = $Optionals$_contract_load();
+    var res = self~$Optionals$_fun_optIntVal();
+    return res;
+}
+
+_ %optNested() method_id(82046) {
+    var self = $Optionals$_contract_load();
+    var res = self~$Optionals$_fun_optNested();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmaScCZf5S4BjHqbJN6M1XVowLUwiMSR5vTEhC6fouNsm9";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract Optionals
+;;
+
+((int, int, slice, tuple), int) $Optionals$_contract_router_internal((int, int, slice, tuple) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive MsgOpts message
+    if (op == 162313165) {
+        var msg = in_msg~$MsgOpts$_load();
+        self~$Optionals$_internal_binary_MsgOpts(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$Optionals$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $Optionals$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$Optionals$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $Optionals$_contract_store(self);
+}

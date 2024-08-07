@@ -1,0 +1,12 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDelOLaPNnrFoU7W1mmTU6UoZdnwTbZ8WPEe9bbZiIxpTXl/jetton_lottery.fc:121:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDelOLaPNnrFoU7W1mmTU6UoZdnwTbZ8WPEe9bbZiIxpTXl/jetton_lottery.fc:103:45: warning: UnHandle bounced message with op: 0xf8a7ea5
+          send_raw_message(msg.end_cell(), 64);
+                                              ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDelOLaPNnrFoU7W1mmTU6UoZdnwTbZ8WPEe9bbZiIxpTXl/jetton_lottery.fc:56:50: warning: UnHandle bounced message with op: 0xf8a7ea5
+          send_raw_message(msg.end_cell(), 2 + 128);
+                                                   ^

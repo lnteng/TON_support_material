@@ -1,0 +1,32 @@
+manager: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./GyreCRM/DID_contract/func/DID_contract.func:72:40: warning: Local variable 'dict' is not used
+      (slice manager_address, cell dict) = load_data();
+                                         ^
+certificate: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./GyreCRM/DID_contract/func/DID_contract.func:64:37: warning: Local variable 'manager_address' is not used
+  	(slice manager_address, cell dict) = load_data(); ;; manager address not used
+  	                                   ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./GyreCRM/DID_contract/func/DID_contract.func:40:32: warning: Lack of end_parse.
+          slice hash = hash_slice~load_bits(hash_slice_size);
+                                 ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./GyreCRM/DID_contract/func/DID_contract.func:25:18: warning: Local variable 'query_id' is not used
+      int query_id = in_msg_body~load_uint(64);
+                   ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./GyreCRM/DID_contract/func/DID_contract.func:51:23: warning: Local variable 'workchain' is not used
+          int workchain = in_msg_body~load_int(32);
+                        ^
+parse_sender_address: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./GyreCRM/DID_contract/func/DID_contract.func:19:26: warning: Lack of end_parse.
+  slice sender_address = cs~load_msg_addr(); ;; get sender address
+                           ^
+parse_sender_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./GyreCRM/DID_contract/func/DID_contract.func:17:11: warning: Local variable 'flags' is not used
+  var flags = cs~load_uint(4);  ;; subtract(take away) flags
+            ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./GyreCRM/DID_contract/func/DID_contract.func:11:28: warning: Lack of end_parse.
+      else { cell dict = data~load_ref();
+                             ^

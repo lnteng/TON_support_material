@@ -1,0 +1,31 @@
+__tact_string_builder_append: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./KyoungWan/Tact_BootCamp_Seoul/Nft/contracts/output/sample_NftCollection.stdlib.fc:129:31: warning: Lack of end_parse.
+              sc = sc~load_ref().begin_parse();
+                                ^
+$NftCollection$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./KyoungWan/Tact_BootCamp_Seoul/Nft/contracts/output/sample_NftCollection.storage.fc:198:19: warning: Lack of end_parse.
+          return $sc~$NftCollection$_load();
+                    ^
+$NftCollection$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./KyoungWan/Tact_BootCamp_Seoul/Nft/contracts/output/sample_NftCollection.code.fc:15:74: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'next_item_index, $self'collection_content)) = (null(), 0, null());
+                                                                           ^
+$NftCollection$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./KyoungWan/Tact_BootCamp_Seoul/Nft/contracts/output/sample_NftCollection.code.fc:15:74: warning: Local variable '$self'collection_content' is not used
+      var (($self'owner, $self'next_item_index, $self'collection_content)) = (null(), 0, null());
+                                                                           ^
+$NftItem$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./KyoungWan/Tact_BootCamp_Seoul/Nft/contracts/output/sample_NftCollection.storage.fc:159:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$NftCollection$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./KyoungWan/Tact_BootCamp_Seoul/Nft/contracts/output/sample_NftCollection.code.fc:137:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./KyoungWan/Tact_BootCamp_Seoul/Nft/contracts/output/sample_NftCollection.storage.fc:207:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$NftCollection$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./KyoungWan/Tact_BootCamp_Seoul/Nft/contracts/output/sample_NftCollection.code.fc:37:292: warning: UnHandle bounced message with op: 0xf2392833
+  ... store_cell($Transfer$_constructor_queryId_new_owner(0, $receiver)), $nft_init'code, $nft_init'data));
+  ...                                                                                                     ^

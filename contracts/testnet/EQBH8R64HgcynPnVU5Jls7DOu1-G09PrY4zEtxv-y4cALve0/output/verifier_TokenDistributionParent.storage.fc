@@ -1,0 +1,234 @@
+;;
+;; Type: StateInit
+;; TLB: _ code:^cell data:^cell = StateInit
+;;
+
+((cell, cell)) $StateInit$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (cell vvv'code, cell vvv'data) = __tact_tuple_destroy_2(v);
+    return (vvv'code, vvv'data);
+}
+
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode_code_data(slice to, int value, int mode, cell code, cell data) inline {
+    return (true, to, value, mode, null(), code, data);
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline {
+    return (bounce, to, value, mode, body, code, data);
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_value_to_mode_body(int value, slice to, int mode, cell body) inline {
+    return (true, to, value, mode, body, null(), null());
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode(slice to, int value, int mode) inline {
+    return (true, to, value, mode, null(), null(), null());
+}
+
+;;
+;; Type: Deploy
+;; Header: 0x946a98b6
+;; TLB: deploy#946a98b6 queryId:uint64 = Deploy
+;;
+
+(slice, ((int))) $Deploy$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2490013878);
+    var v'queryId = sc_0~load_uint(64);
+    return (sc_0, (v'queryId));
+}
+
+;;
+;; Type: DeployOk
+;; Header: 0xaff90f57
+;; TLB: deploy_ok#aff90f57 queryId:uint64 = DeployOk
+;;
+
+builder $DeployOk$_store(builder build_0, (int) v) inline {
+    var (v'queryId) = v;
+    build_0 = store_uint(build_0, 2952335191, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    return build_0;
+}
+
+cell $DeployOk$_store_cell((int) v) inline {
+    return $DeployOk$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $DeployOk$_constructor_queryId(int queryId) inline {
+    return (queryId);
+}
+
+;;
+;; Type: TokenClaimRequest
+;; Header: 0x8c7991ee
+;; TLB: token_claim_request#8c7991ee user:address seqno:uint64 = TokenClaimRequest
+;;
+
+(slice, ((slice, int))) $TokenClaimRequest$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2356777454);
+    var v'user = sc_0~__tact_load_address();
+    var v'seqno = sc_0~load_uint(64);
+    return (sc_0, (v'user, v'seqno));
+}
+
+;;
+;; Type: OwnerWithdrawalRequest
+;; Header: 0x5bf598cc
+;; TLB: owner_withdrawal_request#5bf598cc to:address = OwnerWithdrawalRequest
+;;
+
+(slice, ((slice))) $OwnerWithdrawalRequest$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 1542822092);
+    var v'to = sc_0~__tact_load_address();
+    return (sc_0, (v'to));
+}
+
+;;
+;; Type: TokenNotification
+;; Header: 0x7362d09c
+;; TLB: token_notification#7362d09c queryId:uint64 amount:coins from:address forwardPayload:remainder<slice> = TokenNotification
+;;
+
+(slice, ((int, int, slice, slice))) $TokenNotification$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 1935855772);
+    var v'queryId = sc_0~load_uint(64);
+    var v'amount = sc_0~load_coins();
+    var v'from = sc_0~__tact_load_address();
+    var v'forwardPayload = sc_0;
+    return (sc_0, (v'queryId, v'amount, v'from, v'forwardPayload));
+}
+
+;;
+;; Type: TokenTransfer
+;; Header: 0x0f8a7ea5
+;; TLB: token_transfer#0f8a7ea5 queryId:uint64 amount:coins destination:address responseDestination:Maybe address customPayload:Maybe ^cell forwardTonAmount:coins forwardPayload:remainder<slice> = TokenTransfer
+;;
+
+builder $TokenTransfer$_store(builder build_0, (int, int, slice, slice, cell, int, slice) v) inline_ref {
+    var (v'queryId, v'amount, v'destination, v'responseDestination, v'customPayload, v'forwardTonAmount, v'forwardPayload) = v;
+    build_0 = store_uint(build_0, 260734629, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    build_0 = build_0.store_coins(v'amount);
+    build_0 = __tact_store_address(build_0, v'destination);
+    build_0 = __tact_store_address_opt(build_0, v'responseDestination);
+    build_0 = ~ null?(v'customPayload) ? build_0.store_int(true, 1).store_ref(v'customPayload) : build_0.store_int(false, 1);
+    build_0 = build_0.store_coins(v'forwardTonAmount);
+    build_0 = build_0.store_slice(v'forwardPayload);
+    return build_0;
+}
+
+cell $TokenTransfer$_store_cell((int, int, slice, slice, cell, int, slice) v) inline {
+    return $TokenTransfer$_store(begin_cell(), v).end_cell();
+}
+
+((int, int, slice, slice, cell, int, slice)) $TokenTransfer$_constructor_queryId_amount_destination_responseDestination_customPayload_forwardTonAmount_forwardPayload(int queryId, int amount, slice destination, slice responseDestination, cell customPayload, int forwardTonAmount, slice forwardPayload) inline {
+    return (queryId, amount, destination, responseDestination, customPayload, forwardTonAmount, forwardPayload);
+}
+
+;;
+;; Type: TokenDistributionParent
+;;
+
+builder $TokenDistributionParent$_store(builder build_0, (slice, slice, int, int, int, int, int, slice, slice) v) inline {
+    var (v'owner, v'tokenAddress, v'supply, v'claimAmount, v'claimInterval, v'seqno, v'claimed, v'lastReceivedAddress, v'lastReceivedAddressFrom) = v;
+    build_0 = __tact_store_address(build_0, v'owner);
+    build_0 = __tact_store_address(build_0, v'tokenAddress);
+    build_0 = build_0.store_int(v'supply, 257);
+    build_0 = build_0.store_coins(v'claimAmount);
+    var build_1 = begin_cell();
+    build_1 = build_1.store_int(v'claimInterval, 257);
+    build_1 = build_1.store_uint(v'seqno, 64);
+    build_1 = build_1.store_int(v'claimed, 257);
+    build_1 = __tact_store_address_opt(build_1, v'lastReceivedAddress);
+    var build_2 = begin_cell();
+    build_2 = __tact_store_address_opt(build_2, v'lastReceivedAddressFrom);
+    build_1 = store_ref(build_1, build_2.end_cell());
+    build_0 = store_ref(build_0, build_1.end_cell());
+    return build_0;
+}
+
+(slice, ((slice, slice, int, int, int, int, int, slice, slice))) $TokenDistributionParent$_load(slice sc_0) inline {
+    var v'owner = sc_0~__tact_load_address();
+    var v'tokenAddress = sc_0~__tact_load_address();
+    var v'supply = sc_0~load_int(257);
+    var v'claimAmount = sc_0~load_coins();
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'claimInterval = sc_1~load_int(257);
+    var v'seqno = sc_1~load_uint(64);
+    var v'claimed = sc_1~load_int(257);
+    var v'lastReceivedAddress = sc_1~__tact_load_address_opt();
+    slice sc_2 = sc_1~load_ref().begin_parse();
+    var v'lastReceivedAddressFrom = sc_2~__tact_load_address_opt();
+    return (sc_0, (v'owner, v'tokenAddress, v'supply, v'claimAmount, v'claimInterval, v'seqno, v'claimed, v'lastReceivedAddress, v'lastReceivedAddressFrom));
+}
+
+(slice, ((slice, slice, int, int, int))) $TokenDistributionParent$init$_load(slice sc_0) inline {
+    var v'owner = sc_0~__tact_load_address();
+    var v'tokenContractAddress = sc_0~__tact_load_address();
+    var v'amount = sc_0~load_int(257);
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'interval = sc_1~load_int(257);
+    var v'seqno = sc_1~load_int(257);
+    return (sc_0, (v'owner, v'tokenContractAddress, v'amount, v'interval, v'seqno));
+}
+
+(slice, slice, int, int, int, int, int, slice, slice) $TokenDistributionParent$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$TokenDistributionParent$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (slice owner, slice tokenContractAddress, int amount, int interval, int seqno) = $sc~$TokenDistributionParent$init$_load();
+        $sc.end_parse();
+        return $TokenDistributionParent$_contract_init(owner, tokenContractAddress, amount, interval, seqno);
+    }
+}
+
+() $TokenDistributionParent$_contract_store((slice, slice, int, int, int, int, int, slice, slice) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $TokenDistributionParent$_store(b, v);
+    set_data(b.end_cell());
+}
+
+;;
+;; Type: TokenDistributionChild
+;;
+
+builder $TokenDistributionChild$init$_store(builder build_0, (slice, slice, int, int, int) v) inline {
+    var (v'parentAddress, v'owner, v'amount, v'interval, v'seqno) = v;
+    build_0 = __tact_store_address(build_0, v'parentAddress);
+    build_0 = __tact_store_address(build_0, v'owner);
+    build_0 = build_0.store_int(v'amount, 257);
+    var build_1 = begin_cell();
+    build_1 = build_1.store_int(v'interval, 257);
+    build_1 = build_1.store_int(v'seqno, 257);
+    build_0 = store_ref(build_0, build_1.end_cell());
+    return build_0;
+}
+
+(cell, cell) $TokenDistributionChild$_init_child(cell sys', slice $parentAddress, slice $owner, int $amount, int $interval, int $seqno) inline_ref {
+    slice sc' = sys'.begin_parse();
+    cell source = sc'~load_dict();
+    cell contracts = new_dict();
+    
+    ;; Contract Code: TokenDistributionChild
+    cell mine = __tact_dict_get_code(source, 53926);
+    contracts = __tact_dict_set_code(contracts, 53926, mine);
+    
+    ;; Build cell
+    builder b = begin_cell();
+    b = b.store_ref(begin_cell().store_dict(contracts).end_cell());
+    b = b.store_int(false, 1);
+    b = $TokenDistributionChild$init$_store(b, ($parentAddress, $owner, $amount, $interval, $seqno));
+    return (mine, b.end_cell());
+}

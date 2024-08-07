@@ -1,0 +1,16 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/nft_item.fc:142:28: warning: Lack of end_parse.
+      int fwd_fee = muldiv(cs~load_coins(), 3, 2); ;; we use message fwd_fee for estimation of forward_payload costs
+                             ^
+transfer_ownership: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/nft_item.fc:86:29: warning: Lack of end_parse.
+          int lockPeriod = lpS~load_uint(256);
+                              ^
+transfer_ownership: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/nft_item.fc:80:30: warning: Lack of end_parse.
+          cell contDict = contS~load_dict();
+                               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/nft_item.fc:29:88: warning: Lack of end_parse.
+        return (-1, index, collection_address, ds~load_msg_addr(), ds~load_msg_addr(), ds~load_ref());
+                                                                                         ^

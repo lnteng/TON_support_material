@@ -1,0 +1,42 @@
+$Registry$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC1Mk8fuSBxFdCR4VrENamI5Z4r-u5a88Od1phnSv-2xHd1/output/verifier_Registry.storage.fc:227:19: warning: Lack of end_parse.
+          return $sc~$Registry$_load();
+                    ^
+$Registry$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC1Mk8fuSBxFdCR4VrENamI5Z4r-u5a88Od1phnSv-2xHd1/output/verifier_Registry.code.fc:14:111: warning: Local variable '$self'registryId' is not used
+      var (($self'registryId, $self'nextDaoId, $self'admin, $self'deployAndInitDaoFee, $self'newDaosfwdMsgFee)) = (null(), null(), null(), null(), null());
+                                                                                                                ^
+$Registry$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC1Mk8fuSBxFdCR4VrENamI5Z4r-u5a88Od1phnSv-2xHd1/output/verifier_Registry.code.fc:14:111: warning: Local variable '$self'nextDaoId' is not used
+      var (($self'registryId, $self'nextDaoId, $self'admin, $self'deployAndInitDaoFee, $self'newDaosfwdMsgFee)) = (null(), null(), null(), null(), null());
+                                                                                                                ^
+$Registry$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC1Mk8fuSBxFdCR4VrENamI5Z4r-u5a88Od1phnSv-2xHd1/output/verifier_Registry.code.fc:14:111: warning: Local variable '$self'admin' is not used
+      var (($self'registryId, $self'nextDaoId, $self'admin, $self'deployAndInitDaoFee, $self'newDaosfwdMsgFee)) = (null(), null(), null(), null(), null());
+                                                                                                                ^
+$Registry$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC1Mk8fuSBxFdCR4VrENamI5Z4r-u5a88Od1phnSv-2xHd1/output/verifier_Registry.code.fc:14:111: warning: Local variable '$self'deployAndInitDaoFee' is not used
+      var (($self'registryId, $self'nextDaoId, $self'admin, $self'deployAndInitDaoFee, $self'newDaosfwdMsgFee)) = (null(), null(), null(), null(), null());
+                                                                                                                ^
+$Registry$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC1Mk8fuSBxFdCR4VrENamI5Z4r-u5a88Od1phnSv-2xHd1/output/verifier_Registry.code.fc:14:111: warning: Local variable '$self'newDaosfwdMsgFee' is not used
+      var (($self'registryId, $self'nextDaoId, $self'admin, $self'deployAndInitDaoFee, $self'newDaosfwdMsgFee)) = (null(), null(), null(), null(), null());
+                                                                                                                ^
+$Dao$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC1Mk8fuSBxFdCR4VrENamI5Z4r-u5a88Od1phnSv-2xHd1/output/verifier_Registry.storage.fc:258:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$Registry$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC1Mk8fuSBxFdCR4VrENamI5Z4r-u5a88Od1phnSv-2xHd1/output/verifier_Registry.code.fc:138:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC1Mk8fuSBxFdCR4VrENamI5Z4r-u5a88Od1phnSv-2xHd1/output/verifier_Registry.storage.fc:238:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Registry$_contract_store & $Registry$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC1Mk8fuSBxFdCR4VrENamI5Z4r-u5a88Od1phnSv-2xHd1/output/verifier_Registry.storage.fc:223:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC1Mk8fuSBxFdCR4VrENamI5Z4r-u5a88Od1phnSv-2xHd1/output/verifier_Registry.storage.fc:238:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

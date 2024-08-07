@@ -1,0 +1,67 @@
+$ExampleNFTItem$_fun__report_static_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/tact-contracts/contracts/output/sample_ExampleNFTItem.code.fc:69:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$ExampleNFTItem$_fun__report_static_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/tact-contracts/contracts/output/sample_ExampleNFTItem.code.fc:69:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$ExampleNFTItem$_fun__report_static_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/tact-contracts/contracts/output/sample_ExampleNFTItem.code.fc:69:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$ExampleNFTItem$_fun_get_nft_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/tact-contracts/contracts/output/sample_ExampleNFTItem.code.fc:86:215: warning: Local variable '$self'index' is not used
+  ... ($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized)~$ExampleNFTItem$_fun__get_nft_data());
+  ...                                                                                                     ^
+$ExampleNFTItem$_fun_get_nft_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/tact-contracts/contracts/output/sample_ExampleNFTItem.code.fc:86:215: warning: Local variable '$self'owner' is not used
+  ... ($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized)~$ExampleNFTItem$_fun__get_nft_data());
+  ...                                                                                                     ^
+$ExampleNFTItem$_fun_get_nft_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/tact-contracts/contracts/output/sample_ExampleNFTItem.code.fc:86:215: warning: Local variable '$self'individual_content' is not used
+  ... ($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized)~$ExampleNFTItem$_fun__get_nft_data());
+  ...                                                                                                     ^
+$ExampleNFTItem$_fun_get_nft_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/tact-contracts/contracts/output/sample_ExampleNFTItem.code.fc:86:215: warning: Local variable '$self'is_initialized' is not used
+  ... ($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized)~$ExampleNFTItem$_fun__get_nft_data());
+  ...                                                                                                     ^
+__tact_string_builder_append: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/tact-contracts/contracts/output/sample_ExampleNFTItem.stdlib.fc:98:31: warning: Lack of end_parse.
+              sc = sc~load_ref().begin_parse();
+                                ^
+$ExampleNFTItem$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/tact-contracts/contracts/output/sample_ExampleNFTItem.storage.fc:169:19: warning: Lack of end_parse.
+          return $sc~$ExampleNFTItem$_load();
+                    ^
+$ExampleNFTItem$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/tact-contracts/contracts/output/sample_ExampleNFTItem.code.fc:15:112: warning: Local variable '$self'collection_address' is not used
+      var (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized)) = (null(), null(), null(), null(), false);
+                                                                                                                 ^
+$ExampleNFTItem$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/tact-contracts/contracts/output/sample_ExampleNFTItem.code.fc:15:112: warning: Local variable '$self'index' is not used
+      var (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized)) = (null(), null(), null(), null(), false);
+                                                                                                                 ^
+$ExampleNFTItem$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/tact-contracts/contracts/output/sample_ExampleNFTItem.code.fc:15:112: warning: Local variable '$self'owner' is not used
+      var (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized)) = (null(), null(), null(), null(), false);
+                                                                                                                 ^
+$ExampleNFTItem$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/tact-contracts/contracts/output/sample_ExampleNFTItem.code.fc:15:112: warning: Local variable '$self'individual_content' is not used
+      var (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized)) = (null(), null(), null(), null(), false);
+                                                                                                                 ^
+$ExampleNFTItem$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/tact-contracts/contracts/output/sample_ExampleNFTItem.code.fc:138:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/tact-contracts/contracts/output/sample_ExampleNFTItem.storage.fc:180:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$ExampleNFTItem$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/tact-contracts/contracts/output/sample_ExampleNFTItem.code.fc:61:204: warning: UnHandle bounced message with op: 0xd53276db
+  ... n - $msg'forward_amount), 1, $Excesses$_store_cell($Excesses$_constructor_query_id($msg'query_id))));
+  ...                                                                                                     ^
+$ExampleNFTItem$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/tact-contracts/contracts/output/sample_ExampleNFTItem.code.fc:47:177: warning: UnHandle bounced message with op: 0xd53276db
+      $global_send($SendParameters$_constructor_to_value_mode_body($msg'response_destination, 0, (2 + 64), $Excesses$_store_cell($Excesses$_constructor_query_id($msg'query_id))));
+                                                                                                                                                                                  ^

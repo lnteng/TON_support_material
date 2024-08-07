@@ -1,0 +1,47 @@
+$PayoutBeacon$_internal_binary_TryPayout: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCChfKog3S0onCrMlmEPYqSDyvhMO91e1oBG_B9G9jnDXJu/output/verifier_PayoutBeacon.code.fc:44:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$PayoutBeacon$_internal_binary_TryPayout: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCChfKog3S0onCrMlmEPYqSDyvhMO91e1oBG_B9G9jnDXJu/output/verifier_PayoutBeacon.code.fc:44:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$PayoutBeacon$_internal_binary_TryPayout: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCChfKog3S0onCrMlmEPYqSDyvhMO91e1oBG_B9G9jnDXJu/output/verifier_PayoutBeacon.code.fc:44:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$PayoutBeacon$_fun_forward: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCChfKog3S0onCrMlmEPYqSDyvhMO91e1oBG_B9G9jnDXJu/output/verifier_PayoutBeacon.stdlib.fc:103:63: warning: Local variable '$ctx'bounced' is not used
+          var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                                ^
+$PayoutBeacon$_fun_forward: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCChfKog3S0onCrMlmEPYqSDyvhMO91e1oBG_B9G9jnDXJu/output/verifier_PayoutBeacon.stdlib.fc:103:63: warning: Local variable '$ctx'sender' is not used
+          var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                                ^
+$PayoutBeacon$_fun_forward: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCChfKog3S0onCrMlmEPYqSDyvhMO91e1oBG_B9G9jnDXJu/output/verifier_PayoutBeacon.stdlib.fc:103:63: warning: Local variable '$ctx'raw' is not used
+          var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                                ^
+$PayoutBeacon$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCChfKog3S0onCrMlmEPYqSDyvhMO91e1oBG_B9G9jnDXJu/output/verifier_PayoutBeacon.code.fc:15:56: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'master, $self'completed)) = (null(), null(), null());
+                                                         ^
+$PayoutBeacon$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCChfKog3S0onCrMlmEPYqSDyvhMO91e1oBG_B9G9jnDXJu/output/verifier_PayoutBeacon.code.fc:15:56: warning: Local variable '$self'master' is not used
+      var (($self'owner, $self'master, $self'completed)) = (null(), null(), null());
+                                                         ^
+$PayoutBeacon$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCChfKog3S0onCrMlmEPYqSDyvhMO91e1oBG_B9G9jnDXJu/output/verifier_PayoutBeacon.code.fc:15:56: warning: Local variable '$self'completed' is not used
+      var (($self'owner, $self'master, $self'completed)) = (null(), null(), null());
+                                                         ^
+$PayoutBeacon$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCChfKog3S0onCrMlmEPYqSDyvhMO91e1oBG_B9G9jnDXJu/output/verifier_PayoutBeacon.storage.fc:146:19: warning: Lack of end_parse.
+          return $sc~$PayoutBeacon$_load();
+                    ^
+$PayoutBeacon$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCChfKog3S0onCrMlmEPYqSDyvhMO91e1oBG_B9G9jnDXJu/output/verifier_PayoutBeacon.code.fc:107:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCChfKog3S0onCrMlmEPYqSDyvhMO91e1oBG_B9G9jnDXJu/output/verifier_PayoutBeacon.storage.fc:157:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

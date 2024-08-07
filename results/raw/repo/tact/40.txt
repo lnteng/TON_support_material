@@ -1,0 +1,43 @@
+$Strings$_internal_text_ae9b15f0d50e95164ef677febc57a5f9ae379b3acf721b694a482c77db65c3d5: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/02-strings/output/sample_Strings.code.fc:51:14: warning: Local variable '$s' is not used
+      slice $s = __gen_slice_string_c8d8a8c2e64db653ae28052eeca2271e51f0459913dfac21edc005b5ae4deaf6();
+               ^
+__tact_string_builder_append: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/02-strings/output/sample_Strings.stdlib.fc:89:31: warning: Lack of end_parse.
+              sc = sc~load_ref().begin_parse();
+                                ^
+$Strings$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/02-strings/output/sample_Strings.storage.fc:81:20: warning: Lack of end_parse.
+      var v's6 = sc_2~load_ref().begin_parse();
+                     ^
+$Strings$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/02-strings/output/sample_Strings.storage.fc:80:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+$Strings$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/02-strings/output/sample_Strings.code.fc:15:72: warning: Local variable '$self's3' is not used
+      var (($self's1, $self's2, $self's3, $self's4, $self's5, $self's6)) = (__gen_slice_string_e3f85eb426d40008090255016d73ef2f09a300fbb999ca2472fdf0f0c1ec6566(), __gen_slic ...
+                                                                         ^
+$Strings$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/02-strings/output/sample_Strings.code.fc:15:72: warning: Local variable '$self's4' is not used
+      var (($self's1, $self's2, $self's3, $self's4, $self's5, $self's6)) = (__gen_slice_string_e3f85eb426d40008090255016d73ef2f09a300fbb999ca2472fdf0f0c1ec6566(), __gen_slic ...
+                                                                         ^
+$Strings$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/02-strings/output/sample_Strings.code.fc:15:72: warning: Local variable '$self's5' is not used
+      var (($self's1, $self's2, $self's3, $self's4, $self's5, $self's6)) = (__gen_slice_string_e3f85eb426d40008090255016d73ef2f09a300fbb999ca2472fdf0f0c1ec6566(), __gen_slic ...
+                                                                         ^
+$Strings$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/02-strings/output/sample_Strings.code.fc:15:72: warning: Local variable '$self's6' is not used
+      var (($self's1, $self's2, $self's3, $self's4, $self's5, $self's6)) = (__gen_slice_string_e3f85eb426d40008090255016d73ef2f09a300fbb999ca2472fdf0f0c1ec6566(), __gen_slic ...
+                                                                         ^
+$Strings$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/02-strings/output/sample_Strings.storage.fc:90:19: warning: Lack of end_parse.
+          return $sc~$Strings$_load();
+                    ^
+$Strings$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/02-strings/output/sample_Strings.code.fc:87:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/02-strings/output/sample_Strings.storage.fc:99:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

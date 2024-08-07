@@ -1,0 +1,8 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./aSpite/dominant-assurance-contract/contracts/assurer.fc:106:22: warning: Lack of end_parse.
+      slice sender = cs~load_msg_addr();
+                       ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./aSpite/dominant-assurance-contract/contracts/assurer.fc:145:18: warning: Local variable 'query_id' is not used
+      int query_id = in_msg_body~load_uint(64);
+                   ^

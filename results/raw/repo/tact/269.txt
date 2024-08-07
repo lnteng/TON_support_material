@@ -1,0 +1,78 @@
+__tact_string_builder_append: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_ExampleNFTCollection.stdlib.fc:121:31: warning: Lack of end_parse.
+              sc = sc~load_ref().begin_parse();
+                                ^
+$ExampleNFTItem$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_ExampleNFTCollection.storage.fc:238:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$ExampleNFTCollection$_fun_get_nft_content: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_ExampleNFTCollection.code.fc:58:359: warning: Local variable '$self'collection_content' is not used
+  ... $self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination))~$ExampleNFTCollection$_fun__get_nft_content($index, $individual_content));
+  ...                                                                                                     ^
+$ExampleNFTCollection$_fun_get_nft_content: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_ExampleNFTCollection.code.fc:58:359: warning: Local variable '$self'owner_address' is not used
+  ... $self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination))~$ExampleNFTCollection$_fun__get_nft_content($index, $individual_content));
+  ...                                                                                                     ^
+$ExampleNFTCollection$_fun_get_nft_content: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_ExampleNFTCollection.code.fc:58:359: warning: Local variable '$self'royalty_params'numerator' is not used
+  ... $self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination))~$ExampleNFTCollection$_fun__get_nft_content($index, $individual_content));
+  ...                                                                                                     ^
+$ExampleNFTCollection$_fun_get_nft_content: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_ExampleNFTCollection.code.fc:58:359: warning: Local variable '$self'royalty_params'denominator' is not used
+  ... $self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination))~$ExampleNFTCollection$_fun__get_nft_content($index, $individual_content));
+  ...                                                                                                     ^
+$ExampleNFTCollection$_fun_get_nft_content: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_ExampleNFTCollection.code.fc:58:359: warning: Local variable '$self'royalty_params'destination' is not used
+  ... $self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination))~$ExampleNFTCollection$_fun__get_nft_content($index, $individual_content));
+  ...                                                                                                     ^
+$ExampleNFTCollection$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_ExampleNFTCollection.storage.fc:205:19: warning: Lack of end_parse.
+          return $sc~$ExampleNFTCollection$_load();
+                    ^
+$ExampleNFTCollection$_fun_report_royalty_params: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_ExampleNFTCollection.code.fc:64:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$ExampleNFTCollection$_fun_report_royalty_params: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_ExampleNFTCollection.code.fc:64:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$ExampleNFTCollection$_fun_report_royalty_params: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_ExampleNFTCollection.code.fc:64:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$ExampleNFTCollection$_fun_get_collection_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_ExampleNFTCollection.code.fc:47:359: warning: Local variable '$self'collection_content' is not used
+  ... $self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination))~$ExampleNFTCollection$_fun__get_collection_data());
+  ...                                                                                                     ^
+$ExampleNFTCollection$_fun_get_collection_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_ExampleNFTCollection.code.fc:47:359: warning: Local variable '$self'owner_address' is not used
+  ... $self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination))~$ExampleNFTCollection$_fun__get_collection_data());
+  ...                                                                                                     ^
+$ExampleNFTCollection$_fun_get_collection_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_ExampleNFTCollection.code.fc:47:359: warning: Local variable '$self'royalty_params'numerator' is not used
+  ... $self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination))~$ExampleNFTCollection$_fun__get_collection_data());
+  ...                                                                                                     ^
+$ExampleNFTCollection$_fun_get_collection_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_ExampleNFTCollection.code.fc:47:359: warning: Local variable '$self'royalty_params'denominator' is not used
+  ... $self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination))~$ExampleNFTCollection$_fun__get_collection_data());
+  ...                                                                                                     ^
+$ExampleNFTCollection$_fun_get_collection_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_ExampleNFTCollection.code.fc:47:359: warning: Local variable '$self'royalty_params'destination' is not used
+  ... $self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination))~$ExampleNFTCollection$_fun__get_collection_data());
+  ...                                                                                                     ^
+$ExampleNFTCollection$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_ExampleNFTCollection.code.fc:155:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_ExampleNFTCollection.storage.fc:216:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$ExampleNFTCollection$_contract_store & $ExampleNFTCollection$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_ExampleNFTCollection.storage.fc:201:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_ExampleNFTCollection.storage.fc:216:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

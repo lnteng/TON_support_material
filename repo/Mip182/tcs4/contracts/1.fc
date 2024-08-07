@@ -1,0 +1,47 @@
+{-
+  TASK 1 - Find branch of the cell tree
+  Write the method that will find a branch of the tree by comparing its
+  hash with the hash received in the first parameter. When the algorithm finds
+  the subtree (branch) whose hash equals the received hash, the root cell of
+  this branch should be returned. Return empty cell if the branch is not found.
+-}
+
+() recv_internal() {
+}
+
+builder begin_cell() asm "NEWC";
+cell end_cell(builder b) asm "ENDC";
+int cell_hash(cell c) asm "HASHCU";
+forall X -> int is_null(X x) asm "ISNULL";
+forall X -> (tuple, ()) push_back(tuple tail, X head) asm "CONS";
+forall X -> (tuple, (X)) pop_back(tuple t) asm "UNCONS";
+forall X -> X null() asm "PUSHNULL";
+int slice_refs(slice s) asm "SREFS";
+(slice, cell) load_ref(slice s) asm(-> 1 0) "LDREF";
+slice begin_parse(cell c) asm "CTOS";
+
+;; testable
+(cell) find_branch_by_hash(int hash, cell tree) method_id {
+    if (cell_hash(tree) == hash) {
+        return tree;
+    }
+    tuple stack = null();
+    ;; bring the main cell into the stack to process it in the loop
+    stack~push_back(tree);
+    ;; do it until stack is not null
+    while (~ stack.is_null()) {
+        ;; get the cell from the stack and convert it to a slice to be able to process it
+        cell s_cell = stack~pop_back();
+
+        ;; if the current slice has any refs, add them to stack
+        slice s = s_cell.begin_parse();
+        repeat (s.slice_refs()) {
+            cell next = s~load_ref();
+            if (cell_hash(next) == hash) {
+                return next;
+            }
+            stack~push_back(next);
+        }
+    }
+    return begin_cell().end_cell();
+}

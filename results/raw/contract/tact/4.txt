@@ -1,0 +1,11 @@
+$SplitBill$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAlXGyEPdsCZON7BjVqizB0k6Kvs84o5ttDJ_jpnojeQ_Cm/tact_SplitBill.storage.fc:75:22: warning: Lack of end_parse.
+      int $loaded = $sc~load_int(1);
+                       ^
+$SplitBill$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAlXGyEPdsCZON7BjVqizB0k6Kvs84o5ttDJ_jpnojeQ_Cm/tact_SplitBill.code.fc:63:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAlXGyEPdsCZON7BjVqizB0k6Kvs84o5ttDJ_jpnojeQ_Cm/tact_SplitBill.storage.fc:86:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

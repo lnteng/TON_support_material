@@ -1,0 +1,20 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-3/func/2_delete_test.fc:76:23: warning: Lack of end_parse.
+  		int hs_value = hs_cs~load_coins();
+  		                    ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-3/func/2_delete_test.fc:81:39: warning: Lack of end_parse.
+  			slice lv_cs = lv_cell.preload_ref().begin_parse();
+  			                                   ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-3/func/2_delete_test.fc:73:36: warning: Local variable 'hs_score' is not used
+  		(int hs_score, slice hs_cell, _) = score_dict~udict::delete_get_max(32);
+  		                                 ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-3/func/2_delete_test.fc:82:17: warning: Local variable 'lv_score' is not used
+  			int lv_score = lv_cs.preload_uint(32);
+  			             ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-3/func/2_delete_test.fc:34:29: warning: Lack of end_parse.
+  	return (cs~load_uint(4), cs~load_dict(), cs.preload_dict());
+  	                           ^

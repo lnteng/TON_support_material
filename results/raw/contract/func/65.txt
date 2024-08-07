@@ -1,0 +1,16 @@
+dnsresolve: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDkAbAZNb4uk-6pzTPDO2s0tXZweN-2R08T2Wy6Z3qzH_Zp/subresolver.fc:93:23: warning: Local variable 'subdomain_sfx' is not used
+    slice subdomain_sfx = null();
+                        ^
+dnsresolve: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDkAbAZNb4uk-6pzTPDO2s0tXZweN-2R08T2Wy6Z3qzH_Zp/subresolver.fc:94:30: warning: Local variable 'domain_nft_address' is not used
+    builder domain_nft_address = null();
+                               ^
+decode_base64_address: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDkAbAZNb4uk-6pzTPDO2s0tXZweN-2R08T2Wy6Z3qzH_Zp/subresolver.fc:73:86: warning: Lack of end_parse.
+    (slice _remaining, builder addr) = decode_base64_address_to(readable, begin_cell());
+                                                                                       ^
+decode_base64_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDkAbAZNb4uk-6pzTPDO2s0tXZweN-2R08T2Wy6Z3qzH_Zp/subresolver.fc:73:36: warning: Local variable '_remaining' is not used
+    (slice _remaining, builder addr) = decode_base64_address_to(readable, begin_cell());
+                                     ^

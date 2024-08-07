@@ -1,0 +1,12 @@
+get_config: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-foundation/ton-config-smc/src/config.fc:66:34: warning: Local variable 'owner' is not used
+      var (owner, version, config) = load_data();
+                                   ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-foundation/ton-config-smc/src/config.fc:35:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-foundation/ton-config-smc/src/config.fc:14:13: warning: Lack of end_parse.
+          data~load_ref()
+              ^

@@ -1,0 +1,34 @@
+$__gen_Wallet_receive_comment_9ca0f1855174e32e8fd378df56a6e4f6c40e4dfcb6090e49812f7b1e26214bf9: ImproperFunctionModifier
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/wallet_Wallet.code.fc:270:125: warning: Call the function that have no impure modifier but change state actually.
+      var ($walletInit'code, $walletInit'data) = $__gen_Wallet_init_child(__tact_context_sys, $self'key, ($self'walletId + 1));
+                                                                                                                              ^
+$__gen_Wallet_receive_comment_9ca0f1855174e32e8fd378df56a6e4f6c40e4dfcb6090e49812f7b1e26214bf9: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/wallet_Wallet.code.fc:270:46: warning: Local variable '$walletInit'code' is not used
+      var ($walletInit'code, $walletInit'data) = $__gen_Wallet_init_child(__tact_context_sys, $self'key, ($self'walletId + 1));
+                                               ^
+$__gen_Wallet_receive_comment_9ca0f1855174e32e8fd378df56a6e4f6c40e4dfcb6090e49812f7b1e26214bf9: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/wallet_Wallet.code.fc:270:46: warning: Local variable '$walletInit'data' is not used
+      var ($walletInit'code, $walletInit'data) = $__gen_Wallet_init_child(__tact_context_sys, $self'key, ($self'walletId + 1));
+                                               ^
+__gen_load_Wallet: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/wallet_Wallet.code.fc:113:19: warning: Lack of end_parse.
+          return $sc~__gen_read_Wallet();
+                    ^
+$__gen_Wallet_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/wallet_Wallet.code.fc:176:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+__gen_store_Wallet & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/wallet_Wallet.code.fc:377:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/wallet_Wallet.code.fc:124:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+__gen_store_Wallet & __gen_load_Wallet: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/wallet_Wallet.code.fc:109:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/wallet_Wallet.code.fc:124:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

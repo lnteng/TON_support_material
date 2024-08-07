@@ -1,0 +1,61 @@
+$Task4$_internal_binary_NftWithdrawal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge/contracts/output/sample_Task4.code.fc:60:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Task4$_internal_binary_NftWithdrawal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge/contracts/output/sample_Task4.code.fc:60:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Task4$_internal_binary_NftWithdrawal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge/contracts/output/sample_Task4.code.fc:60:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Task4$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge/contracts/output/sample_Task4.storage.fc:146:19: warning: Lack of end_parse.
+          return $sc~$Task4$_load();
+                    ^
+$Task4$_internal_binary_OwnershipAssigned: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge/contracts/output/sample_Task4.code.fc:46:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Task4$_internal_binary_OwnershipAssigned: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge/contracts/output/sample_Task4.code.fc:46:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Task4$_internal_binary_OwnershipAssigned: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge/contracts/output/sample_Task4.code.fc:46:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Task4$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge/contracts/output/sample_Task4.code.fc:15:67: warning: Local variable '$self'seed' is not used
+      var (($self'seed, $self'lockedUntil, $self'owner, $self'nft)) = (null(), null(), null(), null());
+                                                                    ^
+$Task4$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge/contracts/output/sample_Task4.code.fc:117:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge/contracts/output/sample_Task4.storage.fc:157:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task4$_contract_store & $Task4$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge/contracts/output/sample_Task4.storage.fc:142:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge/contracts/output/sample_Task4.storage.fc:157:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task4$_contract_store & $Task4$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge/contracts/output/sample_Task4.storage.fc:142:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge/contracts/output/sample_Task4.storage.fc:157:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task4$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge/contracts/output/sample_Task4.code.fc:67:337: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... yId, __tact_not_null($self'owner), __tact_not_null($self'owner), 0, null(), $global_emptySlice()))));
+  ...                                                                                                     ^
+$Task4$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge/contracts/output/sample_Task4.code.fc:53:305: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... load_customPayload($msg'queryId, $msg'prevOwner, $msg'prevOwner, 0, $global_emptySlice(), null()))));
+  ...                                                                                                     ^

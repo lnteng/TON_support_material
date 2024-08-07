@@ -1,0 +1,305 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "verifier_Credit.headers.fc";
+#include "verifier_Credit.stdlib.fc";
+#include "verifier_Credit.storage.fc";
+
+;;
+;; Contract Credit functions
+;;
+
+(int, slice, slice, slice, slice, int, int, int, int, int, int) $Credit$_contract_init((int, int, int, cell) $data) impure inline_ref {
+    var (($data'size, $data'interest, $data'duration, $data'addresses)) = $data;
+    var (($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+    $self'status = 0;
+    $self'size = $data'size;
+    $self'interest = $data'interest;
+    $self'duration = $data'duration;
+    slice $addresses = begin_parse($data'addresses);
+    slice $agents = begin_parse($addresses~load_ref());
+    slice $service = begin_parse($addresses~load_ref());
+    $self'borrower = $agents~__tact_load_address();
+    $self'lender = $agents~__tact_load_address();
+    $self'pawn = $service~__tact_load_address();
+    $self'bank = __tact_create_address(0, 0);
+    $self'start = now();
+    $self'proportion = 25;
+    $self'premium = 0;
+    return ($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium);
+}
+
+((int, slice, slice, slice, slice, int, int, int, int, int, int), int) $Credit$_fun_earned((int, slice, slice, slice, slice, int, int, int, int, int, int) $self) impure inline_ref {
+    var (($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium)) = $self;
+    int $durationSeconds = (now() - $self'start);
+    return (($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium), (((($self'size * $durationSeconds) * $self'interest) / 86400) / 10000));
+}
+
+((int, slice, slice, slice, slice, int, int, int, int, int, int), int) $Credit$_fun_arrear((int, slice, slice, slice, slice, int, int, int, int, int, int) $self) impure inline_ref {
+    var (($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium)) = $self;
+    return (($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium), ($self'size + ($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium)~$Credit$_fun_earned()));
+}
+
+((int, slice, slice, slice, slice, int, int, int, int, int, int), ()) $Credit$_fun_redeem((int, slice, slice, slice, slice, int, int, int, int, int, int) $self) impure inline_ref {
+    var (($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium)) = $self;
+    throw_unless(61530, ($self'status == 2));
+    int $earned = ($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium)~$Credit$_fun_earned();
+    int $total = ($self'size + $self'premium);
+    throw_unless(55895, (($total + $earned) < (__tact_my_balance() - 100000000)));
+    int $profit = (($earned * $self'proportion) / 100);
+    $global_send($SendParameters$_constructor_to_value_mode_body($self'lender, ($total + $profit), 1, $Deposit$_store_cell($Deposit$_constructor_queryId(0))));
+    if (($earned > 0)) {
+        $global_send($SendParameters$_constructor_to_value_mode_body($self'bank, ($earned - $profit), 1, $Income$_store_cell($Income$_constructor_queryId(0))));
+    }
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body($self'pawn, 0, true, 128, $Transfer$_store_cell($Transfer$_constructor_queryId_newOwner_responseDestination_customPayload_forwardAmount_forwardPayload(0, $self'borrower, $self'borrower, null(), 0, $Cell$_fun_asSlice(end_cell(store_int(begin_cell(), 0, 1)))))));
+    $self'status = 3;
+    return (($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium), ());
+}
+
+((int, slice, slice, slice, slice, int, int, int, int, int, int), int) $Credit$_fun_status((int, slice, slice, slice, slice, int, int, int, int, int, int) $self) impure inline_ref {
+    var (($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium)) = $self;
+    return (($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium), $self'status);
+}
+
+((int, slice, slice, slice, slice, int, int, int, int, int, int), int) $Credit$_fun_debt((int, slice, slice, slice, slice, int, int, int, int, int, int) $self) impure inline_ref {
+    var (($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium)) = $self;
+    return (($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium), ($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium)~$Credit$_fun_arrear());
+}
+
+((int, slice, slice, slice, slice, int, int, int, int, int, int), int) $Credit$_fun_end((int, slice, slice, slice, slice, int, int, int, int, int, int) $self) impure inline_ref {
+    var (($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium)) = $self;
+    return (($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium), ($self'start + $self'duration));
+}
+
+;;
+;; Receivers of a Contract Credit
+;;
+
+(((int, slice, slice, slice, slice, int, int, int, int, int, int)), ()) $Credit$_internal_binary_OwnershipAssigned((int, slice, slice, slice, slice, int, int, int, int, int, int) $self, (int, slice, slice) $msg) impure inline {
+    var ($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium) = $self;
+    var ($msg'queryId, $msg'prevOwner, $msg'forwardPayload) = $msg;
+    throw_unless(52413, ( __tact_slice_eq_bits($self'pawn, __tact_context_get_sender()) ));
+    $self'bank = $msg'prevOwner;
+    $self'status = 1;
+    return (($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium), ());
+}
+
+(((int, slice, slice, slice, slice, int, int, int, int, int, int)), ()) $Credit$_internal_binary_Issue((int, slice, slice, slice, slice, int, int, int, int, int, int) $self, (int, int) $msg) impure inline {
+    var ($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium) = $self;
+    var ($msg'premium, $msg'proportion) = $msg;
+    throw_unless(62407, ($self'status == 1));
+    throw_unless(35458, ( __tact_slice_eq_bits($self'lender, __tact_context_get_sender()) ));
+    $self'premium = $msg'premium;
+    $self'proportion = $msg'proportion;
+    throw_unless(54615, (($self'size + $self'premium) < (__tact_my_balance() - 10000000)));
+    $global_send($SendParameters$_constructor_to_bounce_value_mode($self'borrower, true, $self'size, 1));
+    $self'status = 2;
+    return (($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium), ());
+}
+
+((int, slice, slice, slice, slice, int, int, int, int, int, int), ()) $Credit$_internal_any_text((int, slice, slice, slice, slice, int, int, int, int, int, int) $self, slice $msg) impure inline {
+    var ($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium) = $self;
+    ($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium)~$Credit$_fun_redeem();
+    return (($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium), ());
+}
+
+(((int, slice, slice, slice, slice, int, int, int, int, int, int)), ()) $Credit$_internal_binary_Redeem((int, slice, slice, slice, slice, int, int, int, int, int, int) $self, tuple $msg) impure inline {
+    var ($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium) = $self;
+    var $msg = $msg;
+    ($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium)~$Credit$_fun_redeem();
+    return (($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium), ());
+}
+
+(((int, slice, slice, slice, slice, int, int, int, int, int, int)), ()) $Credit$_internal_binary_Dispose((int, slice, slice, slice, slice, int, int, int, int, int, int) $self, (slice) $msg) impure inline {
+    var ($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium) = $self;
+    var ($msg'owner) = $msg;
+    throw_unless(61530, ($self'status == 2));
+    throw_unless(4429, ( __tact_slice_eq_bits($self'lender, __tact_context_get_sender()) ));
+    throw_unless(44092, (now() >= ($self'start + $self'duration)));
+    $global_send($SendParameters$_constructor_to_value_mode_body($self'bank, $self'premium, 1, $Income$_store_cell($Income$_constructor_queryId(0))));
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body($self'pawn, 0, true, 128, $Transfer$_store_cell($Transfer$_constructor_queryId_newOwner_responseDestination_customPayload_forwardAmount_forwardPayload(0, $msg'owner, $msg'owner, null(), 0, $Cell$_fun_asSlice(end_cell(store_int(begin_cell(), 0, 1)))))));
+    $self'status = 3;
+    return (($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium), ());
+}
+
+(((int, slice, slice, slice, slice, int, int, int, int, int, int)), ()) $Credit$_internal_binary_Refuse((int, slice, slice, slice, slice, int, int, int, int, int, int) $self, tuple $msg) impure inline {
+    var ($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium) = $self;
+    var $msg = $msg;
+    throw_unless(61530, ($self'status == 2));
+    throw_unless(30295, ( __tact_slice_eq_bits($self'borrower, __tact_context_get_sender()) ));
+    $global_send($SendParameters$_constructor_to_value_mode_body($self'bank, $self'premium, 1, $Income$_store_cell($Income$_constructor_queryId(0))));
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body($self'pawn, 0, true, 128, $Transfer$_store_cell($Transfer$_constructor_queryId_newOwner_responseDestination_customPayload_forwardAmount_forwardPayload(0, $self'lender, $self'borrower, null(), 0, $Cell$_fun_asSlice(end_cell(store_int(begin_cell(), 0, 1)))))));
+    $self'status = 3;
+    return (($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium), ());
+}
+
+(((int, slice, slice, slice, slice, int, int, int, int, int, int)), ()) $Credit$_internal_binary_Cancel((int, slice, slice, slice, slice, int, int, int, int, int, int) $self, tuple $msg) impure inline {
+    var ($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium) = $self;
+    var $msg = $msg;
+    throw_unless(62407, ($self'status == 1));
+    throw_unless(30295, ( __tact_slice_eq_bits($self'borrower, __tact_context_get_sender()) ));
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body($self'pawn, 0, true, 128, $Transfer$_store_cell($Transfer$_constructor_queryId_newOwner_responseDestination_customPayload_forwardAmount_forwardPayload(0, $self'borrower, $self'borrower, null(), 0, $Cell$_fun_asSlice(end_cell(store_int(begin_cell(), 0, 1)))))));
+    $self'status = 0;
+    return (($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium), ());
+}
+
+((int, slice, slice, slice, slice, int, int, int, int, int, int), ()) $Credit$_internal_text_46787ce7df6d35155a58e03948fb9d9dca53608d27f662c7023e9e99167e541c((int, slice, slice, slice, slice, int, int, int, int, int, int) $self) impure inline {
+    var ($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium) = $self;
+    throw(0);
+    return (($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium), ());
+}
+
+(((int, slice, slice, slice, slice, int, int, int, int, int, int)), ()) $Credit$_internal_binary_Deploy((int, slice, slice, slice, slice, int, int, int, int, int, int) $self, (int) $deploy) impure inline {
+    var ($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium)~$Credit$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'status, $self'borrower, $self'lender, $self'pawn, $self'bank, $self'size, $self'interest, $self'duration, $self'start, $self'proportion, $self'premium), ());
+}
+
+;;
+;; Get methods of a Contract Credit
+;;
+
+_ %status() method_id(101642) {
+    var self = $Credit$_contract_load();
+    var res = self~$Credit$_fun_status();
+    return res;
+}
+
+_ %debt() method_id(110819) {
+    var self = $Credit$_contract_load();
+    var res = self~$Credit$_fun_debt();
+    return res;
+}
+
+_ %end() method_id(95388) {
+    var self = $Credit$_contract_load();
+    var res = self~$Credit$_fun_end();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.debug.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmPrhgy3JtLujm4UekUQAL36uqt6tcqC1qJdfmgf6GgxET";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract Credit
+;;
+
+((int, slice, slice, slice, slice, int, int, int, int, int, int), int) $Credit$_contract_router_internal((int, slice, slice, slice, slice, int, int, int, int, int, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive OwnershipAssigned message
+    if (op == 85167505) {
+        var msg = in_msg~$OwnershipAssigned$_load();
+        self~$Credit$_internal_binary_OwnershipAssigned(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Issue message
+    if (op == 272) {
+        var msg = in_msg~$Issue$_load();
+        self~$Credit$_internal_binary_Issue(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Redeem message
+    if (op == 273) {
+        var msg = in_msg~$Redeem$_load();
+        self~$Credit$_internal_binary_Redeem(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Dispose message
+    if (op == 274) {
+        var msg = in_msg~$Dispose$_load();
+        self~$Credit$_internal_binary_Dispose(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Refuse message
+    if (op == 276) {
+        var msg = in_msg~$Refuse$_load();
+        self~$Credit$_internal_binary_Refuse(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Cancel message
+    if (op == 275) {
+        var msg = in_msg~$Cancel$_load();
+        self~$Credit$_internal_binary_Cancel(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$Credit$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "done" message
+        if (text_op == 0x46787ce7df6d35155a58e03948fb9d9dca53608d27f662c7023e9e99167e541c) {
+            self~$Credit$_internal_text_46787ce7df6d35155a58e03948fb9d9dca53608d27f662c7023e9e99167e541c();
+            return (self, true);
+        }
+        if (slice_bits(in_msg) >= 32) {
+            self~$Credit$_internal_any_text(in_msg.skip_bits(32));
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $Credit$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$Credit$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $Credit$_contract_store(self);
+}

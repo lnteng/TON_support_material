@@ -1,0 +1,41 @@
+get_execution_time: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task1.fc:63:38: warning: Lack of end_parse.
+      var cs = get_data().begin_parse().skip_bits(256);
+                                       ^
+get_seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task1.fc:58:38: warning: Lack of end_parse.
+      var cs = get_data().begin_parse().skip_bits(256 + 32 + 267);
+                                       ^
+recv_external: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task1.fc:19:121: warning: Lack of end_parse.
+          var (public_key, execution_time, receiver, seqno) = (ds~load_uint(256), ds~load_uint(32), ds~load_msg_addr(), ds~load_uint(32));
+                                                                                                                          ^
+recv_external: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task1.fc:16:47: warning: Lack of end_parse.
+          var (locked_for, new_seqno) = (data_cs~load_uint(32), data_cs.preload_uint(32));
+                                                ^
+recv_external: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task1.fc:42:63: warning: Lack of end_parse.
+          var (execution_time, receiver) = (cs~load_uint(32), cs~load_msg_addr());
+                                                                ^
+recv_external & get_seqno: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task1.fc:58:24: warning: Cell of get_data and set_data are inconsistent.
+      var cs = get_data().begin_parse().skip_bits(256 + 32 + 267);
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task1.fc:32:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(public_key, 256)
+              ^
+recv_external & recv_external: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task1.fc:41:28: warning: Cell of get_data and set_data are inconsistent.
+          var cs = get_data().begin_parse().skip_bits(256);
+                             ^
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task1.fc:32:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(public_key, 256)
+              ^
+recv_external & recv_external: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task1.fc:18:28: warning: Cell of get_data and set_data are inconsistent.
+          var ds = get_data().begin_parse();
+                             ^
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task1.fc:32:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(public_key, 256)
+              ^

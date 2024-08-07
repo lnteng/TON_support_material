@@ -1,0 +1,125 @@
+{- 
+  TASK 3 - Find and replace binary substring
+  Binary string is represented as a cell linked list: string splitted to chunks,
+  first chunk stored to the root cell, next one to the cell in ref and so on;
+  each cell can have only one ref.
+  Write the method that find and replaces one flags in the binary string
+  with another value. Flags and values can be can be of any length, but
+  strictly up to 128 bits. The method must replace every flag it finds.
+  Flag and the value to be replaced is guaranteed to be greater than 0.
+  Flag and the value may be of different lengths.
+  When there are overlapping flags, only the first one
+  from the overlap needs to be replaced (for example, if the flag is 101,
+  value is 111, and string is 10101, then the result would be 11101, but if
+  the string is 1010101, then the result would be 1110111).
+  Every cell in the input linked list, except for the last one
+  (the one that is the deepest in the tree), is guaranteed to be full
+  (guaranteed to contain 1023 bits).
+  The requirements on the output cell are more loose - only the concatenation of bits
+  from the linked list needs to match that of the expected answer, but the structure
+  itself may be different (for example, for the purposes of comparing the answer,
+  a cell with bit 1 and a ref containing bits 10 is the same as a cell containing
+  bit 11 and a ref with bit 0 - they both make up a bitstring 110).
+  Lets give a simple example. We have the target flag 101110101 and the value
+  to be written 111111111 as inputs, and a linked list of cells, in which the bit
+  value of the first cell ends with ...10100001011, and in the ref we have cell that
+  starts with 10101000111111...
+  The output should be a linked list where the first
+  cell ends with ...10100001111, and the second cell starts with 11111000111111...
+
+-}
+
+() recv_internal() {
+}
+
+(int) ubits(int v) impure asm "UBITSIZE";
+forall X -> int is_null (X x) asm "ISNULL";
+forall X -> (tuple, ()) push_back (tuple tail, X head) asm "CONS";
+forall X -> (tuple, (X)) pop_back (tuple t) asm "UNCONS";
+(int) pow (int x) asm "POW2";
+
+tuple write_to_stack(tuple st, int v, int size) inline {
+  builder b = st~pop_back();
+  int bsize = 1023 - b.builder_bits();
+  if bsize >= size {
+    b~store_uint(v, size);
+  } else {
+    st~push_back(b);
+    b = begin_cell().store_uint(v, size);
+  }
+  st~push_back(b);
+  return st;
+}
+
+tuple replacer(cell c, tuple st, int buffer, int buffer_len, int flag, int flen, int value ) inline {
+  slice s = c.begin_parse();
+
+  while (~ s.slice_data_empty?()) {
+    if (buffer_len == 0) & (s.slice_bits() >= flen)  {
+      buffer_len = flen;
+      buffer = s~load_uint(flen);
+      if buffer == flag {
+        st = write_to_stack(st, value, ubits(value));
+        buffer = 0;
+        buffer_len = 0;
+      } else {
+        st = write_to_stack(st, buffer >> (buffer_len - 1), 1);
+        buffer &= pow(buffer_len - 1) - 1;
+        buffer_len -= 1;
+      }
+    } else {
+
+      buffer <<= 1;
+      buffer |= s~load_uint(1);
+      buffer_len += 1;
+    }
+
+    if buffer_len == flen {
+      if buffer == flag {
+        st = write_to_stack(st, value, ubits(value));
+        buffer = 0;
+        buffer_len = 0;
+      } else {
+        st = write_to_stack(st, buffer >> (buffer_len - 1), 1);
+        buffer &= pow(buffer_len - 1) - 1;
+        buffer_len -= 1;
+      }
+    }
+
+  }
+
+  if ~ s.slice_refs_empty?() {
+    return replacer(s.preload_ref(), st, buffer, buffer_len, flag, flen, value );
+  }
+
+  st = write_to_stack(st, buffer, buffer_len);
+
+  return st;
+}
+
+;; testable
+(cell) find_and_replace(int flag, int value, cell linked_list) method_id {
+  int flen = ubits(flag);
+  int vlen = ubits(value);
+  int buffer = 0;
+  int buffer_len = 0;
+
+  tuple stack = null();
+  stack~push_back(begin_cell());
+
+  stack = replacer(linked_list, stack, buffer, buffer_len, flag, flen, value );
+  if (stack.is_null()) {
+    return begin_cell().end_cell();
+  }
+
+  builder res = stack~pop_back();
+
+;;   stack~dump();
+  while (~ stack.is_null()) {
+;;     stack~pop_back();
+    res = stack~pop_back().store_ref(res.end_cell());
+  }
+
+  return res.end_cell();
+}
+

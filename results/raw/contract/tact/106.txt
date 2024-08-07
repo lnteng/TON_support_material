@@ -1,0 +1,75 @@
+$LuckyBank$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyBank.storage.fc:206:32: warning: Lack of end_parse.
+      var v'royalty_params = sc_1~$RoyaltyParams$_load();
+                                 ^
+$LuckyBank$init$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyBank.storage.fc:215:32: warning: Lack of end_parse.
+      var v'royalty_params = sc_1~$RoyaltyParams$_load();
+                                 ^
+$LuckyBank$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyBank.code.fc:15:184: warning: Local variable '$self'owner_address' is not used
+      var (($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination))) = (null(), null(), null(), null());
+                                                                                                                                                                                         ^
+$LuckyBank$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyBank.code.fc:15:184: warning: Local variable '$self'collection_content' is not used
+      var (($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination))) = (null(), null(), null(), null());
+                                                                                                                                                                                         ^
+$LuckyBank$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyBank.code.fc:15:184: warning: Local variable '$self'collection_base' is not used
+      var (($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination))) = (null(), null(), null(), null());
+                                                                                                                                                                                         ^
+$LuckyBank$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyBank.code.fc:15:184: warning: Local variable '$self'royalty_params'numerator' is not used
+      var (($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination))) = (null(), null(), null(), null());
+                                                                                                                                                                                         ^
+$LuckyBank$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyBank.code.fc:15:184: warning: Local variable '$self'royalty_params'denominator' is not used
+      var (($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination))) = (null(), null(), null(), null());
+                                                                                                                                                                                         ^
+$LuckyBank$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyBank.code.fc:15:184: warning: Local variable '$self'royalty_params'destination' is not used
+      var (($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination))) = (null(), null(), null(), null());
+                                                                                                                                                                                         ^
+$LuckyBank$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyBank.storage.fc:224:19: warning: Lack of end_parse.
+          return $sc~$LuckyBank$_load();
+                    ^
+$LuckyWallet$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyBank.storage.fc:171:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$LuckyBank$_internal_binary_GetRoyaltyParams: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyBank.code.fc:102:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$LuckyBank$_internal_binary_GetRoyaltyParams: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyBank.code.fc:102:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$LuckyBank$_internal_binary_GetRoyaltyParams: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyBank.code.fc:102:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$LuckyBank$_internal_binary_EditContent: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyBank.code.fc:85:37: warning: Lack of end_parse.
+      $self'collection_base = $content~load_ref();
+                                      ^
+$LuckyBank$_internal_binary_EditContent: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyBank.code.fc:87:226: warning: Lack of end_parse.
+  ... nstructor_numerator_denominator_destination($royalty~load_uint(16), $royalty~load_uint(16), $royalty~__tact_load_address());
+  ...                                                                                                     ^
+$LuckyBank$_internal_binary_LuckyMint: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyBank.code.fc:70:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$LuckyBank$_internal_binary_LuckyMint: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyBank.code.fc:70:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$LuckyBank$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyBank.code.fc:152:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyBank.storage.fc:235:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

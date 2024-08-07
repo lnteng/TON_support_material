@@ -1,0 +1,25 @@
+;;
+;; Header files for CounterSample1
+;; NOTE: declarations are sorted for optimal order
+;;
+
+;; __tact_verify_address
+slice __tact_verify_address(slice address) inline;
+
+;; $CounterSample1$_store
+builder $CounterSample1$_store(builder build_0, (int) v) inline;
+
+;; $CounterSample1$_load
+(slice, ((int))) $CounterSample1$_load(slice sc_0) inline;
+
+;; $CounterSample1$_contract_init
+(int) $CounterSample1$_contract_init() impure inline_ref;
+
+;; $CounterSample1$_contract_load
+(int) $CounterSample1$_contract_load() impure inline_ref;
+
+;; $CounterSample1$_contract_store
+() $CounterSample1$_contract_store((int) v) impure inline;
+
+;; $CounterSample1$_fun_counter
+((int), int) $CounterSample1$_fun_counter((int) $self) impure inline_ref;

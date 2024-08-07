@@ -1,0 +1,40 @@
+get_nft_content: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCPXKOygMDIuWI6vnSBt498PwHAwaatg5yLYC7TitxLLQbr/compressed-nft-collection.fc:323:28: warning: Lack of end_parse.
+    slice common_content = cs~load_ref().begin_parse();
+                             ^
+royalty_params: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCPXKOygMDIuWI6vnSBt498PwHAwaatg5yLYC7TitxLLQbr/compressed-nft-collection.fc:316:49: warning: Lack of end_parse.
+    return (rs~load_uint(16), rs~load_uint(16), rs~load_msg_addr());
+                                                  ^
+get_nft_api_info: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCPXKOygMDIuWI6vnSBt498PwHAwaatg5yLYC7TitxLLQbr/compressed-nft-collection.fc:345:17: warning: Lack of end_parse.
+    cell link = cs~load_ref();
+                  ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCPXKOygMDIuWI6vnSBt498PwHAwaatg5yLYC7TitxLLQbr/compressed-nft-collection.fc:222:71: warning: Lack of end_parse.
+      claim(proof_data~load_uint(128), proof_data~load_ref(), proof_data~load_ref());
+                                                                        ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCPXKOygMDIuWI6vnSBt498PwHAwaatg5yLYC7TitxLLQbr/compressed-nft-collection.fc:213:28: warning: Lack of end_parse.
+    slice sender_address = cs~load_msg_addr();
+                             ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCPXKOygMDIuWI6vnSBt498PwHAwaatg5yLYC7TitxLLQbr/compressed-nft-collection.fc:229:75: warning: Lack of end_parse.
+      update(update_data~load_ref(), update_data~load_uint(128), update_data~load_ref());
+                                                                            ^
+get_collection_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCPXKOygMDIuWI6vnSBt498PwHAwaatg5yLYC7TitxLLQbr/compressed-nft-collection.fc:304:17: warning: Lack of end_parse.
+    return (-1, cs~load_ref(), storage::owner);
+                  ^
+update: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCPXKOygMDIuWI6vnSBt498PwHAwaatg5yLYC7TitxLLQbr/compressed-nft-collection.fc:168:22: warning: Local variable 'node_index' is not used
+        int node_index = v~load_uint(128);
+                       ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCPXKOygMDIuWI6vnSBt498PwHAwaatg5yLYC7TitxLLQbr/compressed-nft-collection.fc:271:42: warning: UnHandle bounced message with op: 0x32
+      send_raw_message(msg.end_cell(), 128); ;; return all non reserve balance
+                                           ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCPXKOygMDIuWI6vnSBt498PwHAwaatg5yLYC7TitxLLQbr/compressed-nft-collection.fc:294:41: warning: UnHandle bounced message with op: 0x32
+      send_raw_message(msg.end_cell(), 64); ;; proxy all input coins
+                                          ^

@@ -1,0 +1,11 @@
+$HelloWorld$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./reveloper/tact-hello-world-get/contracts/output/sample_HelloWorld.storage.fc:61:22: warning: Lack of end_parse.
+      int $loaded = $sc~load_int(1);
+                       ^
+$HelloWorld$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./reveloper/tact-hello-world-get/contracts/output/sample_HelloWorld.code.fc:59:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./reveloper/tact-hello-world-get/contracts/output/sample_HelloWorld.storage.fc:72:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

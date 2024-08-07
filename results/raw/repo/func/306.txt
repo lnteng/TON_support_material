@@ -1,0 +1,8 @@
+load_storage: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./CryptoSnowPrince/ton-sc-init/contracts/lp_account/storage.func:11:26: warning: Lack of end_parse.
+      storage::amount1 = ds~load_coins();
+                           ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./CryptoSnowPrince/ton-sc-init/contracts/lp_account.func:29:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^

@@ -1,0 +1,35 @@
+$Structs$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/03-structs/output/sample_Structs.code.fc:15:107: warning: Local variable '$self's1'x' is not used
+      var ((($self's1'x, $self's1'y), ($self's2'name, $self's2'age, ($self's2'point'x, $self's2'point'y)))) = (null(), null());
+                                                                                                            ^
+$Structs$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/03-structs/output/sample_Structs.code.fc:15:107: warning: Local variable '$self's1'y' is not used
+      var ((($self's1'x, $self's1'y), ($self's2'name, $self's2'age, ($self's2'point'x, $self's2'point'y)))) = (null(), null());
+                                                                                                            ^
+$Structs$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/03-structs/output/sample_Structs.code.fc:15:107: warning: Local variable '$self's2'name' is not used
+      var ((($self's1'x, $self's1'y), ($self's2'name, $self's2'age, ($self's2'point'x, $self's2'point'y)))) = (null(), null());
+                                                                                                            ^
+$Structs$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/03-structs/output/sample_Structs.code.fc:15:107: warning: Local variable '$self's2'age' is not used
+      var ((($self's1'x, $self's1'y), ($self's2'name, $self's2'age, ($self's2'point'x, $self's2'point'y)))) = (null(), null());
+                                                                                                            ^
+$Structs$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/03-structs/output/sample_Structs.code.fc:15:107: warning: Local variable '$self's2'point'x' is not used
+      var ((($self's1'x, $self's1'y), ($self's2'name, $self's2'age, ($self's2'point'x, $self's2'point'y)))) = (null(), null());
+                                                                                                            ^
+$Structs$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/03-structs/output/sample_Structs.code.fc:15:107: warning: Local variable '$self's2'point'y' is not used
+      var ((($self's1'x, $self's1'y), ($self's2'name, $self's2'age, ($self's2'point'x, $self's2'point'y)))) = (null(), null());
+                                                                                                            ^
+$Structs$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/03-structs/output/sample_Structs.storage.fc:149:19: warning: Lack of end_parse.
+          return $sc~$Structs$_load();
+                    ^
+$Structs$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/03-structs/output/sample_Structs.code.fc:87:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/03-structs/output/sample_Structs.storage.fc:158:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

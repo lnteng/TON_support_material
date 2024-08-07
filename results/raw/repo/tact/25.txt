@@ -1,0 +1,15 @@
+$Receivers$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/03-receivers/output/sample_Receivers.storage.fc:112:19: warning: Lack of end_parse.
+          return $sc~$Receivers$_load();
+                    ^
+$Receivers$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/03-receivers/output/sample_Receivers.code.fc:14:23: warning: Local variable '$self'val' is not used
+      var (($self'val)) = (null());
+                        ^
+$Receivers$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/03-receivers/output/sample_Receivers.code.fc:94:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/03-receivers/output/sample_Receivers.storage.fc:121:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

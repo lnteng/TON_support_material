@@ -1,0 +1,48 @@
+token_uri: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/ton-nft/packages/nft/trc721/trc721.fc:225:22: warning: Local variable 'r' is not used
+      (slice s, int r) = content.idict_get?(256, token_id);
+                       ^
+owner_of: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/ton-nft/packages/nft/trc721/trc721.fc:202:85: warning: Local variable 'name' is not used
+      (cell name, cell symbol, int supply, cell content, cell owners, cell approvals) = load_data();
+                                                                                      ^
+owner_of: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/ton-nft/packages/nft/trc721/trc721.fc:202:85: warning: Local variable 'symbol' is not used
+      (cell name, cell symbol, int supply, cell content, cell owners, cell approvals) = load_data();
+                                                                                      ^
+owner_of: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/ton-nft/packages/nft/trc721/trc721.fc:202:85: warning: Local variable 'supply' is not used
+      (cell name, cell symbol, int supply, cell content, cell owners, cell approvals) = load_data();
+                                                                                      ^
+owner_of: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/ton-nft/packages/nft/trc721/trc721.fc:202:85: warning: Local variable 'content' is not used
+      (cell name, cell symbol, int supply, cell content, cell owners, cell approvals) = load_data();
+                                                                                      ^
+owner_of: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/ton-nft/packages/nft/trc721/trc721.fc:202:85: warning: Local variable 'approvals' is not used
+      (cell name, cell symbol, int supply, cell content, cell owners, cell approvals) = load_data();
+                                                                                      ^
+load_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/ton-nft/packages/nft/trc721/trc721.fc:35:16: warning: Local variable 'inited' is not used
+      int inited = ds~load_uint(1);     ;; inited
+                 ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/ton-nft/packages/nft/trc721/trc721.fc:152:22: warning: Lack of end_parse.
+      slice sender = cs~load_msg_addr();
+                       ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/ton-nft/packages/nft/trc721/trc721.fc:144:23: warning: Local variable 'wc' is not used
+      var (wc, address) = sender_address.parse_std_addr();
+                        ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/ton-nft/packages/nft/trc721/trc721.fc:144:23: warning: Local variable 'address' is not used
+      var (wc, address) = sender_address.parse_std_addr();
+                        ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/ton-nft/packages/nft/trc721/trc721.fc:151:15: warning: Local variable 'flags' is not used
+      int flags = cs~load_uint(4);
+                ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/ton-nft/packages/nft/trc721/trc721.fc:152:18: warning: Local variable 'sender' is not used
+      slice sender = cs~load_msg_addr();
+                   ^

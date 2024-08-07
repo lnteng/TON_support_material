@@ -1,0 +1,28 @@
+receive_tokens: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/p_ton_wallet.fc:153:92: warning: Local variable 'balance' is not used
+    (int balance, slice owner_address, slice jetton_master_address, cell jetton_wallet_code) = get_wallet_data();
+                                                                                             ^
+send_tokens: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/p_ton_wallet.fc:45:92: warning: Local variable 'balance' is not used
+    (int balance, slice owner_address, slice jetton_master_address, cell jetton_wallet_code) = get_wallet_data();
+                                                                                             ^
+send_tokens: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/p_ton_wallet.fc:52:23: warning: Local variable 'custom_payload' is not used
+    cell custom_payload = in_msg_body~load_dict();
+                        ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/p_ton_wallet.fc:14:53: warning: Lack of end_parse.
+    return (ds~load_msg_addr(), ds~load_msg_addr(), ds~load_ref());
+                                                      ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/p_ton_wallet.fc:181:26: warning: Lack of end_parse.
+    int fwd_fee = muldiv(cs~load_coins(), 3, 2);
+                           ^
+burn_tokens: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/p_ton_wallet.fc:24:92: warning: Local variable 'jetton_master_address' is not used
+    (int balance, slice owner_address, slice jetton_master_address, cell jetton_wallet_code) = get_wallet_data();
+                                                                                             ^
+burn_tokens: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/p_ton_wallet.fc:24:92: warning: Local variable 'jetton_wallet_code' is not used
+    (int balance, slice owner_address, slice jetton_master_address, cell jetton_wallet_code) = get_wallet_data();
+                                                                                             ^

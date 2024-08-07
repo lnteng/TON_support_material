@@ -1,0 +1,26 @@
+$CounterContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_CounterContract.code.fc:14:37: warning: Local variable '$self'id' is not used
+      var (($self'id, $self'counter)) = (null(), null());
+                                      ^
+$CounterContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_CounterContract.code.fc:14:37: warning: Local variable '$self'counter' is not used
+      var (($self'id, $self'counter)) = (null(), null());
+                                      ^
+$CounterContract$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_CounterContract.storage.fc:115:19: warning: Lack of end_parse.
+          return $sc~$CounterContract$_load();
+                    ^
+$CounterContract$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_CounterContract.code.fc:109:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_CounterContract.storage.fc:126:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$CounterContract$_contract_store & $CounterContract$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_CounterContract.storage.fc:111:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_CounterContract.storage.fc:126:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

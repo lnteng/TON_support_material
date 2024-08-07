@@ -1,0 +1,47 @@
+$Update$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/serialization-3_SerializationTester.storage.fc:15:19: warning: Lack of end_parse.
+      var v'f = sc_1~load_ref().begin_parse();
+                    ^
+$SerializationTester$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/serialization-3_SerializationTester.storage.fc:63:19: warning: Lack of end_parse.
+          return $sc~$SerializationTester$_load();
+                    ^
+$SerializationTester$init$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/serialization-3_SerializationTester.storage.fc:54:19: warning: Lack of end_parse.
+      var v'f = sc_1~load_ref().begin_parse();
+                    ^
+$SerializationTester$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/serialization-3_SerializationTester.storage.fc:43:19: warning: Lack of end_parse.
+      var v'f = sc_1~load_ref().begin_parse();
+                    ^
+$SerializationTester$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/serialization-3_SerializationTester.code.fc:14:66: warning: Local variable '$self'a' is not used
+      var (($self'a, $self'b, $self'c, $self'd, $self'e, $self'f)) = (null(), null(), null(), null(), null(), null());
+                                                                   ^
+$SerializationTester$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/serialization-3_SerializationTester.code.fc:14:66: warning: Local variable '$self'b' is not used
+      var (($self'a, $self'b, $self'c, $self'd, $self'e, $self'f)) = (null(), null(), null(), null(), null(), null());
+                                                                   ^
+$SerializationTester$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/serialization-3_SerializationTester.code.fc:14:66: warning: Local variable '$self'c' is not used
+      var (($self'a, $self'b, $self'c, $self'd, $self'e, $self'f)) = (null(), null(), null(), null(), null(), null());
+                                                                   ^
+$SerializationTester$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/serialization-3_SerializationTester.code.fc:14:66: warning: Local variable '$self'd' is not used
+      var (($self'a, $self'b, $self'c, $self'd, $self'e, $self'f)) = (null(), null(), null(), null(), null(), null());
+                                                                   ^
+$SerializationTester$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/serialization-3_SerializationTester.code.fc:14:66: warning: Local variable '$self'e' is not used
+      var (($self'a, $self'b, $self'c, $self'd, $self'e, $self'f)) = (null(), null(), null(), null(), null(), null());
+                                                                   ^
+$SerializationTester$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/serialization-3_SerializationTester.code.fc:14:66: warning: Local variable '$self'f' is not used
+      var (($self'a, $self'b, $self'c, $self'd, $self'e, $self'f)) = (null(), null(), null(), null(), null(), null());
+                                                                   ^
+$SerializationTester$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/serialization-3_SerializationTester.code.fc:130:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/serialization-3_SerializationTester.storage.fc:74:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

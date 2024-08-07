@@ -1,0 +1,41 @@
+(int) getAccountAssetBalance (slice asset_address, int s_rate, int b_rate) method_id {
+  ~dump(get_account_asset_balance(asset_address, s_rate, b_rate));
+  return get_account_asset_balance(asset_address, s_rate, b_rate);
+}
+
+(cell) getAccountBalances (cell asset_dynamics_collection) method_id {
+
+  (slice master, slice user, cell user_principals, int locked) = storage::load();
+  (int asset_address_hash, slice asset_value_principal_packed, int flag) = user_principals.udict_get_min?(256);
+  cell account_balances = new_dict();
+  while (flag) {
+    var (asset_dynamics, _) = asset_dynamics_collection.udict_get?(256, asset_address_hash);
+    var (price, asset_s_rate, asset_b_rate, total_supply_principal, total_borrow_principal, last_accural, token_balance) = unpack_asset_dynamics(asset_dynamics);
+    int balance = get_account_asset_balance(calc_address_from_hash(asset_address_hash), asset_s_rate, asset_b_rate);
+    ~dump(balance);
+    account_balances~udict_set(256, asset_address_hash, begin_cell().store_int(balance, 65).end_cell().begin_parse()); ;; todo tests
+    (asset_address_hash, asset_value_principal_packed, flag) = user_principals.udict_get_next?(256,asset_address_hash);
+  }
+  return (account_balances);
+}
+
+(int) getAvailableToBorrow (cell asset_config_collection, cell asset_dynamics_collection) method_id {
+  (_, _, cell user_principals, int locked) = storage::load();
+
+  return get_avaliable_to_borrow(
+    asset_config_collection, asset_dynamics_collection,
+    user_principals
+  );
+}
+
+(int) getIsLiquidable (cell asset_config_collection, cell asset_dynamics_collection) method_id {
+ return is_liquidatable(asset_config_collection, asset_dynamics_collection);
+}
+
+(int, int) getAggregatedBalances (cell asset_config_collection, cell asset_dynamics_collection) method_id {
+ return get_agregated_balances(asset_config_collection, asset_dynamics_collection);
+}
+
+(int) test () method_id {
+  return (2);
+}

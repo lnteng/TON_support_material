@@ -1,0 +1,138 @@
+{- 
+  TASK 3 - Find and replace binary substring
+  Binary string is represented as a cell linked list: string splitted to chunks,
+  first chunk stored to the root cell, next one to the cell in ref and so on;
+  each cell can have only one ref. 
+  Write the method that find and replaces one flags in the binary string
+  with another value. Flags and values can be can be of any length, but
+  strictly up to 128 bits. The method must replace every flag it finds.
+  Flag and the value to be replaced is guaranteed to be greater than 0.
+  Lets give a simple example. We have the target flag 101110101 and the value
+  to be written 111111111 as inputs, and a linked list of cells, in which the bit
+  value of the first cell ends with ...10100001011, and in the ref we have cell that
+  starts with 10101000111111...
+  The output should be a linked list where the first
+  cell ends with ...10100001111, and the second cell starts with 11111000111111...
+
+-}
+
+forall X -> int is_null (X x) asm "ISNULL";
+forall X -> (tuple, ()) push_back (tuple tail, X head) asm "CONS";
+forall X -> (tuple, (X)) pop_back (tuple t) asm "UNCONS";
+forall X -> int is_null (X x) asm "ISNULL";
+(int) log2(int x) asm "UBITSIZE DEC";
+int tuple_length (tuple t) asm "TLEN";
+(int) ubits(int v) asm "UBITSIZE";
+
+
+() recv_internal() {
+}
+
+
+;; testable
+(cell) find_and_replace(int target_flag, int replace_val, cell list_cell) method_id {
+    int target_flag_len = ubits(target_flag);
+    int replace_val_len = ubits(replace_val);
+
+
+    slice list_slice = list_cell.begin_parse();
+    cell next_cell = null();
+    if (~ list_slice.slice_refs_empty?()) {
+        next_cell = list_slice~load_ref();
+    }
+    (int bit_data, int slice_bits, int slice_refs) = list_slice.slice_compute_data_size(1);
+
+    tuple cell_builders = empty_tuple();
+    builder cell_builder = begin_cell();
+
+    int current_bit_str = 0;
+    int recent_update = 0;
+    int bits_post_flag = 0;
+    int max_uint_len = 127;
+    int bit_mask_127 = (1 << 127) - 1;
+    int bit_mask_255 = (1 << 255) - 1;
+    int mask_flag = (1 << target_flag_len) - 1;
+
+    int available_bits = 1023;
+    while (~ list_slice.is_null()) {
+        (bit_data, slice_bits, slice_refs) = list_slice.slice_compute_data_size(1);
+        repeat (slice_bits) {
+            current_bit_str &= bit_mask_255;
+            current_bit_str <<= 1;
+            current_bit_str |= list_slice~load_uint(1);
+            recent_update += 1; 
+            if (bits_post_flag < target_flag_len) {
+                bits_post_flag += 1;
+            }
+
+            if ((current_bit_str & mask_flag) == target_flag) {         
+                if (available_bits < recent_update - bits_post_flag) {
+                    cell_builders~tpush(cell_builder);
+                    cell_builder = begin_cell();
+                    available_bits = 1023;
+                }
+                cell_builder~store_uint(
+                  (current_bit_str >> bits_post_flag) & 
+                  ((1 << (recent_update - bits_post_flag)) - 1), 
+                  recent_update - bits_post_flag
+                );
+                available_bits -= (recent_update - bits_post_flag);
+
+                if (available_bits < replace_val_len) {
+                    cell_builders~tpush(cell_builder);
+                    cell_builder = begin_cell();
+                    available_bits = 1023;
+                }
+                cell_builder~store_uint(replace_val, replace_val_len);
+                available_bits -= replace_val_len;
+
+                recent_update = 0; 
+                current_bit_str = 0;
+                bits_post_flag = 0;
+            }
+            if (recent_update == max_uint_len + bits_post_flag) {
+                if (available_bits < max_uint_len) {
+                    cell_builders~tpush(cell_builder);
+                    cell_builder = begin_cell();
+                    available_bits = 1023;
+                }
+                cell_builder~store_uint((current_bit_str >> bits_post_flag) & bit_mask_127, max_uint_len);
+                available_bits -= max_uint_len;
+                recent_update = bits_post_flag;
+            }
+        }
+
+        if (next_cell.is_null()) {
+            list_slice = null();
+        }
+        else {
+            list_slice = next_cell.begin_parse();
+            if (~ list_slice.slice_refs_empty?()) {
+                next_cell = list_slice~load_ref();
+            } 
+            else {
+                next_cell = null();
+            }
+        }
+    }
+
+    if (recent_update != 0) {
+        if (available_bits < recent_update) {
+            cell_builders~tpush(cell_builder);
+            cell_builder = begin_cell();
+        }
+        cell_builder~store_uint(current_bit_str & ((1 << recent_update) - 1), recent_update);
+    }
+
+    builder temp_builder_1 = cell_builder;
+    builder temp_builder_2 = begin_cell();
+    int idx = cell_builders.tuple_length() - 1;
+    while (idx >= 0) {
+        temp_builder_2 = cell_builders.at(idx);
+        temp_builder_2 = temp_builder_2.store_ref(temp_builder_1.end_cell());
+        temp_builder_1 = temp_builder_2;
+        idx -= 1;
+    }
+
+    return temp_builder_1.end_cell(); 
+}

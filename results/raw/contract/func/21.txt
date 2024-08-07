@@ -1,0 +1,8 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDw3lFIb92E0DHQHG_1Bqv_UXS1-HTXDhQ6_MuxgFOBvRaU/ton_loto_random.fc:73:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr(); ;; after flag we can get address
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDw3lFIb92E0DHQHG_1Bqv_UXS1-HTXDhQ6_MuxgFOBvRaU/ton_loto_random.fc:73:26: warning: Local variable 'sender_address' is not used
+      slice sender_address = cs~load_msg_addr(); ;; after flag we can get address
+                           ^

@@ -1,0 +1,303 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_NexTon.headers.fc";
+#include "sample_NexTon.stdlib.fc";
+#include "sample_NexTon.native.fc";
+#include "sample_NexTon.constants.fc";
+#include "sample_NexTon.storage.fc";
+
+;;
+;; Contract NexTon functions
+;;
+
+(slice, int, cell, slice, int, int, int, cell, cell, cell) $NexTon$_contract_init(cell $nftItemCode, slice $_nft) impure inline_ref {
+    var (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent)) = (null(), false, null(), null(), 0, null(), 0, null(), null(), null());
+    $self'owner = __tact_context_get_sender();
+    $self'nftItemCode = $nftItemCode;
+    $self'nFTContractAddress = $_nft;
+    $self'latestStakeBlock = now();
+    $self'itemContent~__tact_dict_set_uint_cell(256, 59089242681608890680090686026688704441792375738894456860693970539822503415433, end_cell(store_slice(store_uint(begin_cell(), 0, 8), __tact_str_to_slice(__gen_slice_string_3b879bec58c9a5ceca105f35453f274552397f76f9b0c0860b46182a32ea58ad()))));
+    $self'itemContent~__tact_dict_set_uint_cell(256, 90922719342317012409671596374183159143637506542604000676488204638996496437508, end_cell(store_slice(store_uint(begin_cell(), 0, 8), __tact_str_to_slice(__gen_slice_string_ca4030784dff0937e72e5badcf365558f5a75c66a4bd5290fc49b1235335ce6c()))));
+    $self'itemContent~__tact_dict_set_uint_cell(256, 43884663033947008978309661017057008345326326811558777475113826163084742639165, end_cell(store_slice(store_uint(begin_cell(), 0, 8), __tact_str_to_slice(__gen_slice_string_1badc43911965b208912067f3decaddc15c2ea00491d772a4cc313a1cb525114()))));
+    return ($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent);
+}
+
+((slice, int, cell, slice, int, int, int, cell, cell, cell), ()) $NexTon$_fun_mintNFT((slice, int, cell, slice, int, int, int, cell, cell, cell) $self, (int, int, int, cell) $body) impure inline_ref {
+    var (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent)) = $self;
+    var (($body'queryId, $body'itemIndex, $body'amount, $body'NFTMessage)) = $body;
+    $global_send($SendParameters$_constructor_to_value_mode_body($self'nFTContractAddress, 40000000, (1 + 2), $MintNFT$_store_cell(($body'queryId, $body'itemIndex, $body'amount, $body'NFTMessage))));
+    $self'itemCounter = ($self'itemCounter + 1);
+    return (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent), ());
+}
+
+((slice, int, cell, slice, int, int, int, cell, cell, cell), (cell, cell)) $NexTon$_fun_getNftItemInit((slice, int, cell, slice, int, int, int, cell, cell, cell) $self, int $itemIndex) impure inline_ref {
+    var (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent)) = $self;
+    cell $data = end_cell(store_slice(store_uint(begin_cell(), $itemIndex, 64), __tact_address_to_slice($self'nFTContractAddress)));
+    var ($itemInit'code, $itemInit'data) = $StateInit$_constructor_data_code($data, $self'nftItemCode);
+    return (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent), ($itemInit'code, $itemInit'data));
+}
+
+((slice, int, cell, slice, int, int, int, cell, cell, cell), slice) $NexTon$_fun_getNftAddressByIndex((slice, int, cell, slice, int, int, int, cell, cell, cell) $self, int $itemIndex) impure inline_ref {
+    var (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent)) = $self;
+    return (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent), $global_contractAddress(($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent)~$NexTon$_fun_getNftItemInit($itemIndex)));
+}
+
+((slice, int, cell, slice, int, int, int, cell, cell, cell), slice) $NexTon$_fun_CollectionAddress((slice, int, cell, slice, int, int, int, cell, cell, cell) $self) impure inline_ref {
+    var (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent)) = $self;
+    return (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent), $self'nFTContractAddress);
+}
+
+((slice, int, cell, slice, int, int, int, cell, cell, cell), int) $NexTon$_fun_balance((slice, int, cell, slice, int, int, int, cell, cell, cell) $self) impure inline_ref {
+    var (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent)) = $self;
+    return (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent), __tact_my_balance());
+}
+
+((slice, int, cell, slice, int, int, int, cell, cell, cell), int) $NexTon$_fun_nftCounter((slice, int, cell, slice, int, int, int, cell, cell, cell) $self) impure inline_ref {
+    var (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent)) = $self;
+    return (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent), $self'itemCounter);
+}
+
+((slice, int, cell, slice, int, int, int, cell, cell, cell), int) $NexTon$_fun_userNFTItemClaimed((slice, int, cell, slice, int, int, int, cell, cell, cell) $self, int $index) impure inline_ref {
+    var (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent)) = $self;
+    return (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent), __tact_dict_get_int_int($self'userItemClaimed, 257, $index, 1));
+}
+
+((slice, int, cell, slice, int, int, int, cell, cell, cell), slice) $NexTon$_fun_claimer((slice, int, cell, slice, int, int, int, cell, cell, cell) $self, int $index) impure inline_ref {
+    var (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent)) = $self;
+    return (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent), __tact_dict_get_uint_slice($self'claimers, 64, $index));
+}
+
+((slice, int, cell, slice, int, int, int, cell, cell, cell), ()) $NexTon$_fun_requireOwner((slice, int, cell, slice, int, int, int, cell, cell, cell) $self) impure inline_ref {
+    var (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent)) = $self;
+    throw_unless(132, ( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) ));
+    return (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent), ());
+}
+
+((slice, int, cell, slice, int, int, int, cell, cell, cell), slice) $NexTon$_fun_owner((slice, int, cell, slice, int, int, int, cell, cell, cell) $self) impure inline_ref {
+    var (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent)) = $self;
+    return (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent), $self'owner);
+}
+
+;;
+;; Receivers of a Contract NexTon
+;;
+
+(((slice, int, cell, slice, int, int, int, cell, cell, cell)), ()) %$NexTon$_internal_empty((slice, int, cell, slice, int, int, int, cell, cell, cell) $self) impure inline {
+    var ($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent) = $self;
+    return (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent), ());
+}
+
+(((slice, int, cell, slice, int, int, int, cell, cell, cell)), ()) $NexTon$_internal_binary_UserDeposit((slice, int, cell, slice, int, int, int, cell, cell, cell) $self, (int, int, int) $msg) impure inline {
+    var ($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent) = $self;
+    var ($msg'queryId, $msg'lockPeriod, $msg'leverage) = $msg;
+    throw_unless(10656, ($msg'leverage <= 5));
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    throw_unless(19861, ($ctx'value >= 500000000));
+    var ($attributes'trait_type, $attributes'value) = $Attribute$_constructor_trait_type_value(__gen_slice_string_9d5b4412217cae19bea7c01d778a946a94cefc77631202e50069f31be8eb0ee7(), ($ctx'value - 100000000));
+    $self'itemContent~__tact_dict_set_uint_cell(256, 47889004596860765833574718865764994897822228569987302009217900946479493651418, end_cell(store_coins(store_uint(begin_cell(), 0, 8), ($ctx'value - 100000000))));
+    $self'itemContent~__tact_dict_set_uint_cell(256, 105698786917357221484155778429478608109584207753697155179426651846563722624113, end_cell(store_uint(store_uint(begin_cell(), 0, 8), $msg'leverage, 8)));
+    $self'itemContent~__tact_dict_set_uint_cell(256, 61206613040260896651528813199079027270790734272780498133962589207589104533745, end_cell(store_uint(store_uint(begin_cell(), 0, 8), $msg'lockPeriod, 256)));
+    $self'itemContent~__tact_dict_set_uint_cell(256, 85332102803297763968215175384183041822616819995797097843173596364049034830932, end_cell(store_uint(store_uint(begin_cell(), 0, 8), ($msg'lockPeriod + now()), 256)));
+    $self'itemContent~__tact_dict_set_uint_cell(256, 109326941944740796111951780925094030603115335458256741377829489511487385558007, end_cell(store_slice(store_uint(begin_cell(), 0, 8), __tact_str_to_slice(__gen_slice_string_160acd98070e624d2f30ce53dac0fe67ed9a794d85dbb43dd3bb644d2fe5c3b0()))));
+    cell $itemMessage = end_cell(store_ref(__tact_store_address(__tact_store_address(begin_cell(), $ctx'sender), my_address()), end_cell(store_dict(store_uint(begin_cell(), 0, 8), __tact_not_null($self'itemContent)))));
+    var ($messageBody'queryId, $messageBody'itemIndex, $messageBody'amount, $messageBody'NFTMessage) = $MintNFT$_constructor_queryId_itemIndex_amount_NFTMessage($msg'queryId, $self'itemCounter, 0, $itemMessage);
+    ($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent)~$NexTon$_fun_mintNFT($MintNFT$_tensor_cast(($messageBody'queryId, $messageBody'itemIndex, $messageBody'amount, $messageBody'NFTMessage)));
+    return (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent), ());
+}
+
+(((slice, int, cell, slice, int, int, int, cell, cell, cell)), ()) $NexTon$_receive_binary_bounce_MintNFT((slice, int, cell, slice, int, int, int, cell, cell, cell) $self, (int, int) $src) impure inline {
+    var ($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent) = $self;
+    var ($src'queryId, $src'itemIndex) = $src;
+    $self'itemCounter = ($self'itemCounter - 1);
+    return (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent), ());
+}
+
+(((slice, int, cell, slice, int, int, int, cell, cell, cell)), ()) $NexTon$_internal_binary_UserClaim((slice, int, cell, slice, int, int, int, cell, cell, cell) $self, (int, (int, slice, cell)) $msg) impure inline {
+    var ($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent) = $self;
+    var ($msg'queryId, ($msg'info'itemIndex, $msg'info'owner, $msg'info'content)) = $msg;
+    throw_unless(41610, ($self'itemCounter > $msg'info'itemIndex));
+    throw_unless(20825, ( __tact_slice_eq_bits(__tact_context_get_sender(), ($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent)~$NexTon$_fun_getNftAddressByIndex($msg'info'itemIndex)) ));
+    $self'userItemClaimed~__tact_dict_set_int_int(257, $msg'info'itemIndex, true, 1);
+    $self'claimers~__tact_dict_set_uint_slice(64, $msg'info'itemIndex, $msg'info'owner);
+    return (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent), ());
+}
+
+(((slice, int, cell, slice, int, int, int, cell, cell, cell)), ()) $NexTon$_internal_binary_Deploy((slice, int, cell, slice, int, int, int, cell, cell, cell) $self, (int) $deploy) impure inline {
+    var ($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent)~$NexTon$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent), ());
+}
+
+(((slice, int, cell, slice, int, int, int, cell, cell, cell)), ()) $NexTon$_internal_binary_ChangeOwner((slice, int, cell, slice, int, int, int, cell, cell, cell) $self, (int, slice) $msg) impure inline {
+    var ($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent) = $self;
+    var ($msg'queryId, $msg'newOwner) = $msg;
+    ($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent)~$NexTon$_fun_requireOwner();
+    $self'owner = $msg'newOwner;
+    ($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent)~$NexTon$_fun_reply($ChangeOwnerOk$_store_cell($ChangeOwnerOk$_constructor_queryId_newOwner($msg'queryId, $msg'newOwner)));
+    return (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent), ());
+}
+
+;;
+;; Get methods of a Contract NexTon
+;;
+
+_ %getNftAddressByIndex(int $$itemIndex) method_id(91047) {
+    int $itemIndex = $$itemIndex;
+    var self = $NexTon$_contract_load();
+    var res = self~$NexTon$_fun_getNftAddressByIndex($itemIndex);
+    return res;
+}
+
+_ %CollectionAddress() method_id(83931) {
+    var self = $NexTon$_contract_load();
+    var res = self~$NexTon$_fun_CollectionAddress();
+    return res;
+}
+
+_ %balance() method_id(104128) {
+    var self = $NexTon$_contract_load();
+    var res = self~$NexTon$_fun_balance();
+    return res;
+}
+
+_ %nftCounter() method_id(105409) {
+    var self = $NexTon$_contract_load();
+    var res = self~$NexTon$_fun_nftCounter();
+    return res;
+}
+
+_ %userNFTItemClaimed(int $$index) method_id(92585) {
+    int $index = $$index;
+    var self = $NexTon$_contract_load();
+    var res = self~$NexTon$_fun_userNFTItemClaimed($index);
+    return res;
+}
+
+_ %claimer(int $$index) method_id(87419) {
+    int $index = $$index;
+    var self = $NexTon$_contract_load();
+    var res = self~$NexTon$_fun_claimer($index);
+    return res;
+}
+
+_ %owner() method_id(83229) {
+    var self = $NexTon$_contract_load();
+    var res = self~$NexTon$_fun_owner();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128,
+        "org.ton.ownable.transferable.v2"H >> 128,
+        "org.ton.ownable"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmbgLNVhL3h3L7qe3uWUihLzd1JmktKnZyr1L7BaCWSWhD";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract NexTon
+;;
+
+((slice, int, cell, slice, int, int, int, cell, cell, cell), int) $NexTon$_contract_router_internal((slice, int, cell, slice, int, int, int, cell, cell, cell) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        
+        ;; Skip 0xFFFFFFFF
+        in_msg~skip_bits(32);
+        
+        ;; Parse op
+        int op = 0;
+        if (slice_bits(in_msg) >= 32) {
+            op = in_msg.preload_uint(32);
+        }
+        
+        ;; Bounced handler for MintNFT message
+        if (op == 1) {
+            var msg = in_msg~$MintNFT$_load_bounced();
+            self~$NexTon$_receive_binary_bounce_MintNFT(msg);
+            return (self, true);
+        }
+        
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive empty message
+    if ((op == 0) & (slice_bits(in_msg) <= 32)) {
+        self~%$NexTon$_internal_empty();
+        return (self, true);
+    }
+    
+    ;; Receive UserDeposit message
+    if (op == 3554937751) {
+        var msg = in_msg~$UserDeposit$_load();
+        self~$NexTon$_internal_binary_UserDeposit(msg);
+        return (self, true);
+    }
+    
+    ;; Receive UserClaim message
+    if (op == 104252950) {
+        var msg = in_msg~$UserClaim$_load();
+        self~$NexTon$_internal_binary_UserClaim(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$NexTon$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Receive ChangeOwner message
+    if (op == 2174598809) {
+        var msg = in_msg~$ChangeOwner$_load();
+        self~$NexTon$_internal_binary_ChangeOwner(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $NexTon$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$NexTon$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $NexTon$_contract_store(self);
+}

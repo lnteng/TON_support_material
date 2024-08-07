@@ -1,0 +1,57 @@
+get_public_key: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/restricted-wallet/wallet.fc:116:5: warning: Lack of end_parse.
+    ds~load_uint(32 + 32);
+      ^
+seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/restricted-wallet/wallet.fc:105:20: warning: Lack of end_parse.
+    return get_data().begin_parse().preload_uint(32);
+                     ^
+check_message_destination: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/restricted-wallet/wallet.fc:45:14: warning: Lack of end_parse.
+    int op = cs~load_uint(32);
+               ^
+check_message_destination: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/restricted-wallet/wallet.fc:43:12: warning: Lack of end_parse.
+      cs = cs~load_ref().begin_parse();
+             ^
+check_message_destination: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/restricted-wallet/wallet.fc:31:24: warning: Local variable 's_addr' is not used
+    var (s_addr, d_addr) = (cs~load_msg_addr(), cs~load_msg_addr());
+                         ^
+check_message_destination: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/restricted-wallet/wallet.fc:36:13: warning: Local variable 'value' is not used
+    var value = cs~load_coins();
+              ^
+is_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/restricted-wallet/wallet.fc:21:26: warning: Lack of end_parse.
+    return (config_param(0).begin_parse().preload_uint(256) == addr) & (wc == -1);
+                           ^
+wallet_id: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/restricted-wallet/wallet.fc:110:5: warning: Lack of end_parse.
+    ds~load_uint(32);
+      ^
+is_elector: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/restricted-wallet/wallet.fc:16:26: warning: Lack of end_parse.
+    return (config_param(1).begin_parse().preload_uint(256) == addr) & (wc == -1);
+                           ^
+save_data & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/restricted-wallet/wallet.fc:115:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/restricted-wallet/wallet.fc:69:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_int(seqno, 32)
+      ^
+save_data & wallet_id: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/restricted-wallet/wallet.fc:109:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/restricted-wallet/wallet.fc:69:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_int(seqno, 32)
+      ^
+save_data & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/restricted-wallet/wallet.fc:56:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/restricted-wallet/wallet.fc:69:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_int(seqno, 32)
+      ^

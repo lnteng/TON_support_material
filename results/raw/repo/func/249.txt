@@ -1,0 +1,20 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/ton-bet-dao/contracts/dao.fc:97:28: warning: Lack of end_parse.
+      int fwd_fee = muldiv(cs~load_coins(), 3, 2); ;; we use message fwd_fee for estimation of forward_payload costs
+                             ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/ton-bet-dao/contracts/dao.fc:92:26: warning: Local variable 'sender_address' is not used
+      slice sender_address = cs~load_msg_addr();
+                           ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/ton-bet-dao/contracts/dao.fc:100:18: warning: Local variable 'query_id' is not used
+      int query_id = in_msg_body~load_uint(64);
+                   ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/ton-bet-dao/contracts/dao.fc:106:24: warning: Local variable 'bet_amount' is not used
+          int bet_amount = in_msg_body~load_coins();
+                         ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/ton-bet-dao/contracts/dao.fc:40:42: warning: Lack of end_parse.
+      storage::nft::collection_content = ds~load_ref();
+                                           ^

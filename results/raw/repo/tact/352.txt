@@ -1,0 +1,82 @@
+$OrderlyAmmLiquidityPool$_internal_binary_SendLiquidityToLpInternal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_lp_OrderlyAmmLiquidityPool.code.fc:49:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$OrderlyAmmLiquidityPool$_internal_binary_SendLiquidityToLpInternal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_lp_OrderlyAmmLiquidityPool.code.fc:49:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$OrderlyAmmLiquidityPool$_internal_binary_SendLiquidityToLpInternal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_lp_OrderlyAmmLiquidityPool.code.fc:49:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$OrderlyAmmLiquidityPool$_internal_binary_SendLiquidityToLpInternal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_lp_OrderlyAmmLiquidityPool.code.fc:57:58: warning: Local variable '$queryNonNull'isBase' is not used
+          var ($queryNonNull'amount, $queryNonNull'isBase) = $PendingQuery$_not_null($query);
+                                                           ^
+$SendLiquidityToLpInternal$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_lp_OrderlyAmmLiquidityPool.storage.fc:159:37: warning: Lack of end_parse.
+      var v'responseDestination = sc_1~__tact_load_address();
+                                      ^
+$JettonMaster$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_lp_OrderlyAmmLiquidityPool.storage.fc:228:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+__tact_dict_set_int_cell: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_lp_OrderlyAmmLiquidityPool.stdlib.fc:66:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+$OrderlyAmmLiquidityPool$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_lp_OrderlyAmmLiquidityPool.storage.fc:304:28: warning: Lack of end_parse.
+      var v'registered = sc_1~load_int(1);
+                             ^
+$PendingQuery$_load_opt: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_lp_OrderlyAmmLiquidityPool.storage.fc:208:41: warning: Lack of end_parse.
+      return $PendingQuery$_as_optional(sc~$PendingQuery$_load());
+                                          ^
+$OrderlyAmmLiquidityPool$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_lp_OrderlyAmmLiquidityPool.code.fc:14:149: warning: Local variable '$self'master' is not used
+      var (($self'master, $self'base, $self'baseAmount, $self'quote, $self'quoteAmount, $self'pricePerShare, $self'pendingQueries, $self'registered)) = (null(), null(), 0, null(), 0, null(), null(), false);
+                                                                                                                                                      ^
+$OrderlyAmmLiquidityPool$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_lp_OrderlyAmmLiquidityPool.code.fc:14:149: warning: Local variable '$self'base' is not used
+      var (($self'master, $self'base, $self'baseAmount, $self'quote, $self'quoteAmount, $self'pricePerShare, $self'pendingQueries, $self'registered)) = (null(), null(), 0, null(), 0, null(), null(), false);
+                                                                                                                                                      ^
+$OrderlyAmmLiquidityPool$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_lp_OrderlyAmmLiquidityPool.code.fc:14:149: warning: Local variable '$self'quote' is not used
+      var (($self'master, $self'base, $self'baseAmount, $self'quote, $self'quoteAmount, $self'pricePerShare, $self'pendingQueries, $self'registered)) = (null(), null(), 0, null(), 0, null(), null(), false);
+                                                                                                                                                      ^
+$OrderlyAmmLiquidityPool$_internal_binary_SwapInternal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_lp_OrderlyAmmLiquidityPool.code.fc:91:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$OrderlyAmmLiquidityPool$_internal_binary_SwapInternal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_lp_OrderlyAmmLiquidityPool.code.fc:91:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$OrderlyAmmLiquidityPool$_internal_binary_SwapInternal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_lp_OrderlyAmmLiquidityPool.code.fc:91:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$OrderlyAmmLiquidityPool$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_lp_OrderlyAmmLiquidityPool.storage.fc:320:19: warning: Lack of end_parse.
+          return $sc~$OrderlyAmmLiquidityPool$_load();
+                    ^
+$OrderlyAmmDeposit$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_lp_OrderlyAmmLiquidityPool.storage.fc:261:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$OrderlyAmmLiquidityPool$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_lp_OrderlyAmmLiquidityPool.code.fc:127:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_lp_OrderlyAmmLiquidityPool.storage.fc:331:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$OrderlyAmmLiquidityPool$_contract_store & $OrderlyAmmLiquidityPool$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_lp_OrderlyAmmLiquidityPool.storage.fc:316:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_lp_OrderlyAmmLiquidityPool.storage.fc:331:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

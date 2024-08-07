@@ -1,0 +1,55 @@
+$Maps$_fun_itemCheck: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-maps/output/sample_Maps.code.fc:30:40: warning: Local variable '$item'decimals' is not used
+      var ($item'ticker, $item'decimals) = $TokenInfo$_not_null($TokenInfo$_load_opt(__tact_dict_get_int_cell($self'mi1, 257, 17)));
+                                         ^
+__tact_dict_set_int_slice: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-maps/output/sample_Maps.stdlib.fc:71:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+$Maps$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-maps/output/sample_Maps.storage.fc:163:19: warning: Lack of end_parse.
+          return $sc~$Maps$_load();
+                    ^
+__tact_dict_set_int_cell: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-maps/output/sample_Maps.stdlib.fc:53:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+__tact_dict_set_slice_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-maps/output/sample_Maps.stdlib.fc:89:21: warning: Local variable 'ok' is not used
+          var (r, ok) = __tact_dict_delete(d, kl, k);
+                      ^
+__tact_dict_set_slice_slice: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-maps/output/sample_Maps.stdlib.fc:107:21: warning: Local variable 'ok' is not used
+          var (r, ok) = __tact_dict_delete(d, kl, k);
+                      ^
+__tact_dict_set_slice_cell: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-maps/output/sample_Maps.stdlib.fc:98:21: warning: Local variable 'ok' is not used
+          var (r, ok) = __tact_dict_delete(d, kl, k);
+                      ^
+$Maps$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-maps/output/sample_Maps.storage.fc:149:21: warning: Lack of end_parse.
+      var v'ma4 = sc_2~load_dict();
+                      ^
+$Maps$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-maps/output/sample_Maps.storage.fc:146:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+$Maps$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-maps/output/sample_Maps.code.fc:15:100: warning: Local variable '$self'mi2' is not used
+      var (($self'mi1, $self'mi2, $self'mi3, $self'mi4, $self'ma1, $self'ma2, $self'ma3, $self'ma4)) = (null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                                     ^
+__tact_dict_set_int_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-maps/output/sample_Maps.stdlib.fc:44:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+$TokenInfo$_load_opt: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-maps/output/sample_Maps.storage.fc:99:38: warning: Lack of end_parse.
+      return $TokenInfo$_as_optional(sc~$TokenInfo$_load());
+                                       ^
+$Maps$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-maps/output/sample_Maps.code.fc:133:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-maps/output/sample_Maps.storage.fc:174:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

@@ -1,0 +1,57 @@
+processed?: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBDUShg1UmAzyTVmGijDmeZJ_sTc8EJZNt1AO3N9pCrxPAN/highload-wallet-v3.func:229:20: warning: Lack of end_parse.
+          value_slice~skip_bits(bit_number);
+                     ^
+processed?: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBDUShg1UmAzyTVmGijDmeZJ_sTc8EJZNt1AO3N9pCrxPAN/highload-wallet-v3.func:238:20: warning: Lack of end_parse.
+          value_slice~skip_bits(bit_number);
+                     ^
+get_timeout: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBDUShg1UmAzyTVmGijDmeZJ_sTc8EJZNt1AO3N9pCrxPAN/highload-wallet-v3.func:200:15: warning: Lack of end_parse.
+      data_slice~skip_bits(PUBLIC_KEY_SIZE + SUBWALLET_ID_SIZE + 1 + 1 + TIMESTAMP_SIZE); ;; skip: public_key, subwallet_id, old_queried, queries, last_clean_time
+                ^
+recv_external: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBDUShg1UmAzyTVmGijDmeZJ_sTc8EJZNt1AO3N9pCrxPAN/highload-wallet-v3.func:104:20: warning: Lack of end_parse.
+          value_slice~skip_bits(bit_number);
+                     ^
+recv_external: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBDUShg1UmAzyTVmGijDmeZJ_sTc8EJZNt1AO3N9pCrxPAN/highload-wallet-v3.func:109:23: warning: Local variable 'new_value' is not used
+      builder new_value = null();
+                        ^
+get_last_clean_time: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBDUShg1UmAzyTVmGijDmeZJ_sTc8EJZNt1AO3N9pCrxPAN/highload-wallet-v3.func:194:15: warning: Lack of end_parse.
+      data_slice~skip_bits(PUBLIC_KEY_SIZE + SUBWALLET_ID_SIZE + 1 + 1); ;; skip: public_key, subwallet_id, old_queried, queries
+                ^
+get_public_key: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBDUShg1UmAzyTVmGijDmeZJ_sTc8EJZNt1AO3N9pCrxPAN/highload-wallet-v3.func:183:22: warning: Lack of end_parse.
+      return get_data().begin_parse().preload_uint(PUBLIC_KEY_SIZE);
+                       ^
+get_subwallet_id: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBDUShg1UmAzyTVmGijDmeZJ_sTc8EJZNt1AO3N9pCrxPAN/highload-wallet-v3.func:188:15: warning: Lack of end_parse.
+      data_slice~skip_bits(PUBLIC_KEY_SIZE); ;; skip public_key
+                ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBDUShg1UmAzyTVmGijDmeZJ_sTc8EJZNt1AO3N9pCrxPAN/highload-wallet-v3.func:41:45: warning: Lack of end_parse.
+      slice sender_address = in_msg_full_slice~load_msg_addr();
+                                              ^
+recv_external & processed?: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBDUShg1UmAzyTVmGijDmeZJ_sTc8EJZNt1AO3N9pCrxPAN/highload-wallet-v3.func:208:34: warning: Cell of get_data and set_data are inconsistent.
+      slice data_slice = get_data().begin_parse();
+                                   ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBDUShg1UmAzyTVmGijDmeZJ_sTc8EJZNt1AO3N9pCrxPAN/highload-wallet-v3.func:124:9: warning: Cell of get_data and set_data are inconsistent.
+          .store_uint(public_key, PUBLIC_KEY_SIZE)
+          ^
+recv_external & get_timeout: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBDUShg1UmAzyTVmGijDmeZJ_sTc8EJZNt1AO3N9pCrxPAN/highload-wallet-v3.func:199:34: warning: Cell of get_data and set_data are inconsistent.
+      slice data_slice = get_data().begin_parse();
+                                   ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBDUShg1UmAzyTVmGijDmeZJ_sTc8EJZNt1AO3N9pCrxPAN/highload-wallet-v3.func:124:9: warning: Cell of get_data and set_data are inconsistent.
+          .store_uint(public_key, PUBLIC_KEY_SIZE)
+          ^
+recv_external & get_last_clean_time: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBDUShg1UmAzyTVmGijDmeZJ_sTc8EJZNt1AO3N9pCrxPAN/highload-wallet-v3.func:193:34: warning: Cell of get_data and set_data are inconsistent.
+      slice data_slice = get_data().begin_parse();
+                                   ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBDUShg1UmAzyTVmGijDmeZJ_sTc8EJZNt1AO3N9pCrxPAN/highload-wallet-v3.func:124:9: warning: Cell of get_data and set_data are inconsistent.
+          .store_uint(public_key, PUBLIC_KEY_SIZE)
+          ^

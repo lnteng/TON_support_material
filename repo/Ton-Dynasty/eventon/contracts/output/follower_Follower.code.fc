@@ -1,0 +1,197 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "follower_Follower.headers.fc";
+#include "follower_Follower.stdlib.fc";
+#include "follower_Follower.storage.fc";
+
+;;
+;; Contract Follower functions
+;;
+
+(slice, slice, slice, int, int) $Follower$_contract_init(slice $owner, slice $dex) impure inline_ref {
+    var (($self'owner, $self'messenger, $self'dex, $self'positionSize, $self'eventId)) = (null(), null(), null(), null(), null());
+    $self'owner = $owner;
+    $self'dex = $dex;
+    $self'messenger = $owner;
+    $self'positionSize = 100;
+    $self'eventId = (- 1);
+    return ($self'owner, $self'messenger, $self'dex, $self'positionSize, $self'eventId);
+}
+
+((slice, slice, slice, int, int), slice) $Follower$_fun_getMessenger((slice, slice, slice, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'messenger, $self'dex, $self'positionSize, $self'eventId)) = $self;
+    return (($self'owner, $self'messenger, $self'dex, $self'positionSize, $self'eventId), $self'messenger);
+}
+
+((slice, slice, slice, int, int), ()) $Follower$_fun_requireOwner((slice, slice, slice, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'messenger, $self'dex, $self'positionSize, $self'eventId)) = $self;
+    throw_unless(132, ( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) ));
+    return (($self'owner, $self'messenger, $self'dex, $self'positionSize, $self'eventId), ());
+}
+
+((slice, slice, slice, int, int), slice) $Follower$_fun_owner((slice, slice, slice, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'messenger, $self'dex, $self'positionSize, $self'eventId)) = $self;
+    return (($self'owner, $self'messenger, $self'dex, $self'positionSize, $self'eventId), $self'owner);
+}
+
+;;
+;; Receivers of a Contract Follower
+;;
+
+(((slice, slice, slice, int, int)), ()) %$Follower$_internal_empty((slice, slice, slice, int, int) $self) impure inline {
+    var ($self'owner, $self'messenger, $self'dex, $self'positionSize, $self'eventId) = $self;
+    return (($self'owner, $self'messenger, $self'dex, $self'positionSize, $self'eventId), ());
+}
+
+(((slice, slice, slice, int, int)), ()) $Follower$_internal_binary_EventSignal((slice, slice, slice, int, int) $self, (int, cell) $msg) impure inline {
+    var ($self'owner, $self'messenger, $self'dex, $self'positionSize, $self'eventId) = $self;
+    var ($msg'eventId, $msg'payload) = $msg;
+    var ($cxt'bounced, $cxt'sender, $cxt'value, $cxt'raw) = __tact_context_get();
+    if (( ~ __tact_slice_eq_bits($self'messenger, $cxt'sender) )) {
+        throw(1006);
+    }
+    cell $payload = $msg'payload;
+    slice $parser = begin_parse($payload);
+    int $orderAction = $parser~load_int(32);
+    int $positionSize = $parser~load_int(32);
+    int $value = 100000000;
+    $global_send($SendParameters$_constructor_to_value_mode_bounce_body($self'dex, $value, 1, true, $Trade$_store_cell($Trade$_constructor_orderAction_positionSize($orderAction, $self'positionSize))));
+    return (($self'owner, $self'messenger, $self'dex, $self'positionSize, $self'eventId), ());
+}
+
+(((slice, slice, slice, int, int)), ()) $Follower$_internal_binary_SetMessenger((slice, slice, slice, int, int) $self, (slice, int) $msg) impure inline {
+    var ($self'owner, $self'messenger, $self'dex, $self'positionSize, $self'eventId) = $self;
+    var ($msg'messenger, $msg'eventId) = $msg;
+    ($self'owner, $self'messenger, $self'dex, $self'positionSize, $self'eventId)~$Follower$_fun_requireOwner();
+    $self'messenger = $msg'messenger;
+    $self'eventId = $msg'eventId;
+    return (($self'owner, $self'messenger, $self'dex, $self'positionSize, $self'eventId), ());
+}
+
+(((slice, slice, slice, int, int)), ()) $Follower$_internal_binary_Trade((slice, slice, slice, int, int) $self, (int, int) $msg) impure inline {
+    var ($self'owner, $self'messenger, $self'dex, $self'positionSize, $self'eventId) = $self;
+    var ($msg'orderAction, $msg'positionSize) = $msg;
+    ($self'owner, $self'messenger, $self'dex, $self'positionSize, $self'eventId)~$Follower$_fun_requireOwner();
+    $self'positionSize = $msg'positionSize;
+    return (($self'owner, $self'messenger, $self'dex, $self'positionSize, $self'eventId), ());
+}
+
+(((slice, slice, slice, int, int)), ()) $Follower$_internal_binary_Deploy((slice, slice, slice, int, int) $self, (int) $deploy) impure inline {
+    var ($self'owner, $self'messenger, $self'dex, $self'positionSize, $self'eventId) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'owner, $self'messenger, $self'dex, $self'positionSize, $self'eventId)~$Follower$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'owner, $self'messenger, $self'dex, $self'positionSize, $self'eventId), ());
+}
+
+;;
+;; Get methods of a Contract Follower
+;;
+
+_ %getMessenger() method_id(116799) {
+    var self = $Follower$_contract_load();
+    var res = self~$Follower$_fun_getMessenger();
+    return res;
+}
+
+_ %owner() method_id(83229) {
+    var self = $Follower$_contract_load();
+    var res = self~$Follower$_fun_owner();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128,
+        "org.ton.ownable"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmQxSXJnAdaGXeHYGPx8NjpXJAtuocMpMmQ2RN1qyEiCG2";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract Follower
+;;
+
+((slice, slice, slice, int, int), int) $Follower$_contract_router_internal((slice, slice, slice, int, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive empty message
+    if ((op == 0) & (slice_bits(in_msg) <= 32)) {
+        self~%$Follower$_internal_empty();
+        return (self, true);
+    }
+    
+    ;; Receive EventSignal message
+    if (op == 306637748) {
+        var msg = in_msg~$EventSignal$_load();
+        self~$Follower$_internal_binary_EventSignal(msg);
+        return (self, true);
+    }
+    
+    ;; Receive SetMessenger message
+    if (op == 853868809) {
+        var msg = in_msg~$SetMessenger$_load();
+        self~$Follower$_internal_binary_SetMessenger(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Trade message
+    if (op == 2411913942) {
+        var msg = in_msg~$Trade$_load();
+        self~$Follower$_internal_binary_Trade(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$Follower$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $Follower$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$Follower$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $Follower$_contract_store(self);
+}

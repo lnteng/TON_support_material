@@ -1,0 +1,23 @@
+$reply: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/src/test/features/output/random_RandomContract.code.fc:133:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$reply: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/src/test/features/output/random_RandomContract.code.fc:133:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$reply: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/src/test/features/output/random_RandomContract.code.fc:133:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+__gen_load_RandomContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/src/test/features/output/random_RandomContract.code.fc:60:22: warning: Lack of end_parse.
+      int $loaded = $sc~load_int(1);
+                       ^
+__gen_store_RandomContract & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/src/test/features/output/random_RandomContract.code.fc:231:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/src/test/features/output/random_RandomContract.code.fc:69:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

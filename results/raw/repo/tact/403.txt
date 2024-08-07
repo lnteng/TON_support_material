@@ -1,0 +1,58 @@
+__tact_dict_set_uint_slice: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./brayandm/tact-challenge/contracts/output/sample_Task5.stdlib.fc:52:21: warning: Local variable 'ok' is not used
+          var (r, ok) = udict_delete?(d, kl, k);
+                      ^
+$Task5$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./brayandm/tact-challenge/contracts/output/sample_Task5.code.fc:14:61: warning: Local variable '$self'seed' is not used
+      var (($self'seed, $self'owner, $self'arr, $self'total)) = (null(), null(), null(), null());
+                                                              ^
+$Task5$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./brayandm/tact-challenge/contracts/output/sample_Task5.code.fc:14:61: warning: Local variable '$self'owner' is not used
+      var (($self'seed, $self'owner, $self'arr, $self'total)) = (null(), null(), null(), null());
+                                                              ^
+$Task5$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./brayandm/tact-challenge/contracts/output/sample_Task5.code.fc:14:61: warning: Local variable '$self'total' is not used
+      var (($self'seed, $self'owner, $self'arr, $self'total)) = (null(), null(), null(), null());
+                                                              ^
+$Task5$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./brayandm/tact-challenge/contracts/output/sample_Task5.storage.fc:204:19: warning: Lack of end_parse.
+          return $sc~$Task5$_load();
+                    ^
+$Task5$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./brayandm/tact-challenge/contracts/output/sample_Task5.code.fc:152:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./brayandm/tact-challenge/contracts/output/sample_Task5.storage.fc:215:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task5$_contract_store & $Task5$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./brayandm/tact-challenge/contracts/output/sample_Task5.storage.fc:200:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./brayandm/tact-challenge/contracts/output/sample_Task5.storage.fc:215:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./brayandm/tact-challenge/contracts/output/sample_Task5.code.fc:86:201: warning: UnHandle bounced message with op: 0xfda48b79
+      $global_send($SendParameters$_constructor_to_bounce_value_mode_body(__tact_context_get_sender(), true, 0, 128, $AdminFetchProfit$_store_cell($AdminFetchProfit$_constructor_queryId($msg'queryId))));
+                                                                                                                                                                                                          ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./brayandm/tact-challenge/contracts/output/sample_Task5.code.fc:43:295: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... oad_forwardAmount_forwardPayload($queryId, $newOwner, $newOwner, null(), 0, $global_emptySlice()))));
+  ...                                                                                                     ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./brayandm/tact-challenge/contracts/output/sample_Task5.code.fc:46:275: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... oad_forwardAmount_forwardPayload($queryId, $newOwner, $newOwner, null(), 0, $global_emptySlice()))));
+  ...                                                                                                     ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./brayandm/tact-challenge/contracts/output/sample_Task5.code.fc:97:200: warning: UnHandle bounced message with op: 0x6339421f
+              $global_send($SendParameters$_constructor_to_bounce_value_mode_body(my_address(), true, 0, (64 + 2), $AdminWithdrawalAllNFTs$_store_cell($AdminWithdrawalAllNFTs$_constructor_queryId(0))));
+                                                                                                                                                                                                         ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./brayandm/tact-challenge/contracts/output/sample_Task5.code.fc:102:388: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... nt_forwardPayload(($msg'queryId + $i), $self'owner, $self'owner, null(), 0, $global_emptySlice()))));
+  ...                                                                                                     ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./brayandm/tact-challenge/contracts/output/sample_Task5.code.fc:109:218: warning: UnHandle bounced message with op: 0x6339421f
+  ... inWithdrawalAllNFTs$_store_cell($AdminWithdrawalAllNFTs$_constructor_queryId(($msg'queryId + $i)))));
+  ...                                                                                                     ^

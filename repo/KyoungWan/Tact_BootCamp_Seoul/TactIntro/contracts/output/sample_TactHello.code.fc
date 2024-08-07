@@ -1,0 +1,195 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_TactHello.headers.fc";
+#include "sample_TactHello.stdlib.fc";
+#include "sample_TactHello.constants.fc";
+#include "sample_TactHello.storage.fc";
+
+;;
+;; Contract TactHello functions
+;;
+
+(slice, slice) $TactHello$_contract_init() impure inline_ref {
+    var (($self'owner, $self'name)) = (null(), __gen_slice_string_40d98146a47dbe3bbc9c7205450b5da355c567deb3ea11d30a74c85ef592e945());
+    $self'owner = __tact_context_get_sender();
+    return ($self'owner, $self'name);
+}
+
+((slice, slice), slice) $TactHello$_fun_hello((slice, slice) $self) impure inline_ref {
+    var (($self'owner, $self'name)) = $self;
+    tuple $hello = __tact_string_builder_start_string();
+    $hello~__tact_string_builder_append(__gen_slice_string_91f3a4eb492902017b76090f10d76b10dceee99c2cd5da640eae40c68ae54819());
+    $hello~__tact_string_builder_append($self'name);
+    return (($self'owner, $self'name), __tact_string_builder_end_slice($hello));
+}
+
+((slice, slice), ()) $TactHello$_fun_requireOwner((slice, slice) $self) impure inline_ref {
+    var (($self'owner, $self'name)) = $self;
+    throw_unless(132, ( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) ));
+    return (($self'owner, $self'name), ());
+}
+
+((slice, slice), slice) $TactHello$_fun_owner((slice, slice) $self) impure inline_ref {
+    var (($self'owner, $self'name)) = $self;
+    return (($self'owner, $self'name), $self'owner);
+}
+
+;;
+;; Receivers of a Contract TactHello
+;;
+
+(((slice, slice)), ()) %$TactHello$_internal_empty((slice, slice) $self) impure inline {
+    var ($self'owner, $self'name) = $self;
+    return (($self'owner, $self'name), ());
+}
+
+(((slice, slice)), ()) $TactHello$_internal_binary_SetName((slice, slice) $self, (slice) $msg) impure inline {
+    var ($self'owner, $self'name) = $self;
+    var ($msg'newName) = $msg;
+    ($self'owner, $self'name)~$TactHello$_fun_requireOwner();
+    $self'name = $msg'newName;
+    return (($self'owner, $self'name), ());
+}
+
+((slice, slice), ()) $TactHello$_internal_text_f2bca8f79b342169872f72eae0be26dfb6f19324e2888ce9766a703989f6428e((slice, slice) $self) impure inline {
+    var ($self'owner, $self'name) = $self;
+    tuple $reply = __tact_string_builder_start_string();
+    $reply~__tact_string_builder_append(__gen_slice_string_bb1cba91be1e73057ed9eadc8484d50bdfa70e14bad6065b82a88fd68929d243());
+    $reply~__tact_string_builder_append($self'name);
+    $global_send($SendParameters$_constructor_to_value_mode_body(__tact_context_get_sender(), 0, 2, $String$_fun_asComment(__tact_string_builder_end_slice($reply))));
+    return (($self'owner, $self'name), ());
+}
+
+(((slice, slice)), ()) $TactHello$_internal_binary_Deploy((slice, slice) $self, (int) $deploy) impure inline {
+    var ($self'owner, $self'name) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'owner, $self'name)~$TactHello$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'owner, $self'name), ());
+}
+
+(((slice, slice)), ()) $TactHello$_internal_binary_ChangeOwner((slice, slice) $self, (int, slice) $msg) impure inline {
+    var ($self'owner, $self'name) = $self;
+    var ($msg'queryId, $msg'newOwner) = $msg;
+    ($self'owner, $self'name)~$TactHello$_fun_requireOwner();
+    $self'owner = $msg'newOwner;
+    ($self'owner, $self'name)~$TactHello$_fun_reply($ChangeOwnerOk$_store_cell($ChangeOwnerOk$_constructor_queryId_newOwner($msg'queryId, $msg'newOwner)));
+    return (($self'owner, $self'name), ());
+}
+
+;;
+;; Get methods of a Contract TactHello
+;;
+
+_ %hello() method_id(115554) {
+    var self = $TactHello$_contract_load();
+    var res = self~$TactHello$_fun_hello();
+    return res;
+}
+
+_ %owner() method_id(83229) {
+    var self = $TactHello$_contract_load();
+    var res = self~$TactHello$_fun_owner();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128,
+        "org.ton.ownable.transferable.v2"H >> 128,
+        "org.ton.ownable"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmShDoS87acgYj39ERopuTpfBJdZzYTRPesGd6ms1NcLeR";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract TactHello
+;;
+
+((slice, slice), int) $TactHello$_contract_router_internal((slice, slice) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive empty message
+    if ((op == 0) & (slice_bits(in_msg) <= 32)) {
+        self~%$TactHello$_internal_empty();
+        return (self, true);
+    }
+    
+    ;; Receive SetName message
+    if (op == 896268199) {
+        var msg = in_msg~$SetName$_load();
+        self~$TactHello$_internal_binary_SetName(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$TactHello$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Receive ChangeOwner message
+    if (op == 2174598809) {
+        var msg = in_msg~$ChangeOwner$_load();
+        self~$TactHello$_internal_binary_ChangeOwner(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "say hello" message
+        if (text_op == 0xf2bca8f79b342169872f72eae0be26dfb6f19324e2888ce9766a703989f6428e) {
+            self~$TactHello$_internal_text_f2bca8f79b342169872f72eae0be26dfb6f19324e2888ce9766a703989f6428e();
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $TactHello$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$TactHello$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $TactHello$_contract_store(self);
+}

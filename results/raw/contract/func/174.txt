@@ -1,0 +1,24 @@
+lockup_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQD8HE0MKUjHQfSmo41BrhTkyzgyQUIiN1C0KRySfdYD3P68/jetton_lockup.fc:188:67: warning: Lack of end_parse.
+          ds~load_dict(), ds~load_msg_addr(), ds~load_msg_addr(), ds~load_uint(64)
+                                                                    ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQD8HE0MKUjHQfSmo41BrhTkyzgyQUIiN1C0KRySfdYD3P68/jetton_lockup.fc:24:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQD8HE0MKUjHQfSmo41BrhTkyzgyQUIiN1C0KRySfdYD3P68/jetton_lockup.fc:55:67: warning: Lack of end_parse.
+          ds~load_dict(), ds~load_msg_addr(), ds~load_msg_addr(), ds~load_uint(64)
+                                                                    ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQD8HE0MKUjHQfSmo41BrhTkyzgyQUIiN1C0KRySfdYD3P68/jetton_lockup.fc:142:32: warning: Lack of end_parse.
+              cell msg_body = msg~load_maybe_ref();
+                                 ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQD8HE0MKUjHQfSmo41BrhTkyzgyQUIiN1C0KRySfdYD3P68/jetton_lockup.fc:140:50: warning: Local variable 'target_wc' is not used
+              (int target_wc, int target_hashpart) = parse_std_addr(target_address);
+                                                   ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQD8HE0MKUjHQfSmo41BrhTkyzgyQUIiN1C0KRySfdYD3P68/jetton_lockup.fc:109:14: warning: UnHandle bounced message with op: 0xf8a7ea5
+              );
+               ^

@@ -1,0 +1,18 @@
+__gen_load_MultisigContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/multisig-3_MultisigContract.code.fc:100:19: warning: Lack of end_parse.
+          return $sc~__gen_read_MultisigContract();
+                    ^
+__gen_store_MultisigContract & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/multisig-3_MultisigContract.code.fc:305:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/multisig-3_MultisigContract.code.fc:111:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+__gen_store_MultisigContract & __gen_load_MultisigContract: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/multisig-3_MultisigContract.code.fc:96:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/multisig-3_MultisigContract.code.fc:111:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

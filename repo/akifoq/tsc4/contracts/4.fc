@@ -1,0 +1,188 @@
+{-
+  TASK 4 - Caesar Cipher
+  Implement a Caesar cipher encryption and decryption functions.
+  The input is a string (https://docs.ton.org/develop/smart-contracts/guidelines/internal-messages#simple-message-with-comment)
+  where the text is encrypted in a cell (after 32bit 00000000 prefix flag), the algorithm rotates the characters and the last ASCII
+  character should go to the beginning. Return new text encoded in cell.
+-}
+
+() recv_internal() {
+}
+
+builder encrypt_asm(slice cs, int shift) asm """
+  0x8080808080808080808080808080808080808080808080808080808080808080 constant mask7
+  0x0101010101010101010101010101010101010101010101010101010101010101 constant mask0
+  0x2020202020202020202020202020202020202020202020202020202020202020 constant mask5
+
+  0x80808080808080808080808080808080808080808080808080808080808080 constant mask7_31
+  0x01010101010101010101010101010101010101010101010101010101010101 constant mask0_31
+  0x20202020202020202020202020202020202020202020202020202020202020 constant mask5_31
+
+  // b - b
+  { mask7 PUSHINT mask5 PUSHINT	//  x mask7 mask5
+
+    s2 PUSH	NOT	OVER AND	//  x mask7 mask5 nx5
+
+    s3 s3 XCHG2	OR // nx5 mask7 x
+
+    DUP	NOT	s2 PUSH	AND	//  nx5 mask7 x nx7
+
+    s1 s2 PUXC OR // nx5 nx7 x x'
+
+    // x_gt = x' - (mask0 * 97);
+    DUP mask0 97 * PUSHINT SUB	//  nx5 nx7 x x' x_gt
+
+    // x_mid = x' - (mask0 * (123 - shift));
+    OVER mask0 123 @' shift - * PUSHINT SUB //  nx5 nx7 x x' x_gt x_mid
+
+    // x+ = nx7 & x_gt & (~ x_mid)
+    s4 s1 PUXC AND OVER NOT AND	//  nx5 nx7 x x' x_mid x+
+
+    // x += (x+ >> 7) * shift;
+    7 RSHIFT# @' shift MULCONST s1 s3 XCHG	ADD	
+
+    // x_lt = x' - (mask0 * 123);
+    SWAP mask0 123 * PUSHINT SUB //  nx5 nx7 x_mid x x_lt
+
+    // x- = nx7 & x_mid & (~ x_lt);
+    2SWAP AND SWAP NOT AND	//  nx5 x x-
+
+    // x -= (x- >> 7) * (26 - shift);
+    7 RSHIFT# 26 @' shift - MULCONST SUB	//  nx5 x
+
+    SWAP XOR	//  x
+  } : gen-code-32
+
+  { mask7_31 PUSHINT mask5_31 PUSHINT	//  x mask7 mask5
+
+    s2 PUSH	NOT	OVER AND	//  x mask7 mask5 nx5
+
+    s3 s3 XCHG2	OR // nx5 mask7 x
+
+    DUP	NOT	s2 PUSH	AND	//  nx5 mask7 x nx7
+
+    s1 s2 PUXC OR // nx5 nx7 x x'
+
+    // x_gt = x' - (mask0 * 97);
+    DUP mask0_31 97 * PUSHINT SUB	//  nx5 nx7 x x' x_gt
+
+    // x_mid = x' - (mask0 * (123 - shift));
+    OVER mask0_31 123 @' shift - * PUSHINT SUB //  nx5 nx7 x x' x_gt x_mid
+
+    // x+ = nx7 & x_gt & (~ x_mid)
+    s4 s1 PUXC AND OVER NOT AND	//  nx5 nx7 x x' x_mid x+
+
+    // x += (x+ >> 7) * shift;
+    7 RSHIFT# @' shift MULCONST s1 s3 XCHG	ADD	
+
+    // x_lt = x' - (mask0 * 123);
+    SWAP mask0_31 123 * PUSHINT SUB //  nx5 nx7 x_mid x x_lt
+
+    // x- = nx7 & x_mid & (~ x_lt);
+    2SWAP AND SWAP NOT AND	//  nx5 x x-
+
+    // x -= (x- >> 7) * (26 - shift);
+    7 RSHIFT# 26 @' shift - MULCONST SUB	//  nx5 x
+
+    SWAP XOR	//  x
+  } : gen-code-31
+
+  // b - b
+  { //  x
+    DUP 96 GTINT OVER	123 LESSINT	AND
+    IF:<{	//  x
+      -97 @' shift + ADDCONST	
+      26 PUSHINT MOD	
+      97 ADDCONST	
+    }>
+
+    DUP 64 GTINT OVER 91 LESSINT AND
+    IF:<{	//  x
+      -65 @' shift + ADDCONST	
+      26 PUSHINT MOD	
+      65 ADDCONST	
+    }>	//  x
+  } : gen-code-1
+
+  // b - b
+  { // cs
+    AGAINBRK:<{
+        // ... cs
+        NEWC SWAP // res cs
+        
+        DUP SBITS 1016 EQINT IFNOTRETALT 
+
+        3 PUSHINT REPEAT:<{
+          256 LDU SWAP gen-code-32 // res cs x
+          ROT 256 STU SWAP // res cs
+        }>
+
+        248 LDU SWAP gen-code-31 // res cs x
+        ROT 248 STU SWAP // res cs
+        
+        DUP SREFS IFNOTRETALT
+
+        LDREFRTOS NIP // ... res cs'
+    }> // ... res cs' 
+    DUP SBITS IF:<{
+      // res cs
+      DUP SBITS 3 RSHIFT# 
+      REPEAT:<{ // res cs
+          8 LDU SWAP // res cs' x
+
+          gen-code-1 // res cs' x'
+
+          ROT 8 STU SWAP // res' cs'
+      }>
+    }>
+    DROP // ... res
+
+    DEPTH DEC REPEAT:<{
+        STBREFR
+    }> ENDC
+  } : gen-code 
+
+  variable dict
+  dictnew dict !
+
+  // v x -- 
+  { dict @ 5 udict! drop dict ! } : dict!+
+
+  0 { dup =: shift 
+      dup <{ gen-code }>s swap dict!+
+      1+ } 26 times drop
+
+  // cs shift
+  dict @ 5 DICTPUSHCONST DICTUGETJMP
+""";
+
+builder encrypt(slice cs, int shift) inline {
+  return encrypt_asm(cs, shift);
+}
+
+cell cce_asm(int shift, cell text) asm """
+  //  shift text
+  DUP HASHCU 28907775397853441246312228362702888526552807915760858513294714309537547733684 EQINT
+  IFJMP:<{ NIP }>
+
+  CTOS SWAP 
+  26 PUSHINT MOD
+  encrypt INLINECALLDICT 
+""";
+
+cell ccd_asm(int shift, cell text) asm """
+  //  shift text
+  SWAP NEGATE SWAP	
+  caesar_cipher_encrypt CALLDICT
+""";
+
+;; testable
+(cell) caesar_cipher_encrypt(int shift, cell text) method_id {
+  return cce_asm(shift, text);
+}
+
+;; testable
+(cell) caesar_cipher_decrypt(int shift, cell text) method_id {
+  return ccd_asm(shift, text);
+}
+

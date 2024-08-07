@@ -1,0 +1,170 @@
+;;
+;; Type: DataInput
+;; Header: 0xdb9bbf11
+;; TLB: data_input#db9bbf11 key:^string data:^string = DataInput
+;;
+
+(slice, ((slice, slice))) $DataInput$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 3684417297);
+    var v'key = sc_0~load_ref().begin_parse();
+    var v'data = sc_0~load_ref().begin_parse();
+    return (sc_0, (v'key, v'data));
+}
+
+;;
+;; Type: DataInputTest
+;; Header: 0xd6061de2
+;; TLB: data_input_test#d6061de2 key:^string data:^string = DataInputTest
+;;
+
+(slice, ((slice, slice))) $DataInputTest$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 3590725090);
+    var v'key = sc_0~load_ref().begin_parse();
+    var v'data = sc_0~load_ref().begin_parse();
+    return (sc_0, (v'key, v'data));
+}
+
+;;
+;; Type: Holder
+;; TLB: _ total:int257 holder:dict<int, int> = Holder
+;;
+
+builder $Holder$_store(builder build_0, (int, cell) v) inline {
+    var (v'total, v'holder) = v;
+    build_0 = build_0.store_int(v'total, 257);
+    build_0 = build_0.store_dict(v'holder);
+    return build_0;
+}
+
+cell $Holder$_store_cell((int, cell) v) inline {
+    return $Holder$_store(begin_cell(), v).end_cell();
+}
+
+(slice, ((int, cell))) $Holder$_load(slice sc_0) inline {
+    var v'total = sc_0~load_int(257);
+    var v'holder = sc_0~load_dict();
+    return (sc_0, (v'total, v'holder));
+}
+
+tuple $Holder$_as_optional((int, cell) v) inline {
+    var (v'total, v'holder) = v;
+    return __tact_tuple_create_2(v'total, v'holder);
+}
+
+tuple $Holder$_load_opt(cell cl) inline {
+    if (null?(cl)) {
+        return null();
+    }
+    var sc = cl.begin_parse();
+    return $Holder$_as_optional(sc~$Holder$_load());
+}
+
+((int, cell)) $Holder$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (int vvv'total, cell vvv'holder) = __tact_tuple_destroy_2(v);
+    return (vvv'total, vvv'holder);
+}
+
+(int, cell) $Holder$_to_external(((int, cell)) v) inline {
+    var (v'total, v'holder) = v; 
+    return (v'total, v'holder);
+}
+
+((int, cell)) $Holder$_constructor_total_holder(int total, cell holder) inline {
+    return (total, holder);
+}
+
+;;
+;; Type: Data
+;; TLB: _ key:^string data:^string = Data
+;;
+
+builder $Data$_store(builder build_0, (slice, slice) v) inline {
+    var (v'key, v'data) = v;
+    build_0 = build_0.store_ref(begin_cell().store_slice(v'key).end_cell());
+    build_0 = build_0.store_ref(begin_cell().store_slice(v'data).end_cell());
+    return build_0;
+}
+
+cell $Data$_store_cell((slice, slice) v) inline {
+    return $Data$_store(begin_cell(), v).end_cell();
+}
+
+(slice, ((slice, slice))) $Data$_load(slice sc_0) inline {
+    var v'key = sc_0~load_ref().begin_parse();
+    var v'data = sc_0~load_ref().begin_parse();
+    return (sc_0, (v'key, v'data));
+}
+
+tuple $Data$_as_optional((slice, slice) v) inline {
+    var (v'key, v'data) = v;
+    return __tact_tuple_create_2(v'key, v'data);
+}
+
+tuple $Data$_load_opt(cell cl) inline {
+    if (null?(cl)) {
+        return null();
+    }
+    var sc = cl.begin_parse();
+    return $Data$_as_optional(sc~$Data$_load());
+}
+
+((slice, slice)) $Data$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (slice vvv'key, slice vvv'data) = __tact_tuple_destroy_2(v);
+    return (vvv'key, vvv'data);
+}
+
+(slice, slice) $Data$_to_external(((slice, slice)) v) inline {
+    var (v'key, v'data) = v; 
+    return (v'key, v'data);
+}
+
+((slice, slice)) $Data$_constructor_key_data(slice key, slice data) inline {
+    return (key, data);
+}
+
+;;
+;; Type: DataSaver
+;;
+
+builder $DataSaver$_store(builder build_0, (int, cell, cell, cell) v) inline {
+    var (v'index, v'owner, v'holder, v'data) = v;
+    build_0 = build_0.store_int(v'index, 257);
+    build_0 = build_0.store_dict(v'owner);
+    build_0 = build_0.store_dict(v'holder);
+    var build_1 = begin_cell();
+    build_1 = build_1.store_dict(v'data);
+    build_0 = store_ref(build_0, build_1.end_cell());
+    return build_0;
+}
+
+(slice, ((int, cell, cell, cell))) $DataSaver$_load(slice sc_0) inline {
+    var v'index = sc_0~load_int(257);
+    var v'owner = sc_0~load_dict();
+    var v'holder = sc_0~load_dict();
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'data = sc_1~load_dict();
+    return (sc_0, (v'index, v'owner, v'holder, v'data));
+}
+
+(int, cell, cell, cell) $DataSaver$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$DataSaver$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        return $DataSaver$_contract_init();
+    }
+}
+
+() $DataSaver$_contract_store((int, cell, cell, cell) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $DataSaver$_store(b, v);
+    set_data(b.end_cell());
+}

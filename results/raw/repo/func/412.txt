@@ -1,0 +1,12 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-1/func/4.fc:69:17: warning: Lack of end_parse.
+  	slice ds = data.begin_parse();
+  	               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-1/func/4.fc:63:15: warning: Local variable 'query_id' is not used
+  	int query_id = in_msg_body~load_uint(64);
+  	             ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-1/func/4.fc:52:17: warning: Lack of end_parse.
+  	slice ds = data.begin_parse();
+  	               ^

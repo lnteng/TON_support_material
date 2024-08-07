@@ -1,0 +1,32 @@
+has_finished: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./coinvent-solutions/ton-mass-sender/contracts/mass_sender.fc:80:96: warning: Local variable 'seed' is not used
+      (int seed, int total, int length, int last_key, int initiated, slice admin, cell messages) = load_data();
+                                                                                                 ^
+has_finished: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./coinvent-solutions/ton-mass-sender/contracts/mass_sender.fc:80:96: warning: Local variable 'total' is not used
+      (int seed, int total, int length, int last_key, int initiated, slice admin, cell messages) = load_data();
+                                                                                                 ^
+has_finished: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./coinvent-solutions/ton-mass-sender/contracts/mass_sender.fc:80:96: warning: Local variable 'last_key' is not used
+      (int seed, int total, int length, int last_key, int initiated, slice admin, cell messages) = load_data();
+                                                                                                 ^
+has_finished: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./coinvent-solutions/ton-mass-sender/contracts/mass_sender.fc:80:96: warning: Local variable 'initiated' is not used
+      (int seed, int total, int length, int last_key, int initiated, slice admin, cell messages) = load_data();
+                                                                                                 ^
+has_finished: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./coinvent-solutions/ton-mass-sender/contracts/mass_sender.fc:80:96: warning: Local variable 'admin' is not used
+      (int seed, int total, int length, int last_key, int initiated, slice admin, cell messages) = load_data();
+                                                                                                 ^
+has_finished: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./coinvent-solutions/ton-mass-sender/contracts/mass_sender.fc:80:96: warning: Local variable 'messages' is not used
+      (int seed, int total, int length, int last_key, int initiated, slice admin, cell messages) = load_data();
+                                                                                                 ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./coinvent-solutions/ton-mass-sender/contracts/mass_sender.fc:48:22: warning: Lack of end_parse.
+      slice sender = cs~load_msg_addr();
+                       ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./coinvent-solutions/ton-mass-sender/contracts/mass_sender.fc:7:123: warning: Lack of end_parse.
+      return (ds~load_uint(64), ds~load_coins(), ds~load_uint(16), ds~load_uint(16), ds~load_uint(1), ds~load_msg_addr(), ds~load_dict());
+                                                                                                                            ^

@@ -1,0 +1,20 @@
+seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/restricted-wallet-code.fc:62:20: warning: Lack of end_parse.
+    return get_data().begin_parse().preload_uint(32);
+                     ^
+recv_external: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/restricted-wallet-code.fc:42:32: warning: Lack of end_parse.
+    var elector = config_param(1).begin_parse().preload_uint(256);
+                                 ^
+check_destination: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/restricted-wallet-code.fc:20:49: warning: Lack of end_parse.
+    var (s_addr, d_addr) = (cs~load_msg_addr(), cs~load_msg_addr());
+                                                  ^
+check_destination: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/restricted-wallet-code.fc:20:24: warning: Local variable 's_addr' is not used
+    var (s_addr, d_addr) = (cs~load_msg_addr(), cs~load_msg_addr());
+                         ^
+restricted?: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/restricted-wallet-code.fc:10:42: warning: Lack of end_parse.
+    return null?(p) ? true : begin_parse(p).preload_uint(32) > now();
+                                           ^

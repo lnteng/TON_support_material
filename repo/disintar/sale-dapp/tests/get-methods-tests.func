@@ -1,0 +1,10 @@
+;; Copyright (c) 2022-2023 Disintar LLP Licensed under the Business Source License 1.1
+
+#pragma version >=0.2.0;
+
+int __test_get_version(){
+    (int gas_used, tuple stack) = invoke_method(get_version, []);
+    throw_unless(91, stack.tuple_length() == 1);
+    throw_unless(92, stack.first() == 179);
+    return gas_used;
+}

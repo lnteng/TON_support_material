@@ -1,0 +1,1210 @@
+PROGRAM{
+  DECLPROC __tact_verify_address
+  DECLPROC __tact_load_address
+  DECLPROC __tact_store_address
+  DECLPROC __tact_my_balance
+  DECLPROC __tact_not_null
+  DECLPROC __tact_context_get
+  DECLPROC __tact_context_get_sender
+  DECLPROC __tact_store_bool
+  DECLPROC __tact_slice_eq_bits
+  DECLPROC __tact_int_eq_nullable_one
+  DECLPROC __tact_string_builder_start
+  DECLPROC __tact_string_builder_start_tail_string
+  DECLPROC __tact_string_builder_end
+  DECLPROC __tact_string_builder_append
+  DECLPROC $Deploy$_load
+  DECLPROC $DeployOk$_store
+  DECLPROC $DeployOk$_store_cell
+  DECLPROC $Withdraw$_load
+  DECLPROC $WithdrawAll$_load
+  DECLPROC $TopUp$_load
+  DECLPROC $NftMetadata$_store
+  DECLPROC $NftMetadata$_load
+  DECLPROC $EditBlogPost$_load
+  DECLPROC $InitializeNft$_load
+  DECLPROC $Transfer$_load
+  DECLPROC $OwnershipAssigned$_store
+  DECLPROC $OwnershipAssigned$_store_cell
+  DECLPROC $Excesses$_store
+  DECLPROC $Excesses$_store_cell
+  DECLPROC $GetStaticData$_load
+  DECLPROC $ReportStaticData$_store
+  DECLPROC $ReportStaticData$_store_cell
+  DECLPROC $DSocialNetworkPost$_store
+  DECLPROC $DSocialNetworkPost$_load
+  DECLPROC $StateInit$_not_null
+  DECLPROC $NftMetadata$_to_tuple
+  DECLPROC $PostInfo$_to_external
+  DECLPROC $GetNftData$_to_external
+  DECLPROC $DSocialNetworkPost$init$_load
+  DECLPROC $NftMetadata$_constructor_name_description_image
+  DECLPROC $DSocialNetworkPost$_contract_init
+  DECLPROC $DSocialNetworkPost$_contract_load
+  DECLPROC $DSocialNetworkPost$_contract_store
+  DECLPROC $global_send
+  DECLPROC $global_beginTep64Dict
+  DECLPROC $global_storeTep64SnakeString
+  DECLPROC $global_buildTep64OnchainContent
+  DECLPROC $Context$_fun_readForwardFee
+  DECLPROC $SendParameters$_constructor_bounce_to_value_mode_body_code_data
+  DECLPROC $SendParameters$_constructor_to_value_mode_body
+  DECLPROC $Excesses$_constructor_query_id
+  DECLPROC $PostInfo$_constructor_blog_id_owner_nft_content
+  DECLPROC $DSocialNetworkPost$_fun_get_post_info
+  DECLPROC $DSocialNetworkPost$_fun_forward
+  DECLPROC $DSocialNetworkPost$_fun_notify
+  DECLPROC $DSocialNetworkPost$_fun_serializeIndividualContent
+  DECLPROC $GetNftData$_constructor_is_initialized_index_collection_address_owner_address_individual_content
+  DECLPROC $DSocialNetworkPost$_fun_get_nft_data
+  DECLPROC $DSocialNetworkPost$_fun_requireOwner
+  DECLPROC $DSocialNetworkPost$_fun_owner
+  DECLPROC $DSocialNetworkPost$_fun_getGasConsumption
+  DECLPROC $DSocialNetworkPost$_fun_getTonRecieved
+  DECLPROC $DSocialNetworkPost$_fun_calculateMinOperationFee
+  DECLPROC $DSocialNetworkPost$_fun_calculateSendAmountToHoldEnoughTonForStorage
+  DECLPROC $DSocialNetworkPost$_fun_sendExcessesTo
+  DECLPROC $SendParameters$_constructor_to_value_mode_bounce_body
+  DECLPROC $OwnershipAssigned$_constructor_query_id_prev_owner_forward_payload
+  DECLPROC $ReportStaticData$_constructor_query_id_index_id_collection
+  DECLPROC $DeployOk$_constructor_queryId
+  DECLPROC $DSocialNetworkPost$_internal_binary_EditBlogPost
+  DECLPROC $DSocialNetworkPost$_internal_binary_InitializeNft
+  DECLPROC $DSocialNetworkPost$_internal_binary_Transfer
+  DECLPROC $DSocialNetworkPost$_internal_binary_GetStaticData
+  DECLPROC $DSocialNetworkPost$_internal_binary_Deploy
+  DECLPROC $DSocialNetworkPost$_internal_binary_TopUp
+  DECLPROC $DSocialNetworkPost$_internal_binary_Withdraw
+  DECLPROC $DSocialNetworkPost$_internal_binary_WithdrawAll
+  122023 DECLMETHOD %get_post_info
+  102351 DECLMETHOD %get_nft_data
+  83229 DECLMETHOD %owner
+  113617 DECLMETHOD supported_interfaces
+  121275 DECLMETHOD get_abi_ipfs
+  115390 DECLMETHOD lazy_deployment_completed
+  DECLPROC $DSocialNetworkPost$_contract_router_internal
+  DECLPROC recv_internal
+  DECLGLOBVAR __tact_context
+  DECLGLOBVAR __tact_context_sender
+  DECLGLOBVAR __tact_context_sys
+  DECLGLOBVAR __tact_randomized
+  __tact_verify_address PROCINLINE:<{
+    DUP
+    SBITS
+    267 PUSHINT
+    EQUAL
+    136 THROWIFNOT
+    DUP
+    11 PLDU
+    DUP
+    1279 PUSHINT
+    EQUAL
+    137 THROWIF
+    10 PUSHPOW2
+    EQUAL
+    136 THROWIFNOT
+  }>
+  __tact_load_address PROCINLINE:<{
+    LDMSGADDR
+    SWAP
+    __tact_verify_address INLINECALLDICT
+  }>
+  __tact_store_address PROCINLINE:<{
+    __tact_verify_address INLINECALLDICT
+    STSLICER
+  }>
+  __tact_my_balance PROCINLINE:<{
+    BALANCE
+    FIRST
+  }>
+  __tact_not_null PROCINLINE:<{
+    DUP
+    ISNULL
+    128 THROWIF
+  }>
+  __tact_context_get PROCINLINE:<{
+    __tact_context GETGLOB
+    4 UNTUPLE
+  }>
+  __tact_context_get_sender PROCINLINE:<{
+    __tact_context_sender GETGLOB
+  }>
+  __tact_store_bool PROCINLINE:<{
+    SWAP
+    1 STI
+  }>
+  __tact_slice_eq_bits PROCINLINE:<{
+    SDEQ
+  }>
+  __tact_int_eq_nullable_one PROCINLINE:<{
+    OVER
+    ISNULL
+    IF:<{
+      2DROP
+      FALSE
+    }>ELSE<{
+      EQUAL
+    }>
+  }>
+  __tact_string_builder_start PROCINLINE:<{
+    NIL
+    SWAP
+    TPUSH
+    PUSHNULL
+    TPUSH
+  }>
+  __tact_string_builder_start_tail_string PROCINLINE:<{
+    NEWC
+    0 PUSHINT
+    SWAP
+    8 STU
+    __tact_string_builder_start INLINECALLDICT
+  }>
+  __tact_string_builder_end PROCINLINE:<{
+    UNCONS
+    SWAP
+    ENDC
+    WHILE:<{
+      OVER
+      ISNULL
+      NOT
+    }>DO<{
+      SWAP
+      UNCONS
+      -ROT
+      STREF
+      ENDC
+    }>
+    NIP
+  }>
+  __tact_string_builder_append PROCREF:<{
+    DUP
+    SREFS
+    OVER
+    SBITS
+    WHILE:<{
+      DUP
+      0 GTINT
+      s2 PUSH
+      0 GTINT
+      OR
+    }>DO<{
+      s0 s3 XCHG
+      UNCONS
+      127 PUSHINT
+      s2 PUSH
+      BBITS
+      3 RSHIFT#
+      SUB
+      s0 s5 XCHG
+      3 RSHIFT#
+      s5 s5 XCPU
+      MIN
+      DUP
+      0 GTINT
+      IF:<{
+        DUP
+        3 LSHIFT#
+        s1 s5 XCHG
+        LDSLICEX
+        s3 s3 XCHG2
+        STSLICER
+        s0 s1 s4 XCHG3
+      }>
+      -ROT
+      CONS
+      s4 s1 PUSH2
+      SUB
+      0 GTINT
+      IF:<{
+        NEWC
+        SWAP
+        CONS
+        s4 s4 XCHG2
+        SUB
+        3 LSHIFT#
+      }>ELSE<{
+        NIP
+        s3 POP
+        0 GTINT
+        IF:<{
+          LDREF
+          DROP
+          CTOS
+          DUP
+          SREFS
+          OVER
+          SBITS
+        }>ELSE<{
+          0 PUSHINT
+          DUP
+        }>
+      }>
+    }>
+    3 BLKDROP
+  }>
+  $Deploy$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    2490013878 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    64 LDU
+    SWAP
+  }>
+  $DeployOk$_store PROCINLINE:<{
+    2952335191 PUSHINT
+    ROT
+    32 STU
+    64 STU
+  }>
+  $DeployOk$_store_cell PROCINLINE:<{
+    NEWC
+    SWAP
+    $DeployOk$_store INLINECALLDICT
+    ENDC
+  }>
+  $Withdraw$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    3478132799 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    64 LDU
+    257 PUSHINT
+    LDIX
+    -ROT
+  }>
+  $WithdrawAll$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    4090352184 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    64 LDU
+    1 LDI
+    SWAP
+    IF:<{
+      1 LDI
+    }>ELSE<{
+      PUSHNULL
+      SWAP
+    }>
+    -ROT
+  }>
+  $TopUp$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    128710311 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    64 LDU
+    SWAP
+  }>
+  $NftMetadata$_store PROCINLINE:<{
+    NEWC
+    s0 s3 XCHG2
+    STSLICER
+    ENDC
+    s0 s3 XCHG2
+    STREF
+    NEWC
+    s0 s3 XCHG2
+    STSLICER
+    ENDC
+    ROT
+    STREF
+    NEWC
+    ROT
+    STSLICER
+    ENDC
+    SWAP
+    STREF
+  }>
+  $NftMetadata$_load PROCINLINE:<{
+    LDREF
+    SWAP
+    CTOS
+    SWAP
+    LDREF
+    SWAP
+    CTOS
+    SWAP
+    LDREF
+    SWAP
+    CTOS
+    s3 s3 s0 XCHG3
+  }>
+  $EditBlogPost$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    1400738796 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    64 LDU
+    $NftMetadata$_load INLINECALLDICT
+    s3 s4 XCHG
+  }>
+  $InitializeNft$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    2897083576 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    64 LDU
+    __tact_load_address INLINECALLDICT
+    SWAP
+    $NftMetadata$_load INLINECALLDICT
+    s3 s5 XCHG
+    s3 s4 XCHG
+  }>
+  $Transfer$_load PROCREF:<{
+    32 LDU
+    SWAP
+    1607220500 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    64 LDU
+    __tact_load_address INLINECALLDICT
+    SWAP
+    __tact_load_address INLINECALLDICT
+    SWAP
+    1 LDI
+    SWAP
+    IF:<{
+      LDREF
+    }>ELSE<{
+      PUSHNULL
+      SWAP
+    }>
+    LDGRAMS
+    s5 s5 XCPU
+    s1 s5 XCHG
+    s1 s4 XCHG
+    s3 s3 s0 XCHG3
+  }>
+  $OwnershipAssigned$_store PROCINLINE:<{
+    85167505 PUSHINT
+    s0 s4 XCHG2
+    32 STU
+    s1 s2 XCHG
+    64 STU
+    SWAP
+    __tact_store_address INLINECALLDICT
+    SWAP
+    STSLICER
+  }>
+  $OwnershipAssigned$_store_cell PROCINLINE:<{
+    NEWC
+    3 -ROLL
+    $OwnershipAssigned$_store INLINECALLDICT
+    ENDC
+  }>
+  $Excesses$_store PROCINLINE:<{
+    3576854235 PUSHINT
+    ROT
+    32 STU
+    64 STU
+  }>
+  $Excesses$_store_cell PROCINLINE:<{
+    NEWC
+    SWAP
+    $Excesses$_store INLINECALLDICT
+    ENDC
+  }>
+  $GetStaticData$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    801842850 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    64 LDU
+    SWAP
+  }>
+  $ReportStaticData$_store PROCINLINE:<{
+    2339837749 PUSHINT
+    s0 s4 XCHG2
+    32 STU
+    s1 s2 XCHG
+    64 STU
+    257 PUSHINT
+    STIX
+    SWAP
+    __tact_store_address INLINECALLDICT
+  }>
+  $ReportStaticData$_store_cell PROCINLINE:<{
+    NEWC
+    3 -ROLL
+    $ReportStaticData$_store INLINECALLDICT
+    ENDC
+  }>
+  $DSocialNetworkPost$_store PROCINLINE:<{
+    s7 s6 XCHG2
+    __tact_store_address INLINECALLDICT
+    s1 s4 XCHG
+    257 PUSHINT
+    STIX
+    ROT
+    __tact_store_address INLINECALLDICT
+    1 STI
+    NEWC
+    s4 s3 XCHG2
+    $NftMetadata$_store INLINECALLDICT
+    ENDC
+    SWAP
+    STREF
+  }>
+  $DSocialNetworkPost$_load PROCINLINE:<{
+    __tact_load_address INLINECALLDICT
+    SWAP
+    257 PUSHINT
+    LDIX
+    __tact_load_address INLINECALLDICT
+    SWAP
+    1 LDI
+    LDREF
+    SWAP
+    CTOS
+    $NftMetadata$_load INLINECALLDICT
+    s3 POP
+    s3 s7 XCHG
+    s3 s6 XCHG
+    s3 s5 XCHG
+    s3 s4 XCHG
+    ROT
+  }>
+  $StateInit$_not_null PROCINLINE:<{
+    DUP
+    ISNULL
+    128 THROWIF
+    2 UNTUPLE
+  }>
+  $NftMetadata$_to_tuple PROCINLINE:<{
+    3 TUPLE
+  }>
+  $PostInfo$_to_external PROCINLINE:<{
+    $NftMetadata$_to_tuple INLINECALLDICT
+  }>
+  $GetNftData$_to_external PROCINLINE:<{
+  }>
+  $DSocialNetworkPost$init$_load PROCINLINE:<{
+    __tact_load_address INLINECALLDICT
+    SWAP
+    257 PUSHINT
+    LDIX
+    __tact_load_address INLINECALLDICT
+    s3 s3 s0 XCHG3
+  }>
+  $NftMetadata$_constructor_name_description_image PROCINLINE:<{
+  }>
+  $DSocialNetworkPost$_contract_init PROCREF:<{
+    DROP
+    OVER
+    B{b5ee9c724101010100020000004cacb9cd} B>boc <s PUSHSLICE
+    B{b5ee9c724101010100020000004cacb9cd} B>boc <s PUSHSLICE
+    B{b5ee9c724101010100020000004cacb9cd} B>boc <s PUSHSLICE
+    $NftMetadata$_constructor_name_description_image INLINECALLDICT
+    s3 s5 XCHG
+    FALSE
+    3 -ROLL
+  }>
+  $DSocialNetworkPost$_contract_load PROCREF:<{
+    c4 PUSH
+    CTOS
+    LDREF
+    SWAP
+    __tact_context_sys SETGLOB
+    1 LDI
+    SWAP
+    IFJMP:<{
+      $DSocialNetworkPost$_load INLINECALLDICT
+      1 7 BLKDROP2
+    }>
+    MYADDR
+    11 PLDU
+    10 PUSHPOW2
+    EQUAL
+    137 THROWIFNOT
+    $DSocialNetworkPost$init$_load INLINECALLDICT
+    s0 s3 XCHG
+    ENDS
+    ROT
+    $DSocialNetworkPost$_contract_init INLINECALLDICT
+  }>
+  $DSocialNetworkPost$_contract_store PROCINLINE:<{
+    NEWC
+    __tact_context_sys GETGLOB
+    SWAP
+    STREF
+    TRUE
+    SWAP
+    1 STI
+    7 -ROLL
+    $DSocialNetworkPost$_store INLINECALLDICT
+    ENDC
+    c4 POP
+  }>
+  $global_send PROCREF:<{
+    NEWC
+    1 PUSHINT
+    SWAP
+    2 STI
+    s0 s7 XCHG2
+    __tact_store_bool INLINECALLDICT
+    0 PUSHINT
+    SWAP
+    3 STI
+    s0 s5 XCHG2
+    __tact_store_address INLINECALLDICT
+    s0 s3 XCHG2
+    STGRAMS
+    0 PUSHINT
+    SWAP
+    105 STI
+    s3 PUSH
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+    }>ELSE<{
+      s4 PUSH
+      ISNULL
+      NOT
+    }>
+    IF:<{
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      NEWC
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      s4 PUSH
+      ISNULL
+      NOT
+      IF:<{
+        TRUE
+        __tact_store_bool INLINECALLDICT
+        s0 s4 XCHG
+        __tact_not_null INLINECALLDICT
+        s0 s4 XCHG2
+        STREF
+      }>ELSE<{
+        s4 POP
+        s0 s3 XCHG
+        FALSE
+        __tact_store_bool INLINECALLDICT
+      }>
+      s4 PUSH
+      ISNULL
+      NOT
+      IF:<{
+        TRUE
+        __tact_store_bool INLINECALLDICT
+        s0 s4 XCHG
+        __tact_not_null INLINECALLDICT
+        s0 s4 XCHG2
+        STREF
+      }>ELSE<{
+        s4 POP
+        s0 s3 XCHG
+        FALSE
+        __tact_store_bool INLINECALLDICT
+      }>
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      s0 s2 XCHG
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      s0 s2 XCHG
+      ENDC
+      ROT
+      STREF
+    }>ELSE<{
+      s3 POP
+      s3 POP
+      SWAP
+      FALSE
+      __tact_store_bool INLINECALLDICT
+    }>
+    OVER
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      SWAP
+      __tact_not_null INLINECALLDICT
+      SWAP
+      STREF
+    }>ELSE<{
+      NIP
+      FALSE
+      __tact_store_bool INLINECALLDICT
+    }>
+    ENDC
+    SWAP
+    SENDRAWMSG
+  }>
+  $global_beginTep64Dict PROCREF:<{
+    NEWDICT
+  }>
+  $global_storeTep64SnakeString PROCREF:<{
+    __tact_string_builder_start_tail_string INLINECALLDICT
+    SWAP
+    __tact_string_builder_append INLINECALLDICT
+    8 PUSHPOW2
+    s0 s2 XCHG
+    SHA256U
+    SWAP
+    __tact_string_builder_end INLINECALLDICT
+    s1 s3 s3 XCHG3
+    DICTUSETREF
+  }>
+  $global_buildTep64OnchainContent PROCREF:<{
+    NEWC
+    0 PUSHINT
+    SWAP
+    8 STU
+    STDICT
+    ENDC
+  }>
+  $Context$_fun_readForwardFee PROCREF:<{
+    3 1 BLKDROP2
+    __tact_load_address INLINECALLDICT
+    DROP
+    LDGRAMS
+    NIP
+    1 PUSHINT
+    SDSKIPFIRST
+    LDGRAMS
+    NIP
+    LDGRAMS
+    DROP
+    3 MULCONST
+    1 RSHIFT#
+  }>
+  $SendParameters$_constructor_bounce_to_value_mode_body_code_data PROCINLINE:<{
+  }>
+  $SendParameters$_constructor_to_value_mode_body PROCINLINE:<{
+    TRUE
+    4 -ROLL
+    PUSHNULL
+    PUSHNULL
+  }>
+  $Excesses$_constructor_query_id PROCINLINE:<{
+  }>
+  $PostInfo$_constructor_blog_id_owner_nft_content PROCINLINE:<{
+  }>
+  $DSocialNetworkPost$_fun_get_post_info PROCREF:<{
+    s6 s5 s4 PUSH3
+    s5 s4 s3 PUSH3
+    $PostInfo$_constructor_blog_id_owner_nft_content INLINECALLDICT
+  }>
+  $DSocialNetworkPost$_fun_forward PROCREF:<{
+    PUSHNULL
+    PUSHNULL
+    s2 PUSH
+    ISNULL
+    NOT
+    IF:<{
+      2DROP
+      $StateInit$_not_null INLINECALLDICT
+      SWAP
+    }>ELSE<{
+      s2 POP
+    }>
+    s2 s4 XCHG
+    0 PUSHINT
+    s0 s3 XCHG
+    s0 s4 XCHG
+    66 PUSHINT
+    s2 s3 XCHG2
+    $SendParameters$_constructor_bounce_to_value_mode_body_code_data INLINECALLDICT
+    $global_send INLINECALLDICT
+  }>
+  $DSocialNetworkPost$_fun_notify PROCINLINE:<{
+    __tact_context_get_sender INLINECALLDICT
+    SWAP
+    FALSE
+    PUSHNULL
+    $DSocialNetworkPost$_fun_forward INLINECALLDICT
+  }>
+  $DSocialNetworkPost$_fun_serializeIndividualContent PROCREF:<{
+    $global_beginTep64Dict INLINECALLDICT
+    B{b5ee9c724101010100060000086e616d65c34bdad6} B>boc <s PUSHSLICE
+    s4 PUSH
+    $global_storeTep64SnakeString INLINECALLDICT
+    B{b5ee9c7241010101000d0000166465736372697074696f6ee0124c71} B>boc <s PUSHSLICE
+    s3 PUSH
+    $global_storeTep64SnakeString INLINECALLDICT
+    B{b5ee9c7241010101000700000a696d616765bf5b295d} B>boc <s PUSHSLICE
+    s2 PUSH
+    $global_storeTep64SnakeString INLINECALLDICT
+    __tact_not_null INLINECALLDICT
+    $global_buildTep64OnchainContent INLINECALLDICT
+  }>
+  $GetNftData$_constructor_is_initialized_index_collection_address_owner_address_individual_content PROCINLINE:<{
+  }>
+  $DSocialNetworkPost$_fun_get_nft_data PROCREF:<{
+    s6 s5 s4 PUSH3
+    s6 s5 s4 PUSH3
+    s6 s9 s11 PUSH3
+    s15 s13 PUSH2
+    s6 17 s() XCHG
+    s5 16 s() XCHG
+    s4 s15 XCHG
+    s3 s14 XCHG
+    s13 s12 s11 XCHG3
+    $DSocialNetworkPost$_fun_serializeIndividualContent INLINECALLDICT
+    7 1 BLKDROP2
+    s4 s8 XCHG
+    s3 s7 XCHG
+    s6 s5 s0 XCHG3
+    $GetNftData$_constructor_is_initialized_index_collection_address_owner_address_individual_content INLINECALLDICT
+    s8 s11 XCHG
+    s7 s10 XCHG
+    s6 s9 XCHG
+    s5 s8 XCHG
+    s5 s7 XCHG
+    s5 s6 XCHG
+  }>
+  $DSocialNetworkPost$_fun_requireOwner PROCREF:<{
+    __tact_context_get_sender INLINECALLDICT
+    s5 s(-1) PUXC
+    __tact_slice_eq_bits INLINECALLDICT
+    132 THROWIFNOT
+  }>
+  $DSocialNetworkPost$_fun_owner PROCREF:<{
+    s4 PUSH
+  }>
+  $DSocialNetworkPost$_fun_getGasConsumption PROCREF:<{
+    30000000 PUSHINT
+  }>
+  $DSocialNetworkPost$_fun_getTonRecieved PROCREF:<{
+    __tact_context_get INLINECALLDICT
+    s1 s3 XCHG
+    3 BLKDROP
+  }>
+  $DSocialNetworkPost$_fun_calculateMinOperationFee PROCREF:<{
+    __tact_my_balance INLINECALLDICT
+    7 -ROLL
+    $DSocialNetworkPost$_fun_getTonRecieved INLINECALLDICT
+    s1 s8 XCHG
+    SUB
+    30000000 PUSHINT
+    TUCK
+    MIN
+    SUB
+    s6 s5 s4 PUSH3
+    s6 s5 s4 PUSH3
+    s13 PUSH
+    s6 s13 XCHG
+    s5 s12 XCHG
+    s4 s11 XCHG
+    s3 s10 XCHG
+    s9 s8 s14 XCHG3
+    $DSocialNetworkPost$_fun_getGasConsumption INLINECALLDICT
+    7 1 BLKDROP2
+    ADD
+    s6 s7 XCHG
+    s5 s6 XCHG
+    s4 s5 XCHG
+    s3 s4 XCHG
+    s1 s3 s0 XCHG3
+  }>
+  $DSocialNetworkPost$_fun_calculateSendAmountToHoldEnoughTonForStorage PROCREF:<{
+    s6 s5 s4 PUSH3
+    s6 s5 s4 PUSH3
+    s6 PUSH
+    __tact_my_balance INLINECALLDICT
+    s6 s14 XCHG
+    s5 s13 XCHG
+    s4 s12 XCHG
+    s3 s11 XCHG
+    s10 s9 s8 XCHG3
+    $DSocialNetworkPost$_fun_calculateMinOperationFee INLINECALLDICT
+    7 1 BLKDROP2
+    s1 s2 XCHG
+    SUB
+    s1 s7 XCHG
+    s1 s6 XCHG
+    s1 s5 XCHG
+    s1 s4 XCHG
+    s3 s3 s0 XCHG3
+  }>
+  $DSocialNetworkPost$_fun_sendExcessesTo PROCREF:<{
+    0 PUSHINT
+    OVER
+    ISNULL
+    NOT
+    IF:<{
+      DROP
+      __tact_not_null INLINECALLDICT
+    }>ELSE<{
+      NIP
+    }>
+    2 PUSHINT
+    SWAP
+    $Excesses$_constructor_query_id INLINECALLDICT
+    $Excesses$_store_cell INLINECALLDICT
+    s2 s3 XCHG
+    $SendParameters$_constructor_to_value_mode_body INLINECALLDICT
+    $global_send INLINECALLDICT
+  }>
+  $SendParameters$_constructor_to_value_mode_bounce_body PROCINLINE:<{
+    s1 s4 XCHG
+    s3 s3 s0 XCHG3
+    PUSHNULL
+    PUSHNULL
+  }>
+  $OwnershipAssigned$_constructor_query_id_prev_owner_forward_payload PROCINLINE:<{
+  }>
+  $ReportStaticData$_constructor_query_id_index_id_collection PROCINLINE:<{
+  }>
+  $DeployOk$_constructor_queryId PROCINLINE:<{
+  }>
+  $DSocialNetworkPost$_internal_binary_EditBlogPost PROCINLINE:<{
+    47778 PUSHINT
+    s8 PUSH
+    THROWANYIFNOT
+    s6 s10 XCHG
+    s5 s9 XCHG
+    s4 s8 XCHG
+    s3 s7 XCHG
+    s10 s9 s8 XCHG3
+    $DSocialNetworkPost$_fun_requireOwner INLINECALLDICT
+    3 BLKDROP
+    s3 s2 s1 PUSH3
+    s3 s10 s9 PUSH3
+    s11 PUSH
+    s6 s10 XCHG
+    s5 s9 XCHG
+    s4 s8 XCHG
+    s3 s7 XCHG
+    s14 s13 s12 XCHG3
+    $DSocialNetworkPost$_fun_calculateSendAmountToHoldEnoughTonForStorage INLINECALLDICT
+    s6 POP
+    4 BLKDROP
+    s2 POP
+    s5 s9 XCHG
+    s4 s8 XCHG
+    s3 s7 XCHG
+    s0 s1 s6 XCHG3
+    $DSocialNetworkPost$_fun_sendExcessesTo INLINECALLDICT
+  }>
+  $DSocialNetworkPost$_internal_binary_InitializeNft PROCINLINE:<{
+    s6 s11 XCHG
+    s5 s10 XCHG
+    s4 s9 XCHG
+    s3 s8 XCHG
+    s7 s11 s10 XCHG3
+    $DSocialNetworkPost$_fun_requireOwner INLINECALLDICT
+    3 BLKDROP
+    26042 PUSHINT
+    s2 POP
+    0 EQINT
+    THROWANYIFNOT
+    TRUE
+    s4 PUSH
+    s3 s6 XCHG
+    s2 s5 XCHG
+    s4 s3 s7 XCHG3
+    s1 s8 XCHG
+    $DSocialNetworkPost$_fun_calculateSendAmountToHoldEnoughTonForStorage INLINECALLDICT
+    2 PUSHINT
+    s0 s10 XCHG
+    $Excesses$_constructor_query_id INLINECALLDICT
+    $Excesses$_store_cell INLINECALLDICT
+    s3 s9 XCHG
+    s1 s10 s0 XCHG3
+    $SendParameters$_constructor_to_value_mode_body INLINECALLDICT
+    $global_send INLINECALLDICT
+    s4 s6 XCHG
+    2 4 BLKSWAP
+  }>
+  $DSocialNetworkPost$_internal_binary_Transfer PROCINLINE:<{
+    s2 POP
+    s6 s11 XCHG
+    s5 s10 XCHG
+    s4 s9 XCHG
+    s3 s8 XCHG
+    s7 s11 s10 XCHG3
+    $DSocialNetworkPost$_fun_requireOwner INLINECALLDICT
+    62326 PUSHINT
+    s4 PUSH
+    -1 EQINT
+    THROWANYIFNOT
+    $DSocialNetworkPost$_fun_calculateSendAmountToHoldEnoughTonForStorage INLINECALLDICT
+    s5 POP
+    __tact_context_get INLINECALLDICT
+    s12 s14 PUSH2
+    0 GTINT
+    IF:<{
+      2 PUSHINT
+      s15 s4 PUSH2
+      FALSE
+      s0 20 s() XCHG
+      $OwnershipAssigned$_constructor_query_id_prev_owner_forward_payload INLINECALLDICT
+      $OwnershipAssigned$_store_cell INLINECALLDICT
+      s3 s15 XCHG
+      17 s() PUSH
+      s0 s3 XCHG
+      s0 19 s() XCHG
+      SWAP
+      $SendParameters$_constructor_to_value_mode_bounce_body INLINECALLDICT
+      $global_send INLINECALLDICT
+      s11 s14 XCHG
+    }>ELSE<{
+      s13 POP
+      s15 POP
+    }>
+    3 ROLL
+    s0 s14 XCHG
+    $Context$_fun_readForwardFee INLINECALLDICT
+    s1 s4 XCHG
+    SUB
+    s6 PUSH
+    ISNULL
+    NOT
+    IF:<{
+      s0 s9 XCHG2
+      SUB
+      1 PUSHINT
+      s0 s8 XCHG
+      $Excesses$_constructor_query_id INLINECALLDICT
+      $Excesses$_store_cell INLINECALLDICT
+      s3 s6 XCHG
+      s1 s8 s0 XCHG3
+      $SendParameters$_constructor_to_value_mode_body INLINECALLDICT
+      $global_send INLINECALLDICT
+      s2 s5 XCHG
+    }>ELSE<{
+      DROP
+      s2 s8 XCHG
+      s5 POP
+      s6 POP
+      DROP
+    }>
+    s6 s5 XCHG2
+    s3 s4 XCHG
+    SWAP
+  }>
+  $DSocialNetworkPost$_internal_binary_GetStaticData PROCINLINE:<{
+    __tact_context_get INLINECALLDICT
+    s2 s3 XCHG
+    3 BLKDROP
+    0 PUSHINT
+    64 PUSHINT
+    TRUE
+    s4 s10 s11 XCPU2
+    $ReportStaticData$_constructor_query_id_index_id_collection INLINECALLDICT
+    $ReportStaticData$_store_cell INLINECALLDICT
+    s3 s4 XCHG
+    s1 s3 s0 XCHG3
+    $SendParameters$_constructor_to_value_mode_bounce_body INLINECALLDICT
+    $global_send INLINECALLDICT
+  }>
+  $DSocialNetworkPost$_internal_binary_Deploy PROCINLINE:<{
+    $DeployOk$_constructor_queryId INLINECALLDICT
+    $DeployOk$_store_cell INLINECALLDICT
+    $DSocialNetworkPost$_fun_notify INLINECALLDICT
+  }>
+  $DSocialNetworkPost$_internal_binary_TopUp PROCINLINE:<{
+    DROP
+  }>
+  $DSocialNetworkPost$_internal_binary_Withdraw PROCINLINE:<{
+    NIP
+    7 -ROLL
+    $DSocialNetworkPost$_fun_requireOwner INLINECALLDICT
+    s4 PUSH
+    7 -ROLL
+    $DSocialNetworkPost$_fun_calculateSendAmountToHoldEnoughTonForStorage INLINECALLDICT
+    s1 s9 XCHG
+    MIN
+    2 PUSHINT
+    B{b5ee9c7241010101000e000018000000005769746864726177afd066d1} B>boc PUSHREF
+    s3 s9 XCHG
+    $SendParameters$_constructor_to_value_mode_body INLINECALLDICT
+    $global_send INLINECALLDICT
+    s4 s6 XCHG
+    2 4 BLKSWAP
+  }>
+  $DSocialNetworkPost$_internal_binary_WithdrawAll PROCINLINE:<{
+    NIP
+    7 -ROLL
+    $DSocialNetworkPost$_fun_requireOwner INLINECALLDICT
+    0 PUSHINT
+    s0 s8 XCHG
+    TRUE
+    __tact_int_eq_nullable_one INLINECALLDICT
+    IF:<{
+      32 PUSHINT
+      s8 POP
+    }>
+    0 PUSHINT
+    130 PUSHINT
+    s0 s9 XCHG2
+    ADD
+    B{b5ee9c7241010101001200002000000000576974686472617720616c6cb1c2ba20} B>boc PUSHREF
+    s6 PUSH
+    s0 s3 XCHG
+    s10 s10 s10 XCHG3
+    $SendParameters$_constructor_to_value_mode_body INLINECALLDICT
+    $global_send INLINECALLDICT
+    6 ROLL
+  }>
+  %get_post_info PROC:<{
+    $DSocialNetworkPost$_contract_load INLINECALLDICT
+    $DSocialNetworkPost$_fun_get_post_info INLINECALLDICT
+    7 6 BLKDROP2
+    $PostInfo$_to_external INLINECALLDICT
+  }>
+  %get_nft_data PROC:<{
+    $DSocialNetworkPost$_contract_load INLINECALLDICT
+    $DSocialNetworkPost$_fun_get_nft_data INLINECALLDICT
+    7 5 BLKDROP2
+    $GetNftData$_to_external INLINECALLDICT
+  }>
+  %owner PROC:<{
+    $DSocialNetworkPost$_contract_load INLINECALLDICT
+    $DSocialNetworkPost$_fun_owner INLINECALLDICT
+    7 1 BLKDROP2
+  }>
+  supported_interfaces PROC:<{
+    123515602279859691144772641439386770278 PUSHINT
+    209801025412363888721030803524359905849 PUSHINT
+    42980537499636128163026532310500881091 PUSHINT
+    209474421377847335869795010607481022628 PUSHINT
+    86142586315491086060343270784266291122 PUSHINT
+  }>
+  get_abi_ipfs PROC:<{
+    x{697066733a2f2f516d615962567938426a6d37366f325a765742767a74324a485674357235555856587971504667476d7a6b74636b} PUSHSLICE
+  }>
+  lazy_deployment_completed PROC:<{
+    c4 PUSH
+    CTOS
+    1 LDI
+    SWAP
+  }>
+  $DSocialNetworkPost$_contract_router_internal PROCREF:<{
+    SWAP
+    IFJMP:<{
+      DROP
+      TRUE
+    }>
+    0 PUSHINT
+    OVER
+    SBITS
+    31 GTINT
+    IF:<{
+      DROP
+      DUP
+      32 PLDU
+    }>
+    DUP
+    1400738796 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $EditBlogPost$_load INLINECALLDICT
+      1 4 BLKDROP2
+      $DSocialNetworkPost$_internal_binary_EditBlogPost INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    2897083576 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $InitializeNft$_load INLINECALLDICT
+      1 5 BLKDROP2
+      $DSocialNetworkPost$_internal_binary_InitializeNft INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    1607220500 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $Transfer$_load INLINECALLDICT
+      1 6 BLKDROP2
+      $DSocialNetworkPost$_internal_binary_Transfer INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    801842850 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $GetStaticData$_load INLINECALLDICT
+      NIP
+      $DSocialNetworkPost$_internal_binary_GetStaticData INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    2490013878 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $Deploy$_load INLINECALLDICT
+      NIP
+      $DSocialNetworkPost$_internal_binary_Deploy INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    128710311 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $TopUp$_load INLINECALLDICT
+      NIP
+      $DSocialNetworkPost$_internal_binary_TopUp INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    3478132799 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $Withdraw$_load INLINECALLDICT
+      1 2 BLKDROP2
+      $DSocialNetworkPost$_internal_binary_Withdraw INLINECALLDICT
+      TRUE
+    }>
+    4090352184 PUSHINT
+    EQUAL
+    IFJMP:<{
+      $WithdrawAll$_load INLINECALLDICT
+      1 2 BLKDROP2
+      $DSocialNetworkPost$_internal_binary_WithdrawAll INLINECALLDICT
+      TRUE
+    }>
+    DROP
+    FALSE
+  }>
+  recv_internal PROC:<{
+    SWAP
+    CTOS
+    4 LDU
+    SWAP
+    1 PUSHINT
+    AND
+    NEGATE
+    SWAP
+    LDMSGADDR
+    SWAP
+    __tact_verify_address INLINECALLDICT
+    s0 s4 s2 PUXCPU
+    s0 s3 XCHG
+    4 TUPLE
+    __tact_context SETGLOB
+    s0 s2 XCHG
+    __tact_context_sender SETGLOB
+    $DSocialNetworkPost$_contract_load INLINECALLDICT
+    2 7 BLKSWAP
+    $DSocialNetworkPost$_contract_router_internal INLINECALLDICT
+    130 THROWIFNOT
+    $DSocialNetworkPost$_contract_store INLINECALLDICT
+  }>
+}END>c

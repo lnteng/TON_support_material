@@ -1,0 +1,23 @@
+__gen_load_ContractWithOptionals: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact/src/test/features/output/optionals_ContractWithOptionals.code.fc:196:14: warning: Lack of end_parse.
+      return sc~__gen_read_ContractWithOptionals();
+               ^
+__gen_read_SomeGenericStruct: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact/src/test/features/output/optionals_ContractWithOptionals.code.fc:57:24: warning: Lack of end_parse.
+      var v'value5 = sc_1~load_int(257);
+                         ^
+__gen_read_ContractWithOptionals: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact/src/test/features/output/optionals_ContractWithOptionals.code.fc:140:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+__gen_read_Update: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact/src/test/features/output/optionals_ContractWithOptionals.code.fc:107:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+__gen_store_ContractWithOptionals & __gen_load_ContractWithOptionals: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact/src/test/features/output/optionals_ContractWithOptionals.code.fc:194:26: warning: Cell of get_data and set_data are inconsistent.
+      slice sc = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact/src/test/features/output/optionals_ContractWithOptionals.code.fc:200:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

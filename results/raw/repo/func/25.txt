@@ -1,0 +1,16 @@
+get_user_balance: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/hack-challenge-1/7.better_bank/better_bank.func:110:23: warning: Lack of end_parse.
+    return balance_slice~load_coins();
+                        ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/hack-challenge-1/7.better_bank/better_bank.func:36:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/hack-challenge-1/7.better_bank/better_bank.func:48:18: warning: Local variable 'query_id' is not used
+      int query_id = in_msg_body~load_uint(64);
+                   ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/hack-challenge-1/7.better_bank/better_bank.func:16:16: warning: Lack of end_parse.
+    accounts = ds~load_dict();
+                 ^

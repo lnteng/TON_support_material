@@ -1,0 +1,50 @@
+$NftCollection$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQD10lksQFuxnuScujxC5TJ-ebuk_eOlTmqpbYC4d4aVr8F_/output/verifier_NftCollection.storage.fc:235:19: warning: Lack of end_parse.
+          return $sc~$NftCollection$_load();
+                    ^
+$NftCollection$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQD10lksQFuxnuScujxC5TJ-ebuk_eOlTmqpbYC4d4aVr8F_/output/verifier_NftCollection.code.fc:14:121: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'next_index, $self'content, $self'royalty_destination, $self'numerator, $self'denominator)) = (null(), 0, null(), null(), null(), null());
+                                                                                                                          ^
+$NftCollection$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQD10lksQFuxnuScujxC5TJ-ebuk_eOlTmqpbYC4d4aVr8F_/output/verifier_NftCollection.code.fc:14:121: warning: Local variable '$self'content' is not used
+      var (($self'owner, $self'next_index, $self'content, $self'royalty_destination, $self'numerator, $self'denominator)) = (null(), 0, null(), null(), null(), null());
+                                                                                                                          ^
+$NftCollection$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQD10lksQFuxnuScujxC5TJ-ebuk_eOlTmqpbYC4d4aVr8F_/output/verifier_NftCollection.code.fc:14:121: warning: Local variable '$self'royalty_destination' is not used
+      var (($self'owner, $self'next_index, $self'content, $self'royalty_destination, $self'numerator, $self'denominator)) = (null(), 0, null(), null(), null(), null());
+                                                                                                                          ^
+$NftCollection$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQD10lksQFuxnuScujxC5TJ-ebuk_eOlTmqpbYC4d4aVr8F_/output/verifier_NftCollection.code.fc:14:121: warning: Local variable '$self'numerator' is not used
+      var (($self'owner, $self'next_index, $self'content, $self'royalty_destination, $self'numerator, $self'denominator)) = (null(), 0, null(), null(), null(), null());
+                                                                                                                          ^
+$NftCollection$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQD10lksQFuxnuScujxC5TJ-ebuk_eOlTmqpbYC4d4aVr8F_/output/verifier_NftCollection.code.fc:14:121: warning: Local variable '$self'denominator' is not used
+      var (($self'owner, $self'next_index, $self'content, $self'royalty_destination, $self'numerator, $self'denominator)) = (null(), 0, null(), null(), null(), null());
+                                                                                                                          ^
+$NftItem$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQD10lksQFuxnuScujxC5TJ-ebuk_eOlTmqpbYC4d4aVr8F_/output/verifier_NftCollection.storage.fc:180:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$NftCollection$init$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQD10lksQFuxnuScujxC5TJ-ebuk_eOlTmqpbYC4d4aVr8F_/output/verifier_NftCollection.storage.fc:226:29: warning: Lack of end_parse.
+      var v'denominator = sc_1~load_int(257);
+                              ^
+$NftCollection$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQD10lksQFuxnuScujxC5TJ-ebuk_eOlTmqpbYC4d4aVr8F_/output/verifier_NftCollection.code.fc:138:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQD10lksQFuxnuScujxC5TJ-ebuk_eOlTmqpbYC4d4aVr8F_/output/verifier_NftCollection.storage.fc:246:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$NftCollection$_contract_store & $NftCollection$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQD10lksQFuxnuScujxC5TJ-ebuk_eOlTmqpbYC4d4aVr8F_/output/verifier_NftCollection.storage.fc:231:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQD10lksQFuxnuScujxC5TJ-ebuk_eOlTmqpbYC4d4aVr8F_/output/verifier_NftCollection.storage.fc:246:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$NftCollection$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQD10lksQFuxnuScujxC5TJ-ebuk_eOlTmqpbYC4d4aVr8F_/output/verifier_NftCollection.code.fc:82:298: warning: UnHandle bounced message with op: 0xa8cb00ad
+  ... minator_destination($msg'query_id, $self'numerator, $self'denominator, $self'royalty_destination))));
+  ...                                                                                                     ^

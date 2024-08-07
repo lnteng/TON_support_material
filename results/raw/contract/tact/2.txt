@@ -1,0 +1,46 @@
+$Dao$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC1Mk8fuSBxFdCR4VrENamI5Z4r-u5a88Od1phnSv-2xHd1/output/verifier_Dao.storage.fc:188:27: warning: Lack of end_parse.
+      var v'fwdMsgFee = sc_1~load_uint(64);
+                            ^
+$Dao$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC1Mk8fuSBxFdCR4VrENamI5Z4r-u5a88Od1phnSv-2xHd1/output/verifier_Dao.storage.fc:203:19: warning: Lack of end_parse.
+          return $sc~$Dao$_load();
+                    ^
+$Dao$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC1Mk8fuSBxFdCR4VrENamI5Z4r-u5a88Od1phnSv-2xHd1/output/verifier_Dao.code.fc:14:111: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'registry, $self'proposalOwner, $self'daoIndex, $self'metadata, $self'fwdMsgFee)) = (null(), null(), null(), null(), null(), null());
+                                                                                                                ^
+$Dao$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC1Mk8fuSBxFdCR4VrENamI5Z4r-u5a88Od1phnSv-2xHd1/output/verifier_Dao.code.fc:14:111: warning: Local variable '$self'registry' is not used
+      var (($self'owner, $self'registry, $self'proposalOwner, $self'daoIndex, $self'metadata, $self'fwdMsgFee)) = (null(), null(), null(), null(), null(), null());
+                                                                                                                ^
+$Dao$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC1Mk8fuSBxFdCR4VrENamI5Z4r-u5a88Od1phnSv-2xHd1/output/verifier_Dao.code.fc:14:111: warning: Local variable '$self'proposalOwner' is not used
+      var (($self'owner, $self'registry, $self'proposalOwner, $self'daoIndex, $self'metadata, $self'fwdMsgFee)) = (null(), null(), null(), null(), null(), null());
+                                                                                                                ^
+$Dao$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC1Mk8fuSBxFdCR4VrENamI5Z4r-u5a88Od1phnSv-2xHd1/output/verifier_Dao.code.fc:14:111: warning: Local variable '$self'daoIndex' is not used
+      var (($self'owner, $self'registry, $self'proposalOwner, $self'daoIndex, $self'metadata, $self'fwdMsgFee)) = (null(), null(), null(), null(), null(), null());
+                                                                                                                ^
+$Dao$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC1Mk8fuSBxFdCR4VrENamI5Z4r-u5a88Od1phnSv-2xHd1/output/verifier_Dao.code.fc:14:111: warning: Local variable '$self'metadata' is not used
+      var (($self'owner, $self'registry, $self'proposalOwner, $self'daoIndex, $self'metadata, $self'fwdMsgFee)) = (null(), null(), null(), null(), null(), null());
+                                                                                                                ^
+$Dao$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC1Mk8fuSBxFdCR4VrENamI5Z4r-u5a88Od1phnSv-2xHd1/output/verifier_Dao.code.fc:14:111: warning: Local variable '$self'fwdMsgFee' is not used
+      var (($self'owner, $self'registry, $self'proposalOwner, $self'daoIndex, $self'metadata, $self'fwdMsgFee)) = (null(), null(), null(), null(), null(), null());
+                                                                                                                ^
+$Dao$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC1Mk8fuSBxFdCR4VrENamI5Z4r-u5a88Od1phnSv-2xHd1/output/verifier_Dao.code.fc:118:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC1Mk8fuSBxFdCR4VrENamI5Z4r-u5a88Od1phnSv-2xHd1/output/verifier_Dao.storage.fc:214:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Dao$_contract_store & $Dao$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC1Mk8fuSBxFdCR4VrENamI5Z4r-u5a88Od1phnSv-2xHd1/output/verifier_Dao.storage.fc:199:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC1Mk8fuSBxFdCR4VrENamI5Z4r-u5a88Od1phnSv-2xHd1/output/verifier_Dao.storage.fc:214:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

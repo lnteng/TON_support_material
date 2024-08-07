@@ -1,0 +1,116 @@
+get_providers: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:314:35: warning: Lack of end_parse.
+              int rate_per_mb = info~load_coins();
+                                    ^
+get_providers: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:299:36: warning: Lack of end_parse.
+      cell active_providers = storage~load_dict();
+                                     ^
+get_providers: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:298:22: warning: Local variable 'torrent_hash' is not used
+      int torrent_hash = storage~load_uint(256);
+                       ^
+get_provider_info: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:281:31: warning: Lack of end_parse.
+      int rate_per_mb_day = info~load_coins();
+                                ^
+get_provider_info: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:277:25: warning: Lack of end_parse.
+      int nonce = provider~load_uint(64);
+                          ^
+get_provider_info: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:270:36: warning: Lack of end_parse.
+      cell active_providers = storage~load_dict();
+                                     ^
+get_provider_info: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:269:22: warning: Local variable 'torrent_hash' is not used
+      int torrent_hash = storage~load_uint(256);
+                       ^
+get_storage_info: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:262:30: warning: Lack of end_parse.
+      int merkle_hash = storage~load_uint(256);
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:53:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:95:35: warning: Lack of end_parse.
+          int rate_per_mb_day = info~load_coins();
+                                    ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:89:29: warning: Lack of end_parse.
+          int nonce = provider~load_uint(64);
+                              ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:82:30: warning: Lack of end_parse.
+          int key_len = storage~load_uint(8);
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:157:30: warning: Lack of end_parse.
+          int key_len = storage~load_uint(8);
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:235:31: warning: Lack of end_parse.
+          slice client = storage~load_msg_addr();
+                                ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:195:53: warning: Local variable 'active_provider' is not used
+                  (slice active_provider, int exists) = active_providers.udict_get?(256, cid);
+                                                      ^
+recv_internal & get_providers: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:297:29: warning: Cell of get_data and set_data are inconsistent.
+      var storage = get_data().begin_parse();
+                              ^
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:137:17: warning: Cell of get_data and set_data are inconsistent.
+                  .store_uint(torrent_hash, 256)
+                  ^
+recv_internal & get_provider_info: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:268:29: warning: Cell of get_data and set_data are inconsistent.
+      var storage = get_data().begin_parse();
+                              ^
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:137:17: warning: Cell of get_data and set_data are inconsistent.
+                  .store_uint(torrent_hash, 256)
+                  ^
+recv_internal & get_storage_info: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:256:29: warning: Cell of get_data and set_data are inconsistent.
+      var storage = get_data().begin_parse();
+                              ^
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:137:17: warning: Cell of get_data and set_data are inconsistent.
+                  .store_uint(torrent_hash, 256)
+                  ^
+recv_internal & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:232:33: warning: Cell of get_data and set_data are inconsistent.
+          var storage = get_data().begin_parse();
+                                  ^
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:137:17: warning: Cell of get_data and set_data are inconsistent.
+                  .store_uint(torrent_hash, 256)
+                  ^
+recv_internal & get_providers: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:297:29: warning: Cell of get_data and set_data are inconsistent.
+      var storage = get_data().begin_parse();
+                              ^
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:221:17: warning: Cell of get_data and set_data are inconsistent.
+                  .store_uint(torrent_hash, 256)
+                  ^
+recv_internal & get_provider_info: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:268:29: warning: Cell of get_data and set_data are inconsistent.
+      var storage = get_data().begin_parse();
+                              ^
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:221:17: warning: Cell of get_data and set_data are inconsistent.
+                  .store_uint(torrent_hash, 256)
+                  ^
+recv_internal & get_storage_info: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:256:29: warning: Cell of get_data and set_data are inconsistent.
+      var storage = get_data().begin_parse();
+                              ^
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:221:17: warning: Cell of get_data and set_data are inconsistent.
+                  .store_uint(torrent_hash, 256)
+                  ^
+recv_internal & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:232:33: warning: Cell of get_data and set_data are inconsistent.
+          var storage = get_data().begin_parse();
+                                  ^
+/home/lentg/Movebit/ton-datasets1111/repo/./xssnick/tonutils-contracts/contracts/storage/storage-contract.fc:221:17: warning: Cell of get_data and set_data are inconsistent.
+                  .store_uint(torrent_hash, 256)
+                  ^

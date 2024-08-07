@@ -1,0 +1,27 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQB_Ga1soLgyo8PUyezZZCOqxi49Qjkioyjdtx7FRvVX6kxz/nft-swap.fc:199:35: warning: Lack of end_parse.
+      slice sender_address_data = cs~load_msg_addr();
+                                    ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQB_Ga1soLgyo8PUyezZZCOqxi49Qjkioyjdtx7FRvVX6kxz/nft-swap.fc:73:26: warning: Lack of end_parse.
+      supervisor = controls~load_msg_addr();
+                           ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQB_Ga1soLgyo8PUyezZZCOqxi49Qjkioyjdtx7FRvVX6kxz/nft-swap.fc:71:26: warning: Lack of end_parse.
+      slice controls = data~load_ref().begin_parse();
+                           ^
+set_if_required_nft: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQB_Ga1soLgyo8PUyezZZCOqxi49Qjkioyjdtx7FRvVX6kxz/nft-swap.fc:77:28: warning: Local variable 'val' is not used
+      (slice val, int found) = dict.udict_get?(256, nft);
+                             ^
+save_data & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQB_Ga1soLgyo8PUyezZZCOqxi49Qjkioyjdtx7FRvVX6kxz/nft-swap.fc:55:28: warning: Cell of get_data and set_data are inconsistent.
+      slice data = get_data().begin_parse();
+                             ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQB_Ga1soLgyo8PUyezZZCOqxi49Qjkioyjdtx7FRvVX6kxz/nft-swap.fc:40:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(created_at, 2)
+              ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQB_Ga1soLgyo8PUyezZZCOqxi49Qjkioyjdtx7FRvVX6kxz/nft-swap.fc:132:43: warning: UnHandle bounced message with op: 0x5fcc3d14
+      send_raw_message(msg.end_cell(), mode);
+                                            ^

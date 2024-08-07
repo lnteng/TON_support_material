@@ -1,0 +1,19 @@
+get_public_key: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBkrGoihTA9ex0SlxV6iX0Ut1sds7d-exDgMROH4UyuqdO0/wallet_kurilshika.fc:45:7: warning: Lack of end_parse.
+      cs~load_uint(64);
+        ^
+seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBkrGoihTA9ex0SlxV6iX0Ut1sds7d-exDgMROH4UyuqdO0/wallet_kurilshika.fc:40:22: warning: Lack of end_parse.
+      return get_data().begin_parse().preload_uint(32);
+                       ^
+recv_external: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBkrGoihTA9ex0SlxV6iX0Ut1sds7d-exDgMROH4UyuqdO0/wallet_kurilshika.fc:13:48: warning: Local variable 'msg_seqno' is not used
+      var (subwallet_id, valid_until, msg_seqno) = (cs~load_uint(32), cs~load_uint(32), cs~load_uint(32));
+                                                 ^
+recv_external & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBkrGoihTA9ex0SlxV6iX0Ut1sds7d-exDgMROH4UyuqdO0/wallet_kurilshika.fc:44:24: warning: Cell of get_data and set_data are inconsistent.
+      var cs = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBkrGoihTA9ex0SlxV6iX0Ut1sds7d-exDgMROH4UyuqdO0/wallet_kurilshika.fc:31:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_uint(stored_seqno + 1, 32)
+      ^

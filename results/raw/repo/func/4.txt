@@ -1,0 +1,28 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./polus-dev/native-ton-pair/lp-token/jetton-minter.func:70:42: warning: Lack of end_parse.
+          int jetton_amount = master_msg_cs~load_coins();
+                                           ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./polus-dev/native-ton-pair/lp-token/jetton-minter.func:54:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./polus-dev/native-ton-pair/lp-token/jetton-minter.func:19:11: warning: Lack of end_parse.
+          ds~load_ref()       ;; jetton_wallet_code
+            ^
+get_wallet_address_int: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./polus-dev/native-ton-pair/lp-token/jetton-minter.func:144:16: warning: Lack of end_parse.
+      owner_jwall~skip_bits(2 + 1 + 8);  ;; skip constructor, anycast, workchain_id
+                 ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./polus-dev/native-ton-pair/lp-token/jetton-minter.func:128:84: warning: Local variable 'total_supply' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code) = load_data();
+                                                                                     ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./polus-dev/native-ton-pair/lp-token/jetton-minter.func:128:84: warning: Local variable 'admin_address' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code) = load_data();
+                                                                                     ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./polus-dev/native-ton-pair/lp-token/jetton-minter.func:128:84: warning: Local variable 'content' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code) = load_data();
+                                                                                     ^

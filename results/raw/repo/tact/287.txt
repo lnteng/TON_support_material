@@ -1,0 +1,19 @@
+$C$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/deep_C.storage.fc:61:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$C$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/deep_C.code.fc:15:26: warning: Local variable '$self'parent' is not used
+      var (($self'parent)) = (null());
+                           ^
+$C$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/deep_C.storage.fc:41:19: warning: Lack of end_parse.
+          return $sc~$C$_load();
+                    ^
+$C$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/deep_C.code.fc:56:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/deep_C.storage.fc:52:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

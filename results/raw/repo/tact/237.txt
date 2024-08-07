@@ -1,0 +1,19 @@
+$TonupTosRegistry$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./microcosm-labs/tonup-contracts/contracts/output/sample_TonupTosRegistry.code.fc:15:61: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'accepted, $self'number_users)) = (null(), null(), 0);
+                                                              ^
+$TonupTosRegistry$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./microcosm-labs/tonup-contracts/contracts/output/sample_TonupTosRegistry.storage.fc:157:19: warning: Lack of end_parse.
+          return $sc~$TonupTosRegistry$_load();
+                    ^
+__tact_dict_set_slice_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./microcosm-labs/tonup-contracts/contracts/output/sample_TonupTosRegistry.stdlib.fc:49:21: warning: Local variable 'ok' is not used
+          var (r, ok) = __tact_dict_delete(d, kl, k);
+                      ^
+$TonupTosRegistry$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./microcosm-labs/tonup-contracts/contracts/output/sample_TonupTosRegistry.code.fc:171:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./microcosm-labs/tonup-contracts/contracts/output/sample_TonupTosRegistry.storage.fc:168:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

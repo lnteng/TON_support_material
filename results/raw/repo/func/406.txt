@@ -1,0 +1,12 @@
+validate_message: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-2/func/3(catch).fc:28:21: warning: Lack of end_parse.
+    slice cs = message.begin_parse();
+                      ^
+validate_message: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-2/func/3(catch).fc:28:12: warning: Local variable 'cs' is not used
+    slice cs = message.begin_parse();
+             ^
+validate_message: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-2/func/3(catch).fc:32:13: warning: Local variable 'b' is not used
+    builder b = begin_cell().store_uint(100, 3);
+              ^

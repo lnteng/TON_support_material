@@ -1,0 +1,14 @@
+namespace Svg
+{
+
+struct Image
+{
+    i32 width: 0,
+    i32 height: 0,
+
+    buffer data
+};
+
+import Image render(buffer filename, i32 width, i32 height);
+
+}

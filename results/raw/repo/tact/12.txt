@@ -1,0 +1,15 @@
+$BulkAdder$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/03-messages-between-contracts/output/sample_BulkAdder.code.fc:15:26: warning: Local variable '$self'target' is not used
+      var (($self'target)) = (null());
+                           ^
+$BulkAdder$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/03-messages-between-contracts/output/sample_BulkAdder.storage.fc:103:19: warning: Lack of end_parse.
+          return $sc~$BulkAdder$_load();
+                    ^
+$BulkAdder$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/03-messages-between-contracts/output/sample_BulkAdder.code.fc:66:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/03-messages-between-contracts/output/sample_BulkAdder.storage.fc:112:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

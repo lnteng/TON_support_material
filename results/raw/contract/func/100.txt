@@ -1,0 +1,46 @@
+prev_exit_code: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAmhU-JKzE-bZrmAHEegWGHO-EZo_7423JqIM-Zz6_6sp9a/wallet.fc:116:14: warning: Lack of end_parse.
+      return ds~load_uint(16);
+               ^
+get_public_key: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAmhU-JKzE-bZrmAHEegWGHO-EZo_7423JqIM-Zz6_6sp9a/wallet.fc:104:14: warning: Lack of end_parse.
+      return ds~load_uint(256);
+               ^
+get_trusted_hashpart: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAmhU-JKzE-bZrmAHEegWGHO-EZo_7423JqIM-Zz6_6sp9a/wallet.fc:110:14: warning: Lack of end_parse.
+      return ds~load_uint(256);
+               ^
+seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAmhU-JKzE-bZrmAHEegWGHO-EZo_7423JqIM-Zz6_6sp9a/wallet.fc:98:14: warning: Lack of end_parse.
+      return ds~load_uint(32);
+               ^
+recv_external: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAmhU-JKzE-bZrmAHEegWGHO-EZo_7423JqIM-Zz6_6sp9a/wallet.fc:70:144: warning: Lack of end_parse.
+      (int stored_seqno, int public_key, int stored_subwallet, int trusted_hashpart) = (ds~load_uint(32), ds~load_uint(256), ds~load_uint(32), ds~load_uint(256));
+                                                                                                                                                 ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAmhU-JKzE-bZrmAHEegWGHO-EZo_7423JqIM-Zz6_6sp9a/wallet.fc:52:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAmhU-JKzE-bZrmAHEegWGHO-EZo_7423JqIM-Zz6_6sp9a/wallet.fc:56:30: warning: Lack of end_parse.
+      int trusted_hashpart = ds~load_uint(256);
+                               ^
+execute_command: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAmhU-JKzE-bZrmAHEegWGHO-EZo_7423JqIM-Zz6_6sp9a/wallet.fc:31:24: warning: Lack of end_parse.
+          set_c3(new_code.begin_parse().bless());
+                         ^
+recv_external & prev_exit_code: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAmhU-JKzE-bZrmAHEegWGHO-EZo_7423JqIM-Zz6_6sp9a/wallet.fc:114:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAmhU-JKzE-bZrmAHEegWGHO-EZo_7423JqIM-Zz6_6sp9a/wallet.fc:84:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(stored_seqno + 1, 32)
+              ^
+recv_external & get_trusted_hashpart: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAmhU-JKzE-bZrmAHEegWGHO-EZo_7423JqIM-Zz6_6sp9a/wallet.fc:108:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAmhU-JKzE-bZrmAHEegWGHO-EZo_7423JqIM-Zz6_6sp9a/wallet.fc:84:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(stored_seqno + 1, 32)
+              ^

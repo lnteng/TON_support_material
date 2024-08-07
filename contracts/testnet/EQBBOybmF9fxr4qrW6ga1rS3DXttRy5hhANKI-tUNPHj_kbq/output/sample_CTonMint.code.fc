@@ -1,0 +1,276 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_CTonMint.headers.fc";
+#include "sample_CTonMint.stdlib.fc";
+#include "sample_CTonMint.storage.fc";
+
+;;
+;; Contract CTonMint functions
+;;
+
+(int, int, slice, int, cell, cell, cell, int, int, int, int, int, int, int) $CTonMint$_contract_init(slice $owner, int $wlSignKey) impure inline_ref {
+    var (($self'wlMintTonPrice, $self'publicMintTonPrice, $self'owner, $self'wlSignKey, $self'seqnoMap, $self'wlMintAmountMap, $self'publicMintAmountMap, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'publicMintMaxAmount)) = (500000, 500000, null(), null(), null(), null(), null(), 0, 0, 0, 10000, 20000, 100, 20000);
+    $self'owner = $owner;
+    $self'wlSignKey = $wlSignKey;
+    return ($self'wlMintTonPrice, $self'publicMintTonPrice, $self'owner, $self'wlSignKey, $self'seqnoMap, $self'wlMintAmountMap, $self'publicMintAmountMap, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'publicMintMaxAmount);
+}
+
+((int, int, slice, int, cell, cell, cell, int, int, int, int, int, int, int), int) $CTonMint$_fun_msgValue((int, int, slice, int, cell, cell, cell, int, int, int, int, int, int, int) $self, int $msgValue) impure inline_ref {
+    var (($self'wlMintTonPrice, $self'publicMintTonPrice, $self'owner, $self'wlSignKey, $self'seqnoMap, $self'wlMintAmountMap, $self'publicMintAmountMap, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'publicMintMaxAmount)) = $self;
+    int $tonBalanceBeforeMsg = (__tact_my_balance() - $msgValue);
+    int $storageFee = (30000000 - min($tonBalanceBeforeMsg, 30000000));
+    $msgValue = ($msgValue - ($storageFee + 30000000));
+    return (($self'wlMintTonPrice, $self'publicMintTonPrice, $self'owner, $self'wlSignKey, $self'seqnoMap, $self'wlMintAmountMap, $self'publicMintAmountMap, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'publicMintMaxAmount), $msgValue);
+}
+
+((int, int, slice, int, cell, cell, cell, int, int, int, int, int, int, int), ()) $CTonMint$_fun_mintToken((int, int, slice, int, cell, cell, cell, int, int, int, int, int, int, int) $self, slice $jettonWalletAddress, slice $to, int $amount) impure inline_ref {
+    var (($self'wlMintTonPrice, $self'publicMintTonPrice, $self'owner, $self'wlSignKey, $self'seqnoMap, $self'wlMintAmountMap, $self'publicMintAmountMap, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'publicMintMaxAmount)) = $self;
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body($jettonWalletAddress, 0, true, 64, $TokenTransfer$_store_cell($TokenTransfer$_constructor_query_id_amount_sender_response_destination_custom_payload_forward_ton_amount_forward_payload(0, $amount, $to, my_address(), null(), 0, $Cell$_fun_asSlice(end_cell(store_uint(store_uint(begin_cell(), 0, 1), 0, 32)))))));
+    return (($self'wlMintTonPrice, $self'publicMintTonPrice, $self'owner, $self'wlSignKey, $self'seqnoMap, $self'wlMintAmountMap, $self'publicMintAmountMap, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'publicMintMaxAmount), ());
+}
+
+((int, int, slice, int, cell, cell, cell, int, int, int, int, int, int, int), (slice, int, int, int, int, int, int, int, int, int)) $CTonMint$_fun_mintInfo((int, int, slice, int, cell, cell, cell, int, int, int, int, int, int, int) $self) impure inline_ref {
+    var (($self'wlMintTonPrice, $self'publicMintTonPrice, $self'owner, $self'wlSignKey, $self'seqnoMap, $self'wlMintAmountMap, $self'publicMintAmountMap, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'publicMintMaxAmount)) = $self;
+    return (($self'wlMintTonPrice, $self'publicMintTonPrice, $self'owner, $self'wlSignKey, $self'seqnoMap, $self'wlMintAmountMap, $self'publicMintAmountMap, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'publicMintMaxAmount), $MintInfo$_constructor_owner_wlSignKey_totalWlMintAmount_totalPublicMintAmount_totalMintAmount_wlMintMinAmount_wlMintMaxAmount_publicMintMinAmount_wlMintTonPrice_publicMintTonPrice($self'owner, $self'wlSignKey, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'wlMintTonPrice, $self'publicMintTonPrice));
+}
+
+((int, int, slice, int, cell, cell, cell, int, int, int, int, int, int, int), int) $CTonMint$_fun_whitelistAmountByAddress((int, int, slice, int, cell, cell, cell, int, int, int, int, int, int, int) $self, slice $userAddr) impure inline_ref {
+    var (($self'wlMintTonPrice, $self'publicMintTonPrice, $self'owner, $self'wlSignKey, $self'seqnoMap, $self'wlMintAmountMap, $self'publicMintAmountMap, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'publicMintMaxAmount)) = $self;
+    if (null?(__tact_dict_get_slice_int($self'wlMintAmountMap, 267, $userAddr, 257))) {
+        return (($self'wlMintTonPrice, $self'publicMintTonPrice, $self'owner, $self'wlSignKey, $self'seqnoMap, $self'wlMintAmountMap, $self'publicMintAmountMap, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'publicMintMaxAmount), 0);
+    }
+    return (($self'wlMintTonPrice, $self'publicMintTonPrice, $self'owner, $self'wlSignKey, $self'seqnoMap, $self'wlMintAmountMap, $self'publicMintAmountMap, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'publicMintMaxAmount), __tact_not_null(__tact_dict_get_slice_int($self'wlMintAmountMap, 267, $userAddr, 257)));
+}
+
+((int, int, slice, int, cell, cell, cell, int, int, int, int, int, int, int), int) $CTonMint$_fun_publicAmountByAddress((int, int, slice, int, cell, cell, cell, int, int, int, int, int, int, int) $self, slice $userAddr) impure inline_ref {
+    var (($self'wlMintTonPrice, $self'publicMintTonPrice, $self'owner, $self'wlSignKey, $self'seqnoMap, $self'wlMintAmountMap, $self'publicMintAmountMap, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'publicMintMaxAmount)) = $self;
+    if (null?(__tact_dict_get_slice_int($self'publicMintAmountMap, 267, $userAddr, 257))) {
+        return (($self'wlMintTonPrice, $self'publicMintTonPrice, $self'owner, $self'wlSignKey, $self'seqnoMap, $self'wlMintAmountMap, $self'publicMintAmountMap, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'publicMintMaxAmount), 0);
+    }
+    return (($self'wlMintTonPrice, $self'publicMintTonPrice, $self'owner, $self'wlSignKey, $self'seqnoMap, $self'wlMintAmountMap, $self'publicMintAmountMap, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'publicMintMaxAmount), __tact_not_null(__tact_dict_get_slice_int($self'publicMintAmountMap, 267, $userAddr, 257)));
+}
+
+;;
+;; Receivers of a Contract CTonMint
+;;
+
+(((int, int, slice, int, cell, cell, cell, int, int, int, int, int, int, int)), ()) $CTonMint$_internal_binary_UpdateWlSignKey((int, int, slice, int, cell, cell, cell, int, int, int, int, int, int, int) $self, (int) $msg) impure inline {
+    var ($self'wlMintTonPrice, $self'publicMintTonPrice, $self'owner, $self'wlSignKey, $self'seqnoMap, $self'wlMintAmountMap, $self'publicMintAmountMap, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'publicMintMaxAmount) = $self;
+    var ($msg'pKey) = $msg;
+    throw_unless(46826, ( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) ));
+    $self'wlSignKey = $msg'pKey;
+    return (($self'wlMintTonPrice, $self'publicMintTonPrice, $self'owner, $self'wlSignKey, $self'seqnoMap, $self'wlMintAmountMap, $self'publicMintAmountMap, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'publicMintMaxAmount), ());
+}
+
+(((int, int, slice, int, cell, cell, cell, int, int, int, int, int, int, int)), ()) $CTonMint$_internal_binary_WhiteListMintMessage((int, int, slice, int, cell, cell, cell, int, int, int, int, int, int, int) $self, (slice, (int, int, slice, slice)) $msg) impure inline {
+    var ($self'wlMintTonPrice, $self'publicMintTonPrice, $self'owner, $self'wlSignKey, $self'seqnoMap, $self'wlMintAmountMap, $self'publicMintAmountMap, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'publicMintMaxAmount) = $self;
+    var ($msg'signature, ($msg'whiteListMint'seqno, $msg'whiteListMint'amount, $msg'whiteListMint'receiver, $msg'whiteListMint'jettonWalletAddress)) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    slice $sender = $ctx'sender;
+    int $opHash = cell_hash($WhiteListMint$_store_cell(($msg'whiteListMint'seqno, $msg'whiteListMint'amount, $msg'whiteListMint'receiver, $msg'whiteListMint'jettonWalletAddress)));
+    throw_unless(48401, check_signature($opHash, $msg'signature, $self'wlSignKey));
+    throw_unless(13458, ( __tact_slice_eq_bits($sender, $msg'whiteListMint'receiver) ));
+    throw_unless(47896, ($msg'whiteListMint'amount >= $self'wlMintMinAmount));
+    throw_unless(42659, ($msg'whiteListMint'amount <= $self'wlMintMaxAmount));
+    if (null?(__tact_dict_get_slice_int($self'seqnoMap, 267, $sender, 257))) {
+        throw_unless(18445, ($msg'whiteListMint'seqno == 0));
+        $self'seqnoMap~__tact_dict_set_slice_int(267, $sender, 1, 257);
+    } else {
+        int $seqno = __tact_not_null(__tact_dict_get_slice_int($self'seqnoMap, 267, $sender, 257));
+        throw_unless(18445, ($msg'whiteListMint'seqno == $seqno));
+        $self'seqnoMap~__tact_dict_set_slice_int(267, $sender, ($seqno + 1), 257);
+    }
+    if (null?(__tact_dict_get_slice_int($self'wlMintAmountMap, 267, $sender, 257))) {
+        $self'wlMintAmountMap~__tact_dict_set_slice_int(267, $sender, $msg'whiteListMint'amount, 257);
+    } else {
+        int $wlMintAmount = __tact_not_null(__tact_dict_get_slice_int($self'wlMintAmountMap, 267, $sender, 257));
+        int $totalWlMintAmount = ($wlMintAmount + $msg'whiteListMint'amount);
+        throw_unless(41419, ($totalWlMintAmount <= $self'wlMintMaxAmount));
+        $self'wlMintAmountMap~__tact_dict_set_slice_int(267, $sender, $totalWlMintAmount, 257);
+    }
+    $self'totalWlMintAmount = ($self'totalWlMintAmount + $msg'whiteListMint'amount);
+    $self'totalMintAmount = ($self'totalMintAmount + $msg'whiteListMint'amount);
+    int $value = ($self'wlMintTonPrice, $self'publicMintTonPrice, $self'owner, $self'wlSignKey, $self'seqnoMap, $self'wlMintAmountMap, $self'publicMintAmountMap, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'publicMintMaxAmount)~$CTonMint$_fun_msgValue($ctx'value);
+    int $totalTonAmount = ($self'wlMintTonPrice * $msg'whiteListMint'amount);
+    throw_unless(16059, ($value >= $totalTonAmount));
+    ($self'wlMintTonPrice, $self'publicMintTonPrice, $self'owner, $self'wlSignKey, $self'seqnoMap, $self'wlMintAmountMap, $self'publicMintAmountMap, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'publicMintMaxAmount)~$CTonMint$_fun_mintToken($msg'whiteListMint'jettonWalletAddress, $msg'whiteListMint'receiver, $msg'whiteListMint'amount);
+    return (($self'wlMintTonPrice, $self'publicMintTonPrice, $self'owner, $self'wlSignKey, $self'seqnoMap, $self'wlMintAmountMap, $self'publicMintAmountMap, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'publicMintMaxAmount), ());
+}
+
+(((int, int, slice, int, cell, cell, cell, int, int, int, int, int, int, int)), ()) $CTonMint$_internal_binary_PublicMintMessage((int, int, slice, int, cell, cell, cell, int, int, int, int, int, int, int) $self, (int, slice, slice) $msg) impure inline {
+    var ($self'wlMintTonPrice, $self'publicMintTonPrice, $self'owner, $self'wlSignKey, $self'seqnoMap, $self'wlMintAmountMap, $self'publicMintAmountMap, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'publicMintMaxAmount) = $self;
+    var ($msg'amount, $msg'receiver, $msg'jettonWalletAddress) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    slice $sender = $ctx'sender;
+    throw_unless(47896, ($msg'amount >= $self'publicMintMinAmount));
+    throw_unless(42659, ($msg'amount <= $self'publicMintMaxAmount));
+    if (null?(__tact_dict_get_slice_int($self'publicMintAmountMap, 267, $sender, 257))) {
+        $self'publicMintAmountMap~__tact_dict_set_slice_int(267, $sender, $msg'amount, 257);
+    } else {
+        int $publicMintAmount = __tact_not_null(__tact_dict_get_slice_int($self'publicMintAmountMap, 267, $sender, 257));
+        int $totalPublicMintAmount = ($publicMintAmount + $msg'amount);
+        throw_unless(41419, ($totalPublicMintAmount <= $self'publicMintMaxAmount));
+        $self'publicMintAmountMap~__tact_dict_set_slice_int(267, $sender, $totalPublicMintAmount, 257);
+    }
+    $self'totalPublicMintAmount = ($self'totalPublicMintAmount + $msg'amount);
+    $self'totalMintAmount = ($self'totalMintAmount + $msg'amount);
+    int $value = ($self'wlMintTonPrice, $self'publicMintTonPrice, $self'owner, $self'wlSignKey, $self'seqnoMap, $self'wlMintAmountMap, $self'publicMintAmountMap, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'publicMintMaxAmount)~$CTonMint$_fun_msgValue($ctx'value);
+    int $totalTonAmount = ($self'publicMintTonPrice * $msg'amount);
+    throw_unless(16059, ($value >= $totalTonAmount));
+    return (($self'wlMintTonPrice, $self'publicMintTonPrice, $self'owner, $self'wlSignKey, $self'seqnoMap, $self'wlMintAmountMap, $self'publicMintAmountMap, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'publicMintMaxAmount), ());
+}
+
+(((int, int, slice, int, cell, cell, cell, int, int, int, int, int, int, int)), ()) $CTonMint$_internal_binary_TokenWithdraw((int, int, slice, int, cell, cell, cell, int, int, int, int, int, int, int) $self, (int, slice, slice) $msg) impure inline {
+    var ($self'wlMintTonPrice, $self'publicMintTonPrice, $self'owner, $self'wlSignKey, $self'seqnoMap, $self'wlMintAmountMap, $self'publicMintAmountMap, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'publicMintMaxAmount) = $self;
+    var ($msg'amount, $msg'jettonWalletAddress, $msg'receiver) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    throw_unless(14534, ( __tact_slice_eq_bits($self'owner, $ctx'sender) ));
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body($msg'jettonWalletAddress, 0, true, 64, $TokenTransfer$_store_cell($TokenTransfer$_constructor_query_id_amount_sender_response_destination_custom_payload_forward_ton_amount_forward_payload(0, $msg'amount, $msg'receiver, my_address(), null(), 0, $Cell$_fun_asSlice(end_cell(store_uint(store_uint(begin_cell(), 0, 1), 0, 32)))))));
+    return (($self'wlMintTonPrice, $self'publicMintTonPrice, $self'owner, $self'wlSignKey, $self'seqnoMap, $self'wlMintAmountMap, $self'publicMintAmountMap, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'publicMintMaxAmount), ());
+}
+
+((int, int, slice, int, cell, cell, cell, int, int, int, int, int, int, int), ()) $CTonMint$_internal_text_1a63ed6eba39c11ba2540547ceb5f79b6fe0ab29a1055bb0ed7d53e4ab5089ac((int, int, slice, int, cell, cell, cell, int, int, int, int, int, int, int) $self) impure inline {
+    var ($self'wlMintTonPrice, $self'publicMintTonPrice, $self'owner, $self'wlSignKey, $self'seqnoMap, $self'wlMintAmountMap, $self'publicMintAmountMap, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'publicMintMaxAmount) = $self;
+    throw_unless(59445, ( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) ));
+    $global_send($SendParameters$_constructor_to_value_bounce_mode($self'owner, (__tact_my_balance() - 100000000), false, 1));
+    return (($self'wlMintTonPrice, $self'publicMintTonPrice, $self'owner, $self'wlSignKey, $self'seqnoMap, $self'wlMintAmountMap, $self'publicMintAmountMap, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'publicMintMaxAmount), ());
+}
+
+(((int, int, slice, int, cell, cell, cell, int, int, int, int, int, int, int)), ()) $CTonMint$_internal_binary_Deploy((int, int, slice, int, cell, cell, cell, int, int, int, int, int, int, int) $self, (int) $deploy) impure inline {
+    var ($self'wlMintTonPrice, $self'publicMintTonPrice, $self'owner, $self'wlSignKey, $self'seqnoMap, $self'wlMintAmountMap, $self'publicMintAmountMap, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'publicMintMaxAmount) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'wlMintTonPrice, $self'publicMintTonPrice, $self'owner, $self'wlSignKey, $self'seqnoMap, $self'wlMintAmountMap, $self'publicMintAmountMap, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'publicMintMaxAmount)~$CTonMint$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'wlMintTonPrice, $self'publicMintTonPrice, $self'owner, $self'wlSignKey, $self'seqnoMap, $self'wlMintAmountMap, $self'publicMintAmountMap, $self'totalWlMintAmount, $self'totalPublicMintAmount, $self'totalMintAmount, $self'wlMintMinAmount, $self'wlMintMaxAmount, $self'publicMintMinAmount, $self'publicMintMaxAmount), ());
+}
+
+;;
+;; Get methods of a Contract CTonMint
+;;
+
+_ %mintInfo() method_id(76149) {
+    var self = $CTonMint$_contract_load();
+    var res = self~$CTonMint$_fun_mintInfo();
+    return $MintInfo$_to_external(res);
+}
+
+_ %whitelistAmountByAddress(slice $$userAddr) method_id(122548) {
+    slice $userAddr = __tact_verify_address($$userAddr);
+    var self = $CTonMint$_contract_load();
+    var res = self~$CTonMint$_fun_whitelistAmountByAddress($userAddr);
+    return res;
+}
+
+_ %publicAmountByAddress(slice $$userAddr) method_id(79014) {
+    slice $userAddr = __tact_verify_address($$userAddr);
+    var self = $CTonMint$_contract_load();
+    var res = self~$CTonMint$_fun_publicAmountByAddress($userAddr);
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmcxU7EqcA1eCrh4D6pxwmcyDfgEFut6pKS3PC5jjMXujv";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract CTonMint
+;;
+
+((int, int, slice, int, cell, cell, cell, int, int, int, int, int, int, int), int) $CTonMint$_contract_router_internal((int, int, slice, int, cell, cell, cell, int, int, int, int, int, int, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive UpdateWlSignKey message
+    if (op == 4064182300) {
+        var msg = in_msg~$UpdateWlSignKey$_load();
+        self~$CTonMint$_internal_binary_UpdateWlSignKey(msg);
+        return (self, true);
+    }
+    
+    ;; Receive WhiteListMintMessage message
+    if (op == 3514634201) {
+        var msg = in_msg~$WhiteListMintMessage$_load();
+        self~$CTonMint$_internal_binary_WhiteListMintMessage(msg);
+        return (self, true);
+    }
+    
+    ;; Receive PublicMintMessage message
+    if (op == 800409041) {
+        var msg = in_msg~$PublicMintMessage$_load();
+        self~$CTonMint$_internal_binary_PublicMintMessage(msg);
+        return (self, true);
+    }
+    
+    ;; Receive TokenWithdraw message
+    if (op == 3793692117) {
+        var msg = in_msg~$TokenWithdraw$_load();
+        self~$CTonMint$_internal_binary_TokenWithdraw(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$CTonMint$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "ClaimFee" message
+        if (text_op == 0x1a63ed6eba39c11ba2540547ceb5f79b6fe0ab29a1055bb0ed7d53e4ab5089ac) {
+            self~$CTonMint$_internal_text_1a63ed6eba39c11ba2540547ceb5f79b6fe0ab29a1055bb0ed7d53e4ab5089ac();
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $CTonMint$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$CTonMint$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $CTonMint$_contract_store(self);
+}

@@ -1,0 +1,51 @@
+$Saver$_internal_binary_Data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC7pDCj0M1msJ5gHYjW5sjFcHG6ygsiFK71YBM7EM8nGToh/output/sample_Saver.code.fc:37:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Saver$_internal_binary_Data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC7pDCj0M1msJ5gHYjW5sjFcHG6ygsiFK71YBM7EM8nGToh/output/sample_Saver.code.fc:37:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Saver$_internal_binary_Data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC7pDCj0M1msJ5gHYjW5sjFcHG6ygsiFK71YBM7EM8nGToh/output/sample_Saver.code.fc:37:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Saver$_fun_get_contract_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC7pDCj0M1msJ5gHYjW5sjFcHG6ygsiFK71YBM7EM8nGToh/output/sample_Saver.code.fc:25:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Saver$_fun_get_contract_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC7pDCj0M1msJ5gHYjW5sjFcHG6ygsiFK71YBM7EM8nGToh/output/sample_Saver.code.fc:25:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Saver$_fun_get_contract_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC7pDCj0M1msJ5gHYjW5sjFcHG6ygsiFK71YBM7EM8nGToh/output/sample_Saver.code.fc:25:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Saver$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC7pDCj0M1msJ5gHYjW5sjFcHG6ygsiFK71YBM7EM8nGToh/output/sample_Saver.code.fc:15:62: warning: Local variable '$self'master' is not used
+      var (($self'master, $self'owner, $self'key, $self'data)) = (null(), null(), null(), null());
+                                                               ^
+$Saver$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC7pDCj0M1msJ5gHYjW5sjFcHG6ygsiFK71YBM7EM8nGToh/output/sample_Saver.code.fc:15:62: warning: Local variable '$self'owner' is not used
+      var (($self'master, $self'owner, $self'key, $self'data)) = (null(), null(), null(), null());
+                                                               ^
+$Saver$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC7pDCj0M1msJ5gHYjW5sjFcHG6ygsiFK71YBM7EM8nGToh/output/sample_Saver.code.fc:15:62: warning: Local variable '$self'key' is not used
+      var (($self'master, $self'owner, $self'key, $self'data)) = (null(), null(), null(), null());
+                                                               ^
+$Saver$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC7pDCj0M1msJ5gHYjW5sjFcHG6ygsiFK71YBM7EM8nGToh/output/sample_Saver.code.fc:15:62: warning: Local variable '$self'data' is not used
+      var (($self'master, $self'owner, $self'key, $self'data)) = (null(), null(), null(), null());
+                                                               ^
+$Saver$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC7pDCj0M1msJ5gHYjW5sjFcHG6ygsiFK71YBM7EM8nGToh/output/sample_Saver.storage.fc:60:19: warning: Lack of end_parse.
+          return $sc~$Saver$_load();
+                    ^
+$Saver$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC7pDCj0M1msJ5gHYjW5sjFcHG6ygsiFK71YBM7EM8nGToh/output/sample_Saver.code.fc:69:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC7pDCj0M1msJ5gHYjW5sjFcHG6ygsiFK71YBM7EM8nGToh/output/sample_Saver.storage.fc:71:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

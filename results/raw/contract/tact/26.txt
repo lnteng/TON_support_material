@@ -1,0 +1,39 @@
+__tact_dict_set_int_cell: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBuDlonlNy0Mvu1oHscQ0FPOlN57bOmtJB1OyHeyp5YtMnY/output/sample_SampleTactContract.stdlib.fc:45:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+$SampleTactContract$_fun_add: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBuDlonlNy0Mvu1oHscQ0FPOlN57bOmtJB1OyHeyp5YtMnY/output/sample_SampleTactContract.code.fc:25:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$SampleTactContract$_fun_add: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBuDlonlNy0Mvu1oHscQ0FPOlN57bOmtJB1OyHeyp5YtMnY/output/sample_SampleTactContract.code.fc:25:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$SampleTactContract$_fun_add: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBuDlonlNy0Mvu1oHscQ0FPOlN57bOmtJB1OyHeyp5YtMnY/output/sample_SampleTactContract.code.fc:25:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$SampleTactContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBuDlonlNy0Mvu1oHscQ0FPOlN57bOmtJB1OyHeyp5YtMnY/output/sample_SampleTactContract.code.fc:15:73: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'counter, $self'userData, $self'userCount)) = (null(), null(), null(), null());
+                                                                          ^
+$SampleTactContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBuDlonlNy0Mvu1oHscQ0FPOlN57bOmtJB1OyHeyp5YtMnY/output/sample_SampleTactContract.code.fc:15:73: warning: Local variable '$self'counter' is not used
+      var (($self'owner, $self'counter, $self'userData, $self'userCount)) = (null(), null(), null(), null());
+                                                                          ^
+$SampleTactContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBuDlonlNy0Mvu1oHscQ0FPOlN57bOmtJB1OyHeyp5YtMnY/output/sample_SampleTactContract.code.fc:15:73: warning: Local variable '$self'userCount' is not used
+      var (($self'owner, $self'counter, $self'userData, $self'userCount)) = (null(), null(), null(), null());
+                                                                          ^
+$SampleTactContract$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBuDlonlNy0Mvu1oHscQ0FPOlN57bOmtJB1OyHeyp5YtMnY/output/sample_SampleTactContract.storage.fc:117:19: warning: Lack of end_parse.
+          return $sc~$SampleTactContract$_load();
+                    ^
+$SampleTactContract$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBuDlonlNy0Mvu1oHscQ0FPOlN57bOmtJB1OyHeyp5YtMnY/output/sample_SampleTactContract.code.fc:96:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBuDlonlNy0Mvu1oHscQ0FPOlN57bOmtJB1OyHeyp5YtMnY/output/sample_SampleTactContract.storage.fc:128:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

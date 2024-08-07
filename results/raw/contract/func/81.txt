@@ -1,0 +1,20 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAaUQM1PXKjs9n4_YSb3dc5o5vf7P2xa2wCpi-xuVrbPZRl/code.func:96:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAaUQM1PXKjs9n4_YSb3dc5o5vf7P2xa2wCpi-xuVrbPZRl/code.func:111:20: warning: Local variable 'query_id' is not used
+        int query_id = in_msg_body~load_uint(64);
+                     ^
+load_fees: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAaUQM1PXKjs9n4_YSb3dc5o5vf7P2xa2wCpi-xuVrbPZRl/code.func:25:9: warning: Lack of end_parse.
+        ds~load_msg_addr() ;; service fee
+          ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAaUQM1PXKjs9n4_YSb3dc5o5vf7P2xa2wCpi-xuVrbPZRl/code.func:15:9: warning: Lack of end_parse.
+        ds~load_ref() ;; fees_cell
+          ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAaUQM1PXKjs9n4_YSb3dc5o5vf7P2xa2wCpi-xuVrbPZRl/code.func:85:49: warning: UnHandle bounced message with op: 0x5fcc3d14
+    send_raw_message(nft_msg.end_cell(), 128 + 32);
+                                                  ^

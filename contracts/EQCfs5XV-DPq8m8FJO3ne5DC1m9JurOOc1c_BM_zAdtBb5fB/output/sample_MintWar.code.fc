@@ -1,0 +1,240 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_MintWar.headers.fc";
+#include "sample_MintWar.stdlib.fc";
+#include "sample_MintWar.native.fc";
+#include "sample_MintWar.storage.fc";
+
+;;
+;; Contract MintWar functions
+;;
+
+(slice, int, int, int, int, cell, cell) $MintWar$_contract_init(slice $admin, int $mintStartAt, int $mintEndAt) impure inline_ref {
+    var (($self'admin, $self'mintStartAt, $self'mintEndAt, $self'totalPoints, $self'totalFees, $self'pointsOf, $self'feesOf)) = (null(), null(), null(), null(), null(), null(), null());
+    $self'admin = $admin;
+    $self'totalPoints = 0;
+    $self'totalFees = 0;
+    $self'mintStartAt = $mintStartAt;
+    $self'mintEndAt = $mintEndAt;
+    return ($self'admin, $self'mintStartAt, $self'mintEndAt, $self'totalPoints, $self'totalFees, $self'pointsOf, $self'feesOf);
+}
+
+((slice, int, int, int, int, cell, cell), int) $MintWar$_fun_get_points_by_address((slice, int, int, int, int, cell, cell) $self, slice $address) impure inline_ref {
+    var (($self'admin, $self'mintStartAt, $self'mintEndAt, $self'totalPoints, $self'totalFees, $self'pointsOf, $self'feesOf)) = $self;
+    int $userPoints = __tact_dict_get_slice_uint($self'pointsOf, 267, $address, 256);
+    if (null?($userPoints)) {
+        return (($self'admin, $self'mintStartAt, $self'mintEndAt, $self'totalPoints, $self'totalFees, $self'pointsOf, $self'feesOf), 0);
+    } else {
+        return (($self'admin, $self'mintStartAt, $self'mintEndAt, $self'totalPoints, $self'totalFees, $self'pointsOf, $self'feesOf), __tact_not_null($userPoints));
+    }
+}
+
+((slice, int, int, int, int, cell, cell), int) $MintWar$_fun_get_shares_by_address((slice, int, int, int, int, cell, cell) $self, slice $address) impure inline_ref {
+    var (($self'admin, $self'mintStartAt, $self'mintEndAt, $self'totalPoints, $self'totalFees, $self'pointsOf, $self'feesOf)) = $self;
+    int $userPoints = __tact_dict_get_slice_uint($self'pointsOf, 267, $address, 256);
+    if (null?($userPoints)) {
+        return (($self'admin, $self'mintStartAt, $self'mintEndAt, $self'totalPoints, $self'totalFees, $self'pointsOf, $self'feesOf), 0);
+    } else {
+        return (($self'admin, $self'mintStartAt, $self'mintEndAt, $self'totalPoints, $self'totalFees, $self'pointsOf, $self'feesOf), ((__tact_not_null($userPoints) * 100000) / $self'totalPoints));
+    }
+}
+
+((slice, int, int, int, int, cell, cell), int) $MintWar$_fun_get_totalPoints((slice, int, int, int, int, cell, cell) $self) impure inline_ref {
+    var (($self'admin, $self'mintStartAt, $self'mintEndAt, $self'totalPoints, $self'totalFees, $self'pointsOf, $self'feesOf)) = $self;
+    return (($self'admin, $self'mintStartAt, $self'mintEndAt, $self'totalPoints, $self'totalFees, $self'pointsOf, $self'feesOf), $self'totalPoints);
+}
+
+((slice, int, int, int, int, cell, cell), cell) $MintWar$_fun_get_all_accounts((slice, int, int, int, int, cell, cell) $self) impure inline_ref {
+    var (($self'admin, $self'mintStartAt, $self'mintEndAt, $self'totalPoints, $self'totalFees, $self'pointsOf, $self'feesOf)) = $self;
+    return (($self'admin, $self'mintStartAt, $self'mintEndAt, $self'totalPoints, $self'totalFees, $self'pointsOf, $self'feesOf), $self'pointsOf);
+}
+
+((slice, int, int, int, int, cell, cell), (int, int, int, int)) $MintWar$_fun_get_account_state((slice, int, int, int, int, cell, cell) $self, slice $address) impure inline_ref {
+    var (($self'admin, $self'mintStartAt, $self'mintEndAt, $self'totalPoints, $self'totalFees, $self'pointsOf, $self'feesOf)) = $self;
+    int $userPoints = __tact_dict_get_slice_uint($self'pointsOf, 267, $address, 256);
+    if (null?($userPoints)) {
+        $userPoints = 0;
+    }
+    int $fees = __tact_dict_get_slice_uint($self'feesOf, 267, $address, 256);
+    if (null?($fees)) {
+        $fees = 0;
+    }
+    return (($self'admin, $self'mintStartAt, $self'mintEndAt, $self'totalPoints, $self'totalFees, $self'pointsOf, $self'feesOf), $AccountState$_constructor_points_fees_totalPoints_totalFees(__tact_not_null($userPoints), __tact_not_null($fees), $self'totalPoints, $self'totalFees));
+}
+
+;;
+;; Receivers of a Contract MintWar
+;;
+
+(((slice, int, int, int, int, cell, cell)), ()) %$MintWar$_internal_empty((slice, int, int, int, int, cell, cell) $self) impure inline {
+    var ($self'admin, $self'mintStartAt, $self'mintEndAt, $self'totalPoints, $self'totalFees, $self'pointsOf, $self'feesOf) = $self;
+    return (($self'admin, $self'mintStartAt, $self'mintEndAt, $self'totalPoints, $self'totalFees, $self'pointsOf, $self'feesOf), ());
+}
+
+((slice, int, int, int, int, cell, cell), ()) $MintWar$_internal_any((slice, int, int, int, int, cell, cell) $self, slice $msg) impure inline {
+    var ($self'admin, $self'mintStartAt, $self'mintEndAt, $self'totalPoints, $self'totalFees, $self'pointsOf, $self'feesOf) = $self;
+    return (($self'admin, $self'mintStartAt, $self'mintEndAt, $self'totalPoints, $self'totalFees, $self'pointsOf, $self'feesOf), ());
+}
+
+(((slice, int, int, int, int, cell, cell)), ()) $MintWar$_internal_binary_MintJetton((slice, int, int, int, int, cell, cell) $self, (int) $msg) impure inline {
+    var ($self'admin, $self'mintStartAt, $self'mintEndAt, $self'totalPoints, $self'totalFees, $self'pointsOf, $self'feesOf) = $self;
+    var ($msg'rate) = $msg;
+    throw_unless(40176, ( (($msg'rate > 0)) ? (($msg'rate <= 100000)) : (false) ));
+    throw_unless(55259, ($Context$_get_value(__tact_context_get()) >= 200000000));
+    throw_unless(6852, (now() >= $self'mintStartAt));
+    throw_unless(29082, (now() < $self'mintEndAt));
+    int $myfee = __tact_dict_get_slice_uint($self'feesOf, 267, __tact_context_get_sender(), 256);
+    if (null?($myfee)) {
+        $self'feesOf~__tact_dict_set_slice_uint(267, __tact_context_get_sender(), $Context$_get_value(__tact_context_get()), 256);
+    } else {
+        $self'feesOf~__tact_dict_set_slice_uint(267, __tact_context_get_sender(), ($Context$_get_value(__tact_context_get()) + __tact_not_null($myfee)), 256);
+    }
+    $self'totalFees = ($self'totalFees + $Context$_get_value(__tact_context_get()));
+    int $num = $global_random(0, 100000);
+    if (($num < $msg'rate)) {
+        int $point = (($Context$_get_value(__tact_context_get()) * 100000) / $msg'rate);
+        $self'totalPoints = ($self'totalPoints + $point);
+        int $userPoints = __tact_dict_get_slice_uint($self'pointsOf, 267, __tact_context_get_sender(), 256);
+        if (null?($userPoints)) {
+            $self'pointsOf~__tact_dict_set_slice_uint(267, __tact_context_get_sender(), $point, 256);
+        } else {
+            $self'pointsOf~__tact_dict_set_slice_uint(267, __tact_context_get_sender(), (__tact_not_null($userPoints) + $point), 256);
+        }
+        $global_emit($MintEvent$_store_cell($MintEvent$_constructor_sender_value_rate_points(__tact_context_get_sender(), $Context$_get_value(__tact_context_get()), $msg'rate, $point)));
+    } else {
+        $global_emit($MintEvent$_store_cell($MintEvent$_constructor_sender_value_rate_points(__tact_context_get_sender(), $Context$_get_value(__tact_context_get()), $msg'rate, 0)));
+    }
+    return (($self'admin, $self'mintStartAt, $self'mintEndAt, $self'totalPoints, $self'totalFees, $self'pointsOf, $self'feesOf), ());
+}
+
+((slice, int, int, int, int, cell, cell), ()) $MintWar$_internal_text_1a63ed6eba39c11ba2540547ceb5f79b6fe0ab29a1055bb0ed7d53e4ab5089ac((slice, int, int, int, int, cell, cell) $self) impure inline {
+    var ($self'admin, $self'mintStartAt, $self'mintEndAt, $self'totalPoints, $self'totalFees, $self'pointsOf, $self'feesOf) = $self;
+    throw_unless(59445, ( __tact_slice_eq_bits($self'admin, __tact_context_get_sender()) ));
+    $global_send($SendParameters$_constructor_to_value_bounce_mode($self'admin, (__tact_my_balance() - 100000000), false, 1));
+    return (($self'admin, $self'mintStartAt, $self'mintEndAt, $self'totalPoints, $self'totalFees, $self'pointsOf, $self'feesOf), ());
+}
+
+;;
+;; Get methods of a Contract MintWar
+;;
+
+_ %get_points_by_address(slice $$address) method_id(88159) {
+    slice $address = __tact_verify_address($$address);
+    var self = $MintWar$_contract_load();
+    var res = self~$MintWar$_fun_get_points_by_address($address);
+    return res;
+}
+
+_ %get_shares_by_address(slice $$address) method_id(107853) {
+    slice $address = __tact_verify_address($$address);
+    var self = $MintWar$_contract_load();
+    var res = self~$MintWar$_fun_get_shares_by_address($address);
+    return res;
+}
+
+_ %get_totalPoints() method_id(75046) {
+    var self = $MintWar$_contract_load();
+    var res = self~$MintWar$_fun_get_totalPoints();
+    return res;
+}
+
+_ %get_all_accounts() method_id(68880) {
+    var self = $MintWar$_contract_load();
+    var res = self~$MintWar$_fun_get_all_accounts();
+    return res;
+}
+
+_ %get_account_state(slice $$address) method_id(122798) {
+    slice $address = __tact_verify_address($$address);
+    var self = $MintWar$_contract_load();
+    var res = self~$MintWar$_fun_get_account_state($address);
+    return $AccountState$_to_external(res);
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmRtTfe44iSXJZeUc1pBYybNbxqFoQEppUbgVisKFJoDoc";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract MintWar
+;;
+
+((slice, int, int, int, int, cell, cell), int) $MintWar$_contract_router_internal((slice, int, int, int, int, cell, cell) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive empty message
+    if ((op == 0) & (slice_bits(in_msg) <= 32)) {
+        self~%$MintWar$_internal_empty();
+        return (self, true);
+    }
+    
+    ;; Receive MintJetton message
+    if (op == 710663172) {
+        var msg = in_msg~$MintJetton$_load();
+        self~$MintWar$_internal_binary_MintJetton(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "ClaimFee" message
+        if (text_op == 0x1a63ed6eba39c11ba2540547ceb5f79b6fe0ab29a1055bb0ed7d53e4ab5089ac) {
+            self~$MintWar$_internal_text_1a63ed6eba39c11ba2540547ceb5f79b6fe0ab29a1055bb0ed7d53e4ab5089ac();
+            return (self, true);
+        }
+    }
+    
+    ;; Receiver fallback
+    self~$MintWar$_internal_any(in_msg);
+    return (self, true);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $MintWar$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$MintWar$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $MintWar$_contract_store(self);
+}

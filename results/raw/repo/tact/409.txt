@@ -1,0 +1,65 @@
+$Task4$_internal_binary_NftWithdrawal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./2yong-k/tact-challenge/contracts/output/sample_Task4.code.fc:65:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Task4$_internal_binary_NftWithdrawal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./2yong-k/tact-challenge/contracts/output/sample_Task4.code.fc:65:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Task4$_internal_binary_NftWithdrawal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./2yong-k/tact-challenge/contracts/output/sample_Task4.code.fc:65:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Task4$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./2yong-k/tact-challenge/contracts/output/sample_Task4.storage.fc:142:19: warning: Lack of end_parse.
+          return $sc~$Task4$_load();
+                    ^
+$Task4$_internal_binary_OwnershipAssigned: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./2yong-k/tact-challenge/contracts/output/sample_Task4.code.fc:48:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Task4$_internal_binary_OwnershipAssigned: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./2yong-k/tact-challenge/contracts/output/sample_Task4.code.fc:48:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Task4$_internal_binary_OwnershipAssigned: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./2yong-k/tact-challenge/contracts/output/sample_Task4.code.fc:48:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Task4$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./2yong-k/tact-challenge/contracts/output/sample_Task4.code.fc:15:77: warning: Local variable '$self'seed' is not used
+      var (($self'seed, $self'nftLockTime, $self'nftAddress, $self'nftOwner)) = (null(), null(), null(), null());
+                                                                              ^
+$Task4$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./2yong-k/tact-challenge/contracts/output/sample_Task4.code.fc:15:77: warning: Local variable '$self'nftLockTime' is not used
+      var (($self'seed, $self'nftLockTime, $self'nftAddress, $self'nftOwner)) = (null(), null(), null(), null());
+                                                                              ^
+$Task4$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./2yong-k/tact-challenge/contracts/output/sample_Task4.code.fc:122:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./2yong-k/tact-challenge/contracts/output/sample_Task4.storage.fc:153:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task4$_contract_store & $Task4$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./2yong-k/tact-challenge/contracts/output/sample_Task4.storage.fc:138:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./2yong-k/tact-challenge/contracts/output/sample_Task4.storage.fc:153:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task4$_contract_store & $Task4$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./2yong-k/tact-challenge/contracts/output/sample_Task4.storage.fc:138:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./2yong-k/tact-challenge/contracts/output/sample_Task4.storage.fc:153:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task4$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./2yong-k/tact-challenge/contracts/output/sample_Task4.code.fc:69:315: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... rdAmount_forwardPayload($msg'queryId, $ctx'sender, my_address(), null(), 0, $global_emptySlice()))));
+  ...                                                                                                     ^
+$Task4$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./2yong-k/tact-challenge/contracts/output/sample_Task4.code.fc:57:317: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... mount_forwardPayload($msg'queryId, $tempNftOwner, $tempNftOwner, null(), 0, $global_emptySlice()))));
+  ...                                                                                                     ^

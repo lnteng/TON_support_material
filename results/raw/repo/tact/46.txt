@@ -1,0 +1,31 @@
+$TokenChild$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-unbounded-maps/output/sample_TokenChild.storage.fc:124:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$TokenChild$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-unbounded-maps/output/sample_TokenChild.code.fc:15:54: warning: Local variable '$self'parent' is not used
+      var (($self'parent, $self'owner, $self'balance)) = (null(), null(), null());
+                                                       ^
+$TokenChild$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-unbounded-maps/output/sample_TokenChild.code.fc:15:54: warning: Local variable '$self'owner' is not used
+      var (($self'parent, $self'owner, $self'balance)) = (null(), null(), null());
+                                                       ^
+$TokenChild$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-unbounded-maps/output/sample_TokenChild.code.fc:15:54: warning: Local variable '$self'balance' is not used
+      var (($self'parent, $self'owner, $self'balance)) = (null(), null(), null());
+                                                       ^
+$TokenChild$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-unbounded-maps/output/sample_TokenChild.storage.fc:104:19: warning: Lack of end_parse.
+          return $sc~$TokenChild$_load();
+                    ^
+$TokenChild$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-unbounded-maps/output/sample_TokenChild.code.fc:79:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-unbounded-maps/output/sample_TokenChild.storage.fc:115:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$TokenChild$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-unbounded-maps/output/sample_TokenChild.code.fc:38:269: warning: UnHandle bounced message with op: 0xf813c89b
+  ... dTokens$_constructor_amount_origin($msg'amount, $self'owner)), 30000000, 2, $init'code, $init'data));
+  ...                                                                                                     ^

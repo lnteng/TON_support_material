@@ -1,0 +1,15 @@
+$Company$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_Company.code.fc:14:27: warning: Local variable '$self'balance' is not used
+      var (($self'balance)) = (null());
+                            ^
+$Company$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_Company.storage.fc:86:19: warning: Lack of end_parse.
+          return $sc~$Company$_load();
+                    ^
+$Company$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_Company.code.fc:66:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_Company.storage.fc:95:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

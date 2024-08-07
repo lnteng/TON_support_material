@@ -1,0 +1,132 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "verifier_TokenParent.headers.fc";
+#include "verifier_TokenParent.stdlib.fc";
+#include "verifier_TokenParent.storage.fc";
+
+;;
+;; Contract TokenParent functions
+;;
+
+((slice, slice, int), ()) $TokenParent$_fun_mint((slice, slice, int) $self, int $amount, slice $to) impure inline_ref {
+    var (($self'name, $self'symbol, $self'totalSupply)) = $self;
+    var ($init'code, $init'data) = $TokenChild$_init_child(__tact_context_sys, my_address(), $to);
+    $global_send($SendParameters$_constructor_to_body_value_mode_code_data($global_contractAddress(($init'code, $init'data)), $InternalAddTokens$_store_cell($InternalAddTokens$_constructor_amount_origin($amount, my_address())), 30000000, 2, $init'code, $init'data));    ;; DEFECT: UnHandleBouncedMessage
+    return (($self'name, $self'symbol, $self'totalSupply), ());
+}
+
+(slice, slice, int) $TokenParent$_contract_init(slice $_name, slice $_symbol, int $_decimals, int $_totalSupply) impure inline_ref {
+    var (($self'name, $self'symbol, $self'totalSupply)) = (null(), null(), null());
+    $self'name = $_name;
+    $self'symbol = $_symbol;
+    $self'totalSupply = ($_totalSupply * 1000000000);
+    ($self'name, $self'symbol, $self'totalSupply)~$TokenParent$_fun_mint($self'totalSupply, __tact_context_get_sender());
+    return ($self'name, $self'symbol, $self'totalSupply);
+}
+
+((slice, slice, int), (slice, slice, int)) $TokenParent$_fun_metadata((slice, slice, int) $self) impure inline_ref {
+    var (($self'name, $self'symbol, $self'totalSupply)) = $self;
+    return (($self'name, $self'symbol, $self'totalSupply), $Metadata$_constructor_name_symbol_totalSupply($self'name, $self'symbol, $self'totalSupply));
+}
+
+((slice, slice, int), slice) $TokenParent$_fun_childAddress((slice, slice, int) $self, slice $owner) impure inline_ref {
+    var (($self'name, $self'symbol, $self'totalSupply)) = $self;
+    return (($self'name, $self'symbol, $self'totalSupply), $global_contractAddress($TokenChild$_init_child(__tact_context_sys, my_address(), $owner)));
+}
+
+;;
+;; Receivers of a Contract TokenParent
+;;
+
+(((slice, slice, int)), ()) $TokenParent$_internal_binary_Deploy((slice, slice, int) $self, (int) $deploy) impure inline {
+    var ($self'name, $self'symbol, $self'totalSupply) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'name, $self'symbol, $self'totalSupply)~$TokenParent$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'name, $self'symbol, $self'totalSupply), ());
+}
+
+;;
+;; Get methods of a Contract TokenParent
+;;
+
+_ %metadata() method_id(91827) {
+    var self = $TokenParent$_contract_load();
+    var res = self~$TokenParent$_fun_metadata();
+    return $Metadata$_to_external(res);
+}
+
+_ %childAddress(slice $$owner) method_id(80689) {
+    slice $owner = __tact_verify_address($$owner);
+    var self = $TokenParent$_contract_load();
+    var res = self~$TokenParent$_fun_childAddress($owner);
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmNfAVM1FgpRcffnW5S4R1YHtkRmX5gHfzPdwXp2pdNexR";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);    ;; DEFECT: InconsistentData
+}
+
+;;
+;; Routing of a Contract TokenParent
+;;
+
+((slice, slice, int), int) $TokenParent$_contract_router_internal((slice, slice, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$TokenParent$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $TokenParent$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$TokenParent$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $TokenParent$_contract_store(self);
+}

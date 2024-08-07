@@ -1,0 +1,12 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TonContest-FunC/func-contest1/2.fc:29:28: warning: Lack of end_parse.
+    slice sender_address = cs~load_msg_addr();
+                             ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TonContest-FunC/func-contest1/2.fc:27:13: warning: Local variable 'flags' is not used
+    int flags = cs~load_uint(4);  ;; int_msg_info$0 ihr_disabled:Bool bounce:Bool bounced:Bool
+              ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TonContest-FunC/func-contest1/2.fc:21:12: warning: Lack of end_parse.
+    return ds~load_msg_addr();
+             ^

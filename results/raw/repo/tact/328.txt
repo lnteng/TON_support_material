@@ -1,0 +1,27 @@
+$Crowdfunding$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_CrowdfundingFactory.storage.fc:124:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$CrowdfundingFactory$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_CrowdfundingFactory.storage.fc:159:19: warning: Lack of end_parse.
+          return $sc~$CrowdfundingFactory$_load();
+                    ^
+$CrowdfundingFactory$_internal_binary_CrowdfundingParams: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_CrowdfundingFactory.code.fc:35:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$CrowdfundingFactory$_internal_binary_CrowdfundingParams: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_CrowdfundingFactory.code.fc:35:59: warning: Local variable '$ctx'sender' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$CrowdfundingFactory$_internal_binary_CrowdfundingParams: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_CrowdfundingFactory.code.fc:35:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$CrowdfundingFactory$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_CrowdfundingFactory.code.fc:84:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_CrowdfundingFactory.storage.fc:168:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

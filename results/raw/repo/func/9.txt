@@ -1,0 +1,32 @@
+init_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/nft-sdk/src/wrappers/getgems/NftRaffle/nft-raffle/struct/storage.func:50:34: warning: Lack of end_parse.
+      db::raffled_nfts = dict_slice~load_dict();
+                                   ^
+init_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/nft-sdk/src/wrappers/getgems/NftRaffle/nft-raffle/struct/storage.func:46:51: warning: Lack of end_parse.
+      db::nft_transfer_fee        = commission_slice~load_coins();
+                                                    ^
+init_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/nft-sdk/src/wrappers/getgems/NftRaffle/nft-raffle/struct/storage.func:39:33: warning: Lack of end_parse.
+      db::super_user  = addr_slice~load_msg_addr();
+                                  ^
+init_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/nft-sdk/src/wrappers/getgems/NftRaffle/nft-raffle/struct/storage.func:48:26: warning: Lack of end_parse.
+      slice dict_slice = ds~load_ref().begin_parse();  
+                           ^
+init_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/nft-sdk/src/wrappers/getgems/NftRaffle/nft-raffle/struct/storage.func:34:46: warning: Lack of end_parse.
+      db::left_nfts_received      = state_slice~load_uint(4);
+                                               ^
+utils::raffle_nfts: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/nft-sdk/src/wrappers/getgems/NftRaffle/nft-raffle/struct/utils.func:74:38: warning: Local variable 'data' is not used
+          (key, slice data, int found) = nfts.udict_get_next?(256, key);
+                                       ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/nft-sdk/src/wrappers/getgems/NftRaffle/nft-raffle/main.func:23:27: warning: Lack of end_parse.
+      slice sender_addr = cs~load_msg_addr();
+                            ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/nft-sdk/src/wrappers/getgems/NftRaffle/nft-raffle/struct/utils.func:22:43: warning: UnHandle bounced message with op: 0x5fcc3d14
+      send_raw_message(msg.end_cell(), mode);
+                                            ^

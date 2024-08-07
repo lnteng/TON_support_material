@@ -1,0 +1,95 @@
+#include "imports/stdlib.fc";
+
+int cell_null?(cell c) asm "ISNULL";
+
+cell get_storage() {
+    slice cs = get_data().begin_parse();
+    ;; Load the main storage
+    return cs~load_ref();
+}
+
+cell wrap_storage(int version_id, cell storage) {
+    ;; Add versioning data
+    return begin_cell()
+        .store_ref(storage)
+        .store_int(version_id, 32)
+    .end_cell();
+}
+
+;; Return the current version of the smart contract
+int version() method_id {
+    slice cs = get_data().begin_parse();
+    ;; Load the version
+    return cs~load_int(32);
+}
+
+;; <<<<< Custom version-specific code begins
+;; This section will be fully substituted for each version.
+;; Refer to the "3-example" directory for more version examples.
+
+;; from counter-v0.fc
+cell process_message(cell storage, int msg_value, int balance, cell in_msg_full, slice in_msg_body) impure {
+    slice cs = storage.begin_parse();
+    ;; Load the current amount
+    int current_amount = cs.preload_uint(32);
+    ;; Increment the amount
+    return begin_cell().store_uint(current_amount + 1, 32).end_cell();
+}
+
+cell migrate_one(cell old_storage) {
+    ;; Placeholder migration function
+    return old_storage;
+}
+;; Custom version-specific code ends >>>>>
+
+() recv_internal(int msg_value, int balance, cell in_msg_full, slice in_msg_body) impure {
+    ;; Skip the expected version
+    in_msg_body~skip_bits(32);
+    
+    ;; Skip the expected code
+    in_msg_body~load_maybe_ref();
+    
+    ;; Skip migrations
+    in_msg_body~load_dict();
+    
+    ;; Load the payload
+    cell payload = in_msg_body~load_ref();
+
+    ;; Check if it's the first call
+    if (version() == 0) {
+        ;; Set the version to 1
+        set_data(wrap_storage(1, process_message(get_storage(), msg_value, balance, in_msg_full, payload.begin_parse())));
+        
+    }
+
+    ;; Get the storage
+    cell storage = get_storage();
+
+    ;; Extract data from storage
+    slice ds = storage.begin_parse();
+    cell main_storage = ds~load_ref();
+    int version_id = ds~load_int(32);
+
+    ;; Check if an update is necessary
+    if (version_id < expected_version) {
+        throw(400); ;; Missing link in the migration chain
+    }
+
+    ;; Perform migrations
+    while (version_id > expected_version) {
+        cell migration_code = ds~load_maybe_ref();
+        if (cell_null?(migration_code) == -1) {
+            main_storage = migrate_one(main_storage);
+            version_id -= 1;
+            set_data(wrap_storage(version_id, main_storage));
+        } else {
+            throw(400); ;; Missing migration code
+        }
+    }
+
+    ;; Execute process_message
+    main_storage = process_message(main_storage, msg_value, balance, in_msg_full, payload.begin_parse());
+
+    ;; Update storage
+    set_data(wrap_storage(version_id, main_storage));
+}

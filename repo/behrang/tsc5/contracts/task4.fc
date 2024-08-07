@@ -1,0 +1,241 @@
+#include "imports/stdlib.fc";
+
+global tuple visited;
+global [ int, int, tuple ] queue;
+global [ int, int, tuple ] squeue;
+global [ int, int, tuple ] xqueue;
+global int er;
+global int ec;
+global int result_breaks;
+global int result_prob;
+global int result_dist;
+global tuple result_maze;
+
+forall X -> X tget(tuple t, int k) asm "INDEXVARQ";
+forall X -> tuple tset(tuple t, int k, X x) asm(t x k) "SETINDEXVARQ";
+
+tuple init_visited(int x) asm
+    """
+    15 0 BLKPUSH // x ... x
+    15 0 BLKPUSH // x ... x
+    31 PUSHINT // x ... x n=31
+    TUPLEVAR // t
+    15 0 BLKPUSH // t ... t
+    15 0 BLKPUSH // t ... t
+    31 PUSHINT // t ... t n=31
+    TUPLEVAR // t'
+    """;
+
+([ int, int, tuple ], ()) queue_push([ int, int, tuple ] q, [ int, int, int, int, int, tuple ] e) inline {
+    if q.null?() {
+        return ( [ 0, 1, empty_tuple().tset(0, empty_tuple().tset(0, e)) ], () );
+    }
+    ( int head, int tail, tuple storage ) = untriple(q);
+    ( int x, int y ) = divmod(tail, 28);
+    storage = storage.tset(x, storage.tget(x).tset(y, e) );
+    return ( [ head, tail + 1, storage ], () );
+}
+
+([ int, int, tuple ], [ int, int, int, int, int, tuple ]) queue_next([ int, int, tuple ] q) inline {
+    ( int head, int tail, tuple storage ) = untriple(q);
+    ( int x, int y ) = divmod(head, 28);
+    var e = storage.tget(x).tget(y);
+    head += 1;
+    if head == tail {
+        return ( null(), e );
+    } else {
+        return ( [ head, tail, storage ], e );
+    }
+}
+
+int is_solved?(int sr, int sc) inline {
+    if sc < ec - 1 {
+        return false;
+    } elseif sc > ec + 1 {
+        return false;
+    } elseif sr < er - 1 {
+        return false;
+    } elseif sr > er + 1 {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+() choose_best(int tb, int tp, int td, tuple tm) impure inline {
+    ifnot td {
+    } elseifnot result_dist {
+        result_breaks = tb;
+        result_prob = tp;
+        result_dist = td;
+        result_maze = tm;
+    } elseif tb < result_breaks {
+        result_breaks = tb;
+        result_prob = tp;
+        result_dist = td;
+        result_maze = tm;
+    } elseif tb > result_breaks {
+    } elseif tp < result_prob {
+        result_breaks = tb;
+        result_prob = tp;
+        result_dist = td;
+        result_maze = tm;
+    } elseif tp > result_prob {
+    } elseif td < result_dist {
+        result_breaks = tb;
+        result_prob = tp;
+        result_dist = td;
+        result_maze = tm;
+    }
+}
+
+int append?(int pr, int pc, int breaks, int prob, int dist) impure inline {
+    int new_v = dist + (prob << 16) + (breaks << 32);
+    tuple row = visited.at(pr);
+    int v = row.at(pc);
+    if new_v < v {
+        visited = visited.tset(pr, row.tset(pc, new_v));
+        return true;
+    }
+    return false;
+}
+
+() add_to_queue(int sr, int sc, int breaks, int prob, int dist, tuple maze) impure inline {
+    int item = maze.at(sr).at(sc);
+    if item == "?"u {
+        prob += 1;
+    } elseif item == "X"u {
+        breaks += 1;
+    }
+    if append?(sr, sc, breaks, prob, dist) {
+        tuple new_maze = maze.tset(sr, maze.at(sr).tset(sc, "!"u));
+        if item == "."u {
+            queue~queue_push([sr, sc, breaks, prob, dist, new_maze]);
+        } elseif item == "?"u {
+            squeue~queue_push([sr, sc, breaks, prob, dist, new_maze]);
+        } else {
+            xqueue~queue_push([sr, sc, breaks, prob, dist, new_maze]);
+        }
+    }
+}
+
+(int, int) find_start_and_end(int n, int m, tuple maze) impure inline {
+    int sr = null();
+    int sc = null();
+    int i = 0;
+    repeat n {
+        tuple row = maze.at(i);
+        int j = 0;
+        repeat m {
+            int item = row.at(j);
+            if item == "S"u {
+                ifnot er.null?() {
+                    return ( i, j );
+                }
+                sr = i;
+                sc = j;
+            }
+            if item == "E"u {
+                er = i;
+                ec = j;
+                ifnot sr.null?() {
+                    return ( sr, sc );
+                }
+            }
+            j += 1;
+        }
+        i += 1;
+    }
+    return ( sr, sc );
+}
+
+(int, int, int, tuple) solve(int n, int m, tuple maze) method_id {
+    set_gas_limit(100000000);
+
+    visited = init_visited(0xffffffffffff);
+    result_breaks = 0;
+    result_prob = 0;
+    result_dist = 0;
+
+    ( int sr, int sc ) = find_start_and_end(n, m, maze);
+    queue~queue_push([sr, sc, 0, 0, 0, maze]);
+    append?(sr, sc, 0, 0, 0);
+
+    int done? = false;
+    do {
+        ifnot queue.null?() {
+            [ sr, sc, int breaks, int prob, int dist, maze ] = queue~queue_next();
+            dist += 1;
+
+            if is_solved?(sr, sc) {
+                choose_best(breaks, prob, dist, maze);
+                queue = null();
+            } else {
+                ;; append neighbors
+
+                int tr = sr - 1;
+                int tc = sc - 1;
+                if (tr >= 0) & (tc >= 0) {
+                    add_to_queue(tr, tc, breaks, prob, dist, maze); ;; TL
+                }
+
+                tc = sc + 1;
+                if (tr >= 0) & (tc < m) {
+                    add_to_queue(tr, tc, breaks, prob, dist, maze); ;; TR
+                }
+
+                tr = sr + 1;
+                if (tr < n) & (tc < m) {
+                    add_to_queue(tr, tc, breaks, prob, dist, maze); ;; BR
+                }
+
+                tc = sc - 1;
+                if (tr < n) & (tc >= 0) {
+                    add_to_queue(tr, tc, breaks, prob, dist, maze); ;; BL
+                }
+
+                tc = sc;
+                if tr < n {
+                    add_to_queue(tr, tc, breaks, prob, dist, maze); ;; B
+                }
+
+                tr = sr - 1;
+                if tr >= 0 {
+                    add_to_queue(tr, tc, breaks, prob, dist, maze); ;; T
+                }
+
+                tr = sr;
+                tc = sc - 1;
+                if tc >= 0 {
+                    add_to_queue(tr, tc, breaks, prob, dist, maze); ;; L
+                }
+
+                tc = sc + 1;
+                if tc < m {
+                    add_to_queue(tr, tc, breaks, prob, dist, maze); ;; R
+                }
+            }
+        } elseifnot squeue.null?() {
+            [ int tsr, int tsc, int tb, int tp, int td, tuple tz ] = squeue~queue_next();
+            if result_dist & (result_prob < tp) {
+                squeue = null();
+            } else {
+                queue~queue_push([ tsr, tsc, tb, tp, td, tz ]);
+            }
+        } elseifnot xqueue.null?() {
+            [ int tsr, int tsc, int tb, int tp, int td, tuple tz ] = xqueue~queue_next();
+            if result_dist & (result_breaks < tb) {
+                xqueue = null();
+            } else {
+                queue~queue_push([ tsr, tsc, tb, tp, td, tz ]);
+            }
+        } else {
+            done? = true;
+        }
+    } until done?;
+
+    return ( result_breaks, result_prob, result_dist, result_maze );
+}
+
+() recv_internal(int my_balance, int msg_value, cell in_msg_full, slice in_msg_body) impure {
+}

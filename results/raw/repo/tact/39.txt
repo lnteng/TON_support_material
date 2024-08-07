@@ -1,0 +1,19 @@
+$Counter$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/05-the-ownable-transferable-trait/output/sample_Counter.storage.fc:111:19: warning: Lack of end_parse.
+          return $sc~$Counter$_load();
+                    ^
+$Counter$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/05-the-ownable-transferable-trait/output/sample_Counter.code.fc:14:36: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'val)) = (null(), null());
+                                     ^
+$Counter$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/05-the-ownable-transferable-trait/output/sample_Counter.code.fc:14:36: warning: Local variable '$self'val' is not used
+      var (($self'owner, $self'val)) = (null(), null());
+                                     ^
+$Counter$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/05-the-ownable-transferable-trait/output/sample_Counter.code.fc:101:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/05-the-ownable-transferable-trait/output/sample_Counter.storage.fc:120:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

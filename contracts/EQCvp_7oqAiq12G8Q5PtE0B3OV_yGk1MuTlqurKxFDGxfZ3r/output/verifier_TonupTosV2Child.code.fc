@@ -1,0 +1,208 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "verifier_TonupTosV2Child.headers.fc";
+#include "verifier_TonupTosV2Child.stdlib.fc";
+#include "verifier_TonupTosV2Child.native.fc";
+#include "verifier_TonupTosV2Child.storage.fc";
+
+;;
+;; Contract TonupTosV2Child functions
+;;
+
+(slice, slice, slice, int) $TonupTosV2Child$_contract_init(slice $master, slice $owner) impure inline_ref {
+    var (($self'owner, $self'master, $self'referrer, $self'consent_time)) = (null(), null(), null(), 0);
+    $self'owner = $owner;
+    $self'master = $master;
+    $self'referrer = __tact_create_address(0, 0);
+    return ($self'owner, $self'master, $self'referrer, $self'consent_time);
+}
+
+() $Cell$_fun_reply_value(cell $self, int $value) impure inline {
+    var ($self) = $self;
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body(__tact_context_get_sender(), $value, false, 2, $self));
+}
+
+((slice, slice, slice, int), int) $TonupTosV2Child$_fun_msg_value((slice, slice, slice, int) $self, int $value) impure inline_ref {
+    var (($self'owner, $self'master, $self'referrer, $self'consent_time)) = $self;
+    int $msg_value = $value;
+    int $ton_balance_before_msg = (__tact_my_balance() - $msg_value);
+    int $storage_fee = (20000000 - min($ton_balance_before_msg, 20000000));
+    $msg_value = ($msg_value - ($storage_fee + 15000000));
+    return (($self'owner, $self'master, $self'referrer, $self'consent_time), $msg_value);
+}
+
+((slice, slice, slice, int), int) $TonupTosV2Child$_fun_hasAccepted((slice, slice, slice, int) $self) impure inline_ref {
+    var (($self'owner, $self'master, $self'referrer, $self'consent_time)) = $self;
+    return (($self'owner, $self'master, $self'referrer, $self'consent_time), ($self'consent_time > 0));
+}
+
+((slice, slice, slice, int), int) $TonupTosV2Child$_fun_consentTime((slice, slice, slice, int) $self) impure inline_ref {
+    var (($self'owner, $self'master, $self'referrer, $self'consent_time)) = $self;
+    return (($self'owner, $self'master, $self'referrer, $self'consent_time), $self'consent_time);
+}
+
+((slice, slice, slice, int), slice) $TonupTosV2Child$_fun_referrer((slice, slice, slice, int) $self) impure inline_ref {
+    var (($self'owner, $self'master, $self'referrer, $self'consent_time)) = $self;
+    return (($self'owner, $self'master, $self'referrer, $self'consent_time), $self'referrer);
+}
+
+((slice, slice, slice, int), int) $TonupTosV2Child$_fun_balance((slice, slice, slice, int) $self) impure inline_ref {
+    var (($self'owner, $self'master, $self'referrer, $self'consent_time)) = $self;
+    return (($self'owner, $self'master, $self'referrer, $self'consent_time), __tact_my_balance());
+}
+
+;;
+;; Receivers of a Contract TonupTosV2Child
+;;
+
+((slice, slice, slice, int), ()) $TonupTosV2Child$_internal_text_0a0833328ac509815f762666d0411c0bfd422f48e0d183444ad2902009e6fc53((slice, slice, slice, int) $self) impure inline {
+    var ($self'owner, $self'master, $self'referrer, $self'consent_time) = $self;
+    return (($self'owner, $self'master, $self'referrer, $self'consent_time), ());
+}
+
+(((slice, slice, slice, int)), ()) $TonupTosV2Child$_internal_binary_GiveConsent((slice, slice, slice, int) $self, (slice, slice) $msg) impure inline {
+    var ($self'owner, $self'master, $self'referrer, $self'consent_time) = $self;
+    var ($msg'addr, $msg'referrer) = $msg;
+    throw_unless(49729, ( __tact_slice_eq_bits($self'master, __tact_context_get_sender()) ));
+    throw_unless(19149, ( __tact_slice_eq_bits($self'owner, $msg'addr) ));
+    throw_unless(28512, ($self'consent_time == 0));
+    $self'consent_time = now();
+    $self'referrer = $msg'referrer;
+    int $msg_value = ($self'owner, $self'master, $self'referrer, $self'consent_time)~$TonupTosV2Child$_fun_msg_value($Context$_get_value(__tact_context_get()));
+    $Cell$_fun_reply_value($ConsentReply$_store_cell($ConsentReply$_constructor_addr_accepted($msg'addr, true)), $msg_value);
+    return (($self'owner, $self'master, $self'referrer, $self'consent_time), ());
+}
+
+((slice, slice, slice, int), ()) $TonupTosV2Child$_internal_text_e3314801af712f44e3290bee585e5a383351aca88db14feaddcf41fc91a6abbb((slice, slice, slice, int) $self) impure inline {
+    var ($self'owner, $self'master, $self'referrer, $self'consent_time) = $self;
+    if (($self'consent_time > 0)) {
+        var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+        int $fwd_fee = ($Context$_fun_readForwardFee(($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw)) + $Context$_fun_readForwardFee(($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw)));
+        int $final = (((2 * 15000000) + 20000000) + $fwd_fee);
+        throw_unless(4159, ($ctx'value > min($final, 20000000)));
+        int $msg_value = ($self'owner, $self'master, $self'referrer, $self'consent_time)~$TonupTosV2Child$_fun_msg_value($Context$_get_value(__tact_context_get()));
+        $Cell$_fun_reply_value($ConsentReply$_store_cell($ConsentReply$_constructor_addr_accepted($self'owner, true)), $msg_value);
+    }
+    return (($self'owner, $self'master, $self'referrer, $self'consent_time), ());
+}
+
+;;
+;; Get methods of a Contract TonupTosV2Child
+;;
+
+_ %msg_value(int $$value) method_id(72550) {
+    int $value = $$value;
+    var self = $TonupTosV2Child$_contract_load();
+    var res = self~$TonupTosV2Child$_fun_msg_value($value);
+    return res;
+}
+
+_ %hasAccepted() method_id(65860) {
+    var self = $TonupTosV2Child$_contract_load();
+    var res = self~$TonupTosV2Child$_fun_hasAccepted();
+    return res;
+}
+
+_ %consentTime() method_id(66075) {
+    var self = $TonupTosV2Child$_contract_load();
+    var res = self~$TonupTosV2Child$_fun_consentTime();
+    return res;
+}
+
+_ %referrer() method_id(110106) {
+    var self = $TonupTosV2Child$_contract_load();
+    var res = self~$TonupTosV2Child$_fun_referrer();
+    return res;
+}
+
+_ %balance() method_id(104128) {
+    var self = $TonupTosV2Child$_contract_load();
+    var res = self~$TonupTosV2Child$_fun_balance();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmSw3EE9s5GHWG4PRxNWGgf248NYKh1CkUipmnh8tmtioy";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract TonupTosV2Child
+;;
+
+((slice, slice, slice, int), int) $TonupTosV2Child$_contract_router_internal((slice, slice, slice, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive GiveConsent message
+    if (op == 2889876297) {
+        var msg = in_msg~$GiveConsent$_load();
+        self~$TonupTosV2Child$_internal_binary_GiveConsent(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "fund gas" message
+        if (text_op == 0x0a0833328ac509815f762666d0411c0bfd422f48e0d183444ad2902009e6fc53) {
+            self~$TonupTosV2Child$_internal_text_0a0833328ac509815f762666d0411c0bfd422f48e0d183444ad2902009e6fc53();
+            return (self, true);
+        }
+        
+        ;; Receive "read" message
+        if (text_op == 0xe3314801af712f44e3290bee585e5a383351aca88db14feaddcf41fc91a6abbb) {
+            self~$TonupTosV2Child$_internal_text_e3314801af712f44e3290bee585e5a383351aca88db14feaddcf41fc91a6abbb();
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $TonupTosV2Child$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$TonupTosV2Child$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $TonupTosV2Child$_contract_store(self);
+}

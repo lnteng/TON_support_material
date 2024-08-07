@@ -1,0 +1,27 @@
+$Event$_internal_binary_SetEventId: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/event_Event.code.fc:84:63: warning: Local variable '$self'eventId' is not used
+      ($self'owner, $self'universalRouterAddress, $self'eventId)~$Event$_fun_requireOwner();
+                                                                ^
+$Event$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/event_Event.code.fc:14:70: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'universalRouterAddress, $self'eventId)) = (null(), null(), null());
+                                                                       ^
+$Event$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/event_Event.code.fc:14:70: warning: Local variable '$self'universalRouterAddress' is not used
+      var (($self'owner, $self'universalRouterAddress, $self'eventId)) = (null(), null(), null());
+                                                                       ^
+$Event$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/event_Event.code.fc:14:70: warning: Local variable '$self'eventId' is not used
+      var (($self'owner, $self'universalRouterAddress, $self'eventId)) = (null(), null(), null());
+                                                                       ^
+$Event$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/event_Event.storage.fc:185:19: warning: Lack of end_parse.
+          return $sc~$Event$_load();
+                    ^
+$Event$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/event_Event.code.fc:126:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/event_Event.storage.fc:196:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

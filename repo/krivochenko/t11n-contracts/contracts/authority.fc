@@ -1,0 +1,178 @@
+#include "imports/stdlib.fc";
+#include "imports/op-codes.fc";
+#include "imports/helpers.fc";
+#include "imports/state-init.fc";
+
+global slice storage::owner_address;
+global slice storage::mapmaker_address;
+global int storage::item_price;
+global cell storage::collection_code;
+global cell storage::item_code;
+global cell storage::candidate_version;
+global cell storage::latest_version;
+
+() load_data() impure {
+    slice ds = get_data().begin_parse();
+
+    storage::owner_address = ds~load_msg_addr();
+    storage::mapmaker_address = ds~load_msg_addr();
+    storage::item_price = ds~load_coins();
+    storage::collection_code = ds~load_ref();
+    storage::item_code = ds~load_ref();
+
+    if (ds.slice_refs() > 0) {
+        storage::candidate_version = ds~load_ref();
+    } else {
+        storage::candidate_version = null();
+    }
+    if (ds.slice_refs() > 0) {
+        storage::latest_version = ds~load_ref();
+    } else {
+        storage::latest_version = null();
+    }
+}
+
+() save_data() impure {
+    builder b = begin_cell()
+            .store_slice(storage::owner_address)
+            .store_slice(storage::mapmaker_address)
+            .store_coins(storage::item_price)
+            .store_ref(storage::collection_code)
+            .store_ref(storage::item_code);
+    if (~ null?(storage::candidate_version)) {
+        b = b.store_ref(storage::candidate_version);
+    }
+    if (~ null?(storage::latest_version)) {
+        b = b.store_ref(storage::latest_version);
+    }
+    set_data(b.end_cell());
+}
+
+() recv_internal(int my_balance, int msg_value, cell in_msg_full, slice in_msg_body) impure {
+    if (in_msg_body.slice_empty?()) {
+        return ();
+    }
+    slice cs = in_msg_full.begin_parse();
+    int flags = cs~load_uint(4);
+    if (flags & 1) {
+        return ();
+    }
+    slice sender_address = cs~load_msg_addr();
+    cs~load_msg_addr();
+    int coins = cs~load_coins();
+
+    int op = in_msg_body~load_uint(32);
+    int query_id = in_msg_body~load_uint(64);
+
+    load_data();
+
+    if (op == op::deploy_version()) {
+        throw_unless(401, equal_slices(storage::mapmaker_address, sender_address));
+
+        cell collection_content = in_msg_body~load_ref();
+        cell map = in_msg_body~load_ref();
+
+        cell collection_state_init = get_collection_state_init(storage::collection_code, my_address(), collection_content, map, storage::item_code);
+        cell msg_body = begin_cell().store_uint(op::deploy_version(), 32).store_uint(query_id, 64).store_ref(collection_content).end_cell();
+        slice collection_address = send_deploy_message(collection_state_init, 0, msg_body, 64);
+
+        storage::candidate_version = begin_cell().store_slice(collection_address).store_uint(get_dict_size(map, 10), 10).end_cell();
+
+        save_data();
+        return ();
+    }
+    if (op == op::release_version()) {
+        throw_if(400, null?(storage::candidate_version));
+
+        slice candidate_version_slice = storage::candidate_version.begin_parse();
+        slice candidate_version_address = candidate_version_slice~load_msg_addr();
+        throw_unless(403, equal_slices(sender_address, candidate_version_address));
+
+        storage::latest_version = storage::candidate_version;
+
+        save_data();
+        return ();
+    }
+    if (op == op::deploy_item()) {
+        throw_if(400, null?(storage::latest_version));
+        throw_if(403, coins < storage::item_price);
+
+        slice item_owner_address = in_msg_body~load_msg_addr();
+        cell item_content = in_msg_body~load_ref();
+
+        int item_index = slice_hash(item_owner_address);
+        cell item_state_init = get_item_state_init(storage::item_code, item_index, my_address());
+        slice item_address = calculate_address(item_state_init);
+
+        cell item_data = begin_cell().store_slice(item_owner_address).store_ref(storage::latest_version).store_ref(item_content).end_cell();
+
+        cell msg_body = begin_cell()
+                .store_uint(op::transfer(), 32)
+                .store_uint(query_id, 64)
+                .store_slice(item_owner_address)
+                .store_slice(sender_address)
+                .store_int(0, 1)
+                .store_coins(0)
+                .store_uint(0, 32)
+                .store_ref(item_data)
+                .end_cell();
+
+        send_deploy_message(item_state_init, 0, msg_body, 64);
+
+        return ();
+    }
+    if (op == op::upgrade_item()) {
+        int item_index = slice_hash(sender_address);
+        cell item_state_init = get_item_state_init(storage::item_code, item_index, my_address());
+        slice item_address = calculate_address(item_state_init);
+
+        builder msg_body = begin_cell()
+                .store_ref(in_msg_body~load_ref())
+                .store_ref(storage::latest_version);
+
+        send_message(flag::regular(), item_address, 0, op::edit_content(), query_id, msg_body, 64);
+
+        return ();
+    }
+    if (op == op::set_item_price()) {
+        throw_unless(401, equal_slices(storage::owner_address, sender_address));
+
+        storage::item_price = in_msg_body~load_coins();
+
+        save_data();
+        return ();
+    }
+    if (op == op::withdraw()) {
+        throw_unless(401, equal_slices(storage::owner_address, sender_address));
+
+        raw_reserve(min_tons_for_storage(), 0);
+        send_message(flag::regular(), storage::owner_address, 0, op, query_id, null(), 128);
+
+        return ();
+    }
+    if (op == op::excesses()) {
+        return ();
+    }
+    throw(0xffff);
+}
+
+int get_nft_index_by_owner_address(slice owner_address) method_id {
+    return slice_hash(owner_address);
+}
+
+slice get_item_address_by_owner_address(slice owner_address) method_id {
+    load_data();
+    int item_index = slice_hash(owner_address);
+    cell item_state_init = get_item_state_init(storage::item_code, item_index, my_address());
+    return calculate_address(item_state_init);
+}
+
+cell get_latest_version() method_id {
+    load_data();
+    return storage::latest_version;
+}
+
+int get_item_price() method_id {
+    load_data();
+    return storage::item_price;
+}

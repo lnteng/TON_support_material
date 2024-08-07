@@ -1,0 +1,230 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_TonDriveUserCollection.headers.fc";
+#include "sample_TonDriveUserCollection.stdlib.fc";
+#include "sample_TonDriveUserCollection.constants.fc";
+#include "sample_TonDriveUserCollection.storage.fc";
+
+;;
+;; Contract TonDriveUserCollection functions
+;;
+
+(slice, cell) $TonDriveUserCollection$_contract_init(slice $owner) impure inline_ref {
+    var (($self'owner, $self'hash_to_info_map)) = (null(), null());
+    $self'owner = $owner;
+    return ($self'owner, $self'hash_to_info_map);
+}
+
+((slice, cell), cell) $TonDriveUserCollection$_fun_allItems((slice, cell) $self) impure inline_ref {
+    var (($self'owner, $self'hash_to_info_map)) = $self;
+    return (($self'owner, $self'hash_to_info_map), $self'hash_to_info_map);
+}
+
+((slice, cell), ()) $TonDriveUserCollection$_fun_requireOwner((slice, cell) $self) impure inline_ref {
+    var (($self'owner, $self'hash_to_info_map)) = $self;
+    throw_unless(132, ( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) ));
+    return (($self'owner, $self'hash_to_info_map), ());
+}
+
+((slice, cell), slice) $TonDriveUserCollection$_fun_owner((slice, cell) $self) impure inline_ref {
+    var (($self'owner, $self'hash_to_info_map)) = $self;
+    return (($self'owner, $self'hash_to_info_map), $self'owner);
+}
+
+;;
+;; Receivers of a Contract TonDriveUserCollection
+;;
+
+(((slice, cell)), ()) $TonDriveUserCollection$_internal_binary_Create((slice, cell) $self, (cell, slice, slice) $createMsg) impure inline {
+    var ($self'owner, $self'hash_to_info_map) = $self;
+    var ($createMsg'payload, $createMsg'storageProviderAddress, $createMsg'name) = $createMsg;
+    ($self'owner, $self'hash_to_info_map)~$TonDriveUserCollection$_fun_requireOwner();
+    int $msgValue = $Context$_get_value(__tact_context_get());
+    int $tonBalanceBeforeMsg = (__tact_my_balance() - $msgValue);
+    int $storageFee = (100000000 - min($tonBalanceBeforeMsg, 100000000));
+    $msgValue = ($msgValue - ($storageFee + 30000000));
+    if ((~ null?($createMsg'storageProviderAddress))) {
+        $global_send($SendParameters$_constructor_value_to_mode_body($msgValue, __tact_not_null($createMsg'storageProviderAddress), 2, $createMsg'payload));
+    }
+    slice $payloadSlice = begin_parse($createMsg'payload);
+    $payloadSlice~load_bits((32 + 64));
+    cell $torrentInfo = $payloadSlice~load_ref();
+    int $torrentHash = cell_hash($torrentInfo);
+    slice $torrentInfoSlice = begin_parse($torrentInfo);
+    $torrentInfoSlice~load_bits(32);
+    int $fileSize = $torrentInfoSlice~load_uint(64);
+    $self'hash_to_info_map~__tact_dict_set_uint_cell(256, $torrentHash, $FileInfo$_store_cell($FileInfo$_constructor_storageContractAddress_fileSize_name_closed_created(null(), $fileSize, $createMsg'name, false, now())));
+    return (($self'owner, $self'hash_to_info_map), ());
+}
+
+(((slice, cell)), ()) $TonDriveUserCollection$_internal_binary_CloseItem((slice, cell) $self, (int) $msg) impure inline {
+    var ($self'owner, $self'hash_to_info_map) = $self;
+    var ($msg'torrentHash) = $msg;
+    ($self'owner, $self'hash_to_info_map)~$TonDriveUserCollection$_fun_requireOwner();
+    tuple $storedItem = $FileInfo$_load_opt(__tact_dict_get_uint_cell($self'hash_to_info_map, 256, $msg'torrentHash));
+    if (null?($storedItem)) {
+        throw(1101);
+    } else {
+        $global_send($SendParameters$_constructor_to_body_value_mode(__tact_not_null($FileInfo$_get_storageContractAddress($FileInfo$_not_null($storedItem))), end_cell(store_uint(store_uint(begin_cell(), 2046375914, 32), 0, 64)), 0, 64));
+    }
+    return (($self'owner, $self'hash_to_info_map), ());
+}
+
+((slice, cell), ()) $TonDriveUserCollection$_internal_text_4aa819017482b78775f1b4569b803d72549361352d92504f49bdd5665f55cde2((slice, cell) $self) impure inline {
+    var ($self'owner, $self'hash_to_info_map) = $self;
+    return (($self'owner, $self'hash_to_info_map), ());
+}
+
+((slice, cell), ()) $TonDriveUserCollection$_internal_text_7cd04acd8fcc66cb4ccf305ef78247231df393eb9d90289e470ce02b2cb40306((slice, cell) $self) impure inline {
+    var ($self'owner, $self'hash_to_info_map) = $self;
+    ($self'owner, $self'hash_to_info_map)~$TonDriveUserCollection$_fun_requireOwner();
+    $global_send($SendParameters$_constructor_to_value_mode_body($self'owner, 0, (2 + 128), __gen_cell_comment_9a204786c8e19491f9a7cabab1e5b56e1a627a1d2279869a44edb4faa9d9636f()));
+    return (($self'owner, $self'hash_to_info_map), ());
+}
+
+((slice, cell), ()) $TonDriveUserCollection$_internal_any((slice, cell) $self, slice $msg) impure inline {
+    var ($self'owner, $self'hash_to_info_map) = $self;
+    int $op = $msg~load_uint(32);
+    if (($op == 3212562625)) {
+        $msg~load_uint(64);
+        int $torrentHashFromMsg = $msg~load_uint(256);
+        tuple $storedItem = $FileInfo$_load_opt(__tact_dict_get_uint_cell($self'hash_to_info_map, 256, $torrentHashFromMsg));
+        if ((~ null?($storedItem))) {
+            $self'hash_to_info_map~__tact_dict_set_uint_cell(256, $torrentHashFromMsg, $FileInfo$_store_cell($FileInfo$_constructor_storageContractAddress_fileSize_name_closed_created(__tact_context_get_sender(), $FileInfo$_get_fileSize($FileInfo$_not_null($storedItem)), $FileInfo$_get_name($FileInfo$_not_null($storedItem)), false, $FileInfo$_get_created($FileInfo$_not_null($storedItem)))));
+        }
+    } elseif (($op == 3055775075)) {
+        $msg~load_uint(64);
+        int $torrentHashFromMsg = $msg~load_uint(256);
+        tuple $storedItem = $FileInfo$_load_opt(__tact_dict_get_uint_cell($self'hash_to_info_map, 256, $torrentHashFromMsg));
+        if ((~ null?($storedItem))) {
+            $self'hash_to_info_map~__tact_dict_set_uint_cell(256, $torrentHashFromMsg, $FileInfo$_store_cell($FileInfo$_constructor_storageContractAddress_fileSize_name_closed_created($FileInfo$_get_storageContractAddress($FileInfo$_not_null($storedItem)), $FileInfo$_get_fileSize($FileInfo$_not_null($storedItem)), $FileInfo$_get_name($FileInfo$_not_null($storedItem)), true, $FileInfo$_get_created($FileInfo$_not_null($storedItem)))));
+        }
+    }
+    return (($self'owner, $self'hash_to_info_map), ());
+}
+
+(((slice, cell)), ()) $TonDriveUserCollection$_internal_binary_Deploy((slice, cell) $self, (int) $deploy) impure inline {
+    var ($self'owner, $self'hash_to_info_map) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'owner, $self'hash_to_info_map)~$TonDriveUserCollection$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'owner, $self'hash_to_info_map), ());
+}
+
+;;
+;; Get methods of a Contract TonDriveUserCollection
+;;
+
+_ %allItems() method_id(68968) {
+    var self = $TonDriveUserCollection$_contract_load();
+    var res = self~$TonDriveUserCollection$_fun_allItems();
+    return res;
+}
+
+_ %owner() method_id(83229) {
+    var self = $TonDriveUserCollection$_contract_load();
+    var res = self~$TonDriveUserCollection$_fun_owner();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128,
+        "org.ton.ownable"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmXUErFT98eBsok2SNwpK9XgwVGorywGrm5LD3raSmdjy8";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract TonDriveUserCollection
+;;
+
+((slice, cell), int) $TonDriveUserCollection$_contract_router_internal((slice, cell) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive Create message
+    if (op == 1563101277) {
+        var msg = in_msg~$Create$_load();
+        self~$TonDriveUserCollection$_internal_binary_Create(msg);
+        return (self, true);
+    }
+    
+    ;; Receive CloseItem message
+    if (op == 515883932) {
+        var msg = in_msg~$CloseItem$_load();
+        self~$TonDriveUserCollection$_internal_binary_CloseItem(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$TonDriveUserCollection$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "create_collection" message
+        if (text_op == 0x4aa819017482b78775f1b4569b803d72549361352d92504f49bdd5665f55cde2) {
+            self~$TonDriveUserCollection$_internal_text_4aa819017482b78775f1b4569b803d72549361352d92504f49bdd5665f55cde2();
+            return (self, true);
+        }
+        
+        ;; Receive "withdraw_all" message
+        if (text_op == 0x7cd04acd8fcc66cb4ccf305ef78247231df393eb9d90289e470ce02b2cb40306) {
+            self~$TonDriveUserCollection$_internal_text_7cd04acd8fcc66cb4ccf305ef78247231df393eb9d90289e470ce02b2cb40306();
+            return (self, true);
+        }
+    }
+    
+    ;; Receiver fallback
+    self~$TonDriveUserCollection$_internal_any(in_msg);
+    return (self, true);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $TonDriveUserCollection$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$TonDriveUserCollection$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $TonDriveUserCollection$_contract_store(self);
+}

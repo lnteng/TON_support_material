@@ -1,0 +1,12 @@
+get_users: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCJyC8kTRnKZIx4K1f4fepy417p3isZhCVaZvxjJ8fcVEDr/get.fc:17:29: warning: Local variable 'cs' is not used
+          (id, var cs, var f) = ctx_users.udict_get_next?(256, id);
+                              ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCJyC8kTRnKZIx4K1f4fepy417p3isZhCVaZvxjJ8fcVEDr/bank.fc:7:22: warning: Lack of end_parse.
+      slice s_addr = cs~load_msg_addr(); 
+                       ^
+compute_acc_interest: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCJyC8kTRnKZIx4K1f4fepy417p3isZhCVaZvxjJ8fcVEDr/model.fc:4:22: warning: PressionLoss
+    return days_lapsed * amount / 300;
+                       ^

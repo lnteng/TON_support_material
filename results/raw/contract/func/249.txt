@@ -1,0 +1,44 @@
+withdraw_jettons: GobalVarRedefined
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBn3geDCEl71qRCqjuvgaB3x5wsnYmtpJIPH1LHdzgdePBF/wallet.fc:307:16: warning: Global variable maybe redefined.
+      int tokens = s~load_coins();
+                 ^
+get_elector: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBn3geDCEl71qRCqjuvgaB3x5wsnYmtpJIPH1LHdzgdePBF/imports/utils.fc:134:64: warning: Lack of end_parse.
+      return ( chain::main, config_param(config::elector_address).begin_parse().preload_uint(256) );
+                                                                 ^
+get_vset_times: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBn3geDCEl71qRCqjuvgaB3x5wsnYmtpJIPH1LHdzgdePBF/imports/utils.fc:167:34: warning: Lack of end_parse.
+      return ( cs~load_uint(32), cs~load_uint(32) );
+                                   ^
+get_validators_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBn3geDCEl71qRCqjuvgaB3x5wsnYmtpJIPH1LHdzgdePBF/imports/utils.fc:152:52: warning: Lack of end_parse.
+      return ( cs~load_uint(16), cs~load_uint(16), cs~load_uint(16) );
+                                                     ^
+get_election_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBn3geDCEl71qRCqjuvgaB3x5wsnYmtpJIPH1LHdzgdePBF/imports/utils.fc:142:70: warning: Lack of end_parse.
+      return ( cs~load_uint(32), cs~load_uint(32), cs~load_uint(32), cs~load_uint(32) );
+                                                                       ^
+get_stake_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBn3geDCEl71qRCqjuvgaB3x5wsnYmtpJIPH1LHdzgdePBF/imports/utils.fc:158:67: warning: Lack of end_parse.
+      return ( cs~load_coins(), cs~load_coins(), cs~load_coins(), cs~load_uint(32) );
+                                                                    ^
+max_recommended_punishment_for_validator_misbehaviour: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBn3geDCEl71qRCqjuvgaB3x5wsnYmtpJIPH1LHdzgdePBF/imports/utils.fc:351:49: warning: Lack of end_parse.
+          , cs~load_uint(16), cs~load_uint(16), cs~load_uint(16)
+                                                  ^
+max_recommended_punishment_for_validator_misbehaviour: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBn3geDCEl71qRCqjuvgaB3x5wsnYmtpJIPH1LHdzgdePBF/imports/utils.fc:347:7: warning: Local variable 'prefix' is not used
+      ) = ( cs~load_uint(8)
+        ^
+max_recommended_punishment_for_validator_misbehaviour: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBn3geDCEl71qRCqjuvgaB3x5wsnYmtpJIPH1LHdzgdePBF/imports/utils.fc:347:7: warning: Local variable 'unpunishable_interval' is not used
+      ) = ( cs~load_uint(8)
+        ^
+max_recommended_punishment_for_validator_misbehaviour: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBn3geDCEl71qRCqjuvgaB3x5wsnYmtpJIPH1LHdzgdePBF/imports/utils.fc:347:7: warning: Local variable 'long_interval' is not used
+      ) = ( cs~load_uint(8)
+        ^
+save_coins: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBn3geDCEl71qRCqjuvgaB3x5wsnYmtpJIPH1LHdzgdePBF/wallet.fc:139:18: warning: Local variable 'query_id' is not used
+      int query_id = s~load_uint(64);
+                   ^

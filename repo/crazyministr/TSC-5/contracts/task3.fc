@@ -1,0 +1,77 @@
+;; forall X -> int is_null?(X x) asm "ISNULL";
+
+cell get_storage() {
+    return get_data().begin_parse().preload_ref();
+}
+
+cell wrap_storage(int version_id, cell storage) {
+    return begin_cell()
+        .store_uint(version_id, 32)
+        .store_ref(storage)
+    .end_cell();
+}
+
+int version() method_id {
+    return get_data().begin_parse().preload_uint(32);
+}
+
+;; <<<<< Custom version-specific code begins
+;; This section (everything between << and >> characters) will be fully substituted for each version.
+;; This is an IMPORTANT part, and these exact lines with <<<<< and >>>>> must be present in your code for the testing system to work correctly.
+;; All the code provided here serves as an example of the version-code, which your update code must be compatible with.
+;; Refer to the "3-example" directory for more version examples.
+
+;; from counter-v0.fc
+cell process_message(cell storage, int msg_value, int balance, cell in_msg_full, slice in_msg_body) impure {
+    slice cs = storage.begin_parse();
+    int current_amount = cs.preload_uint(32);
+    return begin_cell().store_uint(current_amount + 1, 32).end_cell();
+}
+
+cell migrate_one(cell old_storage) { ;; it's just a placeholder that is required for correct compilation
+    return old_storage;
+}
+
+;; Custom version-specific code ends >>>>>
+
+
+slice udict_get?::400(cell dict, int key_len, int index) asm(index dict key_len) "DICTUGET" "400 THROWIFNOT";
+
+() recv_internal(int msg_value, int balance, cell in_msg_full, slice in_msg_body) impure {
+    int expected_version = in_msg_body~load_uint(32);  ;; expected version
+    ifnot (expected_version) {
+        set_data(begin_cell().store_uint(1, 32).store_ref(get_data()).end_cell());
+        return ();
+    }
+
+    slice cs = get_data().begin_parse();
+    cell storage = cs~load_ref();
+    int current_version = cs.preload_uint(32);
+    
+    if (expected_version > current_version) {  ;; need update
+
+        cell new_code = in_msg_body~load_maybe_ref(); ;; expected code
+        throw_if(200, cell_null?(new_code));
+        cell migrations = in_msg_body~load_dict(); ;; migrations
+
+        ifnot (migrations.dict_empty?()) {
+        do {
+            slice cs = migrations.udict_get?::400(32, current_version);
+            current_version = cs~load_uint(32);
+            cell migration_code = cs.preload_maybe_ref();
+            ifnot (cell_null?(migration_code)) {
+                set_c3(migration_code.begin_parse().bless());
+                storage = migrate_one(storage);
+            }
+        } until (current_version == expected_version);
+        }
+        
+        set_code(new_code);
+        set_c3(new_code.begin_parse().bless());
+    }
+
+    cell payload = in_msg_body.preload_ref();
+    storage = process_message(storage, msg_value, balance, in_msg_full, payload.begin_parse());
+    set_data(begin_cell().store_uint(expected_version, 32).store_ref(storage).end_cell());
+}
+

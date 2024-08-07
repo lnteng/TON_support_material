@@ -1,0 +1,8 @@
+;; Лучше бы ты криптожопохуй купил, вместо того чтобы это читать.  https://getgems.io/collection/EQDaaxtmY6Dk0YzIV0zNnbUpbjZ92TJHBvO72esc0srwv8K2
+
+int workchain() asm "0 PUSHINT";
+
+() force_chain(slice addr) impure {
+  (int wc, _) = parse_std_addr(addr);
+  throw_unless(333, wc == workchain());
+}

@@ -1,0 +1,50 @@
+$Task3$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge-contracts/output/sample_Task3.code.fc:14:77: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'jAddressA, $self'jAddressB, $self'a, $self'b)) = (null(), null(), null(), null(), null());
+                                                                              ^
+$Task3$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge-contracts/output/sample_Task3.code.fc:14:77: warning: Local variable '$self'jAddressA' is not used
+      var (($self'owner, $self'jAddressA, $self'jAddressB, $self'a, $self'b)) = (null(), null(), null(), null(), null());
+                                                                              ^
+$Task3$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge-contracts/output/sample_Task3.code.fc:14:77: warning: Local variable '$self'jAddressB' is not used
+      var (($self'owner, $self'jAddressA, $self'jAddressB, $self'a, $self'b)) = (null(), null(), null(), null(), null());
+                                                                              ^
+$Task3$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge-contracts/output/sample_Task3.code.fc:14:77: warning: Local variable '$self'a' is not used
+      var (($self'owner, $self'jAddressA, $self'jAddressB, $self'a, $self'b)) = (null(), null(), null(), null(), null());
+                                                                              ^
+$Task3$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge-contracts/output/sample_Task3.code.fc:14:77: warning: Local variable '$self'b' is not used
+      var (($self'owner, $self'jAddressA, $self'jAddressB, $self'a, $self'b)) = (null(), null(), null(), null(), null());
+                                                                              ^
+$Task3$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge-contracts/output/sample_Task3.storage.fc:91:19: warning: Lack of end_parse.
+      var v'b = sc_1~load_int(257);
+                    ^
+$Task3$_internal_binary_TokenNotification: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge-contracts/output/sample_Task3.code.fc:101:66: warning: PressionLoss
+          int $tokensToSend = (((($self'b * 1000000000) / $self'a) * $msg'amount) / 1000000000);
+                                                                   ^
+$Task3$_internal_binary_TokenNotification: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge-contracts/output/sample_Task3.code.fc:85:66: warning: PressionLoss
+          int $tokensToSend = (((($self'a * 1000000000) / $self'b) * $msg'amount) / 1000000000);
+                                                                   ^
+$Task3$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge-contracts/output/sample_Task3.storage.fc:107:19: warning: Lack of end_parse.
+          return $sc~$Task3$_load();
+                    ^
+$Task3$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge-contracts/output/sample_Task3.code.fc:154:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge-contracts/output/sample_Task3.storage.fc:118:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task3$_contract_store & $Task3$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge-contracts/output/sample_Task3.storage.fc:103:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge-contracts/output/sample_Task3.storage.fc:118:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

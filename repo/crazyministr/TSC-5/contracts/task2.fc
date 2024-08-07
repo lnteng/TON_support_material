@@ -1,0 +1,169 @@
+#include "imports/stdlib.fc";
+
+;; forall X -> int is_null?(X x) asm "ISNULL";
+;; int equal_slices(slice a, slice b) impure asm "SDEQ";
+;; () dump_str (slice str) impure asm "STRDUMP" "DROP";
+builder custom::store_slice(builder b, slice s) asm(s b) "STSLICE";
+;; (cell, slice, int) udict_delete_get?::121(cell dict, int key_len, int index) asm(index dict key_len) "DICTUDELGET" "121 THROWIFNOT";
+(cell, slice) ~udict_delete_get?::121(cell dict, int key_len, int index) asm(index dict key_len) "DICTUDELGET" "121 THROWIFNOT";
+(int, slice) load_uint32_or_ret(slice s) impure asm "32 LDUQ" "IFNOTRET";
+(int, slice, int) udict_get_next?::exist(cell dict, int key_len, int pivot) asm(pivot dict key_len -> 1 0 2) "DICTUGETNEXT";
+
+() recv_internal(int my_balance, int msg_value, cell in_msg_full, slice in_msg_body) impure {
+
+    ;; if (in_msg_body.slice_empty?()) {
+    ;;     return ();
+    ;; }
+
+    (int op, in_msg_body) = in_msg_body.load_uint32_or_ret();
+    if (op == 0x368ddef3) {  ;; ADD
+        slice cs = get_data().begin_parse();
+        slice admin = cs~load_msg_addr();
+
+        slice cs2 = in_msg_full.begin_parse();
+        cs2~load_uint(4);
+        slice sender = cs2~load_msg_addr();
+
+        throw_unless(120, equal_slices(admin, sender));
+
+        cell users = cs.preload_dict();
+
+        in_msg_body~load_uint(64 + 11);
+        int user_id = in_msg_body~load_uint(256);
+        ;; int share = in_msg_body.preload_uint(32);
+
+        users~udict_set_builder(256, user_id, begin_cell().custom::store_slice(in_msg_body));
+        set_data(
+            begin_cell()
+                .custom::store_slice(admin)
+                .store_dict(users)
+            .end_cell()
+        );
+        return ();
+    }
+    if (op == 0x278205c8) {  ;; REMOVE
+        slice cs = get_data().begin_parse();
+        slice admin = cs~load_msg_addr();
+
+        slice cs2 = in_msg_full.begin_parse();
+        cs2~load_uint(4);
+        slice sender = cs2~load_msg_addr();
+
+        throw_unless(120, equal_slices(admin, sender));
+
+        cell users = cs.preload_dict();
+
+        in_msg_body~load_uint(64 + 11);
+        int user_id = in_msg_body.preload_uint(256);
+
+        slice cs = users~udict_delete_get?::121(256, user_id);
+        ;; throw_unless(121, f);
+        set_data(
+            begin_cell()
+                .custom::store_slice(admin)
+                .store_dict(users)
+            .end_cell()
+        );
+        return ();
+    }
+    if (op == 0x068530b3) {  ;; SPLIT TON
+        var cs = get_data().begin_parse().skip_bits(267);
+        ;; slice admin = cs~load_msg_addr();
+        cell users = cs.preload_dict();
+
+        throw_if(122, dict_empty?(users));
+
+        int total_share = 0;
+        int key = -1;
+        int users_cnt = 0;
+        do {
+            (key, slice cs, int f) = users.udict_get_next?(256, key);
+            if (f) {
+                total_share += cs.preload_uint(32);
+                users_cnt += 1;
+            }
+        } until (~ f);
+
+        ;; builder prebuild = begin_cell().store_uint(0x18, 6).store_uint(4, 3).store_int(0, 8);
+        builder prebuild = begin_cell().store_uint(50176, 6 + 3 + 8);
+        int key = -1;
+        repeat (users_cnt) {
+            (key, slice cs, int f) = users.udict_get_next?::exist(256, key);
+            int share = cs.preload_uint(32);
+            send_raw_message(prebuild
+                .store_uint(key, 256)
+                .store_coins(muldiv(share, msg_value, total_share))
+                .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .end_cell(), 1);
+        }
+        commit();  ;; cuz no need
+        throw(0);  ;; to update storage
+        ;; return ();
+    }
+;;    if (op == 0x7362d09c) {  ;; JETTON TRANSFER
+        var cs = get_data().begin_parse().skip_bits(267);
+        ;; slice admin = cs~load_msg_addr();
+        cell users = cs.preload_dict();
+
+        throw_if(122, dict_empty?(users));
+
+        int total_share = 0;
+        int key = -1;
+        int users_cnt = 0;
+        do {
+            (key, slice cs, int f) = users.udict_get_next?(256, key);
+            if (f) {
+                total_share += cs.preload_uint(32);
+                users_cnt += 1;
+            }
+        } until (~ f);
+
+        cs = in_msg_full.begin_parse().skip_bits(4);
+        slice sender = cs~load_msg_addr();
+        int query_id = in_msg_body~load_uint(64);
+        int amount = in_msg_body~load_coins();
+
+        builder prebuild = begin_cell()
+            .store_uint(0x18, 6)
+            .custom::store_slice(sender)
+            .store_coins(20000000)
+            .store_uint(1, 1 + 4 + 4 + 64 + 32 + 1 + 1);
+        builder p2 = begin_cell()
+                        .store_uint(0x0f8a7ea5, 32)
+                        .store_uint(query_id, 64);
+        int key = -1;
+        repeat (users_cnt) {
+            (key, slice cs, int f) = users.udict_get_next?::exist(256, key);
+            int share = cs.preload_uint(32);
+            send_raw_message(prebuild
+                .store_ref(
+                    p2
+                        .store_coins(muldiv(share, amount, total_share))
+                        .store_uint(4, 3).store_int(0, 8).store_uint(key, 256)
+                        .store_uint(4, 3).store_int(0, 8).store_uint(key, 256)
+                        ;; .store_uint(0, 1)
+                        ;; .store_coins(1)
+                        ;; .store_uint(0, 1)
+                        .store_uint(514, 14)
+                    .end_cell()
+                )
+            .end_cell(), 1);
+        }
+  ;;      commit();
+    ;;    throw(0);
+        ;; return ();
+;;    }
+}
+
+cell get_users() method_id {
+    var data = get_data().begin_parse().skip_bits(267);
+    return data.preload_dict();
+}
+
+int get_user_share(slice user_address) method_id {
+    var data = get_data().begin_parse().skip_bits(267);
+    cell users = data.preload_dict();
+    (int wc, int addr) = parse_std_addr(user_address);
+    (slice cs, _) = users.udict_get?(256, addr);
+    return cs.preload_uint(32);
+}

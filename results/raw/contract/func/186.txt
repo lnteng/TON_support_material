@@ -1,0 +1,28 @@
+recv_internal: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBuHV2pTNiaELG2p20H_hFUXrQaZlKOhyWTMaWaoa359pmR/jackpot.fc:208:62: warning: PressionLoss
+          int to_send = (((locked_balance - winner_bet) / 100) * (100 - fee_percent)) + winner_bet;
+                                                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBuHV2pTNiaELG2p20H_hFUXrQaZlKOhyWTMaWaoa359pmR/jackpot.fc:100:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBuHV2pTNiaELG2p20H_hFUXrQaZlKOhyWTMaWaoa359pmR/jackpot.fc:186:32: warning: Lack of end_parse.
+              int player_bet = ds~load_coins();
+                                 ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBuHV2pTNiaELG2p20H_hFUXrQaZlKOhyWTMaWaoa359pmR/jackpot.fc:174:45: warning: Local variable 'success' is not used
+          (int key, cell player, int success) = udict_get_min_ref?(players_list, 256);
+                                              ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBuHV2pTNiaELG2p20H_hFUXrQaZlKOhyWTMaWaoa359pmR/jackpot.fc:18:11: warning: Lack of end_parse.
+          ds~load_msg_addr() ;; mint_address
+            ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBuHV2pTNiaELG2p20H_hFUXrQaZlKOhyWTMaWaoa359pmR/jackpot.fc:88:29: warning: UnHandle bounced message with op: 0x3
+      send_raw_message(msg, 1);
+                              ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBuHV2pTNiaELG2p20H_hFUXrQaZlKOhyWTMaWaoa359pmR/jackpot.fc:73:40: warning: UnHandle bounced message with op: 0x15
+      send_raw_message(msg.end_cell(), 1);
+                                         ^

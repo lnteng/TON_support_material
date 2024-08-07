@@ -1,0 +1,11 @@
+$SampleTactContract2$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBtBV3i0wWxm0Qw00XU3Cq_VBmDjQ43bGf8m-ekRfbziki8/output/verifier_SampleTactContract2.storage.fc:86:19: warning: Lack of end_parse.
+          return $sc~$SampleTactContract2$_load();
+                    ^
+$SampleTactContract2$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBtBV3i0wWxm0Qw00XU3Cq_VBmDjQ43bGf8m-ekRfbziki8/output/verifier_SampleTactContract2.code.fc:79:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBtBV3i0wWxm0Qw00XU3Cq_VBmDjQ43bGf8m-ekRfbziki8/output/verifier_SampleTactContract2.storage.fc:95:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

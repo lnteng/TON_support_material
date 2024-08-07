@@ -1,0 +1,98 @@
+$SafeContract$_internal_binary_SafeRequestOperation: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeContract.code.fc:89:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$SafeContract$_internal_binary_SafeRequestOperation: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeContract.code.fc:89:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$SafeContract$_internal_binary_SafeRequestOperation: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeContract.code.fc:94:78: warning: Local variable '$op'add' is not used
+          var ($op'transfer, $op'parameters, $op'add, $op'remove, $op'replace) = $SafeOperation$_not_null($SafeOperation$_load_opt(__tact_dict_get_uint_cell($request'ops'ops, 8, $i)));
+                                                                               ^
+$SafeContract$_internal_binary_SafeRequestOperation: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeContract.code.fc:94:78: warning: Local variable '$op'remove' is not used
+          var ($op'transfer, $op'parameters, $op'add, $op'remove, $op'replace) = $SafeOperation$_not_null($SafeOperation$_load_opt(__tact_dict_get_uint_cell($request'ops'ops, 8, $i)));
+                                                                               ^
+$SafeContract$_internal_binary_SafeRequestOperation: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeContract.code.fc:94:78: warning: Local variable '$op'replace' is not used
+          var ($op'transfer, $op'parameters, $op'add, $op'remove, $op'replace) = $SafeOperation$_not_null($SafeOperation$_load_opt(__tact_dict_get_uint_cell($request'ops'ops, 8, $i)));
+                                                                               ^
+$SafeContract$_internal_binary_SafeRequestOperation: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeContract.code.fc:100:75: warning: Local variable '$params'timelock' is not used
+              var ($params'timeout, $params'requestPrice, $params'timelock) = $SafeOperationUpdateParameters$_get_parameters($SafeOperationUpdateParameters$_not_null($op'parameters));
+                                                                            ^
+$VoteContract$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeContract.storage.fc:411:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$SafeContract$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeContract.storage.fc:383:19: warning: Lack of end_parse.
+          return $sc~$SafeContract$_load();
+                    ^
+__tact_dict_set_slice_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeContract.stdlib.fc:78:21: warning: Local variable 'ok' is not used
+          var (r, ok) = __tact_dict_delete(d, kl, k);
+                      ^
+$SafeOperation$_load_opt: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeContract.storage.fc:239:42: warning: Lack of end_parse.
+      return $SafeOperation$_as_optional(sc~$SafeOperation$_load());
+                                           ^
+$SafeContract$_internal_binary_VoteSuccess: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeContract.code.fc:127:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$SafeContract$_internal_binary_VoteSuccess: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeContract.code.fc:127:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$SafeContract$_internal_binary_VoteSuccess: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeContract.code.fc:127:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$SafeContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeContract.code.fc:14:160: warning: Local variable '$self'seqno' is not used
+      var (($self'seqno, $self'owners, $self'ownersCount, $self'treshold, ($self'parameters'timeout, $self'parameters'requestPrice, $self'parameters'timelock))) = (null(), null(), null(), null(), null());
+                                                                                                                                                                 ^
+$SafeContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeContract.code.fc:14:160: warning: Local variable '$self'owners' is not used
+      var (($self'seqno, $self'owners, $self'ownersCount, $self'treshold, ($self'parameters'timeout, $self'parameters'requestPrice, $self'parameters'timelock))) = (null(), null(), null(), null(), null());
+                                                                                                                                                                 ^
+$SafeContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeContract.code.fc:14:160: warning: Local variable '$self'ownersCount' is not used
+      var (($self'seqno, $self'owners, $self'ownersCount, $self'treshold, ($self'parameters'timeout, $self'parameters'requestPrice, $self'parameters'timelock))) = (null(), null(), null(), null(), null());
+                                                                                                                                                                 ^
+$SafeContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeContract.code.fc:14:160: warning: Local variable '$self'treshold' is not used
+      var (($self'seqno, $self'owners, $self'ownersCount, $self'treshold, ($self'parameters'timeout, $self'parameters'requestPrice, $self'parameters'timelock))) = (null(), null(), null(), null(), null());
+                                                                                                                                                                 ^
+$SafeContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeContract.code.fc:14:160: warning: Local variable '$self'parameters'timeout' is not used
+      var (($self'seqno, $self'owners, $self'ownersCount, $self'treshold, ($self'parameters'timeout, $self'parameters'requestPrice, $self'parameters'timelock))) = (null(), null(), null(), null(), null());
+                                                                                                                                                                 ^
+$SafeContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeContract.code.fc:14:160: warning: Local variable '$self'parameters'requestPrice' is not used
+      var (($self'seqno, $self'owners, $self'ownersCount, $self'treshold, ($self'parameters'timeout, $self'parameters'requestPrice, $self'parameters'timelock))) = (null(), null(), null(), null(), null());
+                                                                                                                                                                 ^
+$SafeContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeContract.code.fc:14:160: warning: Local variable '$self'parameters'timelock' is not used
+      var (($self'seqno, $self'owners, $self'ownersCount, $self'treshold, ($self'parameters'timeout, $self'parameters'requestPrice, $self'parameters'timelock))) = (null(), null(), null(), null(), null());
+                                                                                                                                                                 ^
+$SafeContract$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeContract.code.fc:201:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeContract.storage.fc:392:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$SafeContract$_contract_store & $SafeContract$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeContract.storage.fc:379:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeContract.storage.fc:392:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$SafeContract$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeContract.code.fc:113:198: warning: UnHandle bounced message with op: 0x56137615
+      $global_send($SendParameters$_constructor_value_to_mode_bounce_code_data_body(0, $address, (64 + 2), true, $init'code, $init'data, $VoteDeploy$_store_cell($VoteDeploy$_constructor_queryId(0))));
+                                                                                                                                                                                                       ^

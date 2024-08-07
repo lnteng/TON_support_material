@@ -1,0 +1,207 @@
+PROGRAM{
+  DECLPROC __tact_verify_address
+  DECLPROC __gen_read_Add
+  DECLPROC __gen_read_Sub
+  DECLPROC __gen_write_Functions
+  DECLPROC __gen_read_Functions
+  DECLPROC $__gen_Functions_init
+  DECLPROC __gen_load_Functions
+  DECLPROC __gen_store_Functions
+  DECLPROC $__gen_Functions_update
+  DECLPROC $__gen_Functions_receive_Add
+  DECLPROC $__gen_Functions_receive_Sub
+  DECLPROC __gen_router_Functions
+  DECLPROC recv_internal
+  113617 DECLMETHOD supported_interfaces
+  DECLPROC get_abi_ipfs
+  DECLPROC lazy_deployment_completed
+  DECLGLOBVAR __tact_context
+  DECLGLOBVAR __tact_context_sender
+  DECLGLOBVAR __tact_context_sys
+  __tact_verify_address PROCINLINE:<{
+    DUP
+    SBITS
+    267 PUSHINT
+    EQUAL
+    136 THROWIFNOT
+    DUP
+    11 PLDU
+    DUP
+    10 PUSHPOW2
+    EQUAL
+    OVER
+    1279 PUSHINT
+    EQUAL
+    OR
+    136 THROWIFNOT
+    10 PUSHPOW2
+    EQUAL
+    137 THROWIFNOT
+  }>
+  __gen_read_Add PROCINLINE:<{
+    32 LDU
+    SWAP
+    831841332 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    257 PUSHINT
+    LDIX
+    SWAP
+  }>
+  __gen_read_Sub PROCINLINE:<{
+    32 LDU
+    SWAP
+    2640337643 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    257 PUSHINT
+    LDIX
+    SWAP
+  }>
+  __gen_write_Functions PROCINLINE:<{
+    SWAP
+    257 PUSHINT
+    STIX
+  }>
+  __gen_read_Functions PROCINLINE:<{
+    257 PUSHINT
+    LDIX
+    SWAP
+  }>
+  $__gen_Functions_init PROCREF:<{
+    0 PUSHINT
+  }>
+  __gen_load_Functions PROCINLINE:<{
+    c4 PUSH
+    CTOS
+    LDREF
+    SWAP
+    __tact_context_sys SETGLOB
+    1 LDI
+    SWAP
+    IF:<{
+      __gen_read_Functions INLINECALLDICT
+      NIP
+    }>ELSE<{
+      DROP
+      MYADDR
+      11 PLDU
+      10 PUSHPOW2
+      EQUAL
+      137 THROWIFNOT
+      $__gen_Functions_init INLINECALLDICT
+    }>
+  }>
+  __gen_store_Functions PROCINLINE:<{
+    NEWC
+    __tact_context_sys GETGLOB
+    SWAP
+    STREF
+    TRUE
+    SWAP
+    1 STI
+    SWAP
+    __gen_write_Functions INLINECALLDICT
+    ENDC
+    c4 POP
+  }>
+  $__gen_Functions_update PROCINLINE:<{
+    ADD
+  }>
+  $__gen_Functions_receive_Add PROCINLINE:<{
+    55789 PUSHINT
+    OVER
+    0 GTINT
+    THROWANYIFNOT
+    $__gen_Functions_update INLINECALLDICT
+  }>
+  $__gen_Functions_receive_Sub PROCINLINE:<{
+    55789 PUSHINT
+    OVER
+    0 GTINT
+    THROWANYIFNOT
+    NEGATE
+    $__gen_Functions_update INLINECALLDICT
+  }>
+  __gen_router_Functions PROCREF:<{
+    0 PUSHINT
+    OVER
+    SBITS
+    31 GTINT
+    IF:<{
+      DROP
+      DUP
+      32 PLDU
+    }>
+    s0 s2 XCHG
+    IFJMP:<{
+      2DROP
+      TRUE
+    }>
+    OVER
+    831841332 PUSHINT
+    EQUAL
+    IFJMP:<{
+      NIP
+      __gen_read_Add INLINECALLDICT
+      NIP
+      $__gen_Functions_receive_Add INLINECALLDICT
+      TRUE
+    }>
+    SWAP
+    2640337643 PUSHINT
+    EQUAL
+    IFJMP:<{
+      __gen_read_Sub INLINECALLDICT
+      NIP
+      $__gen_Functions_receive_Sub INLINECALLDICT
+      TRUE
+    }>
+    DROP
+    FALSE
+  }>
+  recv_internal PROC:<{
+    SWAP
+    CTOS
+    4 LDU
+    SWAP
+    1 PUSHINT
+    AND
+    1 EQINT
+    IF:<{
+      TRUE
+    }>ELSE<{
+      FALSE
+    }>
+    SWAP
+    LDMSGADDR
+    SWAP
+    __tact_verify_address INLINECALLDICT
+    s0 s4 s2 PUXCPU
+    s0 s3 XCHG
+    4 TUPLE
+    __tact_context SETGLOB
+    s0 s2 XCHG
+    __tact_context_sender SETGLOB
+    __gen_load_Functions INLINECALLDICT
+    -ROT
+    __gen_router_Functions INLINECALLDICT
+    DROP
+    __gen_store_Functions INLINECALLDICT
+  }>
+  supported_interfaces PROC:<{
+    123515602279859691144772641439386770278 PUSHINT
+    209801025412363888721030803524359905849 PUSHINT
+    42980537499636128163026532310500881091 PUSHINT
+    209474421377847335869795010607481022628 PUSHINT
+  }>
+  get_abi_ipfs PROC:<{
+    x{697066733a2f2f516d62724e534a786b4e746f4452346b325a686d31465045616f326344524b4a457553586e586941556278416f41} PUSHSLICE
+  }>
+  lazy_deployment_completed PROC:<{
+    c4 PUSH
+    CTOS
+    1 LDI
+    SWAP
+  }>
+}END>c

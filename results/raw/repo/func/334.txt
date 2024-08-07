@@ -1,0 +1,94 @@
+get_channel_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/payment-channels/func/async-channel.func:629:59: warning: Lack of end_parse.
+    (slice addr_A, slice addr_B) = (pcs~load_msg_addr(), pcs~load_msg_addr());
+                                                            ^
+start_uncooperative_close: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/payment-channels/func/async-channel.func:358:66: warning: Lack of end_parse.
+                                                     semi_channel_B~parse_maybe_semichannel_body());
+                                                                   ^
+start_uncooperative_close: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/payment-channels/func/async-channel.func:355:66: warning: Lack of end_parse.
+                                                     semi_channel_A~parse_maybe_semichannel_body());
+                                                                   ^
+settle_conditionals: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/payment-channels/func/async-channel.func:491:44: warning: Lack of end_parse.
+      int state_commited_by_A = stored_states~load_int(1);
+                                             ^
+~load_closure_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/payment-channels/func/async-channel.func:100:72: warning: Lack of end_parse.
+    closure_config = t_triple(conf~load_uint(32), conf~load_coins(), conf~load_uint(32));
+                                                                         ^
+challenge_quarantined_state: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/payment-channels/func/async-channel.func:406:66: warning: Lack of end_parse.
+                                                     semi_channel_B~parse_maybe_semichannel_body());
+                                                                   ^
+challenge_quarantined_state: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/payment-channels/func/async-channel.func:403:66: warning: Lack of end_parse.
+                                                     semi_channel_A~parse_maybe_semichannel_body());
+                                                                   ^
+challenge_quarantined_state: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/payment-channels/func/async-channel.func:429:46: warning: Lack of end_parse.
+      int quarantine_challenged = stored_states~load_int(1);
+                                               ^
+challenge_quarantined_state: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/payment-channels/func/async-channel.func:433:30: warning: Local variable 'misbehavior_detected' is not used
+      int misbehavior_detected = false;
+                               ^
+get_channel_state: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/payment-channels/func/async-channel.func:613:43: warning: Lack of end_parse.
+      int quarantine_started = stored_states~load_uint(32);
+                                            ^
+parse_maybe_semichannel_body: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/payment-channels/func/async-channel.func:324:59: warning: Lack of end_parse.
+    return (cs, (body~load_uint(64), body~load_coins(), body~load_dict()));
+                                                            ^
+init_channel: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/payment-channels/func/async-channel.func:198:25: warning: Lack of end_parse.
+      int excess_fee = pcs~load_coins();
+                          ^
+close_channel: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/payment-channels/func/async-channel.func:232:61: warning: Lack of end_parse.
+      (slice addr_A, slice addr_B) = (pcs~load_msg_addr(), pcs~load_msg_addr());
+                                                              ^
+close_channel: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/payment-channels/func/async-channel.func:231:20: warning: Local variable 'excess_fee' is not used
+      int excess_fee = pcs~load_coins();
+                     ^
+finish_uncooperative_close: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/payment-channels/func/async-channel.func:538:43: warning: Lack of end_parse.
+      int quarantine_started = stored_states~load_uint(32);
+                                            ^
+finish_uncooperative_close: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/payment-channels/func/async-channel.func:534:52: warning: Local variable 'conditionals_A' is not used
+      (int seqno_A, int sent_A, cell conditionals_A) =
+                                                     ^
+finish_uncooperative_close: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/payment-channels/func/async-channel.func:536:52: warning: Local variable 'conditionals_B' is not used
+      (int seqno_B, int sent_B, cell conditionals_B) =
+                                                     ^
+cooperative_commit: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/payment-channels/func/async-channel.func:294:92: warning: Lack of end_parse.
+        (int stored_seqno_B, int stored_sent_B) = (stored_states~load_uint(64), stored_states~load_coins());
+                                                                                             ^
+cooperative_commit: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/payment-channels/func/async-channel.func:292:47: warning: Local variable 'stored_sent_A' is not used
+        (int stored_seqno_A, int stored_sent_A) = (stored_states~load_uint(64), stored_states~load_coins());
+                                                ^
+cooperative_commit: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/payment-channels/func/async-channel.func:294:47: warning: Local variable 'stored_sent_B' is not used
+        (int stored_seqno_B, int stored_sent_B) = (stored_states~load_uint(64), stored_states~load_coins());
+                                                ^
+save_storage & load_storage: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/payment-channels/func/async-channel.func:126:24: warning: Cell of get_data and set_data are inconsistent.
+    slice cs = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/payment-channels/func/async-channel.func:147:33: warning: Cell of get_data and set_data are inconsistent.
+    builder storage = begin_cell();
+                                  ^
+save_storage & load_storage: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/payment-channels/func/async-channel.func:126:24: warning: Cell of get_data and set_data are inconsistent.
+    slice cs = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/payment-channels/func/async-channel.func:147:33: warning: Cell of get_data and set_data are inconsistent.
+    builder storage = begin_cell();
+                                  ^

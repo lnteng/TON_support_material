@@ -1,0 +1,12 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./1ton-labs/contracts-func/contracts/treasury_pool.fc:84:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./1ton-labs/contracts-func/contracts/treasury_pool.fc:95:18: warning: Local variable 'query_id' is not used
+      int query_id = in_msg_body~load_uint(64);
+                   ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./1ton-labs/contracts-func/contracts/treasury_pool.fc:14:85: warning: Lack of end_parse.
+          return (-1, treasury_admin_address, nft_item_address, ds~load_msg_addr(), ds~load_coins());
+                                                                                      ^

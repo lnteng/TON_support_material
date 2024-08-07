@@ -1,0 +1,49 @@
+;;
+;; Header files for Saver
+;; NOTE: declarations are sorted for optimal order
+;;
+
+;; __tact_verify_address
+slice __tact_verify_address(slice address) inline;
+
+;; __tact_load_address
+(slice, slice) __tact_load_address(slice cs) inline;
+
+;; __tact_store_address
+builder __tact_store_address(builder b, slice address) inline;
+
+;; __tact_context_get
+(int, slice, int, slice) __tact_context_get() inline;
+
+;; __tact_slice_eq_bits
+int __tact_slice_eq_bits(slice a, slice b) inline;
+
+;; $Data$_load
+(slice, ((slice))) $Data$_load(slice sc_0) inline;
+
+;; $Saver$_store
+builder $Saver$_store(builder build_0, (slice, slice, slice, slice) v) inline;
+
+;; $Saver$_load
+(slice, ((slice, slice, slice, slice))) $Saver$_load(slice sc_0) inline;
+
+;; $DataResponse$_to_external
+(slice, slice, slice, slice) $DataResponse$_to_external(((slice, slice, slice, slice)) v) inline;
+
+;; $Saver$init$_load
+(slice, ((slice, slice, slice))) $Saver$init$_load(slice sc_0) inline;
+
+;; $Saver$_contract_init
+(slice, slice, slice, slice) $Saver$_contract_init(slice $master, slice $owner, slice $key) impure inline_ref;
+
+;; $Saver$_contract_load
+(slice, slice, slice, slice) $Saver$_contract_load() impure inline_ref;
+
+;; $Saver$_contract_store
+() $Saver$_contract_store((slice, slice, slice, slice) v) impure inline;
+
+;; $DataResponse$_constructor_master_owner_key_data
+((slice, slice, slice, slice)) $DataResponse$_constructor_master_owner_key_data(slice master, slice owner, slice key, slice data) inline;
+
+;; $Saver$_fun_get_contract_data
+((slice, slice, slice, slice), (slice, slice, slice, slice)) $Saver$_fun_get_contract_data((slice, slice, slice, slice) $self) impure inline_ref;

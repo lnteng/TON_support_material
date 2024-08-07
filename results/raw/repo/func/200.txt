@@ -1,0 +1,32 @@
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./StalinFoundation/token-staking/contracts/jetton/jetton-minter.fc:182:87: warning: Local variable 'total_supply' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code, _) = load_data();
+                                                                                        ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./StalinFoundation/token-staking/contracts/jetton/jetton-minter.fc:182:87: warning: Local variable 'admin_address' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code, _) = load_data();
+                                                                                        ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./StalinFoundation/token-staking/contracts/jetton/jetton-minter.fc:182:87: warning: Local variable 'content' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code, _) = load_data();
+                                                                                        ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./StalinFoundation/token-staking/contracts/jetton/jetton-minter.fc:91:42: warning: Lack of end_parse.
+          int jetton_amount = master_msg_cs~load_coins();
+                                           ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./StalinFoundation/token-staking/contracts/jetton/jetton-minter.fc:76:21: warning: Lack of end_parse.
+      int fwd_fee = cs~load_coins(); ;; we use message fwd_fee for estimation of provide_wallet_address cost
+                      ^
+check_mint_access: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./StalinFoundation/token-staking/contracts/jetton/jetton-minter.fc:51:25: warning: Local variable 'data' is not used
+      (slice data, int f) = minters.udict_get?(256, slice_hash(check_address));
+                          ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./StalinFoundation/token-staking/contracts/jetton/jetton-minter.fc:22:15: warning: Lack of end_parse.
+              ds~load_dict() ;; minters accessors
+                ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./StalinFoundation/token-staking/contracts/jetton/jetton-minter.fc:141:79: warning: UnHandle bounced message with op: 0xd1735400
+          send_raw_message(msg.store_maybe_ref(included_address).end_cell(), 64);
+                                                                                ^

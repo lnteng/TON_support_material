@@ -1,0 +1,95 @@
+#include "imports/stdlib.fc";
+
+;; Storage:
+;; storage$_ public_key:uint256 execution_time:uint32 receiver:MsgAddressInt seqno:uint32 = Storage;
+
+;; External in: 
+;; update#9df10277 query_id:uint64 signature:bits512 ^[ locked_for:uint32 new_seqno:uint32 ] = ExtInMsgBody
+
+;; External in:
+;; claim#bb4be234 query_id:uint64 = ExtInMsgBody
+
+;; int op::update() asm "0x9df10277 PUSHINT";
+;; int op::claim() asm "0xbb4be234 PUSHINT";
+
+() recv_internal(int my_balance, int msg_value, cell in_msg_full, slice in_msg_body) impure {
+  ;; do nothing for internal messages
+}
+
+() recv_external(slice in_msg) impure {
+  ;;   accept_message(); ;; comment after tests
+  ;; if (in_msg.slice_empty?()) { ;; ignore empty messages
+  ;; return ();
+  ;; }
+
+  int op = in_msg~load_uint(32); ;; maybe use preload
+
+  if (op == 0x9df10277) {
+
+    in_msg~load_uint(64); ;; query_id
+    var signature = in_msg~load_bits(512);
+    var c = in_msg.preload_ref();
+    var cs = c.begin_parse();
+    var (locked_for, new_seqno) = (cs~load_uint(32), cs.preload_uint(32));
+
+    var ds = get_data().begin_parse();
+    var (public_key, execution_time) = (ds~load_uint(256), ds~load_uint(32));
+    var receiver = ds~load_bits(256 + 11);
+    var stored_seqno = ds.preload_uint(32);
+
+    throw_if(119, new_seqno != stored_seqno + 1);
+    throw_unless(120, check_signature(cell_hash(c), signature, public_key));
+    throw_if(121, locked_for <= 0);
+    throw_if(122, execution_time < now());
+    int t = now() + locked_for;
+    throw_if(123, t < execution_time);
+    accept_message();
+
+    set_data(begin_cell()
+            .store_uint(public_key, 256)
+            .store_uint(t, 32)
+            .store_slice(receiver)
+            .store_uint(new_seqno, 32)
+            .end_cell());
+
+    return();
+  }
+
+  if (op == 0xbb4be234) {
+    var ds = get_data().begin_parse();
+    ds~load_uint(256);
+    int execution_time = ds~load_uint(32);
+
+    throw_if(124, execution_time > now());
+
+;;     ds~load_uint(11);
+    var receiver = ds.preload_bits(256 + 11);
+
+    accept_message();
+
+    send_raw_message(begin_cell()
+;;             .store_uint(33792, 6 + 11)
+            .store_uint(0x10, 6) ;; nobounce - int_msg_info$0 ihr_disabled:Bool bounce:Bool bounced:Bool src:MsgAddress -> 010000
+;;             .store_uint(1024, 11) ;; std addr 0 workchain
+            .store_slice(receiver)
+;;             .store_coins(0) ;;.store_coins(0) == 0000
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1 + 4)
+            .end_cell(), 128);
+    return();
+  }
+
+}
+
+;; Get methods
+
+int get_seqno() method_id {
+  var cs = get_data().begin_parse();
+  cs~skip_bits(256 + 32 + 256 + 8 + 3);
+  return cs.preload_uint(32);
+}
+
+int get_execution_time() method_id {
+  var cs = get_data().begin_parse();
+  cs~load_uint(256);
+  return cs.preload_uint(32);
+}

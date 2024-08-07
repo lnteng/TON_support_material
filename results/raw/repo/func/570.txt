@@ -1,0 +1,68 @@
+get_fee: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./CryptoSnowPrince/ton-buyToken/contracts/stash/counter.fc:156:51: warning: Local variable 'admin_address' is not used
+    var (pending_platform_fee, admin_address, bots) = load_data();
+                                                    ^
+get_fee: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./CryptoSnowPrince/ton-buyToken/contracts/stash/counter.fc:156:51: warning: Local variable 'bots' is not used
+    var (pending_platform_fee, admin_address, bots) = load_data();
+                                                    ^
+get_bots: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./CryptoSnowPrince/ton-buyToken/contracts/stash/counter.fc:166:51: warning: Local variable 'pending_platform_fee' is not used
+    var (pending_platform_fee, admin_address, bots) = load_data();
+                                                    ^
+get_bots: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./CryptoSnowPrince/ton-buyToken/contracts/stash/counter.fc:166:51: warning: Local variable 'admin_address' is not used
+    var (pending_platform_fee, admin_address, bots) = load_data();
+                                                    ^
+withdrawfee: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./CryptoSnowPrince/ton-buyToken/contracts/stash/counter.fc:91:51: warning: Local variable 'pending_platform_fee' is not used
+    var (pending_platform_fee, admin_address, bots) = load_data();
+                                                    ^
+withdrawfee: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./CryptoSnowPrince/ton-buyToken/contracts/stash/counter.fc:91:51: warning: Local variable 'bots' is not used
+    var (pending_platform_fee, admin_address, bots) = load_data();
+                                                    ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./CryptoSnowPrince/ton-buyToken/contracts/stash/counter.fc:147:21: warning: Lack of end_parse.
+      int fwd_fee = cs~load_coins(); ;; we use message fwd_fee for estimation of forward_payload costs
+                      ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./CryptoSnowPrince/ton-buyToken/contracts/stash/counter.fc:112:13: warning: Local variable 'flags' is not used
+    var flags = cs~load_uint(4);  ;; int_msg_info$0 ihr_disabled:Bool bounce:Bool bounced:Bool
+              ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./CryptoSnowPrince/ton-buyToken/contracts/stash/counter.fc:147:17: warning: Local variable 'fwd_fee' is not used
+      int fwd_fee = cs~load_coins(); ;; we use message fwd_fee for estimation of forward_payload costs
+                  ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./CryptoSnowPrince/ton-buyToken/contracts/stash/counter.fc:149:18: warning: Local variable 'query_id' is not used
+      int query_id = in_msg_body~load_uint(64);
+                   ^
+buy_token: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./CryptoSnowPrince/ton-buyToken/contracts/stash/counter.fc:74:51: warning: Local variable 'pending_platform_fee' is not used
+    var (pending_platform_fee, admin_address, bots) = load_data();
+                                                    ^
+buy_token: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./CryptoSnowPrince/ton-buyToken/contracts/stash/counter.fc:74:51: warning: Local variable 'admin_address' is not used
+    var (pending_platform_fee, admin_address, bots) = load_data();
+                                                    ^
+buy_token: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./CryptoSnowPrince/ton-buyToken/contracts/stash/counter.fc:78:37: warning: Local variable 'key' is not used
+    (int bfound, int key, int b_role) = get_index(bots, sender_address);
+                                      ^
+get_addr: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./CryptoSnowPrince/ton-buyToken/contracts/stash/counter.fc:161:51: warning: Local variable 'pending_platform_fee' is not used
+    var (pending_platform_fee, admin_address, bots) = load_data();
+                                                    ^
+get_addr: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./CryptoSnowPrince/ton-buyToken/contracts/stash/counter.fc:161:51: warning: Local variable 'bots' is not used
+    var (pending_platform_fee, admin_address, bots) = load_data();
+                                                    ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./CryptoSnowPrince/ton-buyToken/contracts/stash/counter.fc:8:51: warning: Lack of end_parse.
+    return (ds~load_uint(64), ds~load_msg_addr(), ds~load_dict());               ;; read a 64 bit unsigned int from the slice and return it
+                                                    ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./CryptoSnowPrince/ton-buyToken/contracts/stash/counter.fc:192:42: warning: UnHandle bounced message with op: 0xf8a7ea5
+    send_raw_message(msg.end_cell(), 2 + 1); ;; revert on errors
+                                           ^

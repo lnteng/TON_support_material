@@ -1,0 +1,16 @@
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBQJ8g2xYVyTmvKRIbDRZ9miuYIPrKoQBI2_ABlcC4ejh10/contracts/nft/nft-marketplace.fc:22:11: warning: Lack of end_parse.
+          ds~load_ref() ;; jetton_wallet_code
+            ^
+get_marketplace_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBQJ8g2xYVyTmvKRIbDRZ9miuYIPrKoQBI2_ABlcC4ejh10/contracts/nft/nft-marketplace.fc:139:98: warning: Lack of end_parse.
+       return (owner, jetton_minter, fees_slice~load_uint(16), fees_slice~load_uint(16), fees_slice~load_msg_addr());
+                                                                                                   ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBQJ8g2xYVyTmvKRIbDRZ9miuYIPrKoQBI2_ABlcC4ejh10/contracts/nft/nft-marketplace.fc:101:30: warning: Lack of end_parse.
+          int price = ref_slice~load_coins();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBQJ8g2xYVyTmvKRIbDRZ9miuYIPrKoQBI2_ABlcC4ejh10/contracts/nft/nft-marketplace.fc:89:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^

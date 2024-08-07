@@ -1,0 +1,32 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCQOVr-q1hh9RjpSDIgB5LNrw202C7R62AMRlyga4Be0xi3/fixed_staking_collection.fc:188:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCQOVr-q1hh9RjpSDIgB5LNrw202C7R62AMRlyga4Be0xi3/fixed_staking_collection.fc:328:41: warning: Lack of end_parse.
+          int staking_factor = nft_content~load_coins();
+                                          ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCQOVr-q1hh9RjpSDIgB5LNrw202C7R62AMRlyga4Be0xi3/fixed_staking_collection.fc:67:41: warning: Lack of end_parse.
+      storage::last_cell              = ds~load_ref();
+                                          ^
+get_nft_content: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCQOVr-q1hh9RjpSDIgB5LNrw202C7R62AMRlyga4Be0xi3/fixed_staking_collection.fc:484:30: warning: Lack of end_parse.
+      slice common_content = cs~load_ref().begin_parse();
+                               ^
+load_last_cell: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCQOVr-q1hh9RjpSDIgB5LNrw202C7R62AMRlyga4Be0xi3/fixed_staking_collection.fc:73:34: warning: Lack of end_parse.
+      storage::creator_address = ds~load_msg_addr();
+                                   ^
+get_collection_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCQOVr-q1hh9RjpSDIgB5LNrw202C7R62AMRlyga4Be0xi3/fixed_staking_collection.fc:471:37: warning: Lack of end_parse.
+  return (storage::next_item_index, cs~load_ref(), "EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c"a);
+                                      ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCQOVr-q1hh9RjpSDIgB5LNrw202C7R62AMRlyga4Be0xi3/fixed_staking_collection.fc:354:46: warning: UnHandle bounced message with op: 0x55521d04
+                  send_raw_message(burn_msg, 0); 
+                                               ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCQOVr-q1hh9RjpSDIgB5LNrw202C7R62AMRlyga4Be0xi3/fixed_staking_collection.fc:177:51: warning: UnHandle bounced message with op: 0x5fcc3d14
+      send_raw_message(msg.end_cell(), sending_mode); 
+                                                    ^

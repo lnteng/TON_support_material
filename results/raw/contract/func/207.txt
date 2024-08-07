@@ -1,0 +1,15 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAjVwyR3cCgTQSBeWM9UtXfk3yL8DlDv5VtiV4E2JiOLCU0/deal.fc:148:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAjVwyR3cCgTQSBeWM9UtXfk3yL8DlDv5VtiV4E2JiOLCU0/deal.fc:170:18: warning: Local variable 'query_id' is not used
+      int query_id = in_msg_body~load_uint(64);
+                   ^
+save_data & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAjVwyR3cCgTQSBeWM9UtXfk3yL8DlDv5VtiV4E2JiOLCU0/deal.fc:46:24: warning: Cell of get_data and set_data are inconsistent.
+      var ds = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAjVwyR3cCgTQSBeWM9UtXfk3yL8DlDv5VtiV4E2JiOLCU0/deal.fc:72:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(external_id, 128)
+              ^

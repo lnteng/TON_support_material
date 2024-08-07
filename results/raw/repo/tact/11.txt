@@ -1,0 +1,27 @@
+$TodoChild$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-unbounded-arrays/output/sample_TodoParent.storage.fc:200:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$TodoParent$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-unbounded-arrays/output/sample_TodoParent.storage.fc:171:19: warning: Lack of end_parse.
+          return $sc~$TodoParent$_load();
+                    ^
+$TodoParent$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-unbounded-arrays/output/sample_TodoParent.code.fc:14:41: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'numTodos)) = (null(), 0);
+                                          ^
+$TodoParent$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-unbounded-arrays/output/sample_TodoParent.code.fc:108:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-unbounded-arrays/output/sample_TodoParent.storage.fc:180:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$TodoParent$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-unbounded-arrays/output/sample_TodoParent.code.fc:59:273: warning: UnHandle bounced message with op: 0xcf008c4c
+  ... plete$_store_cell($InternalComplete$_constructor_excess(__tact_context_get_sender())), 0, (64 + 2)));
+  ...                                                                                                     ^
+$TodoParent$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-unbounded-arrays/output/sample_TodoParent.code.fc:49:241: warning: UnHandle bounced message with op: 0xbbeae65e
+  ... sk$_store_cell($InternalSetTask$_constructor_task($msg'task)), 20000000, 2, $init'code, $init'data));
+  ...                                                                                                     ^

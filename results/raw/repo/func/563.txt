@@ -1,0 +1,24 @@
+get_wallet_address_int: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./polus-dev/btn-token-smc/func/btn-mint-ico.func:297:16: warning: Lack of end_parse.
+      owner_jwall~skip_bits(2 + 1 + 8);  ;; skip constructor, anycast, workchain_id
+                 ^
+handle::start: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./polus-dev/btn-token-smc/func/btn-mint-ico.func:207:27: warning: Lack of end_parse.
+      slice sender_addr = cs~load_msg_addr();
+                            ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./polus-dev/btn-token-smc/func/btn-mint-ico.func:54:35: warning: Lack of end_parse.
+      db::content         = sys_data~load_ref();
+                                    ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./polus-dev/btn-token-smc/func/btn-mint-ico.func:50:35: warning: Lack of end_parse.
+      db::allow_to_ico    = ico_data~load_grams();
+                                    ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./polus-dev/btn-token-smc/func/btn-mint-ico.func:43:36: warning: Lack of end_parse.
+      db::simple_burned   = main_data~load_grams();
+                                     ^
+handle::mint: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./polus-dev/btn-token-smc/func/btn-mint-ico.func:119:34: warning: Lack of end_parse.
+      int     jamount         = msc~load_grams();
+                                   ^

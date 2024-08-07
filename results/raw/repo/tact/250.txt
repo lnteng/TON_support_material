@@ -1,0 +1,23 @@
+$TactHello$_internal_binary_SetName: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./KyoungWan/Tact_BootCamp_Seoul/TactIntro/contracts/output/sample_TactHello.code.fc:51:30: warning: Local variable '$self'name' is not used
+      ($self'owner, $self'name)~$TactHello$_fun_requireOwner();
+                               ^
+__tact_string_builder_append: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./KyoungWan/Tact_BootCamp_Seoul/TactIntro/contracts/output/sample_TactHello.stdlib.fc:102:31: warning: Lack of end_parse.
+              sc = sc~load_ref().begin_parse();
+                                ^
+$TactHello$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./KyoungWan/Tact_BootCamp_Seoul/TactIntro/contracts/output/sample_TactHello.code.fc:15:37: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'name)) = (null(), __gen_slice_string_40d98146a47dbe3bbc9c7205450b5da355c567deb3ea11d30a74c85ef592e945());
+                                      ^
+$TactHello$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./KyoungWan/Tact_BootCamp_Seoul/TactIntro/contracts/output/sample_TactHello.storage.fc:127:19: warning: Lack of end_parse.
+          return $sc~$TactHello$_load();
+                    ^
+$TactHello$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./KyoungWan/Tact_BootCamp_Seoul/TactIntro/contracts/output/sample_TactHello.code.fc:113:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./KyoungWan/Tact_BootCamp_Seoul/TactIntro/contracts/output/sample_TactHello.storage.fc:136:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

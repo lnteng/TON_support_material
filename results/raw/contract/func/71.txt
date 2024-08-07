@@ -1,0 +1,12 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC6pKQburTaQGNvFW6KLxgIa_Xo_FnUjMy7OPFTnwJO4qIa/preico.fc:34:28: warning: Lack of end_parse.
+    slice sender_address = cs~load_msg_addr();
+                             ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC6pKQburTaQGNvFW6KLxgIa_Xo_FnUjMy7OPFTnwJO4qIa/preico.fc:14:7: warning: Lack of end_parse.
+      ds~load_uint(2), ;; ico_state
+        ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC6pKQburTaQGNvFW6KLxgIa_Xo_FnUjMy7OPFTnwJO4qIa/preico.fc:59:30: warning: UnHandle bounced message with op: 0x1d4ae3ba
+      send_raw_message(msg, 64);
+                               ^

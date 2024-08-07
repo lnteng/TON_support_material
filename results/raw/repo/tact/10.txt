@@ -1,0 +1,26 @@
+$TodoChild$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-unbounded-arrays/output/sample_TodoChild.storage.fc:80:19: warning: Lack of end_parse.
+          return $sc~$TodoChild$_load();
+                    ^
+$TodoChild$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-unbounded-arrays/output/sample_TodoChild.code.fc:15:68: warning: Local variable '$self'parent' is not used
+      var (($self'parent, $self'seqno, $self'task, $self'completed)) = (null(), null(), __gen_slice_string_96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7(), false);
+                                                                     ^
+$TodoChild$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-unbounded-arrays/output/sample_TodoChild.code.fc:15:68: warning: Local variable '$self'seqno' is not used
+      var (($self'parent, $self'seqno, $self'task, $self'completed)) = (null(), null(), __gen_slice_string_96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7(), false);
+                                                                     ^
+$TodoChild$_contract_store & $TodoChild$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-unbounded-arrays/output/sample_TodoChild.storage.fc:76:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-unbounded-arrays/output/sample_TodoChild.storage.fc:91:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$TodoChild$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-unbounded-arrays/output/sample_TodoChild.code.fc:71:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-unbounded-arrays/output/sample_TodoChild.storage.fc:91:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

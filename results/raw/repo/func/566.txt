@@ -1,0 +1,12 @@
+parse_body_mint: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./boltoshi-labs/bolt/func/btn-mint-ico.func:78:34: warning: Lack of end_parse.
+      int     jetton_amount   = msc~load_grams();
+                                   ^
+get_wallet_address_int: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./boltoshi-labs/bolt/func/btn-mint-ico.func:285:16: warning: Lack of end_parse.
+      owner_jwall~skip_bits(2 + 1 + 8);  ;; skip constructor, anycast, workchain_id
+                 ^
+handle::start: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./boltoshi-labs/bolt/func/btn-mint-ico.func:109:28: warning: Lack of end_parse.
+       slice sender_addr = cs~load_msg_addr();
+                             ^

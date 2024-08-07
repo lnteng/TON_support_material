@@ -1,0 +1,20 @@
+handle_transaction: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDeCBx1wSun-AuJa0jSiY4k3jLov44SMcL34mbyu6SzSgyD/proxy-wallet.fc:46:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+handle_transaction: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDeCBx1wSun-AuJa0jSiY4k3jLov44SMcL34mbyu6SzSgyD/proxy-wallet.fc:56:28: warning: Local variable 'from_address' is not used
+          slice from_address = in_msg_body~load_msg_addr();
+                             ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDeCBx1wSun-AuJa0jSiY4k3jLov44SMcL34mbyu6SzSgyD/proxy-wallet.fc:133:19: warning: Lack of end_parse.
+      int flags = cs~load_uint(4);
+                    ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDeCBx1wSun-AuJa0jSiY4k3jLov44SMcL34mbyu6SzSgyD/proxy-wallet.fc:81:50: warning: UnHandle bounced message with op: 0xf8a7ea5
+          send_raw_message(msg.end_cell(), 2 + 128);
+                                                   ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDeCBx1wSun-AuJa0jSiY4k3jLov44SMcL34mbyu6SzSgyD/proxy-wallet.fc:98:14: warning: UnHandle bounced message with op: 0xd53276db
+              );
+               ^

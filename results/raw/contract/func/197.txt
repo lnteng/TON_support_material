@@ -1,0 +1,56 @@
+get_price: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBlU_tKISgpepeMFT9t3xTDeiVmo25dW_4vUOl6jId_BNIj/kotecoin-minter.fc:171:118: warning: Local variable 'total_supply' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code, int price_factor, int price_base) = load_data();
+                                                                                                                       ^
+get_price: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBlU_tKISgpepeMFT9t3xTDeiVmo25dW_4vUOl6jId_BNIj/kotecoin-minter.fc:171:118: warning: Local variable 'admin_address' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code, int price_factor, int price_base) = load_data();
+                                                                                                                       ^
+get_price: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBlU_tKISgpepeMFT9t3xTDeiVmo25dW_4vUOl6jId_BNIj/kotecoin-minter.fc:171:118: warning: Local variable 'content' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code, int price_factor, int price_base) = load_data();
+                                                                                                                       ^
+get_price: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBlU_tKISgpepeMFT9t3xTDeiVmo25dW_4vUOl6jId_BNIj/kotecoin-minter.fc:171:118: warning: Local variable 'jetton_wallet_code' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code, int price_factor, int price_base) = load_data();
+                                                                                                                       ^
+get_jetton_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBlU_tKISgpepeMFT9t3xTDeiVmo25dW_4vUOl6jId_BNIj/kotecoin-minter.fc:161:118: warning: Local variable 'price_factor' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code, int price_factor, int price_base) = load_data();
+                                                                                                                       ^
+get_jetton_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBlU_tKISgpepeMFT9t3xTDeiVmo25dW_4vUOl6jId_BNIj/kotecoin-minter.fc:161:118: warning: Local variable 'price_base' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code, int price_factor, int price_base) = load_data();
+                                                                                                                       ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBlU_tKISgpepeMFT9t3xTDeiVmo25dW_4vUOl6jId_BNIj/kotecoin-minter.fc:52:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBlU_tKISgpepeMFT9t3xTDeiVmo25dW_4vUOl6jId_BNIj/kotecoin-minter.fc:92:42: warning: Lack of end_parse.
+          int jetton_amount = master_msg_cs~load_coins();
+                                           ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBlU_tKISgpepeMFT9t3xTDeiVmo25dW_4vUOl6jId_BNIj/kotecoin-minter.fc:16:9: warning: Lack of end_parse.
+        ds~load_uint(64) ;; price base
+          ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBlU_tKISgpepeMFT9t3xTDeiVmo25dW_4vUOl6jId_BNIj/kotecoin-minter.fc:166:118: warning: Local variable 'total_supply' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code, int price_factor, int price_base) = load_data();
+                                                                                                                       ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBlU_tKISgpepeMFT9t3xTDeiVmo25dW_4vUOl6jId_BNIj/kotecoin-minter.fc:166:118: warning: Local variable 'admin_address' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code, int price_factor, int price_base) = load_data();
+                                                                                                                       ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBlU_tKISgpepeMFT9t3xTDeiVmo25dW_4vUOl6jId_BNIj/kotecoin-minter.fc:166:118: warning: Local variable 'content' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code, int price_factor, int price_base) = load_data();
+                                                                                                                       ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBlU_tKISgpepeMFT9t3xTDeiVmo25dW_4vUOl6jId_BNIj/kotecoin-minter.fc:166:118: warning: Local variable 'price_factor' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code, int price_factor, int price_base) = load_data();
+                                                                                                                       ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBlU_tKISgpepeMFT9t3xTDeiVmo25dW_4vUOl6jId_BNIj/kotecoin-minter.fc:166:118: warning: Local variable 'price_base' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code, int price_factor, int price_base) = load_data();
+                                                                                                                       ^

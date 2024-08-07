@@ -1,0 +1,44 @@
+calculate_minter_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef-1JetbPF9ubc1ga-57oHoOyDA1IShJt-BVlJnA9rrVTfrB/jetton-bridge.fc:27:81: warning: Local variable 'collector_address' is not used
+      (slice collector_address, cell jetton_minter_code, cell jetton_wallet_code) = load_data();
+                                                                                  ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef-1JetbPF9ubc1ga-57oHoOyDA1IShJt-BVlJnA9rrVTfrB/jetton-bridge.fc:159:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef-1JetbPF9ubc1ga-57oHoOyDA1IShJt-BVlJnA9rrVTfrB/jetton-bridge.fc:162:109: warning: Local variable 'bridge_burn_fee' is not used
+      (_, int oracles_address_hash, _, int state_flags, int bridge_burn_fee, int bridge_mint_fee, _, _, _, _) = get_jetton_bridge_config();
+                                                                                                              ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef-1JetbPF9ubc1ga-57oHoOyDA1IShJt-BVlJnA9rrVTfrB/jetton-bridge.fc:185:32: warning: Local variable 'response_address' is not used
+          slice response_address = in_msg_body~load_msg_addr();
+                                 ^
+get_jetton_bridge_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef-1JetbPF9ubc1ga-57oHoOyDA1IShJt-BVlJnA9rrVTfrB/config.fc:38:42: warning: Lack of end_parse.
+      int discover_gas_consumption = prices~load_coins();
+                                           ^
+get_jetton_bridge_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef-1JetbPF9ubc1ga-57oHoOyDA1IShJt-BVlJnA9rrVTfrB/config.fc:26:32: warning: Lack of end_parse.
+      slice prices = slice_config~load_ref().begin_parse();
+                                 ^
+get_jetton_bridge_config: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef-1JetbPF9ubc1ga-57oHoOyDA1IShJt-BVlJnA9rrVTfrB/config.fc:15:16: warning: Local variable 'prefix' is not used
+      int prefix = slice_config~load_uint(8);
+                 ^
+execute_voting: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef-1JetbPF9ubc1ga-57oHoOyDA1IShJt-BVlJnA9rrVTfrB/jetton-bridge.fc:67:11: warning: Local variable 'ext_chain_hash' is not used
+          ) = (
+            ^
+execute_voting: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef-1JetbPF9ubc1ga-57oHoOyDA1IShJt-BVlJnA9rrVTfrB/jetton-bridge.fc:67:11: warning: Local variable 'internal_index' is not used
+          ) = (
+            ^
+execute_voting: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef-1JetbPF9ubc1ga-57oHoOyDA1IShJt-BVlJnA9rrVTfrB/jetton-bridge.fc:82:11: warning: Local variable 'token_address' is not used
+          ) = unpack_wrapped_token_data(wrapped_token_data);
+            ^
+execute_voting: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef-1JetbPF9ubc1ga-57oHoOyDA1IShJt-BVlJnA9rrVTfrB/jetton-bridge.fc:82:11: warning: Local variable 'token_decimals' is not used
+          ) = unpack_wrapped_token_data(wrapped_token_data);
+            ^

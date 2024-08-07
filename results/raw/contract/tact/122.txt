@@ -1,0 +1,55 @@
+__tact_string_builder_append: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDYfALh5zjhkNDDIwyRXtTtQKLVcrNs2xiprpWmDyvdIU2c/output/verifier_LootBoxContract.stdlib.fc:129:31: warning: Lack of end_parse.
+              sc = sc~load_ref().begin_parse();
+                                ^
+$UserStats$_load_opt: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDYfALh5zjhkNDDIwyRXtTtQKLVcrNs2xiprpWmDyvdIU2c/output/verifier_LootBoxContract.storage.fc:96:38: warning: Lack of end_parse.
+      return $UserStats$_as_optional(sc~$UserStats$_load());
+                                       ^
+$LootBoxContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDYfALh5zjhkNDDIwyRXtTtQKLVcrNs2xiprpWmDyvdIU2c/output/verifier_LootBoxContract.code.fc:15:129: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'usersStats, ($self'globalStats'counter, $self'globalStats'biggestWin, $self'globalStats'lastWin))) = (null(), null(), null());
+                                                                                                                                  ^
+$LootBoxContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDYfALh5zjhkNDDIwyRXtTtQKLVcrNs2xiprpWmDyvdIU2c/output/verifier_LootBoxContract.code.fc:15:129: warning: Local variable '$self'usersStats' is not used
+      var (($self'owner, $self'usersStats, ($self'globalStats'counter, $self'globalStats'biggestWin, $self'globalStats'lastWin))) = (null(), null(), null());
+                                                                                                                                  ^
+$LootBoxContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDYfALh5zjhkNDDIwyRXtTtQKLVcrNs2xiprpWmDyvdIU2c/output/verifier_LootBoxContract.code.fc:15:129: warning: Local variable '$self'globalStats'counter' is not used
+      var (($self'owner, $self'usersStats, ($self'globalStats'counter, $self'globalStats'biggestWin, $self'globalStats'lastWin))) = (null(), null(), null());
+                                                                                                                                  ^
+$LootBoxContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDYfALh5zjhkNDDIwyRXtTtQKLVcrNs2xiprpWmDyvdIU2c/output/verifier_LootBoxContract.code.fc:15:129: warning: Local variable '$self'globalStats'biggestWin' is not used
+      var (($self'owner, $self'usersStats, ($self'globalStats'counter, $self'globalStats'biggestWin, $self'globalStats'lastWin))) = (null(), null(), null());
+                                                                                                                                  ^
+$LootBoxContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDYfALh5zjhkNDDIwyRXtTtQKLVcrNs2xiprpWmDyvdIU2c/output/verifier_LootBoxContract.code.fc:15:129: warning: Local variable '$self'globalStats'lastWin' is not used
+      var (($self'owner, $self'usersStats, ($self'globalStats'counter, $self'globalStats'biggestWin, $self'globalStats'lastWin))) = (null(), null(), null());
+                                                                                                                                  ^
+__tact_dict_set_slice_cell: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDYfALh5zjhkNDDIwyRXtTtQKLVcrNs2xiprpWmDyvdIU2c/output/verifier_LootBoxContract.stdlib.fc:58:21: warning: Local variable 'ok' is not used
+          var (r, ok) = __tact_dict_delete(d, kl, k);
+                      ^
+$LootBoxContract$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDYfALh5zjhkNDDIwyRXtTtQKLVcrNs2xiprpWmDyvdIU2c/output/verifier_LootBoxContract.storage.fc:162:19: warning: Lack of end_parse.
+          return $sc~$LootBoxContract$_load();
+                    ^
+$LootBoxContract$_internal_text_1e3a46cb5cc3f633146032961a17c344b327be9f09f86cb2980f110fe6d5a55e: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDYfALh5zjhkNDDIwyRXtTtQKLVcrNs2xiprpWmDyvdIU2c/output/verifier_LootBoxContract.code.fc:86:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$LootBoxContract$_internal_text_1e3a46cb5cc3f633146032961a17c344b327be9f09f86cb2980f110fe6d5a55e: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDYfALh5zjhkNDDIwyRXtTtQKLVcrNs2xiprpWmDyvdIU2c/output/verifier_LootBoxContract.code.fc:86:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$LootBoxContract$_internal_text_1e3a46cb5cc3f633146032961a17c344b327be9f09f86cb2980f110fe6d5a55e: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDYfALh5zjhkNDDIwyRXtTtQKLVcrNs2xiprpWmDyvdIU2c/output/verifier_LootBoxContract.code.fc:96:81: warning: Local variable '$userStats'lastWin' is not used
+              var ($userStats'counter, $userStats'biggestWin, $userStats'lastWin) = $UserStats$_not_null($UserStats$_load_opt(__tact_dict_get_slice_cell($self'usersStats, 267, $sender)));
+                                                                                  ^
+$LootBoxContract$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDYfALh5zjhkNDDIwyRXtTtQKLVcrNs2xiprpWmDyvdIU2c/output/verifier_LootBoxContract.code.fc:164:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDYfALh5zjhkNDDIwyRXtTtQKLVcrNs2xiprpWmDyvdIU2c/output/verifier_LootBoxContract.storage.fc:173:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

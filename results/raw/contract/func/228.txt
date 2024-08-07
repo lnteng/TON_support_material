@@ -1,0 +1,20 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBIzHiopIkaXdXdSZ6Sm57kZV0y_5tZjnGO4fTUsMT0lOUz/amm-minter.fc:199:21: warning: Lack of end_parse.
+      int fwd_fee = cs~load_coins(); ;; we use message fwd_fee for estimation of forward_payload costs    
+                      ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBIzHiopIkaXdXdSZ6Sm57kZV0y_5tZjnGO4fTUsMT0lOUz/imports/store.fc:20:33: warning: Lack of end_parse.
+    store::jetton_wallet_code = ds~load_ref();          ;; jetton_wallet_code
+                                  ^
+square_root: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBIzHiopIkaXdXdSZ6Sm57kZV0y_5tZjnGO4fTUsMT0lOUz/imports/amm-minter-utils.fc:16:13: warning: PressionLoss
+      if (mid * mid > number) {
+              ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBIzHiopIkaXdXdSZ6Sm57kZV0y_5tZjnGO4fTUsMT0lOUz/amm-minter.fc:47:40: warning: UnHandle bounced message with op: 0x178d4519
+      send_raw_message(msg.end_cell(), 1); ;; pay transfer fees separately, revert on errors
+                                         ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBIzHiopIkaXdXdSZ6Sm57kZV0y_5tZjnGO4fTUsMT0lOUz/imports/amm-minter-utils.fc:70:42: warning: UnHandle bounced message with op: 0xf8a7ea5
+    send_raw_message(msg.end_cell(), 2 + 1); ;; revert on errors
+                                           ^

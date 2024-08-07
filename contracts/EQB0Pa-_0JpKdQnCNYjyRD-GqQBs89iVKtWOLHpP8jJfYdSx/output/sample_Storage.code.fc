@@ -1,0 +1,121 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_Storage.headers.fc";
+#include "sample_Storage.stdlib.fc";
+#include "sample_Storage.constants.fc";
+#include "sample_Storage.storage.fc";
+
+;;
+;; Contract Storage functions
+;;
+
+(cell, cell) $Storage$_contract_init() impure inline_ref {
+    var (($self'data, $self'owner)) = (null(), null());
+    return ($self'data, $self'owner);
+}
+
+((cell, cell), slice) $Storage$_fun_get_data((cell, cell) $self, slice $owner, int $index) impure inline_ref {
+    var (($self'data, $self'owner)) = $self;
+    if (null?(__tact_dict_get_int_slice($self'owner, 257, $index))) {
+        return (($self'data, $self'owner), __gen_slice_string_c32c110b29b250c055b451999f8b30b1df3df81a0c8f03c7b49da66a996016a8());
+    }
+    if (( ~ __tact_slice_eq_bits($owner, __tact_not_null(__tact_dict_get_int_slice($self'owner, 257, $index))) )) {
+        return (($self'data, $self'owner), __gen_slice_string_90ed8264978ea10e9c1a9a3be90fe074203a9ad765ff51032d0e08f5e46b0aa5());
+    }
+    return (($self'data, $self'owner), $Data$_get_data($Data$_not_null($Data$_load_opt(__tact_dict_get_int_cell($self'data, 257, $index)))));
+}
+
+;;
+;; Receivers of a Contract Storage
+;;
+
+(((cell, cell)), ()) $Storage$_internal_binary_DataInput((cell, cell) $self, (int, slice) $msg) impure inline {
+    var ($self'data, $self'owner) = $self;
+    var ($msg'index, $msg'data) = $msg;
+    throw_unless(3359, null?($Data$_load_opt(__tact_dict_get_int_cell($self'data, 257, $msg'index))));
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    $self'owner~__tact_dict_set_int_slice(257, $msg'index, $ctx'sender);
+    $self'data~__tact_dict_set_int_cell(257, $msg'index, $Data$_store_cell($Data$_constructor_data($msg'data)));
+    return (($self'data, $self'owner), ());
+}
+
+;;
+;; Get methods of a Contract Storage
+;;
+
+_ %get_data(slice $$owner, int $$index) method_id(78985) {
+    slice $owner = __tact_verify_address($$owner);
+    int $index = $$index;
+    var self = $Storage$_contract_load();
+    var res = self~$Storage$_fun_get_data($owner, $index);
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmcJd9fpepLHprkTRMunfPX6YJhsNUY4wqUn3KTjBmFh5C";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract Storage
+;;
+
+((cell, cell), int) $Storage$_contract_router_internal((cell, cell) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive DataInput message
+    if (op == 1309294288) {
+        var msg = in_msg~$DataInput$_load();
+        self~$Storage$_internal_binary_DataInput(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $Storage$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$Storage$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $Storage$_contract_store(self);
+}

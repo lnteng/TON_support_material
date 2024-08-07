@@ -1,0 +1,43 @@
+$SampleTactContract$_fun_add: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDt5b5ahyLcvo2Jz54xvvQR8dhYUObZq_XHiDu9g83jN2v_/output/verifier_SampleTactContract.code.fc:23:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$SampleTactContract$_fun_add: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDt5b5ahyLcvo2Jz54xvvQR8dhYUObZq_XHiDu9g83jN2v_/output/verifier_SampleTactContract.code.fc:23:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$SampleTactContract$_fun_add: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDt5b5ahyLcvo2Jz54xvvQR8dhYUObZq_XHiDu9g83jN2v_/output/verifier_SampleTactContract.code.fc:23:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$SampleTactContract$_fun_minus: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDt5b5ahyLcvo2Jz54xvvQR8dhYUObZq_XHiDu9g83jN2v_/output/verifier_SampleTactContract.code.fc:31:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$SampleTactContract$_fun_minus: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDt5b5ahyLcvo2Jz54xvvQR8dhYUObZq_XHiDu9g83jN2v_/output/verifier_SampleTactContract.code.fc:31:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$SampleTactContract$_fun_minus: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDt5b5ahyLcvo2Jz54xvvQR8dhYUObZq_XHiDu9g83jN2v_/output/verifier_SampleTactContract.code.fc:31:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$SampleTactContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDt5b5ahyLcvo2Jz54xvvQR8dhYUObZq_XHiDu9g83jN2v_/output/verifier_SampleTactContract.code.fc:15:40: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'counter)) = (null(), null());
+                                         ^
+$SampleTactContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDt5b5ahyLcvo2Jz54xvvQR8dhYUObZq_XHiDu9g83jN2v_/output/verifier_SampleTactContract.code.fc:15:40: warning: Local variable '$self'counter' is not used
+      var (($self'owner, $self'counter)) = (null(), null());
+                                         ^
+$SampleTactContract$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDt5b5ahyLcvo2Jz54xvvQR8dhYUObZq_XHiDu9g83jN2v_/output/verifier_SampleTactContract.storage.fc:105:19: warning: Lack of end_parse.
+          return $sc~$SampleTactContract$_load();
+                    ^
+$SampleTactContract$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDt5b5ahyLcvo2Jz54xvvQR8dhYUObZq_XHiDu9g83jN2v_/output/verifier_SampleTactContract.code.fc:116:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDt5b5ahyLcvo2Jz54xvvQR8dhYUObZq_XHiDu9g83jN2v_/output/verifier_SampleTactContract.storage.fc:116:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

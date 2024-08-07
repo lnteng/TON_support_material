@@ -1,0 +1,52 @@
+dict_set_slice_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./1ton-labs/contracts-func/contracts/imports/utils.fc:8:21: warning: Local variable 'ok' is not used
+          var (r, ok) = dict_delete(dict, key_len, index);
+                      ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./1ton-labs/contracts-func/contracts/lending.fc:15:19: warning: Lack of end_parse.
+      loan_pool = ds~load_dict();
+                    ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./1ton-labs/contracts-func/contracts/lending.fc:164:18: warning: Local variable 'query_id' is not used
+      int query_id = in_msg_body~load_uint(64);
+                   ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./1ton-labs/contracts-func/contracts/lending.fc:190:29: warning: Local variable 'ok' is not used
+          var (loan_cell, ok) = dict_get_ref(loan_pool, 267, item);
+                              ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./1ton-labs/contracts-func/contracts/lending.fc:193:78: warning: Local variable 'amount' is not used
+          var (investor, borrower, amount, repay_amount, start_time, duration) = parse_loan(loan_cell);
+                                                                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./1ton-labs/contracts-func/contracts/lending.fc:193:78: warning: Local variable 'repay_amount' is not used
+          var (investor, borrower, amount, repay_amount, start_time, duration) = parse_loan(loan_cell);
+                                                                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./1ton-labs/contracts-func/contracts/lending.fc:174:29: warning: Local variable 'ok' is not used
+          var (loan_cell, ok) = dict_get_ref(loan_pool, 267, item);
+                              ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./1ton-labs/contracts-func/contracts/lending.fc:176:78: warning: Local variable 'amount' is not used
+          var (investor, borrower, amount, repay_amount, start_time, duration) = parse_loan(loan_cell);
+                                                                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./1ton-labs/contracts-func/contracts/lending.fc:176:78: warning: Local variable 'start_time' is not used
+          var (investor, borrower, amount, repay_amount, start_time, duration) = parse_loan(loan_cell);
+                                                                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./1ton-labs/contracts-func/contracts/lending.fc:176:78: warning: Local variable 'duration' is not used
+          var (investor, borrower, amount, repay_amount, start_time, duration) = parse_loan(loan_cell);
+                                                                               ^
+start_loan: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./1ton-labs/contracts-func/contracts/lending.fc:110:25: warning: Local variable 'ok' is not used
+      var (loan_cell, ok) = dict_get_ref(loan_pool, 267, item);
+                          ^
+parse_loan: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./1ton-labs/contracts-func/contracts/lending.fc:147:24: warning: Lack of end_parse.
+      int duration = loan~load_uint(64);
+                         ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./1ton-labs/contracts-func/contracts/lending.fc:50:29: warning: UnHandle bounced message with op: 0x5fcc3d14
+      send_raw_message(msg, 0);
+                              ^

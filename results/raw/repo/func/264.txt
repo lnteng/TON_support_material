@@ -1,0 +1,36 @@
+recv_internal: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/pool.fc:155:21: warning: PressionLoss
+      call_pay_to(gas * 3, NORMAL, query_id, storage::protocol_fee_address, 0, storage::collected_token0_protocol_fee, storage::collected_token1_protocol_fee); ;; revert if fails
+                      ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/pool.fc:44:80: warning: Lack of end_parse.
+      throw_unless(INSUFFICIENT_GAS, (msg_value > gas_required) & (msg_value > cs~load_coins() * 6)); ;; use fwd_fee to estimate messages
+                                                                                 ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/pool.fc:169:43: warning: Lack of end_parse.
+    if (handle_getter_messages(msg_value, cs~load_coins(), op, query_id, sender_address, in_msg_body)) {
+                                            ^
+handle_getter_messages: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/pool/getter.fc:68:56: warning: Local variable 'user_address' is not used
+          (slice user_address, int amount0, int amount1) = (in_msg_body~load_msg_addr(), in_msg_body~load_coins(), in_msg_body~load_coins());
+                                                         ^
+get_amount_out: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/pool/amm.fc:15:33: warning: PressionLoss
+      ref_fee_out = divc(base_out * storage::ref_fee, FEE_DIVIDER);
+                                  ^
+get_amount_out: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/pool/amm.fc:11:38: warning: PressionLoss
+      protocol_fee_out = divc(base_out * storage::protocol_fee, FEE_DIVIDER);
+                                       ^
+get_gas_limits_prices: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/imports/gas.fc:36:28: warning: Lack of end_parse.
+      return gas_price_config~load_gas_limits_prices();
+                             ^
+load_storage: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/pool/storage.fc:34:34: warning: Lack of end_parse.
+      storage::lp_account_code = ds~load_ref();
+                                   ^
+load_storage: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/pool/storage.fc:31:29: warning: Lack of end_parse.
+      storage::reserve1 = ds_0~load_coins();
+                              ^

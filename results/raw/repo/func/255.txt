@@ -1,0 +1,48 @@
+get_wallet_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/user-wallet.fc:142:103: warning: Local variable 'call_ids_set' is not used
+      var (public_key, call_ids_set, owner_address, master_address, node_wallet_code, user_wallet_code) = load_data();
+                                                                                                        ^
+get_wallet_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/user-wallet.fc:142:103: warning: Local variable 'node_wallet_code' is not used
+      var (public_key, call_ids_set, owner_address, master_address, node_wallet_code, user_wallet_code) = load_data();
+                                                                                                        ^
+get_wallet_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/user-wallet.fc:142:103: warning: Local variable 'user_wallet_code' is not used
+      var (public_key, call_ids_set, owner_address, master_address, node_wallet_code, user_wallet_code) = load_data();
+                                                                                                        ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/user-wallet.fc:99:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/user-wallet.fc:117:42: warning: Lack of end_parse.
+          int valid_until = user_signed_msg~load_uint(32);
+                                           ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/user-wallet.fc:134:44: warning: Lack of end_parse.
+          int spent_minutes = user_signed_msg~load_uint(32);
+                                             ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/user-wallet.fc:15:11: warning: Lack of end_parse.
+          ds~load_ref()       ;; user_wallet_code
+            ^
+get_call_ids_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/user-wallet.fc:148:96: warning: Local variable 'public_key' is not used
+      var (public_key, calls, owner_address, master_address, node_wallet_code, user_wallet_code) = load_data();
+                                                                                                 ^
+get_call_ids_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/user-wallet.fc:148:96: warning: Local variable 'owner_address' is not used
+      var (public_key, calls, owner_address, master_address, node_wallet_code, user_wallet_code) = load_data();
+                                                                                                 ^
+get_call_ids_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/user-wallet.fc:148:96: warning: Local variable 'master_address' is not used
+      var (public_key, calls, owner_address, master_address, node_wallet_code, user_wallet_code) = load_data();
+                                                                                                 ^
+get_call_ids_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/user-wallet.fc:148:96: warning: Local variable 'node_wallet_code' is not used
+      var (public_key, calls, owner_address, master_address, node_wallet_code, user_wallet_code) = load_data();
+                                                                                                 ^
+get_call_ids_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/user-wallet.fc:148:96: warning: Local variable 'user_wallet_code' is not used
+      var (public_key, calls, owner_address, master_address, node_wallet_code, user_wallet_code) = load_data();
+                                                                                                 ^

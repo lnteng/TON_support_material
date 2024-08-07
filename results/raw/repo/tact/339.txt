@@ -1,0 +1,15 @@
+$__gen_TestContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_TestContract.code.fc:43:24: warning: Local variable '$self'user' is not used
+      var (($self'user)) = (null());
+                         ^
+__gen_load_TestContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_TestContract.code.fc:53:19: warning: Lack of end_parse.
+          return $sc~__gen_read_TestContract();
+                    ^
+__gen_store_TestContract & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_TestContract.code.fc:141:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_TestContract.code.fc:64:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

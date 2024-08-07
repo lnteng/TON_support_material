@@ -1,0 +1,35 @@
+get_contract_id: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCstMFJ6IkoaRgeyY50_pcR6JGmn5-pCfmanZvBZGLzAvKK/dns-manual-code.fc:284:20: warning: Lack of end_parse.
+    return get_data().begin_parse().preload_uint(32);
+                     ^
+recv_external: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCstMFJ6IkoaRgeyY50_pcR6JGmn5-pCfmanZvBZGLzAvKK/dns-manual-code.fc:244:15: warning: Local variable 'queries' is not used
+    var queries = old_queries;
+                ^
+process_ops: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCstMFJ6IkoaRgeyY50_pcR6JGmn5-pCfmanZvBZGLzAvKK/dns-manual-code.fc:209:29: warning: Lack of end_parse.
+          ops = ops~load_ref().begin_parse();
+                              ^
+get_public_key: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCstMFJ6IkoaRgeyY50_pcR6JGmn5-pCfmanZvBZGLzAvKK/dns-manual-code.fc:289:5: warning: Lack of end_parse.
+    cs~load_uint(32 + 64);
+      ^
+process_op: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCstMFJ6IkoaRgeyY50_pcR6JGmn5-pCfmanZvBZGLzAvKK/dns-manual-code.fc:107:22: warning: Lack of end_parse.
+        set_c3(new_code.begin_parse().bless());
+                       ^
+process_op: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCstMFJ6IkoaRgeyY50_pcR6JGmn5-pCfmanZvBZGLzAvKK/dns-manual-code.fc:136:30: warning: Lack of end_parse.
+      int name_last_byte = name.slice_last(8).preload_uint(8);
+                               ^
+process_op: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCstMFJ6IkoaRgeyY50_pcR6JGmn5-pCfmanZvBZGLzAvKK/dns-manual-code.fc:153:49: warning: Local variable 'pfx' is not used
+      (slice pfx, cell val, slice tail, int succ) = 
+                                                  ^
+store_data & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCstMFJ6IkoaRgeyY50_pcR6JGmn5-pCfmanZvBZGLzAvKK/dns-manual-code.fc:288:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCstMFJ6IkoaRgeyY50_pcR6JGmn5-pCfmanZvBZGLzAvKK/dns-manual-code.fc:43:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_uint(contract_id, 32)
+        ^

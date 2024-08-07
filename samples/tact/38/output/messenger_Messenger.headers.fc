@@ -1,0 +1,175 @@
+;;
+;; Header files for Messenger
+;; NOTE: declarations are sorted for optimal order
+;;
+
+;; __tact_verify_address
+slice __tact_verify_address(slice address) inline;
+
+;; __tact_load_address
+(slice, slice) __tact_load_address(slice cs) inline;
+
+;; __tact_store_address
+builder __tact_store_address(builder b, slice address) inline;
+
+;; __tact_my_balance
+int __tact_my_balance() inline;
+
+;; __tact_not_null
+forall X -> X __tact_not_null(X x) inline;
+
+;; __tact_context_get
+(int, slice, int, slice) __tact_context_get() inline;
+
+;; __tact_context_get_sender
+slice __tact_context_get_sender() inline;
+
+;; __tact_store_bool
+builder __tact_store_bool(builder b, int v) inline;
+
+;; __tact_dict_set_int_int
+(cell, ()) __tact_dict_set_int_int(cell d, int kl, int k, int v, int vl) inline;
+
+;; __tact_dict_get_int_int
+int __tact_dict_get_int_int(cell d, int kl, int k, int vl) inline;
+
+;; __tact_dict_set_int_slice
+(cell, ()) __tact_dict_set_int_slice(cell d, int kl, int k, slice v) inline;
+
+;; __tact_dict_get_int_slice
+slice __tact_dict_get_int_slice(cell d, int kl, int k) inline;
+
+;; __tact_slice_eq_bits
+int __tact_slice_eq_bits(slice a, slice b) inline;
+
+;; $Deploy$_load
+(slice, ((int))) $Deploy$_load(slice sc_0) inline;
+
+;; $DeployOk$_store
+builder $DeployOk$_store(builder build_0, (int) v) inline;
+
+;; $DeployOk$_store_cell
+cell $DeployOk$_store_cell((int) v) inline;
+
+;; $EventSignal$_store
+builder $EventSignal$_store(builder build_0, (int, cell) v) inline;
+
+;; $EventSignal$_store_cell
+cell $EventSignal$_store_cell((int, cell) v) inline;
+
+;; $EventSignal$_load
+(slice, ((int, cell))) $EventSignal$_load(slice sc_0) inline;
+
+;; $BuildMessenger$_load
+(slice, ((slice, int, int, int, cell, slice))) $BuildMessenger$_load(slice sc_0) inline_ref;
+
+;; $ProtcolRegisterSuccess$_store
+builder $ProtcolRegisterSuccess$_store(builder build_0, (slice, int, int, int, cell, slice) v) inline_ref;
+
+;; $ProtcolRegisterSuccess$_store_cell
+cell $ProtcolRegisterSuccess$_store_cell((slice, int, int, int, cell, slice) v) inline;
+
+;; $CreateMsgSubscriber$_load
+(slice, ((slice, slice, int))) $CreateMsgSubscriber$_load(slice sc_0) inline;
+
+;; $CreateMsgSubscriberSuccess$_store
+builder $CreateMsgSubscriberSuccess$_store(builder build_0, (slice) v) inline;
+
+;; $CreateMsgSubscriberSuccess$_store_cell
+cell $CreateMsgSubscriberSuccess$_store_cell((slice) v) inline;
+
+;; $DeleteSubscriber$_load
+(slice, ((slice, slice, int))) $DeleteSubscriber$_load(slice sc_0) inline;
+
+;; $DestroyMessenger$_store
+builder $DestroyMessenger$_store(builder build_0, (int) v) inline;
+
+;; $DestroyMessenger$_store_cell
+cell $DestroyMessenger$_store_cell((int) v) inline;
+
+;; $CollectFee$_store
+builder $CollectFee$_store(builder build_0, (int, int) v) inline;
+
+;; $CollectFee$_store_cell
+cell $CollectFee$_store_cell((int, int) v) inline;
+
+;; $Messenger$_store
+builder $Messenger$_store(builder build_0, (slice, slice, int, int, cell, cell, cell, int, int) v) inline;
+
+;; $Messenger$_load
+(slice, ((slice, slice, int, int, cell, cell, cell, int, int))) $Messenger$_load(slice sc_0) inline;
+
+;; $StateInit$_not_null
+((cell, cell)) $StateInit$_not_null(tuple v) inline;
+
+;; $Messenger$init$_load
+(slice, ((slice, slice, int))) $Messenger$init$_load(slice sc_0) inline;
+
+;; $Messenger$_contract_init
+(slice, slice, int, int, cell, cell, cell, int, int) $Messenger$_contract_init(slice $owner, slice $sourceAddress, int $messengerId) impure inline_ref;
+
+;; $Messenger$_contract_load
+(slice, slice, int, int, cell, cell, cell, int, int) $Messenger$_contract_load() impure inline_ref;
+
+;; $Messenger$_contract_store
+() $Messenger$_contract_store((slice, slice, int, int, cell, cell, cell, int, int) v) impure inline;
+
+;; $global_send
+() $global_send((int, slice, int, int, cell, cell, cell) $params) impure inline_ref;
+
+;; $global_emit
+() $global_emit(cell $body) impure inline;
+
+;; $Cell$_fun_asSlice
+slice $Cell$_fun_asSlice(cell $self) impure inline;
+
+;; $Messenger$_fun_idToSubscriber
+((slice, slice, int, int, cell, cell, cell, int, int), slice) $Messenger$_fun_idToSubscriber((slice, slice, int, int, cell, cell, cell, int, int) $self, int $id) impure inline_ref;
+
+;; $Messenger$_fun_getsubId
+((slice, slice, int, int, cell, cell, cell, int, int), int) $Messenger$_fun_getsubId((slice, slice, int, int, cell, cell, cell, int, int) $self) impure inline_ref;
+
+;; $Messenger$_fun_totalSubscriberNumber
+((slice, slice, int, int, cell, cell, cell, int, int), int) $Messenger$_fun_totalSubscriberNumber((slice, slice, int, int, cell, cell, cell, int, int) $self) impure inline_ref;
+
+;; $SendParameters$_constructor_bounce_to_value_mode_body_code_data
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline;
+
+;; $Messenger$_fun_forward
+((slice, slice, int, int, cell, cell, cell, int, int), ()) $Messenger$_fun_forward((slice, slice, int, int, cell, cell, cell, int, int) $self, slice $to, cell $body, int $bounce, tuple $init) impure inline_ref;
+
+;; $Messenger$_fun_reply
+((slice, slice, int, int, cell, cell, cell, int, int), ()) $Messenger$_fun_reply((slice, slice, int, int, cell, cell, cell, int, int) $self, cell $body) impure inline;
+
+;; $Messenger$_fun_notify
+((slice, slice, int, int, cell, cell, cell, int, int), ()) $Messenger$_fun_notify((slice, slice, int, int, cell, cell, cell, int, int) $self, cell $body) impure inline;
+
+;; $Messenger$_fun_requireOwner
+((slice, slice, int, int, cell, cell, cell, int, int), ()) $Messenger$_fun_requireOwner((slice, slice, int, int, cell, cell, cell, int, int) $self) impure inline_ref;
+
+;; $Messenger$_fun_owner
+((slice, slice, int, int, cell, cell, cell, int, int), slice) $Messenger$_fun_owner((slice, slice, int, int, cell, cell, cell, int, int) $self) impure inline_ref;
+
+;; $ProtcolRegisterSuccess$_constructor_sourceAddress_eventId_maxUserStakeAmount_subscribeFeePerTick_template_sourceName
+((slice, int, int, int, cell, slice)) $ProtcolRegisterSuccess$_constructor_sourceAddress_eventId_maxUserStakeAmount_subscribeFeePerTick_template_sourceName(slice sourceAddress, int eventId, int maxUserStakeAmount, int subscribeFeePerTick, cell template, slice sourceName) inline;
+
+;; $SendParameters$_constructor_to_value_mode_bounce_body
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode_bounce_body(slice to, int value, int mode, int bounce, cell body) inline;
+
+;; $EventSignal$_constructor_eventId_payload
+((int, cell)) $EventSignal$_constructor_eventId_payload(int eventId, cell payload) inline;
+
+;; $SendParameters$_constructor_to_value_mode_body
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode_body(slice to, int value, int mode, cell body) inline;
+
+;; $CollectFee$_constructor_messengerId_fee
+((int, int)) $CollectFee$_constructor_messengerId_fee(int messengerId, int fee) inline;
+
+;; $CreateMsgSubscriberSuccess$_constructor_callbackAddress
+((slice)) $CreateMsgSubscriberSuccess$_constructor_callbackAddress(slice callbackAddress) inline;
+
+;; $DestroyMessenger$_constructor_messengerId
+((int)) $DestroyMessenger$_constructor_messengerId(int messengerId) inline;
+
+;; $DeployOk$_constructor_queryId
+((int)) $DeployOk$_constructor_queryId(int queryId) inline;

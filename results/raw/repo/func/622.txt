@@ -1,0 +1,20 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/DEX-TON-contracts/contracts/func/lp-wallet/wallet.func:194:19: warning: Lack of end_parse.
+    int fwd_fee = cs~load_coins(); ;; we use message fwd_fee for estimation of forward_payload costs
+                    ^
+on_bounce: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/DEX-TON-contracts/contracts/func/lp-wallet/wallet.func:172:16: warning: Local variable 'query_id' is not used
+    int query_id = in_msg_body~load_uint(64);
+                 ^
+send_tokens: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/DEX-TON-contracts/contracts/func/lp-wallet/wallet.func:40:23: warning: Local variable 'custom_payload' is not used
+    cell custom_payload = in_msg_body~load_dict();
+                        ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/DEX-TON-contracts/contracts/func/lp-wallet/wallet.func:15:70: warning: Lack of end_parse.
+    return (ds~load_coins(), ds~load_msg_addr(), ds~load_msg_addr(), ds~load_ref());
+                                                                       ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/DEX-TON-contracts/contracts/func/lp-wallet/wallet.func:113:40: warning: UnHandle bounced message with op: 0x7362d09c
+      send_raw_message(msg.end_cell(), 1);
+                                         ^

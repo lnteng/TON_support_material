@@ -1,0 +1,206 @@
+;;
+;; Type: StateInit
+;; TLB: _ code:^cell data:^cell = StateInit
+;;
+
+((cell, cell)) $StateInit$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (cell vvv'code, cell vvv'data) = __tact_tuple_destroy_2(v);
+    return (vvv'code, vvv'data);
+}
+
+;;
+;; Type: Context
+;; TLB: _ bounced:bool sender:address value:int257 raw:^slice = Context
+;;
+
+((int, slice, int, slice)) $Context$_tensor_cast((int, slice, int, slice) v) asm "NOP";
+
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline {
+    return (bounce, to, value, mode, body, code, data);
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_bounce_mode_body(slice to, int value, int bounce, int mode, cell body) inline {
+    return (bounce, to, value, mode, body, null(), null());
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_bounce_mode(slice to, int value, int bounce, int mode) inline {
+    return (bounce, to, value, mode, null(), null(), null());
+}
+
+;;
+;; Type: Deploy
+;; Header: 0x946a98b6
+;; TLB: deploy#946a98b6 queryId:uint64 = Deploy
+;;
+
+(slice, ((int))) $Deploy$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2490013878);
+    var v'queryId = sc_0~load_uint(64);
+    return (sc_0, (v'queryId));
+}
+
+;;
+;; Type: DeployOk
+;; Header: 0xaff90f57
+;; TLB: deploy_ok#aff90f57 queryId:uint64 = DeployOk
+;;
+
+builder $DeployOk$_store(builder build_0, (int) v) inline {
+    var (v'queryId) = v;
+    build_0 = store_uint(build_0, 2952335191, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    return build_0;
+}
+
+cell $DeployOk$_store_cell((int) v) inline {
+    return $DeployOk$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $DeployOk$_constructor_queryId(int queryId) inline {
+    return (queryId);
+}
+
+;;
+;; Type: IssueQuota
+;; Header: 0x2e5cd8d7
+;; TLB: issue_quota#2e5cd8d7 amount:uint32 price:coins = IssueQuota
+;;
+
+(slice, ((int, int))) $IssueQuota$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 777836759);
+    var v'amount = sc_0~load_uint(32);
+    var v'price = sc_0~load_coins();
+    return (sc_0, (v'amount, v'price));
+}
+
+;;
+;; Type: BuyQuota
+;; Header: 0x56f76a58
+;; TLB: buy_quota#56f76a58 amount:uint32 = BuyQuota
+;;
+
+(slice, ((int))) $BuyQuota$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 1459055192);
+    var v'amount = sc_0~load_uint(32);
+    return (sc_0, (v'amount));
+}
+
+;;
+;; Type: IncreaseQuota
+;; Header: 0x3b0da424
+;; TLB: increase_quota#3b0da424 amount:uint32 sender:address = IncreaseQuota
+;;
+
+builder $IncreaseQuota$_store(builder build_0, (int, slice) v) inline {
+    var (v'amount, v'sender) = v;
+    build_0 = store_uint(build_0, 990749732, 32);
+    build_0 = build_0.store_uint(v'amount, 32);
+    build_0 = __tact_store_address(build_0, v'sender);
+    return build_0;
+}
+
+cell $IncreaseQuota$_store_cell((int, slice) v) inline {
+    return $IncreaseQuota$_store(begin_cell(), v).end_cell();
+}
+
+((int, slice)) $IncreaseQuota$_constructor_amount_sender(int amount, slice sender) inline {
+    return (amount, sender);
+}
+
+;;
+;; Type: WithdrawQuotaShop
+;; Header: 0x286cc02a
+;; TLB: withdraw_quota_shop#286cc02a amount:coins custom_payload:^cell = WithdrawQuotaShop
+;;
+
+builder $WithdrawQuotaShop$_store(builder build_0, (int, cell) v) inline {
+    var (v'amount, v'custom_payload) = v;
+    build_0 = store_uint(build_0, 678215722, 32);
+    build_0 = build_0.store_coins(v'amount);
+    build_0 = build_0.store_ref(v'custom_payload);
+    return build_0;
+}
+
+cell $WithdrawQuotaShop$_store_cell((int, cell) v) inline {
+    return $WithdrawQuotaShop$_store(begin_cell(), v).end_cell();
+}
+
+(slice, ((int))) $WithdrawQuotaShop$_load_bounced(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 678215722);
+    var v'amount = sc_0~load_coins();
+    return (sc_0, (v'amount));
+}
+
+((int, cell)) $WithdrawQuotaShop$_constructor_amount_custom_payload(int amount, cell custom_payload) inline {
+    return (amount, custom_payload);
+}
+
+;;
+;; Type: BuildQuotaShop
+;; Header: 0x1088a469
+;; TLB: build_quota_shop#1088a469 sender:address = BuildQuotaShop
+;;
+
+(slice, ((slice))) $BuildQuotaShop$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 277390441);
+    var v'sender = sc_0~__tact_load_address();
+    return (sc_0, (v'sender));
+}
+
+;;
+;; Type: QuotaShop
+;;
+
+builder $QuotaShop$_store(builder build_0, (int, int, slice, int, slice) v) inline {
+    var (v'quota_amount, v'quota_price, v'author, v'balance, v'nft_item) = v;
+    build_0 = build_0.store_uint(v'quota_amount, 32);
+    build_0 = build_0.store_coins(v'quota_price);
+    build_0 = __tact_store_address(build_0, v'author);
+    build_0 = build_0.store_coins(v'balance);
+    build_0 = __tact_store_address(build_0, v'nft_item);
+    return build_0;
+}
+
+(slice, ((int, int, slice, int, slice))) $QuotaShop$_load(slice sc_0) inline {
+    var v'quota_amount = sc_0~load_uint(32);
+    var v'quota_price = sc_0~load_coins();
+    var v'author = sc_0~__tact_load_address();
+    var v'balance = sc_0~load_coins();
+    var v'nft_item = sc_0~__tact_load_address();
+    return (sc_0, (v'quota_amount, v'quota_price, v'author, v'balance, v'nft_item));
+}
+
+(slice, ((slice, slice))) $QuotaShop$init$_load(slice sc_0) inline {
+    var v'author = sc_0~__tact_load_address();
+    var v'nft_item = sc_0~__tact_load_address();
+    return (sc_0, (v'author, v'nft_item));
+}
+
+(int, int, slice, int, slice) $QuotaShop$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$QuotaShop$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (slice author, slice nft_item) = $sc~$QuotaShop$init$_load();
+        $sc.end_parse();
+        return $QuotaShop$_contract_init(author, nft_item);
+    }
+}
+
+() $QuotaShop$_contract_store((int, int, slice, int, slice) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $QuotaShop$_store(b, v);
+    set_data(b.end_cell());
+}

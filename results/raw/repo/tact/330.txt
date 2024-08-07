@@ -1,0 +1,27 @@
+$ProxyContract$_internal_any: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alldayalone/ton-lessons/src/contracts/proxy/output/sample_ProxyContract.code.fc:30:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$ProxyContract$_internal_any: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alldayalone/ton-lessons/src/contracts/proxy/output/sample_ProxyContract.code.fc:30:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$ProxyContract$_internal_any: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alldayalone/ton-lessons/src/contracts/proxy/output/sample_ProxyContract.code.fc:30:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$ProxyContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alldayalone/ton-lessons/src/contracts/proxy/output/sample_ProxyContract.code.fc:14:25: warning: Local variable '$self'owner' is not used
+      var (($self'owner)) = (null());
+                          ^
+$ProxyContract$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./alldayalone/ton-lessons/src/contracts/proxy/output/sample_ProxyContract.storage.fc:103:19: warning: Lack of end_parse.
+          return $sc~$ProxyContract$_load();
+                    ^
+$ProxyContract$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./alldayalone/ton-lessons/src/contracts/proxy/output/sample_ProxyContract.code.fc:71:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./alldayalone/ton-lessons/src/contracts/proxy/output/sample_ProxyContract.storage.fc:114:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

@@ -1,0 +1,107 @@
+process_elector_response: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/controller/controller.fc:83:68: warning: Local variable 'last_sent_stake_time' is not used
+      var (wallet_data, static_data, balances, last_sent_stake_time) = untuple4(storage);
+                                                                     ^
+process_control_request: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/controller/controller.fc:39:70: warning: Local variable 'wallet_data' is not used
+        var (wallet_data, static_data, balances, last_sent_stake_time) = untuple4(storage);
+                                                                       ^
+process_control_request: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/controller/controller.fc:39:70: warning: Local variable 'static_data' is not used
+        var (wallet_data, static_data, balances, last_sent_stake_time) = untuple4(storage);
+                                                                       ^
+process_control_request: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/controller/controller.fc:39:70: warning: Local variable 'balances' is not used
+        var (wallet_data, static_data, balances, last_sent_stake_time) = untuple4(storage);
+                                                                       ^
+process_control_request: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/controller/controller.fc:20:65: warning: Local variable 'nom_elector' is not used
+        var (nom_total, nom_elector, nom_withdrawal, total_stake) = untuple4(balances);
+                                                                  ^
+is_elector: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/controller/wallet.fc:3:26: warning: Lack of end_parse.
+    return (config_param(1).begin_parse().preload_uint(256) == addr) & (wc == -1);
+                           ^
+stake_freeze_delay: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/controller/../common-libs/config_utils.fc:11:43: warning: Lack of end_parse.
+      int stake_held_for = validation_params~load_uint(32);
+                                            ^
+get_public_key: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/controller/get_methods.fc:10:36: warning: Lack of end_parse.
+    var cs = get_data().begin_parse().skip_bits(64);
+                                     ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/controller/storage.fc:34:15: warning: Lack of end_parse.
+              ds~load_coins()
+                ^
+max_recommended_punishment_for_validator_misbehaviour: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/controller/../common-libs/config_utils.fc:26:56: warning: Lack of end_parse.
+             recommendation~load_uint(16), recommendation~load_uint(16));
+                                                         ^
+max_recommended_punishment_for_validator_misbehaviour: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/controller/../common-libs/config_utils.fc:21:46: warning: Local variable '_1' is not used
+       int long_flat_mult, int long_prop_mult) =
+                                               ^
+max_recommended_punishment_for_validator_misbehaviour: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/controller/../common-libs/config_utils.fc:21:46: warning: Local variable '_2' is not used
+       int long_flat_mult, int long_prop_mult) =
+                                               ^
+is_ready_to_stake: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/controller/get_methods.fc:15:66: warning: Local variable 'wallet_data' is not used
+    var (wallet_data, static_data, balances, last_sent_stake_time) = load_data();
+                                                                   ^
+is_ready_to_stake: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/controller/get_methods.fc:15:66: warning: Local variable 'static_data' is not used
+    var (wallet_data, static_data, balances, last_sent_stake_time) = load_data();
+                                                                   ^
+is_ready_to_stake: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/controller/get_methods.fc:15:66: warning: Local variable 'balances' is not used
+    var (wallet_data, static_data, balances, last_sent_stake_time) = load_data();
+                                                                   ^
+parse_check_msg: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/controller/wallet.fc:21:12: warning: Lack of end_parse.
+      cs = cs~load_ref().begin_parse();
+             ^
+parse_check_msg: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/controller/wallet.fc:11:24: warning: Local variable 's_addr' is not used
+    var (s_addr, d_addr) = (cs~load_msg_addr(), cs~load_msg_addr());
+                         ^
+parse_check_msg: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/controller/wallet.fc:14:22: warning: Local variable 'wc' is not used
+    (int wc, int addr) = parse_std_addr(d_addr);
+                       ^
+parse_check_msg: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/controller/wallet.fc:14:22: warning: Local variable 'addr' is not used
+    (int wc, int addr) = parse_std_addr(d_addr);
+                       ^
+elector_address: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/controller/../common-libs/config_utils.fc:2:34: warning: Lack of end_parse.
+      var elector = config_param(1).begin_parse().preload_uint(256);
+                                   ^
+recv_external: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/controller/wallet.fc:44:75: warning: Local variable 'last_used' is not used
+    (int stored_seqno, int stored_subwallet, int public_key, int last_used) = untuple4(wallet_data);
+                                                                            ^
+recv_external: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/controller/wallet.fc:59:49: warning: Local variable 'op' is not used
+    (int op, int outgoing_value, int to_elector?) = parse_check_msg(msg);
+                                                  ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/controller/controller.fc:167:20: warning: Lack of end_parse.
+    slice s_addr = cs~load_msg_addr();
+                     ^
+seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/controller/get_methods.fc:2:20: warning: Lack of end_parse.
+    return get_data().begin_parse().preload_uint(32);
+                     ^
+get_subwallet_id: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/controller/get_methods.fc:6:34: warning: Lack of end_parse.
+    return get_data().begin_parse().skip_bits(32).preload_uint(32);
+                                   ^
+save_data & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/controller/get_methods.fc:10:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse().skip_bits(64);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nomination-contract/controller/storage.fc:46:18: warning: Cell of get_data and set_data are inconsistent.
+                   .store_uint(seqno, 32)
+                   ^

@@ -1,0 +1,20 @@
+send_tokens: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCORJnJAIQddYPZVZovHwuiKTMCQMFWoZi1dhHV8QF8Apcf/jetton-wallet.fc:58:23: warning: Local variable 'custom_payload' is not used
+    cell custom_payload = in_msg_body~load_dict();
+                        ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCORJnJAIQddYPZVZovHwuiKTMCQMFWoZi1dhHV8QF8Apcf/jetton-wallet.fc:217:19: warning: Lack of end_parse.
+    int fwd_fee = cs~load_coins(); ;; we use message fwd_fee for estimation of forward_payload costs
+                    ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCORJnJAIQddYPZVZovHwuiKTMCQMFWoZi1dhHV8QF8Apcf/jetton-wallet.fc:25:70: warning: Lack of end_parse.
+    return (ds~load_coins(), ds~load_msg_addr(), ds~load_msg_addr(), ds~load_ref());
+                                                                       ^
+on_bounce: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCORJnJAIQddYPZVZovHwuiKTMCQMFWoZi1dhHV8QF8Apcf/jetton-wallet.fc:195:16: warning: Local variable 'query_id' is not used
+    int query_id = in_msg_body~load_uint(64);
+                 ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCORJnJAIQddYPZVZovHwuiKTMCQMFWoZi1dhHV8QF8Apcf/jetton-wallet.fc:139:40: warning: UnHandle bounced message with op: 0x7362d09c
+      send_raw_message(msg.end_cell(), 1);
+                                         ^

@@ -1,0 +1,32 @@
+get_nft_address_by_index: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC3dNlesgVD8YbAazcauIrXBPfiVhMMr5YYk2in0Mtsz0Bz/nft-collection.fc:110:34: warning: Local variable 'content' is not used
+      var (content, nft_item_code) = load_data();
+                                   ^
+get_collection_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC3dNlesgVD8YbAazcauIrXBPfiVhMMr5YYk2in0Mtsz0Bz/nft-collection.fc:105:34: warning: Local variable 'nft_item_code' is not used
+      var (content, nft_item_code) = load_data();
+                                   ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC3dNlesgVD8YbAazcauIrXBPfiVhMMr5YYk2in0Mtsz0Bz/nft-collection.fc:12:15: warning: Lack of end_parse.
+              ds~load_ref() ;; nft_item_code
+                ^
+read_domain_from_comment: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC3dNlesgVD8YbAazcauIrXBPfiVhMMr5YYk2in0Mtsz0Bz/dns-utils.fc:45:49: warning: Lack of end_parse.
+              in_msg_body = in_msg_body~load_ref().begin_parse();
+                                                  ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC3dNlesgVD8YbAazcauIrXBPfiVhMMr5YYk2in0Mtsz0Bz/nft-collection.fc:60:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC3dNlesgVD8YbAazcauIrXBPfiVhMMr5YYk2in0Mtsz0Bz/nft-collection.fc:83:36: warning: Lack of end_parse.
+              cell config = config_cs~load_dict();
+                                     ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC3dNlesgVD8YbAazcauIrXBPfiVhMMr5YYk2in0Mtsz0Bz/nft-collection.fc:64:34: warning: Local variable 'content' is not used
+      var (content, nft_item_code) = load_data();
+                                   ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC3dNlesgVD8YbAazcauIrXBPfiVhMMr5YYk2in0Mtsz0Bz/nft-collection.fc:84:45: warning: Local variable 'config_value' is not used
+              (slice config_value, int found) = config.udict_get?(256, item_index);
+                                              ^

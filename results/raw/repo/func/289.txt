@@ -1,0 +1,12 @@
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ProgramCrafter/ratelance/contracts/func/offer-contract.fc:26:21: warning: Local variable 'desc' is not used
+        int job_hash) = offer::ld_unlocked(own_data);
+                      ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ProgramCrafter/ratelance/contracts/func/offer-contract.fc:26:21: warning: Local variable 'worker_key' is not used
+        int job_hash) = offer::ld_unlocked(own_data);
+                      ^
+load_bounced_sender: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ProgramCrafter/ratelance/contracts/func/stdlib-ext.fc:21:20: warning: Lack of end_parse.
+    return (b, in_msg~load_msg_addr());
+                     ^

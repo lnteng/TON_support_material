@@ -1,0 +1,28 @@
+handle_deposit: ImproperFunctionModifier
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC0iecjLJv_0DgfnTei2UHWYtUbYYpMPOqSeABbPzEU39gF/deposit.fc:54:22: warning: Call the function that have no impure modifier but change state actually.
+      store_base_data();
+                       ^
+handle_deposit: ImproperFunctionModifier
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC0iecjLJv_0DgfnTei2UHWYtUbYYpMPOqSeABbPzEU39gF/deposit.fc:17:26: warning: Call the function that have no impure modifier but change state actually.
+          store_base_data();
+                           ^
+get_users: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC0iecjLJv_0DgfnTei2UHWYtUbYYpMPOqSeABbPzEU39gF/get.fc:17:29: warning: Local variable 'cs' is not used
+          (id, var cs, var f) = ctx_users.udict_get_next?(256, id);
+                              ^
+handle_withdraw: ImproperFunctionModifier
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC0iecjLJv_0DgfnTei2UHWYtUbYYpMPOqSeABbPzEU39gF/withdraw.fc:36:22: warning: Call the function that have no impure modifier but change state actually.
+      store_base_data();
+                       ^
+compute_acc_interest: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC0iecjLJv_0DgfnTei2UHWYtUbYYpMPOqSeABbPzEU39gF/utils.fc:153:22: warning: PressionLoss
+    return days_lapsed * amount / 300;
+                       ^
+handle_borrow: ImproperFunctionModifier
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC0iecjLJv_0DgfnTei2UHWYtUbYYpMPOqSeABbPzEU39gF/borrow.fc:33:22: warning: Call the function that have no impure modifier but change state actually.
+      store_base_data();
+                       ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC0iecjLJv_0DgfnTei2UHWYtUbYYpMPOqSeABbPzEU39gF/bank.fc:7:22: warning: Lack of end_parse.
+      slice s_addr = cs~load_msg_addr();   
+                       ^

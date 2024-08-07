@@ -1,0 +1,16 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDCpK5PquTTAO0vRnhJtiFT9YMEMFO6ns0AektZhNdDUs2T/rate-oracle.fc:38:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDCpK5PquTTAO0vRnhJtiFT9YMEMFO6ns0AektZhNdDUs2T/rate-oracle.fc:44:72: warning: Local variable 'seqno' is not used
+          (int stored_value, int last_update, int seqno, int public_key) = load_data();
+                                                                         ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDCpK5PquTTAO0vRnhJtiFT9YMEMFO6ns0AektZhNdDUs2T/rate-oracle.fc:44:72: warning: Local variable 'public_key' is not used
+          (int stored_value, int last_update, int seqno, int public_key) = load_data();
+                                                                         ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDCpK5PquTTAO0vRnhJtiFT9YMEMFO6ns0AektZhNdDUs2T/rate-oracle.fc:20:68: warning: Lack of end_parse.
+      return (ds~load_coins(), ds~load_uint(64), ds~load_uint(32), ds~load_uint(256));
+                                                                     ^

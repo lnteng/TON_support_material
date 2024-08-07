@@ -1,0 +1,80 @@
+get_vote_keeper_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/jetton_wallet.func:360:34: warning: Local variable 'balance' is not used
+            cell vote_keeper_code) = load_data();
+                                   ^
+get_vote_keeper_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/jetton_wallet.func:360:34: warning: Local variable 'owner_address' is not used
+            cell vote_keeper_code) = load_data();
+                                   ^
+get_vote_keeper_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/jetton_wallet.func:360:34: warning: Local variable 'jetton_master_address' is not used
+            cell vote_keeper_code) = load_data();
+                                   ^
+get_vote_keeper_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/jetton_wallet.func:360:34: warning: Local variable 'jetton_wallet_code' is not used
+            cell vote_keeper_code) = load_data();
+                                   ^
+get_vote_keeper_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/jetton_wallet.func:360:34: warning: Local variable 'locked' is not used
+            cell vote_keeper_code) = load_data();
+                                   ^
+get_vote_keeper_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/jetton_wallet.func:360:34: warning: Local variable 'lock_expiration' is not used
+            cell vote_keeper_code) = load_data();
+                                   ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/jetton_wallet.func:316:26: warning: Lack of end_parse.
+    int fwd_fee = muldiv(cs~load_coins(), 3, 2); ;; we use message fwd_fee for estimation of forward_payload costs
+                           ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/jetton_wallet.func:333:148: warning: Local variable 'balance' is not used
+    (int balance, slice owner_address, slice jetton_master_address, cell jetton_wallet_code, int locked, int lock_expiration, cell vote_keeper_code) = load_data();
+                                                                                                                                                     ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/jetton_wallet.func:333:148: warning: Local variable 'jetton_master_address' is not used
+    (int balance, slice owner_address, slice jetton_master_address, cell jetton_wallet_code, int locked, int lock_expiration, cell vote_keeper_code) = load_data();
+                                                                                                                                                     ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/jetton_wallet.func:333:148: warning: Local variable 'jetton_wallet_code' is not used
+    (int balance, slice owner_address, slice jetton_master_address, cell jetton_wallet_code, int locked, int lock_expiration, cell vote_keeper_code) = load_data();
+                                                                                                                                                     ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/jetton_wallet.func:333:148: warning: Local variable 'locked' is not used
+    (int balance, slice owner_address, slice jetton_master_address, cell jetton_wallet_code, int locked, int lock_expiration, cell vote_keeper_code) = load_data();
+                                                                                                                                                     ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/jetton_wallet.func:333:148: warning: Local variable 'lock_expiration' is not used
+    (int balance, slice owner_address, slice jetton_master_address, cell jetton_wallet_code, int locked, int lock_expiration, cell vote_keeper_code) = load_data();
+                                                                                                                                                     ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/jetton_wallet.func:333:148: warning: Local variable 'vote_keeper_code' is not used
+    (int balance, slice owner_address, slice jetton_master_address, cell jetton_wallet_code, int locked, int lock_expiration, cell vote_keeper_code) = load_data();
+                                                                                                                                                     ^
+on_bounce: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/jetton_wallet.func:294:16: warning: Local variable 'query_id' is not used
+    int query_id = in_msg_body~load_query_id();
+                 ^
+send_tokens: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/jetton_wallet.func:101:23: warning: Local variable 'custom_payload' is not used
+    cell custom_payload = in_msg_body~load_maybe_ref();
+                        ^
+_load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/jetton_wallet.func:37:13: warning: Lack of end_parse.
+            ds~load_ref()
+              ^
+get_locked_balance: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/jetton_wallet.func:371:34: warning: Local variable 'owner_address' is not used
+            cell vote_keeper_code) = load_data();
+                                   ^
+get_locked_balance: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/jetton_wallet.func:371:34: warning: Local variable 'jetton_master_address' is not used
+            cell vote_keeper_code) = load_data();
+                                   ^
+get_locked_balance: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/jetton_wallet.func:371:34: warning: Local variable 'jetton_wallet_code' is not used
+            cell vote_keeper_code) = load_data();
+                                   ^
+get_locked_balance: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/jetton_wallet.func:371:34: warning: Local variable 'vote_keeper_code' is not used
+            cell vote_keeper_code) = load_data();
+                                   ^

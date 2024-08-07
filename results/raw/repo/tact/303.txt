@@ -1,0 +1,7 @@
+$Opt3$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/optionals_Opt3.code.fc:42:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/optionals_Opt3.storage.fc:41:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

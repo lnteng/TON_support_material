@@ -1,0 +1,80 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./mhbdev/hipofinance-contracts/wrappers/upgrade-code-test/reset_data.fc:82:19: warning: Lack of end_parse.
+      slice src = cs~load_msg_addr();
+                    ^
+upgrade_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./mhbdev/hipofinance-contracts/wrappers/upgrade-code-test/reset_data.fc:54:7: warning: Lack of end_parse.
+      ds~load_ref().set_data();
+        ^
+send_new_stake_fee: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./mhbdev/hipofinance-contracts/wrappers/upgrade-code-test/../../contracts/imports/utils.fc:532:19: warning: Local variable 'm_fwd_fee' is not used
+      int m_fwd_fee = msg_fwd_fee(lump_price, bit_price, cell_price, 1088, 2);
+                    ^
+get_gas_prices: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./mhbdev/hipofinance-contracts/wrappers/upgrade-code-test/../../contracts/imports/utils.fc:100:34: warning: Lack of end_parse.
+      return ( cs~load_uint(64), cs~load_uint(64) );
+                                   ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./mhbdev/hipofinance-contracts/wrappers/upgrade-code-test/reset_data.fc:35:19: warning: Lack of end_parse.
+      extension = ds~load_ref();
+                    ^
+get_msg_forward_prices: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./mhbdev/hipofinance-contracts/wrappers/upgrade-code-test/../../contracts/imports/utils.fc:114:52: warning: Lack of end_parse.
+      return ( cs~load_uint(64), cs~load_uint(64), cs~load_uint(64) );
+                                                     ^
+get_stake_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./mhbdev/hipofinance-contracts/wrappers/upgrade-code-test/../../contracts/imports/utils.fc:65:67: warning: Lack of end_parse.
+      return ( cs~load_coins(), cs~load_coins(), cs~load_coins(), cs~load_uint(32) );
+                                                                    ^
+upgrade_code: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./mhbdev/hipofinance-contracts/wrappers/upgrade-code-test/reset_data.fc:72:20: warning: Lack of end_parse.
+      set_c3(new_code.begin_parse().bless());
+                     ^
+get_election_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./mhbdev/hipofinance-contracts/wrappers/upgrade-code-test/../../contracts/imports/utils.fc:49:70: warning: Lack of end_parse.
+      return ( cs~load_uint(32), cs~load_uint(32), cs~load_uint(32), cs~load_uint(32) );
+                                                                       ^
+get_vset_times: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./mhbdev/hipofinance-contracts/wrappers/upgrade-code-test/../../contracts/imports/utils.fc:123:34: warning: Lack of end_parse.
+      return ( cs~load_uint(32), cs~load_uint(32) );
+                                   ^
+get_validators_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./mhbdev/hipofinance-contracts/wrappers/upgrade-code-test/../../contracts/imports/utils.fc:59:52: warning: Lack of end_parse.
+      return ( cs~load_uint(16), cs~load_uint(16), cs~load_uint(16) );
+                                                     ^
+get_elector: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./mhbdev/hipofinance-contracts/wrappers/upgrade-code-test/../../contracts/imports/utils.fc:41:64: warning: Lack of end_parse.
+      return ( chain::main, config_param(config::elector_address).begin_parse().preload_uint(256) );
+                                                                 ^
+max_recommended_punishment_for_validator_misbehaviour: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./mhbdev/hipofinance-contracts/wrappers/upgrade-code-test/../../contracts/imports/utils.fc:231:49: warning: Lack of end_parse.
+          , cs~load_uint(16), cs~load_uint(16), cs~load_uint(16)
+                                                  ^
+max_recommended_punishment_for_validator_misbehaviour: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./mhbdev/hipofinance-contracts/wrappers/upgrade-code-test/../../contracts/imports/utils.fc:227:7: warning: Local variable 'prefix' is not used
+      ) = ( cs~load_uint(8)
+        ^
+max_recommended_punishment_for_validator_misbehaviour: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./mhbdev/hipofinance-contracts/wrappers/upgrade-code-test/../../contracts/imports/utils.fc:227:7: warning: Local variable 'unpunishable_interval' is not used
+      ) = ( cs~load_uint(8)
+        ^
+max_recommended_punishment_for_validator_misbehaviour: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./mhbdev/hipofinance-contracts/wrappers/upgrade-code-test/../../contracts/imports/utils.fc:227:7: warning: Local variable 'long_interval' is not used
+      ) = ( cs~load_uint(8)
+        ^
+recover_stake_fee: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./mhbdev/hipofinance-contracts/wrappers/upgrade-code-test/../../contracts/imports/utils.fc:559:55: warning: Local variable 'bit_price' is not used
+      ( int lump_price, int bit_price, int cell_price ) = get_msg_forward_prices(config::fwd_prices);
+                                                        ^
+recover_stake_fee: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./mhbdev/hipofinance-contracts/wrappers/upgrade-code-test/../../contracts/imports/utils.fc:559:55: warning: Local variable 'cell_price' is not used
+      ( int lump_price, int bit_price, int cell_price ) = get_msg_forward_prices(config::fwd_prices);
+                                                        ^
+recover_stake_fee: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./mhbdev/hipofinance-contracts/wrappers/upgrade-code-test/../../contracts/imports/utils.fc:560:64: warning: Local variable 'mc_bit_price' is not used
+      ( int mc_lump_price, int mc_bit_price, int mc_cell_price ) = get_msg_forward_prices(config::mc_fwd_prices);
+                                                                 ^
+recover_stake_fee: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./mhbdev/hipofinance-contracts/wrappers/upgrade-code-test/../../contracts/imports/utils.fc:560:64: warning: Local variable 'mc_cell_price' is not used
+      ( int mc_lump_price, int mc_bit_price, int mc_cell_price ) = get_msg_forward_prices(config::mc_fwd_prices);
+                                                                 ^

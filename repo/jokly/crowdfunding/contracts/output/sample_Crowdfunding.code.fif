@@ -1,0 +1,646 @@
+PROGRAM{
+  DECLPROC __tact_verify_address
+  DECLPROC __tact_load_address
+  DECLPROC __tact_store_address
+  DECLPROC __tact_create_address
+  DECLPROC __tact_my_balance
+  DECLPROC __tact_not_null
+  DECLPROC __tact_context_get
+  DECLPROC __tact_context_get_sender
+  DECLPROC __tact_store_bool
+  DECLPROC __tact_dict_set_slice_int
+  DECLPROC __tact_dict_get_slice_int
+  DECLPROC __tact_slice_eq_bits
+  DECLPROC $CrowdfundingParams$_store
+  DECLPROC $CrowdfundingParams$_load
+  DECLPROC $StartCrowdfunding$_load
+  DECLPROC $Crowdfunding$_store
+  DECLPROC $Crowdfunding$_load
+  DECLPROC $CrowdfundingParams$_to_tuple
+  DECLPROC $CrowdfundingInfo$_to_external
+  DECLPROC $Crowdfunding$init$_load
+  DECLPROC $CrowdfundingParams$_constructor_title_description_targetContribution_minContribution_deadline_beneficiary
+  DECLPROC $Crowdfunding$_contract_init
+  DECLPROC $Crowdfunding$_contract_load
+  DECLPROC $Crowdfunding$_contract_store
+  DECLPROC $global_send
+  DECLPROC $CrowdfundingInfo$_constructor_params_currentContribution
+  DECLPROC $Crowdfunding$_fun_info
+  DECLPROC $Crowdfunding$_fun_requireOwner
+  DECLPROC $Crowdfunding$_fun_owner
+  DECLPROC $SendParameters$_constructor_to_value_mode_bounce
+  DECLPROC $SendParameters$_constructor_to_value_mode
+  DECLPROC $Crowdfunding$_internal_binary_StartCrowdfunding
+  DECLPROC $Crowdfunding$_internal_text_9d1f20fd138571b201f1cd0e2c813341ccf7045ff4cd72d87090ee0d56bc420a
+  DECLPROC $Crowdfunding$_internal_text_095190194aee611ce895c5503adf85fd864de7905746142f608d3eb2faad14e4
+  DECLPROC $Crowdfunding$_internal_text_b0ff00cda639475b5e711360e99508a2790d5ee34d0598e7d8066850f3ac6c11
+  71178 DECLMETHOD %info
+  83229 DECLMETHOD %owner
+  113617 DECLMETHOD supported_interfaces
+  121275 DECLMETHOD get_abi_ipfs
+  115390 DECLMETHOD lazy_deployment_completed
+  DECLPROC $Crowdfunding$_contract_router_internal
+  DECLPROC recv_internal
+  DECLGLOBVAR __tact_context
+  DECLGLOBVAR __tact_context_sender
+  DECLGLOBVAR __tact_context_sys
+  DECLGLOBVAR __tact_randomized
+  __tact_verify_address PROCINLINE:<{
+    DUP
+    SBITS
+    267 PUSHINT
+    EQUAL
+    136 THROWIFNOT
+    DUP
+    11 PLDU
+    DUP
+    1279 PUSHINT
+    EQUAL
+    137 THROWIF
+    10 PUSHPOW2
+    EQUAL
+    136 THROWIFNOT
+  }>
+  __tact_load_address PROCINLINE:<{
+    LDMSGADDR
+    SWAP
+    __tact_verify_address INLINECALLDICT
+  }>
+  __tact_store_address PROCINLINE:<{
+    __tact_verify_address INLINECALLDICT
+    STSLICER
+  }>
+  __tact_create_address PROCINLINE:<{
+    NEWC
+    2 PUSHINT
+    SWAP
+    2 STU
+    0 PUSHINT
+    SWAP
+    1 STU
+    s1 s2 XCHG
+    8 STI
+    256 STU
+    ENDC
+    CTOS
+    __tact_verify_address INLINECALLDICT
+  }>
+  __tact_my_balance PROCINLINE:<{
+    BALANCE
+    FIRST
+  }>
+  __tact_not_null PROCINLINE:<{
+    DUP
+    ISNULL
+    128 THROWIF
+  }>
+  __tact_context_get PROCINLINE:<{
+    __tact_context GETGLOB
+    4 UNTUPLE
+  }>
+  __tact_context_get_sender PROCINLINE:<{
+    __tact_context_sender GETGLOB
+  }>
+  __tact_store_bool PROCINLINE:<{
+    SWAP
+    1 STI
+  }>
+  __tact_dict_set_slice_int PROCINLINE:<{
+    OVER
+    ISNULL
+    IF:<{
+      2DROP
+      -ROT
+      DICTDEL
+      DROP
+    }>ELSE<{
+      NEWC
+      SWAP
+      STIX
+      s1 s3 s3 XCHG3
+      DICTSETB
+    }>
+  }>
+  __tact_dict_get_slice_int PROCINLINE:<{
+    s1 s3 s3 XCHG3
+    DICTGET
+    NULLSWAPIFNOT
+    IF:<{
+      SWAP
+      LDIX
+      DROP
+    }>ELSE<{
+      2DROP
+      PUSHNULL
+    }>
+  }>
+  __tact_slice_eq_bits PROCINLINE:<{
+    SDEQ
+  }>
+  $CrowdfundingParams$_store PROCREF:<{
+    3734831233 PUSHINT
+    s0 s7 XCHG2
+    32 STU
+    NEWC
+    s0 s6 XCHG2
+    STSLICER
+    ENDC
+    s0 s5 XCHG2
+    STREF
+    NEWC
+    s0 s4 XCHG2
+    STSLICER
+    ENDC
+    s0 s3 XCHG2
+    STREF
+    257 PUSHINT
+    STIX
+    257 PUSHINT
+    STIX
+    32 STU
+    SWAP
+    __tact_store_address INLINECALLDICT
+  }>
+  $CrowdfundingParams$_load PROCREF:<{
+    32 LDU
+    SWAP
+    3734831233 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    LDREF
+    SWAP
+    CTOS
+    SWAP
+    LDREF
+    SWAP
+    CTOS
+    SWAP
+    257 PUSHINT
+    LDIX
+    257 PUSHINT
+    LDIX
+    32 LDU
+    __tact_load_address INLINECALLDICT
+    s1 s6 XCHG
+    s1 s5 XCHG
+    s1 s4 XCHG
+    s3 s3 s0 XCHG3
+  }>
+  $StartCrowdfunding$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    1544337204 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    __tact_load_address INLINECALLDICT
+    SWAP
+    LDREF
+    SWAP
+    CTOS
+    $CrowdfundingParams$_load INLINECALLDICT
+    s6 POP
+    s6 s7 XCHG
+    5 ROLL
+  }>
+  $Crowdfunding$_store PROCINLINE:<{
+    s9 s8 XCHG2
+    __tact_store_address INLINECALLDICT
+    s1 s6 XCHG
+    256 STU
+    NEWC
+    s6 s6 XCHG2
+    s0 s8 XCHG
+    $CrowdfundingParams$_store INLINECALLDICT
+    STDICT
+    ENDC
+    SWAP
+    STREF
+  }>
+  $Crowdfunding$_load PROCINLINE:<{
+    __tact_load_address INLINECALLDICT
+    SWAP
+    256 LDU
+    LDREF
+    SWAP
+    CTOS
+    $CrowdfundingParams$_load INLINECALLDICT
+    s0 s6 XCHG
+    LDDICT
+    DROP
+    s7 s9 XCHG
+    s7 s8 XCHG
+    s5 s6 XCHG
+    s4 s5 XCHG
+    s3 s4 XCHG
+    s1 s3 s0 XCHG3
+  }>
+  $CrowdfundingParams$_to_tuple PROCINLINE:<{
+    6 TUPLE
+  }>
+  $CrowdfundingInfo$_to_external PROCINLINE:<{
+    6 -ROLL
+    $CrowdfundingParams$_to_tuple INLINECALLDICT
+    SWAP
+  }>
+  $Crowdfunding$init$_load PROCINLINE:<{
+    __tact_load_address INLINECALLDICT
+    SWAP
+    257 PUSHINT
+    LDIX
+    -ROT
+  }>
+  $CrowdfundingParams$_constructor_title_description_targetContribution_minContribution_deadline_beneficiary PROCINLINE:<{
+  }>
+  $Crowdfunding$_contract_init PROCREF:<{
+    PUSHNULL
+    B{b5ee9c724101010100020000004cacb9cd} B>boc <s PUSHSLICE
+    B{b5ee9c724101010100020000004cacb9cd} B>boc <s PUSHSLICE
+    0 PUSHINT
+    s0 s0 s0 PUSH3
+    DUP
+    __tact_create_address INLINECALLDICT
+    $CrowdfundingParams$_constructor_title_description_targetContribution_minContribution_deadline_beneficiary INLINECALLDICT
+    6 ROLL
+  }>
+  $Crowdfunding$_contract_load PROCREF:<{
+    c4 PUSH
+    CTOS
+    LDREF
+    SWAP
+    __tact_context_sys SETGLOB
+    1 LDI
+    SWAP
+    IFJMP:<{
+      $Crowdfunding$_load INLINECALLDICT
+      1 9 BLKDROP2
+    }>
+    MYADDR
+    11 PLDU
+    10 PUSHPOW2
+    EQUAL
+    137 THROWIFNOT
+    $Crowdfunding$init$_load INLINECALLDICT
+    s0 s2 XCHG
+    ENDS
+    SWAP
+    $Crowdfunding$_contract_init INLINECALLDICT
+  }>
+  $Crowdfunding$_contract_store PROCINLINE:<{
+    NEWC
+    __tact_context_sys GETGLOB
+    SWAP
+    STREF
+    TRUE
+    SWAP
+    1 STI
+    9 -ROLL
+    $Crowdfunding$_store INLINECALLDICT
+    ENDC
+    c4 POP
+  }>
+  $global_send PROCREF:<{
+    NEWC
+    1 PUSHINT
+    SWAP
+    2 STI
+    s0 s7 XCHG2
+    __tact_store_bool INLINECALLDICT
+    0 PUSHINT
+    SWAP
+    3 STI
+    s0 s5 XCHG2
+    __tact_store_address INLINECALLDICT
+    s0 s3 XCHG2
+    STGRAMS
+    0 PUSHINT
+    SWAP
+    105 STI
+    s3 PUSH
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+    }>ELSE<{
+      s4 PUSH
+      ISNULL
+      NOT
+    }>
+    IF:<{
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      NEWC
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      s4 PUSH
+      ISNULL
+      NOT
+      IF:<{
+        TRUE
+        __tact_store_bool INLINECALLDICT
+        s0 s4 XCHG
+        __tact_not_null INLINECALLDICT
+        s0 s4 XCHG2
+        STREF
+      }>ELSE<{
+        s4 POP
+        s0 s3 XCHG
+        FALSE
+        __tact_store_bool INLINECALLDICT
+      }>
+      s4 PUSH
+      ISNULL
+      NOT
+      IF:<{
+        TRUE
+        __tact_store_bool INLINECALLDICT
+        s0 s4 XCHG
+        __tact_not_null INLINECALLDICT
+        s0 s4 XCHG2
+        STREF
+      }>ELSE<{
+        s4 POP
+        s0 s3 XCHG
+        FALSE
+        __tact_store_bool INLINECALLDICT
+      }>
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      s0 s2 XCHG
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      s0 s2 XCHG
+      ENDC
+      ROT
+      STREF
+    }>ELSE<{
+      s3 POP
+      s3 POP
+      SWAP
+      FALSE
+      __tact_store_bool INLINECALLDICT
+    }>
+    OVER
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      SWAP
+      __tact_not_null INLINECALLDICT
+      SWAP
+      STREF
+    }>ELSE<{
+      NIP
+      FALSE
+      __tact_store_bool INLINECALLDICT
+    }>
+    ENDC
+    SWAP
+    SENDRAWMSG
+  }>
+  $CrowdfundingInfo$_constructor_params_currentContribution PROCINLINE:<{
+  }>
+  $Crowdfunding$_fun_info PROCREF:<{
+    __tact_my_balance INLINECALLDICT
+    s7 s6 s(-2) PU2XC
+    s7 s6 s(-2) PU2XC
+    s7 s6 s(-2) PU2XC
+    $CrowdfundingInfo$_constructor_params_currentContribution INLINECALLDICT
+  }>
+  $Crowdfunding$_fun_requireOwner PROCREF:<{
+    __tact_context_get_sender INLINECALLDICT
+    s9 s(-1) PUXC
+    __tact_slice_eq_bits INLINECALLDICT
+    132 THROWIFNOT
+  }>
+  $Crowdfunding$_fun_owner PROCREF:<{
+    s8 PUSH
+  }>
+  $SendParameters$_constructor_to_value_mode_bounce PROCINLINE:<{
+    3 -ROLL
+    PUSHNULL
+    PUSHNULL
+    PUSHNULL
+  }>
+  $SendParameters$_constructor_to_value_mode PROCINLINE:<{
+    TRUE
+    3 -ROLL
+    PUSHNULL
+    PUSHNULL
+    PUSHNULL
+  }>
+  $Crowdfunding$_internal_binary_StartCrowdfunding PROCINLINE:<{
+    s8 s15 XCHG
+    s7 s14 XCHG
+    s6 s13 XCHG
+    s5 s12 XCHG
+    s4 s11 XCHG
+    s3 s10 XCHG
+    s9 s15 s14 XCHG3
+    $Crowdfunding$_fun_requireOwner INLINECALLDICT
+    s8 POP
+    6 BLKDROP
+    s6 s8 XCHG
+    s0 s7 XCHG
+    s5 s6 XCHG
+    s4 s5 XCHG
+    s3 s4 XCHG
+    s3 s0 s0 XCHG3
+  }>
+  $Crowdfunding$_internal_text_9d1f20fd138571b201f1cd0e2c813341ccf7045ff4cd72d87090ee0d56bc420a PROCINLINE:<{
+    __tact_context_get INLINECALLDICT
+    s1 s3 XCHG
+    3 BLKDROP
+    24380 PUSHINT
+    s1 s5 PUSH2
+    GEQ
+    THROWANYIFNOT
+    55006 PUSHINT
+    NOW
+    s5 PUSH
+    LEQ
+    THROWANYIFNOT
+    __tact_context_get_sender INLINECALLDICT
+    s2 PUSH
+    267 PUSHINT
+    s2 PUSH
+    257 PUSHINT
+    __tact_dict_get_slice_int INLINECALLDICT
+    DUP
+    ISNULL
+    IF:<{
+      DROP
+      267 PUSHINT
+      s0 s2 XCHG
+      257 PUSHINT
+      __tact_dict_set_slice_int INLINECALLDICT
+    }>ELSE<{
+      __tact_not_null INLINECALLDICT
+      267 PUSHINT
+      s0 s3 XCHG
+      ADD
+      257 PUSHINT
+      __tact_dict_set_slice_int INLINECALLDICT
+    }>
+  }>
+  $Crowdfunding$_internal_text_095190194aee611ce895c5503adf85fd864de7905746142f608d3eb2faad14e4 PROCINLINE:<{
+    $Crowdfunding$_fun_requireOwner INLINECALLDICT
+    58570 PUSHINT
+    __tact_my_balance INLINECALLDICT
+    s6 PUSH
+    GEQ
+    THROWANYIFNOT
+    OVER
+    0 PUSHINT
+    162 PUSHINT
+    TRUE
+    $SendParameters$_constructor_to_value_mode_bounce INLINECALLDICT
+    $global_send INLINECALLDICT
+  }>
+  $Crowdfunding$_internal_text_b0ff00cda639475b5e711360e99508a2790d5ee34d0598e7d8066850f3ac6c11 PROCINLINE:<{
+    30338 PUSHINT
+    NOW
+    s4 PUSH
+    GREATER
+    THROWANYIFNOT
+    __tact_context_get_sender INLINECALLDICT
+    OVER
+    267 PUSHINT
+    s2 PUSH
+    257 PUSHINT
+    __tact_dict_get_slice_int INLINECALLDICT
+    32630 PUSHINT
+    OVER
+    ISNULL
+    NOT
+    THROWANYIFNOT
+    __tact_not_null INLINECALLDICT
+    40342 PUSHINT
+    OVER
+    0 GTINT
+    THROWANYIFNOT
+    s0 s2 XCHG
+    267 PUSHINT
+    s2 PUSH
+    0 PUSHINT
+    257 PUSHINT
+    __tact_dict_set_slice_int INLINECALLDICT
+    s0 s2 XCHG
+    2 PUSHINT
+    $SendParameters$_constructor_to_value_mode INLINECALLDICT
+    $global_send INLINECALLDICT
+  }>
+  %info PROC:<{
+    $Crowdfunding$_contract_load INLINECALLDICT
+    $Crowdfunding$_fun_info INLINECALLDICT
+    9 7 BLKDROP2
+    $CrowdfundingInfo$_to_external INLINECALLDICT
+  }>
+  %owner PROC:<{
+    $Crowdfunding$_contract_load INLINECALLDICT
+    $Crowdfunding$_fun_owner INLINECALLDICT
+    9 1 BLKDROP2
+  }>
+  supported_interfaces PROC:<{
+    123515602279859691144772641439386770278 PUSHINT
+    209801025412363888721030803524359905849 PUSHINT
+    42980537499636128163026532310500881091 PUSHINT
+    209474421377847335869795010607481022628 PUSHINT
+    86142586315491086060343270784266291122 PUSHINT
+  }>
+  get_abi_ipfs PROC:<{
+    x{697066733a2f2f516d5042783172744c625863444a6a616531444d42416764474d6265513742484532704236696a7438546d7a6747} PUSHSLICE
+  }>
+  lazy_deployment_completed PROC:<{
+    c4 PUSH
+    CTOS
+    1 LDI
+    SWAP
+  }>
+  $Crowdfunding$_contract_router_internal PROCREF:<{
+    c2 SAVE
+    SAMEALTSAVE
+    SWAP
+    IFJMP:<{
+      DROP
+      TRUE
+    }>
+    0 PUSHINT
+    OVER
+    SBITS
+    31 GTINT
+    IF:<{
+      DROP
+      DUP
+      32 PLDU
+    }>
+    DUP
+    1544337204 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $StartCrowdfunding$_load INLINECALLDICT
+      1 7 BLKDROP2
+      $Crowdfunding$_internal_binary_StartCrowdfunding INLINECALLDICT
+      TRUE
+    }>
+    0 EQINT
+    IF:<{
+      HASHSU
+      DUP
+      71068117165386386245586348011276402374951430845444877700246016813979076936202 PUSHINT
+      EQUAL
+      IFJMP:<{
+        DROP
+        $Crowdfunding$_internal_text_9d1f20fd138571b201f1cd0e2c813341ccf7045ff4cd72d87090ee0d56bc420a INLINECALLDICT
+        TRUE
+        RETALT
+      }>
+      DUP
+      4214924782860224305093503934954653493962198591343413308822612294567774196964 PUSHINT
+      EQUAL
+      IFJMP:<{
+        DROP
+        $Crowdfunding$_internal_text_095190194aee611ce895c5503adf85fd864de7905746142f608d3eb2faad14e4 INLINECALLDICT
+        TRUE
+        RETALT
+      }>
+      80057612896467842646685375242954389361522595315183558459549264394249520835601 PUSHINT
+      EQUAL
+      IFJMP:<{
+        $Crowdfunding$_internal_text_b0ff00cda639475b5e711360e99508a2790d5ee34d0598e7d8066850f3ac6c11 INLINECALLDICT
+        TRUE
+        RETALT
+      }>
+    }>ELSE<{
+      DROP
+    }>
+    FALSE
+  }>
+  recv_internal PROC:<{
+    SWAP
+    CTOS
+    4 LDU
+    SWAP
+    1 PUSHINT
+    AND
+    NEGATE
+    SWAP
+    LDMSGADDR
+    SWAP
+    __tact_verify_address INLINECALLDICT
+    s0 s4 s2 PUXCPU
+    s0 s3 XCHG
+    4 TUPLE
+    __tact_context SETGLOB
+    s0 s2 XCHG
+    __tact_context_sender SETGLOB
+    $Crowdfunding$_contract_load INLINECALLDICT
+    2 9 BLKSWAP
+    $Crowdfunding$_contract_router_internal INLINECALLDICT
+    130 THROWIFNOT
+    $Crowdfunding$_contract_store INLINECALLDICT
+  }>
+}END>c

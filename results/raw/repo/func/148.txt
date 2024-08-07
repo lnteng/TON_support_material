@@ -1,0 +1,8 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/TonFunClessons_Eng/lessons/pipeline/chatbotcode/contracts/chatbot.fc:16:28: warning: Lack of end_parse.
+    slice sender_address = cs~load_msg_addr(); ;; load the sender address
+                             ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/TonFunClessons_Eng/lessons/pipeline/chatbotcode/contracts/chatbot.fc:15:13: warning: Local variable 'flags' is not used
+    int flags = cs~load_uint(4); ;; load the flags. we don't need this tho
+              ^

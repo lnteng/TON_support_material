@@ -1,0 +1,23 @@
+$Vault$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB1pAYOZTvXjCEX39H-qzw6QF74JkL2SbmeZvve2iEwLjrq/output/sample_Factory.storage.fc:167:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$Factory$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB1pAYOZTvXjCEX39H-qzw6QF74JkL2SbmeZvve2iEwLjrq/output/sample_Factory.storage.fc:208:19: warning: Lack of end_parse.
+          return $sc~$Factory$_load();
+                    ^
+$Factory$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB1pAYOZTvXjCEX39H-qzw6QF74JkL2SbmeZvve2iEwLjrq/output/sample_Factory.code.fc:15:42: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'numVaults)) = (null(), null());
+                                           ^
+$Factory$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB1pAYOZTvXjCEX39H-qzw6QF74JkL2SbmeZvve2iEwLjrq/output/sample_Factory.code.fc:15:42: warning: Local variable '$self'numVaults' is not used
+      var (($self'owner, $self'numVaults)) = (null(), null());
+                                           ^
+$Factory$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB1pAYOZTvXjCEX39H-qzw6QF74JkL2SbmeZvve2iEwLjrq/output/sample_Factory.code.fc:99:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB1pAYOZTvXjCEX39H-qzw6QF74JkL2SbmeZvve2iEwLjrq/output/sample_Factory.storage.fc:217:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

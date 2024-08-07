@@ -1,0 +1,31 @@
+__tact_string_builder_append: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_Strings.stdlib.fc:89:31: warning: Lack of end_parse.
+              sc = sc~load_ref().begin_parse();
+                                ^
+$Strings$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_Strings.code.fc:17:15: warning: Local variable '$s3' is not used
+      slice $s3 = __tact_int_to_string($i);
+                ^
+$Strings$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_Strings.code.fc:18:15: warning: Local variable '$s4' is not used
+      slice $s4 = __tact_float_to_string($i, 3);
+                ^
+$Strings$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_Strings.code.fc:19:15: warning: Local variable '$s5' is not used
+      slice $s5 = $Int$_fun_toCoinsString($i);
+                ^
+$Strings$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_Strings.code.fc:24:15: warning: Local variable '$s6' is not used
+      slice $s6 = __tact_string_builder_end_slice($sb);
+                ^
+$Strings$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_Strings.storage.fc:76:19: warning: Lack of end_parse.
+          return $sc~$Strings$_load();
+                    ^
+$Strings$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_Strings.code.fc:57:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_Strings.storage.fc:85:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

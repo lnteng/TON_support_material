@@ -1,0 +1,27 @@
+$Caller$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/ton-oracle-pattern/contracts/output/sample_Caller.code.fc:15:40: warning: Local variable '$self'oracle' is not used
+      var (($self'oracle, $self'number)) = (null(), 0);
+                                         ^
+$Caller$_internal_binary_PriceResponse: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/ton-oracle-pattern/contracts/output/sample_Caller.code.fc:48:38: warning: Lack of end_parse.
+          int $multiplier = $paramSlice~load_uint(256);
+                                       ^
+$Caller$_internal_binary_PriceResponse: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/ton-oracle-pattern/contracts/output/sample_Caller.code.fc:49:52: warning: Local variable '$self'number' is not used
+          $self'number = ($self'oracle, $self'number)~$Caller$_fun_multiplyPrice($msg'price, $multiplier, $msg'decimals);
+                                                     ^
+$Caller$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/ton-oracle-pattern/contracts/output/sample_Caller.storage.fc:124:19: warning: Lack of end_parse.
+          return $sc~$Caller$_load();
+                    ^
+$Caller$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/ton-oracle-pattern/contracts/output/sample_Caller.code.fc:91:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/ton-oracle-pattern/contracts/output/sample_Caller.storage.fc:135:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Caller$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/ton-oracle-pattern/contracts/output/sample_Caller.code.fc:56:357: warning: UnHandle bounced message with op: 0x80c55a13
+  ...  end_cell(store_ref(store_uint(begin_cell(), 1, 8), end_cell(store_uint(begin_cell(), 2, 256))))))));
+  ...                                                                                                     ^

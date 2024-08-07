@@ -1,0 +1,30 @@
+__tact_dict_set_int_slice: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./aestheticw3/ton-marketplace/contracts/output/sample_MarketplaceProfile.stdlib.fc:66:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+$MarketplaceLocal$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./aestheticw3/ton-marketplace/contracts/output/sample_MarketplaceProfile.storage.fc:162:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$MarketplaceProfile$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./aestheticw3/ton-marketplace/contracts/output/sample_MarketplaceProfile.storage.fc:131:19: warning: Lack of end_parse.
+          return $sc~$MarketplaceProfile$_load();
+                    ^
+$MarketplaceProfile$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./aestheticw3/ton-marketplace/contracts/output/sample_MarketplaceProfile.code.fc:96:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./aestheticw3/ton-marketplace/contracts/output/sample_MarketplaceProfile.storage.fc:142:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$MarketplaceProfile$_contract_store & $MarketplaceProfile$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./aestheticw3/ton-marketplace/contracts/output/sample_MarketplaceProfile.storage.fc:127:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./aestheticw3/ton-marketplace/contracts/output/sample_MarketplaceProfile.storage.fc:142:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$MarketplaceProfile$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./aestheticw3/ton-marketplace/contracts/output/sample_MarketplaceProfile.code.fc:47:328: warning: UnHandle bounced message with op: 0xd9172ad5
+  ... ame, $msg'description, $msg'location, $msg'cost, $self'owner)), $local_init'data, $local_init'code));
+  ...                                                                                                     ^

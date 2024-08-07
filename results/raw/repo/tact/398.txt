@@ -1,0 +1,74 @@
+$Task5$_internal_binary_OwnershipAssigned: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./LepreClown/ton-tact-challenge/contracts/output/sample_Task5.code.fc:38:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Task5$_internal_binary_OwnershipAssigned: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./LepreClown/ton-tact-challenge/contracts/output/sample_Task5.code.fc:38:59: warning: Local variable '$ctx'sender' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Task5$_internal_binary_OwnershipAssigned: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./LepreClown/ton-tact-challenge/contracts/output/sample_Task5.code.fc:38:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+__tact_dict_set_uint_slice: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./LepreClown/ton-tact-challenge/contracts/output/sample_Task5.stdlib.fc:52:21: warning: Local variable 'ok' is not used
+          var (r, ok) = udict_delete?(d, kl, k);
+                      ^
+$Task5$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./LepreClown/ton-tact-challenge/contracts/output/sample_Task5.code.fc:14:62: warning: Local variable '$self'seed' is not used
+      var (($self'seed, $self'owner, $self'nfts, $self'count)) = (null(), null(), null(), null());
+                                                               ^
+$Task5$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./LepreClown/ton-tact-challenge/contracts/output/sample_Task5.code.fc:14:62: warning: Local variable '$self'owner' is not used
+      var (($self'seed, $self'owner, $self'nfts, $self'count)) = (null(), null(), null(), null());
+                                                               ^
+$Task5$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./LepreClown/ton-tact-challenge/contracts/output/sample_Task5.code.fc:14:62: warning: Local variable '$self'count' is not used
+      var (($self'seed, $self'owner, $self'nfts, $self'count)) = (null(), null(), null(), null());
+                                                               ^
+$Task5$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./LepreClown/ton-tact-challenge/contracts/output/sample_Task5.storage.fc:175:19: warning: Lack of end_parse.
+          return $sc~$Task5$_load();
+                    ^
+$Task5$_internal_binary_AdminWithdrawalProfit: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./LepreClown/ton-tact-challenge/contracts/output/sample_Task5.code.fc:64:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Task5$_internal_binary_AdminWithdrawalProfit: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./LepreClown/ton-tact-challenge/contracts/output/sample_Task5.code.fc:64:59: warning: Local variable '$ctx'sender' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Task5$_internal_binary_AdminWithdrawalProfit: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./LepreClown/ton-tact-challenge/contracts/output/sample_Task5.code.fc:64:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Task5$_contract_store & $Task5$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./LepreClown/ton-tact-challenge/contracts/output/sample_Task5.storage.fc:171:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./LepreClown/ton-tact-challenge/contracts/output/sample_Task5.storage.fc:186:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task5$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./LepreClown/ton-tact-challenge/contracts/output/sample_Task5.code.fc:123:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./LepreClown/ton-tact-challenge/contracts/output/sample_Task5.storage.fc:186:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./LepreClown/ton-tact-challenge/contracts/output/sample_Task5.code.fc:54:361: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... dPayload($msg'queryId, $msg'prevOwner, $msg'prevOwner, null(), 0, $global_emptySlice())), (64 + 2)));
+  ...                                                                                                     ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./LepreClown/ton-tact-challenge/contracts/output/sample_Task5.code.fc:47:331: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... dPayload($msg'queryId, $msg'prevOwner, $msg'prevOwner, null(), 0, $global_emptySlice())), (64 + 2)));
+  ...                                                                                                     ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./LepreClown/ton-tact-challenge/contracts/output/sample_Task5.code.fc:78:380: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... Id, __tact_context_get_sender(), __tact_context_get_sender(), null(), 0, $global_emptySlice())), 2));
+  ...                                                                                                     ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./LepreClown/ton-tact-challenge/contracts/output/sample_Task5.code.fc:66:192: warning: UnHandle bounced message with op: 0xfda48b79
+          $global_send($SendParameters$_constructor_to_value_body_mode(__tact_context_get_sender(), 0, $AdminFetchProfit$_store_cell($AdminFetchProfit$_constructor_queryId($msg'queryId)), 128));
+                                                                                                                                                                                                 ^

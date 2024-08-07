@@ -1,0 +1,37 @@
+$Task4$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./hitaspdotnet/tact-challenge/contracts/output/sample_Task4.storage.fc:116:19: warning: Lack of end_parse.
+          return $sc~$Task4$_load();
+                    ^
+$Task4$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./hitaspdotnet/tact-challenge/contracts/output/sample_Task4.code.fc:15:65: warning: Local variable '$self'seed' is not used
+      var (($self'seed, $self'owner, $self'nft, $self'lockUntil)) = (null(), null(), null(), 0);
+                                                                  ^
+$Task4$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./hitaspdotnet/tact-challenge/contracts/output/sample_Task4.code.fc:113:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./hitaspdotnet/tact-challenge/contracts/output/sample_Task4.storage.fc:127:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task4$_contract_store & $Task4$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./hitaspdotnet/tact-challenge/contracts/output/sample_Task4.storage.fc:112:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./hitaspdotnet/tact-challenge/contracts/output/sample_Task4.storage.fc:127:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task4$_contract_store & $Task4$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./hitaspdotnet/tact-challenge/contracts/output/sample_Task4.storage.fc:112:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./hitaspdotnet/tact-challenge/contracts/output/sample_Task4.storage.fc:127:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task4$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./hitaspdotnet/tact-challenge/contracts/output/sample_Task4.code.fc:46:298: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... int(begin_cell(), 1607220500, 32), $msg'queryId, 64), $msg'prevOwner), $msg'prevOwner), 0, 1), 0))));
+  ...                                                                                                     ^
+$Task4$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./hitaspdotnet/tact-challenge/contracts/output/sample_Task4.code.fc:62:326: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... , 32), $msg'queryId, 64), __tact_not_null($self'owner)), __tact_not_null($self'owner)), 0, 1), 0))));
+  ...                                                                                                     ^

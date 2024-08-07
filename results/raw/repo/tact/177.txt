@@ -1,0 +1,15 @@
+$__gen_A_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/src/test/features/output/ordering_A.code.fc:74:25: warning: Local variable '$self'owner' is not used
+      var (($self'owner)) = (null());
+                          ^
+__gen_load_A: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/src/test/features/output/ordering_A.code.fc:84:19: warning: Lack of end_parse.
+          return $sc~__gen_read_A();
+                    ^
+__gen_store_A & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/src/test/features/output/ordering_A.code.fc:247:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/src/test/features/output/ordering_A.code.fc:95:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

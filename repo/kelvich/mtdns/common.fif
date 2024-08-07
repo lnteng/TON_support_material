@@ -1,0 +1,173 @@
+"TonUtil.fif" include
+"Asm.fif" include
+
+variable mtdns-seqno
+variable mtdns-pubkey
+variable mtdns-privkey
+variable curr_data
+
+// ( str -- method_id )
+{
+    <b swap $, b> <s dup sbits 8 / B@ crc16 0xffff and 0x10000 or
+} : method_id
+
+// ( args method_id -- results )
+{
+    "mtdns.fif" include <s
+    curr_data @ B>boc
+    runvm
+    boc>B curr_data !
+} : run_method
+
+// ( -- seqno )
+{ mtdns-seqno @ dup 1+ mtdns-seqno ! } : get-mtdns-seqno
+
+// ( -- )
+{ mtdns-seqno @ 1- mtdns-seqno ! } : dec-mtdns-seqno
+
+// ( int -- addr )
+{ <b swap 32 u, b> hashu 13 swap } : gen-test-addr
+
+// ( -- )
+{
+    mtdns-seqno 0!
+    newkeypair
+    mtdns-pubkey !
+    mtdns-privkey !
+
+    <b 0 32 u,
+       mtdns-pubkey @ B,
+       null dict,
+    b> boc>B curr_data !
+} : init_test
+
+// ( msg -- results )
+{
+    dup hashu mtdns-privkey @ ed25519_sign_uint // msg sig
+    <b swap B, swap ref, b> <s
+    -1
+    run_method
+} : send_ext_msg
+
+// ( dname cat_id wc addr -- retcode )
+{
+    ."domain_upsert: " .s ." -> "
+    rot // dname wc addr cat_id
+    3 roll <b swap $, b> 3 -roll
+    <b get-mtdns-seqno 32 u, 0x2 32 u, swap 16 i, -rot addr, swap ref, b> // msg
+    send_ext_msg
+    .s
+} : domain_upsert
+
+// ( dname cat_id wc addr -- retcode )
+{
+    ."domain_upsert: " .s ." -> "
+    rot // dname wc addr cat_id
+    3 roll <b swap s, b> 3 -roll
+    <b get-mtdns-seqno 32 u, 0x2 32 u, swap 16 i, -rot addr, swap ref, b> // msg
+    send_ext_msg
+    .s
+} : domain_upsert_slice
+
+// ( dname cat_id -- retcode )
+{
+    ."domain_delete: " .s ." -> "
+    swap <b swap $, b> swap
+    <b get-mtdns-seqno 32 u, 0x3 32 u, swap 16 i, swap ref, b> // msg
+    send_ext_msg
+    .s
+} : domain_delete
+
+// ( new_pubkey -- retcode )
+{
+    ."mtdns_transfer: " .s ." -> "
+    <b get-mtdns-seqno 32 u, 0x10 32 u, swap B, b> // msg
+    send_ext_msg
+    .s
+} : mtdns_transfer
+
+// ( new_code -- retcode )
+{
+    ."mtdns_upgrade: " .s ." -> "
+    <b get-mtdns-seqno 32 u, 0x11 32 u, swap ref, b> // msg
+    send_ext_msg
+    .s
+} : mtdns_upgrade
+
+// ( -- retcode )
+{
+    ."mtdns_unknown_op: " .s ." -> "
+    <b get-mtdns-seqno 32 u, 0xff 32 u, b> // msg
+    send_ext_msg
+    .s
+} : mtdns_unknown_op
+
+// ( dname cat_id -- len rec_value retcode )
+{
+    ."get_dnsresolve: " .s ." -> "
+    <b rot $, b> <s
+    "dnsresolve" method_id
+    run_method
+    swap dup null? { <s 8 i@+ 256 u@+ s> } ifnot rot
+    .s
+} : get_dnsresolve
+
+// ( dname cat_id -- len rec_value retcode )
+{
+    ."get_dnsresolve: " .s ." -> "
+    <b rot s, b> <s
+    "dnsresolve" method_id
+    run_method
+    swap dup null? { <s 8 i@+ 256 u@+ s> } ifnot rot
+    .s
+} : get_dnsresolve_slice
+
+{
+    ."get_dnsresolve: " .s ." -> "
+    <b rot s, b> <s
+    "dnsresolve" method_id
+    run_method
+    .s
+} : get_dnsresolve_slice_noparse
+
+// ( dname -- len retcode )
+{
+    0 swap
+    ."get_dnsresolve_all: " .s
+    <b swap $, b> <s
+    "dnsresolve" method_id
+    run_method
+    .s
+    swap
+    <s ref@+ swap drop
+    16 { swap . ."-> " 8 i@+ 256 u@+ s> swap . . cr true } dictforeach 
+    drop
+} : get_dnsresolve_all
+
+
+// ( -- (v1, v2, v3) retcode )
+{
+    ."get_version: " .s ." -> "
+    "version" method_id
+    run_method
+    .s
+} : get_version
+
+// ( -- seqno retcode )
+{
+    ."get_seqno: " .s ." -> "
+    "seqno" method_id
+    run_method
+    .s
+} : get_seqno
+
+// (i1 i2 -- )
+{ = { "assert_eq failed" abort } ifnot } : assert_eq
+
+// (a1 a2 b1 b2 -- )
+{ rot assert_eq assert_eq } : assert_eq2
+
+// (i1 i2 -- )
+{ = { "assert_eq failed" abort } if } : assert_neq
+
+{ null? { "assert_null failed" abort } ifnot } : assert_null

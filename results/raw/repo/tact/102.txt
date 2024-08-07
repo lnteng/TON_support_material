@@ -1,0 +1,44 @@
+$__gen_RugPull_receive_comment_bcfaf776907c719cc8d379d8f194aaaa27e8ca2871cd591781721f215a454501: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dvlkv/tact/examples/output/rugpull_RugPull.code.fc:334:156: warning: Local variable '$self'stopped' is not used
+      ($self'owner, $self'investment, $self'returns, $self'fee, $self'balance, $self'rugpulled, $self'stopped, $self'queueStart, $self'queueEnd, $self'queue)~$__gen_RugPull_requireNotStopped();
+                                                                                                                                                             ^
+$__gen_RugPull_receive: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dvlkv/tact/examples/output/rugpull_RugPull.code.fc:292:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$__gen_RugPull_receive: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dvlkv/tact/examples/output/rugpull_RugPull.code.fc:292:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+__tact_dict_set_int_slice: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dvlkv/tact/examples/output/rugpull_RugPull.code.fc:35:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+__gen_read_RugPull: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dvlkv/tact/examples/output/rugpull_RugPull.code.fc:149:23: warning: Lack of end_parse.
+      var v'queue = sc_2~load_dict();
+                        ^
+__gen_read_RugPull: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dvlkv/tact/examples/output/rugpull_RugPull.code.fc:147:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+__tact_string_builder_append: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dvlkv/tact/examples/output/rugpull_RugPull.code.fc:100:31: warning: Lack of end_parse.
+              sc = sc~load_ref().begin_parse();
+                                ^
+__gen_load_RugPull: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dvlkv/tact/examples/output/rugpull_RugPull.code.fc:166:14: warning: Lack of end_parse.
+      return sc~__gen_read_RugPull();
+               ^
+$reply: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dvlkv/tact/examples/output/rugpull_RugPull.code.fc:223:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$reply: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dvlkv/tact/examples/output/rugpull_RugPull.code.fc:223:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$reply: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dvlkv/tact/examples/output/rugpull_RugPull.code.fc:223:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^

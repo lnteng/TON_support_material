@@ -1,0 +1,15 @@
+$CounterAmadeus$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCrd2wxiQGzLsSq5dlkYx1wn7Nzlue8D6oHSPGni_LNEYVk/output/verifier_CounterAmadeus.code.fc:14:23: warning: Local variable '$self'val' is not used
+      var (($self'val)) = (null());
+                        ^
+$CounterAmadeus$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCrd2wxiQGzLsSq5dlkYx1wn7Nzlue8D6oHSPGni_LNEYVk/output/verifier_CounterAmadeus.storage.fc:74:19: warning: Lack of end_parse.
+          return $sc~$CounterAmadeus$_load();
+                    ^
+$CounterAmadeus$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCrd2wxiQGzLsSq5dlkYx1wn7Nzlue8D6oHSPGni_LNEYVk/output/verifier_CounterAmadeus.code.fc:65:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCrd2wxiQGzLsSq5dlkYx1wn7Nzlue8D6oHSPGni_LNEYVk/output/verifier_CounterAmadeus.storage.fc:83:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

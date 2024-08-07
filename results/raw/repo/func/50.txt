@@ -1,0 +1,32 @@
+validate_map_content: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./krivochenko/t11n-contracts/contracts/imports/map.fc:152:18: warning: Lack of end_parse.
+      content_slice~skip_bits(31 * 4);
+                   ^
+validate_map_content: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./krivochenko/t11n-contracts/contracts/imports/map.fc:149:45: warning: Lack of end_parse.
+      int countries_count = version_data_slice~load_uint(10);
+                                              ^
+generate_svg: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./krivochenko/t11n-contracts/contracts/imports/map.fc:78:36: warning: Lack of end_parse.
+          cell country_dict = country~load_ref();
+                                     ^
+generate_svg: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./krivochenko/t11n-contracts/contracts/imports/map.fc:77:46: warning: Lack of end_parse.
+          slice fill = individual_content_slice~load_int(1) == true ? visited : unvisited;
+                                               ^
+get_nft_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./krivochenko/t11n-contracts/contracts/item.fc:206:47: warning: Lack of end_parse.
+      slice version_address = version_data_slice~load_msg_addr();
+                                                ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./krivochenko/t11n-contracts/contracts/item.fc:58:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./krivochenko/t11n-contracts/contracts/item.fc:88:41: warning: Lack of end_parse.
+              storage::content = item_data~load_ref();
+                                          ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./krivochenko/t11n-contracts/contracts/item.fc:145:51: warning: Lack of end_parse.
+          slice version_address = version_data_slice~load_msg_addr();
+                                                    ^

@@ -1,0 +1,26 @@
+$CounterContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./prince5638/CounterTutorial/contracts/output/sample_CounterContract.code.fc:14:33: warning: Local variable '$self'id' is not used
+      var (($self'id, $self'val)) = (null(), null());
+                                  ^
+$CounterContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./prince5638/CounterTutorial/contracts/output/sample_CounterContract.code.fc:14:33: warning: Local variable '$self'val' is not used
+      var (($self'id, $self'val)) = (null(), null());
+                                  ^
+$CounterContract$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./prince5638/CounterTutorial/contracts/output/sample_CounterContract.storage.fc:81:19: warning: Lack of end_parse.
+          return $sc~$CounterContract$_load();
+                    ^
+$CounterContract$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./prince5638/CounterTutorial/contracts/output/sample_CounterContract.code.fc:77:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./prince5638/CounterTutorial/contracts/output/sample_CounterContract.storage.fc:92:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$CounterContract$_contract_store & $CounterContract$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./prince5638/CounterTutorial/contracts/output/sample_CounterContract.storage.fc:77:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./prince5638/CounterTutorial/contracts/output/sample_CounterContract.storage.fc:92:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

@@ -1,0 +1,26 @@
+get_public_key: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-distrib/crypto/smartcont/restricted-wallet2-code.fc:65:5: warning: Lack of end_parse.
+    cs~load_uint(32);
+      ^
+seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-distrib/crypto/smartcont/restricted-wallet2-code.fc:60:20: warning: Lack of end_parse.
+    return get_data().begin_parse().preload_uint(32);
+                     ^
+seconds_passed: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-distrib/crypto/smartcont/restricted-wallet2-code.fc:11:45: warning: Lack of end_parse.
+      start_at = null?(p) ? 0 : begin_parse(p).preload_uint(32);
+                                              ^
+recv_external & compute_balance_at: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-distrib/crypto/smartcont/restricted-wallet2-code.fc:70:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse().skip_bits(32 + 256);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-distrib/crypto/smartcont/restricted-wallet2-code.fc:50:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_uint(stored_seqno + 1, 32)
+      ^
+recv_external & compute_balance_at: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-distrib/crypto/smartcont/restricted-wallet2-code.fc:70:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse().skip_bits(32 + 256);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-distrib/crypto/smartcont/restricted-wallet2-code.fc:28:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_uint(stored_seqno + 1, 32)
+        ^

@@ -1,0 +1,15 @@
+$Treasure$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/treasure_Treasure.storage.fc:98:19: warning: Lack of end_parse.
+          return $sc~$Treasure$_load();
+                    ^
+$Treasure$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/treasure_Treasure.code.fc:14:25: warning: Local variable '$self'owner' is not used
+      var (($self'owner)) = (null());
+                          ^
+$Treasure$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/treasure_Treasure.code.fc:89:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/treasure_Treasure.storage.fc:109:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

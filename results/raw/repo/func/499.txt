@@ -1,0 +1,44 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/ton-contest-3/contracts/submit/2.fc:58:20: warning: Lack of end_parse.
+      store~tpush(ref~load_ref());
+                     ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/ton-contest-3/contracts/submit/2.fc:46:17: warning: Lack of end_parse.
+    if (get_data().begin_parse().slice_empty?()) {
+                  ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/ton-contest-3/contracts/submit/2.fc:92:35: warning: Lack of end_parse.
+      cell scoreCellRef2 = scoreCell~load_ref(); 
+                                    ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/ton-contest-3/contracts/submit/2.fc:99:33: warning: Lack of end_parse.
+        cell valCellRef2 = valCell~load_ref(); 
+                                  ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/ton-contest-3/contracts/submit/2.fc:110:32: warning: Lack of end_parse.
+        cell valCellResf2 = begpa~load_ref();
+                                 ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/ton-contest-3/contracts/submit/2.fc:72:24: warning: Lack of end_parse.
+        cell ref2 = dataS~load_ref();
+                         ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/ton-contest-3/contracts/submit/2.fc:74:61: warning: Lack of end_parse.
+        (int score, int value) = (dataSS~load_uint(32), dataSS~load_coins());
+                                                              ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/ton-contest-3/contracts/submit/2.fc:71:17: warning: Local variable 'ref1' is not used
+        cell ref1 = dataS~load_ref();
+                  ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/ton-contest-3/contracts/submit/2.fc:109:25: warning: Local variable 'valCellResf1' is not used
+        cell valCellResf1 = begpa~load_ref(); 
+                          ^
+sendMessage: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/ton-contest-3/contracts/submit/2.fc:6:85: warning: Lack of end_parse.
+    (int score, int value, cell msg) = (pdata~load_uint(32), pdata~load_coins(), pdata~load_ref());
+                                                                                      ^
+sendMessage: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/ton-contest-3/contracts/submit/2.fc:6:36: warning: Local variable 'score' is not used
+    (int score, int value, cell msg) = (pdata~load_uint(32), pdata~load_coins(), pdata~load_ref());
+                                     ^

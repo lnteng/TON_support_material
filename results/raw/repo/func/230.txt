@@ -1,0 +1,24 @@
+get_nft_content: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/burton/contracts/nft-collection.fc:113:21: warning: Lack of end_parse.
+    slice cs = content.begin_parse();
+                      ^
+get_nft_content: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/burton/contracts/nft-collection.fc:113:12: warning: Local variable 'cs' is not used
+    slice cs = content.begin_parse();
+             ^
+recv_internal: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/burton/contracts/nft-collection.fc:82:100: warning: PressionLoss
+                                                .convertIntToStr((tons_value_after_dot - (tons_value * 100)))
+                                                                                                     ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/burton/contracts/nft-collection.fc:68:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/burton/contracts/nft-collection.fc:67:15: warning: Local variable 'flags' is not used
+      int flags = cs~load_uint(4);
+                ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/burton/contracts/nft-collection.fc:12:8: warning: Lack of end_parse.
+       ds~load_ref()  ;; royalty_params
+         ^

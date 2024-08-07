@@ -1,0 +1,209 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_Payment.headers.fc";
+#include "sample_Payment.stdlib.fc";
+#include "sample_Payment.storage.fc";
+
+;;
+;; Contract Payment functions
+;;
+
+(cell, slice) $Payment$_contract_init(slice $owner) impure inline_ref {
+    var (($self'orders, $self'owner)) = (null(), null());
+    $self'owner = $owner;
+    $self'orders = null();
+    return ($self'orders, $self'owner);
+}
+
+((cell, slice), slice) $Payment$_fun_balance((cell, slice) $self) impure inline_ref {
+    var (($self'orders, $self'owner)) = $self;
+    return (($self'orders, $self'owner), $Int$_fun_toCoinsString(__tact_my_balance()));
+}
+
+((cell, slice), ()) $Payment$_fun_requireOwner((cell, slice) $self) impure inline_ref {
+    var (($self'orders, $self'owner)) = $self;
+    throw_unless(132, ( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) ));
+    return (($self'orders, $self'owner), ());
+}
+
+((cell, slice), slice) $Payment$_fun_owner((cell, slice) $self) impure inline_ref {
+    var (($self'orders, $self'owner)) = $self;
+    return (($self'orders, $self'owner), $self'owner);
+}
+
+;;
+;; Receivers of a Contract Payment
+;;
+
+(((cell, slice)), ()) %$Payment$_internal_empty((cell, slice) $self) impure inline {
+    var ($self'orders, $self'owner) = $self;
+    __tact_nop();
+    return (($self'orders, $self'owner), ());
+}
+
+(((cell, slice)), ()) $Payment$_internal_binary_Order((cell, slice) $self, (int) $order) impure inline {
+    var ($self'orders, $self'owner) = $self;
+    var ($order'id) = $order;
+    throw_unless(34906, null?(__tact_dict_get_int_int($self'orders, 257, $order'id, 257)));
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    $self'orders~__tact_dict_set_int_int(257, $order'id, $ctx'value, 257);
+    return (($self'orders, $self'owner), ());
+}
+
+((cell, slice), ()) $Payment$_internal_text_095190194aee611ce895c5503adf85fd864de7905746142f608d3eb2faad14e4((cell, slice) $self) impure inline {
+    var ($self'orders, $self'owner) = $self;
+    throw_unless(27921, ( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) ));
+    $global_send($SendParameters$_constructor_to_bounce_value_mode(__tact_context_get_sender(), true, 0, (128 + 2)));
+    return (($self'orders, $self'owner), ());
+}
+
+(((cell, slice)), ()) $Payment$_internal_binary_Withdraw((cell, slice) $self, (int) $msg) impure inline {
+    var ($self'orders, $self'owner) = $self;
+    var ($msg'amount) = $msg;
+    throw_unless(27921, ( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) ));
+    int $amount = min($msg'amount, ((__tact_my_balance() - $Context$_get_value(__tact_context_get())) - 10000000));
+    throw_unless(54615, ($amount > 0));
+    $global_send($SendParameters$_constructor_to_bounce_value_mode(__tact_context_get_sender(), true, $amount, (64 + 2)));
+    return (($self'orders, $self'owner), ());
+}
+
+(((cell, slice)), ()) $Payment$_internal_binary_Deploy((cell, slice) $self, (int) $deploy) impure inline {
+    var ($self'orders, $self'owner) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'orders, $self'owner)~$Payment$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'orders, $self'owner), ());
+}
+
+(((cell, slice)), ()) $Payment$_internal_binary_ChangeOwner((cell, slice) $self, (int, slice) $msg) impure inline {
+    var ($self'orders, $self'owner) = $self;
+    var ($msg'queryId, $msg'newOwner) = $msg;
+    ($self'orders, $self'owner)~$Payment$_fun_requireOwner();
+    $self'owner = $msg'newOwner;
+    ($self'orders, $self'owner)~$Payment$_fun_reply($ChangeOwnerOk$_store_cell($ChangeOwnerOk$_constructor_queryId_newOwner($msg'queryId, $msg'newOwner)));
+    return (($self'orders, $self'owner), ());
+}
+
+;;
+;; Get methods of a Contract Payment
+;;
+
+_ %balance() method_id(104128) {
+    var self = $Payment$_contract_load();
+    var res = self~$Payment$_fun_balance();
+    return res;
+}
+
+_ %owner() method_id(83229) {
+    var self = $Payment$_contract_load();
+    var res = self~$Payment$_fun_owner();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128,
+        "org.ton.ownable.transferable.v2"H >> 128,
+        "org.ton.ownable"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmeviWFY1vjt3zQnoSzAzHsRM6PbuoRoBpGnP4wjzdQGq6";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract Payment
+;;
+
+((cell, slice), int) $Payment$_contract_router_internal((cell, slice) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive empty message
+    if ((op == 0) & (slice_bits(in_msg) <= 32)) {
+        self~%$Payment$_internal_empty();
+        return (self, true);
+    }
+    
+    ;; Receive Order message
+    if (op == 3611515576) {
+        var msg = in_msg~$Order$_load();
+        self~$Payment$_internal_binary_Order(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Withdraw message
+    if (op == 195467089) {
+        var msg = in_msg~$Withdraw$_load();
+        self~$Payment$_internal_binary_Withdraw(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$Payment$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Receive ChangeOwner message
+    if (op == 2174598809) {
+        var msg = in_msg~$ChangeOwner$_load();
+        self~$Payment$_internal_binary_ChangeOwner(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "withdraw" message
+        if (text_op == 0x095190194aee611ce895c5503adf85fd864de7905746142f608d3eb2faad14e4) {
+            self~$Payment$_internal_text_095190194aee611ce895c5503adf85fd864de7905746142f608d3eb2faad14e4();
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $Payment$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$Payment$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $Payment$_contract_store(self);
+}

@@ -1,0 +1,71 @@
+$Metadata$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC8QgUOMr0uKE9I6KXPgmpS_2NX-AceDq2rmRYGE6wUM76h/output/verifier_Metadata.storage.fc:99:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+$Metadata$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC8QgUOMr0uKE9I6KXPgmpS_2NX-AceDq2rmRYGE6wUM76h/output/verifier_Metadata.storage.fc:105:21: warning: Lack of end_parse.
+      var v'dns = sc_2~load_ref().begin_parse();
+                      ^
+$Metadata$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC8QgUOMr0uKE9I6KXPgmpS_2NX-AceDq2rmRYGE6wUM76h/output/verifier_Metadata.storage.fc:131:19: warning: Lack of end_parse.
+          return $sc~$Metadata$_load();
+                    ^
+$Metadata$init$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC8QgUOMr0uKE9I6KXPgmpS_2NX-AceDq2rmRYGE6wUM76h/output/verifier_Metadata.storage.fc:116:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+$Metadata$init$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC8QgUOMr0uKE9I6KXPgmpS_2NX-AceDq2rmRYGE6wUM76h/output/verifier_Metadata.storage.fc:122:21: warning: Lack of end_parse.
+      var v'dns = sc_2~load_ref().begin_parse();
+                      ^
+$Metadata$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC8QgUOMr0uKE9I6KXPgmpS_2NX-AceDq2rmRYGE6wUM76h/output/verifier_Metadata.code.fc:14:157: warning: Local variable '$self'avatar' is not used
+      var (($self'avatar, $self'name, $self'about, $self'website, $self'terms, $self'telegram, $self'github, $self'jetton, $self'nft, $self'hide, $self'dns)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                                              ^
+$Metadata$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC8QgUOMr0uKE9I6KXPgmpS_2NX-AceDq2rmRYGE6wUM76h/output/verifier_Metadata.code.fc:14:157: warning: Local variable '$self'name' is not used
+      var (($self'avatar, $self'name, $self'about, $self'website, $self'terms, $self'telegram, $self'github, $self'jetton, $self'nft, $self'hide, $self'dns)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                                              ^
+$Metadata$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC8QgUOMr0uKE9I6KXPgmpS_2NX-AceDq2rmRYGE6wUM76h/output/verifier_Metadata.code.fc:14:157: warning: Local variable '$self'about' is not used
+      var (($self'avatar, $self'name, $self'about, $self'website, $self'terms, $self'telegram, $self'github, $self'jetton, $self'nft, $self'hide, $self'dns)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                                              ^
+$Metadata$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC8QgUOMr0uKE9I6KXPgmpS_2NX-AceDq2rmRYGE6wUM76h/output/verifier_Metadata.code.fc:14:157: warning: Local variable '$self'website' is not used
+      var (($self'avatar, $self'name, $self'about, $self'website, $self'terms, $self'telegram, $self'github, $self'jetton, $self'nft, $self'hide, $self'dns)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                                              ^
+$Metadata$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC8QgUOMr0uKE9I6KXPgmpS_2NX-AceDq2rmRYGE6wUM76h/output/verifier_Metadata.code.fc:14:157: warning: Local variable '$self'terms' is not used
+      var (($self'avatar, $self'name, $self'about, $self'website, $self'terms, $self'telegram, $self'github, $self'jetton, $self'nft, $self'hide, $self'dns)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                                              ^
+$Metadata$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC8QgUOMr0uKE9I6KXPgmpS_2NX-AceDq2rmRYGE6wUM76h/output/verifier_Metadata.code.fc:14:157: warning: Local variable '$self'telegram' is not used
+      var (($self'avatar, $self'name, $self'about, $self'website, $self'terms, $self'telegram, $self'github, $self'jetton, $self'nft, $self'hide, $self'dns)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                                              ^
+$Metadata$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC8QgUOMr0uKE9I6KXPgmpS_2NX-AceDq2rmRYGE6wUM76h/output/verifier_Metadata.code.fc:14:157: warning: Local variable '$self'github' is not used
+      var (($self'avatar, $self'name, $self'about, $self'website, $self'terms, $self'telegram, $self'github, $self'jetton, $self'nft, $self'hide, $self'dns)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                                              ^
+$Metadata$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC8QgUOMr0uKE9I6KXPgmpS_2NX-AceDq2rmRYGE6wUM76h/output/verifier_Metadata.code.fc:14:157: warning: Local variable '$self'jetton' is not used
+      var (($self'avatar, $self'name, $self'about, $self'website, $self'terms, $self'telegram, $self'github, $self'jetton, $self'nft, $self'hide, $self'dns)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                                              ^
+$Metadata$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC8QgUOMr0uKE9I6KXPgmpS_2NX-AceDq2rmRYGE6wUM76h/output/verifier_Metadata.code.fc:14:157: warning: Local variable '$self'nft' is not used
+      var (($self'avatar, $self'name, $self'about, $self'website, $self'terms, $self'telegram, $self'github, $self'jetton, $self'nft, $self'hide, $self'dns)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                                              ^
+$Metadata$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC8QgUOMr0uKE9I6KXPgmpS_2NX-AceDq2rmRYGE6wUM76h/output/verifier_Metadata.code.fc:14:157: warning: Local variable '$self'hide' is not used
+      var (($self'avatar, $self'name, $self'about, $self'website, $self'terms, $self'telegram, $self'github, $self'jetton, $self'nft, $self'hide, $self'dns)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                                              ^
+$Metadata$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC8QgUOMr0uKE9I6KXPgmpS_2NX-AceDq2rmRYGE6wUM76h/output/verifier_Metadata.code.fc:14:157: warning: Local variable '$self'dns' is not used
+      var (($self'avatar, $self'name, $self'about, $self'website, $self'terms, $self'telegram, $self'github, $self'jetton, $self'nft, $self'hide, $self'dns)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                                              ^
+$Metadata$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC8QgUOMr0uKE9I6KXPgmpS_2NX-AceDq2rmRYGE6wUM76h/output/verifier_Metadata.code.fc:75:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC8QgUOMr0uKE9I6KXPgmpS_2NX-AceDq2rmRYGE6wUM76h/output/verifier_Metadata.storage.fc:142:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

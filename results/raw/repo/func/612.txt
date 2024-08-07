@@ -1,0 +1,120 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/toncoin-oraclized-bridge/old/bridge_code.fc:497:20: warning: Lack of end_parse.
+    slice s_addr = cs~load_msg_addr();
+                     ^
+vote_on_external_chain: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/toncoin-oraclized-bridge/old/bridge_code.fc:409:60: warning: Local variable 'set_updated?' is not used
+      (int set_updated?, int min_auth_num, cell oracle_keys) = (sets, candidates, current_set_hash)~check_update();
+                                                             ^
+vote_on_external_chain: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/toncoin-oraclized-bridge/old/bridge_code.fc:409:60: warning: Local variable 'min_auth_num' is not used
+      (int set_updated?, int min_auth_num, cell oracle_keys) = (sets, candidates, current_set_hash)~check_update();
+                                                             ^
+vote_on_external_chain: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/toncoin-oraclized-bridge/old/bridge_code.fc:410:33: warning: Local variable 'oracle_id' is not used
+      (int oracle_id, slice keys) = check_oracle_authorization(s_addr, oracle_keys);
+                                  ^
+vote_on_external_chain: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/toncoin-oraclized-bridge/old/bridge_code.fc:420:32: warning: Local variable 'ed_key' is not used
+      (int ed_key, int secp_key) = (keys~load_uint(256), keys~load_uint(256));
+                                 ^
+vote_on_external_chain: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/toncoin-oraclized-bridge/old/bridge_code.fc:416:20: warning: Local variable '_set_hash' is not used
+         signatures) =
+                     ^
+~remove_outdated_authorizations: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/toncoin-oraclized-bridge/old/bridge_code.fc:318:41: warning: Local variable 'keys' is not used
+          (slice keys, int oracle_found?) = new_oracle_keys.udict_get?(256, oracle_id);
+                                          ^
+~reward_set: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/toncoin-oraclized-bridge/old/bridge_code.fc:135:52: warning: Local variable 'locked' is not used
+      (int locked, int unrewarded_stake, int reward) = (old_set_data~load_uint(1),
+                                                     ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/toncoin-oraclized-bridge/old/storage.fc:69:13: warning: Lack of end_parse.
+            ds~load_dict()
+              ^
+remove_outdated_votings: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/toncoin-oraclized-bridge/old/bridge_code.fc:457:43: warning: Lack of end_parse.
+                             config_set_data~load_uint(32));
+                                            ^
+remove_outdated_votings: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/toncoin-oraclized-bridge/old/bridge_code.fc:433:60: warning: Local variable 'set_updated?' is not used
+      (int set_updated?, int min_auth_num, cell oracle_keys) = (sets, candidates, current_set_hash)~check_update();
+                                                             ^
+remove_outdated_votings: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/toncoin-oraclized-bridge/old/bridge_code.fc:433:60: warning: Local variable 'min_auth_num' is not used
+      (int set_updated?, int min_auth_num, cell oracle_keys) = (sets, candidates, current_set_hash)~check_update();
+                                                             ^
+remove_outdated_votings: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/toncoin-oraclized-bridge/old/bridge_code.fc:437:38: warning: Local variable 'unused' is not used
+        (id, slice unused, int found?) = external_ids.udict_get_next?(256, id);
+                                       ^
+remove_outdated_votings: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/toncoin-oraclized-bridge/old/bridge_code.fc:455:25: warning: Local variable 'flat_stake' is not used
+       int set_timestamp) = (config_set_data~load_grams(),
+                          ^
+remove_outdated_votings: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/toncoin-oraclized-bridge/old/bridge_code.fc:455:25: warning: Local variable 'min_auth_num' is not used
+       int set_timestamp) = (config_set_data~load_grams(),
+                          ^
+remove_outdated_votings: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/toncoin-oraclized-bridge/old/bridge_code.fc:460:38: warning: Local variable 'unused' is not used
+        (id, slice unused, int found?) = internal_ids.udict_get_next?(256, id);
+                                       ^
+~load_text_hex_number: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/toncoin-oraclized-bridge/old/text_utils.fc:42:24: warning: Lack of end_parse.
+          comment = _cont.begin_parse();
+                         ^
+~check_update: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/toncoin-oraclized-bridge/old/bridge_code.fc:59:56: warning: PressionLoss
+      min_auth_num = max(min_auth_num, total_oracles_num * 2 / 3);
+                                                         ^
+~check_update: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/toncoin-oraclized-bridge/old/bridge_code.fc:30:38: warning: Lack of end_parse.
+                        config_set_data~load_dict());
+                                       ^
+~check_update: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/toncoin-oraclized-bridge/old/bridge_code.fc:27:20: warning: Local variable 'seqno' is not used
+       cell oracles) = (config_set_data~load_grams(),
+                     ^
+~check_update: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/toncoin-oraclized-bridge/old/bridge_code.fc:74:33: warning: Local variable 'success?' is not used
+      (slice set_s, int success?) = sets.udict_get?(256, current_set_hash);
+                                  ^
+~check_update: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/toncoin-oraclized-bridge/old/bridge_code.fc:75:28: warning: Local variable '_1' is not used
+      (int _1, min_auth_num) = (set_s~load_grams(), set_s~load_uint(16));
+                             ^
+vote_on_ton: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/toncoin-oraclized-bridge/old/bridge_code.fc:359:42: warning: Lack of end_parse.
+                            old_voting_data~load_dict());
+                                           ^
+vote_on_ton: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/toncoin-oraclized-bridge/old/bridge_code.fc:330:60: warning: Local variable 'set_updated?' is not used
+      (int set_updated?, int min_auth_num, cell oracle_keys) = (sets, candidates, current_set_hash)~check_update();
+                                                             ^
+vote_on_ton: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/toncoin-oraclized-bridge/old/bridge_code.fc:331:33: warning: Local variable 'keys' is not used
+      (int oracle_id, slice keys) = check_oracle_authorization(s_addr, oracle_keys);
+                                  ^
+~execute_voting: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/toncoin-oraclized-bridge/old/bridge_code.fc:208:88: warning: Lack of end_parse.
+        (int oracle_id, int fine_amount) = (complaint_body~load_uint(256), complaint_body~load_uint(64));
+                                                                                         ^
+~execute_voting: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/toncoin-oraclized-bridge/old/bridge_code.fc:224:49: warning: Local variable 'oracle_found?' is not used
+          (slice oracle_slice, int oracle_found?) = stakes~udict_delete_get?(256, oracle_id);
+                                                  ^
+~execute_voting: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/toncoin-oraclized-bridge/old/bridge_code.fc:255:21: warning: Local variable 'locked' is not used
+         cell stakes) = (set_data~load_uint(1),
+                      ^
+~execute_voting: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/toncoin-oraclized-bridge/old/bridge_code.fc:255:21: warning: Local variable 'auth_num' is not used
+         cell stakes) = (set_data~load_uint(1),
+                      ^
+~execute_voting: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/toncoin-oraclized-bridge/old/bridge_code.fc:255:21: warning: Local variable 'keys' is not used
+         cell stakes) = (set_data~load_uint(1),
+                      ^

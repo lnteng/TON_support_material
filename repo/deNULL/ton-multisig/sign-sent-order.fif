@@ -1,0 +1,61 @@
+#!/usr/bin/env fift -s
+"multisig-utils.fif" include
+
+{ ."<wallet> <seqno> <request-hash> <keyname-1> <keyname-2>... [-O <output-boc>]" cr
+  ."Creates query matching a pending request with the specified hash, signed by provided keys." cr
+  ."Note that <keyname-N> is not the index of a private key, but its filename (without .pk extension)."
+} : usage()
+
+// == Parsing command-line arguments
+
+variable Keynames
+{
+  "-O" "--output-file" 1 { =: SaveFile } option-long()
+
+  1 { =: BaseFile } nth-argument()
+  2 { parse-int =: SeqNo } nth-argument()
+  3 { parse-int =: RequestHash } nth-argument()
+  {
+    Keynames @ cons Keynames !
+    drop
+  } other-argument()
+} scan-args()
+3 < { show-usage() } if // Checks that there's enough arguments
+
+// == End of parsing command-line arguments
+
+BaseFile +"-query" =:? SaveFile
+
+BaseFile +".addr" load-address
+2dup 2constant WalletAddr
+."Source wallet address = " 2dup .addr cr 6 .Addr cr
+
+// Load keypairs specified in command line
+null Keynames @ reverse-list() { dup null? not } { // keypairs keynames
+  uncons swap +".pk" load-keypair
+  // keypairs i pubkey privkey
+  def? PrimaryPublicKey {
+    2dup
+    =: PrimaryPrivateKey
+    =: PrimaryPublicKey
+  } ifnot
+  swap
+  3 roll
+  cons cons
+  swap
+} while
+drop
+=: Keypairs
+
+PrimaryPrivateKey drop
+
+."Signing an existing order with hash = " RequestHash x. cr
+
+WalletAddr null
+  SeqNo -1 PrimaryPublicKey true RequestHash Keypairs order-message() PrimaryPrivateKey sign-message()
+external-message() =: ExtMessage
+
+."External message: " ExtMessage <s csr. cr
+ExtMessage 2 boc+>B dup Bx. cr
+SaveFile +".boc" tuck B>file
+."(Saved to file " type .")" cr

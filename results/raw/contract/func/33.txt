@@ -1,0 +1,28 @@
+get_sale_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQB3j2fcy0ZdC_lf2Np8vl9N6G2GVokZgSGS3vNWUWWCa-kW/nft-fixprice-sale-v3r2.fc:316:5: warning: Local variable 'can_deploy_by_external' is not used
+    ) = load_data();
+      ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQB3j2fcy0ZdC_lf2Np8vl9N6G2GVokZgSGS3vNWUWWCa-kW/nft-fixprice-sale-v3r2.fc:141:28: warning: Lack of end_parse.
+    slice sender_address = cs~load_msg_addr();
+                             ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQB3j2fcy0ZdC_lf2Np8vl9N6G2GVokZgSGS3vNWUWWCa-kW/nft-fixprice-sale-v3r2.fc:180:25: warning: Lack of end_parse.
+      send_raw_message(msg~load_ref(), mode);
+                          ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQB3j2fcy0ZdC_lf2Np8vl9N6G2GVokZgSGS3vNWUWWCa-kW/nft-fixprice-sale-v3r2.fc:152:5: warning: Local variable 'can_deploy_by_external' is not used
+    ) = load_data();
+      ^
+load_fees: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQB3j2fcy0ZdC_lf2Np8vl9N6G2GVokZgSGS3vNWUWWCa-kW/nft-fixprice-sale-v3r2.fc:28:13: warning: Lack of end_parse.
+            ds~load_coins() ;; royalty_amount
+              ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQB3j2fcy0ZdC_lf2Np8vl9N6G2GVokZgSGS3vNWUWWCa-kW/nft-fixprice-sale-v3r2.fc:18:13: warning: Lack of end_parse.
+            ds~load_uint(1) ;; can_deploy_by_external
+              ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQB3j2fcy0ZdC_lf2Np8vl9N6G2GVokZgSGS3vNWUWWCa-kW/nft-fixprice-sale-v3r2.fc:119:44: warning: UnHandle bounced message with op: 0x5fcc3d14
+    send_raw_message(nft_msg.end_cell(), 128);
+                                             ^

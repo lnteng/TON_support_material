@@ -1,0 +1,40 @@
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Gusarich/fundraiser/contracts/fundraiser.fc:39:34: warning: Lack of end_parse.
+      data::jetton_wallet_code = ds~load_ref();
+                                   ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Gusarich/fundraiser/contracts/fundraiser.fc:34:12: warning: Lack of end_parse.
+      ds = ds~load_ref().begin_parse();
+             ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Gusarich/fundraiser/contracts/fundraiser.fc:79:75: warning: Lack of end_parse.
+          throw_unless(error::wrong_sender, equal_slices(context::sender, ds~load_msg_addr()));
+                                                                            ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Gusarich/fundraiser/contracts/fundraiser.fc:75:66: warning: Lack of end_parse.
+      (_, context::sender) = in_msg_full.begin_parse().skip_bits(4).load_msg_addr();
+                                                                   ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Gusarich/fundraiser/contracts/fundraiser.fc:173:29: warning: Lack of end_parse.
+              int amount = val~load_coins();
+                              ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Gusarich/fundraiser/contracts/fundraiser.fc:93:64: warning: Lack of end_parse.
+              throw_unless(error::blocked, f? & (priority_balance~load_coins() >= data::goal));
+                                                                 ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./Gusarich/fundraiser/contracts/fundraiser.fc:188:28: warning: UnHandle bounced message with op: 0xf8a7ea5
+              .end_cell(), 1);
+                             ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./Gusarich/fundraiser/contracts/fundraiser.fc:212:29: warning: UnHandle bounced message with op: 0xf8a7ea5
+              .end_cell(), 64);
+                              ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./Gusarich/fundraiser/contracts/fundraiser.fc:119:36: warning: UnHandle bounced message with op: 0xf8a7ea5
+                      .end_cell(), 1);
+                                     ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./Gusarich/fundraiser/contracts/fundraiser.fc:134:36: warning: UnHandle bounced message with op: 0xf8a7ea5
+                      .end_cell(), 1);
+                                     ^

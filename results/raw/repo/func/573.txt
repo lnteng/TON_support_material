@@ -1,0 +1,12 @@
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./somewallet/proxy_generator/proxy-contract.fc:37:14: warning: Lack of end_parse.
+      return ds~load_msg_addr();
+               ^
+parse_sender_address: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./somewallet/proxy_generator/proxy-contract.fc:22:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr(); ;; загружаем адрес из слайса
+                               ^
+parse_sender_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./somewallet/proxy_generator/proxy-contract.fc:20:15: warning: Local variable 'flags' is not used
+      var flags = cs~load_uint(4); ;; "вычитаем" флаги
+                ^

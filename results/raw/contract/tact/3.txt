@@ -1,0 +1,78 @@
+$LotteryGame$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDElrDtnFl32LFTmndISAjJDxSqrnvZpTeKpx4Z47dBKQuc/output/verifier_LotteryGame.storage.fc:193:30: warning: Lack of end_parse.
+      var v'ticketsCount = sc_3~load_int(257);
+                               ^
+$LotteryGame$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDElrDtnFl32LFTmndISAjJDxSqrnvZpTeKpx4Z47dBKQuc/output/verifier_LotteryGame.storage.fc:192:22: warning: Lack of end_parse.
+      slice sc_3 = sc_2~load_ref().begin_parse();
+                       ^
+$LotteryGame$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDElrDtnFl32LFTmndISAjJDxSqrnvZpTeKpx4Z47dBKQuc/output/verifier_LotteryGame.storage.fc:189:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+$LotteryGame$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDElrDtnFl32LFTmndISAjJDxSqrnvZpTeKpx4Z47dBKQuc/output/verifier_LotteryGame.storage.fc:211:19: warning: Lack of end_parse.
+          return $sc~$LotteryGame$_load();
+                    ^
+$LotteryGame$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDElrDtnFl32LFTmndISAjJDxSqrnvZpTeKpx4Z47dBKQuc/output/verifier_LotteryGame.code.fc:15:246: warning: Local variable '$self'seqno' is not used
+  ... e'players, $self'state'tickets, $self'state'winnerTicket), $self'playersCount, $self'ticketsCount)) = (null(), null(), null(), null(), null(), 0, 0);
+  ...                                                                                                     ^
+$LotteryGame$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDElrDtnFl32LFTmndISAjJDxSqrnvZpTeKpx4Z47dBKQuc/output/verifier_LotteryGame.code.fc:15:246: warning: Local variable '$self'owner' is not used
+  ... e'players, $self'state'tickets, $self'state'winnerTicket), $self'playersCount, $self'ticketsCount)) = (null(), null(), null(), null(), null(), 0, 0);
+  ...                                                                                                     ^
+$LotteryGame$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDElrDtnFl32LFTmndISAjJDxSqrnvZpTeKpx4Z47dBKQuc/output/verifier_LotteryGame.code.fc:15:246: warning: Local variable '$self'comissionAddress' is not used
+  ... e'players, $self'state'tickets, $self'state'winnerTicket), $self'playersCount, $self'ticketsCount)) = (null(), null(), null(), null(), null(), 0, 0);
+  ...                                                                                                     ^
+$LotteryGame$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDElrDtnFl32LFTmndISAjJDxSqrnvZpTeKpx4Z47dBKQuc/output/verifier_LotteryGame.code.fc:15:246: warning: Local variable '$self'meta'ticketPrice' is not used
+  ... e'players, $self'state'tickets, $self'state'winnerTicket), $self'playersCount, $self'ticketsCount)) = (null(), null(), null(), null(), null(), 0, 0);
+  ...                                                                                                     ^
+$LotteryGame$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDElrDtnFl32LFTmndISAjJDxSqrnvZpTeKpx4Z47dBKQuc/output/verifier_LotteryGame.code.fc:15:246: warning: Local variable '$self'meta'comissionAmount' is not used
+  ... e'players, $self'state'tickets, $self'state'winnerTicket), $self'playersCount, $self'ticketsCount)) = (null(), null(), null(), null(), null(), 0, 0);
+  ...                                                                                                     ^
+$LotteryGame$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDElrDtnFl32LFTmndISAjJDxSqrnvZpTeKpx4Z47dBKQuc/output/verifier_LotteryGame.code.fc:15:246: warning: Local variable '$self'state'status' is not used
+  ... e'players, $self'state'tickets, $self'state'winnerTicket), $self'playersCount, $self'ticketsCount)) = (null(), null(), null(), null(), null(), 0, 0);
+  ...                                                                                                     ^
+$LotteryGame$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDElrDtnFl32LFTmndISAjJDxSqrnvZpTeKpx4Z47dBKQuc/output/verifier_LotteryGame.code.fc:15:246: warning: Local variable '$self'state'players' is not used
+  ... e'players, $self'state'tickets, $self'state'winnerTicket), $self'playersCount, $self'ticketsCount)) = (null(), null(), null(), null(), null(), 0, 0);
+  ...                                                                                                     ^
+$LotteryGame$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDElrDtnFl32LFTmndISAjJDxSqrnvZpTeKpx4Z47dBKQuc/output/verifier_LotteryGame.code.fc:15:246: warning: Local variable '$self'state'tickets' is not used
+  ... e'players, $self'state'tickets, $self'state'winnerTicket), $self'playersCount, $self'ticketsCount)) = (null(), null(), null(), null(), null(), 0, 0);
+  ...                                                                                                     ^
+$LotteryGame$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDElrDtnFl32LFTmndISAjJDxSqrnvZpTeKpx4Z47dBKQuc/output/verifier_LotteryGame.code.fc:15:246: warning: Local variable '$self'state'winnerTicket' is not used
+  ... e'players, $self'state'tickets, $self'state'winnerTicket), $self'playersCount, $self'ticketsCount)) = (null(), null(), null(), null(), null(), 0, 0);
+  ...                                                                                                     ^
+$LotteryGame$init$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDElrDtnFl32LFTmndISAjJDxSqrnvZpTeKpx4Z47dBKQuc/output/verifier_LotteryGame.storage.fc:202:33: warning: Lack of end_parse.
+      var v'comissionAmount = sc_1~load_int(257);
+                                  ^
+$LotteryGame$_internal_binary_ChangeOwner: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDElrDtnFl32LFTmndISAjJDxSqrnvZpTeKpx4Z47dBKQuc/output/verifier_LotteryGame.code.fc:122:239: warning: Local variable '$self'owner' is not used
+  ... ate'players, $self'state'tickets, $self'state'winnerTicket), $self'playersCount, $self'ticketsCount)~$LotteryGame$_fun_requireOwner();
+  ...                                                                                                     ^
+__tact_dict_set_int_slice: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDElrDtnFl32LFTmndISAjJDxSqrnvZpTeKpx4Z47dBKQuc/output/verifier_LotteryGame.stdlib.fc:52:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+$LotteryGame$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDElrDtnFl32LFTmndISAjJDxSqrnvZpTeKpx4Z47dBKQuc/output/verifier_LotteryGame.code.fc:166:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDElrDtnFl32LFTmndISAjJDxSqrnvZpTeKpx4Z47dBKQuc/output/verifier_LotteryGame.storage.fc:222:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$LotteryGame$_contract_store & $LotteryGame$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDElrDtnFl32LFTmndISAjJDxSqrnvZpTeKpx4Z47dBKQuc/output/verifier_LotteryGame.storage.fc:207:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDElrDtnFl32LFTmndISAjJDxSqrnvZpTeKpx4Z47dBKQuc/output/verifier_LotteryGame.storage.fc:222:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

@@ -1,0 +1,20 @@
+check_query_signatures: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDup5itiHJeklzifiDY4Bair7SMcJGA16LMq4Vm4xB6VWLw/multi_sig.fc:280:23: warning: Lack of end_parse.
+    cell signatures = cs~load_dict();
+                        ^
+dec_flood: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDup5itiHJeklzifiDY4Bair7SMcJGA16LMq4Vm4xB6VWLw/multi_sig.fc:75:34: warning: Local variable 'found?' is not used
+    (slice owner_info, var found?) = owner_infos.udict_get?(8, creator_i);
+                                   ^
+merge_inner_queries: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDup5itiHJeklzifiDY4Bair7SMcJGA16LMq4Vm4xB6VWLw/multi_sig.fc:327:19: warning: Lack of end_parse.
+    cell list_b = cb~load_dict();
+                    ^
+check_signatures: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDup5itiHJeklzifiDY4Bair7SMcJGA16LMq4Vm4xB6VWLw/multi_sig.fc:42:20: warning: Lack of end_parse.
+      signatures = cs~load_dict();
+                     ^
+recv_external: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDup5itiHJeklzifiDY4Bair7SMcJGA16LMq4Vm4xB6VWLw/multi_sig.fc:194:24: warning: Local variable 'old_last_cleaned' is not used
+    int old_last_cleaned = last_cleaned;
+                         ^

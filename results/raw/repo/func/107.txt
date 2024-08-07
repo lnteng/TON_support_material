@@ -1,0 +1,16 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/jetton/jetton-wallet.fc:229:21: warning: Lack of end_parse.
+      int fwd_fee = cs~load_coins(); ;; we use message fwd_fee for estimation of forward_payload costs
+                      ^
+on_bounce: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/jetton/jetton-wallet.fc:207:18: warning: Local variable 'query_id' is not used
+      int query_id = in_msg_body~load_uint(64);
+                   ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/jetton/jetton-wallet.fc:33:72: warning: Lack of end_parse.
+      return (ds~load_coins(), ds~load_msg_addr(), ds~load_msg_addr(), ds~load_ref());
+                                                                         ^
+send_tokens: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/jetton/jetton-wallet.fc:66:25: warning: Local variable 'custom_payload' is not used
+      cell custom_payload = in_msg_body~load_dict();
+                          ^

@@ -1,0 +1,45 @@
+;; Nominator pool
+
+() recv_external(slice in_msg) impure {
+  ;; do nothing for external messages
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+
+  var cs = in_msg_cell.begin_parse();
+  var flags = cs~load_uint(4);  ;; int_msg_info$0 ihr_disabled:Bool bounce:Bool bounced:Bool
+  slice s_addr = cs~load_msg_addr();
+
+  if (flags & 1) {
+    ;; ignore all bounced messages
+    return ();
+  }
+
+  int processed? = 0;
+
+  if ( (~ processed?) & equal_slices(s_addr, config_address()) ) {
+    process_config_response(flags, in_msg);
+    processed? = -1;
+  }
+
+  tuple storage = storage_tuple(load_data());
+  slice validator_address = storage.car();
+
+  if ( (~ processed?) & equal_slices(s_addr, validator_address) ) {
+    processed? = process_validator_request(in_msg, msg_value, storage, s_addr);
+  }
+
+  cell proxies = storage.at(10);
+  if (proxies.is_proxy(s_addr)) {
+      processed? = -1;
+      (int flags, slice sender) = (in_msg~load_uint(4), in_msg~load_msg_addr());
+      if ( equal_slices(sender, elector_address()) ) {
+        process_elector_response(flags, in_msg, msg_value, s_addr);
+      }
+  }
+
+  if( ~ processed?)  {
+    processed? = process_nominator_request(in_msg, msg_value, storage, s_addr);
+  }
+  throw_unless(404, processed?);
+}

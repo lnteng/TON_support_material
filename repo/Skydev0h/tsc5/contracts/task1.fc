@@ -1,0 +1,144 @@
+#include "imports/stdlib.fc";
+
+(slice, int) is_update_call(slice body) impure asm "x{9df10277} SDBEGINSQ";
+(slice, int) is_claim_call(slice body) impure asm "x{bb4be234} SDBEGINSQ";
+
+(slice, ()) is_update_call_or_ret(slice body) impure asm "x{9df10277} SDBEGINSQ" "IFNOTRET";
+(slice, ()) is_claim_call_or_ret(slice body) impure asm "x{bb4be234} SDBEGINSQ" "IFNOTRET";
+
+() return_if_not(int cond) impure asm "IFNOTRET";
+
+() claim_sub() impure inline_ref {
+
+    slice data = get_data().begin_parse().skip_bits(256);
+    int execution_time = data~load_uint(32);
+    slice receiver = data~load_msg_addr();
+    throw_if(124, execution_time >= now());
+
+    accept_message();
+
+    builder msg = begin_cell()
+        .store_uint(0x18, 6)
+        .store_slice(receiver)
+        .store_uint(0, 4 + 1 + 4 + 4 + 64 + 32 + 1 + 1);
+    send_raw_message(msg.end_cell(), 128);
+}
+
+() main(slice body, int is_external) {
+
+    return_if_not(is_external);
+
+    if (body~is_update_call()) {
+
+        cell ref = body~load_ref();
+        slice signature = body.skip_bits(64).preload_bits(512);
+        int hash = cell_hash(ref);
+        slice sub = ref.begin_parse();
+        int locked_for = sub~load_uint(32);
+        int new_seqno = sub.preload_uint(32);
+
+        slice data = get_data().begin_parse();
+        int public_key = data~load_uint(256);
+        int execution_time = data~load_uint(32);
+        slice receiver = data~load_msg_addr();
+        int seqno = data.preload_uint(32);
+
+        throw_if(119, new_seqno != seqno + 1);
+        throw_unless(120, check_signature(hash, signature, public_key));
+        throw_if(121, locked_for <= 0);
+        int n = now();
+        throw_if(122, execution_time < n);
+        int new_locked_for = n + locked_for;
+        throw_if(123, new_locked_for < execution_time);
+
+        accept_message();
+
+        set_data(begin_cell()
+            .store_uint(public_key, 256)
+            .store_uint(new_locked_for, 32)
+            .store_slice(receiver)
+            .store_uint(new_seqno, 32)
+            .end_cell());
+
+        return ();
+    }
+
+    body~is_claim_call_or_ret();
+
+    claim_sub();
+}
+
+;; get_seqno get_execution_time
+int getter(int id) method_id(111) {
+    slice s = get_data().begin_parse();
+    if (id == 77871) { ;; get_seqno
+        return s.skip_bits(256 + 32 + 3 + 8 + 256).preload_uint(32);
+    }
+    ;; get_execution_time
+    return s.skip_bits(256).preload_uint(32);
+}
+
+{-
+;; 00010011000000101111 1302F 77871 DECLMETHOD get_seqno
+int get_seqno() method_id {
+    return get_data().begin_parse().skip_bits(256 + 32 + 3 + 8 + 256).preload_uint(32);
+}
+
+;; 00010110111001000110 16E46 93766 DECLMETHOD get_execution_time
+int get_execution_time() method_id {
+    return get_data().begin_parse().skip_bits(256).preload_uint(32);
+}
+-}
+
+() __deep_fifting__() impure asm
+    "@atend @ 1 { execute"
+    "    current@ context@ current!"
+    "    {"
+    "        }END> b>"
+    "        <{"
+    "        SETCP0 DUP BITSIZE 1 RSHIFT#"
+    "        IFNOTJMP:<{"
+    "            over <s ref@ 0 swap @procdictkeylen idict@ { B{6E6F206D657468203936} B>$ abort } ifnot @addop"
+    "        }>"
+    "        swap <s ref@ 111 swap @procdictkeylen idict@ { B{6E6F206D65746820313131} B>$ abort } ifnot @addop"
+{-
+    "        swap <s ref@"
+    "         0  swap @procdictkeylen idict- drop" ;; drop recv_internal
+    "        -1  swap @procdictkeylen idict- drop" ;; drop recv_external
+    "        777 swap @procdictkeylen idict- drop" ;; drop __do_deep_fifting__
+    "        24 RSHIFT# 0x13 EQINT IFJMP:<{" ;; 13 02F
+    "           over <s ref@ 77871 swap @procdictkeylen idict@ { B{6E6F206D657468203737383731} B>$ abort } ifnot @addop"
+    "        }>" ;; 16 E46
+    "        swap <s ref@ 93766 swap @procdictkeylen idict@ { B{6E6F206D657468203933373636} B>$ abort } ifnot .s @addop"
+;;  "        @procdictkeylen DICTPUSHCONST DICTIGETJMPZ 11 THROWARG"
+-}
+    "        }> b>"
+    "    } : }END>c"
+    "    current@ context! current!"
+    "} does @atend !"
+;
+
+() __do_deep_fifting__() method_id(777) { __deep_fifting__(); }
+
+{-
+() __deep_fifting__() impure asm
+    "@atend @ 1 { execute"
+    "    current@ context@ current!"
+    "    {"
+    "        }END> b>"
+    "        <b"
+    "        SETCP0 DUP BITSIZE 1 RSHIFT#"
+    "        IFNOTJMP:<{"
+    "            over <s ref@ 0 swap @procdictkeylen idict@ { B{6E6F206D657468203936} B>$ abort } ifnot @addop"
+    "        }>"
+    "        swap <s ref@"
+    "         0  swap @procdictkeylen idict- drop" ;; drop recv_internal
+    "        -1  swap @procdictkeylen idict- drop" ;; drop recv_external
+    "        777 swap @procdictkeylen idict- drop" ;; drop __do_deep_fifting__
+    "        @procdictkeylen DICTPUSHCONST DICTIGETJMPZ 11 THROWARG"
+    "        b>"
+    "    } : }END>c"
+    "    current@ context! current!"
+    "} does @atend !"
+;
+-}

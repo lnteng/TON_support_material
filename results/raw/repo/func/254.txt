@@ -1,0 +1,8 @@
+get_total: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./alldayalone/ton-counter/src/contracts/counter.fc:70:17: warning: Lack of end_parse.
+    int total = ds~load_uint(64);
+                  ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./alldayalone/ton-counter/src/contracts/counter.fc:23:17: warning: Lack of end_parse.
+    int total = ds~load_uint(64); ;; `~` is a "modifying" method:
+                  ^

@@ -1,0 +1,26 @@
+get_public_key: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQD7z1HUNbl5jeL1c0YuT6CEApgtv0x8hYai22geUSlaSkR1/highload_v2_r2.fc:152:7: warning: Lack of end_parse.
+      cs~load_uint(32 + 64);
+        ^
+recv_external: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQD7z1HUNbl5jeL1c0YuT6CEApgtv0x8hYai22geUSlaSkR1/highload_v2_r2.fc:119:17: warning: Local variable 'queries' is not used
+      var queries = old_queries;
+                  ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQD7z1HUNbl5jeL1c0YuT6CEApgtv0x8hYai22geUSlaSkR1/highload_v2_r2.fc:46:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_external & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQD7z1HUNbl5jeL1c0YuT6CEApgtv0x8hYai22geUSlaSkR1/highload_v2_r2.fc:151:24: warning: Cell of get_data and set_data are inconsistent.
+      var cs = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQD7z1HUNbl5jeL1c0YuT6CEApgtv0x8hYai22geUSlaSkR1/highload_v2_r2.fc:132:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_uint(stored_subwallet, 32)
+      ^
+recv_internal & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQD7z1HUNbl5jeL1c0YuT6CEApgtv0x8hYai22geUSlaSkR1/highload_v2_r2.fc:151:24: warning: Cell of get_data and set_data are inconsistent.
+      var cs = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQD7z1HUNbl5jeL1c0YuT6CEApgtv0x8hYai22geUSlaSkR1/highload_v2_r2.fc:76:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_uint(stored_subwallet, 32)
+      ^

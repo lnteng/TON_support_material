@@ -1,0 +1,40 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAFY9o8W5VGUiFUxRTnfHcYLacaX_kmwsSNeWYajZAQAGWc/token_staking.fc:163:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAFY9o8W5VGUiFUxRTnfHcYLacaX_kmwsSNeWYajZAQAGWc/token_staking.fc:258:40: warning: Lack of end_parse.
+              int in_transfer_value = ref~load_uint(32);
+                                         ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAFY9o8W5VGUiFUxRTnfHcYLacaX_kmwsSNeWYajZAQAGWc/token_staking.fc:353:40: warning: Lack of end_parse.
+          int staked_amount = nft_content~load_coins();
+                                         ^
+get_nft_address_by_index: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAFY9o8W5VGUiFUxRTnfHcYLacaX_kmwsSNeWYajZAQAGWc/token_staking.fc:396:63: warning: Local variable 'next_item_index' is not used
+      var (_, next_item_index, _, _, _, _, _, nft_item_code, _) = load_data();
+                                                                ^
+get_nft_content: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAFY9o8W5VGUiFUxRTnfHcYLacaX_kmwsSNeWYajZAQAGWc/token_staking.fc:410:30: warning: Lack of end_parse.
+      slice common_content = cs~load_ref().begin_parse();
+                               ^
+load_royalty_params: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAFY9o8W5VGUiFUxRTnfHcYLacaX_kmwsSNeWYajZAQAGWc/token_staking.fc:75:51: warning: Lack of end_parse.
+      return (rs~load_uint(16), rs~load_uint(16), rs~load_msg_addr());
+                                                    ^
+get_collection_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAFY9o8W5VGUiFUxRTnfHcYLacaX_kmwsSNeWYajZAQAGWc/token_staking.fc:392:30: warning: Lack of end_parse.
+    return (next_item_index, cs~load_ref(), owner_address);
+                               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAFY9o8W5VGUiFUxRTnfHcYLacaX_kmwsSNeWYajZAQAGWc/token_staking.fc:52:11: warning: Lack of end_parse.
+          ds~load_ref()  ;; royalty_params
+            ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAFY9o8W5VGUiFUxRTnfHcYLacaX_kmwsSNeWYajZAQAGWc/token_staking.fc:372:42: warning: UnHandle bounced message with op: 0x70376a1c
+              send_raw_message(burn_msg, 0); ;; leak here (can not send message and then send message with mode 64)
+                                           ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAFY9o8W5VGUiFUxRTnfHcYLacaX_kmwsSNeWYajZAQAGWc/token_staking.fc:149:41: warning: UnHandle bounced message with op: 0x5fcc3d14
+    send_raw_message(msg.end_cell(), mode); 
+                                          ^

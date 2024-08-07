@@ -1,0 +1,46 @@
+;;
+;; Header files for WhitelistChildEntry
+;; NOTE: declarations are sorted for optimal order
+;;
+
+;; __tact_verify_address
+slice __tact_verify_address(slice address) inline;
+
+;; __tact_load_address
+(slice, slice) __tact_load_address(slice cs) inline;
+
+;; __tact_store_address
+builder __tact_store_address(builder b, slice address) inline;
+
+;; __tact_context_get_sender
+slice __tact_context_get_sender() inline;
+
+;; __tact_slice_eq_bits
+int __tact_slice_eq_bits(slice a, slice b) inline;
+
+;; $WhitelistChildEntry$_store
+builder $WhitelistChildEntry$_store(builder build_0, (slice, slice, int) v) inline;
+
+;; $WhitelistChildEntry$_load
+(slice, ((slice, slice, int))) $WhitelistChildEntry$_load(slice sc_0) inline;
+
+;; $WhitelistEntryDetails$_to_external
+(slice, int) $WhitelistEntryDetails$_to_external(((slice, int)) v) inline;
+
+;; $WhitelistChildEntry$init$_load
+(slice, ((slice, slice))) $WhitelistChildEntry$init$_load(slice sc_0) inline;
+
+;; $WhitelistChildEntry$_contract_init
+(slice, slice, int) $WhitelistChildEntry$_contract_init(slice $parent, slice $addr) impure inline_ref;
+
+;; $WhitelistChildEntry$_contract_load
+(slice, slice, int) $WhitelistChildEntry$_contract_load() impure inline_ref;
+
+;; $WhitelistChildEntry$_contract_store
+() $WhitelistChildEntry$_contract_store((slice, slice, int) v) impure inline;
+
+;; $WhitelistEntryDetails$_constructor_addr_accepted
+((slice, int)) $WhitelistEntryDetails$_constructor_addr_accepted(slice addr, int accepted) inline;
+
+;; $WhitelistChildEntry$_fun_details
+((slice, slice, int), (slice, int)) $WhitelistChildEntry$_fun_details((slice, slice, int) $self) impure inline_ref;

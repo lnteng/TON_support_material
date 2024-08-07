@@ -1,0 +1,16 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./krigga/ton-deal/packages/contract/sources/deal.fc:127:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./krigga/ton-deal/packages/contract/sources/deal.fc:53:27: warning: Lack of end_parse.
+      coins_amount = amounts~load_coins();
+                            ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./krigga/ton-deal/packages/contract/sources/deal.fc:50:25: warning: Lack of end_parse.
+      slice amounts = data~load_ref().begin_parse();
+                          ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./krigga/ton-deal/packages/contract/sources/deal.fc:48:32: warning: Lack of end_parse.
+      fee_gainer_address = admins~load_msg_addr();
+                                 ^

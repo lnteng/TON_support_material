@@ -1,0 +1,12 @@
+recv_external: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Mip182/tcs5/contracts/task1.fc:51:28: warning: Lack of end_parse.
+          slice receiver = ds~load_msg_addr();
+                             ^
+recv_external: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Mip182/tcs5/contracts/task1.fc:29:64: warning: Lack of end_parse.
+          (int locked_for, int new_seqno) = (cs~load_uint(32), cs~load_uint(32));
+                                                                 ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Mip182/tcs5/contracts/task1.fc:9:11: warning: Lack of end_parse.
+          ds~load_uint(32)
+            ^

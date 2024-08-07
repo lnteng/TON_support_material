@@ -1,0 +1,74 @@
+$Lottery$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCRGMxhwmNRZateeGsZZI_dUjasfBqr-qvC3Opc3szMQe_4/output/sample_Lottery.storage.fc:312:19: warning: Lack of end_parse.
+          return $sc~$Lottery$_load();
+                    ^
+$Lottery$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCRGMxhwmNRZateeGsZZI_dUjasfBqr-qvC3Opc3szMQe_4/output/sample_Lottery.storage.fc:293:34: warning: Lack of end_parse.
+      var v'totalJettonValue = sc_1~load_coins();
+                                   ^
+$Lottery$init$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCRGMxhwmNRZateeGsZZI_dUjasfBqr-qvC3Opc3szMQe_4/output/sample_Lottery.storage.fc:303:28: warning: Lack of end_parse.
+      var v'feePercent = sc_1~load_int(257);
+                             ^
+$Lottery$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCRGMxhwmNRZateeGsZZI_dUjasfBqr-qvC3Opc3szMQe_4/output/sample_Lottery.code.fc:15:164: warning: Local variable '$self'id' is not used
+      var (($self'id, $self'tonVaultAddr, $self'poolAddr, $self'jettonVaultAddr, $self'ownerAddr, $self'jettonWalletAddr, $self'feePercent, $self'totalJettonValue)) = (null(), null(), null(), null(), null(), null(), null(), 0);
+                                                                                                                                                                     ^
+$Lottery$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCRGMxhwmNRZateeGsZZI_dUjasfBqr-qvC3Opc3szMQe_4/output/sample_Lottery.code.fc:15:164: warning: Local variable '$self'tonVaultAddr' is not used
+      var (($self'id, $self'tonVaultAddr, $self'poolAddr, $self'jettonVaultAddr, $self'ownerAddr, $self'jettonWalletAddr, $self'feePercent, $self'totalJettonValue)) = (null(), null(), null(), null(), null(), null(), null(), 0);
+                                                                                                                                                                     ^
+$Lottery$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCRGMxhwmNRZateeGsZZI_dUjasfBqr-qvC3Opc3szMQe_4/output/sample_Lottery.code.fc:15:164: warning: Local variable '$self'poolAddr' is not used
+      var (($self'id, $self'tonVaultAddr, $self'poolAddr, $self'jettonVaultAddr, $self'ownerAddr, $self'jettonWalletAddr, $self'feePercent, $self'totalJettonValue)) = (null(), null(), null(), null(), null(), null(), null(), 0);
+                                                                                                                                                                     ^
+$Lottery$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCRGMxhwmNRZateeGsZZI_dUjasfBqr-qvC3Opc3szMQe_4/output/sample_Lottery.code.fc:15:164: warning: Local variable '$self'jettonVaultAddr' is not used
+      var (($self'id, $self'tonVaultAddr, $self'poolAddr, $self'jettonVaultAddr, $self'ownerAddr, $self'jettonWalletAddr, $self'feePercent, $self'totalJettonValue)) = (null(), null(), null(), null(), null(), null(), null(), 0);
+                                                                                                                                                                     ^
+$Lottery$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCRGMxhwmNRZateeGsZZI_dUjasfBqr-qvC3Opc3szMQe_4/output/sample_Lottery.code.fc:15:164: warning: Local variable '$self'ownerAddr' is not used
+      var (($self'id, $self'tonVaultAddr, $self'poolAddr, $self'jettonVaultAddr, $self'ownerAddr, $self'jettonWalletAddr, $self'feePercent, $self'totalJettonValue)) = (null(), null(), null(), null(), null(), null(), null(), 0);
+                                                                                                                                                                     ^
+$Lottery$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCRGMxhwmNRZateeGsZZI_dUjasfBqr-qvC3Opc3szMQe_4/output/sample_Lottery.code.fc:15:164: warning: Local variable '$self'feePercent' is not used
+      var (($self'id, $self'tonVaultAddr, $self'poolAddr, $self'jettonVaultAddr, $self'ownerAddr, $self'jettonWalletAddr, $self'feePercent, $self'totalJettonValue)) = (null(), null(), null(), null(), null(), null(), null(), 0);
+                                                                                                                                                                     ^
+$Lottery$_internal_binary_TokenNotification: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCRGMxhwmNRZateeGsZZI_dUjasfBqr-qvC3Opc3szMQe_4/output/sample_Lottery.code.fc:58:68: warning: PressionLoss
+      int $balance_twelve_percents = (($self'totalJettonValue / 100) * 12);
+                                                                     ^
+$Lottery$_internal_binary_TokenNotification: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCRGMxhwmNRZateeGsZZI_dUjasfBqr-qvC3Opc3szMQe_4/output/sample_Lottery.code.fc:59:81: warning: PressionLoss
+      int $cutted_msg_value = ((min($msg'amount, $balance_twelve_percents) / 100) * 80);
+                                                                                  ^
+$Lottery$_internal_binary_TokenNotification: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCRGMxhwmNRZateeGsZZI_dUjasfBqr-qvC3Opc3szMQe_4/output/sample_Lottery.code.fc:63:46: warning: PressionLoss
+          int $winningValue = ($balancePercent * (85 - $self'feePercent));
+                                               ^
+$Lottery$_internal_binary_TokenNotification: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCRGMxhwmNRZateeGsZZI_dUjasfBqr-qvC3Opc3szMQe_4/output/sample_Lottery.code.fc:64:42: warning: PressionLoss
+          int $feeValue = ($balancePercent * $self'feePercent);
+                                           ^
+$Lottery$_internal_binary_TokenNotification: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCRGMxhwmNRZateeGsZZI_dUjasfBqr-qvC3Opc3szMQe_4/output/sample_Lottery.code.fc:57:34: warning: Lack of end_parse.
+      slice $senderAddress = $slice~__tact_load_address();
+                                   ^
+$Lottery$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCRGMxhwmNRZateeGsZZI_dUjasfBqr-qvC3Opc3szMQe_4/output/sample_Lottery.code.fc:155:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCRGMxhwmNRZateeGsZZI_dUjasfBqr-qvC3Opc3szMQe_4/output/sample_Lottery.storage.fc:323:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Lottery$_contract_store & $Lottery$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCRGMxhwmNRZateeGsZZI_dUjasfBqr-qvC3Opc3szMQe_4/output/sample_Lottery.storage.fc:308:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCRGMxhwmNRZateeGsZZI_dUjasfBqr-qvC3Opc3szMQe_4/output/sample_Lottery.storage.fc:323:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Lottery$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCRGMxhwmNRZateeGsZZI_dUjasfBqr-qvC3Opc3szMQe_4/output/sample_Lottery.code.fc:86:459: warning: UnHandle bounced message with op: 0xea06185d
+  ... ctor_fulfill_payload(end_cell(__tact_store_address(begin_cell(), __tact_context_get_sender()))))))));
+  ...                                                                                                     ^

@@ -1,0 +1,15 @@
+$Second$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/bounced-routing_SampleContract2.storage.fc:41:27: warning: Lack of end_parse.
+      var v'myStruct2 = sc_1~$MyStruct$_load();
+                            ^
+$SampleContract2$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/bounced-routing_SampleContract2.storage.fc:52:22: warning: Lack of end_parse.
+      int $loaded = $sc~load_int(1);
+                       ^
+$SampleContract2$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/bounced-routing_SampleContract2.code.fc:63:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/bounced-routing_SampleContract2.storage.fc:63:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

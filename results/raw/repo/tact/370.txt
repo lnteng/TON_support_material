@@ -1,0 +1,42 @@
+$Task3$_internal_binary_TokenNotification: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/repo/./data-will-be-here/tact-challenge/contracts/output/sample_Task3.code.fc:59:57: warning: PressionLoss
+          int $to_recv = (((($jet1 * 1000000000) / $jet2) * $msg'amount) / 1000000000);
+                                                          ^
+$Task3$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./data-will-be-here/tact-challenge/contracts/output/sample_Task3.code.fc:14:63: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'a, $self'b, $self'jA, $self'jB)) = (null(), 0, 0, null(), null());
+                                                                ^
+$Task3$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./data-will-be-here/tact-challenge/contracts/output/sample_Task3.code.fc:14:63: warning: Local variable '$self'jA' is not used
+      var (($self'owner, $self'a, $self'b, $self'jA, $self'jB)) = (null(), 0, 0, null(), null());
+                                                                ^
+$Task3$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./data-will-be-here/tact-challenge/contracts/output/sample_Task3.code.fc:14:63: warning: Local variable '$self'jB' is not used
+      var (($self'owner, $self'a, $self'b, $self'jA, $self'jB)) = (null(), 0, 0, null(), null());
+                                                                ^
+$Task3$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./data-will-be-here/tact-challenge/contracts/output/sample_Task3.storage.fc:122:20: warning: Lack of end_parse.
+      var v'jB = sc_1~__tact_load_address();
+                     ^
+$Task3$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./data-will-be-here/tact-challenge/contracts/output/sample_Task3.storage.fc:138:19: warning: Lack of end_parse.
+          return $sc~$Task3$_load();
+                    ^
+$Task3$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./data-will-be-here/tact-challenge/contracts/output/sample_Task3.code.fc:115:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./data-will-be-here/tact-challenge/contracts/output/sample_Task3.storage.fc:149:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task3$_contract_store & $Task3$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./data-will-be-here/tact-challenge/contracts/output/sample_Task3.storage.fc:134:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./data-will-be-here/tact-challenge/contracts/output/sample_Task3.storage.fc:149:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task3$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./data-will-be-here/tact-challenge/contracts/output/sample_Task3.code.fc:71:340: warning: UnHandle bounced message with op: 0xf8a7ea5
+  ... ount_forwardPayload(0, $to_recv, $msg'from, my_address(), null(), 10000000, $global_emptySlice()))));
+  ...                                                                                                     ^

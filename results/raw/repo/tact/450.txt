@@ -1,0 +1,51 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/test/features/output/optionals_ContractWithOptionals.fc:496:31: warning: Lack of end_parse.
+      slice msg_sender_addr = cs~load_msg_addr();
+                                ^
+__gen_read_Update: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/test/features/output/optionals_ContractWithOptionals.fc:140:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+__gen_read_SomeGenericStruct: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/test/features/output/optionals_ContractWithOptionals.fc:38:24: warning: Lack of end_parse.
+      var v'value5 = sc_1~load_int(257);
+                         ^
+__gen_read_ContractWithOptionals: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/test/features/output/optionals_ContractWithOptionals.fc:220:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+__gen_ContractWithOptionals_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/test/features/output/optionals_ContractWithOptionals.fc:244:60: warning: Local variable 'self'a' is not used
+      var ((self'a, self'b, self'c, self'd, self'e, self'f)) = (null(), null(), null(), null(), null(), null());
+                                                             ^
+__gen_ContractWithOptionals_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/test/features/output/optionals_ContractWithOptionals.fc:244:60: warning: Local variable 'self'b' is not used
+      var ((self'a, self'b, self'c, self'd, self'e, self'f)) = (null(), null(), null(), null(), null(), null());
+                                                             ^
+__gen_ContractWithOptionals_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/test/features/output/optionals_ContractWithOptionals.fc:244:60: warning: Local variable 'self'c' is not used
+      var ((self'a, self'b, self'c, self'd, self'e, self'f)) = (null(), null(), null(), null(), null(), null());
+                                                             ^
+__gen_ContractWithOptionals_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/test/features/output/optionals_ContractWithOptionals.fc:244:60: warning: Local variable 'self'd' is not used
+      var ((self'a, self'b, self'c, self'd, self'e, self'f)) = (null(), null(), null(), null(), null(), null());
+                                                             ^
+__gen_ContractWithOptionals_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/test/features/output/optionals_ContractWithOptionals.fc:244:60: warning: Local variable 'self'e' is not used
+      var ((self'a, self'b, self'c, self'd, self'e, self'f)) = (null(), null(), null(), null(), null(), null());
+                                                             ^
+__gen_ContractWithOptionals_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/test/features/output/optionals_ContractWithOptionals.fc:244:60: warning: Local variable 'self'f' is not used
+      var ((self'a, self'b, self'c, self'd, self'e, self'f)) = (null(), null(), null(), null(), null(), null());
+                                                             ^
+__gen_load_ContractWithOptionals: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/test/features/output/optionals_ContractWithOptionals.fc:231:14: warning: Lack of end_parse.
+      return sc~__gen_read_ContractWithOptionals();
+               ^
+__gen_store_ContractWithOptionals & __gen_load_ContractWithOptionals: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/test/features/output/optionals_ContractWithOptionals.fc:229:26: warning: Cell of get_data and set_data are inconsistent.
+      slice sc = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/test/features/output/optionals_ContractWithOptionals.fc:235:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

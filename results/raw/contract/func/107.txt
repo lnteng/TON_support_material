@@ -1,0 +1,12 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBk9WXgZxRmCdZGLlbe8lYYjyAswZzwal4TXtDxr-wOI9SZ/panda_loto.fc:90:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr(); ;; after flag we can get address
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBk9WXgZxRmCdZGLlbe8lYYjyAswZzwal4TXtDxr-wOI9SZ/panda_loto.fc:90:26: warning: Local variable 'sender_address' is not used
+      slice sender_address = cs~load_msg_addr(); ;; after flag we can get address
+                           ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBk9WXgZxRmCdZGLlbe8lYYjyAswZzwal4TXtDxr-wOI9SZ/panda_loto.fc:115:31: warning: Local variable 'random_numbers_data' is not used
+      tuple random_numbers_data = null();
+                                ^

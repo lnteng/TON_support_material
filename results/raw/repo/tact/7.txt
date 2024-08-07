@@ -1,0 +1,35 @@
+$Addresses$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/02-addresses/output/sample_Addresses.storage.fc:78:20: warning: Lack of end_parse.
+      var v'a6 = sc_1~__tact_load_address();
+                     ^
+$Addresses$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/02-addresses/output/sample_Addresses.code.fc:15:72: warning: Local variable '$self'a3' is not used
+      var (($self'a1, $self'a2, $self'a3, $self'a4, $self'a5, $self'a6)) = (__gen_slice_address_58e2d2fc9446d00e70b3ad3ea1eb88797c323bae517f2527f807f62d09a56fdc(), __gen_sli ...
+                                                                         ^
+$Addresses$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/02-addresses/output/sample_Addresses.code.fc:15:72: warning: Local variable '$self'a4' is not used
+      var (($self'a1, $self'a2, $self'a3, $self'a4, $self'a5, $self'a6)) = (__gen_slice_address_58e2d2fc9446d00e70b3ad3ea1eb88797c323bae517f2527f807f62d09a56fdc(), __gen_sli ...
+                                                                         ^
+$Addresses$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/02-addresses/output/sample_Addresses.code.fc:15:72: warning: Local variable '$self'a5' is not used
+      var (($self'a1, $self'a2, $self'a3, $self'a4, $self'a5, $self'a6)) = (__gen_slice_address_58e2d2fc9446d00e70b3ad3ea1eb88797c323bae517f2527f807f62d09a56fdc(), __gen_sli ...
+                                                                         ^
+$Addresses$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/02-addresses/output/sample_Addresses.code.fc:15:72: warning: Local variable '$self'a6' is not used
+      var (($self'a1, $self'a2, $self'a3, $self'a4, $self'a5, $self'a6)) = (__gen_slice_address_58e2d2fc9446d00e70b3ad3ea1eb88797c323bae517f2527f807f62d09a56fdc(), __gen_sli ...
+                                                                         ^
+$Addresses$_internal_text_ae9b15f0d50e95164ef677febc57a5f9ae379b3acf721b694a482c77db65c3d5: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/02-addresses/output/sample_Addresses.code.fc:39:14: warning: Local variable '$a' is not used
+      slice $a = __gen_slice_address_58e2d2fc9446d00e70b3ad3ea1eb88797c323bae517f2527f807f62d09a56fdc();
+               ^
+$Addresses$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/02-addresses/output/sample_Addresses.storage.fc:87:19: warning: Lack of end_parse.
+          return $sc~$Addresses$_load();
+                    ^
+$Addresses$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/02-addresses/output/sample_Addresses.code.fc:79:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/02-addresses/output/sample_Addresses.storage.fc:96:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

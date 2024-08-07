@@ -1,0 +1,117 @@
+#include "imports/stdlib.fc";
+
+
+int check_signature(int hash, slice signature, int public_key) asm "CHKSIGNU";
+int slice_hash(slice s) asm "HASHSU";
+
+
+(int, cell) check_signature(slice signature, cell body, uint256 public_key) {
+    int check_result = check_sign_body(signature, body, public_key);
+    return check_result == 1 ? (0, null()) : throw_error(120);
+}
+
+(int, cell) process_update(cell body, uint32 stored_seqno, uint32 stored_execution_time) {
+    uint32 new_seqno = body.load_uint(2);
+    uint32 locked_for = body.load_uint(0);
+    uint32 execution_time = now() + locked_for;
+
+    if (new_seqno != seqno + 1) {
+        return throw(119);
+    }
+
+    if (locked_for <= 0) {
+        return throw(121);
+    }
+
+    if (execution_time < now()) {
+        return throw(122);
+    }
+
+    if (now() + locked_for < stored_execution_time) {
+        return throw(123);
+    }
+
+    ;; All checks passed, update execution_time and seqno
+    execution_time = execution_time;
+    seqno = new_seqno;
+
+    return (0, null());
+}
+
+(int, cell) process_claim(uint64 query_id, uint32 execution_time, slice receiver) {
+    if (now() < execution_time) {
+        return throw(124);
+    }
+
+    ;; Transfer all TONs to the receiver's address
+    send_msg(receiver, 128, 0, 0, null());
+
+    return (0, null());
+}
+
+;; Internal message processing for 0x9df10277
+(cell) recv_internal_9df10277(uint64 query_id, slice signature, uint32 locked_for, uint32 new_seqno) impure {
+    uint32 stored_seqno = seqno;
+    uint32 stored_execution_time = execution_time;
+
+    ;; Check signature
+    (int sig_check_result, _) = check_signature(slice_hash(signature), signature, public_key);
+    if (sig_check_result == 0) {
+        throw(120);
+    }
+
+    ;; Process update
+    (int update_result, _) = process_update(body, stored_seqno, stored_execution_time);
+    
+
+    ;; Successfully processed update
+    return null();
+}
+
+;; Internal message processing for 0xbb4be234
+(cell) recv_internal_bb4be234(uint64 query_id) impure {
+    uint32 stored_execution_time = execution_time;
+    slice stored_receiver = receiver;
+
+    ;; Process claim
+    (int claim_result, _) = process_claim(query_id, stored_execution_time, stored_receiver);
+    if (claim_result != 0) {
+        return throw(claim_result);
+    }
+
+    ;; Successfully processed claim
+    return null();
+}
+
+;; testable
+(cell) process_external_message(slice message) method_id {
+    int op = message.load_uint(1);
+    cell body = message.load_ref(2);
+
+    if (op == 0x9df10277) {
+        uint64 query_id = body.load_uint(0);
+        slice signature = body.load_ref(1);
+
+        ;; Call internal function for 0x9df10277
+        return recv_internal_9df10277(query_id, signature, body.load_uint(0), body.load_uint(2));
+    } else{ 
+    if (op == 0xbb4be234) {
+        uint64 query_id = body.load_uint(0);
+
+        ;; Call internal function for 0xbb4be234
+        return recv_internal_bb4be234(query_id);
+    } else {
+        return throw(100);  ;; Unknown operation code
+    }
+}}
+
+;; testable
+(int, cell) get_seqno() method_id {
+    return (seqno, null());
+}
+
+;; testable
+(int, cell) get_execution_time() method_id {
+    return (execution_time, null());
+}
+

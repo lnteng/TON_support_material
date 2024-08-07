@@ -1,0 +1,114 @@
+get_loan: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/pool.func:643:29: warning: Local variable 'wc' is not used
+      (int wc, int addr_hash) = parse_std_addr(controller_address);
+                              ^
+update_round: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/pool.func:134:51: warning: Local variable 'utime_since' is not used
+      (int utime_since, int utime_until, cell vset) = get_current_validator_set();
+                                                    ^
+update_round: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/pool.func:134:51: warning: Local variable 'utime_until' is not used
+      (int utime_since, int utime_until, cell vset) = get_current_validator_set();
+                                                    ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/pool_storage.func:166:42: warning: Lack of end_parse.
+          prev_round_borrowers = round_data~load_round_data();
+                                           ^
+max_recommended_punishment_for_validator_misbehaviour: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/network_config_utils.func:21:48: warning: Lack of end_parse.
+           cs~load_uint(16), cs~load_uint(16), cs~load_uint(16)
+                                                 ^
+max_recommended_punishment_for_validator_misbehaviour: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/network_config_utils.func:16:73: warning: Local variable 'prefix' is not used
+       int long_interval, int long_flat_mult, int long_proportional_mult) =
+                                                                          ^
+max_recommended_punishment_for_validator_misbehaviour: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/network_config_utils.func:16:73: warning: Local variable 'unpunishable_interval' is not used
+       int long_interval, int long_flat_mult, int long_proportional_mult) =
+                                                                          ^
+max_recommended_punishment_for_validator_misbehaviour: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/network_config_utils.func:16:73: warning: Local variable 'long_interval' is not used
+       int long_interval, int long_flat_mult, int long_proportional_mult) =
+                                                                          ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/pool.func:161:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/pool.func:310:33: warning: Local variable 'static_data' is not used
+                slice static_data = in_msg_body;
+                                  ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/pool.func:185:32: warning: Local variable 'response_address' is not used
+          slice response_address = in_msg_body~load_msg_addr();
+                                 ^
+process_sudo_upgrade_request: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/sudoer_requests.func:32:28: warning: Lack of end_parse.
+        execute(after_upgrade.begin_parse().bless());
+                             ^
+get_elections_start_before: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/network_config_utils.func:50:58: warning: Local variable '_stake_held_for' is not used
+      (int elections_start_before, int _stake_held_for, _) = get_validator_config();
+                                                           ^
+~load_roles: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/pool_storage.func:108:18: warning: Lack of end_parse.
+      approver = ds~load_msg_addr();
+                   ^
+~load_roles: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/pool_storage.func:106:12: warning: Lack of end_parse.
+      ds = ds~load_ref().begin_parse();
+             ^
+get_validator_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/network_config_utils.func:41:150: warning: Lack of end_parse.
+      (int validators_elected_for, int elections_start_before, int elections_end_before, int _stake_held_for) = (cs~load_uint(32), cs~load_uint(32), cs~load_uint(32), cs.preload_uint(32));
+                                                                                                                                                       ^
+get_validator_config: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/network_config_utils.func:41:109: warning: Local variable 'validators_elected_for' is not used
+      (int validators_elected_for, int elections_start_before, int elections_end_before, int _stake_held_for) = (cs~load_uint(32), cs~load_uint(32), cs~load_uint(32), cs.preload_uint(32));
+                                                                                                              ^
+get_stake_held_for: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/network_config_utils.func:46:58: warning: Local variable 'elections_start_before' is not used
+      (int elections_start_before, int _stake_held_for, _) = get_validator_config();
+                                                           ^
+get_current_validator_set: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/network_config_utils.func:62:25: warning: Lack of end_parse.
+      int utime_until = cs~load_uint(32); ;; supposed end unixtime of current validation round (utime_until = utime_since + validators_elected_for); unfreeze_at = utime_until + stake_held_for
+                          ^
+~load_round_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/pool_storage.func:10:19: warning: Lack of end_parse.
+                  ds~load_signed_coins()];    ;; profit
+                    ^
+~load_minters_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/pool_storage.func:44:35: warning: Lack of end_parse.
+          requested_for_deposit = ds~load_coins();
+                                    ^
+~load_minters_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/pool_storage.func:41:38: warning: Lack of end_parse.
+          requested_for_deposit = ajm_s~load_coins();
+                                       ^
+~load_minters_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/pool_storage.func:53:27: warning: Lack of end_parse.
+            slice atm_s = ds~load_ref().begin_parse();
+                            ^
+~load_minters_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/pool_storage.func:55:43: warning: Lack of end_parse.
+            requested_for_withdrawal = atm_s~load_coins();
+                                            ^
+~load_codes: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/pool_storage.func:133:28: warning: Lack of end_parse.
+      payout_minter_code = ds~load_ref();
+                             ^
+save_data_optimised & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/pool_storage.func:154:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/pool_storage.func:204:9: warning: Cell of get_data and set_data are inconsistent.
+          .store_uint(state, 8)
+          ^
+save_data & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/pool_storage.func:154:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/pool_storage.func:176:9: warning: Cell of get_data and set_data are inconsistent.
+          .store_uint(state, 8)
+          ^

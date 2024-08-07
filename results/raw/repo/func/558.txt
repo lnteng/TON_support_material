@@ -1,0 +1,12 @@
+replace_all: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ProgramCrafter/tsc4/contracts/3.fc:93:40: warning: Local variable 'new_list' is not used
+      (slice new_list, int flag_removed) = linked_list.remove_prefix_recursive(flag);
+                                         ^
+replace_all: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ProgramCrafter/tsc4/contracts/3.fc:102:24: warning: Local variable 'linked_list' is not used
+        (_, linked_list) = linked_list.load_next();
+                         ^
+find_and_replace: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ProgramCrafter/tsc4/contracts/3.fc:117:18: warning: Lack of end_parse.
+    if (linked_list.begin_parse().slice_empty?()) { return linked_list; }
+                   ^

@@ -1,0 +1,24 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./aSpite/shardify/contracts/jetton_minter.fc:76:28: warning: Lack of end_parse.
+      int fwd_fee = muldiv(cs~load_coins(), 3, 2); ;; we use message fwd_fee for estimation of forward_payload costs
+                             ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./aSpite/shardify/contracts/jetton_minter.fc:168:43: warning: Lack of end_parse.
+              cell payloadCell = in_msg_body~load_ref();
+                                            ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./aSpite/shardify/contracts/jetton_minter.fc:189:48: warning: Lack of end_parse.
+              int creator_fee_numerator = payload~load_uint(8);
+                                                 ^
+unpack_frac_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./aSpite/shardify/contracts/utils.fc:63:186: warning: Lack of end_parse.
+      (int parts_count, cell nft_holder_code, int public_key, slice collection_address, slice creator_address) = (ds~load_coins(), ds~load_ref(), ds~load_uint(256), ds~load_msg_addr(), ds~load_msg_addr());
+                                                                                                                                                                                           ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./aSpite/shardify/contracts/jetton_minter.fc:21:11: warning: Lack of end_parse.
+          ds~load_ref() ;; fractionalization data
+            ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./aSpite/shardify/contracts/jetton_minter.fc:133:79: warning: UnHandle bounced message with op: 0xd1735400
+          send_raw_message(msg.store_maybe_ref(included_address).end_cell(), 64);
+                                                                                ^

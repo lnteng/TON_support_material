@@ -1,0 +1,142 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_CrowdfundingFactory.headers.fc";
+#include "sample_CrowdfundingFactory.stdlib.fc";
+#include "sample_CrowdfundingFactory.storage.fc";
+
+;;
+;; Contract CrowdfundingFactory functions
+;;
+
+(int) $CrowdfundingFactory$_contract_init() impure inline_ref {
+    var (($self'seqno)) = (0);
+    return ($self'seqno);
+}
+
+((int), int) $CrowdfundingFactory$_fun_getLastSeqno((int) $self) impure inline_ref {
+    var (($self'seqno)) = $self;
+    return (($self'seqno), $self'seqno);
+}
+
+((int), slice) $CrowdfundingFactory$_fun_getCrowdfundingAddress((int) $self, int $seqno) impure inline_ref {
+    var (($self'seqno)) = $self;
+    return (($self'seqno), $global_contractAddress($Crowdfunding$_init_child(__tact_context_sys, my_address(), $seqno)));
+}
+
+;;
+;; Receivers of a Contract CrowdfundingFactory
+;;
+
+(((int)), ()) $CrowdfundingFactory$_internal_binary_CrowdfundingParams((int) $self, (slice, slice, int, int, int, slice) $msg) impure inline {
+    var ($self'seqno) = $self;
+    var ($msg'title, $msg'description, $msg'targetContribution, $msg'minContribution, $msg'deadline, $msg'beneficiary) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    throw_unless(56472, ($ctx'value >= 1000000000));
+    throw_unless(54231, (($msg'deadline - now()) <= 31536000));
+    var ($initCrowdfunding'code, $initCrowdfunding'data) = $Crowdfunding$_init_child(__tact_context_sys, my_address(), $self'seqno);
+    slice $addressCrowdfunding = $global_contractAddress(($initCrowdfunding'code, $initCrowdfunding'data));
+    var ($start'creator, ($start'params'title, $start'params'description, $start'params'targetContribution, $start'params'minContribution, $start'params'deadline, $start'params'beneficiary)) = $StartCrowdfunding$_constructor_creator_params(__tact_context_get_sender(), ($msg'title, $msg'description, $msg'targetContribution, $msg'minContribution, $msg'deadline, $msg'beneficiary));
+    $global_send($SendParameters$_constructor_to_value_mode_bounce_code_data_body($addressCrowdfunding, 0, 64, false, $initCrowdfunding'code, $initCrowdfunding'data, $StartCrowdfunding$_store_cell(($start'creator, ($start'params'title, $start'params'description, $start'params'targetContribution, $start'params'minContribution, $start'params'deadline, $start'params'beneficiary)))));
+    $self'seqno = ($self'seqno + 1);
+    return (($self'seqno), ());
+}
+
+(((int)), ()) $CrowdfundingFactory$_internal_binary_Deploy((int) $self, (int) $deploy) impure inline {
+    var ($self'seqno) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'seqno)~$CrowdfundingFactory$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'seqno), ());
+}
+
+;;
+;; Get methods of a Contract CrowdfundingFactory
+;;
+
+_ %getLastSeqno() method_id(120289) {
+    var self = $CrowdfundingFactory$_contract_load();
+    var res = self~$CrowdfundingFactory$_fun_getLastSeqno();
+    return res;
+}
+
+_ %getCrowdfundingAddress(int $$seqno) method_id(77834) {
+    int $seqno = $$seqno;
+    var self = $CrowdfundingFactory$_contract_load();
+    var res = self~$CrowdfundingFactory$_fun_getCrowdfundingAddress($seqno);
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmYv8FxKLUGut7uSwMaEa1Z5D1Cky8zANhiuB6p1s2Qbng";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract CrowdfundingFactory
+;;
+
+((int), int) $CrowdfundingFactory$_contract_router_internal((int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive CrowdfundingParams message
+    if (op == 3734831233) {
+        var msg = in_msg~$CrowdfundingParams$_load();
+        self~$CrowdfundingFactory$_internal_binary_CrowdfundingParams(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$CrowdfundingFactory$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $CrowdfundingFactory$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$CrowdfundingFactory$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $CrowdfundingFactory$_contract_store(self);
+}

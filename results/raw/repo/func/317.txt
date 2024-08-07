@@ -1,0 +1,20 @@
+get_nft_content: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./vtamara/toncli/src/toncli/projects/nft_collection/func/nft-collection.func:164:28: warning: Lack of end_parse.
+    slice common_content = cs~load_ref().begin_parse();
+                             ^
+royalty_params: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./vtamara/toncli/src/toncli/projects/nft_collection/func/nft-collection.func:157:52: warning: Lack of end_parse.
+       return (rs~load_uint(16), rs~load_uint(16), rs~load_msg_addr());
+                                                     ^
+get_collection_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./vtamara/toncli/src/toncli/projects/nft_collection/func/nft-collection.func:145:30: warning: Lack of end_parse.
+    return (next_item_index, cs~load_ref(), owner_address);
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./vtamara/toncli/src/toncli/projects/nft_collection/func/nft-collection.func:85:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./vtamara/toncli/src/toncli/projects/nft_collection/func/nft-collection.func:23:8: warning: Lack of end_parse.
+       ds~load_ref()  ;; royalty_params
+         ^

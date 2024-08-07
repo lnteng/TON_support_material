@@ -1,0 +1,8 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCaZJoO92Oe7g8evZrXFSMfvsjh8YpnFoCrpLKmoLHn2RFW/swap_to_v2_contract.fc:70:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCaZJoO92Oe7g8evZrXFSMfvsjh8YpnFoCrpLKmoLHn2RFW/swap_to_v2_contract.fc:72:42: warning: Local variable 'sender_hashpart' is not used
+      (int sender_wc, int sender_hashpart) = parse_std_addr(sender_address);
+                                           ^

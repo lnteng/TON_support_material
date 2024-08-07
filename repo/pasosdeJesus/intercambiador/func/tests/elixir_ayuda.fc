@@ -1,0 +1,647 @@
+#include "../func/typehelpers.fc";
+#include "../func/debug.fc";
+
+
+
+  {- To generate signatures and add them, what I do is:
+doas pkg_add elixir
+doas pkg_add rust
+% iex
+> Mix.install [:ton]
+> import Ton
+> import Bitwise
+> keypair = Ton.mnemonic_to_keypair("rail sound peasant garment bounce trigger true abuse arctic gravity ribbon ocean absurd okay blue remove neck cash reflect sleep hen portion gossip arrow")
+> hn = 19628012290069340860609293167367498616118345354005210669087707131081901183457
+> h = :binary.encode_unsigned(hn)
+> f = Ton.Utils.sign(h, keypair.secret_key)
+> b = :binary.decode_unsigned(f)
+# Da firma de 512 bits
+> b >>> 256
+# Da primeros 32 bytes
+> b &&& 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+# Da segundos 32 bytes
+
+------
+Other interesting things:
+
+bs=Ton.Bitstring.new  (1023 bits es como un slice builder)
+bs=Ton.Bitstring.write_binary(bs, << 1::32, "1234">>)
+
+Siguiendo definición de hash de un cell de TVM es
+hash de repcell que comienza con 2 bytes que dependen del tipo y tamaño ....
+
+tn = Ton.Cell.new(:ordinary, bs)
+
+h = Ton.Cell.hash(tn) # da 32 bytes
+
+:binary.decode_unsigned(Ton.Cell.hash(tn))
+76062567842973554250617779367060955649762229441026628547894021881107430199239
+
+privkey = :binary.encode_unsigned(privkey_int)
+
+
+> :binary.decode_unsigned(keypair.public_key)
+33451796392292203403440659262546624803323361398262915766836839499908567744559 
+# 32 bytes
+
+> :binary.decode_unsigned(keypair.secret_key)
+7849232547903451475500657988064735313305969615507206331677764391966889596620100178913004793480057471153841681118697258783023157007644107404187233695514671
+# 64 bytes
+
+#  Util
+#  https://elixirforum.com/t/how-to-manipurate-bitstring-not-binary-such-as-making-a-value-concatinating-converting-into-integer/22654
+
+   -}
+
+
+int equal_slices (slice a, slice b) asm "SDEQ";
+
+;; From https://github.com/disintar/toncli/blob/master/src/toncli/lib/test-libs/c5_parse_helpers.func
+tuple reconoce_c5() impure inline
+{
+    {-
+        The following is the TL-B of c5
+
+        out_list_empty$_ = OutList 0;
+        out_list$_ {n:#} prev:^(OutList n) action:OutAction
+        = OutList (n + 1);
+        action_send_msg#0ec3c86d mode:(## 8) 
+        out_msg:^(MessageRelaxed Any) = OutAction;
+        action_set_code#ad4de08e new_code:^Cell = OutAction;
+        action_reserve_currency#36e6b809 mode:(## 8)
+        currency:CurrencyCollection = OutAction;
+        libref_hash$0 lib_hash:bits256 = LibRef;
+        libref_ref$1 library:^Cell = LibRef;
+        action_change_library#26fa1dd4 mode:(## 7) { mode <= 2 }
+        libref:LibRef = OutAction;
+        out_list_node$_ prev:^Cell action:OutAction = OutListNode;
+
+        hex 0ec3c86d = decimal 247711853
+        hex 36e6b809 = decimal 921090057
+        hex ad4de08e = decimal 2907562126
+        hex 26fa1dd4 = decimal 653925844
+
+        returns a list of tuples in the following format 
+        [
+            [typeOfAction, bodyOfAction, mode]
+            [typeOfAction1, bodyOfAction1, mode1]
+        ]
+    -}
+
+
+    var c5 = get_c5();
+    tuple actions = empty_tuple();
+    var out_action_node = c5.begin_parse();
+    
+    if(out_action_node.slice_bits() == 0) {
+      return empty_tuple();  ;; Aqui decia null()
+    }
+    tuple list_of_actions_tuple = empty_tuple();
+    int num = 0;
+    int break = false;
+    do {
+      cell next = out_action_node~load_ref();
+      actions = cons(out_action_node, actions);
+      out_action_node = next.begin_parse();
+      num += 1;
+      break = out_action_node.slice_bits() == 0;
+    } until (break);
+
+    int i = 0;
+    do {
+      var out_action = actions~list_next();
+      {
+                var action_code = out_action~load_uint(32);
+                if(action_code == 247711853)
+                {
+                    (int mode, cell body) = parse_send_raw_message(out_action);
+                    list_of_actions_tuple~tpush([0, body, mode]);
+                }
+                elseif(action_code == 2907562126)
+                {
+                    (cell new_setcode) = parse_set_code(out_action);
+                    list_of_actions_tuple~tpush([1, new_setcode, -1]);
+                }
+                elseif(action_code == 921090057)
+                {
+                    (int mode, cell  reserve) = parse_raw_reserve(out_action);
+                    list_of_actions_tuple~tpush([2, reserve, mode]);
+                }
+                elseif(action_code == 653925844)
+                {
+                    (int mode, cell lib_cell_or_lib_hash) = parse_lib_code(out_action);
+                    list_of_actions_tuple~tpush([3, lib_cell_or_lib_hash, mode]);
+                }
+      }
+      i += 1;
+    } until (i >= num);
+
+    return list_of_actions_tuple;
+}
+
+int __test_goodsignature_badop() {
+
+  slice ad = my_address();
+
+  cell body_to_sign = begin_cell()
+    .store_uint(1, 32)    ;; seqno
+    .store_slice("1234")  ;; op 32 bits (invalid)
+    .end_cell();
+
+  int tmphash = cell_hash(body_to_sign);
+  ~strdump("Hash de body_to_sign");
+  tmphash~dump();
+  throw_if(100, tmphash != 76062567842973554250617779367060955649762229441026628547894021881107430199239);
+
+
+  var body = begin_cell()
+    .store_uint(25200840620019446809759566974926850156826275583457103873313183460677510965286, 256) ;; signature part 1
+    .store_uint(77457789748311439661918980830127397825669225773014840297918072166882249621515, 256) ;; signature part 2
+    .store_ref(body_to_sign) 
+  .end_cell();
+  var sbody = body.begin_parse();
+
+  var full = begin_cell()
+    .store_uint(0x6, 4)                         ;; 4 for flags
+    .store_slice(ad)                            ;; 2..267 sender_address for addr_none would be 2 bits 00 --normally will be replaced by sender address
+    .store_slice(ad)                            ;; 2..267  0043800efd...73010  // destination address
+    .store_coins(1000)                          ;; 4..16(?)   // VarUInteger 16 (variable size)
+    .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 ) ;; extra-currencies (1), ihr-fee (4 for empty VarUInteger 16), fwd-fee (4), cur_lt (64), now (32) init (1)
+    .store_uint(1, 1)              ;; Inplace
+    .store_ref(body)
+  .end_cell();
+  var sfull = full.begin_parse();
+  ;; sfull~dump();
+
+
+  ;; We build stack using as signature of receiver:
+  ;;() recv_internal (int balance, int msg_value, cell in_msg_full, slice in_msg_body) 
+
+  tuple pila = unsafe_tuple([
+      20000000, ;; coins  20.000.000 is 0.02  1 TON is 1.000'000.000 nanotons
+      10,  ;; msg_value
+      full, ;; in_msg_full
+      sbody   ;; msg_body
+  ]);
+
+  cell data = begin_cell()             ;; initial data of contract
+      .store_uint(1, 32)              ;; seqno
+      .store_dict(new_dict())          ;; dictionary
+      .store_dict(new_dict())          ;; dictionary
+      .store_dict(new_dict())          ;; dictionary
+      .end_cell();
+
+  set_data(data);
+
+  var (int exit_code, int gas_usado1, return_values) = invoke_method_full(recv_internal, pila);
+  exit_code~dump();
+  throw_if(101, exit_code != 501);
+
+
+  return gas_usado1;
+}
+
+
+int __test_add_ad_fewcoins() {
+
+  slice ad = my_address();
+
+  cell body_to_sign = begin_cell()
+    .store_uint(1, 32)    ;; seqno
+    .store_uint(OP_SELLER_CREATES_AD, 32)  ;; op 32 bits , add ad
+    .end_cell();
+
+  int tmphash = cell_hash(body_to_sign);
+  ~strdump("Hash de body_to_sign");
+  tmphash~dump();
+  throw_if(100, tmphash != 29357836411124981285495765108012652830917040149534034395677251036887651600221);
+
+  var body = begin_cell()
+    .store_uint(81337640637907098905805977225654971152465559727101284480981647084238576954762, 256) ;; signature part 1
+    .store_uint(65022224361929422683891631100150983158072580151415779771643245947955362773516, 256) ;; signature part 2
+    .store_ref(body_to_sign) 
+  .end_cell();
+  var sbody = body.begin_parse();
+
+  var full = begin_cell()
+    .store_uint(0x6, 4)                         ;; 4 for flags
+    .store_slice(ad)                            ;; 2..267 sender_address for addr_none would be 2 bits 00 --normally will be replaced by sender address
+    .store_slice(ad)                            ;; 2..267  0043800efd...73010  // destination address
+    .store_coins(1000)                          ;; 4..16(?)   // VarUInteger 16 (variable size)
+    .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 ) ;; extra-currencies (1), ihr-fee (4 for empty VarUInteger 16), fwd-fee (4), cur_lt (64), now (32) init (1)
+    .store_uint(1, 1)              ;; Inplace
+    .store_ref(body)
+  .end_cell();
+  var sfull = full.begin_parse();
+  ;; sfull~dump();
+
+
+  ;; We build stack using as signature of receiver:
+  ;;() recv_internal (int balance, int msg_value, cell in_msg_full, slice in_msg_body) 
+
+  tuple pila = unsafe_tuple([
+      20000000, ;; coins  20.000.000 is 0.02  1 TON is 1.000'000.000 nanotons
+      10,  ;; msg_value
+      full, ;; in_msg_full
+      sbody   ;; msg_body
+  ]);
+
+  cell data = begin_cell()             ;; initial data of contract
+      .store_uint(1, 32)              ;; seqno
+      .store_dict(new_dict())          ;; dictionary
+      .store_dict(new_dict())          ;; dictionary
+      .store_dict(new_dict())          ;; dictionary
+      .end_cell();
+
+  set_data(data);
+
+  var (int exit_code, int gas_usado1, return_values) = invoke_method_full(recv_internal, pila);
+
+  exit_code~dump();
+  throw_if(101, exit_code != ERR_INSUFFICIENT_COINS);
+
+  var ds = get_data().begin_parse();
+  throw_unless(104, ds~load_uint(32) == 1);
+  var m = ds~load_dict();
+  var e = ds~load_dict();
+
+  return gas_usado1;
+}
+
+
+int __test_add_ad_somecoins() {
+
+  slice myaddress = my_address();
+
+  cell body_to_sign = begin_cell()
+    .store_uint(1, 32)    ;; seqno
+    .store_uint(OP_SELLER_CREATES_AD, 32)  ;; op 32 bits , add ad
+    .end_cell();
+
+  int tmphash = cell_hash(body_to_sign);
+  ~strdump("Hash de body_to_sign");
+  tmphash~dump();
+  throw_if(100, tmphash != 29357836411124981285495765108012652830917040149534034395677251036887651600221);
+
+  var body = begin_cell()
+    .store_uint(81337640637907098905805977225654971152465559727101284480981647084238576954762, 256) ;; signature part 1
+    .store_uint(65022224361929422683891631100150983158072580151415779771643245947955362773516, 256) ;; signature part 2
+    .store_ref(body_to_sign) 
+  .end_cell();
+  var sbody = body.begin_parse();
+
+  var full = begin_cell()
+    .store_uint(0x6, 4)                         ;; 4 for flags
+    .store_slice(myaddress)                            ;; 2..267 sender_address for addr_none would be 2 bits 00 --normally will be replaced by sender address
+    .store_slice(myaddress)                            ;; 2..267  0043800efd...73010  // destination address
+    .store_coins(10290000000)                 ;; 4..16(?)   // VarUInteger 16 (variable size)
+    .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 ) ;; extra-currencies (1), ihr-fee (4 for empty VarUInteger 16), fwd-fee (4), cur_lt (64), now (32) init (1)
+    .store_uint(1, 1)              ;; Inplace
+    .store_ref(body)
+  .end_cell();
+  var sfull = full.begin_parse();
+  ;; sfull~dump();
+
+  tuple pila = unsafe_tuple([
+      20000000, ;; coins  20.000.000 is 0.02  1 TON is 1.000'000.000 nanotons
+      10,  ;; msg_value
+      full, ;; in_msg_full
+      sbody   ;; msg_body
+  ]);
+
+  cell data = begin_cell()             ;; initial data of contract
+      .store_uint(1, 32)               ;; seqno
+      .store_dict(new_dict())          ;; dictionary
+      .store_dict(new_dict())          ;; dictionary
+      .store_dict(new_dict())          ;; dictionary
+      .end_cell();
+
+  set_data(data);
+  var (int exit_code, int gas_usado1, return_values) = invoke_method_full(recv_internal, pila);
+
+  exit_code~dump();
+  throw_if(101, exit_code != 0);
+
+  cell data = get_data();
+  cell data2 = data;
+
+  var ds = data.begin_parse();
+  int lseqno = ds~load_uint(32);
+  lseqno~dump();
+  throw_unless(104, lseqno == 2);
+  var s_ads = ds~load_dict();
+  var ba = ds~load_dict();
+  var pba = ds~load_dict();
+
+  throw_if(106, dict_empty?(s_ads));
+  throw_unless(107, dict_empty?(ba));
+  throw_unless(107, dict_empty?(pba));
+
+  (slice sd, int success) = s_ads.dict_get?(267, myaddress);
+  throw_unless(108, success == -1);
+
+  int rec = sd~load_coins();
+  rec~dump();
+  throw_unless(109, rec == 10000000000);
+  int valid = sd~load_uint(64);
+  valid~dump();
+  int hours_to_expire = ( valid - now() ) / 3600;
+  throw_unless(110, hours_to_expire == 240);
+
+  var actions = reconoce_c5();
+  actions~dump();
+  throw_unless(111, tuple_length(actions) == 2);
+
+  tuple a0 = actions.at(0);
+  slice sb0 = a0.at(1).begin_parse();
+  sb0~dump();
+  int flags = sb0~load_uint(4);
+  flags~dump();
+  throw_unless(112, flags == 6);
+  int sa = sb0~load_uint(2);
+  sa~dump();
+  throw_unless(113, sa == 0);
+  var ra = sb0~load_msg_addr();
+  ra~dump();
+
+  throw_unless(114, equal_slices(ra, fund_address));
+  var rcoins = sb0~load_coins();
+  rcoins~dump();
+  throw_unless(115, rcoins == 28000000); ;; 10% utility for fund
+
+  tuple a1 = actions.at(1);
+  sb0 = a1.at(1).begin_parse();
+  sb0~dump();
+  flags = sb0~load_uint(4);
+  flags~dump();
+  throw_unless(116, flags == 6);
+  sa = sb0~load_uint(2);
+  sa~dump();
+  throw_unless(117, sa == 0);
+  ra = sb0~load_msg_addr();
+  ;;throw_unless(114, equal_slices(ra, myaddress));
+  rcoins = sb0~load_coins();
+  rcoins~dump();
+  throw_unless(118, rcoins == 252000000); ;; 90% utility for manager
+
+  ~strdump("Checking that method to iterate dictionaries doesn't destroy them");
+  cell copia_sa = s_ads;
+  int num = 0;
+  do {
+    (slice address, slice sd, int success) = copia_sa~dict::delete_get_min(267);
+    if (success) {
+      num = num + 1;
+    }
+  } until (~ success);
+
+  throw_unless(199, num == 1);
+
+  copia_sa = s_ads;
+  int num = 0;
+  do {
+    (slice address, slice sd, int success) = copia_sa~dict::delete_get_min(267);
+    if (success) {
+      num = num + 1;
+    }
+  } until (~ success);
+
+  throw_unless(200, num == 1);
+
+  ~strdump("Checking get_amount_selling_ads first time");
+  set_data(data2);
+
+  tuple pila = unsafe_tuple([]);
+  var (exit_code, gas_usado2, return_values) = invoke_method_full(get_amount_selling_ads, pila);
+
+  exit_code~dump();
+  throw_if(103, exit_code != 0);
+
+  throw_unless(104, return_values.at(0) == 1);
+
+  ~strdump("Checking get_amount_selling_ads second time (it didn't destroy state)");
+  cell data3 = get_data();
+  set_data(data3);
+
+  dump_stack();
+  tuple pila = unsafe_tuple([]);
+  var (exit_code, gas_usado3, return_values) = invoke_method_full(get_amount_selling_ads, pila);
+
+  exit_code~dump();
+  throw_if(123, exit_code != 0);
+
+  throw_unless(124, return_values.at(0) == 1);
+
+
+  cell data4 = get_data();
+  set_data(data4);
+
+  tuple pila = unsafe_tuple([0]);
+  var (exit_code, gas_usado2, return_values) = invoke_method_full(get_nth_selling_ad, pila);
+
+  exit_code~dump();
+  throw_if(105, exit_code != 0);
+
+  return_values~dump();
+  dump_stack();
+  throw_unless(106, return_values.at(1) == 10000000000);
+  return gas_usado1 + gas_usado2 + gas_usado3;
+}
+
+
+
+int __test_release_coins() {
+
+  slice myaddress = my_address();
+
+  cell body_to_sign = begin_cell()
+    .store_uint(2, 32)    ;; seqno
+    .store_uint(OP_SELLER_RELEASES_COINS, 32)  ;; op 32 bits , release coins to buyer
+    .store_uint(4,3) ;; example buyer address
+    .store_uint(10,8) ;; example buyer address
+    .store_uint(456,256) ;; example buyer address
+    .store_coins(5000000000) ;; 5TON
+    .end_cell();
+
+  int tmphash = cell_hash(body_to_sign);
+  tmphash~dump();
+  throw_if(100, tmphash != 41910469873814935573045619605681105550490891720547882356612539347020904940347);
+
+  cell body = begin_cell()
+    .store_uint(30897984454958315119411092091039612757908613629130233167072357766534951962024, 256) ;; signature part 1
+    .store_uint(4090334718856674773384738229910813916504298618461452046933458283576013256451, 256) ;; signature part 2
+    .store_ref(body_to_sign) 
+  .end_cell();
+  slice sbody = body.begin_parse();
+
+  cell full = begin_cell()
+    .store_uint(0x6, 4)            ;; 4 for flags
+    .store_slice(myaddress)        ;; 2..267 sender_address for addr_none would be 2 bits 00 --normally will be replaced by sender address
+    .store_slice(myaddress)        ;; 2..267  0043800efd...73010  // destination address
+    .store_coins(200000000)        ;; 0.2TON
+    .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 ) ;; extra-currencies (1), ihr-fee (4 for empty VarUInteger 16), fwd-fee (4), cur_lt (64), now (32) init (1)
+    .store_uint(1, 1)              ;; Inplace
+    .store_ref(body)
+  .end_cell();
+  slice sfull = full.begin_parse();
+  ;;sfull~dump();
+
+  tuple pila = unsafe_tuple([
+      20000000, ;; coins  20.000.000 is 0.02  1 TON is 1.000'000.000 nanotons
+      10,  ;; msg_value
+      full, ;; in_msg_full
+      sbody   ;; msg_body
+  ]);
+
+  cell selldict = new_dict();
+  cell datad = begin_cell()
+    .store_coins(10000000000)  ;; 10TON
+    .store_uint(now() + 10000, 64) ;; Valid until
+    .end_cell();
+  slice sdatad = datad.begin_parse();
+  ;;~strdump("sdatad:");
+  ;;slice base8sdatad = slice_to_hexstr(sdatad);
+  ;;base8sdatad~strdump();
+
+  var success = selldict~dict_add?(267, myaddress, sdatad);
+  throw_unless(800, success);
+
+  cell data = begin_cell()             ;; initial data of contract
+      .store_uint(2, 32)              ;; seqno
+      .store_dict(selldict)          ;; selling ads dictionary
+      .store_dict(new_dict())          ;; buying ads dictionary
+      .store_dict(new_dict())          ;; paid for buying ad dictionary
+      .end_cell();
+
+  set_data(data);
+
+  var (int exit_code, int gas_usado1, return_values) = invoke_method_full(recv_internal, pila);
+
+  exit_code~dump();
+  throw_if(101, exit_code != 0);
+
+  cell data = get_data();
+
+  ~strdump("Analizando");
+  var ds2 = get_data().begin_parse();
+  var gseqno2 = ds2~load_uint(32);
+  gseqno2~dump();
+  throw_unless(105, gseqno2 == 3);
+  var selling_ads2 = ds2~load_dict();
+  selling_ads2~dump();
+  throw_unless(106, dict_empty?(selling_ads2));
+  var buying_ads2 = ds2~load_dict();
+  buying_ads2~dump();
+  throw_unless(106, dict_empty?(buying_ads2));
+  var payments_buying_ads2 = ds2~load_dict();
+  payments_buying_ads2~dump();
+  throw_unless(106, dict_empty?(payments_buying_ads2));
+
+  set_data(data);
+
+  pila = unsafe_tuple([]);
+  var (exit_code, gas_usado2, return_values) = invoke_method_full(get_amount_selling_ads, pila);
+
+  exit_code~dump();
+  throw_if(107, exit_code != 0);
+
+  throw_unless(108, return_values.at(0) == 0);
+
+  return gas_usado1;
+}
+
+int __test_end() {
+
+  slice myaddress = my_address();
+
+  cell body_to_sign = begin_cell()
+    .store_uint(2, 32)    ;; seqno
+    .store_uint(OP_MANAGER_ENDS_OPERATION, 32)  ;; op 32 bits , end of operation
+    .end_cell();
+
+  int tmphash = cell_hash(body_to_sign);
+  tmphash~dump();
+  throw_if(100, tmphash != 19628012290069340860609293167367498616118345354005210669087707131081901183457);
+
+  cell body = begin_cell()
+    .store_uint(63721334857323908724111397497447115055981967514355889161690703554970726536909, 256) ;; signature part 1
+    .store_uint(67007350735801824008014894016613596343591943945488611439234850185551089340416, 256) ;; signature part 2
+    .store_ref(body_to_sign) 
+  .end_cell();
+  slice sbody = body.begin_parse();
+
+  cell full = begin_cell()
+    .store_uint(0x6, 4)            ;; 4 for flags
+    .store_slice(manager_address)        ;; 2..267 sender_address for addr_none would be 2 bits 00 --normally will be replaced by sender address
+    .store_slice(myaddress)        ;; 2..267  0043800efd...73010  // destination address
+    .store_coins(200000000)        ;; 0.2TON
+    .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 ) ;; extra-currencies (1), ihr-fee (4 for empty VarUInteger 16), fwd-fee (4), cur_lt (64), now (32) init (1)
+    .store_uint(1, 1)              ;; Inplace
+    .store_ref(body)
+  .end_cell();
+  slice sfull = full.begin_parse();
+  ;;sfull~dump();
+
+  tuple pila = unsafe_tuple([
+      20000000, ;; coins  20.000.000 is 0.02  1 TON is 1.000'000.000 nanotons
+      10,  ;; msg_value
+      full, ;; in_msg_full
+      sbody   ;; msg_body
+  ]);
+
+  cell selldict = new_dict();
+  cell datad = begin_cell()
+    .store_coins(10000000000)  ;; 10TON
+    .store_uint(now() + 10000, 64) ;; Valid until
+    .end_cell();
+  slice sdatad = datad.begin_parse();
+  ;;~strdump("sdatad:");
+  ;;slice base8sdatad = slice_to_hexstr(sdatad);
+  ;;base8sdatad~strdump();
+
+  var success = selldict~dict_add?(267, myaddress, sdatad);
+  throw_unless(800, success);
+
+  cell data = begin_cell()             ;; initial data of contract
+      .store_uint(2, 32)              ;; seqno
+      .store_dict(selldict)           ;; selling ads dictionary
+      .store_dict(new_dict())         ;; buying ads dictionary
+      .store_dict(new_dict())         ;; paid for buying ad dictionary
+      .end_cell();
+
+  set_data(data);
+
+  var (int exit_code, int gas_usado1, return_values) = invoke_method_full(recv_internal, pila);
+
+  exit_code~dump();
+  throw_if(101, exit_code != 0);
+
+  cell data = get_data();
+
+  ~strdump("Analizando");
+  var ds2 = get_data().begin_parse();
+  var gseqno2 = ds2~load_uint(32);
+  gseqno2~dump();
+  throw_unless(105, gseqno2 == 3);
+  var selling_ads2 = ds2~load_dict();
+  selling_ads2~dump();
+  throw_unless(106, dict_empty?(selling_ads2));
+  var buying_ads2 = ds2~load_dict();
+  buying_ads2~dump();
+  throw_unless(106, dict_empty?(buying_ads2));
+  var payments_buying_ads2 = ds2~load_dict();
+  payments_buying_ads2~dump();
+  throw_unless(106, dict_empty?(payments_buying_ads2));
+
+  set_data(data);
+
+  pila = unsafe_tuple([]);
+  var (exit_code, gas_usado2, return_values) = invoke_method_full(get_amount_selling_ads, pila);
+
+  exit_code~dump();
+  throw_if(107, exit_code != 0);
+
+  throw_unless(108, return_values.at(0) == 0);
+
+  return gas_usado1;
+}
+

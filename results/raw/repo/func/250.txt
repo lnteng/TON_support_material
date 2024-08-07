@@ -1,0 +1,16 @@
+send_tokens: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/ton-bet-dao/contracts/bet-jetton-wallet.fc:53:25: warning: Local variable 'custom_payload' is not used
+      cell custom_payload = in_msg_body~load_dict();
+                          ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/ton-bet-dao/contracts/bet-jetton-wallet.fc:213:28: warning: Lack of end_parse.
+      int fwd_fee = muldiv(cs~load_coins(), 3, 2); ;; we use message fwd_fee for estimation of forward_payload costs
+                             ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/ton-bet-dao/contracts/bet-jetton-wallet.fc:20:72: warning: Lack of end_parse.
+      return (ds~load_coins(), ds~load_msg_addr(), ds~load_msg_addr(), ds~load_ref());
+                                                                         ^
+on_bounce: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/ton-bet-dao/contracts/bet-jetton-wallet.fc:191:18: warning: Local variable 'query_id' is not used
+      int query_id = in_msg_body~load_uint(64);
+                   ^

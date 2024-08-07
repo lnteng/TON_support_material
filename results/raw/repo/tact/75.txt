@@ -1,0 +1,32 @@
+__gen_read_MapTestContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact/examples/output/maps_MapTestContract.code.fc:222:26: warning: Lack of end_parse.
+      var v'addrMap4 = sc_2~load_dict();
+                           ^
+__gen_read_MapTestContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact/examples/output/maps_MapTestContract.code.fc:219:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+__gen_readopt_SomeStruct: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact/examples/output/maps_MapTestContract.code.fc:157:43: warning: Lack of end_parse.
+      return __gen_SomeStruct_as_optional(sc~__gen_read_SomeStruct());
+                                            ^
+__tact_dict_set_int_cell: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact/examples/output/maps_MapTestContract.code.fc:42:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+__tact_dict_set_slice_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact/examples/output/maps_MapTestContract.code.fc:60:21: warning: Local variable 'ok' is not used
+          var (r, ok) = __tact_dict_delete(d, kl, k);
+                      ^
+__tact_dict_set_slice_cell: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact/examples/output/maps_MapTestContract.code.fc:78:21: warning: Local variable 'ok' is not used
+          var (r, ok) = __tact_dict_delete(d, kl, k);
+                      ^
+__tact_dict_set_int_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact/examples/output/maps_MapTestContract.code.fc:24:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+__gen_load_MapTestContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact/examples/output/maps_MapTestContract.code.fc:248:14: warning: Lack of end_parse.
+      return sc~__gen_read_MapTestContract();
+               ^

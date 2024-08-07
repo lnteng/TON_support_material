@@ -1,0 +1,56 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/foe.fc:229:32: warning: Lack of end_parse.
+          cell nft_item_code = ds~load_ref();
+                                 ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/foe.fc:219:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/foe.fc:222:18: warning: Local variable 'query_id' is not used
+      int query_id = in_msg_body~load_uint(64);
+                   ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/foe.fc:225:51: warning: Local variable 'general_stats' is not used
+          var (jetton_nft, general_stats, nft_data) = load_data();
+                                                    ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/foe.fc:225:51: warning: Local variable 'nft_data' is not used
+          var (jetton_nft, general_stats, nft_data) = load_data();
+                                                    ^
+harvest: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/foe.fc:196:42: warning: Local variable 'success' is not used
+              (slice payload, int success) = nft_mapping.udict_get?(token_id, 64);
+                                           ^
+harvest: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/foe.fc:198:29: warning: Local variable 'reward_debt' is not used
+              var reward_debt = payload~load_uint(64);
+                              ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/foe.fc:13:15: warning: Lack of end_parse.
+              ds~load_ref() ;; nfts mapping (nftId => (militaryPower, owner address))
+                ^
+pending_era: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/foe.fc:260:53: warning: Local variable 'jetton_minter_address' is not used
+              currentTotalMilitaryPower, nft_mapping) = unpack_data(jetton_nft, general_stats, nft_data);
+                                                      ^
+pending_era: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/foe.fc:260:53: warning: Local variable 'collection_address' is not used
+              currentTotalMilitaryPower, nft_mapping) = unpack_data(jetton_nft, general_stats, nft_data);
+                                                      ^
+pending_era: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/foe.fc:260:53: warning: Local variable 'nft_item_code' is not used
+              currentTotalMilitaryPower, nft_mapping) = unpack_data(jetton_nft, general_stats, nft_data);
+                                                      ^
+unpack_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/foe.fc:30:35: warning: Lack of end_parse.
+      cell nft_mapping = nft_data_ds~load_dict();
+                                    ^
+unpack_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/foe.fc:27:53: warning: Lack of end_parse.
+      int currentTotalMilitaryPower = general_stats_ds~load_uint(64);
+                                                      ^
+unpack_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/foe.fc:21:28: warning: Lack of end_parse.
+      cell nft_item_code = ds~load_ref();
+                             ^

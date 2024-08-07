@@ -1,0 +1,85 @@
+{-
+  TASK 4 - Caesar Cipher
+  Implement a Caesar cipher encryption and decryption functions.
+  The input is a string (https://docs.ton.org/develop/smart-contracts/guidelines/internal-messages#simple-message-with-comment)
+  where the text is encrypted in a cell (after 32bit 00000000 prefix flag), the algorithm rotates the characters and the last ASCII
+  character should go to the beginning. Return new text encoded in cell.
+-}
+
+forall X -> int is_null (X x) asm "ISNULL";
+forall X -> (tuple, ()) push_back (tuple tail, X head) asm "CONS";
+forall X -> (tuple, (X)) pop_back (tuple t) asm "UNCONS";
+
+
+() recv_internal() {
+}
+
+(cell) translate_cell(int shift, cell text, int first_cell) impure {
+  slice text_slice = text.begin_parse();
+  builder root_builder = begin_cell();
+
+  if (first_cell == 1){
+    text_slice~load_bits(32);
+    root_builder~store_int(0, 32);
+  }
+
+  repeat(slice_bits(text_slice) / 8){
+    int char = text_slice~load_int(8);
+
+    int new_char = char + shift;
+
+    if (~ (((char >= 65) & (char <= 90)) | ((char >= 97) & (char <= 122)))){
+      new_char = char;
+    }
+
+    if ((char >= 65) & (char <= 90)){
+      if (new_char > 90){
+        new_char = 64 + (new_char - 90);
+      } 
+      
+      if (new_char < 65){
+        new_char = 91 - (65 - new_char);
+      }
+    } 
+    
+    if ((char >= 97) & (char <= 122)){
+      if (new_char > 122){
+        new_char = 96 + (new_char - 122);
+      } 
+      
+      if (new_char < 97){
+        new_char = 123 - (97 - new_char);
+      }
+    }
+
+    root_builder~store_int(new_char, 8);
+  }
+
+  if (text_slice.slice_refs() == 0){
+    return root_builder.end_cell();
+  }
+
+  return root_builder
+          .store_ref(
+            translate_cell(shift, text_slice~load_ref(), 0))
+          .end_cell();
+}
+
+;; testable
+(cell) caesar_cipher_encrypt(int shift, cell text) method_id {
+  return translate_cell(
+    (shift % 26),
+    text,
+    1
+  );
+}
+
+;; testable
+(cell) caesar_cipher_decrypt(int shift, cell text) method_id {
+  return translate_cell(
+    -1 * (shift % 26),
+    text,
+    1
+  );
+}
+

@@ -1,0 +1,66 @@
+$JettonDefaultWallet$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBWWWHp7l0qEy1Y5fnIjAE_yAT974Jd34Ywv5lQqZ4JJFDT/output/sample_MemeJettonLite.storage.fc:168:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$MemeJettonLite$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBWWWHp7l0qEy1Y5fnIjAE_yAT974Jd34Ywv5lQqZ4JJFDT/output/sample_MemeJettonLite.code.fc:29:93: warning: Local variable '$self'totalSupply' is not used
+      var (($self'totalSupply, $self'owner, $self'content, $self'mintable, $self'max_supply)) = (null(), null(), null(), null(), null());
+                                                                                              ^
+$MemeJettonLite$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBWWWHp7l0qEy1Y5fnIjAE_yAT974Jd34Ywv5lQqZ4JJFDT/output/sample_MemeJettonLite.code.fc:29:93: warning: Local variable '$self'owner' is not used
+      var (($self'totalSupply, $self'owner, $self'content, $self'mintable, $self'max_supply)) = (null(), null(), null(), null(), null());
+                                                                                              ^
+$MemeJettonLite$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBWWWHp7l0qEy1Y5fnIjAE_yAT974Jd34Ywv5lQqZ4JJFDT/output/sample_MemeJettonLite.code.fc:29:93: warning: Local variable '$self'content' is not used
+      var (($self'totalSupply, $self'owner, $self'content, $self'mintable, $self'max_supply)) = (null(), null(), null(), null(), null());
+                                                                                              ^
+$MemeJettonLite$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBWWWHp7l0qEy1Y5fnIjAE_yAT974Jd34Ywv5lQqZ4JJFDT/output/sample_MemeJettonLite.code.fc:29:93: warning: Local variable '$self'mintable' is not used
+      var (($self'totalSupply, $self'owner, $self'content, $self'mintable, $self'max_supply)) = (null(), null(), null(), null(), null());
+                                                                                              ^
+$MemeJettonLite$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBWWWHp7l0qEy1Y5fnIjAE_yAT974Jd34Ywv5lQqZ4JJFDT/output/sample_MemeJettonLite.code.fc:29:93: warning: Local variable '$self'max_supply' is not used
+      var (($self'totalSupply, $self'owner, $self'content, $self'mintable, $self'max_supply)) = (null(), null(), null(), null(), null());
+                                                                                              ^
+$MemeJettonLite$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBWWWHp7l0qEy1Y5fnIjAE_yAT974Jd34Ywv5lQqZ4JJFDT/output/sample_MemeJettonLite.code.fc:35:86: warning: Local variable '$self'owner' is not used
+      ($self'totalSupply, $self'owner, $self'content, $self'mintable, $self'max_supply)~$MemeJettonLite$_fun_mint($self'owner, $self'max_supply, $self'owner);
+                                                                                       ^
+$MemeJettonLite$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBWWWHp7l0qEy1Y5fnIjAE_yAT974Jd34Ywv5lQqZ4JJFDT/output/sample_MemeJettonLite.code.fc:35:86: warning: Local variable '$self'mintable' is not used
+      ($self'totalSupply, $self'owner, $self'content, $self'mintable, $self'max_supply)~$MemeJettonLite$_fun_mint($self'owner, $self'max_supply, $self'owner);
+                                                                                       ^
+$MemeJettonLite$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBWWWHp7l0qEy1Y5fnIjAE_yAT974Jd34Ywv5lQqZ4JJFDT/output/sample_MemeJettonLite.storage.fc:218:19: warning: Lack of end_parse.
+          return $sc~$MemeJettonLite$_load();
+                    ^
+$MemeJettonLite$_fun_requireWallet: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBWWWHp7l0qEy1Y5fnIjAE_yAT974Jd34Ywv5lQqZ4JJFDT/output/sample_MemeJettonLite.code.fc:43:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$MemeJettonLite$_fun_requireWallet: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBWWWHp7l0qEy1Y5fnIjAE_yAT974Jd34Ywv5lQqZ4JJFDT/output/sample_MemeJettonLite.code.fc:43:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$MemeJettonLite$_fun_requireWallet: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBWWWHp7l0qEy1Y5fnIjAE_yAT974Jd34Ywv5lQqZ4JJFDT/output/sample_MemeJettonLite.code.fc:43:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$MemeJettonLite$_internal_binary_TokenUpdateContent: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBWWWHp7l0qEy1Y5fnIjAE_yAT974Jd34Ywv5lQqZ4JJFDT/output/sample_MemeJettonLite.code.fc:79:86: warning: Local variable '$self'content' is not used
+      ($self'totalSupply, $self'owner, $self'content, $self'mintable, $self'max_supply)~$MemeJettonLite$_fun_requireOwner();
+                                                                                       ^
+$MemeJettonLite$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBWWWHp7l0qEy1Y5fnIjAE_yAT974Jd34Ywv5lQqZ4JJFDT/output/sample_MemeJettonLite.code.fc:141:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBWWWHp7l0qEy1Y5fnIjAE_yAT974Jd34Ywv5lQqZ4JJFDT/output/sample_MemeJettonLite.storage.fc:229:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$MemeJettonLite$_contract_store & $MemeJettonLite$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBWWWHp7l0qEy1Y5fnIjAE_yAT974Jd34Ywv5lQqZ4JJFDT/output/sample_MemeJettonLite.storage.fc:214:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBWWWHp7l0qEy1Y5fnIjAE_yAT974Jd34Ywv5lQqZ4JJFDT/output/sample_MemeJettonLite.storage.fc:229:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

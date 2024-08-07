@@ -1,0 +1,16 @@
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQB79j3Qc0nUf5_bOz1zSVqSK6fmHzeobStEAnBI4oD9f1Nw/nft_collection.fc:23:8: warning: Lack of end_parse.
+       ds~load_ref()  ;; royalty_params
+         ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQB79j3Qc0nUf5_bOz1zSVqSK6fmHzeobStEAnBI4oD9f1Nw/nft_collection.fc:112:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+get_nft_content: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQB79j3Qc0nUf5_bOz1zSVqSK6fmHzeobStEAnBI4oD9f1Nw/nft_collection.fc:185:28: warning: Lack of end_parse.
+    slice common_content = cs~load_ref().begin_parse();
+                             ^
+get_collection_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQB79j3Qc0nUf5_bOz1zSVqSK6fmHzeobStEAnBI4oD9f1Nw/nft_collection.fc:160:30: warning: Lack of end_parse.
+    return (next_item_index, cs~load_ref(), owner_address);
+                               ^

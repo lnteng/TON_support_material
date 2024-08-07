@@ -1,0 +1,24 @@
+processed?: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBtIgQmRRPvtA881x1IAGPIN7T8WfyUz8RYDVhhJrxxFund/multisig-wallet.fc:222:28: warning: Local variable 'cs' is not used
+      (slice cs, var found?) = storage::pending_queries.udict_get?(64, query_id);
+                             ^
+run_proposal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBtIgQmRRPvtA881x1IAGPIN7T8WfyUz8RYDVhhJrxxFund/multisig-wallet.fc:107:42: warning: Lack of end_parse.
+                  send_raw_message(messages~load_ref(), mode);
+                                           ^
+run_proposal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBtIgQmRRPvtA881x1IAGPIN7T8WfyUz8RYDVhhJrxxFund/multisig-wallet.fc:99:45: warning: Lack of end_parse.
+                      cell new_data = messages~load_ref();
+                                              ^
+run_proposal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBtIgQmRRPvtA881x1IAGPIN7T8WfyUz8RYDVhhJrxxFund/multisig-wallet.fc:86:46: warning: Lack of end_parse.
+                          int weight = messages~load_uint(16);
+                                               ^
+run_proposal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBtIgQmRRPvtA881x1IAGPIN7T8WfyUz8RYDVhhJrxxFund/multisig-wallet.fc:84:57: warning: Local variable 'success?' is not used
+                          (storage::owners, int success?) = storage::owners.udict_delete?(256, target_public_key);
+                                                          ^
+calculate_score: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBtIgQmRRPvtA881x1IAGPIN7T8WfyUz8RYDVhhJrxxFund/multisig-wallet.fc:58:39: warning: Local variable 'found?' is not used
+              (slice owner, int found?) = storage::owners.udict_get?(256, public_key);
+                                        ^

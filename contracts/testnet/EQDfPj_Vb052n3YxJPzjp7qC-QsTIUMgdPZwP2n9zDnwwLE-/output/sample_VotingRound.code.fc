@@ -1,0 +1,266 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_VotingRound.headers.fc";
+#include "sample_VotingRound.stdlib.fc";
+#include "sample_VotingRound.storage.fc";
+
+;;
+;; Contract VotingRound functions
+;;
+
+(slice, int, cell, cell, cell, int, cell, int, int, slice, int, int) $VotingRound$_contract_init(slice $parent, int $round) impure inline_ref {
+    var (($self'parent, $self'round, $self'payloadsByHash, $self'participantsPayload, $self'participants, $self'participantsCount, $self'payloads, $self'payloadsCount, $self'finalized, $self'winnerPayload, $self'winnerVotes, $self'winnerGuarded)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+    $self'parent = $parent;
+    $self'round = $round;
+    $self'participants = null();
+    $self'participantsCount = 0;
+    $self'payloads = null();
+    $self'payloadsCount = 0;
+    $self'finalized = false;
+    $self'winnerGuarded = false;
+    return ($self'parent, $self'round, $self'payloadsByHash, $self'participantsPayload, $self'participants, $self'participantsCount, $self'payloads, $self'payloadsCount, $self'finalized, $self'winnerPayload, $self'winnerVotes, $self'winnerGuarded);
+}
+
+((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int), int) $VotingRound$_fun_participantsCount((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int) $self) impure inline_ref {
+    var (($self'parent, $self'round, $self'payloadsByHash, $self'participantsPayload, $self'participants, $self'participantsCount, $self'payloads, $self'payloadsCount, $self'finalized, $self'winnerPayload, $self'winnerVotes, $self'winnerGuarded)) = $self;
+    return (($self'parent, $self'round, $self'payloadsByHash, $self'participantsPayload, $self'participants, $self'participantsCount, $self'payloads, $self'payloadsCount, $self'finalized, $self'winnerPayload, $self'winnerVotes, $self'winnerGuarded), $self'participantsCount);
+}
+
+((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int), slice) $VotingRound$_fun_winnerPayload((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int) $self) impure inline_ref {
+    var (($self'parent, $self'round, $self'payloadsByHash, $self'participantsPayload, $self'participants, $self'participantsCount, $self'payloads, $self'payloadsCount, $self'finalized, $self'winnerPayload, $self'winnerVotes, $self'winnerGuarded)) = $self;
+    return (($self'parent, $self'round, $self'payloadsByHash, $self'participantsPayload, $self'participants, $self'participantsCount, $self'payloads, $self'payloadsCount, $self'finalized, $self'winnerPayload, $self'winnerVotes, $self'winnerGuarded), $self'winnerPayload);
+}
+
+((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int), int) $VotingRound$_fun_winnerVotes((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int) $self) impure inline_ref {
+    var (($self'parent, $self'round, $self'payloadsByHash, $self'participantsPayload, $self'participants, $self'participantsCount, $self'payloads, $self'payloadsCount, $self'finalized, $self'winnerPayload, $self'winnerVotes, $self'winnerGuarded)) = $self;
+    return (($self'parent, $self'round, $self'payloadsByHash, $self'participantsPayload, $self'participants, $self'participantsCount, $self'payloads, $self'payloadsCount, $self'finalized, $self'winnerPayload, $self'winnerVotes, $self'winnerGuarded), $self'winnerVotes);
+}
+
+((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int), int) $VotingRound$_fun_winnerGuarded((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int) $self) impure inline_ref {
+    var (($self'parent, $self'round, $self'payloadsByHash, $self'participantsPayload, $self'participants, $self'participantsCount, $self'payloads, $self'payloadsCount, $self'finalized, $self'winnerPayload, $self'winnerVotes, $self'winnerGuarded)) = $self;
+    return (($self'parent, $self'round, $self'payloadsByHash, $self'participantsPayload, $self'participants, $self'participantsCount, $self'payloads, $self'payloadsCount, $self'finalized, $self'winnerPayload, $self'winnerVotes, $self'winnerGuarded), $self'winnerGuarded);
+}
+
+;;
+;; Receivers of a Contract VotingRound
+;;
+
+((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int), ()) $VotingRound$_internal_text_12511bf31bf6bf76e15f462c80fde0373029b30cc9665d2141bd1db5e63d089a((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int) $self) impure inline {
+    var ($self'parent, $self'round, $self'payloadsByHash, $self'participantsPayload, $self'participants, $self'participantsCount, $self'payloads, $self'payloadsCount, $self'finalized, $self'winnerPayload, $self'winnerVotes, $self'winnerGuarded) = $self;
+    ($self'parent, $self'round, $self'payloadsByHash, $self'participantsPayload, $self'participants, $self'participantsCount, $self'payloads, $self'payloadsCount, $self'finalized, $self'winnerPayload, $self'winnerVotes, $self'winnerGuarded)~$VotingRound$_fun_reply($InternalRoundOpened$_store_cell($InternalRoundOpened$_constructor_round($self'round)));
+    return (($self'parent, $self'round, $self'payloadsByHash, $self'participantsPayload, $self'participants, $self'participantsCount, $self'payloads, $self'payloadsCount, $self'finalized, $self'winnerPayload, $self'winnerVotes, $self'winnerGuarded), ());
+}
+
+(((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int)), ()) $VotingRound$_internal_binary_InternalVote((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int) $self, (int, slice, slice, int, int) $msg) impure inline {
+    var ($self'parent, $self'round, $self'payloadsByHash, $self'participantsPayload, $self'participants, $self'participantsCount, $self'payloads, $self'payloadsCount, $self'finalized, $self'winnerPayload, $self'winnerVotes, $self'winnerGuarded) = $self;
+    var ($msg'round, $msg'payload, $msg'participant, $msg'guard, $msg'votes) = $msg;
+    throw_unless(20445, ( __tact_slice_eq_bits($self'parent, __tact_context_get_sender()) ));
+    throw_unless(46604, (~ $self'finalized));
+    throw_unless(18736, ($msg'round == $self'round));
+    int $existingVote = __tact_dict_get_slice_int($self'participantsPayload, 267, $msg'participant, 257);
+    throw_unless(23980, null?($existingVote));
+    int $payloadHash = string_hash($msg'payload);
+    $self'participants~__tact_dict_set_int_cell(257, $self'participantsCount, $RoundParticipantInfo$_store_cell($RoundParticipantInfo$_constructor_address_votes_payloadHash_guard($msg'participant, $msg'votes, $payloadHash, $msg'guard)));
+    $self'participantsCount = ($self'participantsCount + 1);
+    tuple $existingPayloadVotes = $PayloadVotes$_load_opt(__tact_dict_get_int_cell($self'payloadsByHash, 257, $payloadHash));
+    if (null?($existingPayloadVotes)) {
+        var ($payloadVotes'payload, $payloadVotes'votes, $payloadVotes'guarded) = $PayloadVotes$_constructor_payload_votes_guarded($msg'payload, $msg'votes, $msg'guard);
+        $self'payloadsByHash~__tact_dict_set_int_cell(257, $payloadHash, $PayloadVotes$_store_cell(($payloadVotes'payload, $payloadVotes'votes, $payloadVotes'guarded)));
+        $self'payloads~__tact_dict_set_int_int(257, $self'payloadsCount, $payloadHash, 257);
+        $self'payloadsCount = ($self'payloadsCount + 1);
+    } else {
+        var ($payloadVotes'payload, $payloadVotes'votes, $payloadVotes'guarded) = $PayloadVotes$_not_null($existingPayloadVotes);
+        int $updatedVotes = ($payloadVotes'votes + $msg'votes);
+        int $guarded = ( ($payloadVotes'guarded) ? (true) : ($msg'guard) );
+        $self'payloadsByHash~__tact_dict_set_int_cell(257, $payloadHash, $PayloadVotes$_store_cell($PayloadVotes$_constructor_payload_votes_guarded($msg'payload, $updatedVotes, $guarded)));
+    }
+    $self'participantsPayload~__tact_dict_set_slice_int(267, $msg'participant, $payloadHash, 257);
+    return (($self'parent, $self'round, $self'payloadsByHash, $self'participantsPayload, $self'participants, $self'participantsCount, $self'payloads, $self'payloadsCount, $self'finalized, $self'winnerPayload, $self'winnerVotes, $self'winnerGuarded), ());
+}
+
+(((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int)), ()) $VotingRound$_internal_binary_InternalFinalize((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int) $self, (int) $msg) impure inline {
+    var ($self'parent, $self'round, $self'payloadsByHash, $self'participantsPayload, $self'participants, $self'participantsCount, $self'payloads, $self'payloadsCount, $self'finalized, $self'winnerPayload, $self'winnerVotes, $self'winnerGuarded) = $self;
+    var ($msg'minVotes) = $msg;
+    throw_unless(20445, ( __tact_slice_eq_bits($self'parent, __tact_context_get_sender()) ));
+    throw_unless(57851, (~ $self'finalized));
+    throw_unless(48930, ($msg'minVotes > 0));
+    int $rewards = $Context$_get_value(__tact_context_get());
+    int $i = 0;
+    slice $candidatePayload = null();
+    int $candidateVotes = null();
+    int $candidateGuarded = false;
+    while (($i < $self'payloadsCount)) {
+        int $payloadHash = __tact_dict_get_int_int($self'payloads, 257, $i, 257);
+        throw_unless(34495, (~ null?($payloadHash)));
+        int $payloadHashSafe = __tact_not_null($payloadHash);
+        tuple $payloadVotes = $PayloadVotes$_load_opt(__tact_dict_get_int_cell($self'payloadsByHash, 257, $payloadHashSafe));
+        throw_unless(38183, (~ null?($payloadVotes)));
+        var ($payloadVotesSafe'payload, $payloadVotesSafe'votes, $payloadVotesSafe'guarded) = $PayloadVotes$_not_null($payloadVotes);
+        int $votes = $payloadVotesSafe'votes;
+        if (( (null?($candidateVotes)) ? (true) : (($votes > __tact_not_null($candidateVotes))) )) {
+            $candidatePayload = $payloadVotesSafe'payload;
+            $candidateVotes = $votes;
+            $candidateGuarded = $payloadVotesSafe'guarded;
+        }
+        $i = ($i + 1);
+    }
+    throw_unless(17999, $candidateGuarded);
+    throw_unless(37813, ( ((~ null?($candidateVotes))) ? ((__tact_not_null($candidateVotes) > $msg'minVotes)) : (false) ));
+    $self'winnerPayload = $candidatePayload;
+    $self'winnerVotes = $candidateVotes;
+    $self'winnerGuarded = $candidateGuarded;
+    int $j = 0;
+    int $winnerPayloadHash = string_hash($self'winnerPayload);
+    cell $goodParticipants = null();
+    int $goodParticipantsCount = 0;
+    cell $goodParticipantsVotes = null();
+    cell $badParticipants = null();
+    int $badParticipantsCount = 0;
+    cell $badParticipantsVotes = null();
+    while (($j < $self'participantsCount)) {
+        var ($participantInfo'address, $participantInfo'votes, $participantInfo'payloadHash, $participantInfo'guard) = $RoundParticipantInfo$_not_null($RoundParticipantInfo$_load_opt(__tact_dict_get_int_cell($self'participants, 257, $j)));
+        int $participantReward = 0;
+        if (($winnerPayloadHash == $participantInfo'payloadHash)) {
+            $goodParticipants~__tact_dict_set_int_slice(257, $goodParticipantsCount, $participantInfo'address);
+            $goodParticipantsVotes~__tact_dict_set_slice_int(267, $participantInfo'address, $participantInfo'votes, 257);
+            $goodParticipantsCount = ($goodParticipantsCount + 1);
+        } else {
+            $badParticipants~__tact_dict_set_int_slice(257, $badParticipantsCount, $participantInfo'address);
+            $badParticipantsVotes~__tact_dict_set_slice_int(267, $participantInfo'address, $participantInfo'votes, 257);
+            $badParticipantsCount = ($badParticipantsCount + 1);
+        }
+        $j = ($j + 1);
+    }
+    $self'finalized = true;
+    $global_send($SendParameters$_constructor_to_body_value_mode($self'parent, $InternalFinalized$_store_cell($InternalFinalized$_constructor_round_winnerPayload_winnerVotes_winnerGuarded_goodParticipants_goodParticipantsCount_goodParticipantsVotes_badParticipants_badParticipantsCount_badParticipantsVotes($self'round, __tact_not_null($self'winnerPayload), __tact_not_null($self'winnerVotes), $self'winnerGuarded, $goodParticipants, $goodParticipantsCount, $goodParticipantsVotes, $badParticipants, $badParticipantsCount, $badParticipantsVotes)), 0, (64 + 2)));
+    return (($self'parent, $self'round, $self'payloadsByHash, $self'participantsPayload, $self'participants, $self'participantsCount, $self'payloads, $self'payloadsCount, $self'finalized, $self'winnerPayload, $self'winnerVotes, $self'winnerGuarded), ());
+}
+
+(((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int)), ()) $VotingRound$_internal_binary_Deploy((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int) $self, (int) $deploy) impure inline {
+    var ($self'parent, $self'round, $self'payloadsByHash, $self'participantsPayload, $self'participants, $self'participantsCount, $self'payloads, $self'payloadsCount, $self'finalized, $self'winnerPayload, $self'winnerVotes, $self'winnerGuarded) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'parent, $self'round, $self'payloadsByHash, $self'participantsPayload, $self'participants, $self'participantsCount, $self'payloads, $self'payloadsCount, $self'finalized, $self'winnerPayload, $self'winnerVotes, $self'winnerGuarded)~$VotingRound$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'parent, $self'round, $self'payloadsByHash, $self'participantsPayload, $self'participants, $self'participantsCount, $self'payloads, $self'payloadsCount, $self'finalized, $self'winnerPayload, $self'winnerVotes, $self'winnerGuarded), ());
+}
+
+;;
+;; Get methods of a Contract VotingRound
+;;
+
+_ %participantsCount() method_id(89176) {
+    var self = $VotingRound$_contract_load();
+    var res = self~$VotingRound$_fun_participantsCount();
+    return res;
+}
+
+_ %winnerPayload() method_id(102170) {
+    var self = $VotingRound$_contract_load();
+    var res = self~$VotingRound$_fun_winnerPayload();
+    return res;
+}
+
+_ %winnerVotes() method_id(101316) {
+    var self = $VotingRound$_contract_load();
+    var res = self~$VotingRound$_fun_winnerVotes();
+    return res;
+}
+
+_ %winnerGuarded() method_id(81599) {
+    var self = $VotingRound$_contract_load();
+    var res = self~$VotingRound$_fun_winnerGuarded();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmaRqk8SzurzHd6LBmMN6yg2HmsTXE3L3TnoPymAZ4ytaK";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract VotingRound
+;;
+
+((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int), int) $VotingRound$_contract_router_internal((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive InternalVote message
+    if (op == 2008725369) {
+        var msg = in_msg~$InternalVote$_load();
+        self~$VotingRound$_internal_binary_InternalVote(msg);
+        return (self, true);
+    }
+    
+    ;; Receive InternalFinalize message
+    if (op == 4124677558) {
+        var msg = in_msg~$InternalFinalize$_load();
+        self~$VotingRound$_internal_binary_InternalFinalize(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$VotingRound$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "check opened round" message
+        if (text_op == 0x12511bf31bf6bf76e15f462c80fde0373029b30cc9665d2141bd1db5e63d089a) {
+            self~$VotingRound$_internal_text_12511bf31bf6bf76e15f462c80fde0373029b30cc9665d2141bd1db5e63d089a();
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $VotingRound$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$VotingRound$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $VotingRound$_contract_store(self);
+}

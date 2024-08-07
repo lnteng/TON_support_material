@@ -1,0 +1,41 @@
+$Optionals$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-optionals/output/sample_Optionals.code.fc:14:52: warning: Local variable '$self'ca' is not used
+      var (($self'ca, $self'cb, $self'cc, $self'cd)) = (null(), null(), null(), null());
+                                                     ^
+$Optionals$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-optionals/output/sample_Optionals.code.fc:14:52: warning: Local variable '$self'cb' is not used
+      var (($self'ca, $self'cb, $self'cc, $self'cd)) = (null(), null(), null(), null());
+                                                     ^
+$Optionals$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-optionals/output/sample_Optionals.code.fc:14:52: warning: Local variable '$self'cc' is not used
+      var (($self'ca, $self'cb, $self'cc, $self'cd)) = (null(), null(), null(), null());
+                                                     ^
+$Optionals$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-optionals/output/sample_Optionals.code.fc:14:52: warning: Local variable '$self'cd' is not used
+      var (($self'ca, $self'cb, $self'cc, $self'cd)) = (null(), null(), null(), null());
+                                                     ^
+$Optionals$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-optionals/output/sample_Optionals.storage.fc:146:19: warning: Lack of end_parse.
+          return $sc~$Optionals$_load();
+                    ^
+$Optionals$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-optionals/output/sample_Optionals.code.fc:103:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-optionals/output/sample_Optionals.storage.fc:157:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Optionals$_contract_store & $Optionals$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-optionals/output/sample_Optionals.storage.fc:142:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-optionals/output/sample_Optionals.storage.fc:157:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Optionals$_contract_store & $Optionals$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-optionals/output/sample_Optionals.storage.fc:142:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-optionals/output/sample_Optionals.storage.fc:157:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

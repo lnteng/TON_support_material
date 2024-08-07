@@ -1,0 +1,43 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/fireworks-func/contracts/fireworks.fc:305:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+fake_launch: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/fireworks-func/contracts/fireworks.fc:228:31: warning: Local variable 'a' is not used
+          (int a, int b, int c) = compute_data_size(lib, 2000);
+                                ^
+fake_launch: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/fireworks-func/contracts/fireworks.fc:228:31: warning: Local variable 'b' is not used
+          (int a, int b, int c) = compute_data_size(lib, 2000);
+                                ^
+fake_launch: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/fireworks-func/contracts/fireworks.fc:228:31: warning: Local variable 'c' is not used
+          (int a, int b, int c) = compute_data_size(lib, 2000);
+                                ^
+fake_launch: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/fireworks-func/contracts/fireworks.fc:112:29: warning: Local variable 'f' is not used
+          (cell value, int f) = dict.udict_get_ref?(16, 3);
+                              ^
+fake_launch: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/fireworks-func/contracts/fireworks.fc:80:42: warning: Local variable 'a2' is not used
+          (int a1, int a2, int a3, int a4) = untuple4_int(t3);
+                                           ^
+fake_launch: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/fireworks-func/contracts/fireworks.fc:80:42: warning: Local variable 'a3' is not used
+          (int a1, int a2, int a3, int a4) = untuple4_int(t3);
+                                           ^
+fake_launch: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/fireworks-func/contracts/fireworks.fc:80:42: warning: Local variable 'a4' is not used
+          (int a1, int a2, int a3, int a4) = untuple4_int(t3);
+                                           ^
+read_id: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/fireworks-func/contracts/fireworks.fc:43:19: warning: Lack of end_parse.
+      int id = cdata~load_int(32);
+                    ^
+fake_launch & read_id: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/fireworks-func/contracts/fireworks.fc:40:27: warning: Cell of get_data and set_data are inconsistent.
+      cell data = get_data();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/fireworks-func/contracts/fireworks.fc:92:9: warning: Cell of get_data and set_data are inconsistent.
+          .store_uint(number, 2)
+          ^

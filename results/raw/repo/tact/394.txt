@@ -1,0 +1,58 @@
+__tact_dict_set_uint_slice: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task5.stdlib.fc:52:21: warning: Local variable 'ok' is not used
+          var (r, ok) = udict_delete?(d, kl, k);
+                      ^
+$Task5$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task5.code.fc:14:58: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'nfts, $self'totalNftsHeld)) = (null(), null(), 0);
+                                                           ^
+$Task5$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task5.storage.fc:218:19: warning: Lack of end_parse.
+          return $sc~$Task5$_load();
+                    ^
+$Task5$_internal_binary_WorkerSendNFTs: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task5.code.fc:95:14: warning: Local variable '$end' is not used
+      int $end = ($msg'startIdx + 91);
+               ^
+$Task5$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task5.code.fc:146:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task5.storage.fc:229:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task5$_contract_store & $Task5$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task5.storage.fc:214:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task5.storage.fc:229:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task5.code.fc:101:203: warning: UnHandle bounced message with op: 0x4abfbe22
+  ... FTs$_store_cell($WorkerSendNFTs$_constructor_startIdx_queryId_tn($x, $msg'queryId, $bodyTransfer))));
+  ...                                                                                                     ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task5.code.fc:65:176: warning: UnHandle bounced message with op: 0xfda48b79
+          $global_send($SendParameters$_constructor_to_value_mode_body($self'owner, 0, 128, $AdminFetchProfit$_store_cell($AdminFetchProfit$_constructor_queryId($msg'queryId))));
+                                                                                                                                                                                 ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task5.code.fc:45:312: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... unt_forwardPayload($msg'queryId, $msg'prevOwner, $msg'prevOwner, null(), 0, $global_emptySlice()))));
+  ...                                                                                                     ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task5.code.fc:51:312: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... unt_forwardPayload($msg'queryId, $msg'prevOwner, $msg'prevOwner, null(), 0, $global_emptySlice()))));
+  ...                                                                                                     ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task5.code.fc:54:349: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... unt_forwardPayload($msg'queryId, $msg'prevOwner, $msg'prevOwner, null(), 0, $global_emptySlice()))));
+  ...                                                                                                     ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task5.code.fc:85:198: warning: UnHandle bounced message with op: 0x4abfbe22
+      $global_send($SendParameters$_constructor_to_value_mode_body(my_address(), 0, 64, $WorkerSendNFTs$_store_cell($WorkerSendNFTs$_constructor_queryId_startIdx_tn($msg'queryId, 0, $bodyTransfer))));
+                                                                                                                                                                                                       ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task5.code.fc:80:167: warning: UnHandle bounced message with op: 0x5fcc3d14
+              $global_send($SendParameters$_constructor_to_value_mode_body(__tact_not_null(__tact_dict_get_uint_slice($self'nfts, 16, $x)), 12480000, 0, $bodyTransfer));
+                                                                                                                                                                        ^

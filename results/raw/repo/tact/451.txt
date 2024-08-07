@@ -1,0 +1,12 @@
+__gen_Treasure_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/examples/output/treasure_Treasure.fc:116:24: warning: Local variable 'self'owner' is not used
+      var ((self'owner)) = (null());
+                         ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/examples/output/treasure_Treasure.fc:180:31: warning: Lack of end_parse.
+      slice msg_sender_addr = cs~load_msg_addr();
+                                ^
+__gen_load_Treasure: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/examples/output/treasure_Treasure.fc:54:14: warning: Lack of end_parse.
+      return sc~__gen_read_Treasure();
+               ^

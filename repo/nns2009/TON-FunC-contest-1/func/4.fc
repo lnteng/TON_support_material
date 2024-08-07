@@ -1,0 +1,114 @@
+{-
+
+seedrandom('111');
+
+Passed all 10000 tests!
+2096 transactions occured
+2083 set transactions and 13 remove transactions
+12697303 total gas spent
+6057.874 gas per transaction
+2 total unexpected exceptions
+
+
+Passed all 30000 tests!
+6008 transactions occured
+5968 set transactions and 40 remove transactions
+36415151 total gas spent
+6061.110 gas per transaction
+4 total unexpected exceptions
+
+
+TASK 4 - HASHMAP STORAGE.
+
+* Add-new-entry message has the following structure:
+	* 32-bit unsigined `op` equal to 1
+	* 64-bit unsigned `query_id`
+	* 256-bit unsgined key
+	* 64-bit `valid_until` unixtime
+	* the rest slice is the value
+
+	Upon receipt of such a message, the contract must add a new key/value entry to its data.
+	Clarification: if the key already exists then the entry must be replaced.
+	Contract storage format is arbitrary, you are free to change it.
+
+* Remove-outdated message has the following stucture:
+	* 32-bit unsigined `op` equal to 2
+	* 64-bit unsigned `query_id`
+
+	Upon receipt of such a message, the contract must delete all otudated entries from its data (those with `valid_until` < now()). Note, tests will not cover cases when messages contain valid `op=2`, `query_id` and then something else (that means that participants may handle such messages at their discretion).
+
+* For all other internal messages an error (exit_code > 1) should be thrown
+
+* Get-method `get_key` accepts 256-bit unsignied key and should return `valid_until` integer and value data slice for this key. Note: unixtime of running `get_key` method should not affect result.
+
+  If there is no entry for this key then an error (exit_code > 1) should be thrown.
+
+* Tests will initially run with empty storage
+
+-}
+
+cell load_data() {
+	cell data = get_data();
+	slice ds = data.begin_parse();
+	if (ds.slice_bits() == 0) {
+		return new_dict();
+	} else {
+		return data;
+	}
+}
+
+;; testable
+() recv_internal(int balance, int msg_value, cell in_msg_full, slice in_msg_body) {
+	int op = in_msg_body~load_uint(32);
+	int query_id = in_msg_body~load_uint(64);
+
+
+
+	;; cell dic = load_data();
+	cell data = get_data();
+	slice ds = data.begin_parse();
+	cell dic = ds.slice_bits() == 0 ? new_dict() : data;
+
+
+
+	if (op == 1) { ;; add new entry
+		int key = in_msg_body~load_uint(256);
+		dic~udict_set(256, key, in_msg_body);
+		set_data(dic);
+		return ();
+	}
+
+	if (op == 2) { ;; remove outdated
+		int key = -1;
+		do {
+			(key, slice cs, int f) = dic.udict_get_next?(256, key);
+			if (f) {
+				int valid_until = cs~load_uint(64);
+				if (valid_until < now()) {
+					dic~udict_delete?(256, key);
+				}
+			}
+		} until (~ f);
+
+		;; !! check if dict changed
+		if (dic.dict_empty?()) {
+			set_data(begin_cell().end_cell());
+		} else {
+			set_data(dic);
+		}
+
+		return ();
+	}
+
+	throw (12);
+}
+
+;; testable
+(int, slice) get_key(int key) method_id {
+	cell dic = load_data();
+	(slice payload, int success) = dic.udict_get?(256, key);
+	throw_unless(98, success);
+
+	int valid_until = payload~load_uint(64);
+	return (valid_until, payload);
+}

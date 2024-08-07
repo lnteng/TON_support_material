@@ -1,0 +1,54 @@
+$QuotaShop$_internal_text_250b76e2b9576fc6b4c45129483006b0003a0c39b6f7ae413d177f4e3479dbca: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_QuotaShop.code.fc:74:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$QuotaShop$_internal_text_250b76e2b9576fc6b4c45129483006b0003a0c39b6f7ae413d177f4e3479dbca: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_QuotaShop.code.fc:74:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$QuotaShop$_internal_text_250b76e2b9576fc6b4c45129483006b0003a0c39b6f7ae413d177f4e3479dbca: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_QuotaShop.code.fc:74:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$QuotaShop$_internal_binary_IssueQuota: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_QuotaShop.code.fc:51:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$QuotaShop$_internal_binary_IssueQuota: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_QuotaShop.code.fc:51:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$QuotaShop$_internal_binary_IssueQuota: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_QuotaShop.code.fc:51:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$QuotaShop$_internal_binary_BuildQuotaShop: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_QuotaShop.code.fc:84:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$QuotaShop$_internal_binary_BuildQuotaShop: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_QuotaShop.code.fc:84:59: warning: Local variable '$ctx'sender' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$QuotaShop$_internal_binary_BuildQuotaShop: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_QuotaShop.code.fc:84:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$QuotaShop$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_QuotaShop.storage.fc:190:19: warning: Lack of end_parse.
+          return $sc~$QuotaShop$_load();
+                    ^
+$QuotaShop$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_QuotaShop.code.fc:141:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_QuotaShop.storage.fc:201:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$QuotaShop$_contract_store & $QuotaShop$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_QuotaShop.storage.fc:186:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_QuotaShop.storage.fc:201:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

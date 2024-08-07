@@ -1,0 +1,184 @@
+;;
+;; Header files for VotingRound
+;; NOTE: declarations are sorted for optimal order
+;;
+
+;; __tact_verify_address
+slice __tact_verify_address(slice address) inline;
+
+;; __tact_load_address
+(slice, slice) __tact_load_address(slice cs) inline;
+
+;; __tact_store_address
+builder __tact_store_address(builder b, slice address) inline;
+
+;; __tact_my_balance
+int __tact_my_balance() inline;
+
+;; __tact_not_null
+forall X -> X __tact_not_null(X x) inline;
+
+;; __tact_context_get
+(int, slice, int, slice) __tact_context_get() inline;
+
+;; __tact_context_get_sender
+slice __tact_context_get_sender() inline;
+
+;; __tact_store_bool
+builder __tact_store_bool(builder b, int v) inline;
+
+;; __tact_dict_set_int_int
+(cell, ()) __tact_dict_set_int_int(cell d, int kl, int k, int v, int vl) inline;
+
+;; __tact_dict_get_int_int
+int __tact_dict_get_int_int(cell d, int kl, int k, int vl) inline;
+
+;; __tact_dict_set_int_cell
+(cell, ()) __tact_dict_set_int_cell(cell d, int kl, int k, cell v) inline;
+
+;; __tact_dict_get_int_cell
+cell __tact_dict_get_int_cell(cell d, int kl, int k) inline;
+
+;; __tact_dict_set_int_slice
+(cell, ()) __tact_dict_set_int_slice(cell d, int kl, int k, slice v) inline;
+
+;; __tact_dict_set_slice_int
+(cell, ()) __tact_dict_set_slice_int(cell d, int kl, slice k, int v, int vl) inline;
+
+;; __tact_dict_get_slice_int
+int __tact_dict_get_slice_int(cell d, int kl, slice k, int vl) inline;
+
+;; __tact_slice_eq_bits
+int __tact_slice_eq_bits(slice a, slice b) inline;
+
+;; $Deploy$_load
+(slice, ((int))) $Deploy$_load(slice sc_0) inline;
+
+;; $DeployOk$_store
+builder $DeployOk$_store(builder build_0, (int) v) inline;
+
+;; $DeployOk$_store_cell
+cell $DeployOk$_store_cell((int) v) inline;
+
+;; $PayloadVotes$_store
+builder $PayloadVotes$_store(builder build_0, (slice, int, int) v) inline;
+
+;; $PayloadVotes$_store_cell
+cell $PayloadVotes$_store_cell((slice, int, int) v) inline;
+
+;; $PayloadVotes$_load
+(slice, ((slice, int, int))) $PayloadVotes$_load(slice sc_0) inline;
+
+;; $PayloadVotes$_as_optional
+tuple $PayloadVotes$_as_optional((slice, int, int) v) inline;
+
+;; $PayloadVotes$_load_opt
+tuple $PayloadVotes$_load_opt(cell cl) inline;
+
+;; $RoundParticipantInfo$_store
+builder $RoundParticipantInfo$_store(builder build_0, (slice, int, int, int) v) inline;
+
+;; $RoundParticipantInfo$_store_cell
+cell $RoundParticipantInfo$_store_cell((slice, int, int, int) v) inline;
+
+;; $RoundParticipantInfo$_load
+(slice, ((slice, int, int, int))) $RoundParticipantInfo$_load(slice sc_0) inline;
+
+;; $RoundParticipantInfo$_as_optional
+tuple $RoundParticipantInfo$_as_optional((slice, int, int, int) v) inline;
+
+;; $RoundParticipantInfo$_load_opt
+tuple $RoundParticipantInfo$_load_opt(cell cl) inline;
+
+;; $InternalRoundOpened$_store
+builder $InternalRoundOpened$_store(builder build_0, (int) v) inline;
+
+;; $InternalRoundOpened$_store_cell
+cell $InternalRoundOpened$_store_cell((int) v) inline;
+
+;; $InternalVote$_load
+(slice, ((int, slice, slice, int, int))) $InternalVote$_load(slice sc_0) inline;
+
+;; $InternalFinalize$_load
+(slice, ((int))) $InternalFinalize$_load(slice sc_0) inline;
+
+;; $InternalFinalized$_store
+builder $InternalFinalized$_store(builder build_0, (int, slice, int, int, cell, int, cell, cell, int, cell) v) inline_ref;
+
+;; $InternalFinalized$_store_cell
+cell $InternalFinalized$_store_cell((int, slice, int, int, cell, int, cell, cell, int, cell) v) inline;
+
+;; $VotingRound$_store
+builder $VotingRound$_store(builder build_0, (slice, int, cell, cell, cell, int, cell, int, int, slice, int, int) v) inline;
+
+;; $VotingRound$_load
+(slice, ((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int))) $VotingRound$_load(slice sc_0) inline;
+
+;; $StateInit$_not_null
+((cell, cell)) $StateInit$_not_null(tuple v) inline;
+
+;; $Context$_get_value
+_ $Context$_get_value((int, slice, int, slice) v) inline;
+
+;; $PayloadVotes$_not_null
+((slice, int, int)) $PayloadVotes$_not_null(tuple v) inline;
+
+;; $RoundParticipantInfo$_not_null
+((slice, int, int, int)) $RoundParticipantInfo$_not_null(tuple v) inline;
+
+;; $VotingRound$init$_load
+(slice, ((slice, int))) $VotingRound$init$_load(slice sc_0) inline;
+
+;; $VotingRound$_contract_init
+(slice, int, cell, cell, cell, int, cell, int, int, slice, int, int) $VotingRound$_contract_init(slice $parent, int $round) impure inline_ref;
+
+;; $VotingRound$_contract_load
+(slice, int, cell, cell, cell, int, cell, int, int, slice, int, int) $VotingRound$_contract_load() impure inline_ref;
+
+;; $VotingRound$_contract_store
+() $VotingRound$_contract_store((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int) v) impure inline;
+
+;; $global_send
+() $global_send((int, slice, int, int, cell, cell, cell) $params) impure inline_ref;
+
+;; $VotingRound$_fun_participantsCount
+((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int), int) $VotingRound$_fun_participantsCount((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int) $self) impure inline_ref;
+
+;; $VotingRound$_fun_winnerPayload
+((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int), slice) $VotingRound$_fun_winnerPayload((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int) $self) impure inline_ref;
+
+;; $VotingRound$_fun_winnerVotes
+((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int), int) $VotingRound$_fun_winnerVotes((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int) $self) impure inline_ref;
+
+;; $VotingRound$_fun_winnerGuarded
+((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int), int) $VotingRound$_fun_winnerGuarded((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int) $self) impure inline_ref;
+
+;; $SendParameters$_constructor_bounce_to_value_mode_body_code_data
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline;
+
+;; $VotingRound$_fun_forward
+((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int), ()) $VotingRound$_fun_forward((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int) $self, slice $to, cell $body, int $bounce, tuple $init) impure inline_ref;
+
+;; $VotingRound$_fun_reply
+((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int), ()) $VotingRound$_fun_reply((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int) $self, cell $body) impure inline;
+
+;; $VotingRound$_fun_notify
+((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int), ()) $VotingRound$_fun_notify((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int) $self, cell $body) impure inline;
+
+;; $InternalRoundOpened$_constructor_round
+((int)) $InternalRoundOpened$_constructor_round(int round) inline;
+
+;; $RoundParticipantInfo$_constructor_address_votes_payloadHash_guard
+((slice, int, int, int)) $RoundParticipantInfo$_constructor_address_votes_payloadHash_guard(slice address, int votes, int payloadHash, int guard) inline;
+
+;; $PayloadVotes$_constructor_payload_votes_guarded
+((slice, int, int)) $PayloadVotes$_constructor_payload_votes_guarded(slice payload, int votes, int guarded) inline;
+
+;; $SendParameters$_constructor_to_body_value_mode
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_body_value_mode(slice to, cell body, int value, int mode) inline;
+
+;; $InternalFinalized$_constructor_round_winnerPayload_winnerVotes_winnerGuarded_goodParticipants_goodParticipantsCount_goodParticipantsVotes_badParticipants_badParticipantsCount_badParticipantsVotes
+((int, slice, int, int, cell, int, cell, cell, int, cell)) $InternalFinalized$_constructor_round_winnerPayload_winnerVotes_winnerGuarded_goodParticipants_goodParticipantsCount_goodParticipantsVotes_badParticipants_badParticipantsCount_badParticipantsVotes(int round, slice winnerPayload, int winnerVotes, int winnerGuarded, cell goodParticipants, int goodParticipantsCount, cell goodParticipantsVotes, cell badParticipants, int badParticipantsCount, cell badParticipantsVotes) inline;
+
+;; $DeployOk$_constructor_queryId
+((int)) $DeployOk$_constructor_queryId(int queryId) inline;

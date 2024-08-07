@@ -1,0 +1,166 @@
+global O_RDONLY: 0;
+
+import i32 printNumber(i32 number);
+import i32 open(string apathname, i32 flags);
+import i32 getc(i64 stream);
+
+import i64 fdopen(i32 fildes, string mode);
+
+function readChar(i64 file)
+{
+    return getc(file) -> readChar(file);
+}
+
+function sum(i32 product, i32 value)
+{
+    return product + value;
+}
+
+function sum(i32 product, (i32 value, ...values))
+{
+    return sum(product + value, ...values);
+}
+
+// Types
+global None: 0;
+global Forward: 757;
+global Down: 440;
+global Up: 229;
+
+// Modes
+global Type: 0;
+global Value: 1;
+
+struct Instruction
+{
+    type: None,
+    value: 0
+};
+
+function instruction(i32 type, i32 value)
+{
+    return Instruction
+    {
+        type: type,
+        value: value
+    };
+}
+
+function nextInstruction(i32 mode, i32 type, i32 value, (i32 char, ...chars))
+{
+    if (char == '\n') // New line
+    {
+        return instruction(type, value) -> nextInstruction(Type, None, 0, ...chars);
+    }
+
+    if (char < 0) // EOF
+    {
+        return nothing;
+    }
+
+    if (char == ' ') // Space
+    {
+        return tail nextInstruction(Value, type, value, ...chars);
+    }
+
+    if (mode == Type)
+    {
+        return tail nextInstruction(mode, type + char, value, ...chars);
+    }
+
+    return tail nextInstruction(mode, type, (value * 10) + (char - '0'), ...chars);
+}
+
+function part1(i32 x, i32 y, without instruction)
+{
+    return x * y;
+}
+
+function part1(i32 x, i32 y, (Instruction instruction, ...instructions))
+{
+    if (instruction.type == Forward)
+    {
+        return tail part1(x + instruction.value, y, ...instructions);
+    }
+
+    if (instruction.type == Up)
+    {
+        return tail part1(x, y - instruction.value, ...instructions);
+    }
+
+    if (instruction.type == Down)
+    {
+        return tail part1(x, y + instruction.value, ...instructions);
+    }
+
+    return tail part1(x, y, ...instructions);
+}
+
+function part2(i32 x, i32 y, i32 aim, without instruction)
+{
+    return x * y;
+}
+
+function part2(i32 x, i32 y, i32 aim, (Instruction instruction, ...instructions))
+{
+    if (instruction.type == Forward)
+    {
+        return tail part2(x + instruction.value
+            , y + (aim * instruction.value)
+            , aim
+            , ...instructions
+            );
+    }
+
+    if (instruction.type == Up)
+    {
+        return tail part2(x, y, aim - instruction.value, ...instructions);
+    }
+
+    if (instruction.type == Down)
+    {
+        return tail part2(x, y, aim + instruction.value, ...instructions);
+    }
+
+    return tail part2(x, y, aim, ...instructions);
+}
+
+function bind(i32 result1, i32 result2)
+{
+    return [result1, result2];
+}
+
+function run()
+{
+    return bind(
+        part1(0, 0
+            , ...nextInstruction(Type
+                , 0, 0
+                , ...readChar(fdopen(open(@"input", O_RDONLY), @"r"))
+                )
+            ),
+        part2(0, 0, 0
+            , ...nextInstruction(Type
+                , 0, 0
+                , ...readChar(fdopen(open(@"input", O_RDONLY), @"r"))
+                )
+            )
+    );
+}
+
+function printNumbers(i32 number)
+{
+    return printNumber(number);
+}
+
+function printNumbers((i32 number, ...numbers))
+{
+    printNumber(number);
+
+    return tail printNumbers(...numbers);
+}
+
+export i32 main()
+{
+    return printNumbers(...run());
+}

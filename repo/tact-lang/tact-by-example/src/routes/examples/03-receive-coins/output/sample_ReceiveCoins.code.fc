@@ -1,0 +1,156 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_ReceiveCoins.headers.fc";
+#include "sample_ReceiveCoins.stdlib.fc";
+#include "sample_ReceiveCoins.constants.fc";
+#include "sample_ReceiveCoins.storage.fc";
+
+;;
+;; Contract ReceiveCoins functions
+;;
+
+(int) $ReceiveCoins$_contract_init() impure inline_ref {
+    var (($self'val)) = (null());
+    $self'val = 0;
+    return ($self'val);
+}
+
+((int), int) $ReceiveCoins$_fun_balance((int) $self) impure inline_ref {
+    var (($self'val)) = $self;
+    return (($self'val), __tact_my_balance());
+}
+
+;;
+;; Receivers of a Contract ReceiveCoins
+;;
+
+(((int)), ()) %$ReceiveCoins$_internal_empty((int) $self) impure inline {
+    var ($self'val) = $self;
+    __tact_nop();
+    throw_unless(41168, (__tact_my_balance() <= 3000000000));
+    return (($self'val), ());
+}
+
+((int), ()) $ReceiveCoins$_internal_text_c4f8d72312edfdef5b7bec7833bdbb162d1511bd78a912aed0f2637af65572ae((int) $self) impure inline {
+    var ($self'val) = $self;
+    __tact_nop();
+    $self'val = ($self'val + 1);
+    return (($self'val), ());
+}
+
+((int), ()) $ReceiveCoins$_internal_text_fae3d18f63a30445aa23adf6a0384682eabd8c42d9ec05c9d7152e6a56752f18((int) $self) impure inline {
+    var ($self'val) = $self;
+    __tact_nop();
+    $self'val = ($self'val + 1);
+    ($self'val)~$ReceiveCoins$_fun_reply(__gen_cell_comment_7e196d99e1c915d9d659f2fe0802abc2a7fe38f8eb427644ac86838264432458());
+    return (($self'val), ());
+}
+
+(((int)), ()) $ReceiveCoins$_internal_binary_Deploy((int) $self, (int) $deploy) impure inline {
+    var ($self'val) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'val)~$ReceiveCoins$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'val), ());
+}
+
+;;
+;; Get methods of a Contract ReceiveCoins
+;;
+
+_ %balance() method_id(104128) {
+    var self = $ReceiveCoins$_contract_load();
+    var res = self~$ReceiveCoins$_fun_balance();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmU3N1wSm1H2meRZfcSfHGQCXQabCgCg3Nj3LUXdUJ716w";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract ReceiveCoins
+;;
+
+((int), int) $ReceiveCoins$_contract_router_internal((int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive empty message
+    if ((op == 0) & (slice_bits(in_msg) <= 32)) {
+        self~%$ReceiveCoins$_internal_empty();
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$ReceiveCoins$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "increment" message
+        if (text_op == 0xc4f8d72312edfdef5b7bec7833bdbb162d1511bd78a912aed0f2637af65572ae) {
+            self~$ReceiveCoins$_internal_text_c4f8d72312edfdef5b7bec7833bdbb162d1511bd78a912aed0f2637af65572ae();
+            return (self, true);
+        }
+        
+        ;; Receive "refunding increment" message
+        if (text_op == 0xfae3d18f63a30445aa23adf6a0384682eabd8c42d9ec05c9d7152e6a56752f18) {
+            self~$ReceiveCoins$_internal_text_fae3d18f63a30445aa23adf6a0384682eabd8c42d9ec05c9d7152e6a56752f18();
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $ReceiveCoins$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$ReceiveCoins$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $ReceiveCoins$_contract_store(self);
+}

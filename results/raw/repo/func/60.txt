@@ -1,0 +1,27 @@
+get_seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./behrang/tsc5/contracts/task1.fc:73:36: warning: Lack of end_parse.
+      return get_data().begin_parse().skip_bits(256 + 32 + 267).preload_uint(32);
+                                     ^
+get_execution_time: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./behrang/tsc5/contracts/task1.fc:77:36: warning: Lack of end_parse.
+      return get_data().begin_parse().skip_bits(256).preload_uint(32);
+                                     ^
+claim: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./behrang/tsc5/contracts/task1.fc:45:24: warning: Lack of end_parse.
+      slice receiver = ds~load_msg_addr();
+                         ^
+update: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./behrang/tsc5/contracts/task1.fc:25:19: warning: Lack of end_parse.
+      int seqno = ds~load_uint(32);
+                    ^
+update: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./behrang/tsc5/contracts/task1.fc:19:23: warning: Lack of end_parse.
+      int new_seqno = ss~load_uint(32);
+                        ^
+save_data & get_seqno: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./behrang/tsc5/contracts/task1.fc:73:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().skip_bits(256 + 32 + 267).preload_uint(32);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./behrang/tsc5/contracts/task1.fc:5:9: warning: Cell of get_data and set_data are inconsistent.
+          .store_uint(public_key, 256)
+          ^

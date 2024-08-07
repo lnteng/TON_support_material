@@ -1,0 +1,26 @@
+$Fireworks$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact-fireworks/contracts/output/sample_Fireworks.storage.fc:183:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$Fireworks$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact-fireworks/contracts/output/sample_Fireworks.code.fc:15:22: warning: Local variable '$self'id' is not used
+      var (($self'id)) = (null());
+                       ^
+$Fireworks$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact-fireworks/contracts/output/sample_Fireworks.storage.fc:163:19: warning: Lack of end_parse.
+          return $sc~$Fireworks$_load();
+                    ^
+$Fireworks$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact-fireworks/contracts/output/sample_Fireworks.code.fc:98:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact-fireworks/contracts/output/sample_Fireworks.storage.fc:174:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Fireworks$_contract_store & $Fireworks$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact-fireworks/contracts/output/sample_Fireworks.storage.fc:159:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact-fireworks/contracts/output/sample_Fireworks.storage.fc:174:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

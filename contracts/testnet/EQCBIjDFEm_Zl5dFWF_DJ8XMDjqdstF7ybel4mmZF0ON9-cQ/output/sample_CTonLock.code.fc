@@ -1,0 +1,194 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_CTonLock.headers.fc";
+#include "sample_CTonLock.stdlib.fc";
+#include "sample_CTonLock.storage.fc";
+
+;;
+;; Contract CTonLock functions
+;;
+
+(slice, int, int, int, cell, cell) $CTonLock$_contract_init(slice $owner, int $totalAmount) impure inline_ref {
+    var (($self'owner, $self'totalAmountLocked, $self'totalAmountBalance, $self'lockerLength, $self'lockerTimeMap, $self'lockerMap)) = (null(), 0, 0, 0, null(), null());
+    $self'owner = $owner;
+    $self'totalAmountBalance = $totalAmount;
+    return ($self'owner, $self'totalAmountLocked, $self'totalAmountBalance, $self'lockerLength, $self'lockerTimeMap, $self'lockerMap);
+}
+
+((slice, int, int, int, cell, cell), ()) $CTonLock$_fun_updateLocker((slice, int, int, int, cell, cell) $self) impure inline_ref {
+    var (($self'owner, $self'totalAmountLocked, $self'totalAmountBalance, $self'lockerLength, $self'lockerTimeMap, $self'lockerMap)) = $self;
+    int $nowTime = now();
+    int $i = 0;
+    repeat ($self'lockerLength) {
+        $i = ($i + 1);
+        int $lockTime = __tact_not_null(__tact_dict_get_int_int($self'lockerTimeMap, 257, $i, 257));
+        if (($lockTime <= $nowTime)) {
+            int $lockedAmount = __tact_not_null(__tact_dict_get_int_int($self'lockerMap, 257, $lockTime, 257));
+            if (( (($self'totalAmountLocked > 0)) ? (($lockedAmount > 0)) : (false) )) {
+                $self'totalAmountLocked = ($self'totalAmountLocked - $lockedAmount);
+                $self'lockerMap~__tact_dict_set_int_int(257, $lockTime, 0, 257);
+            }
+        }
+    }
+    return (($self'owner, $self'totalAmountLocked, $self'totalAmountBalance, $self'lockerLength, $self'lockerTimeMap, $self'lockerMap), ());
+}
+
+((slice, int, int, int, cell, cell), (slice, int, int, int, cell)) $CTonLock$_fun_lockerInfo((slice, int, int, int, cell, cell) $self) impure inline_ref {
+    var (($self'owner, $self'totalAmountLocked, $self'totalAmountBalance, $self'lockerLength, $self'lockerTimeMap, $self'lockerMap)) = $self;
+    return (($self'owner, $self'totalAmountLocked, $self'totalAmountBalance, $self'lockerLength, $self'lockerTimeMap, $self'lockerMap), $LockerInfo$_constructor_owner_totalAmountLocked_totalAmountBalance_lockerLength_lockerMap($self'owner, $self'totalAmountLocked, $self'totalAmountBalance, $self'lockerLength, $self'lockerMap));
+}
+
+;;
+;; Receivers of a Contract CTonLock
+;;
+
+(((slice, int, int, int, cell, cell)), ()) $CTonLock$_internal_binary_SetLocker((slice, int, int, int, cell, cell) $self, (int, cell, cell) $msg) impure inline {
+    var ($self'owner, $self'totalAmountLocked, $self'totalAmountBalance, $self'lockerLength, $self'lockerTimeMap, $self'lockerMap) = $self;
+    var ($msg'length, $msg'keys, $msg'lockerInfo) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    throw_unless(14534, ( __tact_slice_eq_bits($self'owner, $ctx'sender) ));
+    int $i = 0;
+    repeat ($msg'length) {
+        $i = ($i + 1);
+        int $lockTime = __tact_not_null(__tact_dict_get_int_int($msg'keys, 257, $i, 257));
+        if (null?(__tact_dict_get_int_int($self'lockerMap, 257, $lockTime, 257))) {
+            int $lockAmountTmp = __tact_not_null(__tact_dict_get_int_int($msg'lockerInfo, 257, $lockTime, 257));
+            $self'lockerMap~__tact_dict_set_int_int(257, $lockTime, $lockAmountTmp, 257);
+            $self'totalAmountLocked = ($self'totalAmountLocked + $lockAmountTmp);
+            $self'lockerLength = ($self'lockerLength + 1);
+            $self'lockerTimeMap~__tact_dict_set_int_int(257, $self'lockerLength, $lockTime, 257);
+        }
+    }
+    return (($self'owner, $self'totalAmountLocked, $self'totalAmountBalance, $self'lockerLength, $self'lockerTimeMap, $self'lockerMap), ());
+}
+
+(((slice, int, int, int, cell, cell)), ()) $CTonLock$_internal_binary_TokenWithdraw((slice, int, int, int, cell, cell) $self, (int, slice, slice) $msg) impure inline {
+    var ($self'owner, $self'totalAmountLocked, $self'totalAmountBalance, $self'lockerLength, $self'lockerTimeMap, $self'lockerMap) = $self;
+    var ($msg'amount, $msg'jettonWalletAddress, $msg'receiver) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    throw_unless(14534, ( __tact_slice_eq_bits($self'owner, $ctx'sender) ));
+    ($self'owner, $self'totalAmountLocked, $self'totalAmountBalance, $self'lockerLength, $self'lockerTimeMap, $self'lockerMap)~$CTonLock$_fun_updateLocker();
+    int $remainingAmount = ($self'totalAmountBalance - $msg'amount);
+    throw_unless(11137, ($remainingAmount >= $self'totalAmountLocked));
+    $self'totalAmountBalance = ($self'totalAmountBalance - $msg'amount);
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body($msg'jettonWalletAddress, 0, true, 64, $TokenTransfer$_store_cell($TokenTransfer$_constructor_query_id_amount_sender_response_destination_custom_payload_forward_ton_amount_forward_payload(0, $msg'amount, $msg'receiver, my_address(), null(), 0, $Cell$_fun_asSlice(end_cell(store_uint(store_uint(begin_cell(), 0, 1), 0, 32)))))));
+    return (($self'owner, $self'totalAmountLocked, $self'totalAmountBalance, $self'lockerLength, $self'lockerTimeMap, $self'lockerMap), ());
+}
+
+((slice, int, int, int, cell, cell), ()) $CTonLock$_internal_text_1a63ed6eba39c11ba2540547ceb5f79b6fe0ab29a1055bb0ed7d53e4ab5089ac((slice, int, int, int, cell, cell) $self) impure inline {
+    var ($self'owner, $self'totalAmountLocked, $self'totalAmountBalance, $self'lockerLength, $self'lockerTimeMap, $self'lockerMap) = $self;
+    throw_unless(59445, ( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) ));
+    $global_send($SendParameters$_constructor_to_value_bounce_mode($self'owner, (__tact_my_balance() - 100000000), false, 1));
+    return (($self'owner, $self'totalAmountLocked, $self'totalAmountBalance, $self'lockerLength, $self'lockerTimeMap, $self'lockerMap), ());
+}
+
+(((slice, int, int, int, cell, cell)), ()) $CTonLock$_internal_binary_Deploy((slice, int, int, int, cell, cell) $self, (int) $deploy) impure inline {
+    var ($self'owner, $self'totalAmountLocked, $self'totalAmountBalance, $self'lockerLength, $self'lockerTimeMap, $self'lockerMap) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'owner, $self'totalAmountLocked, $self'totalAmountBalance, $self'lockerLength, $self'lockerTimeMap, $self'lockerMap)~$CTonLock$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'owner, $self'totalAmountLocked, $self'totalAmountBalance, $self'lockerLength, $self'lockerTimeMap, $self'lockerMap), ());
+}
+
+;;
+;; Get methods of a Contract CTonLock
+;;
+
+_ %lockerInfo() method_id(71096) {
+    var self = $CTonLock$_contract_load();
+    var res = self~$CTonLock$_fun_lockerInfo();
+    return $LockerInfo$_to_external(res);
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmYXpbicrZQpffy2c5Y5uABFBjWq9vnxSYyyThtJNLMK5g";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract CTonLock
+;;
+
+((slice, int, int, int, cell, cell), int) $CTonLock$_contract_router_internal((slice, int, int, int, cell, cell) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive SetLocker message
+    if (op == 283079638) {
+        var msg = in_msg~$SetLocker$_load();
+        self~$CTonLock$_internal_binary_SetLocker(msg);
+        return (self, true);
+    }
+    
+    ;; Receive TokenWithdraw message
+    if (op == 3793692117) {
+        var msg = in_msg~$TokenWithdraw$_load();
+        self~$CTonLock$_internal_binary_TokenWithdraw(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$CTonLock$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "ClaimFee" message
+        if (text_op == 0x1a63ed6eba39c11ba2540547ceb5f79b6fe0ab29a1055bb0ed7d53e4ab5089ac) {
+            self~$CTonLock$_internal_text_1a63ed6eba39c11ba2540547ceb5f79b6fe0ab29a1055bb0ed7d53e4ab5089ac();
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $CTonLock$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$CTonLock$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $CTonLock$_contract_store(self);
+}

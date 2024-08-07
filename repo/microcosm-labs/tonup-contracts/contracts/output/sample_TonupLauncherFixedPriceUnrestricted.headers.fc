@@ -1,0 +1,364 @@
+;;
+;; Header files for TonupLauncherFixedPriceUnrestricted
+;; NOTE: declarations are sorted for optimal order
+;;
+
+;; __tact_verify_address
+slice __tact_verify_address(slice address) inline;
+
+;; __tact_load_address
+(slice, slice) __tact_load_address(slice cs) inline;
+
+;; __tact_store_address
+builder __tact_store_address(builder b, slice address) inline;
+
+;; __tact_my_balance
+int __tact_my_balance() inline;
+
+;; __tact_not_null
+forall X -> X __tact_not_null(X x) inline;
+
+;; __tact_context_get
+(int, slice, int, slice) __tact_context_get() inline;
+
+;; __tact_context_get_sender
+slice __tact_context_get_sender() inline;
+
+;; __tact_store_bool
+builder __tact_store_bool(builder b, int v) inline;
+
+;; __tact_dict_set_int_cell
+(cell, ()) __tact_dict_set_int_cell(cell d, int kl, int k, cell v) inline;
+
+;; __tact_dict_get_int_cell
+cell __tact_dict_get_int_cell(cell d, int kl, int k) inline;
+
+;; __tact_dict_set_slice_uint
+(cell, ()) __tact_dict_set_slice_uint(cell d, int kl, slice k, int v, int vl) inline;
+
+;; __tact_dict_get_slice_uint
+int __tact_dict_get_slice_uint(cell d, int kl, slice k, int vl) inline;
+
+;; __tact_slice_eq_bits
+int __tact_slice_eq_bits(slice a, slice b) inline;
+
+;; $Deploy$_load
+(slice, ((int))) $Deploy$_load(slice sc_0) inline;
+
+;; $DeployOk$_store
+builder $DeployOk$_store(builder build_0, (int) v) inline;
+
+;; $DeployOk$_store_cell
+cell $DeployOk$_store_cell((int) v) inline;
+
+;; $ChangeOwner$_load
+(slice, ((int, slice))) $ChangeOwner$_load(slice sc_0) inline;
+
+;; $ChangeOwnerOk$_store
+builder $ChangeOwnerOk$_store(builder build_0, (int, slice) v) inline;
+
+;; $ChangeOwnerOk$_store_cell
+cell $ChangeOwnerOk$_store_cell((int, slice) v) inline;
+
+;; $TokenTransfer$_store
+builder $TokenTransfer$_store(builder build_0, (int, int, slice, slice, cell, int, slice) v) inline_ref;
+
+;; $TokenTransfer$_store_cell
+cell $TokenTransfer$_store_cell((int, int, slice, slice, cell, int, slice) v) inline;
+
+;; $TokenTransfer$_load_bounced
+(slice, ((int, int))) $TokenTransfer$_load_bounced(slice sc_0) inline;
+
+;; $TokenNotification$_load
+(slice, ((int, int, slice, slice))) $TokenNotification$_load(slice sc_0) inline;
+
+;; $TokenExcesses$_load
+(slice, ((int))) $TokenExcesses$_load(slice sc_0) inline;
+
+;; $Participate$_load
+(slice, ((int))) $Participate$_load(slice sc_0) inline;
+
+;; $LauncherConfig$_store
+builder $LauncherConfig$_store(builder build_0, (int, int, int, int, int, slice, slice, int, int) v) inline_ref;
+
+;; $LauncherConfig$_load
+(slice, ((int, int, int, int, int, slice, slice, int, int))) $LauncherConfig$_load(slice sc_0) inline_ref;
+
+;; $SetLauncherConfig$_load
+(slice, (((int, int, int, int, int, slice, slice, int, int)))) $SetLauncherConfig$_load(slice sc_0) inline;
+
+;; $SetClaimStartTime$_load
+(slice, ((int))) $SetClaimStartTime$_load(slice sc_0) inline;
+
+;; $PoolConfig$_store
+builder $PoolConfig$_store(builder build_0, (slice, int) v) inline;
+
+;; $PoolConfig$_store_cell
+cell $PoolConfig$_store_cell((slice, int) v) inline;
+
+;; $PoolConfig$_load
+(slice, ((slice, int))) $PoolConfig$_load(slice sc_0) inline;
+
+;; $PoolConfig$_as_optional
+tuple $PoolConfig$_as_optional((slice, int) v) inline;
+
+;; $PoolConfig$_load_opt
+tuple $PoolConfig$_load_opt(cell cl) inline;
+
+;; $AddDistributionPool$_load
+(slice, (((slice, int)))) $AddDistributionPool$_load(slice sc_0) inline;
+
+;; $DeleteDistributionPool$_load
+(slice, ((int))) $DeleteDistributionPool$_load(slice sc_0) inline;
+
+;; $ModifyDistributionPool$_load
+(slice, ((int, (slice, int)))) $ModifyDistributionPool$_load(slice sc_0) inline;
+
+;; $ManualTransferNotification$_load
+(slice, ((int))) $ManualTransferNotification$_load(slice sc_0) inline;
+
+;; $ParticipatedEvent$_store
+builder $ParticipatedEvent$_store(builder build_0, (slice, int) v) inline;
+
+;; $ParticipatedEvent$_store_cell
+cell $ParticipatedEvent$_store_cell((slice, int) v) inline;
+
+;; $ClaimedEvent$_store
+builder $ClaimedEvent$_store(builder build_0, (slice, int) v) inline;
+
+;; $ClaimedEvent$_store_cell
+cell $ClaimedEvent$_store_cell((slice, int) v) inline;
+
+;; $RefundedEvent$_store
+builder $RefundedEvent$_store(builder build_0, (slice, int) v) inline;
+
+;; $RefundedEvent$_store_cell
+cell $RefundedEvent$_store_cell((slice, int) v) inline;
+
+;; $LauncherConfigSetEvent$_store
+builder $LauncherConfigSetEvent$_store(builder build_0, ((int, int, int, int, int, slice, slice, int, int)) v) inline;
+
+;; $LauncherConfigSetEvent$_store_cell
+cell $LauncherConfigSetEvent$_store_cell(((int, int, int, int, int, slice, slice, int, int)) v) inline;
+
+;; $ClaimStartTimeSetEvent$_store
+builder $ClaimStartTimeSetEvent$_store(builder build_0, (int) v) inline;
+
+;; $ClaimStartTimeSetEvent$_store_cell
+cell $ClaimStartTimeSetEvent$_store_cell((int) v) inline;
+
+;; $DistritutionPoolAddedEvent$_store
+builder $DistritutionPoolAddedEvent$_store(builder build_0, (int, (slice, int)) v) inline;
+
+;; $DistritutionPoolAddedEvent$_store_cell
+cell $DistritutionPoolAddedEvent$_store_cell((int, (slice, int)) v) inline;
+
+;; $DistributionPoolModifiedEvent$_store
+builder $DistributionPoolModifiedEvent$_store(builder build_0, (int, (slice, int)) v) inline;
+
+;; $DistributionPoolModifiedEvent$_store_cell
+cell $DistributionPoolModifiedEvent$_store_cell((int, (slice, int)) v) inline;
+
+;; $ConfigValidatedEvent$_store
+builder $ConfigValidatedEvent$_store(builder build_0, (int) v) inline;
+
+;; $ConfigValidatedEvent$_store_cell
+cell $ConfigValidatedEvent$_store_cell((int) v) inline;
+
+;; $FinalizedEvent$_store
+builder $FinalizedEvent$_store(builder build_0, (int, int) v) inline;
+
+;; $FinalizedEvent$_store_cell
+cell $FinalizedEvent$_store_cell((int, int) v) inline;
+
+;; $FinalizationRefundEvent$_store
+builder $FinalizationRefundEvent$_store(builder build_0, (int, slice) v) inline;
+
+;; $FinalizationRefundEvent$_store_cell
+cell $FinalizationRefundEvent$_store_cell((int, slice) v) inline;
+
+;; $DistributionEvent$_store
+builder $DistributionEvent$_store(builder build_0, (int, slice) v) inline;
+
+;; $DistributionEvent$_store_cell
+cell $DistributionEvent$_store_cell((int, slice) v) inline;
+
+;; $TonupLauncherFixedPriceUnrestricted$_store
+builder $TonupLauncherFixedPriceUnrestricted$_store(builder build_0, (slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int) v) inline;
+
+;; $TonupLauncherFixedPriceUnrestricted$_load
+(slice, ((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int))) $TonupLauncherFixedPriceUnrestricted$_load(slice sc_0) inline;
+
+;; $StateInit$_not_null
+((cell, cell)) $StateInit$_not_null(tuple v) inline;
+
+;; $Context$_get_value
+_ $Context$_get_value((int, slice, int, slice) v) inline;
+
+;; $LauncherConfig$_to_external
+(int, int, int, int, int, slice, slice, int, int) $LauncherConfig$_to_external(((int, int, int, int, int, slice, slice, int, int)) v) inline;
+
+;; $PoolConfig$_get_address
+_ $PoolConfig$_get_address((slice, int) v) inline;
+
+;; $PoolConfig$_get_share
+_ $PoolConfig$_get_share((slice, int) v) inline;
+
+;; $PoolConfig$_not_null
+((slice, int)) $PoolConfig$_not_null(tuple v) inline;
+
+;; $PoolConfig$_to_external
+(slice, int) $PoolConfig$_to_external(((slice, int)) v) inline;
+
+;; $TonupLauncherFixedPriceUnrestricted$init$_load
+(slice, ((slice, (int, int, int, int, int, slice, slice, int, int)))) $TonupLauncherFixedPriceUnrestricted$init$_load(slice sc_0) inline;
+
+;; $global_emit
+() $global_emit(cell $body) impure inline;
+
+;; $LauncherConfigSetEvent$_constructor_config
+(((int, int, int, int, int, slice, slice, int, int))) $LauncherConfigSetEvent$_constructor_config((int, int, int, int, int, slice, slice, int, int) config) inline;
+
+;; $TonupLauncherFixedPriceUnrestricted$_contract_init
+(slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int) $TonupLauncherFixedPriceUnrestricted$_contract_init(slice $owner, (int, int, int, int, int, slice, slice, int, int) $config) impure inline_ref;
+
+;; $TonupLauncherFixedPriceUnrestricted$_contract_load
+(slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int) $TonupLauncherFixedPriceUnrestricted$_contract_load() impure inline_ref;
+
+;; $TonupLauncherFixedPriceUnrestricted$_contract_store
+() $TonupLauncherFixedPriceUnrestricted$_contract_store((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int) v) impure inline;
+
+;; $global_send
+() $global_send((int, slice, int, int, cell, cell, cell) $params) impure inline_ref;
+
+;; $SendParameters$_constructor_to_value_mode_bounce
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode_bounce(slice to, int value, int mode, int bounce) inline;
+
+;; $global_refund_gas
+() $global_refund_gas() impure inline;
+
+;; $SendParameters$_constructor_value_to_bounce_mode_body
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_value_to_bounce_mode_body(int value, slice to, int bounce, int mode, cell body) inline;
+
+;; $global_send_ton
+() $global_send_ton(slice $to, int $value, int $bounce, cell $body) impure inline;
+
+;; $SendParameters$_constructor_value_to_mode_body_bounce
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_value_to_mode_body_bounce(int value, slice to, int mode, cell body, int bounce) inline;
+
+;; $TokenTransfer$_constructor_queryId_amount_destination_response_destination_custom_payload_forward_ton_amount_forward_payload
+((int, int, slice, slice, cell, int, slice)) $TokenTransfer$_constructor_queryId_amount_destination_response_destination_custom_payload_forward_ton_amount_forward_payload(int queryId, int amount, slice destination, slice response_destination, cell custom_payload, int forward_ton_amount, slice forward_payload) inline;
+
+;; $global_send_jetton
+() $global_send_jetton(slice $jetton_address, slice $to, int $amount, int $query_id, int $bounce, slice $forward_payload) impure inline;
+
+;; $TonupLauncherFixedPriceUnrestricted$_fun_config
+((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int), (int, int, int, int, int, slice, slice, int, int)) $TonupLauncherFixedPriceUnrestricted$_fun_config((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int) $self) impure inline_ref;
+
+;; $TonupLauncherFixedPriceUnrestricted$_fun_totalTon
+((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int), int) $TonupLauncherFixedPriceUnrestricted$_fun_totalTon((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int) $self) impure inline_ref;
+
+;; $TonupLauncherFixedPriceUnrestricted$_fun_validated
+((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int), int) $TonupLauncherFixedPriceUnrestricted$_fun_validated((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int) $self) impure inline_ref;
+
+;; $TonupLauncherFixedPriceUnrestricted$_fun_balance
+((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int), int) $TonupLauncherFixedPriceUnrestricted$_fun_balance((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int) $self) impure inline_ref;
+
+;; $TonupLauncherFixedPriceUnrestricted$_fun_participation
+((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int), int) $TonupLauncherFixedPriceUnrestricted$_fun_participation((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int) $self, slice $addr) impure inline_ref;
+
+;; $TonupLauncherFixedPriceUnrestricted$_fun_numberPools
+((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int), int) $TonupLauncherFixedPriceUnrestricted$_fun_numberPools((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int) $self) impure inline_ref;
+
+;; $TonupLauncherFixedPriceUnrestricted$_fun_poolConfig
+((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int), (slice, int)) $TonupLauncherFixedPriceUnrestricted$_fun_poolConfig((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int) $self, int $index) impure inline_ref;
+
+;; $TonupLauncherFixedPriceUnrestricted$_fun_claimStartTime
+((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int), int) $TonupLauncherFixedPriceUnrestricted$_fun_claimStartTime((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int) $self) impure inline_ref;
+
+;; $TonupLauncherFixedPriceUnrestricted$_fun_launchFinalized
+((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int), int) $TonupLauncherFixedPriceUnrestricted$_fun_launchFinalized((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int) $self) impure inline_ref;
+
+;; $TonupLauncherFixedPriceUnrestricted$_fun_launchSuccessful
+((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int), int) $TonupLauncherFixedPriceUnrestricted$_fun_launchSuccessful((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int) $self) impure inline_ref;
+
+;; $TonupLauncherFixedPriceUnrestricted$_fun_tokensAwaitingLaunch
+((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int), int) $TonupLauncherFixedPriceUnrestricted$_fun_tokensAwaitingLaunch((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int) $self) impure inline_ref;
+
+;; $TonupLauncherFixedPriceUnrestricted$_fun_metadataName
+((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int), slice) $TonupLauncherFixedPriceUnrestricted$_fun_metadataName((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int) $self) impure inline_ref;
+
+;; $TonupLauncherFixedPriceUnrestricted$_fun_metadataType
+((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int), slice) $TonupLauncherFixedPriceUnrestricted$_fun_metadataType((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int) $self) impure inline_ref;
+
+;; $TonupLauncherFixedPriceUnrestricted$_fun_metadataVersion
+((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int), slice) $TonupLauncherFixedPriceUnrestricted$_fun_metadataVersion((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int) $self) impure inline_ref;
+
+;; $TonupLauncherFixedPriceUnrestricted$_fun_metadataTicker
+((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int), slice) $TonupLauncherFixedPriceUnrestricted$_fun_metadataTicker((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int) $self) impure inline_ref;
+
+;; $TonupLauncherFixedPriceUnrestricted$_fun_gasClaim
+((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int), int) $TonupLauncherFixedPriceUnrestricted$_fun_gasClaim((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int) $self) impure inline_ref;
+
+;; $TonupLauncherFixedPriceUnrestricted$_fun_gasRefund
+((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int), int) $TonupLauncherFixedPriceUnrestricted$_fun_gasRefund((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int) $self) impure inline_ref;
+
+;; $TonupLauncherFixedPriceUnrestricted$_fun_gasParticipate
+((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int), int) $TonupLauncherFixedPriceUnrestricted$_fun_gasParticipate((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int) $self) impure inline_ref;
+
+;; $SendParameters$_constructor_bounce_to_value_mode_body_code_data
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline;
+
+;; $TonupLauncherFixedPriceUnrestricted$_fun_forward
+((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int), ()) $TonupLauncherFixedPriceUnrestricted$_fun_forward((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int) $self, slice $to, cell $body, int $bounce, tuple $init) impure inline_ref;
+
+;; $TonupLauncherFixedPriceUnrestricted$_fun_reply
+((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int), ()) $TonupLauncherFixedPriceUnrestricted$_fun_reply((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int) $self, cell $body) impure inline;
+
+;; $TonupLauncherFixedPriceUnrestricted$_fun_notify
+((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int), ()) $TonupLauncherFixedPriceUnrestricted$_fun_notify((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int) $self, cell $body) impure inline;
+
+;; $TonupLauncherFixedPriceUnrestricted$_fun_requireOwner
+((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int), ()) $TonupLauncherFixedPriceUnrestricted$_fun_requireOwner((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int) $self) impure inline_ref;
+
+;; $TonupLauncherFixedPriceUnrestricted$_fun_owner
+((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int), slice) $TonupLauncherFixedPriceUnrestricted$_fun_owner((slice, (int, int, int, int, int, slice, slice, int, int), int, int, int, int, int, cell, int, cell, int, int, int) $self) impure inline_ref;
+
+;; $ClaimStartTimeSetEvent$_constructor_time
+((int)) $ClaimStartTimeSetEvent$_constructor_time(int time) inline;
+
+;; $DistritutionPoolAddedEvent$_constructor_index_config
+((int, (slice, int))) $DistritutionPoolAddedEvent$_constructor_index_config(int index, (slice, int) config) inline;
+
+;; $PoolConfig$_constructor_address_share
+((slice, int)) $PoolConfig$_constructor_address_share(slice address, int share) inline;
+
+;; $DistributionPoolModifiedEvent$_constructor_index_config
+((int, (slice, int))) $DistributionPoolModifiedEvent$_constructor_index_config(int index, (slice, int) config) inline;
+
+;; $ConfigValidatedEvent$_constructor_timestamp
+((int)) $ConfigValidatedEvent$_constructor_timestamp(int timestamp) inline;
+
+;; $FinalizedEvent$_constructor_timestamp_successful
+((int, int)) $FinalizedEvent$_constructor_timestamp_successful(int timestamp, int successful) inline;
+
+;; $FinalizationRefundEvent$_constructor_amount_address
+((int, slice)) $FinalizationRefundEvent$_constructor_amount_address(int amount, slice address) inline;
+
+;; $DistributionEvent$_constructor_amount_address
+((int, slice)) $DistributionEvent$_constructor_amount_address(int amount, slice address) inline;
+
+;; $ParticipatedEvent$_constructor_sender_amount
+((slice, int)) $ParticipatedEvent$_constructor_sender_amount(slice sender, int amount) inline;
+
+;; $ClaimedEvent$_constructor_sender_amount
+((slice, int)) $ClaimedEvent$_constructor_sender_amount(slice sender, int amount) inline;
+
+;; $RefundedEvent$_constructor_sender_amount
+((slice, int)) $RefundedEvent$_constructor_sender_amount(slice sender, int amount) inline;
+
+;; $DeployOk$_constructor_queryId
+((int)) $DeployOk$_constructor_queryId(int queryId) inline;
+
+;; $ChangeOwnerOk$_constructor_queryId_newOwner
+((int, slice)) $ChangeOwnerOk$_constructor_queryId_newOwner(int queryId, slice newOwner) inline;

@@ -1,0 +1,80 @@
+check_destination: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/lockup-wallet-contract/universal/uni-lockup-wallet.fc:216:44: warning: Local variable 'stored_seqno' is not used
+         total_restricted_value, restricted) = unpack_data();
+                                             ^
+check_destination: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/lockup-wallet-contract/universal/uni-lockup-wallet.fc:216:44: warning: Local variable 'stored_subwallet' is not used
+         total_restricted_value, restricted) = unpack_data();
+                                             ^
+check_destination: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/lockup-wallet-contract/universal/uni-lockup-wallet.fc:216:44: warning: Local variable 'public_key' is not used
+         total_restricted_value, restricted) = unpack_data();
+                                             ^
+check_destination: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/lockup-wallet-contract/universal/uni-lockup-wallet.fc:216:44: warning: Local variable 'config_public_key' is not used
+         total_restricted_value, restricted) = unpack_data();
+                                             ^
+check_destination: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/lockup-wallet-contract/universal/uni-lockup-wallet.fc:216:44: warning: Local variable 'total_locked_value' is not used
+         total_restricted_value, restricted) = unpack_data();
+                                             ^
+check_destination: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/lockup-wallet-contract/universal/uni-lockup-wallet.fc:216:44: warning: Local variable 'locked' is not used
+         total_restricted_value, restricted) = unpack_data();
+                                             ^
+check_destination: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/lockup-wallet-contract/universal/uni-lockup-wallet.fc:216:44: warning: Local variable 'total_restricted_value' is not used
+         total_restricted_value, restricted) = unpack_data();
+                                             ^
+check_destination: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/lockup-wallet-contract/universal/uni-lockup-wallet.fc:216:44: warning: Local variable 'restricted' is not used
+         total_restricted_value, restricted) = unpack_data();
+                                             ^
+get_balances_at: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/lockup-wallet-contract/universal/uni-lockup-wallet.fc:201:44: warning: Local variable 'stored_seqno' is not used
+         total_restricted_value, restricted) = unpack_data();
+                                             ^
+get_balances_at: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/lockup-wallet-contract/universal/uni-lockup-wallet.fc:201:44: warning: Local variable 'stored_subwallet' is not used
+         total_restricted_value, restricted) = unpack_data();
+                                             ^
+get_balances_at: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/lockup-wallet-contract/universal/uni-lockup-wallet.fc:201:44: warning: Local variable 'public_key' is not used
+         total_restricted_value, restricted) = unpack_data();
+                                             ^
+get_balances_at: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/lockup-wallet-contract/universal/uni-lockup-wallet.fc:201:44: warning: Local variable 'config_public_key' is not used
+         total_restricted_value, restricted) = unpack_data();
+                                             ^
+get_balances_at: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/lockup-wallet-contract/universal/uni-lockup-wallet.fc:201:44: warning: Local variable 'allowed_destinations' is not used
+         total_restricted_value, restricted) = unpack_data();
+                                             ^
+check_message_destination: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/lockup-wallet-contract/universal/uni-lockup-wallet.fc:28:49: warning: Lack of end_parse.
+    var (s_addr, d_addr) = (cs~load_msg_addr(), cs~load_msg_addr());
+                                                  ^
+check_message_destination: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/lockup-wallet-contract/universal/uni-lockup-wallet.fc:28:24: warning: Local variable 's_addr' is not used
+    var (s_addr, d_addr) = (cs~load_msg_addr(), cs~load_msg_addr());
+                         ^
+wallet_id: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/lockup-wallet-contract/universal/uni-lockup-wallet.fc:187:5: warning: Lack of end_parse.
+    ds~load_uint(32);
+      ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/lockup-wallet-contract/universal/uni-lockup-wallet.fc:100:18: warning: Lack of end_parse.
+    var s_addr = cs~load_msg_addr();
+                   ^
+seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/lockup-wallet-contract/universal/uni-lockup-wallet.fc:182:20: warning: Lack of end_parse.
+    return get_data().begin_parse().preload_uint(32);
+                     ^
+recv_external: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/lockup-wallet-contract/universal/uni-lockup-wallet.fc:154:14: warning: Local variable 'mode' is not used
+      var mode = cs_copy~load_uint(8);
+               ^
+get_public_key: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/lockup-wallet-contract/universal/uni-lockup-wallet.fc:193:5: warning: Lack of end_parse.
+    ds~load_uint(32 + 32);
+      ^

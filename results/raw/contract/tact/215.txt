@@ -1,0 +1,26 @@
+$GunnarContract$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAIpdJ6n3xJ-K_he7Hl0sxKxmZbg0whbrOj8UTO-TRpgjeQ/output/verifier_GunnarContract.storage.fc:94:19: warning: Lack of end_parse.
+          return $sc~$GunnarContract$_load();
+                    ^
+$GunnarContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAIpdJ6n3xJ-K_he7Hl0sxKxmZbg0whbrOj8UTO-TRpgjeQ/output/verifier_GunnarContract.code.fc:14:37: warning: Local variable '$self'id' is not used
+      var (($self'id, $self'counter)) = (null(), null());
+                                      ^
+$GunnarContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAIpdJ6n3xJ-K_he7Hl0sxKxmZbg0whbrOj8UTO-TRpgjeQ/output/verifier_GunnarContract.code.fc:14:37: warning: Local variable '$self'counter' is not used
+      var (($self'id, $self'counter)) = (null(), null());
+                                      ^
+$GunnarContract$_contract_store & $GunnarContract$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAIpdJ6n3xJ-K_he7Hl0sxKxmZbg0whbrOj8UTO-TRpgjeQ/output/verifier_GunnarContract.storage.fc:90:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAIpdJ6n3xJ-K_he7Hl0sxKxmZbg0whbrOj8UTO-TRpgjeQ/output/verifier_GunnarContract.storage.fc:105:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$GunnarContract$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAIpdJ6n3xJ-K_he7Hl0sxKxmZbg0whbrOj8UTO-TRpgjeQ/output/verifier_GunnarContract.code.fc:78:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAIpdJ6n3xJ-K_he7Hl0sxKxmZbg0whbrOj8UTO-TRpgjeQ/output/verifier_GunnarContract.storage.fc:105:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

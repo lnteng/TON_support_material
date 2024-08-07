@@ -1,0 +1,35 @@
+{-
+  TASK 1 - Find branch of the cell tree
+  Write the method that will find a branch of the tree by comparing its
+  hash with the hash received in the first parameter. When the algorithm finds
+  the subtree (branch) whose hash equals the received hash, the root cell of
+  this branch should be returned. Return empty cell if the branch is not found.
+-}
+
+global int ghash;
+global cell zero;
+
+() recv_internal() {
+}
+
+(cell, int) find_branch_internal(cell tree) {
+  if (cell_hash(tree) == ghash) {
+    return (tree, 1);
+  }
+  slice s = tree.begin_parse();
+  repeat(s.slice_refs()) {
+    (cell r, int f) = find_branch_internal(s~load_ref());
+    if (f == 1) {
+      return (r, f);
+    }
+  }
+  return (zero, 0);
+}
+
+;; testable
+(cell) find_branch_by_hash(int hash, cell tree) method_id {
+  zero = begin_cell().end_cell();
+  ghash = hash;
+  (cell r, int f) = find_branch_internal(tree);
+  return r;
+}

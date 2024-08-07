@@ -1,0 +1,12 @@
+get_storage: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./kosrk/tsc5/descriptions/3.fc:69:22: warning: Lack of end_parse.
+      cell storage = cs~load_ref();
+                       ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./kosrk/tsc5/descriptions/3.fc:58:22: warning: Lack of end_parse.
+      cell storage = ds~load_ref();
+                       ^
+process_message: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./kosrk/tsc5/descriptions/3.fc:35:23: warning: Lack of end_parse.
+      slice cs = storage.begin_parse();
+                        ^

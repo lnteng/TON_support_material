@@ -1,0 +1,87 @@
+$OrderlyAmm$_internal_binary_CreateLpSuccessInternal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_OrderlyAmm.code.fc:104:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$OrderlyAmm$_internal_binary_CreateLpSuccessInternal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_OrderlyAmm.code.fc:104:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$OrderlyAmm$_internal_binary_CreateLpSuccessInternal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_OrderlyAmm.code.fc:104:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$OrderlyAmm$_internal_binary_CreateLp: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_OrderlyAmm.code.fc:94:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$OrderlyAmm$_internal_binary_CreateLp: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_OrderlyAmm.code.fc:94:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$OrderlyAmm$_internal_binary_CreateLp: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_OrderlyAmm.code.fc:94:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$OrderlyAmm$_internal_binary_WithdrawInternal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_OrderlyAmm.code.fc:62:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$OrderlyAmm$_internal_binary_WithdrawInternal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_OrderlyAmm.code.fc:62:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$OrderlyAmm$_internal_binary_WithdrawInternal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_OrderlyAmm.code.fc:62:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$OrderlyAmm$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_OrderlyAmm.storage.fc:414:19: warning: Lack of end_parse.
+          return $sc~$OrderlyAmm$_load();
+                    ^
+$OrderlyAmm$_internal_binary_TokenNotification: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_OrderlyAmm.code.fc:73:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$OrderlyAmm$_internal_binary_TokenNotification: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_OrderlyAmm.code.fc:73:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+__tact_dict_set_uint_cell: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_OrderlyAmm.stdlib.fc:73:21: warning: Local variable 'ok' is not used
+          var (r, ok) = udict_delete?(d, kl, k);
+                      ^
+$AddLiquidity$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_OrderlyAmm.storage.fc:286:29: warning: Lack of end_parse.
+      var v'quoteWallet = sc_1~__tact_load_address();
+                              ^
+$OrderlyAmmDeposit$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_OrderlyAmm.storage.fc:329:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$OrderlyAmm$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_OrderlyAmm.code.fc:15:53: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'lps, $self'lpsLength)) = (null(), null(), 0);
+                                                      ^
+$OrderlyAmm$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_OrderlyAmm.code.fc:15:53: warning: Local variable '$self'lps' is not used
+      var (($self'owner, $self'lps, $self'lpsLength)) = (null(), null(), 0);
+                                                      ^
+$OrderlyAmmLiquidityPool$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_OrderlyAmm.storage.fc:358:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$OrderlyAmm$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_OrderlyAmm.code.fc:177:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_OrderlyAmm.storage.fc:425:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$OrderlyAmm$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_OrderlyAmm.code.fc:65:352: warning: UnHandle bounced message with op: 0xf8a7ea5
+  ... ueryId, $msg'amount, $msg'destination, $msg'responseDestination, null(), 0, $global_emptySlice()))));
+  ...                                                                                                     ^
+$OrderlyAmm$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./Tarnadas/orderly-ton-amm/contracts/output/orderly_amm_OrderlyAmm.code.fc:75:406: warning: UnHandle bounced message with op: 0xf8a7ea5
+  ... ment_88c3a05f72e9e999180c0580d83e5198234b2ab223b9e6802e77f0072d83f8f2(), 0, $global_emptySlice()))));
+  ...                                                                                                     ^

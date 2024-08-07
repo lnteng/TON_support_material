@@ -1,0 +1,23 @@
+;; get methods
+
+(slice, slice, int, int, cell) get_vote_storage_data() method_id {
+    ;; returns vote_storage storage
+    load_storage();
+
+    return (
+        storage::register_address,
+        storage::vote_address,
+        storage::positive_votes,
+        storage::negative_votes,
+        storage::vote_status_code
+    );
+}
+
+(slice) get_vote_status_address(slice voter_address) method_id {
+    ;; returns vote_status address
+
+    load_storage();
+    (_, slice vote_status_address) = get_vote_status_state_init_and_address(voter_address);
+
+    return (vote_status_address);
+}

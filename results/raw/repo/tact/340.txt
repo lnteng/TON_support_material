@@ -1,0 +1,67 @@
+__gen_read_UserPositionContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_UserPositionContract.code.fc:264:25: warning: Lack of end_parse.
+      var v'message = sc_1~__gen_read_Message();
+                          ^
+__gen_read_WithdrawCollateralMessage: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_UserPositionContract.code.fc:133:42: warning: Lack of end_parse.
+      var v'tonPriceWithSafetyMargin = sc_2~load_coins();
+                                           ^
+__gen_read_WithdrawCollateralMessage: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_UserPositionContract.code.fc:131:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+__gen_read_DepositCollateralMessage: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_UserPositionContract.code.fc:121:42: warning: Lack of end_parse.
+      var v'tonPriceWithSafetyMargin = sc_2~load_coins();
+                                           ^
+__gen_read_DepositCollateralMessage: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_UserPositionContract.code.fc:119:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+$__gen_UserPositionContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_UserPositionContract.code.fc:344:166: warning: Local variable '$self'user' is not used
+      var (($self'user, $self'stablecoinMasterAddress, $self'positionsManagerAddress, $self'collateral, $self'debt, ($self'message'timestamp, $self'message'message))) = (null(), null(), null(), 0, 0, null());
+                                                                                                                                                                       ^
+$__gen_UserPositionContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_UserPositionContract.code.fc:344:166: warning: Local variable '$self'stablecoinMasterAddress' is not used
+      var (($self'user, $self'stablecoinMasterAddress, $self'positionsManagerAddress, $self'collateral, $self'debt, ($self'message'timestamp, $self'message'message))) = (null(), null(), null(), 0, 0, null());
+                                                                                                                                                                       ^
+$__gen_UserPositionContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_UserPositionContract.code.fc:344:166: warning: Local variable '$self'positionsManagerAddress' is not used
+      var (($self'user, $self'stablecoinMasterAddress, $self'positionsManagerAddress, $self'collateral, $self'debt, ($self'message'timestamp, $self'message'message))) = (null(), null(), null(), 0, 0, null());
+                                                                                                                                                                       ^
+$__gen_UserPositionContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_UserPositionContract.code.fc:344:166: warning: Local variable '$self'message'timestamp' is not used
+      var (($self'user, $self'stablecoinMasterAddress, $self'positionsManagerAddress, $self'collateral, $self'debt, ($self'message'timestamp, $self'message'message))) = (null(), null(), null(), 0, 0, null());
+                                                                                                                                                                       ^
+$__gen_UserPositionContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_UserPositionContract.code.fc:344:166: warning: Local variable '$self'message'message' is not used
+      var (($self'user, $self'stablecoinMasterAddress, $self'positionsManagerAddress, $self'collateral, $self'debt, ($self'message'timestamp, $self'message'message))) = (null(), null(), null(), 0, 0, null());
+                                                                                                                                                                       ^
+__gen_read_WithdrawStablecoinMessage: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_UserPositionContract.code.fc:145:42: warning: Lack of end_parse.
+      var v'tonPriceWithSafetyMargin = sc_2~load_coins();
+                                           ^
+__gen_read_WithdrawStablecoinMessage: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_UserPositionContract.code.fc:143:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+__gen_read_RepayStablecoinMessage: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_UserPositionContract.code.fc:157:42: warning: Lack of end_parse.
+      var v'tonPriceWithSafetyMargin = sc_2~load_coins();
+                                           ^
+__gen_read_RepayStablecoinMessage: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_UserPositionContract.code.fc:155:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+__gen_load_UserPositionContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_UserPositionContract.code.fc:358:19: warning: Lack of end_parse.
+          return $sc~__gen_read_UserPositionContract();
+                    ^
+__gen_store_UserPositionContract & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_UserPositionContract.code.fc:680:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_UserPositionContract.code.fc:369:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

@@ -1,0 +1,175 @@
+;;
+;; Header files for Lottery
+;; NOTE: declarations are sorted for optimal order
+;;
+
+;; __tact_verify_address
+slice __tact_verify_address(slice address) inline;
+
+;; __tact_load_address
+(slice, slice) __tact_load_address(slice cs) inline;
+
+;; __tact_load_address_opt
+(slice, slice) __tact_load_address_opt(slice cs) inline;
+
+;; __tact_store_address
+builder __tact_store_address(builder b, slice address) inline;
+
+;; __tact_store_address_opt
+builder __tact_store_address_opt(builder b, slice address) inline;
+
+;; __tact_my_balance
+int __tact_my_balance() inline;
+
+;; __tact_not_null
+forall X -> X __tact_not_null(X x) inline;
+
+;; __tact_context_get
+(int, slice, int, slice) __tact_context_get() inline;
+
+;; __tact_context_get_sender
+slice __tact_context_get_sender() inline;
+
+;; __tact_prepare_random
+() __tact_prepare_random() impure inline;
+
+;; __tact_store_bool
+builder __tact_store_bool(builder b, int v) inline;
+
+;; __tact_slice_eq_bits
+int __tact_slice_eq_bits(slice a, slice b) inline;
+
+;; $Deploy$_load
+(slice, ((int))) $Deploy$_load(slice sc_0) inline;
+
+;; $DeployOk$_store
+builder $DeployOk$_store(builder build_0, (int) v) inline;
+
+;; $DeployOk$_store_cell
+cell $DeployOk$_store_cell((int) v) inline;
+
+;; $TokenNotification$_load
+(slice, ((int, int, slice, slice))) $TokenNotification$_load(slice sc_0) inline;
+
+;; $TokenExcesses$_load
+(slice, ((int))) $TokenExcesses$_load(slice sc_0) inline;
+
+;; $TokenTransfer$_store
+builder $TokenTransfer$_store(builder build_0, (int, int, slice, slice, cell, int, slice) v) inline_ref;
+
+;; $TokenTransfer$_store_cell
+cell $TokenTransfer$_store_cell((int, int, slice, slice, cell, int, slice) v) inline;
+
+;; $Feed$_load
+(slice, ((int))) $Feed$_load(slice sc_0) inline;
+
+;; $ChangeFee$_load
+(slice, ((int))) $ChangeFee$_load(slice sc_0) inline;
+
+;; $ChangeOwner$_load
+(slice, ((slice))) $ChangeOwner$_load(slice sc_0) inline;
+
+;; $SwapStepParams$_store
+builder $SwapStepParams$_store(builder build_0, (int, int, cell) v) inline;
+
+;; $SwapStep$_store
+builder $SwapStep$_store(builder build_0, (slice, (int, int, cell)) v) inline;
+
+;; $Swap$_store
+builder $Swap$_store(builder build_0, (int, int, (slice, (int, int, cell)), cell) v) inline;
+
+;; $Swap$_store_cell
+cell $Swap$_store_cell((int, int, (slice, (int, int, cell)), cell) v) inline;
+
+;; $SwapParams$_store
+builder $SwapParams$_store(builder build_0, (int, slice, slice, cell, cell) v) inline;
+
+;; $SwapParams$_store_cell
+cell $SwapParams$_store_cell((int, slice, slice, cell, cell) v) inline;
+
+;; $FeedEvent$_store
+builder $FeedEvent$_store(builder build_0, (slice, int, int) v) inline;
+
+;; $FeedEvent$_store_cell
+cell $FeedEvent$_store_cell((slice, int, int) v) inline;
+
+;; $Lottery$_store
+builder $Lottery$_store(builder build_0, (int, slice, slice, slice, slice, slice, int, int) v) inline;
+
+;; $Lottery$_load
+(slice, ((int, slice, slice, slice, slice, slice, int, int))) $Lottery$_load(slice sc_0) inline;
+
+;; $StateInit$_not_null
+((cell, cell)) $StateInit$_not_null(tuple v) inline;
+
+;; $Context$_get_value
+_ $Context$_get_value((int, slice, int, slice) v) inline;
+
+;; $Lottery$init$_load
+(slice, ((int, slice, slice, slice, int))) $Lottery$init$_load(slice sc_0) inline;
+
+;; $Lottery$_contract_init
+(int, slice, slice, slice, slice, slice, int, int) $Lottery$_contract_init(int $id, slice $poolAddr, slice $tonVaultAddr, slice $jettonVaultAddr, int $feePercent) impure inline_ref;
+
+;; $Lottery$_contract_load
+(int, slice, slice, slice, slice, slice, int, int) $Lottery$_contract_load() impure inline_ref;
+
+;; $Lottery$_contract_store
+() $Lottery$_contract_store((int, slice, slice, slice, slice, slice, int, int) v) impure inline;
+
+;; $global_random
+int $global_random(int $min, int $max) impure inline;
+
+;; $global_send
+() $global_send((int, slice, int, int, cell, cell, cell) $params) impure inline_ref;
+
+;; $global_emit
+() $global_emit(cell $body) impure inline;
+
+;; $Cell$_fun_asSlice
+slice $Cell$_fun_asSlice(cell $self) impure inline;
+
+;; $Lottery$_fun_id
+((int, slice, slice, slice, slice, slice, int, int), int) $Lottery$_fun_id((int, slice, slice, slice, slice, slice, int, int) $self) impure inline_ref;
+
+;; $Lottery$_fun_getTotalAmount
+((int, slice, slice, slice, slice, slice, int, int), int) $Lottery$_fun_getTotalAmount((int, slice, slice, slice, slice, slice, int, int) $self) impure inline_ref;
+
+;; $Lottery$_fun_getFee
+((int, slice, slice, slice, slice, slice, int, int), int) $Lottery$_fun_getFee((int, slice, slice, slice, slice, slice, int, int) $self) impure inline_ref;
+
+;; $SendParameters$_constructor_bounce_to_value_mode_body_code_data
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline;
+
+;; $Lottery$_fun_forward
+((int, slice, slice, slice, slice, slice, int, int), ()) $Lottery$_fun_forward((int, slice, slice, slice, slice, slice, int, int) $self, slice $to, cell $body, int $bounce, tuple $init) impure inline_ref;
+
+;; $Lottery$_fun_notify
+((int, slice, slice, slice, slice, slice, int, int), ()) $Lottery$_fun_notify((int, slice, slice, slice, slice, slice, int, int) $self, cell $body) impure inline;
+
+;; $SendParameters$_constructor_to_value_mode_bounce_body
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode_bounce_body(slice to, int value, int mode, int bounce, cell body) inline;
+
+;; $TokenTransfer$_constructor_queryId_amount_destination_response_destination_custom_payload_forward_ton_amount_forward_payload
+((int, int, slice, slice, cell, int, slice)) $TokenTransfer$_constructor_queryId_amount_destination_response_destination_custom_payload_forward_ton_amount_forward_payload(int queryId, int amount, slice destination, slice response_destination, cell custom_payload, int forward_ton_amount, slice forward_payload) inline;
+
+;; $FeedEvent$_constructor_feeder_feed_amount_win_amount
+((slice, int, int)) $FeedEvent$_constructor_feeder_feed_amount_win_amount(slice feeder, int feed_amount, int win_amount) inline;
+
+;; $SendParameters$_constructor_to_value_mode_body
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode_body(slice to, int value, int mode, cell body) inline;
+
+;; $Swap$_constructor_query_id_amount_swap_step_swap_params
+((int, int, (slice, (int, int, cell)), cell)) $Swap$_constructor_query_id_amount_swap_step_swap_params(int query_id, int amount, (slice, (int, int, cell)) swap_step, cell swap_params) inline;
+
+;; $SwapStep$_constructor_pool_addr_params
+((slice, (int, int, cell))) $SwapStep$_constructor_pool_addr_params(slice pool_addr, (int, int, cell) params) inline;
+
+;; $SwapStepParams$_constructor_limit
+((int, int, cell)) $SwapStepParams$_constructor_limit(int limit) inline;
+
+;; $SwapParams$_constructor_fulfill_payload
+((int, slice, slice, cell, cell)) $SwapParams$_constructor_fulfill_payload(cell fulfill_payload) inline;
+
+;; $DeployOk$_constructor_queryId
+((int)) $DeployOk$_constructor_queryId(int queryId) inline;

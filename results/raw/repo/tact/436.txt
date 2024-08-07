@@ -1,0 +1,66 @@
+$Task5$_internal_binary_AdminWithdrawalAllNFTs: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task5.code.fc:73:75: warning: Local variable '$context'bounced' is not used
+      var ($context'bounced, $context'sender, $context'value, $context'raw) = __tact_context_get();
+                                                                            ^
+$Task5$_internal_binary_AdminWithdrawalAllNFTs: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task5.code.fc:73:75: warning: Local variable '$context'raw' is not used
+      var ($context'bounced, $context'sender, $context'value, $context'raw) = __tact_context_get();
+                                                                            ^
+$Task5$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task5.storage.fc:200:19: warning: Lack of end_parse.
+          return $sc~$Task5$_load();
+                    ^
+$Task5$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task5.code.fc:14:71: warning: Local variable '$self'seed' is not used
+      var (($self'seed, $self'owner, $self'nftMap, $self'nftMapLength)) = (null(), null(), null(), 0);
+                                                                        ^
+$Task5$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task5.code.fc:14:71: warning: Local variable '$self'owner' is not used
+      var (($self'seed, $self'owner, $self'nftMap, $self'nftMapLength)) = (null(), null(), null(), 0);
+                                                                        ^
+$Task5$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task5.code.fc:14:71: warning: Local variable '$self'nftMap' is not used
+      var (($self'seed, $self'owner, $self'nftMap, $self'nftMapLength)) = (null(), null(), null(), 0);
+                                                                        ^
+__tact_dict_set_uint_slice: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task5.stdlib.fc:52:21: warning: Local variable 'ok' is not used
+          var (r, ok) = udict_delete?(d, kl, k);
+                      ^
+$Task5$_contract_store & $Task5$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task5.storage.fc:196:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task5.storage.fc:211:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task5$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task5.code.fc:134:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task5.storage.fc:211:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task5.code.fc:85:190: warning: UnHandle bounced message with op: 0x5fcc3d14
+          $global_send($SendParameters$_constructor_to_value_mode_bounce_body(__tact_not_null(__tact_dict_get_uint_slice($self'nftMap, 16, $self'nftMapLength)), 40000000, 2, true, $transfer));
+                                                                                                                                                                                               ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task5.code.fc:88:207: warning: UnHandle bounced message with op: 0x6339421f
+  ... e, $AdminWithdrawalAllNFTs$_store_cell($AdminWithdrawalAllNFTs$_constructor_queryId($msg'queryId))));
+  ...                                                                                                     ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task5.code.fc:91:163: warning: UnHandle bounced message with op: 0x5fcc3d14
+      $global_send($SendParameters$_constructor_to_value_mode_bounce_body(__tact_not_null(__tact_dict_get_uint_slice($self'nftMap, 16, 0)), 0, 64, true, $transfer));
+                                                                                                                                                                    ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task5.code.fc:49:308: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... unt_forwardPayload($msg'queryId, $msg'prevOwner, $msg'prevOwner, null(), 0, $global_emptySlice()))));
+  ...                                                                                                     ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task5.code.fc:58:358: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... unt_forwardPayload($msg'queryId, $msg'prevOwner, $msg'prevOwner, null(), 0, $global_emptySlice()))));
+  ...                                                                                                     ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task5.code.fc:66:215: warning: UnHandle bounced message with op: 0xfda48b79
+  ... 000), 2, true, $AdminFetchProfit$_store_cell($AdminFetchProfit$_constructor_queryId($msg'queryId))));
+  ...                                                                                                     ^

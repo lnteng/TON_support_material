@@ -1,0 +1,87 @@
+$VotingRound$_internal_binary_InternalFinalize: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_VotingRound.code.fc:89:18: warning: Local variable '$rewards' is not used
+      int $rewards = $Context$_get_value(__tact_context_get());
+                   ^
+$VotingRound$_internal_binary_InternalFinalize: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_VotingRound.code.fc:123:118: warning: Local variable '$participantInfo'guard' is not used
+          var ($participantInfo'address, $participantInfo'votes, $participantInfo'payloadHash, $participantInfo'guard) = $RoundParticipantInfo$_not_null($RoundParticipantInfo$_load_opt(__tact_dict_get_int_cell($self'participants, 257, $j)));
+                                                                                                                       ^
+$VotingRound$_internal_binary_InternalVote: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_VotingRound.code.fc:74:81: warning: Local variable '$payloadVotes'payload' is not used
+          var ($payloadVotes'payload, $payloadVotes'votes, $payloadVotes'guarded) = $PayloadVotes$_not_null($existingPayloadVotes);
+                                                                                  ^
+__tact_dict_set_int_slice: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_VotingRound.stdlib.fc:85:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+$VotingRound$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_VotingRound.storage.fc:296:19: warning: Lack of end_parse.
+          return $sc~$VotingRound$_load();
+                    ^
+$PayloadVotes$_load_opt: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_VotingRound.storage.fc:102:41: warning: Lack of end_parse.
+      return $PayloadVotes$_as_optional(sc~$PayloadVotes$_load());
+                                          ^
+$RoundParticipantInfo$_load_opt: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_VotingRound.storage.fc:151:49: warning: Lack of end_parse.
+      return $RoundParticipantInfo$_as_optional(sc~$RoundParticipantInfo$_load());
+                                                  ^
+__tact_dict_set_int_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_VotingRound.stdlib.fc:49:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+__tact_dict_set_slice_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_VotingRound.stdlib.fc:94:21: warning: Local variable 'ok' is not used
+          var (r, ok) = __tact_dict_delete(d, kl, k);
+                      ^
+__tact_dict_set_int_cell: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_VotingRound.stdlib.fc:67:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+$VotingRound$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_VotingRound.storage.fc:281:31: warning: Lack of end_parse.
+      var v'winnerGuarded = sc_1~load_int(1);
+                                ^
+$VotingRound$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_VotingRound.code.fc:14:248: warning: Local variable '$self'parent' is not used
+  ... $self'payloadsCount, $self'finalized, $self'winnerPayload, $self'winnerVotes, $self'winnerGuarded)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$VotingRound$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_VotingRound.code.fc:14:248: warning: Local variable '$self'round' is not used
+  ... $self'payloadsCount, $self'finalized, $self'winnerPayload, $self'winnerVotes, $self'winnerGuarded)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$VotingRound$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_VotingRound.code.fc:14:248: warning: Local variable '$self'participants' is not used
+  ... $self'payloadsCount, $self'finalized, $self'winnerPayload, $self'winnerVotes, $self'winnerGuarded)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$VotingRound$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_VotingRound.code.fc:14:248: warning: Local variable '$self'participantsCount' is not used
+  ... $self'payloadsCount, $self'finalized, $self'winnerPayload, $self'winnerVotes, $self'winnerGuarded)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$VotingRound$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_VotingRound.code.fc:14:248: warning: Local variable '$self'payloads' is not used
+  ... $self'payloadsCount, $self'finalized, $self'winnerPayload, $self'winnerVotes, $self'winnerGuarded)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$VotingRound$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_VotingRound.code.fc:14:248: warning: Local variable '$self'payloadsCount' is not used
+  ... $self'payloadsCount, $self'finalized, $self'winnerPayload, $self'winnerVotes, $self'winnerGuarded)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$VotingRound$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_VotingRound.code.fc:14:248: warning: Local variable '$self'finalized' is not used
+  ... $self'payloadsCount, $self'finalized, $self'winnerPayload, $self'winnerVotes, $self'winnerGuarded)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$VotingRound$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_VotingRound.code.fc:14:248: warning: Local variable '$self'winnerGuarded' is not used
+  ... $self'payloadsCount, $self'finalized, $self'winnerPayload, $self'winnerVotes, $self'winnerGuarded)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$VotingRound$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_VotingRound.code.fc:190:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_VotingRound.storage.fc:307:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$VotingRound$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_VotingRound.code.fc:137:562: warning: UnHandle bounced message with op: 0xa6f19e23
+  ... odParticipantsVotes, $badParticipants, $badParticipantsCount, $badParticipantsVotes)), 0, (64 + 2)));
+  ...                                                                                                     ^

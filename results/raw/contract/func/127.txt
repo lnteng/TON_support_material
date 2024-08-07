@@ -1,0 +1,28 @@
+recv_internal: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAfGLYkeUDcMqG0OeHFt_nGrTX3gicxXHuAJ2gFhPws0IJN/IDO.fc:819:47: warning: PressionLoss
+              send_ton(address, referral_amount * price / 1000000000);
+                                                ^
+recv_internal: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAfGLYkeUDcMqG0OeHFt_nGrTX3gicxXHuAJ2gFhPws0IJN/IDO.fc:823:58: warning: PressionLoss
+                  send_ton(sender_address, cashback_amount * price / 1000000000);
+                                                           ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAfGLYkeUDcMqG0OeHFt_nGrTX3gicxXHuAJ2gFhPws0IJN/IDO.fc:847:26: warning: Lack of end_parse.
+          int amount = data~load_coins();
+                           ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAfGLYkeUDcMqG0OeHFt_nGrTX3gicxXHuAJ2gFhPws0IJN/IDO.fc:789:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAfGLYkeUDcMqG0OeHFt_nGrTX3gicxXHuAJ2gFhPws0IJN/IDO.fc:794:18: warning: Local variable 'query_id' is not used
+      int query_id = in_msg_body~load_uint(64); ;; also by convention, the next 64 bits contain the "query id", although this is not always the case
+                   ^
+get_price: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAfGLYkeUDcMqG0OeHFt_nGrTX3gicxXHuAJ2gFhPws0IJN/IDO.fc:890:88: warning: Local variable 'start_last_cycle' is not used
+      (_, _, _, _, int total_sold, int price, int sold_last_cycle, int start_last_cycle) = load_data(); ;; here we populate the storage variables
+                                                                                         ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAfGLYkeUDcMqG0OeHFt_nGrTX3gicxXHuAJ2gFhPws0IJN/IDO.fc:746:40: warning: UnHandle bounced message with op: 0x15
+      send_raw_message(msg.end_cell(), 1); ;; paying fees, revert on errors
+                                         ^

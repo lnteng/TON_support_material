@@ -1,0 +1,116 @@
+get_voting_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCqC6EhRJ_tpWngKxL6dV0k6DSnRUrs9GSVkLbfdCqsj6TE/jetton-minter.func:398:34: warning: Local variable 'total_supply' is not used
+              _, cell voting_code) = load_data();
+                                   ^
+get_voting_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCqC6EhRJ_tpWngKxL6dV0k6DSnRUrs9GSVkLbfdCqsj6TE/jetton-minter.func:398:34: warning: Local variable 'admin_address' is not used
+              _, cell voting_code) = load_data();
+                                   ^
+get_voting_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCqC6EhRJ_tpWngKxL6dV0k6DSnRUrs9GSVkLbfdCqsj6TE/jetton-minter.func:398:34: warning: Local variable 'content' is not used
+              _, cell voting_code) = load_data();
+                                   ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCqC6EhRJ_tpWngKxL6dV0k6DSnRUrs9GSVkLbfdCqsj6TE/jetton-minter.func:102:28: warning: Lack of end_parse.
+      int fwd_fee = muldiv(cs~load_coins(), 3, 2); ;; we use message fwd_fee for estimation of forward_payload costs
+                             ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCqC6EhRJ_tpWngKxL6dV0k6DSnRUrs9GSVkLbfdCqsj6TE/jetton-minter.func:273:34: warning: Lack of end_parse.
+              cell voting_body = cs~load_ref();
+                                   ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCqC6EhRJ_tpWngKxL6dV0k6DSnRUrs9GSVkLbfdCqsj6TE/jetton-minter.func:344:34: warning: Lack of end_parse.
+              cell voting_body = cs~load_ref();
+                                   ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCqC6EhRJ_tpWngKxL6dV0k6DSnRUrs9GSVkLbfdCqsj6TE/jetton-minter.func:312:46: warning: Local variable 'expiration_date' is not used
+          (int voting_id, int expiration_date) = (in_msg_body~load_voting_id(), in_msg_body~load_timestamp());
+                                               ^
+get_jetton_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCqC6EhRJ_tpWngKxL6dV0k6DSnRUrs9GSVkLbfdCqsj6TE/jetton-minter.func:387:46: warning: Local variable 'voting_id' is not used
+              int voting_id, cell voting_code) = load_data();
+                                               ^
+get_jetton_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCqC6EhRJ_tpWngKxL6dV0k6DSnRUrs9GSVkLbfdCqsj6TE/jetton-minter.func:387:46: warning: Local variable 'voting_code' is not used
+              int voting_id, cell voting_code) = load_data();
+                                               ^
+pass_the_filter?: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCqC6EhRJ_tpWngKxL6dV0k6DSnRUrs9GSVkLbfdCqsj6TE/dao-decisions-filter.func:32:30: warning: Lack of end_parse.
+              cell library = cs~load_maybe_ref();
+                               ^
+pass_the_filter?: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCqC6EhRJ_tpWngKxL6dV0k6DSnRUrs9GSVkLbfdCqsj6TE/dao-decisions-filter.func:45:18: warning: Lack of end_parse.
+      int op = body~load_uint(32);
+                   ^
+pass_the_filter?: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCqC6EhRJ_tpWngKxL6dV0k6DSnRUrs9GSVkLbfdCqsj6TE/dao-decisions-filter.func:8:15: warning: Local variable 'flags' is not used
+      int flags = cs~load_uint(4);
+                ^
+pass_the_filter?: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCqC6EhRJ_tpWngKxL6dV0k6DSnRUrs9GSVkLbfdCqsj6TE/dao-decisions-filter.func:9:26: warning: Local variable 'sender_address' is not used
+      slice sender_address = cs~load_msg_addr();
+                           ^
+pass_the_filter?: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCqC6EhRJ_tpWngKxL6dV0k6DSnRUrs9GSVkLbfdCqsj6TE/dao-decisions-filter.func:10:23: warning: Local variable 'destination' is not used
+      slice destination = cs~load_msg_addr();
+                        ^
+pass_the_filter?: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCqC6EhRJ_tpWngKxL6dV0k6DSnRUrs9GSVkLbfdCqsj6TE/dao-decisions-filter.func:11:15: warning: Local variable 'value' is not used
+      int value = cs~load_coins();
+                ^
+pass_the_filter?: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCqC6EhRJ_tpWngKxL6dV0k6DSnRUrs9GSVkLbfdCqsj6TE/dao-decisions-filter.func:12:35: warning: Local variable 'extracurrency_collection' is not used
+      cell extracurrency_collection = cs~load_maybe_ref();
+                                    ^
+pass_the_filter?: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCqC6EhRJ_tpWngKxL6dV0k6DSnRUrs9GSVkLbfdCqsj6TE/dao-decisions-filter.func:13:17: warning: Local variable 'ihr_fee' is not used
+      int ihr_fee = cs~load_coins();
+                  ^
+pass_the_filter?: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCqC6EhRJ_tpWngKxL6dV0k6DSnRUrs9GSVkLbfdCqsj6TE/dao-decisions-filter.func:14:17: warning: Local variable 'fwd_fee' is not used
+      int fwd_fee = cs~load_coins();
+                  ^
+pass_the_filter?: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCqC6EhRJ_tpWngKxL6dV0k6DSnRUrs9GSVkLbfdCqsj6TE/dao-decisions-filter.func:15:20: warning: Local variable 'created_lt' is not used
+      int created_lt = cs~load_uint(64);
+                     ^
+pass_the_filter?: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCqC6EhRJ_tpWngKxL6dV0k6DSnRUrs9GSVkLbfdCqsj6TE/dao-decisions-filter.func:16:20: warning: Local variable 'created_at' is not used
+      int created_at = cs~load_uint(32);
+                     ^
+pass_the_filter?: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCqC6EhRJ_tpWngKxL6dV0k6DSnRUrs9GSVkLbfdCqsj6TE/dao-decisions-filter.func:21:29: warning: Local variable 'init_state' is not used
+              cell init_state = cs~load_ref();
+                              ^
+pass_the_filter?: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCqC6EhRJ_tpWngKxL6dV0k6DSnRUrs9GSVkLbfdCqsj6TE/dao-decisions-filter.func:30:23: warning: Local variable 'code' is not used
+              cell code = cs~load_maybe_ref();
+                        ^
+pass_the_filter?: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCqC6EhRJ_tpWngKxL6dV0k6DSnRUrs9GSVkLbfdCqsj6TE/dao-decisions-filter.func:31:23: warning: Local variable 'data' is not used
+              cell data = cs~load_maybe_ref();
+                        ^
+pass_the_filter?: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCqC6EhRJ_tpWngKxL6dV0k6DSnRUrs9GSVkLbfdCqsj6TE/dao-decisions-filter.func:32:26: warning: Local variable 'library' is not used
+              cell library = cs~load_maybe_ref();
+                           ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCqC6EhRJ_tpWngKxL6dV0k6DSnRUrs9GSVkLbfdCqsj6TE/jetton-minter.func:32:15: warning: Lack of end_parse.
+              ds~load_ref() ;; voting_code
+                ^
+get_voting_code: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCqC6EhRJ_tpWngKxL6dV0k6DSnRUrs9GSVkLbfdCqsj6TE/jetton-minter.func:404:46: warning: Local variable 'total_supply' is not used
+              int voting_id, cell voting_code) = load_data();
+                                               ^
+get_voting_code: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCqC6EhRJ_tpWngKxL6dV0k6DSnRUrs9GSVkLbfdCqsj6TE/jetton-minter.func:404:46: warning: Local variable 'admin_address' is not used
+              int voting_id, cell voting_code) = load_data();
+                                               ^
+get_voting_code: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCqC6EhRJ_tpWngKxL6dV0k6DSnRUrs9GSVkLbfdCqsj6TE/jetton-minter.func:404:46: warning: Local variable 'content' is not used
+              int voting_id, cell voting_code) = load_data();
+                                               ^
+get_voting_code: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCqC6EhRJ_tpWngKxL6dV0k6DSnRUrs9GSVkLbfdCqsj6TE/jetton-minter.func:404:46: warning: Local variable 'voting_id' is not used
+              int voting_id, cell voting_code) = load_data();
+                                               ^

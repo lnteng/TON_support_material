@@ -1,0 +1,66 @@
+$Task3$_internal_binary_TokenNotification: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/tact-challenge/contracts/output/sample_Task3.code.fc:67:87: warning: PressionLoss
+          int $amountOfAJettonToSend = (((($self'aAmount * 1000000000) / $self'bAmount) * $msg'amount) / 1000000000);
+                                                                                        ^
+$Task3$_internal_binary_TokenNotification: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/tact-challenge/contracts/output/sample_Task3.code.fc:52:87: warning: PressionLoss
+          int $amountOfBJettonToSend = (((($self'bAmount * 1000000000) / $self'aAmount) * $msg'amount) / 1000000000);
+                                                                                        ^
+$Task3$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/tact-challenge/contracts/output/sample_Task3.code.fc:14:99: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB)) = (null(), null(), null(), null(), null());
+                                                                                                    ^
+$Task3$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/tact-challenge/contracts/output/sample_Task3.code.fc:14:99: warning: Local variable '$self'aAmount' is not used
+      var (($self'owner, $self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB)) = (null(), null(), null(), null(), null());
+                                                                                                    ^
+$Task3$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/tact-challenge/contracts/output/sample_Task3.code.fc:14:99: warning: Local variable '$self'bAmount' is not used
+      var (($self'owner, $self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB)) = (null(), null(), null(), null(), null());
+                                                                                                    ^
+$Task3$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/tact-challenge/contracts/output/sample_Task3.code.fc:14:99: warning: Local variable '$self'jettonAddressA' is not used
+      var (($self'owner, $self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB)) = (null(), null(), null(), null(), null());
+                                                                                                    ^
+$Task3$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/tact-challenge/contracts/output/sample_Task3.code.fc:14:99: warning: Local variable '$self'jettonAddressB' is not used
+      var (($self'owner, $self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB)) = (null(), null(), null(), null(), null());
+                                                                                                    ^
+$Task3$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/tact-challenge/contracts/output/sample_Task3.storage.fc:122:32: warning: Lack of end_parse.
+      var v'jettonAddressB = sc_1~__tact_load_address();
+                                 ^
+$Task3$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/tact-challenge/contracts/output/sample_Task3.storage.fc:138:19: warning: Lack of end_parse.
+          return $sc~$Task3$_load();
+                    ^
+$Task3$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/tact-challenge/contracts/output/sample_Task3.code.fc:123:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/tact-challenge/contracts/output/sample_Task3.storage.fc:149:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task3$_contract_store & $Task3$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/tact-challenge/contracts/output/sample_Task3.storage.fc:134:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/tact-challenge/contracts/output/sample_Task3.storage.fc:149:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task3$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/tact-challenge/contracts/output/sample_Task3.code.fc:55:110: warning: UnHandle bounced message with op: 0xf8a7ea5
+              $global_send($SendParameters$_constructor_to_value_mode_body($self'jettonAddressA, 0, 64, $body));
+                                                                                                               ^
+$Task3$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/tact-challenge/contracts/output/sample_Task3.code.fc:60:110: warning: UnHandle bounced message with op: 0xf8a7ea5
+              $global_send($SendParameters$_constructor_to_value_mode_body($self'jettonAddressB, 0, 64, $body));
+                                                                                                               ^
+$Task3$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/tact-challenge/contracts/output/sample_Task3.code.fc:70:110: warning: UnHandle bounced message with op: 0xf8a7ea5
+              $global_send($SendParameters$_constructor_to_value_mode_body($self'jettonAddressB, 0, 64, $body));
+                                                                                                               ^
+$Task3$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/tact-challenge/contracts/output/sample_Task3.code.fc:75:110: warning: UnHandle bounced message with op: 0xf8a7ea5
+              $global_send($SendParameters$_constructor_to_value_mode_body($self'jettonAddressA, 0, 64, $body));
+                                                                                                               ^

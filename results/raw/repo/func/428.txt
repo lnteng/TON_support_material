@@ -1,0 +1,16 @@
+flatten: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-3/func/1_flatten.fc:283:18: warning: Lack of end_parse.
+  		cell child = cs~load_ref();
+  		               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-3/func/1_flatten.fc:42:18: warning: Lack of end_parse.
+  	cell groups = cs~load_dict();
+  	                ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-3/func/1_flatten.fc:161:24: warning: Local variable 'f' is not used
+  			(cell group, int f) = groups.udict_get_ref?fixed(groups_dict_len, 0);
+  			                    ^
+read_structure_advance: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-3/func/1_flatten.fc:70:29: warning: Local variable 'f' is not used
+  			(cell next_group, int f) = in_cells.udict_get_ref?fixed(groups_dict_len, in_cells_index);
+  			                         ^

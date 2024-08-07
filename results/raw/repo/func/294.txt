@@ -1,0 +1,19 @@
+get_execution_time: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./jaredtrh/tsc5/contracts/task1.fc:60:36: warning: Lack of end_parse.
+      return get_data().begin_parse().skip_bits(256).preload_uint(32);
+                                     ^
+get_seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./jaredtrh/tsc5/contracts/task1.fc:56:36: warning: Lack of end_parse.
+      return get_data().begin_parse().skip_bits(555).preload_uint(32);
+                                     ^
+recv_external: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./jaredtrh/tsc5/contracts/task1.fc:15:28: warning: Lack of end_parse.
+          int locked_for = rs~load_uint(32);
+                             ^
+recv_external & get_seqno: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./jaredtrh/tsc5/contracts/task1.fc:56:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().skip_bits(555).preload_uint(32);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./jaredtrh/tsc5/contracts/task1.fc:33:17: warning: Cell of get_data and set_data are inconsistent.
+                  .store_uint(public_key, 256)
+                  ^

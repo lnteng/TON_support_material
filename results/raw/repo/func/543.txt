@@ -1,0 +1,24 @@
+decomposite: GobalVarRedefined
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TonContest-FunC/func-contest3/func/1tryopt.fc:213:25: warning: Global variable maybe redefined.
+    int global_node_index = 0;                                  ;; init
+                          ^
+decomposite: GobalVarRedefined
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TonContest-FunC/func-contest3/func/1tryopt.fc:215:21: warning: Global variable maybe redefined.
+    slice empty_slice = begin_cell().end_cell().begin_parse();  ;; vars
+                      ^
+decomposite: GobalVarRedefined
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TonContest-FunC/func-contest3/func/1tryopt.fc:217:18: warning: Global variable maybe redefined.
+    int last_cells = 0;
+                   ^
+decomposite: GobalVarRedefined
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TonContest-FunC/func-contest3/func/1tryopt.fc:218:17: warning: Global variable maybe redefined.
+    int last_bits = 0;
+                  ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TonContest-FunC/func-contest3/func/1tryopt.fc:72:19: warning: Local variable 'result' is not used
+        cell result = null();
+                    ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TonContest-FunC/func-contest3/func/1tryopt.fc:31:24: warning: Lack of end_parse.
+    slice ds = get_data().begin_parse();
+                         ^

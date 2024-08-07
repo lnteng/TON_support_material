@@ -1,0 +1,272 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_MathExample.headers.fc";
+#include "sample_MathExample.stdlib.fc";
+#include "sample_MathExample.native.fc";
+#include "sample_MathExample.storage.fc";
+
+;;
+;; Contract MathExample functions
+;;
+
+(int, int, int) $MathExample$_contract_init() impure inline_ref {
+    var (($self'x, $self'y, $self'result)) = (2, 7, 0);
+    return ($self'x, $self'y, $self'result);
+}
+
+((int, int, int), int) $MathExample$_fun_float((int, int, int) $self, int $value) impure inline_ref {
+    var (($self'x, $self'y, $self'result)) = $self;
+    return (($self'x, $self'y, $self'result), toFloat($value));
+}
+
+((int, int, int), int) $MathExample$_fun_safeAdd((int, int, int) $self) impure inline_ref {
+    var (($self'x, $self'y, $self'result)) = $self;
+    int $a = toFloat($self'x);
+    int $b = toFloat($self'y);
+    return (($self'x, $self'y, $self'result), safeAdd($a, $b));
+}
+
+((int, int, int), int) $MathExample$_fun_safeSub((int, int, int) $self) impure inline_ref {
+    var (($self'x, $self'y, $self'result)) = $self;
+    int $a = toFloat($self'x);
+    int $b = toFloat($self'y);
+    return (($self'x, $self'y, $self'result), safeSub($a, $b));
+}
+
+((int, int, int), int) $MathExample$_fun_safeMul((int, int, int) $self) impure inline_ref {
+    var (($self'x, $self'y, $self'result)) = $self;
+    int $a = toFloat($self'x);
+    int $b = toFloat($self'y);
+    return (($self'x, $self'y, $self'result), safeMul($a, $b));
+}
+
+((int, int, int), int) $MathExample$_fun_safeDiv((int, int, int) $self) impure inline_ref {
+    var (($self'x, $self'y, $self'result)) = $self;
+    int $a = toFloat($self'x);
+    int $b = toFloat($self'y);
+    return (($self'x, $self'y, $self'result), safeDiv($a, $b));
+}
+
+((int, int, int), int) $MathExample$_fun_Add((int, int, int) $self) impure inline_ref {
+    var (($self'x, $self'y, $self'result)) = $self;
+    int $a = toFloat($self'x);
+    int $b = toFloat($self'y);
+    return (($self'x, $self'y, $self'result), add($a, $b));
+}
+
+((int, int, int), int) $MathExample$_fun_Sub((int, int, int) $self) impure inline_ref {
+    var (($self'x, $self'y, $self'result)) = $self;
+    int $a = toFloat($self'x);
+    int $b = toFloat($self'y);
+    return (($self'x, $self'y, $self'result), sub($a, $b));
+}
+
+((int, int, int), int) $MathExample$_fun_Mul((int, int, int) $self) impure inline_ref {
+    var (($self'x, $self'y, $self'result)) = $self;
+    int $a = toFloat($self'x);
+    int $b = toFloat($self'y);
+    return (($self'x, $self'y, $self'result), mul($a, $b));
+}
+
+((int, int, int), int) $MathExample$_fun_Div((int, int, int) $self) impure inline_ref {
+    var (($self'x, $self'y, $self'result)) = $self;
+    int $a = toFloat($self'x);
+    int $b = toFloat($self'y);
+    return (($self'x, $self'y, $self'result), div($a, $b));
+}
+
+((int, int, int), int) $MathExample$_fun_DivisionByZero((int, int, int) $self) impure inline_ref {
+    var (($self'x, $self'y, $self'result)) = $self;
+    int $a = toFloat($self'x);
+    int $b = 0;
+    return (($self'x, $self'y, $self'result), div($a, $b));
+}
+
+((int, int, int), int) $MathExample$_fun_Result((int, int, int) $self) impure inline_ref {
+    var (($self'x, $self'y, $self'result)) = $self;
+    return (($self'x, $self'y, $self'result), $self'result);
+}
+
+;;
+;; Receivers of a Contract MathExample
+;;
+
+(((int, int, int)), ()) $MathExample$_internal_binary_Arithmetic((int, int, int) $self, (int, int, int) $msg) impure inline {
+    var ($self'x, $self'y, $self'result) = $self;
+    var ($msg'floatA, $msg'floatB, $msg'op) = $msg;
+    if (($msg'op == 0)) {
+        $self'result = safeAdd($msg'floatA, $msg'floatB);
+        return (($self'x, $self'y, $self'result), ());
+    }
+    if (($msg'op == 1)) {
+        $self'result = safeSub($msg'floatA, $msg'floatB);
+        return (($self'x, $self'y, $self'result), ());
+    }
+    if (($msg'op == 2)) {
+        $self'result = safeMul($msg'floatA, $msg'floatB);
+        return (($self'x, $self'y, $self'result), ());
+    }
+    if (($msg'op == 3)) {
+        $self'result = safeDiv($msg'floatA, $msg'floatB);
+        return (($self'x, $self'y, $self'result), ());
+    }
+    if (($msg'op == 4)) {
+        $self'result = sqrtFloat($msg'floatA);
+        return (($self'x, $self'y, $self'result), ());
+    }
+    return (($self'x, $self'y, $self'result), ());
+}
+
+(((int, int, int)), ()) $MathExample$_internal_binary_Deploy((int, int, int) $self, (int) $deploy) impure inline {
+    var ($self'x, $self'y, $self'result) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'x, $self'y, $self'result)~$MathExample$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'x, $self'y, $self'result), ());
+}
+
+;;
+;; Get methods of a Contract MathExample
+;;
+
+_ %float(int $$value) method_id(95211) {
+    int $value = $$value;
+    var self = $MathExample$_contract_load();
+    var res = self~$MathExample$_fun_float($value);
+    return res;
+}
+
+_ %safeAdd() method_id(112324) {
+    var self = $MathExample$_contract_load();
+    var res = self~$MathExample$_fun_safeAdd();
+    return res;
+}
+
+_ %safeSub() method_id(117571) {
+    var self = $MathExample$_contract_load();
+    var res = self~$MathExample$_fun_safeSub();
+    return res;
+}
+
+_ %safeMul() method_id(94959) {
+    var self = $MathExample$_contract_load();
+    var res = self~$MathExample$_fun_safeMul();
+    return res;
+}
+
+_ %safeDiv() method_id(71963) {
+    var self = $MathExample$_contract_load();
+    var res = self~$MathExample$_fun_safeDiv();
+    return res;
+}
+
+_ %Add() method_id(115025) {
+    var self = $MathExample$_contract_load();
+    var res = self~$MathExample$_fun_Add();
+    return res;
+}
+
+_ %Sub() method_id(113878) {
+    var self = $MathExample$_contract_load();
+    var res = self~$MathExample$_fun_Sub();
+    return res;
+}
+
+_ %Mul() method_id(66938) {
+    var self = $MathExample$_contract_load();
+    var res = self~$MathExample$_fun_Mul();
+    return res;
+}
+
+_ %Div() method_id(93838) {
+    var self = $MathExample$_contract_load();
+    var res = self~$MathExample$_fun_Div();
+    return res;
+}
+
+_ %DivisionByZero() method_id(114673) {
+    var self = $MathExample$_contract_load();
+    var res = self~$MathExample$_fun_DivisionByZero();
+    return res;
+}
+
+_ %Result() method_id(88922) {
+    var self = $MathExample$_contract_load();
+    var res = self~$MathExample$_fun_Result();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://Qmeo3zcYtHkp9Ss8XTQTJ48hjKJqxb6aoFX7LsmXiWegya";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract MathExample
+;;
+
+((int, int, int), int) $MathExample$_contract_router_internal((int, int, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive Arithmetic message
+    if (op == 3482317549) {
+        var msg = in_msg~$Arithmetic$_load();
+        self~$MathExample$_internal_binary_Arithmetic(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$MathExample$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $MathExample$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$MathExample$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $MathExample$_contract_store(self);
+}

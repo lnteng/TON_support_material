@@ -1,0 +1,11 @@
+$Integers$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson3/build/Integers/tact_Integers.storage.fc:61:22: warning: Lack of end_parse.
+      int $loaded = $sc~load_int(1);
+                       ^
+$Integers$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson3/build/Integers/tact_Integers.code.fc:47:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson3/build/Integers/tact_Integers.storage.fc:72:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

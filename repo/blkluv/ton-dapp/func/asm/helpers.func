@@ -1,0 +1,15 @@
+int equal_slices (slice a, slice b) asm "SDEQ";
+int builder_null?(builder b) asm "ISNULL";
+int tuple_length(tuple t) asm "TLEN";
+forall X -> int is_null(X x) asm "ISNULL";
+forall X -> int is_int(X x) asm "<{ TRY:<{ 0 PUSHINT ADD DROP -1 PUSHINT }>CATCH<{ 2DROP 0 PUSHINT }> }>CONT 1 1 CALLXARGS";
+forall X -> int is_cell(X x) asm "<{ TRY:<{ CTOS DROP -1 PUSHINT }>CATCH<{ 2DROP 0 PUSHINT }> }>CONT 1 1 CALLXARGS";
+forall X -> int is_slice(X x) asm "<{ TRY:<{ SBITS DROP -1 PUSHINT }>CATCH<{ 2DROP 0 PUSHINT }> }>CONT 1 1 CALLXARGS";
+forall X -> int is_tuple(X x) asm "ISTUPLE";
+forall X -> tuple unsafe_to_tuple(X x) asm "NOP";
+int workchains_equal?(slice addr1, slice addr2) asm "REWRITESTDADDR DROP SWAP REWRITESTDADDR DROP EQUAL";
+
+int is_valid_full_address(slice x) asm "PARSEMSGADDRQ DUP"
+    "<{ DROP TLEN 1 PUSHINT GREATER"
+        "<{ -1 PUSHINT }>CONT <{ 0 PUSHINT }>CONT IFELSE"
+    "}>CONT IF";

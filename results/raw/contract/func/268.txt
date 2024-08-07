@@ -1,0 +1,8 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAtRMiPzUFf6--gle-_Z2WGl0XH8To-r5hHk_B8JPCqTjcD/contracts/jetton-wallet.fc:199:48: warning: Lack of end_parse.
+      int fwd_fee_from_in_msg = in_msg_full_slice~retrieve_fwd_fee();
+                                                 ^
+get_wallet_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAtRMiPzUFf6--gle-_Z2WGl0XH8To-r5hHk_B8JPCqTjcD/contracts/jetton-wallet.fc:230:81: warning: Local variable 'status' is not used
+      (int status, int balance, slice owner_address, slice jetton_master_address) = load_data();
+                                                                                  ^

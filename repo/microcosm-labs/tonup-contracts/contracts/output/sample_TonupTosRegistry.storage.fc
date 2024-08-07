@@ -1,0 +1,173 @@
+;;
+;; Type: StateInit
+;; TLB: _ code:^cell data:^cell = StateInit
+;;
+
+((cell, cell)) $StateInit$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (cell vvv'code, cell vvv'data) = __tact_tuple_destroy_2(v);
+    return (vvv'code, vvv'data);
+}
+
+;;
+;; Type: Context
+;; TLB: _ bounced:bool sender:address value:int257 raw:^slice = Context
+;;
+
+_ $Context$_get_value((int, slice, int, slice) v) inline {
+    var (v'bounced, v'sender, v'value, v'raw) = v;
+    return v'value;
+}
+
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode_bounce(slice to, int value, int mode, int bounce) inline {
+    return (bounce, to, value, mode, null(), null(), null());
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_value_to_bounce_mode_body(int value, slice to, int bounce, int mode, cell body) inline {
+    return (bounce, to, value, mode, body, null(), null());
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline {
+    return (bounce, to, value, mode, body, code, data);
+}
+
+;;
+;; Type: Deploy
+;; Header: 0x946a98b6
+;; TLB: deploy#946a98b6 queryId:uint64 = Deploy
+;;
+
+(slice, ((int))) $Deploy$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2490013878);
+    var v'queryId = sc_0~load_uint(64);
+    return (sc_0, (v'queryId));
+}
+
+;;
+;; Type: DeployOk
+;; Header: 0xaff90f57
+;; TLB: deploy_ok#aff90f57 queryId:uint64 = DeployOk
+;;
+
+builder $DeployOk$_store(builder build_0, (int) v) inline {
+    var (v'queryId) = v;
+    build_0 = store_uint(build_0, 2952335191, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    return build_0;
+}
+
+cell $DeployOk$_store_cell((int) v) inline {
+    return $DeployOk$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $DeployOk$_constructor_queryId(int queryId) inline {
+    return (queryId);
+}
+
+;;
+;; Type: ReadConsent
+;; Header: 0xef3d09a7
+;; TLB: read_consent#ef3d09a7 addr:address = ReadConsent
+;;
+
+(slice, ((slice))) $ReadConsent$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 4013754791);
+    var v'addr = sc_0~__tact_load_address();
+    return (sc_0, (v'addr));
+}
+
+;;
+;; Type: ConsentReply
+;; Header: 0xcbc1a22e
+;; TLB: consent_reply#cbc1a22e addr:address accepted:bool = ConsentReply
+;;
+
+builder $ConsentReply$_store(builder build_0, (slice, int) v) inline {
+    var (v'addr, v'accepted) = v;
+    build_0 = store_uint(build_0, 3418464814, 32);
+    build_0 = __tact_store_address(build_0, v'addr);
+    build_0 = build_0.store_int(v'accepted, 1);
+    return build_0;
+}
+
+cell $ConsentReply$_store_cell((slice, int) v) inline {
+    return $ConsentReply$_store(begin_cell(), v).end_cell();
+}
+
+((slice, int)) $ConsentReply$_constructor_addr_accepted(slice addr, int accepted) inline {
+    return (addr, accepted);
+}
+
+;;
+;; Type: ConsentEvent
+;; Header: 0x2948f0c8
+;; TLB: consent_event#2948f0c8 addr:address timestamp:uint32 = ConsentEvent
+;;
+
+builder $ConsentEvent$_store(builder build_0, (slice, int) v) inline {
+    var (v'addr, v'timestamp) = v;
+    build_0 = store_uint(build_0, 692646088, 32);
+    build_0 = __tact_store_address(build_0, v'addr);
+    build_0 = build_0.store_uint(v'timestamp, 32);
+    return build_0;
+}
+
+cell $ConsentEvent$_store_cell((slice, int) v) inline {
+    return $ConsentEvent$_store(begin_cell(), v).end_cell();
+}
+
+((slice, int)) $ConsentEvent$_constructor_addr_timestamp(slice addr, int timestamp) inline {
+    return (addr, timestamp);
+}
+
+;;
+;; Type: TonupTosRegistry
+;;
+
+builder $TonupTosRegistry$_store(builder build_0, (slice, cell, int) v) inline {
+    var (v'owner, v'accepted, v'number_users) = v;
+    build_0 = __tact_store_address(build_0, v'owner);
+    build_0 = build_0.store_dict(v'accepted);
+    build_0 = build_0.store_uint(v'number_users, 32);
+    return build_0;
+}
+
+(slice, ((slice, cell, int))) $TonupTosRegistry$_load(slice sc_0) inline {
+    var v'owner = sc_0~__tact_load_address();
+    var v'accepted = sc_0~load_dict();
+    var v'number_users = sc_0~load_uint(32);
+    return (sc_0, (v'owner, v'accepted, v'number_users));
+}
+
+(slice, ((slice))) $TonupTosRegistry$init$_load(slice sc_0) inline {
+    var v'owner = sc_0~__tact_load_address();
+    return (sc_0, (v'owner));
+}
+
+(slice, cell, int) $TonupTosRegistry$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$TonupTosRegistry$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (slice owner) = $sc~$TonupTosRegistry$init$_load();
+        $sc.end_parse();
+        return $TonupTosRegistry$_contract_init(owner);
+    }
+}
+
+() $TonupTosRegistry$_contract_store((slice, cell, int) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $TonupTosRegistry$_store(b, v);
+    set_data(b.end_cell());
+}

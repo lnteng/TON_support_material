@@ -1,0 +1,24 @@
+__gen_read_MultisigSigner: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact/examples/output/multisig_MultisigSigner.code.fc:107:25: warning: Lack of end_parse.
+      var v'request = sc_1~__gen_read_Request();
+                          ^
+__gen_load_MultisigSigner: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact/examples/output/multisig_MultisigSigner.code.fc:119:14: warning: Lack of end_parse.
+      return sc~__gen_read_MultisigSigner();
+               ^
+$__gen_MultisigSigner_receive_comment_22aee6d0a6dc146577277dd58d06ae3090a3cdd3d8a88561184208ae5f6eb039: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact/examples/output/multisig_MultisigSigner.code.fc:192:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$__gen_MultisigSigner_receive_comment_22aee6d0a6dc146577277dd58d06ae3090a3cdd3d8a88561184208ae5f6eb039: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact/examples/output/multisig_MultisigSigner.code.fc:192:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$__gen_MultisigSigner_receive_comment_22aee6d0a6dc146577277dd58d06ae3090a3cdd3d8a88561184208ae5f6eb039: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact/examples/output/multisig_MultisigSigner.code.fc:192:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+__tact_dict_set_slice_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact/examples/output/multisig_MultisigSigner.code.fc:35:21: warning: Local variable 'ok' is not used
+          var (r, ok) = __tact_dict_delete(d, kl, k);
+                      ^

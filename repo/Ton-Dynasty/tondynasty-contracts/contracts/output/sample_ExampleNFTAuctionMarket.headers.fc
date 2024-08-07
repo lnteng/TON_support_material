@@ -1,0 +1,205 @@
+;;
+;; Header files for ExampleNFTAuctionMarket
+;; NOTE: declarations are sorted for optimal order
+;;
+
+;; __tact_verify_address
+slice __tact_verify_address(slice address) inline;
+
+;; __tact_load_address
+(slice, slice) __tact_load_address(slice cs) inline;
+
+;; __tact_load_address_opt
+(slice, slice) __tact_load_address_opt(slice cs) inline;
+
+;; __tact_store_address
+builder __tact_store_address(builder b, slice address) inline;
+
+;; __tact_create_address
+slice __tact_create_address(int chain, int hash) inline;
+
+;; __tact_compute_contract_address
+slice __tact_compute_contract_address(int chain, cell code, cell data) inline;
+
+;; __tact_my_balance
+int __tact_my_balance() inline;
+
+;; __tact_not_null
+forall X -> X __tact_not_null(X x) inline;
+
+;; __tact_context_get
+(int, slice, int, slice) __tact_context_get() inline;
+
+;; __tact_context_get_sender
+slice __tact_context_get_sender() inline;
+
+;; __tact_store_bool
+builder __tact_store_bool(builder b, int v) inline;
+
+;; __tact_dict_set_int_int
+(cell, ()) __tact_dict_set_int_int(cell d, int kl, int k, int v, int vl) inline;
+
+;; __tact_dict_get_int_int
+int __tact_dict_get_int_int(cell d, int kl, int k, int vl) inline;
+
+;; __tact_dict_set_slice_slice
+(cell, ()) __tact_dict_set_slice_slice(cell d, int kl, slice k, slice v) inline;
+
+;; __tact_dict_get_slice_slice
+slice __tact_dict_get_slice_slice(cell d, int kl, slice k) inline;
+
+;; __tact_dict_set_code
+cell __tact_dict_set_code(cell dict, int id, cell code) inline;
+
+;; __tact_dict_get_code
+cell __tact_dict_get_code(cell dict, int id) inline;
+
+;; $Deploy$_load
+(slice, ((int))) $Deploy$_load(slice sc_0) inline;
+
+;; $DeployOk$_store
+builder $DeployOk$_store(builder build_0, (int) v) inline;
+
+;; $DeployOk$_store_cell
+cell $DeployOk$_store_cell((int) v) inline;
+
+;; $SetUpAuction$_load
+(slice, ((slice, int, int, int, slice))) $SetUpAuction$_load(slice sc_0) inline;
+
+;; $ReviseSetUpAuction$_load
+(slice, ((slice, int, int, int, slice))) $ReviseSetUpAuction$_load(slice sc_0) inline;
+
+;; $AuctionInfo$_store
+builder $AuctionInfo$_store(builder build_0, (int, int, int, int, int, int, slice, slice, slice, slice, slice) v) inline_ref;
+
+;; $ReviseAuction$_store
+builder $ReviseAuction$_store(builder build_0, ((int, int, int, int, int, int, slice, slice, slice, slice, slice)) v) inline;
+
+;; $ReviseAuction$_store_cell
+cell $ReviseAuction$_store_cell(((int, int, int, int, int, int, slice, slice, slice, slice, slice)) v) inline;
+
+;; $BuildNftAuction$_store
+builder $BuildNftAuction$_store(builder build_0, ((int, int, int, int, int, int, slice, slice, slice, slice, slice)) v) inline;
+
+;; $BuildNftAuction$_store_cell
+cell $BuildNftAuction$_store_cell(((int, int, int, int, int, int, slice, slice, slice, slice, slice)) v) inline;
+
+;; $EndAuction$_load
+(slice, ((slice))) $EndAuction$_load(slice sc_0) inline;
+
+;; $TransferNFT$_load
+(slice, ((slice, slice, int, slice, slice, cell, int, slice))) $TransferNFT$_load(slice sc_0) inline_ref;
+
+;; $Transfer$_store
+builder $Transfer$_store(builder build_0, (int, slice, slice, cell, int, slice) v) inline_ref;
+
+;; $Transfer$_store_cell
+cell $Transfer$_store_cell((int, slice, slice, cell, int, slice) v) inline;
+
+;; $OwnershipAssigned$_load
+(slice, ((int, slice, slice))) $OwnershipAssigned$_load(slice sc_0) inline;
+
+;; $ExampleNFTAuctionMarket$_store
+builder $ExampleNFTAuctionMarket$_store(builder build_0, (slice, cell, cell, cell, cell) v) inline;
+
+;; $ExampleNFTAuctionMarket$_load
+(slice, ((slice, cell, cell, cell, cell))) $ExampleNFTAuctionMarket$_load(slice sc_0) inline;
+
+;; $StateInit$_not_null
+((cell, cell)) $StateInit$_not_null(tuple v) inline;
+
+;; $StateInit$_to_external
+(cell, cell) $StateInit$_to_external(((cell, cell)) v) inline;
+
+;; $ExampleNFTAuctionMarket$init$_load
+(slice, ((slice))) $ExampleNFTAuctionMarket$init$_load(slice sc_0) inline;
+
+;; $ExampleNFTAuction$init$_store
+builder $ExampleNFTAuction$init$_store(builder build_0, (slice, slice, slice) v) inline;
+
+;; $ExampleNFTAuctionMarket$_contract_init
+(slice, cell, cell, cell, cell) $ExampleNFTAuctionMarket$_contract_init(slice $owner) impure inline_ref;
+
+;; $ExampleNFTAuctionMarket$_contract_load
+(slice, cell, cell, cell, cell) $ExampleNFTAuctionMarket$_contract_load() impure inline_ref;
+
+;; $ExampleNFTAuctionMarket$_contract_store
+() $ExampleNFTAuctionMarket$_contract_store((slice, cell, cell, cell, cell) v) impure inline;
+
+;; $global_contractAddress
+slice $global_contractAddress((cell, cell) $s) impure inline;
+
+;; $global_send
+() $global_send((int, slice, int, int, cell, cell, cell) $params) impure inline_ref;
+
+;; $Cell$_fun_asSlice
+slice $Cell$_fun_asSlice(cell $self) impure inline;
+
+;; $ExampleNFTAuction$_init_child
+(cell, cell) $ExampleNFTAuction$_init_child(cell sys', slice $owner, slice $nftAddress, slice $seller) inline_ref;
+
+;; $ExampleNFTAuctionMarket$_fun__nft_auction_init
+((slice, cell, cell, cell, cell), (cell, cell)) $ExampleNFTAuctionMarket$_fun__nft_auction_init((slice, cell, cell, cell, cell) $self, slice $nftAddress, slice $seller) impure inline_ref;
+
+;; $SendParameters$_constructor_bounce_to_value_mode_body_code_data
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline;
+
+;; $ExampleNFTAuctionMarket$_fun_forward
+((slice, cell, cell, cell, cell), ()) $ExampleNFTAuctionMarket$_fun_forward((slice, cell, cell, cell, cell) $self, slice $to, cell $body, int $bounce, tuple $init) impure inline_ref;
+
+;; $ExampleNFTAuctionMarket$_fun_notify
+((slice, cell, cell, cell, cell), ()) $ExampleNFTAuctionMarket$_fun_notify((slice, cell, cell, cell, cell) $self, cell $body) impure inline;
+
+;; $ExampleNFTAuctionMarket$_fun_get_hash_seller_nft_address
+((slice, cell, cell, cell, cell), int) $ExampleNFTAuctionMarket$_fun_get_hash_seller_nft_address((slice, cell, cell, cell, cell) $self, slice $seller, slice $nftAddress) impure inline_ref;
+
+;; $AuctionInfo$_constructor_bidIncreasePercentage_auctionBidPeriod_auctionPeriod_reservePrice_buyNowPrice_nftHighestBid_nftHighestBidder_nftSeller_whitelistedBuyer_nftRecipient_beneficiary
+((int, int, int, int, int, int, slice, slice, slice, slice, slice)) $AuctionInfo$_constructor_bidIncreasePercentage_auctionBidPeriod_auctionPeriod_reservePrice_buyNowPrice_nftHighestBid_nftHighestBidder_nftSeller_whitelistedBuyer_nftRecipient_beneficiary(int bidIncreasePercentage, int auctionBidPeriod, int auctionPeriod, int reservePrice, int buyNowPrice, int nftHighestBid, slice nftHighestBidder, slice nftSeller, slice whitelistedBuyer, slice nftRecipient, slice beneficiary) inline;
+
+;; $ExampleNFTAuctionMarket$_fun__set_up_auction
+((slice, cell, cell, cell, cell), (int, int, int, int, int, int, slice, slice, slice, slice, slice)) $ExampleNFTAuctionMarket$_fun__set_up_auction((slice, cell, cell, cell, cell) $self, slice $sellerAddress, slice $nftAddress, int $reservePrice, int $buyNowPrice, int $auctionPeriod, slice $beneficiary) impure inline;
+
+;; $ExampleNFTAuctionMarket$_fun__set_price_validate
+((slice, cell, cell, cell, cell), ()) $ExampleNFTAuctionMarket$_fun__set_price_validate((slice, cell, cell, cell, cell) $self, int $buyNowPrice, int $reservePrice) impure inline;
+
+;; $ExampleNFTAuctionMarket$_fun_get_nft_auction_address
+((slice, cell, cell, cell, cell), slice) $ExampleNFTAuctionMarket$_fun_get_nft_auction_address((slice, cell, cell, cell, cell) $self, slice $nftAddress, slice $seller) impure inline_ref;
+
+;; $ExampleNFTAuctionMarket$_fun__auction_set_validate
+((slice, cell, cell, cell, cell), ()) $ExampleNFTAuctionMarket$_fun__auction_set_validate((slice, cell, cell, cell, cell) $self, slice $nftAuctionAddress) impure inline;
+
+;; $SendParameters$_constructor_to_value_mode_bounce_body_code_data
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode_bounce_body_code_data(slice to, int value, int mode, int bounce, cell body, cell code, cell data) inline;
+
+;; $BuildNftAuction$_constructor_auctionInfo
+(((int, int, int, int, int, int, slice, slice, slice, slice, slice))) $BuildNftAuction$_constructor_auctionInfo((int, int, int, int, int, int, slice, slice, slice, slice, slice) auctionInfo) inline;
+
+;; $ExampleNFTAuctionMarket$_fun__build_auction
+((slice, cell, cell, cell, cell), ()) $ExampleNFTAuctionMarket$_fun__build_auction((slice, cell, cell, cell, cell) $self, slice $nftAuctionAddress, (int, int, int, int, int, int, slice, slice, slice, slice, slice) $auctionInfo, (cell, cell) $nftAuctionInit) impure inline;
+
+;; $ExampleNFTAuctionMarket$_fun__parse_forward_payload
+((slice, cell, cell, cell, cell), ()) $ExampleNFTAuctionMarket$_fun__parse_forward_payload((slice, cell, cell, cell, cell) $self, slice $seller, slice $nftAddress, slice $payload) impure inline;
+
+;; $ExampleNFTAuctionMarket$_fun__auction_not_set_validate
+((slice, cell, cell, cell, cell), ()) $ExampleNFTAuctionMarket$_fun__auction_not_set_validate((slice, cell, cell, cell, cell) $self, slice $nftAuctionAddress) impure inline;
+
+;; $ExampleNFTAuctionMarket$_fun_get_is_auction_transfer_check
+((slice, cell, cell, cell, cell), int) $ExampleNFTAuctionMarket$_fun_get_is_auction_transfer_check((slice, cell, cell, cell, cell) $self, int $hashSellerNftAddress) impure inline_ref;
+
+;; $ExampleNFTAuctionMarket$_fun__auction_transfer_validate
+((slice, cell, cell, cell, cell), ()) $ExampleNFTAuctionMarket$_fun__auction_transfer_validate((slice, cell, cell, cell, cell) $self, int $hashSellerNftAddress) impure inline;
+
+;; $SendParameters$_constructor_to_value_bounce_mode_body
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_bounce_mode_body(slice to, int value, int bounce, int mode, cell body) inline;
+
+;; $SendParameters$_constructor_to_value_mode_bounce_body
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode_bounce_body(slice to, int value, int mode, int bounce, cell body) inline;
+
+;; $DeployOk$_constructor_queryId
+((int)) $DeployOk$_constructor_queryId(int queryId) inline;
+
+;; $Transfer$_constructor_query_id_new_owner_response_destination_custom_payload_forward_amount_forward_payload
+((int, slice, slice, cell, int, slice)) $Transfer$_constructor_query_id_new_owner_response_destination_custom_payload_forward_amount_forward_payload(int query_id, slice new_owner, slice response_destination, cell custom_payload, int forward_amount, slice forward_payload) inline;
+
+;; $ReviseAuction$_constructor_reviseAuctionInfo
+(((int, int, int, int, int, int, slice, slice, slice, slice, slice))) $ReviseAuction$_constructor_reviseAuctionInfo((int, int, int, int, int, int, slice, slice, slice, slice, slice) reviseAuctionInfo) inline;

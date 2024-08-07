@@ -1,0 +1,124 @@
+get_public_key: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:156:5: warning: Lack of end_parse.
+    ds~load_uint(32 + 32);
+      ^
+get_pow_params: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:151:35: warning: Lack of end_parse.
+    return (seed, pow_complexity, ds~load_grams(), ds.preload_uint(32));
+                                    ^
+get_pow_params: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:149:61: warning: Lack of end_parse.
+    var (seed, pow_complexity, xdata) = (ds~load_uint(128), ds~load_uint(256), ds.preload_ref());
+                                                              ^
+seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:143:20: warning: Lack of end_parse.
+    return get_data().begin_parse().preload_uint(32);
+                     ^
+recv_external: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:125:18: warning: Lack of end_parse.
+      var mode = cs~load_uint(8);
+                   ^
+~update_params: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:87:44: warning: Local variable 'last_success' is not used
+    var (seed, pow_complexity, last_success) = (ds~load_uint(128), ds~load_uint(256), ds~load_uint(32));
+                                             ^
+rescale_complexity: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:56:20: warning: Local variable 'op' is not used
+    var (op, expire) = (cs~load_uint(32), cs~load_uint(32));
+                     ^
+rescale_complexity: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:65:30: warning: Local variable 'amount' is not used
+    var (amount, target_delta) = (ds~load_grams(), ds~load_uint(32));
+                               ^
+rescale_complexity: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:69:26: warning: Local variable 'min_cpl' is not used
+    var (min_cpl, max_cpl) = (ds~load_uint(8), ds~load_uint(8));
+                           ^
+check_proof_of_work: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:14:56: warning: Local variable 'op' is not used
+    var (op, flags, expire, whom, rdata1, rseed, rdata2) = (cs~load_uint(32), cs~load_int(8), cs~load_uint(32), cs~load_uint(256), cs~load_uint(256), cs~load_uint(128), cs~load_uint(256));
+                                                         ^
+recv_external & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:155:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:133:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_uint(stored_seqno + 1, 32)
+      ^
+recv_external & get_pow_params: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:148:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse().skip_bits(32 + 32 + 256);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:133:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_uint(stored_seqno + 1, 32)
+      ^
+recv_external & rescale_complexity: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:60:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:133:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_uint(stored_seqno + 1, 32)
+      ^
+recv_external & check_proof_of_work: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:11:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:133:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_uint(stored_seqno + 1, 32)
+      ^
+rescale_complexity & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:155:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:77:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_slice(skipped_data)
+      ^
+rescale_complexity & get_pow_params: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:148:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse().skip_bits(32 + 32 + 256);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:77:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_slice(skipped_data)
+      ^
+rescale_complexity & recv_external: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:116:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:77:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_slice(skipped_data)
+      ^
+rescale_complexity & rescale_complexity: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:60:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:77:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_slice(skipped_data)
+      ^
+rescale_complexity & check_proof_of_work: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:11:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:77:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_slice(skipped_data)
+      ^
+check_proof_of_work & get_pow_params: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:148:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse().skip_bits(32 + 32 + 256);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:37:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_uint(stored_seqno_sw, 64)
+      ^
+check_proof_of_work & recv_external: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:116:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:37:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_uint(stored_seqno_sw, 64)
+      ^
+check_proof_of_work & rescale_complexity: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:60:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/pow-giver.fc:37:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_uint(stored_seqno_sw, 64)
+      ^

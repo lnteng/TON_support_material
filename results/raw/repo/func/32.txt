@@ -1,0 +1,12 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./TonDevStudy/sandbox-fees-sendmodes/fees/contracts/main_naive.fc:42:20: warning: Lack of end_parse.
+    slice sender = cs~load_msg_addr();
+                     ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./TonDevStudy/sandbox-fees-sendmodes/fees/contracts/main_naive.fc:5:12: warning: Lack of end_parse.
+    return ds~load_msg_addr();
+             ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./TonDevStudy/sandbox-fees-sendmodes/fees/contracts/main_naive.fc:27:28: warning: UnHandle bounced message with op: 0x33bbff77
+    send_raw_message(msg, 64);
+                             ^

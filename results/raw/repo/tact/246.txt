@@ -1,0 +1,26 @@
+$DynamicSmartContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_DynamicSmartContract.code.fc:14:22: warning: Local variable '$self'id' is not used
+      var (($self'id)) = (null());
+                       ^
+$DynamicSmartContract$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_DynamicSmartContract.storage.fc:105:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$DynamicSmartContract$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_DynamicSmartContract.storage.fc:85:19: warning: Lack of end_parse.
+          return $sc~$DynamicSmartContract$_load();
+                    ^
+$DynamicSmartContract$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_DynamicSmartContract.code.fc:72:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_DynamicSmartContract.storage.fc:96:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$DynamicSmartContract$_contract_store & $DynamicSmartContract$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_DynamicSmartContract.storage.fc:81:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_DynamicSmartContract.storage.fc:96:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

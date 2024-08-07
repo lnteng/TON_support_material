@@ -1,0 +1,51 @@
+get_whitelist: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDKHHSV5koZgELBEbv_gYemMNOWB1BKJZDHj5k7N8NiRcU6/vesting_wallet.fc:384:48: warning: Local variable 'value' is not used
+          (d, slice key, slice value, int found) = d.dict_delete_get_min(ADDRESS_SIZE);
+                                                 ^
+get_public_key: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDKHHSV5koZgELBEbv_gYemMNOWB1BKJZDHj5k7N8NiRcU6/vesting_wallet.fc:359:36: warning: Lack of end_parse.
+      return get_data().begin_parse().skip_bits(64).preload_uint(256);
+                                     ^
+match_address_from_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDKHHSV5koZgELBEbv_gYemMNOWB1BKJZDHj5k7N8NiRcU6/vesting_wallet.fc:144:37: warning: Lack of end_parse.
+      slice config_slice = config_cell.begin_parse();
+                                      ^
+get_subwallet_id: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDKHHSV5koZgELBEbv_gYemMNOWB1BKJZDHj5k7N8NiRcU6/vesting_wallet.fc:354:36: warning: Lack of end_parse.
+      return get_data().begin_parse().skip_bits(32).preload_uint(32);
+                                     ^
+seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDKHHSV5koZgELBEbv_gYemMNOWB1BKJZDHj5k7N8NiRcU6/vesting_wallet.fc:349:22: warning: Lack of end_parse.
+      return get_data().begin_parse().preload_uint(32);
+                       ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDKHHSV5koZgELBEbv_gYemMNOWB1BKJZDHj5k7N8NiRcU6/vesting_wallet.fc:281:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+send_message: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDKHHSV5koZgELBEbv_gYemMNOWB1BKJZDHj5k7N8NiRcU6/vesting_wallet.fc:248:42: warning: Lack of end_parse.
+                          int action = body~load_uint(8);
+                                           ^
+send_message: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDKHHSV5koZgELBEbv_gYemMNOWB1BKJZDHj5k7N8NiRcU6/vesting_wallet.fc:232:34: warning: Lack of end_parse.
+                      int op = body~load_uint(32);
+                                   ^
+send_message: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDKHHSV5koZgELBEbv_gYemMNOWB1BKJZDHj5k7N8NiRcU6/vesting_wallet.fc:226:34: warning: Lack of end_parse.
+                      int op = body~load_uint(32);
+                                   ^
+send_message: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDKHHSV5koZgELBEbv_gYemMNOWB1BKJZDHj5k7N8NiRcU6/vesting_wallet.fc:203:30: warning: Local variable 'sender_address' is not used
+          slice sender_address = msg_cs~load_msg_addr(); ;; skip
+                               ^
+recv_external: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDKHHSV5koZgELBEbv_gYemMNOWB1BKJZDHj5k7N8NiRcU6/vesting_wallet.fc:325:101: warning: Lack of end_parse.
+      (int my_seqno, int my_subwallet_id, int my_public_key) = (ds~load_uint(32), ds~load_uint(32), ds~load_uint(256));
+                                                                                                      ^
+save_data & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDKHHSV5koZgELBEbv_gYemMNOWB1BKJZDHj5k7N8NiRcU6/vesting_wallet.fc:359:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().skip_bits(64).preload_uint(256);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDKHHSV5koZgELBEbv_gYemMNOWB1BKJZDHj5k7N8NiRcU6/vesting_wallet.fc:102:21: warning: Cell of get_data and set_data are inconsistent.
+                      .store_uint(stored_seqno, 32)
+                      ^

@@ -1,0 +1,157 @@
+;;
+;; Header files for Credit
+;; NOTE: declarations are sorted for optimal order
+;;
+
+;; __tact_verify_address
+slice __tact_verify_address(slice address) inline;
+
+;; __tact_load_address
+(slice, slice) __tact_load_address(slice cs) inline;
+
+;; __tact_store_address
+builder __tact_store_address(builder b, slice address) inline;
+
+;; __tact_create_address
+slice __tact_create_address(int chain, int hash) inline;
+
+;; __tact_my_balance
+int __tact_my_balance() inline;
+
+;; __tact_not_null
+forall X -> X __tact_not_null(X x) inline;
+
+;; __tact_context_get
+(int, slice, int, slice) __tact_context_get() inline;
+
+;; __tact_context_get_sender
+slice __tact_context_get_sender() inline;
+
+;; __tact_store_bool
+builder __tact_store_bool(builder b, int v) inline;
+
+;; __tact_slice_eq_bits
+int __tact_slice_eq_bits(slice a, slice b) inline;
+
+;; $Deploy$_load
+(slice, ((int))) $Deploy$_load(slice sc_0) inline;
+
+;; $DeployOk$_store
+builder $DeployOk$_store(builder build_0, (int) v) inline;
+
+;; $DeployOk$_store_cell
+cell $DeployOk$_store_cell((int) v) inline;
+
+;; $CreditData$_load
+(slice, ((int, int, int, cell))) $CreditData$_load(slice sc_0) inline;
+
+;; $OwnershipAssigned$_load
+(slice, ((int, slice, slice))) $OwnershipAssigned$_load(slice sc_0) inline;
+
+;; $Transfer$_store
+builder $Transfer$_store(builder build_0, (int, slice, slice, cell, int, slice) v) inline_ref;
+
+;; $Transfer$_store_cell
+cell $Transfer$_store_cell((int, slice, slice, cell, int, slice) v) inline;
+
+;; $Issue$_load
+(slice, ((int, int))) $Issue$_load(slice sc_0) inline;
+
+;; $Redeem$_load
+(slice, (tuple)) $Redeem$_load(slice sc_0) inline;
+
+;; $Dispose$_load
+(slice, ((slice))) $Dispose$_load(slice sc_0) inline;
+
+;; $Cancel$_load
+(slice, (tuple)) $Cancel$_load(slice sc_0) inline;
+
+;; $Refuse$_load
+(slice, (tuple)) $Refuse$_load(slice sc_0) inline;
+
+;; $Deposit$_store
+builder $Deposit$_store(builder build_0, (int) v) inline;
+
+;; $Deposit$_store_cell
+cell $Deposit$_store_cell((int) v) inline;
+
+;; $Income$_store
+builder $Income$_store(builder build_0, (int) v) inline;
+
+;; $Income$_store_cell
+cell $Income$_store_cell((int) v) inline;
+
+;; $Credit$_store
+builder $Credit$_store(builder build_0, (int, slice, slice, slice, slice, int, int, int, int, int, int) v) inline;
+
+;; $Credit$_load
+(slice, ((int, slice, slice, slice, slice, int, int, int, int, int, int))) $Credit$_load(slice sc_0) inline;
+
+;; $StateInit$_not_null
+((cell, cell)) $StateInit$_not_null(tuple v) inline;
+
+;; $Credit$init$_load
+(slice, (((int, int, int, cell)))) $Credit$init$_load(slice sc_0) inline;
+
+;; $Credit$_contract_init
+(int, slice, slice, slice, slice, int, int, int, int, int, int) $Credit$_contract_init((int, int, int, cell) $data) impure inline_ref;
+
+;; $Credit$_contract_load
+(int, slice, slice, slice, slice, int, int, int, int, int, int) $Credit$_contract_load() impure inline_ref;
+
+;; $Credit$_contract_store
+() $Credit$_contract_store((int, slice, slice, slice, slice, int, int, int, int, int, int) v) impure inline;
+
+;; $global_send
+() $global_send((int, slice, int, int, cell, cell, cell) $params) impure inline_ref;
+
+;; $Cell$_fun_asSlice
+slice $Cell$_fun_asSlice(cell $self) impure inline;
+
+;; $SendParameters$_constructor_bounce_to_value_mode_body_code_data
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline;
+
+;; $Credit$_fun_earned
+((int, slice, slice, slice, slice, int, int, int, int, int, int), int) $Credit$_fun_earned((int, slice, slice, slice, slice, int, int, int, int, int, int) $self) impure inline_ref;
+
+;; $Credit$_fun_arrear
+((int, slice, slice, slice, slice, int, int, int, int, int, int), int) $Credit$_fun_arrear((int, slice, slice, slice, slice, int, int, int, int, int, int) $self) impure inline_ref;
+
+;; $SendParameters$_constructor_to_value_mode_body
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode_body(slice to, int value, int mode, cell body) inline;
+
+;; $Deposit$_constructor_queryId
+((int)) $Deposit$_constructor_queryId(int queryId) inline;
+
+;; $Income$_constructor_queryId
+((int)) $Income$_constructor_queryId(int queryId) inline;
+
+;; $SendParameters$_constructor_to_value_bounce_mode_body
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_bounce_mode_body(slice to, int value, int bounce, int mode, cell body) inline;
+
+;; $Transfer$_constructor_queryId_newOwner_responseDestination_customPayload_forwardAmount_forwardPayload
+((int, slice, slice, cell, int, slice)) $Transfer$_constructor_queryId_newOwner_responseDestination_customPayload_forwardAmount_forwardPayload(int queryId, slice newOwner, slice responseDestination, cell customPayload, int forwardAmount, slice forwardPayload) inline;
+
+;; $Credit$_fun_redeem
+((int, slice, slice, slice, slice, int, int, int, int, int, int), ()) $Credit$_fun_redeem((int, slice, slice, slice, slice, int, int, int, int, int, int) $self) impure inline_ref;
+
+;; $Credit$_fun_status
+((int, slice, slice, slice, slice, int, int, int, int, int, int), int) $Credit$_fun_status((int, slice, slice, slice, slice, int, int, int, int, int, int) $self) impure inline_ref;
+
+;; $Credit$_fun_debt
+((int, slice, slice, slice, slice, int, int, int, int, int, int), int) $Credit$_fun_debt((int, slice, slice, slice, slice, int, int, int, int, int, int) $self) impure inline_ref;
+
+;; $Credit$_fun_end
+((int, slice, slice, slice, slice, int, int, int, int, int, int), int) $Credit$_fun_end((int, slice, slice, slice, slice, int, int, int, int, int, int) $self) impure inline_ref;
+
+;; $Credit$_fun_forward
+((int, slice, slice, slice, slice, int, int, int, int, int, int), ()) $Credit$_fun_forward((int, slice, slice, slice, slice, int, int, int, int, int, int) $self, slice $to, cell $body, int $bounce, tuple $init) impure inline_ref;
+
+;; $Credit$_fun_notify
+((int, slice, slice, slice, slice, int, int, int, int, int, int), ()) $Credit$_fun_notify((int, slice, slice, slice, slice, int, int, int, int, int, int) $self, cell $body) impure inline;
+
+;; $SendParameters$_constructor_to_bounce_value_mode
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_bounce_value_mode(slice to, int bounce, int value, int mode) inline;
+
+;; $DeployOk$_constructor_queryId
+((int)) $DeployOk$_constructor_queryId(int queryId) inline;

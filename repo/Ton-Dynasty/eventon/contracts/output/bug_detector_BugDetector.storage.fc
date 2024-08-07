@@ -1,0 +1,193 @@
+;;
+;; Type: StateInit
+;; TLB: _ code:^cell data:^cell = StateInit
+;;
+
+((cell, cell)) $StateInit$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (cell vvv'code, cell vvv'data) = __tact_tuple_destroy_2(v);
+    return (vvv'code, vvv'data);
+}
+
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline {
+    return (bounce, to, value, mode, body, code, data);
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_bounce_mode_body(slice to, int value, int bounce, int mode, cell body) inline {
+    return (bounce, to, value, mode, body, null(), null());
+}
+
+;;
+;; Type: Deploy
+;; Header: 0x946a98b6
+;; TLB: deploy#946a98b6 queryId:uint64 = Deploy
+;;
+
+(slice, ((int))) $Deploy$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2490013878);
+    var v'queryId = sc_0~load_uint(64);
+    return (sc_0, (v'queryId));
+}
+
+;;
+;; Type: DeployOk
+;; Header: 0xaff90f57
+;; TLB: deploy_ok#aff90f57 queryId:uint64 = DeployOk
+;;
+
+builder $DeployOk$_store(builder build_0, (int) v) inline {
+    var (v'queryId) = v;
+    build_0 = store_uint(build_0, 2952335191, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    return build_0;
+}
+
+cell $DeployOk$_store_cell((int) v) inline {
+    return $DeployOk$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $DeployOk$_constructor_queryId(int queryId) inline {
+    return (queryId);
+}
+
+;;
+;; Type: EventSignal
+;; Header: 0x1246ebb4
+;; TLB: event_signal#1246ebb4 eventId:int257 payload:^cell = EventSignal
+;;
+
+builder $EventSignal$_store(builder build_0, (int, cell) v) inline {
+    var (v'eventId, v'payload) = v;
+    build_0 = store_uint(build_0, 306637748, 32);
+    build_0 = build_0.store_int(v'eventId, 257);
+    build_0 = build_0.store_ref(v'payload);
+    return build_0;
+}
+
+cell $EventSignal$_store_cell((int, cell) v) inline {
+    return $EventSignal$_store(begin_cell(), v).end_cell();
+}
+
+((int, cell)) $EventSignal$_tensor_cast((int, cell) v) asm "NOP";
+
+((int, cell)) $EventSignal$_constructor_eventId_payload(int eventId, cell payload) inline {
+    return (eventId, payload);
+}
+
+;;
+;; Type: EventSourceRegister
+;; Header: 0xe8965631
+;; TLB: event_source_register#e8965631 template:^cell maxUserStakeAmount:coins subscribeFeePerTick:coins sourceName:^string = EventSourceRegister
+;;
+
+(slice, ((cell, int, int, slice))) $EventSourceRegister$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 3902166577);
+    var v'template = sc_0~load_ref();
+    var v'maxUserStakeAmount = sc_0~load_coins();
+    var v'subscribeFeePerTick = sc_0~load_coins();
+    var v'sourceName = sc_0~load_ref().begin_parse();
+    return (sc_0, (v'template, v'maxUserStakeAmount, v'subscribeFeePerTick, v'sourceName));
+}
+
+;;
+;; Type: ProtcolRegister
+;; Header: 0x34a04b7f
+;; TLB: protcol_register#34a04b7f sourceAddress:address template:^cell maxUserStakeAmount:coins subscribeFeePerTick:coins sourceName:^string = ProtcolRegister
+;;
+
+builder $ProtcolRegister$_store(builder build_0, (slice, cell, int, int, slice) v) inline {
+    var (v'sourceAddress, v'template, v'maxUserStakeAmount, v'subscribeFeePerTick, v'sourceName) = v;
+    build_0 = store_uint(build_0, 882920319, 32);
+    build_0 = __tact_store_address(build_0, v'sourceAddress);
+    build_0 = build_0.store_ref(v'template);
+    build_0 = build_0.store_coins(v'maxUserStakeAmount);
+    build_0 = build_0.store_coins(v'subscribeFeePerTick);
+    build_0 = build_0.store_ref(begin_cell().store_slice(v'sourceName).end_cell());
+    return build_0;
+}
+
+cell $ProtcolRegister$_store_cell((slice, cell, int, int, slice) v) inline {
+    return $ProtcolRegister$_store(begin_cell(), v).end_cell();
+}
+
+((slice, cell, int, int, slice)) $ProtcolRegister$_constructor_sourceAddress_template_maxUserStakeAmount_subscribeFeePerTick_sourceName(slice sourceAddress, cell template, int maxUserStakeAmount, int subscribeFeePerTick, slice sourceName) inline {
+    return (sourceAddress, template, maxUserStakeAmount, subscribeFeePerTick, sourceName);
+}
+
+;;
+;; Type: BugWarning
+;; Header: 0x6b040f61
+;; TLB: bug_warning#6b040f61 targetAdress:address bugInfo:^cell = BugWarning
+;;
+
+(slice, ((slice, cell))) $BugWarning$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 1795428193);
+    var v'targetAdress = sc_0~__tact_load_address();
+    var v'bugInfo = sc_0~load_ref();
+    return (sc_0, (v'targetAdress, v'bugInfo));
+}
+
+;;
+;; Type: SetEventId
+;; Header: 0x6f9ca0ec
+;; TLB: set_event_id#6f9ca0ec eventId:int257 = SetEventId
+;;
+
+(slice, ((int))) $SetEventId$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 1872535788);
+    var v'eventId = sc_0~load_int(257);
+    return (sc_0, (v'eventId));
+}
+
+;;
+;; Type: BugDetector
+;;
+
+builder $BugDetector$_store(builder build_0, (slice, slice, int) v) inline {
+    var (v'owner, v'universalRouterAddress, v'eventId) = v;
+    build_0 = __tact_store_address(build_0, v'owner);
+    build_0 = __tact_store_address(build_0, v'universalRouterAddress);
+    build_0 = build_0.store_int(v'eventId, 257);
+    return build_0;
+}
+
+(slice, ((slice, slice, int))) $BugDetector$_load(slice sc_0) inline {
+    var v'owner = sc_0~__tact_load_address();
+    var v'universalRouterAddress = sc_0~__tact_load_address();
+    var v'eventId = sc_0~load_int(257);
+    return (sc_0, (v'owner, v'universalRouterAddress, v'eventId));
+}
+
+(slice, ((slice, slice))) $BugDetector$init$_load(slice sc_0) inline {
+    var v'owner = sc_0~__tact_load_address();
+    var v'universalRouterAddress = sc_0~__tact_load_address();
+    return (sc_0, (v'owner, v'universalRouterAddress));
+}
+
+(slice, slice, int) $BugDetector$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$BugDetector$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (slice owner, slice universalRouterAddress) = $sc~$BugDetector$init$_load();
+        $sc.end_parse();
+        return $BugDetector$_contract_init(owner, universalRouterAddress);
+    }
+}
+
+() $BugDetector$_contract_store((slice, slice, int) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $BugDetector$_store(b, v);
+    set_data(b.end_cell());
+}

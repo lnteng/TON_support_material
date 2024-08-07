@@ -1,0 +1,218 @@
+;;
+;; Type: StateInit
+;; TLB: _ code:^cell data:^cell = StateInit
+;;
+
+_ $StateInit$_get_code((cell, cell) v) inline {
+    var (v'code, v'data) = v;
+    return v'code;
+}
+
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_bounce_mode_body_code_data(slice to, int value, int bounce, int mode, cell body, cell code, cell data) inline {
+    return (bounce, to, value, mode, body, code, data);
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_bounce_mode_body(slice to, int value, int bounce, int mode, cell body) inline {
+    return (bounce, to, value, mode, body, null(), null());
+}
+
+;;
+;; Type: JettonData
+;; TLB: _ totalSupply:int257 mintable:bool owner:address content:Maybe ^cell walletCode:^cell = JettonData
+;;
+
+(int, int, slice, cell, cell) $JettonData$_to_external(((int, int, slice, cell, cell)) v) inline {
+    var (v'totalSupply, v'mintable, v'owner, v'content, v'walletCode) = v; 
+    return (v'totalSupply, v'mintable, v'owner, v'content, v'walletCode);
+}
+
+((int, int, slice, cell, cell)) $JettonData$_constructor_totalSupply_mintable_owner_content_walletCode(int totalSupply, int mintable, slice owner, cell content, cell walletCode) inline {
+    return (totalSupply, mintable, owner, content, walletCode);
+}
+
+;;
+;; Type: TokenUpdateContent
+;; Header: 0x0c087a9e
+;; TLB: token_update_content#0c087a9e content:Maybe ^cell = TokenUpdateContent
+;;
+
+(slice, ((cell))) $TokenUpdateContent$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 201882270);
+    var v'content = sc_0~load_int(1) ? sc_0~load_ref() : null();
+    return (sc_0, (v'content));
+}
+
+;;
+;; Type: TokenBurnNotification
+;; Header: 0x7bdd97de
+;; TLB: token_burn_notification#7bdd97de queryId:uint64 amount:coins owner:address responseAddress:Maybe address = TokenBurnNotification
+;;
+
+(slice, ((int, int, slice, slice))) $TokenBurnNotification$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2078119902);
+    var v'queryId = sc_0~load_uint(64);
+    var v'amount = sc_0~load_coins();
+    var v'owner = sc_0~__tact_load_address();
+    var v'responseAddress = sc_0~__tact_load_address_opt();
+    return (sc_0, (v'queryId, v'amount, v'owner, v'responseAddress));
+}
+
+;;
+;; Type: TokenTransferInternal
+;; Header: 0x178d4519
+;; TLB: token_transfer_internal#178d4519 queryId:uint64 amount:coins from:address responseAddress:Maybe address forwardTonAmount:coins forwardPayload:remainder<slice> = TokenTransferInternal
+;;
+
+builder $TokenTransferInternal$_store(builder build_0, (int, int, slice, slice, int, slice) v) inline_ref {
+    var (v'queryId, v'amount, v'from, v'responseAddress, v'forwardTonAmount, v'forwardPayload) = v;
+    build_0 = store_uint(build_0, 395134233, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    build_0 = build_0.store_coins(v'amount);
+    build_0 = __tact_store_address(build_0, v'from);
+    build_0 = __tact_store_address_opt(build_0, v'responseAddress);
+    build_0 = build_0.store_coins(v'forwardTonAmount);
+    build_0 = build_0.store_slice(v'forwardPayload);
+    return build_0;
+}
+
+cell $TokenTransferInternal$_store_cell((int, int, slice, slice, int, slice) v) inline {
+    return $TokenTransferInternal$_store(begin_cell(), v).end_cell();
+}
+
+((int, int, slice, slice, int, slice)) $TokenTransferInternal$_constructor_amount_queryId_from_responseAddress_forwardTonAmount_forwardPayload(int amount, int queryId, slice from, slice responseAddress, int forwardTonAmount, slice forwardPayload) inline {
+    return (queryId, amount, from, responseAddress, forwardTonAmount, forwardPayload);
+}
+
+;;
+;; Type: TokenExcesses
+;; Header: 0xd53276db
+;; TLB: token_excesses#d53276db queryId:uint64 = TokenExcesses
+;;
+
+builder $TokenExcesses$_store(builder build_0, (int) v) inline {
+    var (v'queryId) = v;
+    build_0 = store_uint(build_0, 3576854235, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    return build_0;
+}
+
+cell $TokenExcesses$_store_cell((int) v) inline {
+    return $TokenExcesses$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $TokenExcesses$_constructor_queryId(int queryId) inline {
+    return (queryId);
+}
+
+;;
+;; Type: Mint
+;; Header: 0x98b1748d
+;; TLB: mint#98b1748d recipient:address amount:coins = Mint
+;;
+
+(slice, ((slice, int))) $Mint$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2561766541);
+    var v'recipient = sc_0~__tact_load_address();
+    var v'amount = sc_0~load_coins();
+    return (sc_0, (v'recipient, v'amount));
+}
+
+;;
+;; Type: EditWhitelist
+;; Header: 0xfab2ef6b
+;; TLB: edit_whitelist#fab2ef6b address:address isWhitelisted:bool = EditWhitelist
+;;
+
+(slice, ((slice, int))) $EditWhitelist$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 4206030699);
+    var v'address = sc_0~__tact_load_address();
+    var v'isWhitelisted = sc_0~load_int(1);
+    return (sc_0, (v'address, v'isWhitelisted));
+}
+
+;;
+;; Type: JettonDefaultWallet
+;;
+
+builder $JettonDefaultWallet$init$_store(builder build_0, (slice, slice) v) inline {
+    var (v'master, v'owner) = v;
+    build_0 = __tact_store_address(build_0, v'master);
+    build_0 = __tact_store_address(build_0, v'owner);
+    return build_0;
+}
+
+(cell, cell) $JettonDefaultWallet$_init_child(cell sys', slice $master, slice $owner) inline_ref {
+    slice sc' = sys'.begin_parse();
+    cell source = sc'~load_dict();
+    cell contracts = new_dict();
+    
+    ;; Contract Code: JettonDefaultWallet
+    cell mine = __tact_dict_get_code(source, 55471);
+    contracts = __tact_dict_set_code(contracts, 55471, mine);
+    
+    ;; Build cell
+    builder b = begin_cell();
+    b = b.store_ref(begin_cell().store_dict(contracts).end_cell());
+    b = b.store_int(false, 1);
+    b = $JettonDefaultWallet$init$_store(b, ($master, $owner));
+    return (mine, b.end_cell());
+}
+
+;;
+;; Type: NabiPointMaster
+;;
+
+builder $NabiPointMaster$_store(builder build_0, (int, int, slice, cell, cell) v) inline {
+    var (v'totalSupply, v'mintable, v'owner, v'content, v'whitelistedDistributors) = v;
+    build_0 = build_0.store_int(v'totalSupply, 257);
+    build_0 = build_0.store_int(v'mintable, 1);
+    build_0 = __tact_store_address(build_0, v'owner);
+    build_0 = ~ null?(v'content) ? build_0.store_int(true, 1).store_ref(v'content) : build_0.store_int(false, 1);
+    build_0 = build_0.store_dict(v'whitelistedDistributors);
+    return build_0;
+}
+
+(slice, ((int, int, slice, cell, cell))) $NabiPointMaster$_load(slice sc_0) inline {
+    var v'totalSupply = sc_0~load_int(257);
+    var v'mintable = sc_0~load_int(1);
+    var v'owner = sc_0~__tact_load_address();
+    var v'content = sc_0~load_int(1) ? sc_0~load_ref() : null();
+    var v'whitelistedDistributors = sc_0~load_dict();
+    return (sc_0, (v'totalSupply, v'mintable, v'owner, v'content, v'whitelistedDistributors));
+}
+
+(slice, ((int, int, slice, cell))) $NabiPointMaster$init$_load(slice sc_0) inline {
+    var v'totalSupply = sc_0~load_int(257);
+    var v'mintable = sc_0~load_int(1);
+    var v'owner = sc_0~__tact_load_address();
+    var v'content = sc_0~load_int(1) ? sc_0~load_ref() : null();
+    return (sc_0, (v'totalSupply, v'mintable, v'owner, v'content));
+}
+
+(int, int, slice, cell, cell) $NabiPointMaster$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$NabiPointMaster$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (int totalSupply, int mintable, slice owner, cell content) = $sc~$NabiPointMaster$init$_load();
+        $sc.end_parse();
+        return $NabiPointMaster$_contract_init(totalSupply, mintable, owner, content);
+    }
+}
+
+() $NabiPointMaster$_contract_store((int, int, slice, cell, cell) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $NabiPointMaster$_store(b, v);
+    set_data(b.end_cell());
+}

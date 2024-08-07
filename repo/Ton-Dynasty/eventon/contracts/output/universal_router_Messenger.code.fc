@@ -1,0 +1,266 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "universal_router_Messenger.headers.fc";
+#include "universal_router_Messenger.stdlib.fc";
+#include "universal_router_Messenger.storage.fc";
+
+;;
+;; Contract Messenger functions
+;;
+
+(slice, slice, int, int, cell, cell, cell, int, int) $Messenger$_contract_init(slice $owner, slice $sourceAddress, int $messengerId) impure inline_ref {
+    var (($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick)) = (null(), null(), null(), null(), null(), null(), null(), null(), null());
+    $self'owner = $owner;
+    $self'sourceAddress = $sourceAddress;
+    $self'messengerId = $messengerId;
+    $self'nextSubscriberId = 0;
+    $self'totalSubscriberNumber = 0;
+    $self'subscribeFeePerTick = 0;
+    return ($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick);
+}
+
+((slice, slice, int, int, cell, cell, cell, int, int), slice) $Messenger$_fun_idToSubscriber((slice, slice, int, int, cell, cell, cell, int, int) $self, int $id) impure inline_ref {
+    var (($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick)) = $self;
+    if (($id >= $self'nextSubscriberId)) {
+        return (($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick), null());
+    }
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick), __tact_not_null(__tact_dict_get_int_slice($self'idToSubscriber, 257, $id)));
+}
+
+((slice, slice, int, int, cell, cell, cell, int, int), int) $Messenger$_fun_getsubId((slice, slice, int, int, cell, cell, cell, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick)) = $self;
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick), $self'nextSubscriberId);
+}
+
+((slice, slice, int, int, cell, cell, cell, int, int), int) $Messenger$_fun_totalSubscriberNumber((slice, slice, int, int, cell, cell, cell, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick)) = $self;
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick), $self'totalSubscriberNumber);
+}
+
+((slice, slice, int, int, cell, cell, cell, int, int), ()) $Messenger$_fun_requireOwner((slice, slice, int, int, cell, cell, cell, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick)) = $self;
+    throw_unless(132, ( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) ));
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick), ());
+}
+
+((slice, slice, int, int, cell, cell, cell, int, int), slice) $Messenger$_fun_owner((slice, slice, int, int, cell, cell, cell, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick)) = $self;
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick), $self'owner);
+}
+
+;;
+;; Receivers of a Contract Messenger
+;;
+
+(((slice, slice, int, int, cell, cell, cell, int, int)), ()) %$Messenger$_internal_empty((slice, slice, int, int, cell, cell, cell, int, int) $self) impure inline {
+    var ($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick) = $self;
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick), ());
+}
+
+(((slice, slice, int, int, cell, cell, cell, int, int)), ()) $Messenger$_internal_binary_BuildMessenger((slice, slice, int, int, cell, cell, cell, int, int) $self, (slice, int, int, int, cell, slice) $msg) impure inline {
+    var ($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick) = $self;
+    var ($msg'sourceAddress, $msg'eventId, $msg'maxUserStakeAmount, $msg'subscribeFeePerTick, $msg'template, $msg'sourceName) = $msg;
+    ($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick)~$Messenger$_fun_requireOwner();
+    if (( ~ __tact_slice_eq_bits($self'sourceAddress, $msg'sourceAddress) )) {
+        throw(1004);
+    }
+    $self'subscribeFeePerTick = $msg'subscribeFeePerTick;
+    ($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick)~$Messenger$_fun_reply($ProtcolRegisterSuccess$_store_cell($ProtcolRegisterSuccess$_constructor_sourceAddress_eventId_maxUserStakeAmount_subscribeFeePerTick_template_sourceName($msg'sourceAddress, $msg'eventId, $msg'maxUserStakeAmount, $msg'subscribeFeePerTick, $msg'template, $msg'sourceName)));
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick), ());
+}
+
+(((slice, slice, int, int, cell, cell, cell, int, int)), ()) $Messenger$_internal_binary_EventSignal((slice, slice, int, int, cell, cell, cell, int, int) $self, (int, cell) $msg) impure inline {
+    var ($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick) = $self;
+    var ($msg'eventId, $msg'payload) = $msg;
+    ($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick)~$Messenger$_fun_requireOwner();
+    int $i = 0;
+    int $collected_fee = 0;
+    while (($i < $self'nextSubscriberId)) {
+        slice $subscriber = __tact_dict_get_int_slice($self'idToSubscriber, 257, $i);
+        if ((~ null?($subscriber))) {
+            int $hashResult = slice_hash($Cell$_fun_asSlice(end_cell(store_int(__tact_store_address(begin_cell(), __tact_not_null($subscriber)), $msg'eventId, 8))));
+            int $value = 100000000;
+            int $fee = __tact_dict_get_int_int($self'hashToSubscribeFee, 257, $hashResult, 257);
+            if (( (( ((~ null?($fee))) ? ((__tact_not_null($fee) > $self'subscribeFeePerTick)) : (false) )) ? (($self'subscribeFeePerTick >= $value)) : (false) )) {
+                $global_send($SendParameters$_constructor_to_value_mode_bounce_body(__tact_not_null($subscriber), $value, 1, true, $EventSignal$_store_cell($EventSignal$_constructor_eventId_payload($msg'eventId, $msg'payload))));
+                $collected_fee = ($collected_fee + ($self'subscribeFeePerTick - $value));
+            }
+        }
+        $i = ($i + 1);
+    }
+    $global_send($SendParameters$_constructor_to_value_mode_body($self'owner, $collected_fee, 1, $CollectFee$_store_cell($CollectFee$_constructor_messengerId_fee($self'messengerId, $collected_fee))));
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick), ());
+}
+
+(((slice, slice, int, int, cell, cell, cell, int, int)), ()) $Messenger$_internal_binary_CreateMsgSubscriber((slice, slice, int, int, cell, cell, cell, int, int) $self, (slice, slice, int) $msg) impure inline {
+    var ($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick) = $self;
+    var ($msg'walletAddress, $msg'callbackAddress, $msg'eventId) = $msg;
+    ($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick)~$Messenger$_fun_requireOwner();
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    $self'idToSubscriber~__tact_dict_set_int_slice(257, $self'nextSubscriberId, $msg'callbackAddress);
+    int $hashResult = slice_hash($Cell$_fun_asSlice(end_cell(store_int(__tact_store_address(begin_cell(), $msg'callbackAddress), $msg'eventId, 8))));
+    $self'hashToSubscriber~__tact_dict_set_int_int(257, $hashResult, 1, 257);
+    $self'hashToSubscribeFee~__tact_dict_set_int_int(257, $hashResult, $ctx'value, 257);
+    $self'nextSubscriberId = ($self'nextSubscriberId + 1);
+    $self'totalSubscriberNumber = ($self'totalSubscriberNumber + 1);
+    $global_emit($CreateMsgSubscriberSuccess$_store_cell($CreateMsgSubscriberSuccess$_constructor_callbackAddress($msg'callbackAddress)));
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick), ());
+}
+
+(((slice, slice, int, int, cell, cell, cell, int, int)), ()) $Messenger$_internal_binary_DeleteSubscriber((slice, slice, int, int, cell, cell, cell, int, int) $self, (slice, slice, int) $msg) impure inline {
+    var ($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick) = $self;
+    var ($msg'walletAddress, $msg'callbackAddress, $msg'eventId) = $msg;
+    ($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick)~$Messenger$_fun_requireOwner();
+    int $hashResult = slice_hash($Cell$_fun_asSlice(end_cell(store_int(__tact_store_address(begin_cell(), $msg'callbackAddress), $msg'eventId, 8))));
+    if (null?(__tact_dict_get_int_int($self'hashToSubscriber, 257, $hashResult, 257))) {
+        throw(1005);
+    }
+    $self'idToSubscriber~__tact_dict_set_int_slice(257, $self'nextSubscriberId, null());
+    $self'hashToSubscriber~__tact_dict_set_int_int(257, $hashResult, 0, 257);
+    $self'hashToSubscribeFee~__tact_dict_set_int_int(257, $hashResult, 0, 257);
+    $self'totalSubscriberNumber = ($self'totalSubscriberNumber - 1);
+    if (($self'totalSubscriberNumber == 0)) {
+        $global_send($SendParameters$_constructor_to_value_mode_bounce_body($self'owner, 0, (128 + 32), true, $DestroyMessenger$_store_cell($DestroyMessenger$_constructor_messengerId($self'messengerId))));
+    }
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick), ());
+}
+
+(((slice, slice, int, int, cell, cell, cell, int, int)), ()) $Messenger$_internal_binary_Deploy((slice, slice, int, int, cell, cell, cell, int, int) $self, (int) $deploy) impure inline {
+    var ($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick)~$Messenger$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'nextSubscriberId, $self'idToSubscriber, $self'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick), ());
+}
+
+;;
+;; Get methods of a Contract Messenger
+;;
+
+_ %idToSubscriber(int $$id) method_id(81607) {
+    int $id = $$id;
+    var self = $Messenger$_contract_load();
+    var res = self~$Messenger$_fun_idToSubscriber($id);
+    return res;
+}
+
+_ %getsubId() method_id(106553) {
+    var self = $Messenger$_contract_load();
+    var res = self~$Messenger$_fun_getsubId();
+    return res;
+}
+
+_ %totalSubscriberNumber() method_id(87208) {
+    var self = $Messenger$_contract_load();
+    var res = self~$Messenger$_fun_totalSubscriberNumber();
+    return res;
+}
+
+_ %owner() method_id(83229) {
+    var self = $Messenger$_contract_load();
+    var res = self~$Messenger$_fun_owner();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128,
+        "org.ton.ownable"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmSEeqAZo9Ya1Pwa5yjwjWFLhGx2pjD7JfjtRdLp4GgEs4";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract Messenger
+;;
+
+((slice, slice, int, int, cell, cell, cell, int, int), int) $Messenger$_contract_router_internal((slice, slice, int, int, cell, cell, cell, int, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive empty message
+    if ((op == 0) & (slice_bits(in_msg) <= 32)) {
+        self~%$Messenger$_internal_empty();
+        return (self, true);
+    }
+    
+    ;; Receive BuildMessenger message
+    if (op == 2826761911) {
+        var msg = in_msg~$BuildMessenger$_load();
+        self~$Messenger$_internal_binary_BuildMessenger(msg);
+        return (self, true);
+    }
+    
+    ;; Receive EventSignal message
+    if (op == 306637748) {
+        var msg = in_msg~$EventSignal$_load();
+        self~$Messenger$_internal_binary_EventSignal(msg);
+        return (self, true);
+    }
+    
+    ;; Receive CreateMsgSubscriber message
+    if (op == 2100856841) {
+        var msg = in_msg~$CreateMsgSubscriber$_load();
+        self~$Messenger$_internal_binary_CreateMsgSubscriber(msg);
+        return (self, true);
+    }
+    
+    ;; Receive DeleteSubscriber message
+    if (op == 380345681) {
+        var msg = in_msg~$DeleteSubscriber$_load();
+        self~$Messenger$_internal_binary_DeleteSubscriber(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$Messenger$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $Messenger$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$Messenger$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $Messenger$_contract_store(self);
+}

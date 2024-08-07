@@ -1,0 +1,23 @@
+$Functions$_internal_text_b56b255c4e1963cd522948641febbdd20b01544687b9a7a5349ee906dd644cd3: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-functions/output/sample_Functions.code.fc:58:40: warning: Local variable '$best'decimals' is not used
+      var ($best'ticker, $best'decimals) = ($self'deployer)~$Functions$_fun_getInfo(1);
+                                         ^
+$Functions$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-functions/output/sample_Functions.storage.fc:83:19: warning: Lack of end_parse.
+          return $sc~$Functions$_load();
+                    ^
+__tact_string_builder_append: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-functions/output/sample_Functions.stdlib.fc:94:31: warning: Lack of end_parse.
+              sc = sc~load_ref().begin_parse();
+                                ^
+$Functions$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-functions/output/sample_Functions.code.fc:15:28: warning: Local variable '$self'deployer' is not used
+      var (($self'deployer)) = (null());
+                             ^
+$Functions$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-functions/output/sample_Functions.code.fc:94:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-functions/output/sample_Functions.storage.fc:92:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

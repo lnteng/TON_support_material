@@ -1,0 +1,12 @@
+get_users: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./behrang/tsc5/contracts/task2.fc:138:26: warning: Lack of end_parse.
+      slice ds = get_data().begin_parse();
+                           ^
+get_user_share: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./behrang/tsc5/contracts/task2.fc:146:28: warning: Lack of end_parse.
+      cell users = get_data().begin_parse().preload_ref();
+                             ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./behrang/tsc5/contracts/task2.fc:118:19: warning: Lack of end_parse.
+      slice src = cs~load_msg_addr();
+                    ^

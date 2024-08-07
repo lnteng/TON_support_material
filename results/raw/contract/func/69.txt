@@ -1,0 +1,28 @@
+check_new_stake_msg: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef_VyGX6m3deV4ZF-3veC_hdrkjDG7ojIC6VI-5NWlKNCwWx/single-nominator.fc:179:48: warning: Lack of end_parse.
+      var signature = cs~load_ref().begin_parse().preload_bits(512);
+                                                 ^
+check_new_stake_msg: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef_VyGX6m3deV4ZF-3veC_hdrkjDG7ojIC6VI-5NWlKNCwWx/single-nominator.fc:175:26: warning: Local variable 'validator_pubkey' is not used
+      var validator_pubkey = cs~load_uint(256);
+                           ^
+check_new_stake_msg: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef_VyGX6m3deV4ZF-3veC_hdrkjDG7ojIC6VI-5NWlKNCwWx/single-nominator.fc:177:20: warning: Local variable 'max_factor' is not used
+      var max_factor = cs~load_uint(32);
+                     ^
+check_new_stake_msg: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef_VyGX6m3deV4ZF-3veC_hdrkjDG7ojIC6VI-5NWlKNCwWx/single-nominator.fc:178:19: warning: Local variable 'adnl_addr' is not used
+      var adnl_addr = cs~load_uint(256);
+                    ^
+check_new_stake_msg: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef_VyGX6m3deV4ZF-3veC_hdrkjDG7ojIC6VI-5NWlKNCwWx/single-nominator.fc:179:19: warning: Local variable 'signature' is not used
+      var signature = cs~load_ref().begin_parse().preload_bits(512);
+                    ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef_VyGX6m3deV4ZF-3veC_hdrkjDG7ojIC6VI-5NWlKNCwWx/single-nominator.fc:78:22: warning: Lack of end_parse.
+      slice sender = cs~load_msg_addr();
+                       ^
+elector_address: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef_VyGX6m3deV4ZF-3veC_hdrkjDG7ojIC6VI-5NWlKNCwWx/single-nominator.fc:167:34: warning: Lack of end_parse.
+      int elector = config_param(1).begin_parse().preload_uint(ADDRESS_SIZE);
+                                   ^

@@ -1,0 +1,219 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_Lotton.headers.fc";
+#include "sample_Lotton.stdlib.fc";
+#include "sample_Lotton.constants.fc";
+#include "sample_Lotton.storage.fc";
+
+;;
+;; Contract Lotton functions
+;;
+
+(int, int, int, slice, int, int, cell, cell) $Lotton$_contract_init() impure inline_ref {
+    var (($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners)) = (null(), null(), null(), null(), null(), 0, null(), null());
+    $self'startTime = now();
+    $self'endTime = ($self'startTime + 86400);
+    $self'owner = __tact_context_get_sender();
+    $self'raffleStatus = true;
+    $self'maxTicket = 300;
+    return ($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners);
+}
+
+((int, int, int, slice, int, int, cell, cell), int) $Lotton$_fun_checkAddress((int, int, int, slice, int, int, cell, cell) $self, slice $address) impure inline_ref {
+    var (($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners)) = $self;
+    int $i = 0;
+    while (($i <= $self'participateNum)) {
+        if (( __tact_slice_eq_bits_nullable_one(__tact_dict_get_int_slice($self'participate, 257, $i), $address) )) {
+            return (($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners), 1);
+        }
+    }
+    return (($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners), 0);
+}
+
+((int, int, int, slice, int, int, cell, cell), ()) $Lotton$_fun_sendMoney((int, int, int, slice, int, int, cell, cell) $self, slice $address, int $money) impure inline_ref {
+    var (($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners)) = $self;
+    slice $to = $address;
+    int $value = $money;
+    $global_send($SendParameters$_constructor_to_value_mode_bounce_body($to, $value, 2, true, __gen_cell_comment_67169cc06c024cd197ebd73bd6a1d771b572737cfef84a5509513d919acee132()));
+    return (($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners), ());
+}
+
+((int, int, int, slice, int, int, cell, cell), cell) $Lotton$_fun_winners((int, int, int, slice, int, int, cell, cell) $self) impure inline_ref {
+    var (($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners)) = $self;
+    return (($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners), $self'winners);
+}
+
+((int, int, int, slice, int, int, cell, cell), ()) $Lotton$_fun_requireOwner((int, int, int, slice, int, int, cell, cell) $self) impure inline_ref {
+    var (($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners)) = $self;
+    throw_unless(132, ( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) ));
+    return (($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners), ());
+}
+
+((int, int, int, slice, int, int, cell, cell), slice) $Lotton$_fun_owner((int, int, int, slice, int, int, cell, cell) $self) impure inline_ref {
+    var (($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners)) = $self;
+    return (($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners), $self'owner);
+}
+
+;;
+;; Receivers of a Contract Lotton
+;;
+
+((int, int, int, slice, int, int, cell, cell), ()) $Lotton$_internal_text_a78373eb671ee2c5f59fc43ad59f7f85375492b432c231047694d8fbcfc41212((int, int, int, slice, int, int, cell, cell) $self) impure inline {
+    var ($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners) = $self;
+    throw_unless(52395, (__tact_my_balance() >= 5000000000));
+    throw_unless(36114, ($self'participateNum < $self'maxTicket));
+    throw_unless(48307, (($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners)~$Lotton$_fun_checkAddress(__tact_context_get_sender()) == 0));
+    $self'participate~__tact_dict_set_int_slice(257, $self'participateNum, __tact_context_get_sender());
+    $self'participateNum = ($self'participateNum + 1);
+    return (($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners), ());
+}
+
+((int, int, int, slice, int, int, cell, cell), ()) $Lotton$_internal_text_b892aebfa01427f478eac4073bec0117b377f20fee674fd5c4718e7df44c075b((int, int, int, slice, int, int, cell, cell) $self) impure inline {
+    var ($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners) = $self;
+    ($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners)~$Lotton$_fun_requireOwner();
+    throw_unless(24353, ($self'raffleStatus == 1));
+    throw_unless(22298, (now() > $self'endTime));
+    int $balance = __tact_my_balance();
+    int $firstPrice = (($balance * 7) / 10);
+    int $secondPrice = (($balance * 2) / 10);
+    int $thirdPrice = (($balance * 5) / 100);
+    slice $firstWinner = __tact_not_null(__tact_dict_get_int_slice($self'participate, 257, $global_random(1, $self'participateNum)));
+    slice $secondWinner = __tact_not_null(__tact_dict_get_int_slice($self'participate, 257, $global_random(1, $self'participateNum)));
+    slice $thirdWinner = __tact_not_null(__tact_dict_get_int_slice($self'participate, 257, $global_random(1, $self'participateNum)));
+    ($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners)~$Lotton$_fun_sendMoney($firstWinner, $firstPrice);
+    ($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners)~$Lotton$_fun_sendMoney($firstWinner, $secondPrice);
+    ($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners)~$Lotton$_fun_sendMoney($firstWinner, $thirdPrice);
+    ($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners)~$Lotton$_fun_sendMoney($self'owner, __tact_my_balance());
+    $self'winners~__tact_dict_set_int_slice(257, 1, $firstWinner);
+    $self'winners~__tact_dict_set_int_slice(257, 2, $secondWinner);
+    $self'winners~__tact_dict_set_int_slice(257, 3, $thirdWinner);
+    ($self'raffleStatus == 0);
+    return (($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners), ());
+}
+
+(((int, int, int, slice, int, int, cell, cell)), ()) $Lotton$_internal_binary_Deploy((int, int, int, slice, int, int, cell, cell) $self, (int) $deploy) impure inline {
+    var ($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners)~$Lotton$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners), ());
+}
+
+(((int, int, int, slice, int, int, cell, cell)), ()) $Lotton$_internal_binary_ChangeOwner((int, int, int, slice, int, int, cell, cell) $self, (int, slice) $msg) impure inline {
+    var ($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners) = $self;
+    var ($msg'queryId, $msg'newOwner) = $msg;
+    ($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners)~$Lotton$_fun_requireOwner();
+    $self'owner = $msg'newOwner;
+    ($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners)~$Lotton$_fun_reply($ChangeOwnerOk$_store_cell($ChangeOwnerOk$_constructor_queryId_newOwner($msg'queryId, $msg'newOwner)));
+    return (($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners), ());
+}
+
+;;
+;; Get methods of a Contract Lotton
+;;
+
+_ %winners() method_id(128887) {
+    var self = $Lotton$_contract_load();
+    var res = self~$Lotton$_fun_winners();
+    return res;
+}
+
+_ %owner() method_id(83229) {
+    var self = $Lotton$_contract_load();
+    var res = self~$Lotton$_fun_owner();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128,
+        "org.ton.ownable.transferable.v2"H >> 128,
+        "org.ton.ownable"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://Qmbz6jsHQSj1v5HD1kd1G9SjNYgmAaCZeWjWMKMRPvyEMo";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract Lotton
+;;
+
+((int, int, int, slice, int, int, cell, cell), int) $Lotton$_contract_router_internal((int, int, int, slice, int, int, cell, cell) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$Lotton$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Receive ChangeOwner message
+    if (op == 2174598809) {
+        var msg = in_msg~$ChangeOwner$_load();
+        self~$Lotton$_internal_binary_ChangeOwner(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "participate" message
+        if (text_op == 0xa78373eb671ee2c5f59fc43ad59f7f85375492b432c231047694d8fbcfc41212) {
+            self~$Lotton$_internal_text_a78373eb671ee2c5f59fc43ad59f7f85375492b432c231047694d8fbcfc41212();
+            return (self, true);
+        }
+        
+        ;; Receive "random" message
+        if (text_op == 0xb892aebfa01427f478eac4073bec0117b377f20fee674fd5c4718e7df44c075b) {
+            self~$Lotton$_internal_text_b892aebfa01427f478eac4073bec0117b377f20fee674fd5c4718e7df44c075b();
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $Lotton$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$Lotton$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $Lotton$_contract_store(self);
+}

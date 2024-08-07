@@ -1,0 +1,24 @@
+validate_message: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-2/func/3.fc:133:5: warning: Lack of end_parse.
+  		cs~load_bits(96);
+  		  ^
+validate_message: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-2/func/3.fc:148:29: warning: Lack of end_parse.
+  			cell state_init_cell = cs~load_ref();
+  			                         ^
+validate_message: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-2/func/3.fc:247:25: warning: Lack of end_parse.
+  			int expected_bit = cs~load_uint(1);
+  			                     ^
+validate_message: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-2/func/3.fc:196:39: warning: Lack of end_parse.
+  			int expected_bit = state_init_slice~load_uint(1);
+  			                                   ^
+validate_message: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-2/func/3.fc:7:12: warning: Local variable 'src' is not used
+  	slice src = null();
+  	          ^
+validate_message: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-2/func/3.fc:8:13: warning: Local variable 'dest' is not used
+  	slice dest = null();
+  	           ^

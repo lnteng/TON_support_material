@@ -1,0 +1,72 @@
+allowance: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./doronaviguy/ton-server/node-server/test.fc:292:117: warning: Lack of end_parse.
+    (slice name, slice symbol, int decimals, int total_supply, cell balances, cell allowances) = load_data(get_data());
+                                                                                                                      ^
+allowance: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./doronaviguy/ton-server/node-server/test.fc:292:94: warning: Local variable 'name' is not used
+    (slice name, slice symbol, int decimals, int total_supply, cell balances, cell allowances) = load_data(get_data());
+                                                                                               ^
+allowance: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./doronaviguy/ton-server/node-server/test.fc:292:94: warning: Local variable 'symbol' is not used
+    (slice name, slice symbol, int decimals, int total_supply, cell balances, cell allowances) = load_data(get_data());
+                                                                                               ^
+allowance: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./doronaviguy/ton-server/node-server/test.fc:292:94: warning: Local variable 'decimals' is not used
+    (slice name, slice symbol, int decimals, int total_supply, cell balances, cell allowances) = load_data(get_data());
+                                                                                               ^
+allowance: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./doronaviguy/ton-server/node-server/test.fc:292:94: warning: Local variable 'total_supply' is not used
+    (slice name, slice symbol, int decimals, int total_supply, cell balances, cell allowances) = load_data(get_data());
+                                                                                               ^
+allowance: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./doronaviguy/ton-server/node-server/test.fc:292:94: warning: Local variable 'balances' is not used
+    (slice name, slice symbol, int decimals, int total_supply, cell balances, cell allowances) = load_data(get_data());
+                                                                                               ^
+balance_of: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./doronaviguy/ton-server/node-server/test.fc:283:117: warning: Lack of end_parse.
+    (slice name, slice symbol, int decimals, int total_supply, cell balances, cell allowances) = load_data(get_data());
+                                                                                                                      ^
+balance_of: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./doronaviguy/ton-server/node-server/test.fc:283:94: warning: Local variable 'name' is not used
+    (slice name, slice symbol, int decimals, int total_supply, cell balances, cell allowances) = load_data(get_data());
+                                                                                               ^
+balance_of: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./doronaviguy/ton-server/node-server/test.fc:283:94: warning: Local variable 'symbol' is not used
+    (slice name, slice symbol, int decimals, int total_supply, cell balances, cell allowances) = load_data(get_data());
+                                                                                               ^
+balance_of: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./doronaviguy/ton-server/node-server/test.fc:283:94: warning: Local variable 'decimals' is not used
+    (slice name, slice symbol, int decimals, int total_supply, cell balances, cell allowances) = load_data(get_data());
+                                                                                               ^
+balance_of: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./doronaviguy/ton-server/node-server/test.fc:283:94: warning: Local variable 'total_supply' is not used
+    (slice name, slice symbol, int decimals, int total_supply, cell balances, cell allowances) = load_data(get_data());
+                                                                                               ^
+balance_of: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./doronaviguy/ton-server/node-server/test.fc:283:94: warning: Local variable 'allowances' is not used
+    (slice name, slice symbol, int decimals, int total_supply, cell balances, cell allowances) = load_data(get_data());
+                                                                                               ^
+get_token_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./doronaviguy/ton-server/node-server/test.fc:276:94: warning: Local variable 'balances' is not used
+    (slice name, slice symbol, int decimals, int total_supply, cell balances, cell allowances) = load_data(get_data());
+                                                                                               ^
+get_token_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./doronaviguy/ton-server/node-server/test.fc:276:94: warning: Local variable 'allowances' is not used
+    (slice name, slice symbol, int decimals, int total_supply, cell balances, cell allowances) = load_data(get_data());
+                                                                                               ^
+gas_to_coins: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./doronaviguy/ton-server/node-server/test.fc:17:21: warning: Lack of end_parse.
+    int gas_price = cs~load_uint(64);
+                      ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./doronaviguy/ton-server/node-server/test.fc:200:24: warning: Lack of end_parse.
+    slice sender_raw = cs~load_msg_addr();
+                         ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./doronaviguy/ton-server/node-server/test.fc:255:35: warning: Local variable 'refs' is not used
+    (int cells, int bits, int refs) = cs.slice_compute_data_size(10);
+                                    ^
+msg_fwd_price: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./doronaviguy/ton-server/node-server/test.fc:28:22: warning: Lack of end_parse.
+    int cell_price = cs~load_uint(64);
+                       ^

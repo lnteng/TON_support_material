@@ -1,0 +1,48 @@
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCwCJ6w2Q83QlUU3aiBFoge76V7T4AvNWTcguAZETZRCfjw/contracts/jetton-minter.fc:266:123: warning: Local variable 'total_supply' is not used
+      (int total_supply, slice admin_address, slice transfer_admin_address, slice manager_address, cell jetton_wallet_code) = load_data();
+                                                                                                                            ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCwCJ6w2Q83QlUU3aiBFoge76V7T4AvNWTcguAZETZRCfjw/contracts/jetton-minter.fc:266:123: warning: Local variable 'admin_address' is not used
+      (int total_supply, slice admin_address, slice transfer_admin_address, slice manager_address, cell jetton_wallet_code) = load_data();
+                                                                                                                            ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCwCJ6w2Q83QlUU3aiBFoge76V7T4AvNWTcguAZETZRCfjw/contracts/jetton-minter.fc:266:123: warning: Local variable 'transfer_admin_address' is not used
+      (int total_supply, slice admin_address, slice transfer_admin_address, slice manager_address, cell jetton_wallet_code) = load_data();
+                                                                                                                            ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCwCJ6w2Q83QlUU3aiBFoge76V7T4AvNWTcguAZETZRCfjw/contracts/jetton-minter.fc:266:123: warning: Local variable 'manager_address' is not used
+      (int total_supply, slice admin_address, slice transfer_admin_address, slice manager_address, cell jetton_wallet_code) = load_data();
+                                                                                                                            ^
+get_jetton_manager: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCwCJ6w2Q83QlUU3aiBFoge76V7T4AvNWTcguAZETZRCfjw/contracts/jetton-minter.fc:260:123: warning: Local variable 'total_supply' is not used
+      (int total_supply, slice admin_address, slice transfer_admin_address, slice manager_address, cell jetton_wallet_code) = load_data();
+                                                                                                                            ^
+get_jetton_manager: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCwCJ6w2Q83QlUU3aiBFoge76V7T4AvNWTcguAZETZRCfjw/contracts/jetton-minter.fc:260:123: warning: Local variable 'admin_address' is not used
+      (int total_supply, slice admin_address, slice transfer_admin_address, slice manager_address, cell jetton_wallet_code) = load_data();
+                                                                                                                            ^
+get_jetton_manager: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCwCJ6w2Q83QlUU3aiBFoge76V7T4AvNWTcguAZETZRCfjw/contracts/jetton-minter.fc:260:123: warning: Local variable 'transfer_admin_address' is not used
+      (int total_supply, slice admin_address, slice transfer_admin_address, slice manager_address, cell jetton_wallet_code) = load_data();
+                                                                                                                            ^
+get_jetton_manager: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCwCJ6w2Q83QlUU3aiBFoge76V7T4AvNWTcguAZETZRCfjw/contracts/jetton-minter.fc:260:123: warning: Local variable 'jetton_wallet_code' is not used
+      (int total_supply, slice admin_address, slice transfer_admin_address, slice manager_address, cell jetton_wallet_code) = load_data();
+                                                                                                                            ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCwCJ6w2Q83QlUU3aiBFoge76V7T4AvNWTcguAZETZRCfjw/contracts/jetton-minter.fc:94:28: warning: Lack of end_parse.
+      int fwd_fee = muldiv(cs~load_coins(), 3, 2); ;; we use message fwd_fee for estimation of provide_wallet_address cost
+                             ^
+get_jetton_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCwCJ6w2Q83QlUU3aiBFoge76V7T4AvNWTcguAZETZRCfjw/contracts/jetton-minter.fc:255:123: warning: Local variable 'transfer_admin_address' is not used
+      (int total_supply, slice admin_address, slice transfer_admin_address, slice manager_address, cell jetton_wallet_code) = load_data();
+                                                                                                                            ^
+get_jetton_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCwCJ6w2Q83QlUU3aiBFoge76V7T4AvNWTcguAZETZRCfjw/contracts/jetton-minter.fc:255:123: warning: Local variable 'manager_address' is not used
+      (int total_supply, slice admin_address, slice transfer_admin_address, slice manager_address, cell jetton_wallet_code) = load_data();
+                                                                                                                            ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCwCJ6w2Q83QlUU3aiBFoge76V7T4AvNWTcguAZETZRCfjw/contracts/jetton-minter.fc:168:115: warning: UnHandle bounced message with op: 0xd1735400
+          send_raw_message(msg.store_maybe_ref(included_address).end_cell(), REVERT_ON_ERRORS | CARRY_REMAINING_GAS);
+                                                                                                                    ^

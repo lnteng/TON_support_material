@@ -1,0 +1,98 @@
+__tact_dict_set_slice_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_Crowdfunding.stdlib.fc:59:21: warning: Local variable 'ok' is not used
+          var (r, ok) = __tact_dict_delete(d, kl, k);
+                      ^
+$Crowdfunding$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_Crowdfunding.storage.fc:115:19: warning: Lack of end_parse.
+          return $sc~$Crowdfunding$_load();
+                    ^
+$Crowdfunding$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_Crowdfunding.storage.fc:100:30: warning: Lack of end_parse.
+      var v'contributors = sc_1~load_dict();
+                               ^
+$Crowdfunding$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_Crowdfunding.code.fc:15:218: warning: Local variable '$self'owner' is not used
+  ... self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors)) = (null(), null(), null(), null());
+  ...                                                                                                     ^
+$Crowdfunding$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_Crowdfunding.code.fc:15:218: warning: Local variable '$self'seqno' is not used
+  ... self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors)) = (null(), null(), null(), null());
+  ...                                                                                                     ^
+$Crowdfunding$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_Crowdfunding.code.fc:15:218: warning: Local variable '$self'params'title' is not used
+  ... self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors)) = (null(), null(), null(), null());
+  ...                                                                                                     ^
+$Crowdfunding$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_Crowdfunding.code.fc:15:218: warning: Local variable '$self'params'description' is not used
+  ... self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors)) = (null(), null(), null(), null());
+  ...                                                                                                     ^
+$Crowdfunding$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_Crowdfunding.code.fc:15:218: warning: Local variable '$self'params'targetContribution' is not used
+  ... self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors)) = (null(), null(), null(), null());
+  ...                                                                                                     ^
+$Crowdfunding$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_Crowdfunding.code.fc:15:218: warning: Local variable '$self'params'minContribution' is not used
+  ... self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors)) = (null(), null(), null(), null());
+  ...                                                                                                     ^
+$Crowdfunding$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_Crowdfunding.code.fc:15:218: warning: Local variable '$self'params'deadline' is not used
+  ... self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors)) = (null(), null(), null(), null());
+  ...                                                                                                     ^
+$Crowdfunding$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_Crowdfunding.code.fc:15:218: warning: Local variable '$self'params'beneficiary' is not used
+  ... self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors)) = (null(), null(), null(), null());
+  ...                                                                                                     ^
+$Crowdfunding$_internal_text_9d1f20fd138571b201f1cd0e2c813341ccf7045ff4cd72d87090ee0d56bc420a: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_Crowdfunding.code.fc:53:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Crowdfunding$_internal_text_9d1f20fd138571b201f1cd0e2c813341ccf7045ff4cd72d87090ee0d56bc420a: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_Crowdfunding.code.fc:53:59: warning: Local variable '$ctx'sender' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Crowdfunding$_internal_text_9d1f20fd138571b201f1cd0e2c813341ccf7045ff4cd72d87090ee0d56bc420a: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_Crowdfunding.code.fc:53:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$StartCrowdfunding$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_Crowdfunding.storage.fc:62:24: warning: Lack of end_parse.
+      var v'params = sc_1~$CrowdfundingParams$_load();
+                         ^
+$Crowdfunding$_internal_binary_StartCrowdfunding: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_Crowdfunding.code.fc:45:211: warning: Local variable '$self'params'title' is not used
+  ...  $self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors)~$Crowdfunding$_fun_requireOwner();
+  ...                                                                                                     ^
+$Crowdfunding$_internal_binary_StartCrowdfunding: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_Crowdfunding.code.fc:45:211: warning: Local variable '$self'params'description' is not used
+  ...  $self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors)~$Crowdfunding$_fun_requireOwner();
+  ...                                                                                                     ^
+$Crowdfunding$_internal_binary_StartCrowdfunding: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_Crowdfunding.code.fc:45:211: warning: Local variable '$self'params'targetContribution' is not used
+  ...  $self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors)~$Crowdfunding$_fun_requireOwner();
+  ...                                                                                                     ^
+$Crowdfunding$_internal_binary_StartCrowdfunding: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_Crowdfunding.code.fc:45:211: warning: Local variable '$self'params'minContribution' is not used
+  ...  $self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors)~$Crowdfunding$_fun_requireOwner();
+  ...                                                                                                     ^
+$Crowdfunding$_internal_binary_StartCrowdfunding: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_Crowdfunding.code.fc:45:211: warning: Local variable '$self'params'deadline' is not used
+  ...  $self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors)~$Crowdfunding$_fun_requireOwner();
+  ...                                                                                                     ^
+$Crowdfunding$_internal_binary_StartCrowdfunding: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_Crowdfunding.code.fc:45:211: warning: Local variable '$self'params'beneficiary' is not used
+  ...  $self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors)~$Crowdfunding$_fun_requireOwner();
+  ...                                                                                                     ^
+$Crowdfunding$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_Crowdfunding.code.fc:119:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_Crowdfunding.storage.fc:126:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Crowdfunding$_contract_store & $Crowdfunding$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_Crowdfunding.storage.fc:111:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./jokly/crowdfunding/contracts/output/sample_Crowdfunding.storage.fc:126:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

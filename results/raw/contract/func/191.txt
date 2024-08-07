@@ -1,0 +1,8 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQD89l-tRMwjMZhUmHB7zPAFKVV3AcZh-8yQqBpvifysRiiD/nft_item.fc:111:28: warning: Lack of end_parse.
+      int fwd_fee = muldiv(cs~load_coins(), 3, 1);  ;; we use message fwd_fee for estimation of forward_payload costs
+                             ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQD89l-tRMwjMZhUmHB7zPAFKVV3AcZh-8yQqBpvifysRiiD/imports/utils.fc:96:51: warning: UnHandle bounced message with op: 0x5fcc3d14
+      send_raw_message(msg.end_cell(), sending_mode); 
+                                                    ^

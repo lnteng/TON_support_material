@@ -1,0 +1,15 @@
+$Fund$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson4/build/Fund/tact_Fund.storage.fc:118:19: warning: Lack of end_parse.
+          return $sc~$Fund$_load();
+                    ^
+$Fund$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson4/build/Fund/tact_Fund.code.fc:14:27: warning: Local variable '$self'balance' is not used
+      var (($self'balance)) = (null());
+                            ^
+$Fund$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson4/build/Fund/tact_Fund.code.fc:88:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson4/build/Fund/tact_Fund.storage.fc:127:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

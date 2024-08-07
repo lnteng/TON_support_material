@@ -1,0 +1,20 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/FunC_Practice2/contracts/main.fc:61:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/FunC_Practice2/contracts/main.fc:122:24: warning: Lack of end_parse.
+          set_c3(new_code.begin_parse().bless());
+                         ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/FunC_Practice2/contracts/main.fc:121:23: warning: Local variable 'old_code' is not used
+          cont old_code = get_c3();
+                        ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/FunC_Practice2/contracts/main.fc:104:25: warning: Local variable 'send_amount' is not used
+          int send_amount = min(withdraw_amount, my_balance - min_ton_for_storage);
+                          ^
+loda_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/FunC_Practice2/contracts/main.fc:21:11: warning: Lack of end_parse.
+          ds~load_msg_addr()
+            ^

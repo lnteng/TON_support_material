@@ -1,0 +1,8 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Gusarich/fundraiser/contracts/deployer.fc:49:66: warning: Lack of end_parse.
+      (_, context::sender) = in_msg_full.begin_parse().skip_bits(4).load_msg_addr();
+                                                                   ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Gusarich/fundraiser/contracts/deployer.fc:26:34: warning: Lack of end_parse.
+      data::collection_content = ds~load_ref();
+                                   ^

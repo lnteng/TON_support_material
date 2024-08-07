@@ -1,0 +1,16 @@
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./qpwedev/overton-backend/contracts/main.fc:11:7: warning: Lack of end_parse.
+      ds~load_msg_addr()
+        ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./qpwedev/overton-backend/contracts/main.fc:26:28: warning: Lack of end_parse.
+    slice sender_address = cs~load_msg_addr();
+                             ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./qpwedev/overton-backend/contracts/main.fc:35:16: warning: Local variable 'query_id' is not used
+    int query_id = in_msg_body~load_uint(64);
+                 ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./qpwedev/overton-backend/contracts/main.fc:43:25: warning: Local variable 'withdraw_amount' is not used
+      int withdraw_amount = in_msg_body~load_coins();
+                          ^

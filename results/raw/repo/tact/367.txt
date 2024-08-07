@@ -1,0 +1,98 @@
+$Task3$_internal_binary_TokenNotification: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task3.code.fc:76:66: warning: PressionLoss
+          if (((((($self'bAmount * $self'decimal) / $self'aAmount) * $msg'amount) / $self'decimal) <= $self'bAmount)) {
+                                                                   ^
+$Task3$_internal_binary_TokenNotification: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task3.code.fc:77:319: warning: PressionLoss
+  ... ustomPayload_forwardTonAmount_forwardPayload(0, (((($self'bAmount * $self'decimal) / $self'aAmount) * $msg'amount) / $self'decimal), $msg'from, my_address(), null(), 10000000, $global_emptySlice()))));
+  ...                                                                                                     ^
+$Task3$_internal_binary_TokenNotification: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task3.code.fc:78:98: warning: PressionLoss
+              $self'bAmount = ($self'bAmount - (((($self'bAmount * $self'decimal) / $self'aAmount) * $msg'amount) / $self'decimal));
+                                                                                                   ^
+$Task3$_internal_binary_TokenNotification: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task3.code.fc:67:66: warning: PressionLoss
+          if (((((($self'aAmount * $self'decimal) / $self'bAmount) * $msg'amount) / $self'decimal) <= $self'aAmount)) {
+                                                                   ^
+$Task3$_internal_binary_TokenNotification: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task3.code.fc:68:319: warning: PressionLoss
+  ... ustomPayload_forwardTonAmount_forwardPayload(0, (((($self'aAmount * $self'decimal) / $self'bAmount) * $msg'amount) / $self'decimal), $msg'from, my_address(), null(), 10000000, $global_emptySlice()))));
+  ...                                                                                                     ^
+$Task3$_internal_binary_TokenNotification: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task3.code.fc:69:98: warning: PressionLoss
+              $self'aAmount = ($self'aAmount - (((($self'aAmount * $self'decimal) / $self'bAmount) * $msg'amount) / $self'decimal));
+                                                                                                   ^
+$Task3$_internal_binary_TokenNotification: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task3.code.fc:56:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Task3$_internal_binary_TokenNotification: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task3.code.fc:56:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Task3$_internal_binary_TokenNotification: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task3.code.fc:56:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Task3$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task3.code.fc:14:114: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB, $self'decimal)) = (null(), null(), null(), null(), null(), null());
+                                                                                                                   ^
+$Task3$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task3.code.fc:14:114: warning: Local variable '$self'aAmount' is not used
+      var (($self'owner, $self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB, $self'decimal)) = (null(), null(), null(), null(), null(), null());
+                                                                                                                   ^
+$Task3$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task3.code.fc:14:114: warning: Local variable '$self'bAmount' is not used
+      var (($self'owner, $self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB, $self'decimal)) = (null(), null(), null(), null(), null(), null());
+                                                                                                                   ^
+$Task3$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task3.code.fc:14:114: warning: Local variable '$self'jettonAddressA' is not used
+      var (($self'owner, $self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB, $self'decimal)) = (null(), null(), null(), null(), null(), null());
+                                                                                                                   ^
+$Task3$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task3.code.fc:14:114: warning: Local variable '$self'jettonAddressB' is not used
+      var (($self'owner, $self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB, $self'decimal)) = (null(), null(), null(), null(), null(), null());
+                                                                                                                   ^
+$Task3$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task3.code.fc:14:114: warning: Local variable '$self'decimal' is not used
+      var (($self'owner, $self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB, $self'decimal)) = (null(), null(), null(), null(), null(), null());
+                                                                                                                   ^
+$Task3$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task3.storage.fc:124:25: warning: Lack of end_parse.
+      var v'decimal = sc_1~load_int(257);
+                          ^
+$Task3$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task3.storage.fc:140:19: warning: Lack of end_parse.
+          return $sc~$Task3$_load();
+                    ^
+$Task3$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task3.code.fc:126:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task3.storage.fc:151:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task3$_contract_store & $Task3$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task3.storage.fc:136:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task3.storage.fc:151:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task3$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task3.code.fc:68:419: warning: UnHandle bounced message with op: 0xf8a7ea5
+  ... * $msg'amount) / $self'decimal), $msg'from, my_address(), null(), 10000000, $global_emptySlice()))));
+  ...                                                                                                     ^
+$Task3$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task3.code.fc:72:347: warning: UnHandle bounced message with op: 0xf8a7ea5
+  ... t_forwardPayload(0, $msg'amount, $msg'from, my_address(), null(), 10000000, $global_emptySlice()))));
+  ...                                                                                                     ^
+$Task3$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task3.code.fc:77:419: warning: UnHandle bounced message with op: 0xf8a7ea5
+  ... * $msg'amount) / $self'decimal), $msg'from, my_address(), null(), 10000000, $global_emptySlice()))));
+  ...                                                                                                     ^
+$Task3$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task3.code.fc:81:347: warning: UnHandle bounced message with op: 0xf8a7ea5
+  ... t_forwardPayload(0, $msg'amount, $msg'from, my_address(), null(), 10000000, $global_emptySlice()))));
+  ...                                                                                                     ^

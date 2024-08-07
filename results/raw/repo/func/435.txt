@@ -1,0 +1,16 @@
+find_and_replace: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./isopen/tsc4/contracts/3.fc:299:24: warning: Lack of end_parse.
+        stack~push_back(s~load_ref());
+                         ^
+find_and_replace: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./isopen/tsc4/contracts/3.fc:260:14: warning: Local variable 'lens' is not used
+    tuple lens = empty_tuple();
+               ^
+find_and_replace: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./isopen/tsc4/contracts/3.fc:261:14: warning: Local variable 'bits' is not used
+    tuple bits = empty_tuple();
+               ^
+replace_all: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./isopen/tsc4/contracts/3.fc:169:10: warning: Local variable 'ls' is not used
+    int ls = slen(s);
+           ^

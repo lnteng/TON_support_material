@@ -1,0 +1,20 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/nft-sdk/src/wrappers/getgems/NftSwap/nft-swap.fc:188:35: warning: Lack of end_parse.
+      slice sender_address_data = cs~load_msg_addr();
+                                    ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/nft-sdk/src/wrappers/getgems/NftSwap/nft-swap.fc:70:26: warning: Lack of end_parse.
+      supervisor = controls~load_msg_addr();
+                           ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/nft-sdk/src/wrappers/getgems/NftSwap/nft-swap.fc:68:26: warning: Lack of end_parse.
+      slice controls = data~load_ref().begin_parse();
+                           ^
+set_if_required_nft: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/nft-sdk/src/wrappers/getgems/NftSwap/nft-swap.fc:74:28: warning: Local variable 'val' is not used
+      (slice val, int found) = dict.udict_get?(256, nft);
+                             ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/nft-sdk/src/wrappers/getgems/NftSwap/nft-swap.fc:123:43: warning: UnHandle bounced message with op: 0x5fcc3d14
+      send_raw_message(msg.end_cell(), mode);
+                                            ^

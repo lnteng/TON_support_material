@@ -1,0 +1,162 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_Caller.headers.fc";
+#include "sample_Caller.stdlib.fc";
+#include "sample_Caller.constants.fc";
+#include "sample_Caller.storage.fc";
+
+;;
+;; Contract Caller functions
+;;
+
+(slice, int) $Caller$_contract_init(slice $_oracle) impure inline_ref {
+    var (($self'oracle, $self'number)) = (null(), 0);
+    $self'oracle = $_oracle;
+    return ($self'oracle, $self'number);
+}
+
+((slice, int), int) $Caller$_fun_Number((slice, int) $self) impure inline_ref {
+    var (($self'oracle, $self'number)) = $self;
+    return (($self'oracle, $self'number), $self'number);
+}
+
+((slice, int), int) $Caller$_fun_multiplyPrice((slice, int) $self, int $price, int $multiplier, int $decimals) impure inline {
+    var (($self'oracle, $self'number)) = $self;
+    return (($self'oracle, $self'number), (($price * $multiplier) / $decimals));
+}
+
+;;
+;; Receivers of a Contract Caller
+;;
+
+((slice, int), ()) $Caller$_internal_any((slice, int) $self, slice $msg) impure inline {
+    var ($self'oracle, $self'number) = $self;
+    return (($self'oracle, $self'number), ());
+}
+
+(((slice, int)), ()) $Caller$_internal_binary_PriceResponse((slice, int) $self, (int, int, int, int, cell) $msg) impure inline {
+    var ($self'oracle, $self'number) = $self;
+    var ($msg'queryId, $msg'success, $msg'decimals, $msg'price, $msg'callback) = $msg;
+    throw_unless(15801, ( __tact_slice_eq_bits($self'oracle, __tact_context_get_sender()) ));
+    throw_unless(62703, ($msg'success == true));
+    slice $s = begin_parse($msg'callback);
+    int $op = $s~load_uint(8);
+    if (($op == 1)) {
+        slice $paramSlice = begin_parse($s~load_ref());
+        int $multiplier = $paramSlice~load_uint(256);
+        $self'number = ($self'oracle, $self'number)~$Caller$_fun_multiplyPrice($msg'price, $multiplier, $msg'decimals);
+    }
+    return (($self'oracle, $self'number), ());
+}
+
+((slice, int), ()) $Caller$_internal_text_d082f3194525dbbede835968c833e6e83e5e81563fadc7bb33db22823c2b7f60((slice, int) $self) impure inline {
+    var ($self'oracle, $self'number) = $self;
+    $global_send($SendParameters$_constructor_to_value_mode_body($self'oracle, 0, 64, $GetLatestPrice$_store_cell($GetLatestPrice$_constructor_queryId_symbol_callback(1, __gen_slice_string_d8025bd7186cdc300cc8f1b128ad6b30ba7605ad12cca37879ab07bf91ba3354(), end_cell(store_ref(store_uint(begin_cell(), 1, 8), end_cell(store_uint(begin_cell(), 2, 256))))))));
+    return (($self'oracle, $self'number), ());
+}
+
+(((slice, int)), ()) $Caller$_internal_binary_Deploy((slice, int) $self, (int) $deploy) impure inline {
+    var ($self'oracle, $self'number) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'oracle, $self'number)~$Caller$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'oracle, $self'number), ());
+}
+
+;;
+;; Get methods of a Contract Caller
+;;
+
+_ %Number() method_id(125751) {
+    var self = $Caller$_contract_load();
+    var res = self~$Caller$_fun_Number();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmNZ7DNVJLLj8DwPz2LhsDCXFrGTUfb5eqSrw9Mf95BAHP";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract Caller
+;;
+
+((slice, int), int) $Caller$_contract_router_internal((slice, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive PriceResponse message
+    if (op == 179092095) {
+        var msg = in_msg~$PriceResponse$_load();
+        self~$Caller$_internal_binary_PriceResponse(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$Caller$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "call" message
+        if (text_op == 0xd082f3194525dbbede835968c833e6e83e5e81563fadc7bb33db22823c2b7f60) {
+            self~$Caller$_internal_text_d082f3194525dbbede835968c833e6e83e5e81563fadc7bb33db22823c2b7f60();
+            return (self, true);
+        }
+    }
+    
+    ;; Receiver fallback
+    self~$Caller$_internal_any(in_msg);
+    return (self, true);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $Caller$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$Caller$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $Caller$_contract_store(self);
+}

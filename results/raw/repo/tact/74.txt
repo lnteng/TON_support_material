@@ -1,0 +1,20 @@
+$reply: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact/examples/output/echo_Echo.code.fc:159:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$reply: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact/examples/output/echo_Echo.code.fc:159:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$reply: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact/examples/output/echo_Echo.code.fc:159:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+__gen_load_Echo: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact/examples/output/echo_Echo.code.fc:102:14: warning: Lack of end_parse.
+      return sc~__gen_read_Echo();
+               ^
+__tact_string_builder_append: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact/examples/output/echo_Echo.code.fc:76:31: warning: Lack of end_parse.
+              sc = sc~load_ref().begin_parse();
+                                ^

@@ -1,0 +1,28 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./aSpite/shardify/contracts/pool_master.fc:32:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./aSpite/shardify/contracts/pool_master.fc:12:29: warning: Lack of end_parse.
+      storage::public_key = ds~load_uint(256);
+                              ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./aSpite/shardify/contracts/pool_master.fc:120:29: warning: UnHandle bounced message with op: 0x770e2c37
+              .end_cell(), 64);
+                              ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./aSpite/shardify/contracts/pool_master.fc:138:29: warning: UnHandle bounced message with op: 0x502c1cc2
+              .end_cell(), 64);
+                              ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./aSpite/shardify/contracts/pool_master.fc:152:29: warning: UnHandle bounced message with op: 0x4871ede5
+              .end_cell(), 64);
+                              ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./aSpite/shardify/contracts/pool_master.fc:167:29: warning: UnHandle bounced message with op: 0x4
+              .end_cell(), 64);
+                              ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./aSpite/shardify/contracts/pool_master.fc:182:29: warning: UnHandle bounced message with op: 0x3
+              .end_cell(), 64);
+                              ^

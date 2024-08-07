@@ -1,0 +1,12 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/contract-verifier-contracts/contracts/source-item-dummy.fc:51:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/contract-verifier-contracts/contracts/source-item-dummy.fc:53:105: warning: Local variable 'content' is not used
+      (int init?, int verifier_id, int verified_code_cell_hash, slice source_item_registry, cell content) = load_data();
+                                                                                                          ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/contract-verifier-contracts/contracts/source-item-dummy.fc:23:81: warning: Lack of end_parse.
+        return (-1, verifier_id, verified_code_cell_hash, source_item_registry, ds~load_ref());
+                                                                                  ^

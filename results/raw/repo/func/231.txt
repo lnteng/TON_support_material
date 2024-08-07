@@ -1,0 +1,24 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/burton/contracts/nft-item.fc:33:28: warning: Lack of end_parse.
+      int fwd_fee = muldiv(cs~load_coins(), 3, 2);
+                             ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/burton/contracts/nft-item.fc:27:15: warning: Local variable 'flags' is not used
+      int flags = cs~load_uint(4);
+                ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/burton/contracts/nft-item.fc:33:17: warning: Local variable 'fwd_fee' is not used
+      int fwd_fee = muldiv(cs~load_coins(), 3, 2);
+                  ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/burton/contracts/nft-item.fc:34:89: warning: Local variable 'owner_address' is not used
+      (int init?, int index, slice collection_address, slice owner_address, cell content) = load_data();
+                                                                                          ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/burton/contracts/nft-item.fc:34:89: warning: Local variable 'content' is not used
+      (int init?, int index, slice collection_address, slice owner_address, cell content) = load_data();
+                                                                                          ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/burton/contracts/nft-item.fc:8:68: warning: Lack of end_parse.
+        return (-1, index, collection_address, ds~load_msg_addr(), ds~load_ref());
+                                                                     ^

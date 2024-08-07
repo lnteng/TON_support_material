@@ -1,0 +1,15 @@
+__gen_load_Large: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/large_Large.code.fc:59:19: warning: Lack of end_parse.
+          return $sc~__gen_read_Large();
+                    ^
+__gen_read_Large: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/large_Large.code.fc:33:23: warning: Lack of end_parse.
+      var v'cell4 = sc_1~load_ref();
+                        ^
+__gen_store_Large & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/large_Large.code.fc:128:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/large_Large.code.fc:68:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

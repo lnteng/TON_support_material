@@ -1,0 +1,101 @@
+#include "imports/stdlib.fc";
+
+;; All the code in recv_internal, get_storage, wrap_storage, and version
+;; serves as an example of the intended structure.
+
+;; The provided code is an "empty wrapper." It:
+;; + Parses "wrapped" incoming messages (discards versioning information)
+;; + "Wraps" the call to the version-specific process_message
+;; + Implements "get_storage" for version-specific get-methods
+;; However, it does not yet implement any upgrade logic, which is your task.
+
+;; The empty wrapper is provided to demonstrate
+;; how version-specific code is intended to be "wrapped" and interacted with.
+;; You may delete and rewrite as needed,
+;; but the final implementation must adhere to the same structure
+
+cell get_storage() inline {
+    return get_data().begin_parse().preload_ref();
+}
+
+cell wrap_storage(int version_id, cell storage) inline {
+    return begin_cell()
+        .store_ref(storage)
+        .store_uint(version_id, 32)
+        .end_cell();
+}
+
+;; Return the current version of the smart contract
+int version() method_id {
+    slice ds = get_data().begin_parse();
+    ds~load_ref();
+    return ds.preload_uint(32);
+}
+
+;; <<<<< Custom version-specific code begins
+;; This section (everything between << and >> characters) will be fully substituted for each version.
+;; This is an IMPORTANT part, and these exact lines with <<<<< and >>>>> must be present in your code for the testing system to work correctly.
+;; All the code provided here serves as an example of the version-code, which your update code must be compatible with.
+;; Refer to the "3-example" directory for more version examples.
+
+;; from counter-v0.fc
+cell process_message(cell storage, int msg_value, int balance, cell in_msg_full, slice in_msg_body) impure {
+    slice cs = storage.begin_parse();
+    int current_amount = cs.preload_uint(32);
+    return begin_cell().store_uint(current_amount + 1, 32).end_cell();
+}
+
+cell migrate_one(cell old_storage) { ;; it's just a placeholder that is required for correct compilation
+    return old_storage;
+}
+
+;; Custom version-specific code ends >>>>>
+
+
+() recv_internal(int msg_value, int balance, cell in_msg_full, slice in_msg_body) impure {
+    int expected_version = in_msg_body~load_uint(32);
+    if (expected_version == 0) {
+        set_data(wrap_storage(1, get_data()));
+        return ();
+    }
+
+    slice ds = get_data().begin_parse();
+    cell storage = ds~load_ref();
+    int version_id = ds.preload_uint(32);
+
+    if (expected_version > version_id) {
+        cell new_code = in_msg_body~load_maybe_ref();
+        
+        throw_if(200, new_code.cell_null?());
+
+        cell migrations = in_msg_body~load_dict();
+        
+        tuple migration_list = null();
+        do {
+            (slice ms, int success) = migrations.udict_get?(32, version_id);
+            throw_unless(400, success);
+            version_id = ms~load_uint(32);
+            cell migration_code = ms.preload_maybe_ref();
+            ifnot (migration_code.cell_null?()) {
+                migration_list = cons(migration_code, migration_list);
+            }
+        } until (version_id >= expected_version);
+
+        throw_if(400, version_id > expected_version);
+        
+        tuple tmp = null();
+        while (~ migration_list.null?()) {
+            tmp = cons(migration_list~list_next(), tmp);
+        }
+        while (~ tmp.null?()) {
+            set_c3(tmp~list_next().begin_parse().bless());
+            storage = migrate_one(storage);
+        }
+        
+        set_code(new_code);
+        set_c3(new_code.begin_parse().bless());
+    }
+
+    set_data(wrap_storage(expected_version, process_message(storage, msg_value, balance, in_msg_full, in_msg_body.preload_ref().begin_parse())));
+}
+

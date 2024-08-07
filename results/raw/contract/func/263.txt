@@ -1,0 +1,38 @@
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDVabn1PWQgJ6UjBxXkc_8BXRM5eFGrIFsFcad2ShXYrOTX/nft_collection.fc:29:8: warning: Lack of end_parse.
+       ds~load_ref(),  ;; royalty_params
+         ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDVabn1PWQgJ6UjBxXkc_8BXRM5eFGrIFsFcad2ShXYrOTX/nft_collection.fc:95:28: warning: Lack of end_parse.
+    slice sender_address = cs~load_msg_addr();
+                             ^
+get_collection_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDVabn1PWQgJ6UjBxXkc_8BXRM5eFGrIFsFcad2ShXYrOTX/nft_collection.fc:187:30: warning: Lack of end_parse.
+    return (next_item_index, cs~load_ref(), owner_address);
+                               ^
+royalty_params: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDVabn1PWQgJ6UjBxXkc_8BXRM5eFGrIFsFcad2ShXYrOTX/nft_collection.fc:199:49: warning: Lack of end_parse.
+    return (rs~load_uint(16), rs~load_uint(16), rs~load_msg_addr());
+                                                  ^
+get_nft_content: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDVabn1PWQgJ6UjBxXkc_8BXRM5eFGrIFsFcad2ShXYrOTX/nft_collection.fc:206:28: warning: Lack of end_parse.
+    slice common_content = cs~load_ref().begin_parse();
+                             ^
+save_data & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDVabn1PWQgJ6UjBxXkc_8BXRM5eFGrIFsFcad2ShXYrOTX/nft_collection.fc:16:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDVabn1PWQgJ6UjBxXkc_8BXRM5eFGrIFsFcad2ShXYrOTX/nft_collection.fc:37:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_slice(owner_address)
+      ^
+save_data & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDVabn1PWQgJ6UjBxXkc_8BXRM5eFGrIFsFcad2ShXYrOTX/nft_collection.fc:16:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDVabn1PWQgJ6UjBxXkc_8BXRM5eFGrIFsFcad2ShXYrOTX/nft_collection.fc:37:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_slice(owner_address)
+      ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDVabn1PWQgJ6UjBxXkc_8BXRM5eFGrIFsFcad2ShXYrOTX/nft_collection.fc:171:42: warning: UnHandle bounced message with op: 0x32
+      send_raw_message(msg.end_cell(), 128); ;; return all non reserve balance
+                                           ^

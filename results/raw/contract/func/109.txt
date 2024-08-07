@@ -1,0 +1,44 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBwuqe9lywEe4_BHBU7u8b3dOqRvtc7jSVh3K0-0gNRqKlv/./jetton-root.fc:15:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBwuqe9lywEe4_BHBU7u8b3dOqRvtc7jSVh3K0-0gNRqKlv/./jetton-root.fc:25:18: warning: Local variable 'query_id' is not used
+      int query_id = in_msg_body~load_uint(64);
+                   ^
+storage::init: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBwuqe9lywEe4_BHBU7u8b3dOqRvtc7jSVh3K0-0gNRqKlv/././structure/storage.fc:53:38: warning: Lack of end_parse.
+      ico::redeemed_tokens = coins_info~load_coins();
+                                       ^
+storage::init: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBwuqe9lywEe4_BHBU7u8b3dOqRvtc7jSVh3K0-0gNRqKlv/././structure/storage.fc:51:32: warning: Lack of end_parse.
+      slice coins_info = ico_data~load_ref().begin_parse();
+                                 ^
+storage::init: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBwuqe9lywEe4_BHBU7u8b3dOqRvtc7jSVh3K0-0gNRqKlv/././structure/storage.fc:43:24: warning: Lack of end_parse.
+      slice ico_data = ds~load_ref().begin_parse();
+                         ^
+storage::init: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBwuqe9lywEe4_BHBU7u8b3dOqRvtc7jSVh3K0-0gNRqKlv/././structure/storage.fc:41:44: warning: Lack of end_parse.
+      swap::authentic_wallet_code = swap_data~load_ref();
+                                             ^
+storage::init: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBwuqe9lywEe4_BHBU7u8b3dOqRvtc7jSVh3K0-0gNRqKlv/././structure/storage.fc:49:32: warning: Lack of end_parse.
+      ico::max_months = time_info~load_uint(4);
+                                 ^
+storage::init: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBwuqe9lywEe4_BHBU7u8b3dOqRvtc7jSVh3K0-0gNRqKlv/././structure/storage.fc:34:32: warning: Lack of end_parse.
+      jtn::wallet_code = jtn_data~load_ref();
+                                 ^
+ico::lock_tokens: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBwuqe9lywEe4_BHBU7u8b3dOqRvtc7jSVh3K0-0gNRqKlv/././structure/ico.fc:64:41: warning: Lack of end_parse.
+      slice receiver_address = fwd_payload~load_msg_addr();
+                                          ^
+ico::lock_tokens: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBwuqe9lywEe4_BHBU7u8b3dOqRvtc7jSVh3K0-0gNRqKlv/././structure/ico.fc:49:26: warning: Local variable 'sender_address' is not used
+      slice sender_address = in_msg_body~load_msg_addr();
+                           ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBwuqe9lywEe4_BHBU7u8b3dOqRvtc7jSVh3K0-0gNRqKlv/././structure/ico.fc:21:29: warning: UnHandle bounced message with op: 0xf8a7ea5
+      send_raw_message(msg, 2);
+                              ^

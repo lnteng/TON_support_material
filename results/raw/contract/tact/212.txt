@@ -1,0 +1,47 @@
+$Inshrimption$_internal_binary_ChangeOwner: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCfd7lZXbB-KbYljCOG7iq40R-p6pbbAnmoc_6eCkH2x39N/output/verifier_Inshrimption.code.fc:152:99: warning: Local variable '$self'owner' is not used
+      ($self'currSeqno, $self'owner, $self'used, $self'sellFeePerc, $self'msgFee, $self'inscribeFee)~$Inshrimption$_fun_requireOwner();
+                                                                                                    ^
+$Inshrimption$_internal_binary_Fee: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCfd7lZXbB-KbYljCOG7iq40R-p6pbbAnmoc_6eCkH2x39N/output/verifier_Inshrimption.code.fc:135:99: warning: Local variable '$self'sellFeePerc' is not used
+      ($self'currSeqno, $self'owner, $self'used, $self'sellFeePerc, $self'msgFee, $self'inscribeFee)~$Inshrimption$_fun_requireOwner();
+                                                                                                    ^
+$Inshrimption$_internal_binary_Fee: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCfd7lZXbB-KbYljCOG7iq40R-p6pbbAnmoc_6eCkH2x39N/output/verifier_Inshrimption.code.fc:135:99: warning: Local variable '$self'msgFee' is not used
+      ($self'currSeqno, $self'owner, $self'used, $self'sellFeePerc, $self'msgFee, $self'inscribeFee)~$Inshrimption$_fun_requireOwner();
+                                                                                                    ^
+$Inshrimption$_internal_binary_Fee: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCfd7lZXbB-KbYljCOG7iq40R-p6pbbAnmoc_6eCkH2x39N/output/verifier_Inshrimption.code.fc:135:99: warning: Local variable '$self'inscribeFee' is not used
+      ($self'currSeqno, $self'owner, $self'used, $self'sellFeePerc, $self'msgFee, $self'inscribeFee)~$Inshrimption$_fun_requireOwner();
+                                                                                                    ^
+__tact_string_builder_append: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCfd7lZXbB-KbYljCOG7iq40R-p6pbbAnmoc_6eCkH2x39N/output/verifier_Inshrimption.stdlib.fc:116:31: warning: Lack of end_parse.
+              sc = sc~load_ref().begin_parse();
+                                ^
+__tact_dict_set_int_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCfd7lZXbB-KbYljCOG7iq40R-p6pbbAnmoc_6eCkH2x39N/output/verifier_Inshrimption.stdlib.fc:45:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+$Inshrimption$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCfd7lZXbB-KbYljCOG7iq40R-p6pbbAnmoc_6eCkH2x39N/output/verifier_Inshrimption.code.fc:14:106: warning: Local variable '$self'currSeqno' is not used
+      var (($self'currSeqno, $self'owner, $self'used, $self'sellFeePerc, $self'msgFee, $self'inscribeFee)) = (null(), null(), null(), 500, 100000000, 10000000);
+                                                                                                           ^
+$Inshrimption$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCfd7lZXbB-KbYljCOG7iq40R-p6pbbAnmoc_6eCkH2x39N/output/verifier_Inshrimption.code.fc:14:106: warning: Local variable '$self'owner' is not used
+      var (($self'currSeqno, $self'owner, $self'used, $self'sellFeePerc, $self'msgFee, $self'inscribeFee)) = (null(), null(), null(), 500, 100000000, 10000000);
+                                                                                                           ^
+$Inshrimption$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCfd7lZXbB-KbYljCOG7iq40R-p6pbbAnmoc_6eCkH2x39N/output/verifier_Inshrimption.storage.fc:188:19: warning: Lack of end_parse.
+          return $sc~$Inshrimption$_load();
+                    ^
+$Inshrimption$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCfd7lZXbB-KbYljCOG7iq40R-p6pbbAnmoc_6eCkH2x39N/output/verifier_Inshrimption.storage.fc:174:29: warning: Lack of end_parse.
+      var v'inscribeFee = sc_1~load_int(257);
+                              ^
+$Inshrimption$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCfd7lZXbB-KbYljCOG7iq40R-p6pbbAnmoc_6eCkH2x39N/output/verifier_Inshrimption.code.fc:214:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCfd7lZXbB-KbYljCOG7iq40R-p6pbbAnmoc_6eCkH2x39N/output/verifier_Inshrimption.storage.fc:199:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

@@ -1,0 +1,297 @@
+;;
+;;  btn-token-smc – smart contracts collection for Biton token
+;;
+;;  Copyright (C) 2022 BITON <https://github.com/BITONdev>
+;;
+;;  This file is part of btn-token-smc.
+;;
+;;  btn-token-smc is free software: you can redistribute it and/or modify
+;;  it under the terms of the GNU General Public License as published by
+;;  the Free Software Foundation, either version 3 of the License, or
+;;  (at your option) any later version.
+;;
+;;  btn-token-smc is distributed in the hope that it will be useful,
+;;  but WITHOUT ANY WARRANTY; without even the implied warranty of
+;;  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;;  GNU General Public License for more details.
+;;
+;;  You should have received a copy of the GNU General Public License
+;;  along with btn-token-smc.  If not, see <https://www.gnu.org/licenses/>.
+;;
+
+;; biton minter ICO smart contract
+(slice) parse_data() inline { return get_data().begin_parse(); }
+
+slice biton_address() asm
+"<b 124 word EQDPW91JHEtg05YtAJtIOrYNIWHJY7lkl-JcC9MPf8Et6lek| parse-smc-addr drop Addr, b> <s PUSHSLICE";
+;; https://tonwhales.com/explorer/address/EQDPW91JHEtg05YtAJtIOrYNIWHJY7lkl-JcC9MPf8Et6lek
+
+_ load_data() inline {
+    slice ds = parse_data();
+
+    var unpacked = (
+        ds~load_grams(),      ;; supply
+        ds~load_grams(),      ;; liq_cap
+        ds~load_grams(),      ;; price
+        ds~load_uint(32),     ;; end_time (unix format)
+        ds~load_msg_addr(),   ;; owner_addr
+        ds~load_grams(),      ;; max_supply
+        ds~load_ref(),        ;; jwall_code
+        ds~load_ref()         ;; content
+    );
+
+    return unpacked;
+}
+
+() save_data(
+    int supply, int liq_cap, int price, int end_time,
+    slice owner_addr, int max_supply, cell jwall_code, cell content
+) impure inline {
+    set_data(begin_cell()
+                .store_grams(supply)
+                .store_grams(liq_cap)
+                .store_grams(price)
+                .store_uint(end_time, 32)
+                .store_slice(owner_addr)
+                .store_grams(max_supply)
+                .store_ref(jwall_code)
+                .store_ref(content)
+            .end_cell());
+}
+
+() auth_by_owner(slice sender_addr, slice owner_addr) impure inline {
+    ;; thorw auth error if sender address != owner_addr
+    throw_unless(
+        ext_code::err_auth(),
+        extlib::slice_data_equal?(sender_addr, owner_addr)
+    );
+}
+
+(
+    slice {- to_address -}, int {- amount -},
+    cell {- master_msg -}, int {- jetton_amount -}
+) parse_body_mint(slice msg_body) inline {
+    slice   to_address      = msg_body~load_msg_addr();
+    int     amount          = msg_body~load_grams();
+    cell    master_msg      = msg_body~load_ref();
+    slice   msc             = master_msg.begin_parse().skip_bits(32 + 64);
+    int     jetton_amount   = msc~load_grams();
+
+    return (to_address, amount, master_msg, jetton_amount);
+}
+
+(int {- jetton_amount -} ) mint_tokens(data, cell jwall_code, int supply, int max_supply) impure inline {
+    (slice to_address, int amount, cell master_msg,  int jetton_amount) = data;
+    throw_if(ext_code::max_supply_limit(), supply + jetton_amount > max_supply);
+
+    cell state_init = jwall_state_init(
+        to_address,     ;; mint to
+        my_address(),   ;; minter-ico address (self)
+        jwall_code      ;; code cell of jetton wallet
+    );
+
+    builder msg = begin_cell()
+        .store_uint(0x18, 6)
+        .store_slice(jwall_state_addr(state_init))
+        .store_grams(amount)
+        .store_uint(4 + 2 + 1, 1 + 4 + 4 + 64 + 32 + 1 + 1 + 1)
+        .store_ref(state_init)
+        .store_ref(master_msg);
+
+    send_raw_message(msg.end_cell(), 1);
+    return jetton_amount;
+}
+
+(int {- op -}, slice {- sender_addr -}) handle::start(u_storage, cell msg, slice msg_body) impure inline_ref {
+     slice cs = msg.begin_parse();
+     throw_if(ext_code::zero(), cs~load_uint(4) & 1);  ;; return on bounce
+
+     slice sender_addr = cs~load_msg_addr();
+
+     throw_unless(  ;; thow error if address isn't MsgAddrSmpl
+         ext_code::err_addr_format(),
+         extlib::is_addrsmpl(sender_addr)
+    );
+
+    (_, _, _, _, slice owner_addr, _, _, _) = u_storage;
+
+    int op = -1;
+    if (slice_empty?(msg_body)){
+        op = op::buy_tokens();
+    } else {
+        op = msg_body~load_uint(32);
+        ;; if there is a comment and it is from owner, we do op withdraw, so owner can both buy and withdraw coins
+        if (op == 0) { op = extlib::slice_data_equal?(sender_addr, owner_addr) ? op::withdraw() : op::buy_tokens(); } 
+    }
+
+    return (op, sender_addr);
+}
+
+() handle::mint(u_storage, slice msg_body, slice sender_addr) impure inline {
+    (
+        int supply, int liq_cap, int price, int end_time,
+        slice owner_addr, int max_supply, cell jwall_code, cell content
+    ) = u_storage;
+
+    var parsed_body = parse_body_mint(msg_body);
+    auth_by_owner(sender_addr, owner_addr);
+    save_data(
+        supply + mint_tokens(parsed_body, jwall_code, supply, max_supply), liq_cap, price,
+        end_time, owner_addr, max_supply, jwall_code, content
+    );
+}
+
+() handle::buy_tokens(u_storage, int msg_value, slice sender_addr) impure inline {
+    (
+        int supply, int liq_cap, int price, int end_time,
+        slice owner_addr, int max_supply, cell jwall_code, cell content
+    ) = u_storage;
+
+    throw_if(ext_code::supply_more_than_liq_cap(), supply >= liq_cap);
+    throw_if(ext_code::ico_end(), now() > end_time);
+
+    int mint_amount = 1 << 27;  ;; ~ 0.1342 TON
+    int buy_amount = msg_value - mint_amount;
+
+    ;; for gas and fees, bcs price low
+    throw_if(ext_code::err_buy_amount(), buy_amount < (extlib::1ton() - mint_amount));
+    throw_if(ext_code::err_buy_amount(), buy_amount < price);
+    
+    int jamount = buy_amount * extlib::1ton() / price;
+
+    cell master_msg = begin_cell()                  ;; begin_cell
+        .store_uint(op::internal_transfer(), 32)    ;; op internal_transfer
+        .store_uint(cur_lt(), 64)       ;; query_id
+        .store_grams(jamount)           ;; amount
+        .store_slice(my_address())      ;; from
+        .store_slice(sender_addr)       ;; response_address
+        .store_grams(0)                 ;; forward_ton_amount
+        .store_int(0, 1)                ;; forward_payload [Either Cell ^Cell] bit
+        .end_cell();                    ;; end of cell
+
+    save_data(
+        supply + mint_tokens((sender_addr, mint_amount, master_msg, jamount), jwall_code, supply, max_supply),
+        liq_cap, price, end_time, owner_addr, max_supply, jwall_code, content
+    );
+}
+
+() handle::burn_tokens(u_storage, slice in_msg_body, slice sender_address) impure inline {
+    (
+        int supply, int liq_cap, int price, int end_time,
+        slice owner_addr, int max_supply, cell jwall_code, cell content
+    ) = u_storage;
+
+    int jetton_amount = in_msg_body~load_grams();
+    slice from_address = in_msg_body~load_msg_addr();
+
+    throw_unless(ext_code::invalid_jwall_addr(), extlib::slice_data_equal?(
+        jwall_addr_by_owner(from_address, my_address(), jwall_code),
+        sender_address
+    ));
+
+    slice response_address = in_msg_body~load_msg_addr();
+    if (response_address.preload_uint(2) != 0) {
+        var msg = begin_cell()
+            .store_uint(0x10, 6) ;; nobounce - int_msg_info$0 ihr_disabled:Bool bounce:Bool bounced:Bool src:MsgAddress -> 011000
+            .store_slice(response_address)
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_uint(op::excesses(), 32)
+            .store_uint(cur_lt(), 64);
+
+        send_raw_message(msg.end_cell(), 2 + 64);
+    }
+
+    save_data(
+        supply - jetton_amount, liq_cap, price,
+        end_time, owner_addr, max_supply, jwall_code, content
+    );
+    return ();
+}
+
+int division(int a, int b) {
+    return muldiv(a, 1000000000, b);
+}
+
+int multiply(int a, int b) {
+    return muldiv(a, b, 1000000000);
+}
+
+int get_percent(int a, int percent, int factor) {
+    return division(multiply(a, percent), factor);
+}
+
+() handle::withdraw(u_storage, int balance, slice sender_addr) impure inline {
+    (_, _, _, _, slice owner_addr,_ , _, _) = u_storage;
+    auth_by_owner(sender_addr, owner_addr);
+    throw_if(ext_code::err_not_enough_balance(), balance <= (extlib::1ton() * 2));
+
+    int total_value = balance - extlib::1ton();
+    int value = get_percent(total_value, 20000000, 1000000000);
+
+    builder msg = begin_cell()
+        .store_uint(0x18, 6)
+        .store_slice(owner_addr)
+        .store_grams(total_value - value)
+        .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+        .store_uint(0, 32)
+        .store_slice(text::ico_profit_withdraw());
+
+    send_raw_message(msg.end_cell(), 2);
+
+    builder msg_to_biton = begin_cell()
+        .store_uint(0x18, 6)
+        .store_slice(biton_address())
+        .store_grams(value)
+        .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+        .store_uint(0, 32)
+        .store_slice(text::ico_biton_profit());
+
+    send_raw_message(msg_to_biton.end_cell(), 2);
+}
+
+() recv_internal(int my_balance, int msg_value, cell msg, slice msg_body) impure {
+    var u_storage = load_data();
+    (int op, slice sender_addr) = handle::start(u_storage, msg, msg_body);
+
+    if (op == op::mint()) { handle::mint(u_storage, msg_body, sender_addr); return (); }
+    if (op == op::buy_tokens()) { handle::buy_tokens(u_storage, msg_value, sender_addr); return (); }
+    if (op == op::burn_notification()) { handle::burn_tokens(u_storage, msg_body, sender_addr); return (); }
+    if (op == op::withdraw()) { handle::withdraw(u_storage, my_balance, sender_addr); return (); }
+   
+    throw(0xffff);
+}
+
+(int, int, slice, cell, cell) get_jetton_data() method_id {
+    (int supply, _, _, _, slice owner, _, cell jwall_code, cell content) = load_data();
+    return (supply, -1, owner, content, jwall_code);
+}
+
+slice get_wallet_address(slice owner_addr) method_id {
+    (_, _, _, _, _, _, cell jwall_code, _) = load_data();
+    return jwall_addr_by_owner(owner_addr, my_address(), jwall_code);
+}
+
+(int {- addr -}) get_wallet_address_int(int owner_addr) method_id { ;; use only if workchain = 0
+    slice owner = begin_cell()
+        .store_slice(extlib::addrsmpl_start())  ;; addr_std$10 anycast:(## 1) {anycast = 0}
+        .store_int(0, 8)                        ;; workchain_id:int8 {workchain_id = 0}
+        .store_uint(owner_addr, 256)            ;; address:bits256
+        .end_cell().begin_parse();
+
+    (_, _, _, _, _, _, cell jwall_code, _) = load_data();
+    slice owner_jwall = jwall_addr_by_owner(owner, my_address(), jwall_code);
+
+    owner_jwall~skip_bits(2 + 1 + 8);  ;; skip constructor, anycast, workchain_id
+
+    return owner_jwall.preload_uint(256);
+}
+
+(int, int, int, int) get_ico_data() method_id {
+    (slice ds, _) = parse_data().load_grams();
+    (int liq_cap, int price, int end_time) = (ds~load_grams(), ds~load_grams(), ds~load_uint(32));
+    ds~load_msg_addr(); ;; skip owner_addr
+    int max_supply = ds~load_grams();
+
+    return (liq_cap, price, end_time, max_supply);
+}

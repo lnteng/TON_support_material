@@ -1,0 +1,24 @@
+deploy_item: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/telemint_test/contracts/nft-collection-no-dns.fc:80:109: warning: Local variable 'beneficiary_address' is not used
+      (slice beneficiary_address, int initial_min_bid, int max_bid, int min_bid_step, int min_extend_time, _) = unpack_auction_config(auction_config);
+                                                                                                              ^
+deploy_item: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/telemint_test/contracts/nft-collection-no-dns.fc:80:109: warning: Local variable 'max_bid' is not used
+      (slice beneficiary_address, int initial_min_bid, int max_bid, int min_bid_step, int min_extend_time, _) = unpack_auction_config(auction_config);
+                                                                                                              ^
+deploy_item: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/telemint_test/contracts/nft-collection-no-dns.fc:80:109: warning: Local variable 'min_bid_step' is not used
+      (slice beneficiary_address, int initial_min_bid, int max_bid, int min_bid_step, int min_extend_time, _) = unpack_auction_config(auction_config);
+                                                                                                              ^
+deploy_item: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/telemint_test/contracts/nft-collection-no-dns.fc:80:109: warning: Local variable 'min_extend_time' is not used
+      (slice beneficiary_address, int initial_min_bid, int max_bid, int min_bid_step, int min_extend_time, _) = unpack_auction_config(auction_config);
+                                                                                                              ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/telemint_test/contracts/nft-collection-no-dns.fc:101:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+load_text_ref: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/telemint_test/contracts/common.fc:93:25: warning: Lack of end_parse.
+      slice text = text_cs~load_text();
+                          ^

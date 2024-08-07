@@ -1,0 +1,135 @@
+proposal_storage_price: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:798:29: warning: Lack of end_parse.
+    cell cfg_dict = get_data().begin_parse().preload_ref();
+                              ^
+proposal_storage_price: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:807:20: warning: Local variable 'min_tot_rounds' is not used
+     int cell_price) = get_vote_config_internal(critical?, cparam11);
+                     ^
+proposal_storage_price: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:807:20: warning: Local variable 'max_tot_rounds' is not used
+     int cell_price) = get_vote_config_internal(critical?, cparam11);
+                     ^
+proposal_storage_price: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:807:20: warning: Local variable 'min_wins' is not used
+     int cell_price) = get_vote_config_internal(critical?, cparam11);
+                     ^
+proposal_storage_price: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:807:20: warning: Local variable 'max_losses' is not used
+     int cell_price) = get_vote_config_internal(critical?, cparam11);
+                     ^
+perform_action: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:161:20: warning: Lack of end_parse.
+      set_c3(new_code.begin_parse().bless());
+                     ^
+perform_action: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:153:31: warning: Local variable 'success' is not used
+        (cfg_dict, int success) = cfg_dict.idict_delete?(32, param_index);
+                                ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:579:20: warning: Lack of end_parse.
+    slice s_addr = cs~load_msg_addr();
+                     ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:593:70: warning: Lack of end_parse.
+      int elector_addr = cell_null?(elector_param) ? -1 : elector_param.begin_parse().preload_uint(256);
+                                                                       ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:642:70: warning: Lack of end_parse.
+      int elector_addr = cell_null?(elector_param) ? -1 : elector_param.begin_parse().preload_uint(256);
+                                                                       ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:640:81: warning: Lack of end_parse.
+      (int idx, int phash, int vset_id) = (cs~load_uint(16), cs~load_uint(256), cs~load_uint(256));
+                                                                                  ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:631:40: warning: Local variable 'total_weight' is not used
+        (slice vdescr, int total_weight) = get_validator_descr(idx);
+                                         ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:643:56: warning: Local variable 'total_weight' is not used
+      (cell cur_vset, int total_weight, cell validators) = get_current_vset();
+                                                         ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:652:34: warning: Local variable 'val_pubkey' is not used
+      (int val_pubkey, int weight) = unpack_validator_descr(vdescr);
+                                   ^
+seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:753:20: warning: Lack of end_parse.
+    return get_data().begin_parse().preload_uint(32);
+                     ^
+change_elector_code: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:109:63: warning: Lack of end_parse.
+    int dest_addr = config_param(config_params::elector_address).begin_parse().preload_uint(256);
+                                                                ^
+get_validator_descr: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:195:44: warning: Local variable 'vset' is not used
+    (cell vset, int total_weight, cell dict) = get_current_vset();
+                                             ^
+update_proposal_status: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:304:6: warning: Local variable 'min_tot_rounds' is not used
+       = get_vote_config(critical?);
+       ^
+update_proposal_status: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:304:6: warning: Local variable 'max_tot_rounds' is not used
+       = get_vote_config(critical?);
+       ^
+update_proposal_status: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:304:6: warning: Local variable 'min_wins' is not used
+       = get_vote_config(critical?);
+       ^
+register_vote: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:393:86: warning: Local variable 'min_tot_rounds' is not used
+    (int min_tot_rounds, int max_tot_rounds, int min_wins, int max_losses, _, _, _, _) = get_vote_config(critical?);
+                                                                                       ^
+register_vote: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:393:86: warning: Local variable 'max_tot_rounds' is not used
+    (int min_tot_rounds, int max_tot_rounds, int min_wins, int max_losses, _, _, _, _) = get_vote_config(critical?);
+                                                                                       ^
+register_vote: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:393:86: warning: Local variable 'max_losses' is not used
+    (int min_tot_rounds, int max_tot_rounds, int min_wins, int max_losses, _, _, _, _) = get_vote_config(critical?);
+                                                                                       ^
+check_validator_set: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:73:16: warning: Lack of end_parse.
+    int main = cs~load_uint(16);
+                 ^
+perform_proposed_action: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:272:56: warning: Lack of end_parse.
+      return (cfg_dict, param_val.null?() ? 0 : param_val.begin_parse().preload_uint(256));
+                                                         ^
+perform_proposed_action: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:282:20: warning: Lack of end_parse.
+      set_c3(new_code.begin_parse().bless());
+                     ^
+recv_external: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:677:38: warning: Local variable 'total_weight' is not used
+      (slice vdescr, int total_weight) = get_validator_descr(idx);
+                                       ^
+scan_proposal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:436:16: warning: Local variable 'voters' is not used
+     slice rest) =
+                 ^
+register_voting_proposal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:521:20: warning: Local variable 'min_tot_rounds' is not used
+     int cell_price) = get_vote_config(critical?);
+                     ^
+register_voting_proposal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:521:20: warning: Local variable 'min_wins' is not used
+     int cell_price) = get_vote_config(critical?);
+                     ^
+register_voting_proposal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:521:20: warning: Local variable 'max_losses' is not used
+     int cell_price) = get_vote_config(critical?);
+                     ^
+set_conf_param & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:13:24: warning: Cell of get_data and set_data are inconsistent.
+    slice cs = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:9:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_ref(cfg_dict).store_slice(cs).end_cell());
+                         ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/governance-contract/config-code.fc:134:18: warning: UnHandle bounced message with op: 0x4e436f64
+    .end_cell(), 0);
+                   ^

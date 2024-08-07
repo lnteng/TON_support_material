@@ -1,0 +1,24 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./vtamara/toncli/src/toncli/projects/jetton_minter/func/jetton-minter.func:71:42: warning: Lack of end_parse.
+          int jetton_amount = master_msg_cs~load_coins();
+                                           ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./vtamara/toncli/src/toncli/projects/jetton_minter/func/jetton-minter.func:57:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./vtamara/toncli/src/toncli/projects/jetton_minter/func/jetton-minter.func:20:9: warning: Lack of end_parse.
+        ds~load_ref()  ;; jetton_wallet_code
+          ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./vtamara/toncli/src/toncli/projects/jetton_minter/func/jetton-minter.func:120:84: warning: Local variable 'total_supply' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code) = load_data();
+                                                                                     ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./vtamara/toncli/src/toncli/projects/jetton_minter/func/jetton-minter.func:120:84: warning: Local variable 'admin_address' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code) = load_data();
+                                                                                     ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./vtamara/toncli/src/toncli/projects/jetton_minter/func/jetton-minter.func:120:84: warning: Local variable 'content' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code) = load_data();
+                                                                                     ^

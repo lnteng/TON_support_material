@@ -1,0 +1,163 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_HashedTimeLockTON.headers.fc";
+#include "sample_HashedTimeLockTON.stdlib.fc";
+#include "sample_HashedTimeLockTON.storage.fc";
+
+;;
+;; Contract HashedTimeLockTON functions
+;;
+
+(cell) $HashedTimeLockTON$_contract_init() impure inline_ref {
+    var (($self'contracts)) = (null());
+    return ($self'contracts);
+}
+
+((cell), int) $HashedTimeLockTON$_fun_contractExists((cell) $self, int $hashlock) impure inline_ref {
+    var (($self'contracts)) = $self;
+    if ((~ null?($HTLC$_load_opt(__tact_dict_get_int_cell($self'contracts, 256, $hashlock))))) {
+        return (($self'contracts), true);
+    }
+    return (($self'contracts), false);
+}
+
+((cell), tuple) $HashedTimeLockTON$_fun_getHTLCDetails((cell) $self, int $hashlock) impure inline_ref {
+    var (($self'contracts)) = $self;
+    if (($self'contracts)~$HashedTimeLockTON$_fun_contractExists($hashlock)) {
+        return (($self'contracts), $HTLC$_load_opt(__tact_dict_get_int_cell($self'contracts, 256, $hashlock)));
+    }
+    return (($self'contracts), $HTLC$_as_optional($HTLC$_constructor_hashlock_secret_amount_timelock_sender__receiver_redeemed_refunded(0, 0, 0, 0, __tact_create_address(0, 0), __tact_create_address(0, 0), false, false)));
+}
+
+;;
+;; Receivers of a Contract HashedTimeLockTON
+;;
+
+(((cell)), ()) $HashedTimeLockTON$_internal_binary_Create((cell) $self, ((int, int, int, int, slice, slice, slice)) $msg) impure inline {
+    var ($self'contracts) = $self;
+    var (($msg'data'__hashlock, $msg'data'__amount, $msg'data'__chainId, $msg'data'__timelock, $msg'data'__sender, $msg'data'__receiver, $msg'data'__targetCurrencyReceiverAddress)) = $msg;
+    $global_send($SendParameters$_constructor_to_bounce_value_mode(my_address(), true, $msg'data'__amount, 1));
+    return (($self'contracts), ());
+}
+
+(((cell)), ()) $HashedTimeLockTON$_internal_binary_Redeem((cell) $self, ((int, slice, int)) $msg) impure inline {
+    var ($self'contracts) = $self;
+    var (($msg'data'__hashlock, $msg'data'__receiver, $msg'data'__amount)) = $msg;
+    $global_send($SendParameters$_constructor_to_bounce_value_mode($msg'data'__receiver, true, $msg'data'__amount, 1));
+    return (($self'contracts), ());
+}
+
+(((cell)), ()) $HashedTimeLockTON$_internal_binary_Refund((cell) $self, ((int, slice, int)) $msg) impure inline {
+    var ($self'contracts) = $self;
+    var (($msg'data'__hashlock, $msg'data'__receiver, $msg'data'__amount)) = $msg;
+    $global_send($SendParameters$_constructor_to_bounce_value_mode($msg'data'__receiver, true, $msg'data'__amount, 1));
+    return (($self'contracts), ());
+}
+
+(((cell)), ()) $HashedTimeLockTON$_internal_binary_Deploy((cell) $self, (int) $deploy) impure inline {
+    var ($self'contracts) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'contracts)~$HashedTimeLockTON$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'contracts), ());
+}
+
+;;
+;; Get methods of a Contract HashedTimeLockTON
+;;
+
+_ %getHTLCDetails(int $$hashlock) method_id(114550) {
+    int $hashlock = $$hashlock;
+    var self = $HashedTimeLockTON$_contract_load();
+    var res = self~$HashedTimeLockTON$_fun_getHTLCDetails($hashlock);
+    return $HTLC$_to_opt_external(res);
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmZP7ATuy8QZXbDmphfJ9PGqx96wG73RMYr8vkCJKEoTcX";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract HashedTimeLockTON
+;;
+
+((cell), int) $HashedTimeLockTON$_contract_router_internal((cell) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive Create message
+    if (op == 501618384) {
+        var msg = in_msg~$Create$_load();
+        self~$HashedTimeLockTON$_internal_binary_Create(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Redeem message
+    if (op == 1940771006) {
+        var msg = in_msg~$Redeem$_load();
+        self~$HashedTimeLockTON$_internal_binary_Redeem(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Refund message
+    if (op == 2850019230) {
+        var msg = in_msg~$Refund$_load();
+        self~$HashedTimeLockTON$_internal_binary_Refund(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$HashedTimeLockTON$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $HashedTimeLockTON$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$HashedTimeLockTON$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $HashedTimeLockTON$_contract_store(self);
+}

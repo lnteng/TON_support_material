@@ -1,0 +1,62 @@
+;;
+;; Type: WhitelistEntryDetails
+;; Header: 0x8ba3552b
+;; TLB: whitelist_entry_details#8ba3552b addr:address accepted:bool = WhitelistEntryDetails
+;;
+
+(slice, int) $WhitelistEntryDetails$_to_external(((slice, int)) v) inline {
+    var (v'addr, v'accepted) = v; 
+    return (v'addr, v'accepted);
+}
+
+((slice, int)) $WhitelistEntryDetails$_constructor_addr_accepted(slice addr, int accepted) inline {
+    return (addr, accepted);
+}
+
+;;
+;; Type: WhitelistChildEntry
+;;
+
+builder $WhitelistChildEntry$_store(builder build_0, (slice, slice, int) v) inline {
+    var (v'parent, v'addr, v'accepted) = v;
+    build_0 = __tact_store_address(build_0, v'parent);
+    build_0 = __tact_store_address(build_0, v'addr);
+    build_0 = build_0.store_int(v'accepted, 1);
+    return build_0;
+}
+
+(slice, ((slice, slice, int))) $WhitelistChildEntry$_load(slice sc_0) inline {
+    var v'parent = sc_0~__tact_load_address();
+    var v'addr = sc_0~__tact_load_address();
+    var v'accepted = sc_0~load_int(1);
+    return (sc_0, (v'parent, v'addr, v'accepted));
+}
+
+(slice, ((slice, slice))) $WhitelistChildEntry$init$_load(slice sc_0) inline {
+    var v'parent = sc_0~__tact_load_address();
+    var v'addr = sc_0~__tact_load_address();
+    return (sc_0, (v'parent, v'addr));
+}
+
+(slice, slice, int) $WhitelistChildEntry$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$WhitelistChildEntry$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (slice parent, slice addr) = $sc~$WhitelistChildEntry$init$_load();
+        $sc.end_parse();
+        return $WhitelistChildEntry$_contract_init(parent, addr);
+    }
+}
+
+() $WhitelistChildEntry$_contract_store((slice, slice, int) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $WhitelistChildEntry$_store(b, v);
+    set_data(b.end_cell());
+}

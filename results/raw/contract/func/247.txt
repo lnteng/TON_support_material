@@ -1,0 +1,12 @@
+recv_internal: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDeyCNNa8GMjpc6ZWl4rxuG-HFeBLDGdSw-nUrI2IMndZ8L/coinflip.fc:54:48: warning: PressionLoss
+          int max_flip = (flipper_balance / 100) * 10; ;; 10%
+                                                 ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDeyCNNa8GMjpc6ZWl4rxuG-HFeBLDGdSw-nUrI2IMndZ8L/coinflip.fc:46:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDeyCNNa8GMjpc6ZWl4rxuG-HFeBLDGdSw-nUrI2IMndZ8L/coinflip.fc:8:11: warning: Lack of end_parse.
+          ds~load_msg_addr() ;; owner_address
+            ^

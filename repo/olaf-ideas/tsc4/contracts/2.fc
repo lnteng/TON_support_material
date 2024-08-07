@@ -1,0 +1,82 @@
+{-
+  TASK 2 - Matrix multiplier
+  Write the method that multiplies one matrix by another.
+  The 1st and 2nd parameter of the function will contain
+  a matrix implemented using tuples (eg: [[1,2], [3,4]]).
+  Matrices can be of different sizes, ranging from 4x4
+  up to 32x32.
+  Matrix can be rectangular where matrixA must to be of size n*m & matrixB of size m*p.
+  After calculating the result matrix, the function should return final result (as tuple).
+-}
+
+() recv_internal() {
+}
+
+forall X -> (tuple, X) tpop(tuple t) asm "TPOP";
+forall X -> X first(tuple t) asm "FIRST";
+int tlen(tuple t) asm "TLEN";
+forall X -> (tuple, ()) ~tpush(tuple t, X value) asm "TPUSH";
+tuple empty_tuple() asm "NIL";
+forall X -> tuple cons(X head, tuple tail) asm "CONS";
+forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
+;; forall X -> (tuple, X) xdd(tuple list) asm "UNCONS";
+;; forall X -> tuple dxx(tuple tail, X head) asm "CONS";
+
+forall X -> X car(tuple list) asm "CAR";
+tuple cdr(tuple list) asm "CDR";
+
+;; testable
+(tuple) matrix_multiplier(tuple matrixA, tuple matrixB) method_id {
+
+  int n = tlen(matrixA);
+  int m = tlen(matrixB);
+  int p = tlen(first(matrixB));
+
+  tuple matrixBT = empty_tuple();
+
+  int x = 0;
+  repeat (p) {
+    tuple row = empty_tuple();
+
+    int y = 0;
+    repeat (m) {
+      row~tpush(matrixB.at(y).at(x));
+
+      y += 1;
+    }
+
+    matrixBT~tpush(row);
+
+    x += 1;
+  }
+
+  tuple C = empty_tuple();
+
+  int i = 0;
+  repeat (n) {
+    tuple C_row = empty_tuple();
+
+    int j = 0;
+    repeat (p) {
+      tuple A_row = matrixA.at(i);
+      tuple B_row = matrixBT.at(j);
+
+      int value = 0;
+    
+      repeat (m) {
+        (A_row, int a) = tpop(A_row);
+        (B_row, int b) = tpop(B_row);
+
+        value += a * b;
+      }
+
+      C_row~tpush(value);
+      j += 1;
+    }
+
+    C~tpush(C_row);
+    i += 1;
+  }
+
+  return C;
+}

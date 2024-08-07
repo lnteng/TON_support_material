@@ -1,0 +1,40 @@
+estimated_profit: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC5O9RnkY80GohbmKgE2WKUc7e9T8GyMGSObZKGc_O8xkrS/code.func:260:71: warning: Local variable 'ref_code' is not used
+      (int deposit_value, int started_at, int used_value, int ref_code) = get_deposit(src_addr);
+                                                                        ^
+recv_internal: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC5O9RnkY80GohbmKgE2WKUc7e9T8GyMGSObZKGc_O8xkrS/code.func:201:26: warning: PressionLoss
+              value / 1000 * 15,
+                           ^
+recv_internal: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC5O9RnkY80GohbmKgE2WKUc7e9T8GyMGSObZKGc_O8xkrS/code.func:228:55: warning: PressionLoss
+                  src_wc, no_ref_addr, real_value / 100 * 5,
+                                                        ^
+recv_internal: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC5O9RnkY80GohbmKgE2WKUc7e9T8GyMGSObZKGc_O8xkrS/code.func:223:67: warning: PressionLoss
+                  src_wc, ref_addr~load_uint(256), real_value / 100 * 5, ;; ref percents is 5
+                                                                    ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC5O9RnkY80GohbmKgE2WKUc7e9T8GyMGSObZKGc_O8xkrS/code.func:141:21: warning: Lack of end_parse.
+      int fwd_fee = cs~load_coins();
+                      ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC5O9RnkY80GohbmKgE2WKUc7e9T8GyMGSObZKGc_O8xkrS/code.func:141:17: warning: Local variable 'fwd_fee' is not used
+      int fwd_fee = cs~load_coins();
+                  ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC5O9RnkY80GohbmKgE2WKUc7e9T8GyMGSObZKGc_O8xkrS/code.func:206:43: warning: Local variable 'd_v' is not used
+      (int d_v, int ts, int u_v, int ref_c) = get_deposit(src_addr);
+                                            ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC5O9RnkY80GohbmKgE2WKUc7e9T8GyMGSObZKGc_O8xkrS/code.func:206:43: warning: Local variable 'u_v' is not used
+      (int d_v, int ts, int u_v, int ref_c) = get_deposit(src_addr);
+                                            ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC5O9RnkY80GohbmKgE2WKUc7e9T8GyMGSObZKGc_O8xkrS/code.func:206:43: warning: Local variable 'ref_c' is not used
+      (int d_v, int ts, int u_v, int ref_c) = get_deposit(src_addr);
+                                            ^
+calc_profit: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC5O9RnkY80GohbmKgE2WKUc7e9T8GyMGSObZKGc_O8xkrS/code.func:89:41: warning: PressionLoss
+      return (deposit_value * 45 / 10000) * (periods) - used_value;
+                                          ^

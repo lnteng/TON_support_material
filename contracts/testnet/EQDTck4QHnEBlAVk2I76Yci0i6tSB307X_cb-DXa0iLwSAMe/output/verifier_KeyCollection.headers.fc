@@ -1,0 +1,193 @@
+;;
+;; Header files for KeyCollection
+;; NOTE: declarations are sorted for optimal order
+;;
+
+;; __tact_verify_address
+slice __tact_verify_address(slice address) inline;
+
+;; __tact_load_address
+(slice, slice) __tact_load_address(slice cs) inline;
+
+;; __tact_store_address
+builder __tact_store_address(builder b, slice address) inline;
+
+;; __tact_my_balance
+int __tact_my_balance() inline;
+
+;; __tact_not_null
+forall X -> X __tact_not_null(X x) inline;
+
+;; __tact_context_get
+(int, slice, int, slice) __tact_context_get() inline;
+
+;; __tact_context_get_sender
+slice __tact_context_get_sender() inline;
+
+;; __tact_prepare_random
+() __tact_prepare_random() impure inline;
+
+;; __tact_store_bool
+builder __tact_store_bool(builder b, int v) inline;
+
+;; __tact_dict_set_int_int
+(cell, ()) __tact_dict_set_int_int(cell d, int kl, int k, int v, int vl) inline;
+
+;; __tact_dict_get_int_int
+int __tact_dict_get_int_int(cell d, int kl, int k, int vl) inline;
+
+;; __tact_dict_set_int_cell
+(cell, ()) __tact_dict_set_int_cell(cell d, int kl, int k, cell v) inline;
+
+;; __tact_dict_get_int_cell
+cell __tact_dict_get_int_cell(cell d, int kl, int k) inline;
+
+;; __tact_dict_set_slice_int
+(cell, ()) __tact_dict_set_slice_int(cell d, int kl, slice k, int v, int vl) inline;
+
+;; __tact_dict_get_slice_int
+int __tact_dict_get_slice_int(cell d, int kl, slice k, int vl) inline;
+
+;; __tact_slice_eq_bits
+int __tact_slice_eq_bits(slice a, slice b) inline;
+
+;; $Deploy$_load
+(slice, ((int))) $Deploy$_load(slice sc_0) inline;
+
+;; $DeployOk$_store
+builder $DeployOk$_store(builder build_0, (int) v) inline;
+
+;; $DeployOk$_store_cell
+cell $DeployOk$_store_cell((int) v) inline;
+
+;; $PurchaseOnekey$_load
+(slice, ((int))) $PurchaseOnekey$_load(slice sc_0) inline;
+
+;; $Redeem$_load
+(slice, ((int))) $Redeem$_load(slice sc_0) inline;
+
+;; $KeyInfo$_store
+builder $KeyInfo$_store(builder build_0, (slice, int, int) v) inline;
+
+;; $KeyInfo$_store_cell
+cell $KeyInfo$_store_cell((slice, int, int) v) inline;
+
+;; $KeyInfo$_not_null
+((slice, int, int)) $KeyInfo$_not_null(tuple v) inline;
+
+;; $KeyInfo$_store_opt
+cell $KeyInfo$_store_opt(tuple v) inline;
+
+;; $KeyInfo$_load
+(slice, ((slice, int, int))) $KeyInfo$_load(slice sc_0) inline;
+
+;; $KeyInfo$_as_optional
+tuple $KeyInfo$_as_optional((slice, int, int) v) inline;
+
+;; $KeyInfo$_load_opt
+tuple $KeyInfo$_load_opt(cell cl) inline;
+
+;; $KeyCollection$_store
+builder $KeyCollection$_store(builder build_0, (int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) v) inline;
+
+;; $KeyCollection$_load
+(slice, ((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell))) $KeyCollection$_load(slice sc_0) inline;
+
+;; $StateInit$_not_null
+((cell, cell)) $StateInit$_not_null(tuple v) inline;
+
+;; $KeyInfo$_to_tuple
+tuple $KeyInfo$_to_tuple(((slice, int, int)) v) inline;
+
+;; $KeyInfo$_to_opt_tuple
+tuple $KeyInfo$_to_opt_tuple(tuple v) inline;
+
+;; $KeyInfo$_to_opt_external
+tuple $KeyInfo$_to_opt_external(tuple v) inline;
+
+;; $KeyCollection$init$_load
+(slice, ((slice))) $KeyCollection$init$_load(slice sc_0) inline;
+
+;; $KeyCollection$_contract_init
+(int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $KeyCollection$_contract_init(slice $owner) impure inline_ref;
+
+;; $KeyCollection$_contract_load
+(int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $KeyCollection$_contract_load() impure inline_ref;
+
+;; $KeyCollection$_contract_store
+() $KeyCollection$_contract_store((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) v) impure inline;
+
+;; $global_random
+int $global_random(int $min, int $max) impure inline;
+
+;; $global_send
+() $global_send((int, slice, int, int, cell, cell, cell) $params) impure inline_ref;
+
+;; $KeyCollection$_fun_calcPrice
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), int) $KeyCollection$_fun_calcPrice((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self, int $shares) impure inline_ref;
+
+;; $KeyCollection$_fun_getVLuckByAddr
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), int) $KeyCollection$_fun_getVLuckByAddr((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self, slice $user) impure inline_ref;
+
+;; $KeyCollection$_fun_updateSubKeySharesMap
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), ()) $KeyCollection$_fun_updateSubKeySharesMap((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self, int $keyNum, int $count) impure inline_ref;
+
+;; $KeyCollection$_fun_updateVLuckMap
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), ()) $KeyCollection$_fun_updateVLuckMap((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self, int $keyNum, int $vlock) impure inline_ref;
+
+;; $KeyCollection$_fun_updateUserVLuckMap
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), ()) $KeyCollection$_fun_updateUserVLuckMap((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self, slice $user, int $vlock) impure inline_ref;
+
+;; $KeyCollection$_fun_updateUserAwardMap
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), ()) $KeyCollection$_fun_updateUserAwardMap((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self, slice $user, int $reward) impure inline_ref;
+
+;; $KeyCollection$_fun_updateUserWalletMap
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), ()) $KeyCollection$_fun_updateUserWalletMap((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self, slice $user, int $amount) impure inline_ref;
+
+;; $KeyCollection$_fun_currentPrice
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), int) $KeyCollection$_fun_currentPrice((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self) impure inline_ref;
+
+;; $KeyCollection$_fun_random
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), int) $KeyCollection$_fun_random((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self) impure inline_ref;
+
+;; $KeyCollection$_fun_uservLuck
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), int) $KeyCollection$_fun_uservLuck((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self, slice $user) impure inline_ref;
+
+;; $KeyCollection$_fun_keySupply
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), int) $KeyCollection$_fun_keySupply((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self) impure inline_ref;
+
+;; $KeyCollection$_fun_keyInfoById
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), tuple) $KeyCollection$_fun_keyInfoById((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self, int $id) impure inline_ref;
+
+;; $KeyCollection$_fun_vLuckShares
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), int) $KeyCollection$_fun_vLuckShares((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self) impure inline_ref;
+
+;; $KeyCollection$_fun_vLuckByNum
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), int) $KeyCollection$_fun_vLuckByNum((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self, int $num) impure inline_ref;
+
+;; $KeyCollection$_fun_luckNum
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), int) $KeyCollection$_fun_luckNum((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self) impure inline_ref;
+
+;; $KeyCollection$_fun_userAward
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), int) $KeyCollection$_fun_userAward((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self, slice $user) impure inline_ref;
+
+;; $KeyCollection$_fun_rewardPreVluck
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), int) $KeyCollection$_fun_rewardPreVluck((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self) impure inline_ref;
+
+;; $KeyCollection$_fun_userWallet
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), int) $KeyCollection$_fun_userWallet((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self, slice $user) impure inline_ref;
+
+;; $SendParameters$_constructor_bounce_to_value_mode_body_code_data
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline;
+
+;; $KeyCollection$_fun_forward
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), ()) $KeyCollection$_fun_forward((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self, slice $to, cell $body, int $bounce, tuple $init) impure inline_ref;
+
+;; $KeyCollection$_fun_notify
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), ()) $KeyCollection$_fun_notify((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self, cell $body) impure inline;
+
+;; $KeyInfo$_constructor_owner_keyNum_price
+((slice, int, int)) $KeyInfo$_constructor_owner_keyNum_price(slice owner, int keyNum, int price) inline;
+
+;; $DeployOk$_constructor_queryId
+((int)) $DeployOk$_constructor_queryId(int queryId) inline;

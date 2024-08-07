@@ -1,0 +1,15 @@
+$CounterSample1$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAYKYabbwlzY6vfBdSdIGa_YYs4RSHTo-tma30Je5mSZ85Y/output/sample_CounterSample1.code.fc:14:27: warning: Local variable '$self'counter' is not used
+      var (($self'counter)) = (null());
+                            ^
+$CounterSample1$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAYKYabbwlzY6vfBdSdIGa_YYs4RSHTo-tma30Je5mSZ85Y/output/sample_CounterSample1.storage.fc:21:19: warning: Lack of end_parse.
+          return $sc~$CounterSample1$_load();
+                    ^
+$CounterSample1$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAYKYabbwlzY6vfBdSdIGa_YYs4RSHTo-tma30Je5mSZ85Y/output/sample_CounterSample1.code.fc:58:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAYKYabbwlzY6vfBdSdIGa_YYs4RSHTo-tma30Je5mSZ85Y/output/sample_CounterSample1.storage.fc:30:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

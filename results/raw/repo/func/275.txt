@@ -1,0 +1,32 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tongochi/DEX/Staking/lockupcontracts/lockup_collection_2.fc:134:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tongochi/DEX/Staking/lockupcontracts/lockup_collection_2.fc:294:40: warning: Lack of end_parse.
+          int staked_amount = nft_content~load_coins();
+                                         ^
+get_collection_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tongochi/DEX/Staking/lockupcontracts/lockup_collection_2.fc:348:30: warning: Lack of end_parse.
+    return (next_item_index, cs~load_ref(), owner_address);
+                               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tongochi/DEX/Staking/lockupcontracts/lockup_collection_2.fc:41:8: warning: Lack of end_parse.
+       ds~load_coins()  ;; withdrawable_jettons
+         ^
+load_royalty_params: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tongochi/DEX/Staking/lockupcontracts/lockup_collection_2.fc:67:87: warning: Lack of end_parse.
+      return (rs~load_uint(16), rs~load_uint(16), rs~load_uint(16), rs~load_uint(16), rs~load_msg_addr());
+                                                                                        ^
+get_nft_content: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tongochi/DEX/Staking/lockupcontracts/lockup_collection_2.fc:366:30: warning: Lack of end_parse.
+      slice common_content = cs~load_ref().begin_parse();
+                               ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./tongochi/DEX/Staking/lockupcontracts/lockup_collection_2.fc:317:49: warning: UnHandle bounced message with op: 0x5fcc3d14
+              send_raw_message(msg.end_cell(), 64); 
+                                                  ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./tongochi/DEX/Staking/lockupcontracts/lockup_collection_2.fc:331:42: warning: UnHandle bounced message with op: 0x55521d04
+              send_raw_message(burn_msg, 0); 
+                                           ^

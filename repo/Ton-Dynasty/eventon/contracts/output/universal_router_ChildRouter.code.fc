@@ -1,0 +1,455 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "universal_router_ChildRouter.headers.fc";
+#include "universal_router_ChildRouter.stdlib.fc";
+#include "universal_router_ChildRouter.storage.fc";
+
+;;
+;; Contract ChildRouter functions
+;;
+
+(slice, slice, int, int, cell, cell, int, int, int, cell, int) $ChildRouter$_contract_init(slice $owner, slice $sourceAddress, int $minimumStake) impure inline_ref {
+    var (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+    $self'owner = $owner;
+    $self'sourceAddress = $sourceAddress;
+    $self'messengerId = 0;
+    $self'minimumStake = $minimumStake;
+    $self'totalShares = 0;
+    $self'totalStakeAmount = 0;
+    $self'maxUserStakeAmount = 0;
+    $self'eventId = (- 1);
+    return ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId);
+}
+
+((slice, slice, int, int, cell, cell, int, int, int, cell, int), int) $ChildRouter$_fun_calculateReward((slice, slice, int, int, cell, cell, int, int, int, cell, int) $self, slice $addr) impure inline_ref {
+    var (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId)) = $self;
+    if (( (($self'totalShares == 0)) ? (true) : (null?(__tact_dict_get_slice_int($self'stakes, 267, $addr, 257))) )) {
+        return (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId), 0);
+    }
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId), ((__tact_not_null(__tact_dict_get_slice_uint($self'stakeShares, 267, $addr, 256)) * $self'totalStakeAmount) / $self'totalShares));
+}
+
+((slice, slice, int, int, cell, cell, int, int, int, cell, int), (cell, cell)) $ChildRouter$_fun_messengerInit((slice, slice, int, int, cell, cell, int, int, int, cell, int) $self, slice $sourceAddress, int $messengerId) impure inline_ref {
+    var (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId)) = $self;
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId), $Messenger$_init_child(__tact_context_sys, my_address(), $sourceAddress, $messengerId));
+}
+
+((slice, slice, int, int, cell, cell, int, int, int, cell, int), slice) $ChildRouter$_fun_messengerAddress((slice, slice, int, int, cell, cell, int, int, int, cell, int) $self, slice $sourceAddress, int $messengerId) impure inline_ref {
+    var (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId)) = $self;
+    var ($childInit'code, $childInit'data) = ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId)~$ChildRouter$_fun_messengerInit($sourceAddress, $messengerId);
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId), $global_contractAddress(($childInit'code, $childInit'data)));
+}
+
+((slice, slice, int, int, cell, cell, int, int, int, cell, int), (cell, cell)) $ChildRouter$_fun_udcInit((slice, slice, int, int, cell, cell, int, int, int, cell, int) $self, slice $owner, cell $parameter) impure inline_ref {
+    var (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId)) = $self;
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId), $UserDefaultCallback$_init_child(__tact_context_sys, my_address(), $owner, $parameter));
+}
+
+((slice, slice, int, int, cell, cell, int, int, int, cell, int), slice) $ChildRouter$_fun_udcAddress((slice, slice, int, int, cell, cell, int, int, int, cell, int) $self, slice $owner, cell $parameter) impure inline_ref {
+    var (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId)) = $self;
+    var ($childInit'code, $childInit'data) = ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId)~$ChildRouter$_fun_udcInit($owner, $parameter);
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId), $global_contractAddress(($childInit'code, $childInit'data)));
+}
+
+((slice, slice, int, int, cell, cell, int, int, int, cell, int), int) $ChildRouter$_fun_messengerId((slice, slice, int, int, cell, cell, int, int, int, cell, int) $self) impure inline_ref {
+    var (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId)) = $self;
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId), $self'messengerId);
+}
+
+((slice, slice, int, int, cell, cell, int, int, int, cell, int), int) $ChildRouter$_fun_getMessengerState((slice, slice, int, int, cell, cell, int, int, int, cell, int) $self, int $messengerId) impure inline_ref {
+    var (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId)) = $self;
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId), __tact_dict_get_int_int($self'messengerState, 257, $messengerId, 257));
+}
+
+((slice, slice, int, int, cell, cell, int, int, int, cell, int), int) $ChildRouter$_fun_getBalance((slice, slice, int, int, cell, cell, int, int, int, cell, int) $self) impure inline_ref {
+    var (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId)) = $self;
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId), __tact_my_balance());
+}
+
+((slice, slice, int, int, cell, cell, int, int, int, cell, int), ()) $ChildRouter$_fun_requireOwner((slice, slice, int, int, cell, cell, int, int, int, cell, int) $self) impure inline_ref {
+    var (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId)) = $self;
+    throw_unless(132, ( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) ));
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId), ());
+}
+
+((slice, slice, int, int, cell, cell, int, int, int, cell, int), slice) $ChildRouter$_fun_owner((slice, slice, int, int, cell, cell, int, int, int, cell, int) $self) impure inline_ref {
+    var (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId)) = $self;
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId), $self'owner);
+}
+
+;;
+;; Receivers of a Contract ChildRouter
+;;
+
+(((slice, slice, int, int, cell, cell, int, int, int, cell, int)), ()) %$ChildRouter$_internal_empty((slice, slice, int, int, cell, cell, int, int, int, cell, int) $self) impure inline {
+    var ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId) = $self;
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId), ());
+}
+
+(((slice, slice, int, int, cell, cell, int, int, int, cell, int)), ()) $ChildRouter$_internal_binary_BuildChildRouter((slice, slice, int, int, cell, cell, int, int, int, cell, int) $self, (slice, int, int, int, cell, slice) $msg) impure inline {
+    var ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId) = $self;
+    var ($msg'sourceAddress, $msg'eventId, $msg'maxUserStakeAmount, $msg'subscribeFeePerTick, $msg'template, $msg'sourceName) = $msg;
+    ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId)~$ChildRouter$_fun_requireOwner();
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    throw_unless(56733, ($ctx'value > $self'minimumStake));
+    $self'maxUserStakeAmount = $msg'maxUserStakeAmount;
+    $self'stakes~__tact_dict_set_slice_int(267, $self'sourceAddress, $ctx'value, 257);
+    $self'eventId = $msg'eventId;
+    slice $messengerAddress = ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId)~$ChildRouter$_fun_messengerAddress($self'sourceAddress, $self'messengerId);
+    var ($init'code, $init'data) = ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId)~$ChildRouter$_fun_messengerInit($self'sourceAddress, $self'messengerId);
+    $self'messengerState~__tact_dict_set_int_int(257, $self'messengerId, 1, 257);
+    $global_send($SendParameters$_constructor_to_value_mode_bounce_body_code_data($messengerAddress, 0, 64, false, $BuildMessenger$_store_cell($BuildMessenger$_constructor_sourceAddress_eventId_maxUserStakeAmount_subscribeFeePerTick_template_sourceName($msg'sourceAddress, $msg'eventId, $msg'maxUserStakeAmount, $msg'subscribeFeePerTick, $msg'template, $msg'sourceName)), $init'code, $init'data));
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId), ());
+}
+
+(((slice, slice, int, int, cell, cell, int, int, int, cell, int)), ()) $ChildRouter$_internal_binary_ProtcolRegisterSuccess((slice, slice, int, int, cell, cell, int, int, int, cell, int) $self, (slice, int, int, int, cell, slice) $msg) impure inline {
+    var ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId) = $self;
+    var ($msg'sourceAddress, $msg'eventId, $msg'maxUserStakeAmount, $msg'subscribeFeePerTick, $msg'template, $msg'sourceName) = $msg;
+    $global_emit($ProtcolRegisterSuccess$_store_cell($ProtcolRegisterSuccess$_constructor_sourceAddress_eventId_maxUserStakeAmount_subscribeFeePerTick_template_sourceName($msg'sourceAddress, $msg'eventId, $msg'maxUserStakeAmount, $msg'subscribeFeePerTick, $msg'template, $msg'sourceName)));
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId), ());
+}
+
+(((slice, slice, int, int, cell, cell, int, int, int, cell, int)), ()) $ChildRouter$_internal_binary_CreateBody((slice, slice, int, int, cell, cell, int, int, int, cell, int) $self, (slice, int, int, cell) $msg) impure inline {
+    var ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId) = $self;
+    var ($msg'walletAddress, $msg'deadline, $msg'eventId, $msg'parameter) = $msg;
+    ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId)~$ChildRouter$_fun_requireOwner();
+    slice $udcAddress = ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId)~$ChildRouter$_fun_udcAddress($msg'walletAddress, $msg'parameter);
+    var ($init'code, $init'data) = ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId)~$ChildRouter$_fun_udcInit($msg'walletAddress, $msg'parameter);
+    $global_send($SendParameters$_constructor_to_value_mode_bounce_body_code_data($udcAddress, 0, 64, true, $BuildUDC$_store_cell($BuildUDC$_constructor_owner($msg'walletAddress)), $init'code, $init'data));
+    $global_emit($CreateUdcSuccess$_store_cell($CreateUdcSuccess$_constructor_walletAddress_callbackAddress($msg'walletAddress, $udcAddress)));
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId), ());
+}
+
+(((slice, slice, int, int, cell, cell, int, int, int, cell, int)), ()) $ChildRouter$_internal_binary_SubscribeBody((slice, slice, int, int, cell, cell, int, int, int, cell, int) $self, (slice, int, int, slice) $msg) impure inline {
+    var ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId) = $self;
+    var ($msg'walletAddress, $msg'deadline, $msg'eventId, $msg'callbackAddress) = $msg;
+    ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId)~$ChildRouter$_fun_requireOwner();
+    if (($msg'eventId != $self'eventId)) {
+        throw(1003);
+    }
+    slice $messengerAddress = ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId)~$ChildRouter$_fun_messengerAddress($self'sourceAddress, $self'messengerId);
+    $global_send($SendParameters$_constructor_to_value_mode_bounce_body($messengerAddress, 0, 64, false, $CreateMsgSubscriber$_store_cell($CreateMsgSubscriber$_constructor_walletAddress_callbackAddress_eventId($msg'walletAddress, $msg'callbackAddress, $self'eventId))));
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId), ());
+}
+
+(((slice, slice, int, int, cell, cell, int, int, int, cell, int)), ()) $ChildRouter$_internal_binary_DeleteSubscriber((slice, slice, int, int, cell, cell, int, int, int, cell, int) $self, (slice, slice, int) $msg) impure inline {
+    var ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId) = $self;
+    var ($msg'walletAddress, $msg'callbackAddress, $msg'eventId) = $msg;
+    ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId)~$ChildRouter$_fun_requireOwner();
+    if (($msg'eventId != $self'eventId)) {
+        throw(1003);
+    }
+    slice $messengerAddress = ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId)~$ChildRouter$_fun_messengerAddress($self'sourceAddress, $self'messengerId);
+    $global_send($SendParameters$_constructor_to_value_mode_bounce_body($messengerAddress, 0, 64, false, $DeleteSubscriber$_store_cell($DeleteSubscriber$_constructor_walletAddress_callbackAddress_eventId($msg'walletAddress, $msg'callbackAddress, $self'eventId))));
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId), ());
+}
+
+(((slice, slice, int, int, cell, cell, int, int, int, cell, int)), ()) $ChildRouter$_internal_binary_DestroyMessenger((slice, slice, int, int, cell, cell, int, int, int, cell, int) $self, (int) $msg) impure inline {
+    var ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId) = $self;
+    var ($msg'messengerId) = $msg;
+    $self'messengerState~__tact_dict_set_int_int(257, $msg'messengerId, null(), 257);
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId), ());
+}
+
+(((slice, slice, int, int, cell, cell, int, int, int, cell, int)), ()) $ChildRouter$_internal_binary_EventSignal((slice, slice, int, int, cell, cell, int, int, int, cell, int) $self, (int, cell) $msg) impure inline {
+    var ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId) = $self;
+    var ($msg'eventId, $msg'payload) = $msg;
+    ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId)~$ChildRouter$_fun_requireOwner();
+    int $i = 0;
+    while (($i <= $self'messengerId)) {
+        if (__tact_int_eq_nullable_one(__tact_dict_get_int_int($self'messengerState, 257, $i, 257), 1)) {
+            slice $messengerAddress = ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId)~$ChildRouter$_fun_messengerAddress($self'sourceAddress, $i);
+            int $value = 18000000;
+            $global_send($SendParameters$_constructor_to_value_mode_bounce_body($messengerAddress, $value, 1, false, $EventSignal$_store_cell($EventSignal$_constructor_eventId_payload($self'eventId, $msg'payload))));
+        }
+        $i = ($i + 1);
+    }
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId), ());
+}
+
+(((slice, slice, int, int, cell, cell, int, int, int, cell, int)), ()) $ChildRouter$_internal_binary_AddMessenger((slice, slice, int, int, cell, cell, int, int, int, cell, int) $self, (slice) $msg) impure inline {
+    var ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId) = $self;
+    var ($msg'protocolAddress) = $msg;
+    ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId)~$ChildRouter$_fun_requireOwner();
+    slice $messengerAddress = ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId)~$ChildRouter$_fun_messengerAddress($msg'protocolAddress, $self'messengerId);
+    $self'messengerId = ($self'messengerId + 1);
+    $global_send($SendParameters$_constructor_to_value_mode_bounce($messengerAddress, 0, 64, false));
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId), ());
+}
+
+(((slice, slice, int, int, cell, cell, int, int, int, cell, int)), ()) $ChildRouter$_internal_binary_AddStakeFor((slice, slice, int, int, cell, cell, int, int, int, cell, int) $self, (slice) $msg) impure inline {
+    var ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId) = $self;
+    var ($msg'beneficiary) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    throw_unless(56733, ($ctx'value > $self'minimumStake));
+    int $protocolStakeAmount = __tact_not_null(__tact_dict_get_slice_int($self'stakes, 267, $self'sourceAddress, 257));
+    int $userStakeTotalAmount = ($self'totalStakeAmount - $protocolStakeAmount);
+    if (( ~ __tact_slice_eq_bits($self'sourceAddress, $msg'beneficiary) )) {
+        $userStakeTotalAmount = ($userStakeTotalAmount + $ctx'value);
+        throw_unless(38856, ($userStakeTotalAmount <= $self'maxUserStakeAmount));
+    }
+    int $sharesToMint = 0;
+    if (($self'totalShares == 0)) {
+        $sharesToMint = $ctx'value;
+    } else {
+        $sharesToMint = (($ctx'value * $self'totalShares) / $self'totalStakeAmount);
+    }
+    $self'stakes~__tact_dict_set_slice_int(267, $msg'beneficiary, (__tact_not_null(__tact_dict_get_slice_int($self'stakes, 267, $msg'beneficiary, 257)) + $ctx'value), 257);
+    $self'stakeShares~__tact_dict_set_slice_uint(267, $msg'beneficiary, (__tact_not_null(__tact_dict_get_slice_uint($self'stakeShares, 267, $msg'beneficiary, 256)) + $sharesToMint), 256);
+    $self'totalShares = ($self'totalShares + $sharesToMint);
+    $self'totalStakeAmount = ($self'totalStakeAmount + $ctx'value);
+    $global_emit($Staked$_store_cell($Staked$_constructor_amount_staker_beneficiary($ctx'value, __tact_context_get_sender(), $msg'beneficiary)));
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId), ());
+}
+
+(((slice, slice, int, int, cell, cell, int, int, int, cell, int)), ()) $ChildRouter$_internal_binary_RemoveStake((slice, slice, int, int, cell, cell, int, int, int, cell, int) $self, (slice, int) $msg) impure inline {
+    var ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId) = $self;
+    var ($msg'receiver, $msg'amount) = $msg;
+    throw_unless(40476, ($msg'amount > 0));
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    int $stakeAmount = __tact_dict_get_slice_int($self'stakes, 267, __tact_context_get_sender(), 257);
+    throw_unless(50575, ( ((~ null?($stakeAmount))) ? ((__tact_not_null($stakeAmount) > $msg'amount)) : (false) ));
+    int $stakesToRemove = (($msg'amount * $self'totalShares) / $self'totalStakeAmount);
+    $self'stakes~__tact_dict_set_slice_int(267, __tact_context_get_sender(), (__tact_not_null(__tact_dict_get_slice_int($self'stakes, 267, __tact_context_get_sender(), 257)) - $msg'amount), 257);
+    $self'stakeShares~__tact_dict_set_slice_uint(267, __tact_context_get_sender(), (__tact_not_null(__tact_dict_get_slice_uint($self'stakeShares, 267, __tact_context_get_sender(), 256)) - $stakesToRemove), 256);
+    $self'totalShares = ($self'totalShares - $stakesToRemove);
+    $self'totalStakeAmount = ($self'totalStakeAmount - $msg'amount);
+    $global_send($SendParameters$_constructor_to_value_mode_bounce(__tact_context_get_sender(), $msg'amount, 1, true));
+    $global_emit($Withdrawn$_store_cell($Withdrawn$_constructor_amount_receiver($msg'amount, __tact_context_get_sender())));
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId), ());
+}
+
+(((slice, slice, int, int, cell, cell, int, int, int, cell, int)), ()) $ChildRouter$_internal_binary_CollectFee((slice, slice, int, int, cell, cell, int, int, int, cell, int) $self, (int, int) $msg) impure inline {
+    var ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId) = $self;
+    var ($msg'messengerId, $msg'fee) = $msg;
+    $self'totalStakeAmount = ($self'totalStakeAmount + $msg'fee);
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId), ());
+}
+
+(((slice, slice, int, int, cell, cell, int, int, int, cell, int)), ()) $ChildRouter$_internal_binary_Deploy((slice, slice, int, int, cell, cell, int, int, int, cell, int) $self, (int) $deploy) impure inline {
+    var ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId)~$ChildRouter$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'owner, $self'sourceAddress, $self'messengerId, $self'minimumStake, $self'stakes, $self'stakeShares, $self'totalStakeAmount, $self'maxUserStakeAmount, $self'totalShares, $self'messengerState, $self'eventId), ());
+}
+
+;;
+;; Get methods of a Contract ChildRouter
+;;
+
+_ %calculateReward(slice $$addr) method_id(103027) {
+    slice $addr = __tact_verify_address($$addr);
+    var self = $ChildRouter$_contract_load();
+    var res = self~$ChildRouter$_fun_calculateReward($addr);
+    return res;
+}
+
+_ %messengerAddress(slice $$sourceAddress, int $$messengerId) method_id(107837) {
+    slice $sourceAddress = __tact_verify_address($$sourceAddress);
+    int $messengerId = $$messengerId;
+    var self = $ChildRouter$_contract_load();
+    var res = self~$ChildRouter$_fun_messengerAddress($sourceAddress, $messengerId);
+    return res;
+}
+
+_ %messengerInit(slice $$sourceAddress, int $$messengerId) method_id(118121) {
+    slice $sourceAddress = __tact_verify_address($$sourceAddress);
+    int $messengerId = $$messengerId;
+    var self = $ChildRouter$_contract_load();
+    var res = self~$ChildRouter$_fun_messengerInit($sourceAddress, $messengerId);
+    return $StateInit$_to_external(res);
+}
+
+_ %udcAddress(slice $$owner, cell $$parameter) method_id(89184) {
+    slice $owner = __tact_verify_address($$owner);
+    cell $parameter = $$parameter;
+    var self = $ChildRouter$_contract_load();
+    var res = self~$ChildRouter$_fun_udcAddress($owner, $parameter);
+    return res;
+}
+
+_ %udcInit(slice $$owner, cell $$parameter) method_id(115025) {
+    slice $owner = __tact_verify_address($$owner);
+    cell $parameter = $$parameter;
+    var self = $ChildRouter$_contract_load();
+    var res = self~$ChildRouter$_fun_udcInit($owner, $parameter);
+    return $StateInit$_to_external(res);
+}
+
+_ %messengerId() method_id(69929) {
+    var self = $ChildRouter$_contract_load();
+    var res = self~$ChildRouter$_fun_messengerId();
+    return res;
+}
+
+_ %getMessengerState(int $$messengerId) method_id(126515) {
+    int $messengerId = $$messengerId;
+    var self = $ChildRouter$_contract_load();
+    var res = self~$ChildRouter$_fun_getMessengerState($messengerId);
+    return res;
+}
+
+_ %getBalance() method_id(106323) {
+    var self = $ChildRouter$_contract_load();
+    var res = self~$ChildRouter$_fun_getBalance();
+    return res;
+}
+
+_ %owner() method_id(83229) {
+    var self = $ChildRouter$_contract_load();
+    var res = self~$ChildRouter$_fun_owner();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128,
+        "org.ton.ownable"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmT2yvrjNSDqPyGZuHyTobgAyhefoCZasNqwNPQUgF7cN1";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract ChildRouter
+;;
+
+((slice, slice, int, int, cell, cell, int, int, int, cell, int), int) $ChildRouter$_contract_router_internal((slice, slice, int, int, cell, cell, int, int, int, cell, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive empty message
+    if ((op == 0) & (slice_bits(in_msg) <= 32)) {
+        self~%$ChildRouter$_internal_empty();
+        return (self, true);
+    }
+    
+    ;; Receive BuildChildRouter message
+    if (op == 2831422442) {
+        var msg = in_msg~$BuildChildRouter$_load();
+        self~$ChildRouter$_internal_binary_BuildChildRouter(msg);
+        return (self, true);
+    }
+    
+    ;; Receive ProtcolRegisterSuccess message
+    if (op == 2543656262) {
+        var msg = in_msg~$ProtcolRegisterSuccess$_load();
+        self~$ChildRouter$_internal_binary_ProtcolRegisterSuccess(msg);
+        return (self, true);
+    }
+    
+    ;; Receive CreateBody message
+    if (op == 2617235749) {
+        var msg = in_msg~$CreateBody$_load();
+        self~$ChildRouter$_internal_binary_CreateBody(msg);
+        return (self, true);
+    }
+    
+    ;; Receive SubscribeBody message
+    if (op == 1953340414) {
+        var msg = in_msg~$SubscribeBody$_load();
+        self~$ChildRouter$_internal_binary_SubscribeBody(msg);
+        return (self, true);
+    }
+    
+    ;; Receive DeleteSubscriber message
+    if (op == 380345681) {
+        var msg = in_msg~$DeleteSubscriber$_load();
+        self~$ChildRouter$_internal_binary_DeleteSubscriber(msg);
+        return (self, true);
+    }
+    
+    ;; Receive DestroyMessenger message
+    if (op == 2952350305) {
+        var msg = in_msg~$DestroyMessenger$_load();
+        self~$ChildRouter$_internal_binary_DestroyMessenger(msg);
+        return (self, true);
+    }
+    
+    ;; Receive EventSignal message
+    if (op == 306637748) {
+        var msg = in_msg~$EventSignal$_load();
+        self~$ChildRouter$_internal_binary_EventSignal(msg);
+        return (self, true);
+    }
+    
+    ;; Receive AddMessenger message
+    if (op == 2557114565) {
+        var msg = in_msg~$AddMessenger$_load();
+        self~$ChildRouter$_internal_binary_AddMessenger(msg);
+        return (self, true);
+    }
+    
+    ;; Receive AddStakeFor message
+    if (op == 3476889102) {
+        var msg = in_msg~$AddStakeFor$_load();
+        self~$ChildRouter$_internal_binary_AddStakeFor(msg);
+        return (self, true);
+    }
+    
+    ;; Receive RemoveStake message
+    if (op == 3725077757) {
+        var msg = in_msg~$RemoveStake$_load();
+        self~$ChildRouter$_internal_binary_RemoveStake(msg);
+        return (self, true);
+    }
+    
+    ;; Receive CollectFee message
+    if (op == 901872456) {
+        var msg = in_msg~$CollectFee$_load();
+        self~$ChildRouter$_internal_binary_CollectFee(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$ChildRouter$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $ChildRouter$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$ChildRouter$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $ChildRouter$_contract_store(self);
+}

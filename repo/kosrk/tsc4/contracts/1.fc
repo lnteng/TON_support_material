@@ -1,0 +1,41 @@
+{-
+  TASK 1 - Find branch of the cell tree
+  Write the method that will find a branch of the tree by comparing its
+  hash with the hash received in the first parameter. When the algorithm finds
+  the subtree (branch) whose hash equals the received hash, the root cell of
+  this branch should be returned. Return empty cell if the branch is not found.
+-}
+
+;; list ver 5.4487944228834575
+
+forall X -> int is_null (X x) asm "ISNULL";
+forall X -> (tuple, ()) push_back (tuple tail, X head) asm "CONS";
+forall X -> (tuple, (X)) pop_back (tuple t) asm "UNCONS";
+
+() recv_internal() {
+}
+
+cell solve(int hash, cell c) inline asm(c hash)
+        " c2 SAVE "
+        " SAMEALTSAVE "                         ;; STEP 1            ;; STEP 2
+        " WHILE:<{ DEPTH DEC }>DO<{ "           ;; c0 h              ;; c1 h
+        "   SWAP "                              ;; h c0              ;; h c1
+        "   DUP2 "                              ;; h c0 h c0         ;; h c1 h c1
+        "   HASHCU EQUAL "                      ;; h c0 eq           ;; h c1 eq
+        "   IFJMP:<{ 1 INT ONLYTOPX RETALT }> " ;; h c0              ;; h c1
+        "   CTOS "                              ;; h s0              ;; h s1
+        "   DUP SREFS "                         ;; h s0 r0           ;; h s1 r1
+        "   REPEAT:<{ "                         ;; h s0              ;; h s1
+        "     LDREF "                           ;; h c1 s0           ;;
+        "     s1 s2 XCHG "                      ;; c1 h s0           ;;
+        "   }>"                                 ;; c1 c2 h s0
+        "   DROP "                              ;; c1 c2 h           ;; h
+        " }> "                                                       ;;
+        " DROP "                                                     ;; -
+        " NEWC ENDC "                                                ;; ec
+        ;
+
+;; testable
+(cell) find_branch_by_hash(int hash, cell tree) method_id {
+  return solve(hash, tree);
+}

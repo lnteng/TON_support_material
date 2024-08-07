@@ -1,0 +1,8 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/IDO/privateIDO.fc:71:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/IDO/privateIDO.fc:77:18: warning: Local variable 'query_id' is not used
+      int query_id = in_msg_body~load_uint(64); ;; also by convention, the next 64 bits contain the "query id", although this is not always the case
+                   ^

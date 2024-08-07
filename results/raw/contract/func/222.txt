@@ -1,0 +1,16 @@
+dnsresolve: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBeAOvh4Bcafov7q_OgKbbq4dt0AdTLkDSeIyMMT3cT2PSU/subdomain-manager.fc:82:29: warning: Local variable 'found' is not used
+      (cell value, int found) = records.udict_get_ref?(256, category);
+                              ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBeAOvh4Bcafov7q_OgKbbq4dt0AdTLkDSeIyMMT3cT2PSU/subdomain-manager.fc:24:22: warning: Lack of end_parse.
+      slice sender = cs~load_msg_addr();
+                       ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBeAOvh4Bcafov7q_OgKbbq4dt0AdTLkDSeIyMMT3cT2PSU/subdomain-manager.fc:35:46: warning: Lack of end_parse.
+          slice domain = in_msg_body~load_ref().begin_parse();
+                                               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBeAOvh4Bcafov7q_OgKbbq4dt0AdTLkDSeIyMMT3cT2PSU/subdomain-manager.fc:11:17: warning: Lack of end_parse.
+      domains = ds~load_dict();
+                  ^

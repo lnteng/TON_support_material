@@ -1,0 +1,12 @@
+seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-distrib/crypto/smartcont/simple-wallet-ext-code.fc:45:20: warning: Lack of end_parse.
+    return get_data().begin_parse().preload_uint(32);
+                     ^
+load_state: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-distrib/crypto/smartcont/simple-wallet-ext-code.fc:9:33: warning: Lack of end_parse.
+    return (cs2~load_uint(32), cs2~load_uint(256));
+                                  ^
+get_public_key: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-distrib/crypto/smartcont/simple-wallet-ext-code.fc:49:27: warning: Local variable 'seqno' is not used
+    var (seqno, public_key) = load_state();
+                            ^

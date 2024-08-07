@@ -1,0 +1,356 @@
+;;
+;; Type: StateInit
+;; TLB: _ code:^cell data:^cell = StateInit
+;;
+
+((cell, cell)) $StateInit$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (cell vvv'code, cell vvv'data) = __tact_tuple_destroy_2(v);
+    return (vvv'code, vvv'data);
+}
+
+;;
+;; Type: Context
+;; TLB: _ bounced:bool sender:address value:int257 raw:^slice = Context
+;;
+
+_ $Context$_get_value((int, slice, int, slice) v) inline {
+    var (v'bounced, v'sender, v'value, v'raw) = v;
+    return v'value;
+}
+
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline {
+    return (bounce, to, value, mode, body, code, data);
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_body_value_mode(slice to, cell body, int value, int mode) inline {
+    return (true, to, value, mode, body, null(), null());
+}
+
+;;
+;; Type: Deploy
+;; Header: 0x946a98b6
+;; TLB: deploy#946a98b6 queryId:uint64 = Deploy
+;;
+
+(slice, ((int))) $Deploy$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2490013878);
+    var v'queryId = sc_0~load_uint(64);
+    return (sc_0, (v'queryId));
+}
+
+;;
+;; Type: DeployOk
+;; Header: 0xaff90f57
+;; TLB: deploy_ok#aff90f57 queryId:uint64 = DeployOk
+;;
+
+builder $DeployOk$_store(builder build_0, (int) v) inline {
+    var (v'queryId) = v;
+    build_0 = store_uint(build_0, 2952335191, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    return build_0;
+}
+
+cell $DeployOk$_store_cell((int) v) inline {
+    return $DeployOk$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $DeployOk$_constructor_queryId(int queryId) inline {
+    return (queryId);
+}
+
+;;
+;; Type: PutHoldersMsg
+;; Header: 0x4cee6246
+;; TLB: put_holders_msg#4cee6246 count:uint8 holders:dict<uint8, ^HolderDto{address:address,starting:coins}> = PutHoldersMsg
+;;
+
+(slice, ((int, cell))) $PutHoldersMsg$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 1290691142);
+    var v'count = sc_0~load_uint(8);
+    var v'holders = sc_0~load_dict();
+    return (sc_0, (v'count, v'holders));
+}
+
+;;
+;; Type: SetPeriodsMsg
+;; Header: 0x88af4a34
+;; TLB: set_periods_msg#88af4a34 count:uint8 percentFactor:int257 periods:dict<int, ^Period{startTime:uint32,percent:uint16}> = SetPeriodsMsg
+;;
+
+(slice, ((int, int, cell))) $SetPeriodsMsg$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2293189172);
+    var v'count = sc_0~load_uint(8);
+    var v'percentFactor = sc_0~load_int(257);
+    var v'periods = sc_0~load_dict();
+    return (sc_0, (v'count, v'percentFactor, v'periods));
+}
+
+;;
+;; Type: SetOwnerWallet
+;; Header: 0xf54bae82
+;; TLB: set_owner_wallet#f54bae82 address:address = SetOwnerWallet
+;;
+
+(slice, ((slice))) $SetOwnerWallet$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 4115377794);
+    var v'address = sc_0~__tact_load_address();
+    return (sc_0, (v'address));
+}
+
+;;
+;; Type: SetVestingRound
+;; Header: 0x119cb7b9
+;; TLB: set_vesting_round#119cb7b9 vestingRound:uint8 = SetVestingRound
+;;
+
+(slice, ((int))) $SetVestingRound$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 295483321);
+    var v'vestingRound = sc_0~load_uint(8);
+    return (sc_0, (v'vestingRound));
+}
+
+;;
+;; Type: TopupBalance
+;; Header: 0x72c5cfe2
+;; TLB: topup_balance#72c5cfe2  = TopupBalance
+;;
+
+(slice, (tuple)) $TopupBalance$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 1925566434);
+    return (sc_0, null());
+}
+
+;;
+;; Type: Balance
+;; TLB: _ starting:coins current:coins = Balance
+;;
+
+builder $Balance$_store(builder build_0, (int, int) v) inline {
+    var (v'starting, v'current) = v;
+    build_0 = build_0.store_coins(v'starting);
+    build_0 = build_0.store_coins(v'current);
+    return build_0;
+}
+
+cell $Balance$_store_cell((int, int) v) inline {
+    return $Balance$_store(begin_cell(), v).end_cell();
+}
+
+(slice, ((int, int))) $Balance$_load(slice sc_0) inline {
+    var v'starting = sc_0~load_coins();
+    var v'current = sc_0~load_coins();
+    return (sc_0, (v'starting, v'current));
+}
+
+tuple $Balance$_as_optional((int, int) v) inline {
+    var (v'starting, v'current) = v;
+    return __tact_tuple_create_2(v'starting, v'current);
+}
+
+tuple $Balance$_load_opt(cell cl) inline {
+    if (null?(cl)) {
+        return null();
+    }
+    var sc = cl.begin_parse();
+    return $Balance$_as_optional(sc~$Balance$_load());
+}
+
+_ $Balance$_get_starting((int, int) v) inline {
+    var (v'starting, v'current) = v;
+    return v'starting;
+}
+
+_ $Balance$_get_current((int, int) v) inline {
+    var (v'starting, v'current) = v;
+    return v'current;
+}
+
+((int, int)) $Balance$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (int vvv'starting, int vvv'current) = __tact_tuple_destroy_2(v);
+    return (vvv'starting, vvv'current);
+}
+
+((int, int)) $Balance$_constructor_starting_current(int starting, int current) inline {
+    return (starting, current);
+}
+
+;;
+;; Type: HolderDto
+;; TLB: _ address:address starting:coins = HolderDto
+;;
+
+(slice, ((slice, int))) $HolderDto$_load(slice sc_0) inline {
+    var v'address = sc_0~__tact_load_address();
+    var v'starting = sc_0~load_coins();
+    return (sc_0, (v'address, v'starting));
+}
+
+tuple $HolderDto$_as_optional((slice, int) v) inline {
+    var (v'address, v'starting) = v;
+    return __tact_tuple_create_2(v'address, v'starting);
+}
+
+tuple $HolderDto$_load_opt(cell cl) inline {
+    if (null?(cl)) {
+        return null();
+    }
+    var sc = cl.begin_parse();
+    return $HolderDto$_as_optional(sc~$HolderDto$_load());
+}
+
+((slice, int)) $HolderDto$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (slice vvv'address, int vvv'starting) = __tact_tuple_destroy_2(v);
+    return (vvv'address, vvv'starting);
+}
+
+;;
+;; Type: Period
+;; TLB: _ startTime:uint32 percent:uint16 = Period
+;;
+
+builder $Period$_store(builder build_0, (int, int) v) inline {
+    var (v'startTime, v'percent) = v;
+    build_0 = build_0.store_uint(v'startTime, 32);
+    build_0 = build_0.store_uint(v'percent, 16);
+    return build_0;
+}
+
+cell $Period$_store_cell((int, int) v) inline {
+    return $Period$_store(begin_cell(), v).end_cell();
+}
+
+(slice, ((int, int))) $Period$_load(slice sc_0) inline {
+    var v'startTime = sc_0~load_uint(32);
+    var v'percent = sc_0~load_uint(16);
+    return (sc_0, (v'startTime, v'percent));
+}
+
+tuple $Period$_as_optional((int, int) v) inline {
+    var (v'startTime, v'percent) = v;
+    return __tact_tuple_create_2(v'startTime, v'percent);
+}
+
+tuple $Period$_load_opt(cell cl) inline {
+    if (null?(cl)) {
+        return null();
+    }
+    var sc = cl.begin_parse();
+    return $Period$_as_optional(sc~$Period$_load());
+}
+
+tuple $Period$_to_tuple(((int, int)) v) inline {
+    var (v'startTime, v'percent) = v;
+    return __tact_tuple_create_2(v'startTime, v'percent);
+}
+
+((int, int)) $Period$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (int vvv'startTime, int vvv'percent) = __tact_tuple_destroy_2(v);
+    return (vvv'startTime, vvv'percent);
+}
+
+tuple $Period$_to_opt_tuple(tuple v) inline {
+    if (null?(v)) { return null(); } 
+    return $Period$_to_tuple($Period$_not_null(v)); 
+}
+
+_ $Period$_get_startTime((int, int) v) inline {
+    var (v'startTime, v'percent) = v;
+    return v'startTime;
+}
+
+_ $Period$_get_percent((int, int) v) inline {
+    var (v'startTime, v'percent) = v;
+    return v'percent;
+}
+
+((int, int)) $Period$_constructor_startTime_percent(int startTime, int percent) inline {
+    return (startTime, percent);
+}
+
+;;
+;; Type: HolderInfo
+;; TLB: _ common:coins current:coins available:coins currentPeriod:Maybe Period{startTime:uint32,percent:uint16} = HolderInfo
+;;
+
+(int, int, int, tuple) $HolderInfo$_to_external(((int, int, int, tuple)) v) inline {
+    var (v'common, v'current, v'available, v'currentPeriod) = v; 
+    return (v'common, v'current, v'available, $Period$_to_opt_tuple(v'currentPeriod));
+}
+
+((int, int, int, tuple)) $HolderInfo$_constructor_common_current_available_currentPeriod(int common, int current, int available, tuple currentPeriod) inline {
+    return (common, current, available, currentPeriod);
+}
+
+;;
+;; Type: PeriodsSet
+;; TLB: _ count:uint8 periods:dict<int, ^Period{startTime:uint32,percent:uint16}> = PeriodsSet
+;;
+
+(int, cell) $PeriodsSet$_to_external(((int, cell)) v) inline {
+    var (v'count, v'periods) = v; 
+    return (v'count, v'periods);
+}
+
+((int, cell)) $PeriodsSet$_constructor_count_periods(int count, cell periods) inline {
+    return (count, periods);
+}
+
+;;
+;; Type: PunkVesting
+;;
+
+builder $PunkVesting$_store(builder build_0, (slice, slice, int, cell, int, cell, int, int) v) inline {
+    var (v'owner, v'jettonWallet, v'holdersCount, v'holdersMap, v'periodsCount, v'periodsMap, v'percentFactor, v'vestingRound) = v;
+    build_0 = __tact_store_address(build_0, v'owner);
+    build_0 = __tact_store_address_opt(build_0, v'jettonWallet);
+    build_0 = build_0.store_uint(v'holdersCount, 8);
+    build_0 = build_0.store_dict(v'holdersMap);
+    build_0 = build_0.store_uint(v'periodsCount, 8);
+    build_0 = build_0.store_dict(v'periodsMap);
+    build_0 = build_0.store_int(v'percentFactor, 257);
+    build_0 = build_0.store_uint(v'vestingRound, 8);
+    return build_0;
+}
+
+(slice, ((slice, slice, int, cell, int, cell, int, int))) $PunkVesting$_load(slice sc_0) inline {
+    var v'owner = sc_0~__tact_load_address();
+    var v'jettonWallet = sc_0~__tact_load_address_opt();
+    var v'holdersCount = sc_0~load_uint(8);
+    var v'holdersMap = sc_0~load_dict();
+    var v'periodsCount = sc_0~load_uint(8);
+    var v'periodsMap = sc_0~load_dict();
+    var v'percentFactor = sc_0~load_int(257);
+    var v'vestingRound = sc_0~load_uint(8);
+    return (sc_0, (v'owner, v'jettonWallet, v'holdersCount, v'holdersMap, v'periodsCount, v'periodsMap, v'percentFactor, v'vestingRound));
+}
+
+(slice, slice, int, cell, int, cell, int, int) $PunkVesting$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$PunkVesting$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        return $PunkVesting$_contract_init();
+    }
+}
+
+() $PunkVesting$_contract_store((slice, slice, int, cell, int, cell, int, int) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $PunkVesting$_store(b, v);
+    set_data(b.end_cell());
+}

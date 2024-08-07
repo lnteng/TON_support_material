@@ -1,0 +1,27 @@
+$Proposal$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCSd2AqLqQrEfw-RGY7s2gNLP5SJs9WavNr9tiwfPMSz1cw/output/verifier_ProposalDeployer.storage.fc:177:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$ProposalDeployer$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCSd2AqLqQrEfw-RGY7s2gNLP5SJs9WavNr9tiwfPMSz1cw/output/verifier_ProposalDeployer.storage.fc:219:19: warning: Lack of end_parse.
+          return $sc~$ProposalDeployer$_load();
+                    ^
+$Params$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCSd2AqLqQrEfw-RGY7s2gNLP5SJs9WavNr9tiwfPMSz1cw/output/verifier_ProposalDeployer.storage.fc:93:22: warning: Lack of end_parse.
+      var v'hide = sc_1~load_int(1);
+                       ^
+$ProposalDeployer$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCSd2AqLqQrEfw-RGY7s2gNLP5SJs9WavNr9tiwfPMSz1cw/output/verifier_ProposalDeployer.code.fc:14:45: warning: Local variable '$self'dao' is not used
+      var (($self'dao, $self'nextProposalId)) = (null(), null());
+                                              ^
+$ProposalDeployer$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCSd2AqLqQrEfw-RGY7s2gNLP5SJs9WavNr9tiwfPMSz1cw/output/verifier_ProposalDeployer.code.fc:14:45: warning: Local variable '$self'nextProposalId' is not used
+      var (($self'dao, $self'nextProposalId)) = (null(), null());
+                                              ^
+$ProposalDeployer$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCSd2AqLqQrEfw-RGY7s2gNLP5SJs9WavNr9tiwfPMSz1cw/output/verifier_ProposalDeployer.code.fc:109:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCSd2AqLqQrEfw-RGY7s2gNLP5SJs9WavNr9tiwfPMSz1cw/output/verifier_ProposalDeployer.storage.fc:230:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

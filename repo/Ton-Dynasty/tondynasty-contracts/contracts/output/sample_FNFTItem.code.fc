@@ -1,0 +1,329 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_FNFTItem.headers.fc";
+#include "sample_FNFTItem.stdlib.fc";
+#include "sample_FNFTItem.constants.fc";
+#include "sample_FNFTItem.storage.fc";
+
+;;
+;; Contract FNFTItem functions
+;;
+
+(slice, int, slice, cell, int, int, (int, cell)) $FNFTItem$_contract_init(slice $collection_address, int $index, slice $owner, cell $individual_content, (int, cell) $fraction_params) impure inline_ref {
+    var (($fraction_params'max_supply, $fraction_params'jetton_content)) = $fraction_params;
+    var (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))) = (null(), null(), null(), null(), false, false, null());
+    $self'collection_address = $collection_address;
+    $self'index = $index;
+    $self'owner = $owner;
+    $self'individual_content = $individual_content;
+    ($self'fraction_params'max_supply, $self'fraction_params'jetton_content) = ($fraction_params'max_supply, $fraction_params'jetton_content);
+    return ($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content));
+}
+
+((slice, int, slice, cell, int, int, (int, cell)), (cell, cell)) $FNFTItem$_fun_get_jetton_master_init((slice, int, slice, cell, int, int, (int, cell)) $self) impure inline {
+    var (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))) = $self;
+    return (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content)), $NFTFraction$_init_child(__tact_context_sys, $self'fraction_params'max_supply, my_address(), $self'fraction_params'jetton_content));
+}
+
+((slice, int, slice, cell, int, int, (int, cell)), ()) $FNFTItem$_fun_ensureUnlocked((slice, int, slice, cell, int, int, (int, cell)) $self) impure inline {
+    var (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))) = $self;
+    throw_unless(34158, (~ $self'is_locked));
+    return (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content)), ());
+}
+
+((slice, int, slice, cell, int, int, (int, cell)), ()) $FNFTItem$_fun_requireOwner((slice, int, slice, cell, int, int, (int, cell)) $self) impure inline_ref {
+    var (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))) = $self;
+    throw_unless(132, ( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) ));
+    return (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content)), ());
+}
+
+((slice, int, slice, cell, int, int, (int, cell)), ()) $FNFTItem$_fun_fractionalize_validate((slice, int, slice, cell, int, int, (int, cell)) $self, (int, slice, int, slice) $ctx) impure inline {
+    var (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))) = $self;
+    var (($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw)) = $ctx;
+    ($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))~$FNFTItem$_fun_ensureUnlocked();
+    ($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))~$FNFTItem$_fun_requireOwner();
+    return (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content)), ());
+}
+
+((slice, int, slice, cell, int, int, (int, cell)), ()) $FNFTItem$_fun_lock((slice, int, slice, cell, int, int, (int, cell)) $self) impure inline {
+    var (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))) = $self;
+    $self'is_locked = true;
+    return (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content)), ());
+}
+
+((slice, int, slice, cell, int, int, (int, cell)), ()) $FNFTItem$_fun_fractionalize((slice, int, slice, cell, int, int, (int, cell)) $self, (int, slice, int, slice) $ctx) impure inline {
+    var (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))) = $self;
+    var (($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw)) = $ctx;
+    ($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))~$FNFTItem$_fun_lock();
+    $self'owner = __tact_create_address(0, 0);
+    var ($nftFractionInit'code, $nftFractionInit'data) = ($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))~$FNFTItem$_fun_get_jetton_master_init();
+    ($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))~$FNFTItem$_fun_forward($global_contractAddress(($nftFractionInit'code, $nftFractionInit'data)), $JettonMint$_store_cell($JettonMint$_constructor_origin_receiver_amount_custom_payload_forward_ton_amount_forward_payload($ctx'sender, $ctx'sender, $self'fraction_params'max_supply, $global_emptyCell(), 0, $global_emptySlice())), false, $StateInit$_as_optional(($nftFractionInit'code, $nftFractionInit'data)));
+    return (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content)), ());
+}
+
+((slice, int, slice, cell, int, int, (int, cell)), ()) $FNFTItem$_fun__transfer_validate((slice, int, slice, cell, int, int, (int, cell)) $self, (int, slice, int, slice) $ctx, (int, slice, slice, cell, int, slice) $msg, int $remain) impure inline {
+    var (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))) = $self;
+    var (($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw)) = $ctx;
+    var (($msg'query_id, $msg'new_owner, $msg'response_destination, $msg'custom_payload, $msg'forward_amount, $msg'forward_payload)) = $msg;
+    ($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))~$FNFTItem$_fun_ensureUnlocked();
+    throw_unless(26992, ( (( __tact_slice_eq_bits($self'owner, $ctx'sender) )) ? (true) : (( __tact_slice_eq_bits($self'collection_address, $ctx'sender) )) ));
+    return (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content)), ());
+}
+
+((slice, int, slice, cell, int, int, (int, cell)), int) $FNFTItem$_fun__transfer_estimate_rest_value((slice, int, slice, cell, int, int, (int, cell)) $self, (int, slice, int, slice) $ctx) impure inline {
+    var (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))) = $self;
+    var (($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw)) = $ctx;
+    int $remain = $ctx'value;
+    int $tonBalanceBeforeMsg = (__tact_my_balance() - $remain);
+    int $storageFee = (40000000 - min($tonBalanceBeforeMsg, 40000000));
+    return (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content)), ($remain - ($storageFee + 30000000)));
+}
+
+((slice, int, slice, cell, int, int, (int, cell)), ()) $FNFTItem$_fun_mint((slice, int, slice, cell, int, int, (int, cell)) $self, (int, slice, int, slice) $ctx, (int, slice, slice, cell, int, slice) $msg) impure inline {
+    var (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))) = $self;
+    var (($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw)) = $ctx;
+    var (($msg'query_id, $msg'new_owner, $msg'response_destination, $msg'custom_payload, $msg'forward_amount, $msg'forward_payload)) = $msg;
+    throw_unless(4020, ( __tact_slice_eq_bits($self'collection_address, $ctx'sender) ));
+    $self'is_initialized = true;
+    $self'owner = $msg'new_owner;
+    $global_send($SendParameters$_constructor_to_value_mode_body($msg'response_destination, 0, (2 + 64), $Excesses$_store_cell($Excesses$_constructor_query_id($msg'query_id))));
+    return (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content)), ());
+}
+
+((slice, int, slice, cell, int, int, (int, cell)), ()) $FNFTItem$_fun_transfer((slice, int, slice, cell, int, int, (int, cell)) $self, (int, slice, int, slice) $ctx, (int, slice, slice, cell, int, slice) $msg, int $remain) impure inline {
+    var (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))) = $self;
+    var (($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw)) = $ctx;
+    var (($msg'query_id, $msg'new_owner, $msg'response_destination, $msg'custom_payload, $msg'forward_amount, $msg'forward_payload)) = $msg;
+    $self'owner = $msg'new_owner;
+    if (($msg'forward_amount > 0)) {
+        $global_send($SendParameters$_constructor_to_value_mode_bounce_body($msg'new_owner, $msg'forward_amount, 2, false, $OwnershipAssigned$_store_cell($OwnershipAssigned$_constructor_query_id_prev_owner_forward_payload($msg'query_id, $ctx'sender, $msg'forward_payload))));
+    }
+    $remain = ($remain - $Context$_fun_readForwardFee(($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw)));
+    if (( (( ~ __tact_slice_eq_bits(__tact_create_address(0, 0), $msg'response_destination) )) ? (($remain > $msg'forward_amount)) : (false) )) {
+        $global_send($SendParameters$_constructor_to_value_mode_body($msg'response_destination, ($remain - $msg'forward_amount), 1, $Excesses$_store_cell($Excesses$_constructor_query_id($msg'query_id))));
+    }
+    return (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content)), ());
+}
+
+((slice, int, slice, cell, int, int, (int, cell)), ()) $FNFTItem$_fun__report_static_data((slice, int, slice, cell, int, int, (int, cell)) $self, (int) $msg) impure inline {
+    var (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))) = $self;
+    var (($msg'query_id)) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    $global_send($SendParameters$_constructor_to_value_mode_bounce_body($ctx'sender, 0, 64, false, $ReportStaticData$_store_cell($ReportStaticData$_constructor_query_id_index_collection($msg'query_id, $self'index, $self'collection_address))));
+    return (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content)), ());
+}
+
+((slice, int, slice, cell, int, int, (int, cell)), (int, int, slice, slice, cell)) $FNFTItem$_fun__get_nft_data((slice, int, slice, cell, int, int, (int, cell)) $self) impure inline {
+    var (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))) = $self;
+    tuple $builder = __tact_string_builder_start_string();
+    slice $collectionData = __tact_slice_to_str($Cell$_fun_asSlice($self'individual_content));
+    $builder~__tact_string_builder_append($collectionData);
+    $builder~__tact_string_builder_append(__tact_int_to_string($self'index));
+    $builder~__tact_string_builder_append(__gen_slice_string_2f62f0bd20aef2d2b17f109c6aba1bc3dd7a55db89e349f2659bf698f80ce9c6());
+    return (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content)), $NftData$_constructor_is_initialized_index_collection_address_owner_address_individual_content($self'is_initialized, $self'index, $self'collection_address, $self'owner, __tact_string_builder_end($builder)));
+}
+
+((slice, int, slice, cell, int, int, (int, cell)), (int, int, slice, slice, cell)) $FNFTItem$_fun_get_nft_data((slice, int, slice, cell, int, int, (int, cell)) $self) impure inline_ref {
+    var (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))) = $self;
+    return (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content)), ($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))~$FNFTItem$_fun__get_nft_data());
+}
+
+((slice, int, slice, cell, int, int, (int, cell)), ()) $FNFTItem$_fun_unlock((slice, int, slice, cell, int, int, (int, cell)) $self) impure inline {
+    var (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))) = $self;
+    $self'is_locked = false;
+    return (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content)), ());
+}
+
+((slice, int, slice, cell, int, int, (int, cell)), ()) $FNFTItem$_fun_ensureLocked((slice, int, slice, cell, int, int, (int, cell)) $self) impure inline {
+    var (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))) = $self;
+    throw_unless(58635, $self'is_locked);
+    return (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content)), ());
+}
+
+((slice, int, slice, cell, int, int, (int, cell)), int) $FNFTItem$_fun_is_locked((slice, int, slice, cell, int, int, (int, cell)) $self) impure inline_ref {
+    var (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))) = $self;
+    return (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content)), $self'is_locked);
+}
+
+((slice, int, slice, cell, int, int, (int, cell)), slice) $FNFTItem$_fun_owner((slice, int, slice, cell, int, int, (int, cell)) $self) impure inline_ref {
+    var (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))) = $self;
+    return (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content)), $self'owner);
+}
+
+;;
+;; Receivers of a Contract FNFTItem
+;;
+
+((slice, int, slice, cell, int, int, (int, cell)), ()) $FNFTItem$_internal_text_117047ac03d9ce96d548fe3135fd4d248f73b672c59b1c35f8b948a0f4c1ffff((slice, int, slice, cell, int, int, (int, cell)) $self) impure inline {
+    var ($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content)) = $self;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    ($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))~$FNFTItem$_fun_fractionalize_validate($Context$_tensor_cast(($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw)));
+    ($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))~$FNFTItem$_fun_fractionalize($Context$_tensor_cast(($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw)));
+    return (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content)), ());
+}
+
+((slice, int, slice, cell, int, int, (int, cell)), ()) $FNFTItem$_internal_text_175e7d55a6f67c15aaec54c4d6b4ef31daff6060231e70486d7dc70c320941bf((slice, int, slice, cell, int, int, (int, cell)) $self) impure inline {
+    var ($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content)) = $self;
+    ($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))~$FNFTItem$_fun_ensureLocked();
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    var ($nftFractionInit'code, $nftFractionInit'data) = ($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))~$FNFTItem$_fun_get_jetton_master_init();
+    $global_send($SendParameters$_constructor_to_value_mode_body($global_contractAddress(($nftFractionInit'code, $nftFractionInit'data)), 0, 64, $TryRedeem$_store_cell($TryRedeem$_constructor_sender($ctx'sender))));
+    return (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content)), ());
+}
+
+(((slice, int, slice, cell, int, int, (int, cell))), ()) $FNFTItem$_internal_binary_Compose((slice, int, slice, cell, int, int, (int, cell)) $self, (slice) $msg) impure inline {
+    var ($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content)) = $self;
+    var ($msg'new_owner) = $msg;
+    ($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))~$FNFTItem$_fun_ensureLocked();
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    var ($nftFractionInit'code, $nftFractionInit'data) = ($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))~$FNFTItem$_fun_get_jetton_master_init();
+    throw_unless(1783, ( __tact_slice_eq_bits($global_contractAddress(($nftFractionInit'code, $nftFractionInit'data)), $ctx'sender) ));
+    $self'owner = $msg'new_owner;
+    ($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))~$FNFTItem$_fun_unlock();
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body($msg'new_owner, 0, false, (64 + 2), __gen_cell_comment_37e90db9d1f7725dc0128ee6bad2035fb50479e09a488a29257bed01a23050a0()));
+    return (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content)), ());
+}
+
+(((slice, int, slice, cell, int, int, (int, cell))), ()) $FNFTItem$_internal_binary_Transfer((slice, int, slice, cell, int, int, (int, cell)) $self, (int, slice, slice, cell, int, slice) $msg) impure inline {
+    var ($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content)) = $self;
+    var ($msg'query_id, $msg'new_owner, $msg'response_destination, $msg'custom_payload, $msg'forward_amount, $msg'forward_payload) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    int $remain = ($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))~$FNFTItem$_fun__transfer_estimate_rest_value($Context$_tensor_cast(($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw)));
+    ($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))~$FNFTItem$_fun__transfer_validate(($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw), ($msg'query_id, $msg'new_owner, $msg'response_destination, $msg'custom_payload, $msg'forward_amount, $msg'forward_payload), $remain);
+    if (($self'is_initialized == false)) {
+        ($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))~$FNFTItem$_fun_mint(($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw), ($msg'query_id, $msg'new_owner, $msg'response_destination, $msg'custom_payload, $msg'forward_amount, $msg'forward_payload));
+    } else {
+        ($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))~$FNFTItem$_fun_transfer(($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw), ($msg'query_id, $msg'new_owner, $msg'response_destination, $msg'custom_payload, $msg'forward_amount, $msg'forward_payload), $remain);
+    }
+    return (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content)), ());
+}
+
+(((slice, int, slice, cell, int, int, (int, cell))), ()) $FNFTItem$_internal_binary_GetStaticData((slice, int, slice, cell, int, int, (int, cell)) $self, (int) $msg) impure inline {
+    var ($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content)) = $self;
+    var ($msg'query_id) = $msg;
+    ($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content))~$FNFTItem$_fun__report_static_data($GetStaticData$_tensor_cast(($msg'query_id)));
+    return (($self'collection_address, $self'index, $self'owner, $self'individual_content, $self'is_initialized, $self'is_locked, ($self'fraction_params'max_supply, $self'fraction_params'jetton_content)), ());
+}
+
+;;
+;; Get methods of a Contract FNFTItem
+;;
+
+_ %get_nft_data() method_id(102351) {
+    var self = $FNFTItem$_contract_load();
+    var res = self~$FNFTItem$_fun_get_nft_data();
+    return $NftData$_to_external(res);
+}
+
+_ %is_locked() method_id(97097) {
+    var self = $FNFTItem$_contract_load();
+    var res = self~$FNFTItem$_fun_is_locked();
+    return res;
+}
+
+_ %owner() method_id(83229) {
+    var self = $FNFTItem$_contract_load();
+    var res = self~$FNFTItem$_fun_owner();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128,
+        "org.ton.ownable"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmWid9WH9nZcby7RGqUM6yFuUQ1T6j35HG98WyqRhQ7Jdd";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract FNFTItem
+;;
+
+((slice, int, slice, cell, int, int, (int, cell)), int) $FNFTItem$_contract_router_internal((slice, int, slice, cell, int, int, (int, cell)) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive Compose message
+    if (op == 3133340068) {
+        var msg = in_msg~$Compose$_load();
+        self~$FNFTItem$_internal_binary_Compose(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Transfer message
+    if (op == 1607220500) {
+        var msg = in_msg~$Transfer$_load();
+        self~$FNFTItem$_internal_binary_Transfer(msg);
+        return (self, true);
+    }
+    
+    ;; Receive GetStaticData message
+    if (op == 801842850) {
+        var msg = in_msg~$GetStaticData$_load();
+        self~$FNFTItem$_internal_binary_GetStaticData(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "Fractionalize:2" message
+        if (text_op == 0x117047ac03d9ce96d548fe3135fd4d248f73b672c59b1c35f8b948a0f4c1ffff) {
+            self~$FNFTItem$_internal_text_117047ac03d9ce96d548fe3135fd4d248f73b672c59b1c35f8b948a0f4c1ffff();
+            return (self, true);
+        }
+        
+        ;; Receive "Redeem:2" message
+        if (text_op == 0x175e7d55a6f67c15aaec54c4d6b4ef31daff6060231e70486d7dc70c320941bf) {
+            self~$FNFTItem$_internal_text_175e7d55a6f67c15aaec54c4d6b4ef31daff6060231e70486d7dc70c320941bf();
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $FNFTItem$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$FNFTItem$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $FNFTItem$_contract_store(self);
+}

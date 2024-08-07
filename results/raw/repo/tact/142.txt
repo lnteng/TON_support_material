@@ -1,0 +1,43 @@
+$Lotton$_internal_binary_ChangeOwner: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./sumin13245/Lotton/contracts/output/sample_Lotton.code.fc:106:143: warning: Local variable '$self'owner' is not used
+      ($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners)~$Lotton$_fun_requireOwner();
+                                                                                                                                                ^
+$Lotton$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./sumin13245/Lotton/contracts/output/sample_Lotton.code.fc:15:150: warning: Local variable '$self'startTime' is not used
+      var (($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners)) = (null(), null(), null(), null(), null(), 0, null(), null());
+                                                                                                                                                       ^
+$Lotton$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./sumin13245/Lotton/contracts/output/sample_Lotton.code.fc:15:150: warning: Local variable '$self'endTime' is not used
+      var (($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners)) = (null(), null(), null(), null(), null(), 0, null(), null());
+                                                                                                                                                       ^
+$Lotton$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./sumin13245/Lotton/contracts/output/sample_Lotton.code.fc:15:150: warning: Local variable '$self'raffleStatus' is not used
+      var (($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners)) = (null(), null(), null(), null(), null(), 0, null(), null());
+                                                                                                                                                       ^
+$Lotton$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./sumin13245/Lotton/contracts/output/sample_Lotton.code.fc:15:150: warning: Local variable '$self'owner' is not used
+      var (($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners)) = (null(), null(), null(), null(), null(), 0, null(), null());
+                                                                                                                                                       ^
+$Lotton$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./sumin13245/Lotton/contracts/output/sample_Lotton.code.fc:15:150: warning: Local variable '$self'maxTicket' is not used
+      var (($self'startTime, $self'endTime, $self'raffleStatus, $self'owner, $self'maxTicket, $self'participateNum, $self'participate, $self'winners)) = (null(), null(), null(), null(), null(), 0, null(), null());
+                                                                                                                                                       ^
+__tact_dict_set_int_slice: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./sumin13245/Lotton/contracts/output/sample_Lotton.stdlib.fc:52:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+$Lotton$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./sumin13245/Lotton/contracts/output/sample_Lotton.storage.fc:130:19: warning: Lack of end_parse.
+          return $sc~$Lotton$_load();
+                    ^
+$Lotton$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./sumin13245/Lotton/contracts/output/sample_Lotton.storage.fc:121:25: warning: Lack of end_parse.
+      var v'winners = sc_1~load_dict();
+                          ^
+$Lotton$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./sumin13245/Lotton/contracts/output/sample_Lotton.code.fc:144:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./sumin13245/Lotton/contracts/output/sample_Lotton.storage.fc:139:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

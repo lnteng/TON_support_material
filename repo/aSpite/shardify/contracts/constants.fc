@@ -1,0 +1,73 @@
+;; Jetton Wallet
+const int op::jetton_transfer = 0xf8a7ea5;
+const int op::transfer_notification = 0x7362d09c;
+const int op::internal_transfer = 0x178d4519;
+const int op::excesses = 0xd53276db;
+const int op::burn = 0x595f07bc;
+const int op::burn_notification = 0x7bdd97de;
+const int op::defrac_nft = 0x3a0f1e4c;
+
+const int fee::jetton_wallet_comsumption = 30000000; ;; 0.03 TON
+const int fee::jetton_wallet_storage = 20000000; ;; 0.02 TON
+const int fee::jetton_defrac_nft = 500000000; ;; 0.5 TON
+
+const int error::insufficient_balance = 105;
+const int error::not_nft_holder = 106;
+
+;; Minter
+const int op::mint = 21;
+const int op::provide_wallet_address = 0x2c76b973;
+const int op::take_wallet_address = 0xd1735400;
+const int op::change_pubkey = 0x770e2c37;
+const int op::withdraw_nft = 0x502c1cc2;
+const int op::fractionalization_fee = 0x363f8bc6;
+const int op::withdraw_ton_minter  = 0x4871ede5;
+
+const int const::workchain = 0;
+const int fee::provide_address = 10000000; ;; 0.01 TON
+const int fee::fractionalization = 450000000; ;; 0.45 TON
+const int fee::minter_storage = 50000000; ;; 0.05 TON
+
+;; NFT Item
+const int op::nft_transfer = 0x5fcc3d14;
+const int op::nft_ownership_assigned = 0x05138d91;
+const int op::nft_excesses = 0xd53276db;
+const int op::nft_get_static_data = 0x2fcb26a2;
+const int op::nft_report_static_data = 0x8b771735;
+const int op::nft_get_royalty_params = 0x693d3950;
+const int op::nft_report_royalty_params = 0xa8cb00ad;
+
+const int fee::nft_storage = 50000000; ;; 0.05 TON
+
+;; NFT Holder
+const int op::return_nft = 0x1a3fdbcf;
+const int op::return_fail = 0xbd017ec7;
+const int op::repeat_return = 0x6855e245;
+
+const int error::wrong_nft = 101;
+const int error::not_own = 102;
+const int error::not_nft_transfer = 103;
+
+const int fee::holder_storage = 40000000; ;; 0.04 TON
+
+;; Pool Master
+const int op::create_pool = 0x198a7cad;
+const int op::addr_change_admin = 0x211b3197;
+const int op::sign_change_admin = 0xbab1388;
+const int op::change_minter_pubkey = 0x7d20ca6c;
+const int op::withdraw_nft_minter = 0x55fc365f;
+const int op::change_minter_content = 0x1657df13;
+const int op::change_minter_admin = 0x2582c414;
+const int op::withdraw_ton_master = 0x541b33c;
+const int op::withdraw_ton_from_minter = 0x6e8ad462;
+
+const int fee::pool_creation = 200000000; ;; 0.2 TON
+
+const int error::interval_too_big = 108;
+const int error::invalid_addr_std = 109;
+
+const int flag::bounceable = 0x18;
+const int flag::non_bounceable = 0x10;
+const int error::unauthorized = 100;
+const int error::insufficient_gas = 104;
+const int error::old_message = 107;

@@ -1,0 +1,1054 @@
+PROGRAM{
+  DECLPROC __tact_verify_address
+  DECLPROC __tact_load_address
+  DECLPROC __tact_store_address
+  DECLPROC __tact_create_address
+  DECLPROC __tact_compute_contract_address
+  DECLPROC __tact_my_balance
+  DECLPROC __tact_not_null
+  DECLPROC __tact_context_get
+  DECLPROC __tact_context_get_sender
+  DECLPROC __tact_store_bool
+  DECLPROC __tact_slice_eq_bits
+  DECLPROC __tact_int_eq_nullable_one
+  DECLPROC __tact_dict_set_code
+  DECLPROC __tact_dict_get_code
+  DECLPROC __tact_string_builder_start
+  DECLPROC __tact_string_builder_start_comment
+  DECLPROC __tact_string_builder_start_string
+  DECLPROC __tact_string_builder_end
+  DECLPROC __tact_string_builder_end_slice
+  DECLPROC __tact_string_builder_append
+  DECLPROC $Deploy$_load
+  DECLPROC $DeployOk$_store
+  DECLPROC $DeployOk$_store_cell
+  DECLPROC $ChangeOwner$_load
+  DECLPROC $ChangeOwnerOk$_store
+  DECLPROC $ChangeOwnerOk$_store_cell
+  DECLPROC $Withdraw$_load
+  DECLPROC $WithdrawAll$_load
+  DECLPROC $TopUp$_load
+  DECLPROC $NftCollectionMetadata$_store
+  DECLPROC $NftCollectionMetadata$_load
+  DECLPROC $CreateBlog$_load
+  DECLPROC $InitializeBlog$_store
+  DECLPROC $InitializeBlog$_store_cell
+  DECLPROC $DSocialNetworkMaster$_store
+  DECLPROC $DSocialNetworkMaster$_load
+  DECLPROC $StateInit$_not_null
+  DECLPROC $DSocialNetworkBlog$init$_store
+  DECLPROC $DSocialNetworkMaster$_contract_init
+  DECLPROC $DSocialNetworkMaster$_contract_load
+  DECLPROC $DSocialNetworkMaster$_contract_store
+  DECLPROC $global_contractAddress
+  DECLPROC $global_send
+  DECLPROC $String$_fun_asComment
+  DECLPROC $DSocialNetworkBlog$_init_child
+  DECLPROC $SendParameters$_constructor_bounce_to_value_mode_body_code_data
+  DECLPROC $SendParameters$_constructor_to_value_mode_body
+  DECLPROC $DSocialNetworkMaster$_fun_get_version
+  DECLPROC $DSocialNetworkMaster$_fun_get_blogs_count
+  DECLPROC $DSocialNetworkMaster$_fun_getBlogInit
+  DECLPROC $DSocialNetworkMaster$_fun_get_blog_address_by_index
+  DECLPROC $DSocialNetworkMaster$_fun_forward
+  DECLPROC $DSocialNetworkMaster$_fun_reply
+  DECLPROC $DSocialNetworkMaster$_fun_notify
+  DECLPROC $DSocialNetworkMaster$_fun_requireOwner
+  DECLPROC $DSocialNetworkMaster$_fun_owner
+  DECLPROC $DSocialNetworkMaster$_fun_getGasConsumption
+  DECLPROC $DSocialNetworkMaster$_fun_getTonRecieved
+  DECLPROC $DSocialNetworkMaster$_fun_calculateMinOperationFee
+  DECLPROC $DSocialNetworkMaster$_fun_calculateSendAmountToHoldEnoughTonForStorage
+  DECLPROC $DSocialNetworkMaster$_fun_calculateSendAmountToHoldFeeFromRecieved
+  DECLPROC $DSocialNetworkMaster$_fun_sendRemainingValueAsPersonalFee
+  DECLPROC $SendParameters$_constructor_to_value_bounce_mode_body_code_data
+  DECLPROC $InitializeBlog$_constructor_query_id_owner_collection_content
+  DECLPROC $DeployOk$_constructor_queryId
+  DECLPROC $ChangeOwnerOk$_constructor_queryId_newOwner
+  DECLPROC $DSocialNetworkMaster$_internal_binary_CreateBlog
+  DECLPROC $DSocialNetworkMaster$_internal_binary_Deploy
+  DECLPROC $DSocialNetworkMaster$_internal_binary_ChangeOwner
+  DECLPROC $DSocialNetworkMaster$_internal_binary_TopUp
+  DECLPROC $DSocialNetworkMaster$_internal_binary_Withdraw
+  DECLPROC $DSocialNetworkMaster$_internal_binary_WithdrawAll
+  82320 DECLMETHOD %get_version
+  72768 DECLMETHOD %get_blogs_count
+  92044 DECLMETHOD %get_blog_address_by_index
+  83229 DECLMETHOD %owner
+  113617 DECLMETHOD supported_interfaces
+  121275 DECLMETHOD get_abi_ipfs
+  115390 DECLMETHOD lazy_deployment_completed
+  DECLPROC $DSocialNetworkMaster$_contract_router_internal
+  DECLPROC recv_internal
+  DECLGLOBVAR __tact_context
+  DECLGLOBVAR __tact_context_sender
+  DECLGLOBVAR __tact_context_sys
+  DECLGLOBVAR __tact_randomized
+  __tact_verify_address PROCINLINE:<{
+    DUP
+    SBITS
+    267 PUSHINT
+    EQUAL
+    136 THROWIFNOT
+    DUP
+    11 PLDU
+    DUP
+    1279 PUSHINT
+    EQUAL
+    137 THROWIF
+    10 PUSHPOW2
+    EQUAL
+    136 THROWIFNOT
+  }>
+  __tact_load_address PROCINLINE:<{
+    LDMSGADDR
+    SWAP
+    __tact_verify_address INLINECALLDICT
+  }>
+  __tact_store_address PROCINLINE:<{
+    __tact_verify_address INLINECALLDICT
+    STSLICER
+  }>
+  __tact_create_address PROCINLINE:<{
+    NEWC
+    2 PUSHINT
+    SWAP
+    2 STU
+    0 PUSHINT
+    SWAP
+    1 STU
+    s1 s2 XCHG
+    8 STI
+    256 STU
+    ENDC
+    CTOS
+    __tact_verify_address INLINECALLDICT
+  }>
+  __tact_compute_contract_address PROCINLINE:<{
+    NEWC
+    0 PUSHINT
+    SWAP
+    2 STU
+    3 PUSHINT
+    SWAP
+    2 STU
+    0 PUSHINT
+    SWAP
+    1 STU
+    s1 s2 XCHG
+    STREF
+    STREF
+    ENDC
+    HASHCU
+    __tact_create_address INLINECALLDICT
+  }>
+  __tact_my_balance PROCINLINE:<{
+    BALANCE
+    FIRST
+  }>
+  __tact_not_null PROCINLINE:<{
+    DUP
+    ISNULL
+    128 THROWIF
+  }>
+  __tact_context_get PROCINLINE:<{
+    __tact_context GETGLOB
+    4 UNTUPLE
+  }>
+  __tact_context_get_sender PROCINLINE:<{
+    __tact_context_sender GETGLOB
+  }>
+  __tact_store_bool PROCINLINE:<{
+    SWAP
+    1 STI
+  }>
+  __tact_slice_eq_bits PROCINLINE:<{
+    SDEQ
+  }>
+  __tact_int_eq_nullable_one PROCINLINE:<{
+    OVER
+    ISNULL
+    IF:<{
+      2DROP
+      FALSE
+    }>ELSE<{
+      EQUAL
+    }>
+  }>
+  __tact_dict_set_code PROCINLINE:<{
+    s0 s2 XCHG
+    16 PUSHINT
+    DICTUSETREF
+  }>
+  __tact_dict_get_code PROCINLINE:<{
+    SWAP
+    16 PUSHINT
+    DICTUGETREF
+    NULLSWAPIFNOT
+    135 THROWIFNOT
+  }>
+  __tact_string_builder_start PROCINLINE:<{
+    NIL
+    SWAP
+    TPUSH
+    PUSHNULL
+    TPUSH
+  }>
+  __tact_string_builder_start_comment PROCINLINE:<{
+    NEWC
+    0 PUSHINT
+    SWAP
+    32 STU
+    __tact_string_builder_start INLINECALLDICT
+  }>
+  __tact_string_builder_start_string PROCINLINE:<{
+    NEWC
+    __tact_string_builder_start INLINECALLDICT
+  }>
+  __tact_string_builder_end PROCINLINE:<{
+    UNCONS
+    SWAP
+    ENDC
+    WHILE:<{
+      OVER
+      ISNULL
+      NOT
+    }>DO<{
+      SWAP
+      UNCONS
+      -ROT
+      STREF
+      ENDC
+    }>
+    NIP
+  }>
+  __tact_string_builder_end_slice PROCINLINE:<{
+    __tact_string_builder_end INLINECALLDICT
+    CTOS
+  }>
+  __tact_string_builder_append PROCREF:<{
+    DUP
+    SREFS
+    OVER
+    SBITS
+    WHILE:<{
+      DUP
+      0 GTINT
+      s2 PUSH
+      0 GTINT
+      OR
+    }>DO<{
+      s0 s3 XCHG
+      UNCONS
+      127 PUSHINT
+      s2 PUSH
+      BBITS
+      3 RSHIFT#
+      SUB
+      s0 s5 XCHG
+      3 RSHIFT#
+      s5 s5 XCPU
+      MIN
+      DUP
+      0 GTINT
+      IF:<{
+        DUP
+        3 LSHIFT#
+        s1 s5 XCHG
+        LDSLICEX
+        s3 s3 XCHG2
+        STSLICER
+        s0 s1 s4 XCHG3
+      }>
+      -ROT
+      CONS
+      s4 s1 PUSH2
+      SUB
+      0 GTINT
+      IF:<{
+        NEWC
+        SWAP
+        CONS
+        s4 s4 XCHG2
+        SUB
+        3 LSHIFT#
+      }>ELSE<{
+        NIP
+        s3 POP
+        0 GTINT
+        IF:<{
+          LDREF
+          DROP
+          CTOS
+          DUP
+          SREFS
+          OVER
+          SBITS
+        }>ELSE<{
+          0 PUSHINT
+          DUP
+        }>
+      }>
+    }>
+    3 BLKDROP
+  }>
+  $Deploy$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    2490013878 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    64 LDU
+    SWAP
+  }>
+  $DeployOk$_store PROCINLINE:<{
+    2952335191 PUSHINT
+    ROT
+    32 STU
+    64 STU
+  }>
+  $DeployOk$_store_cell PROCINLINE:<{
+    NEWC
+    SWAP
+    $DeployOk$_store INLINECALLDICT
+    ENDC
+  }>
+  $ChangeOwner$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    2174598809 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    64 LDU
+    __tact_load_address INLINECALLDICT
+    s1 s2 XCHG
+  }>
+  $ChangeOwnerOk$_store PROCINLINE:<{
+    846932810 PUSHINT
+    s0 s3 XCHG2
+    32 STU
+    64 STU
+    SWAP
+    __tact_store_address INLINECALLDICT
+  }>
+  $ChangeOwnerOk$_store_cell PROCINLINE:<{
+    NEWC
+    -ROT
+    $ChangeOwnerOk$_store INLINECALLDICT
+    ENDC
+  }>
+  $Withdraw$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    3478132799 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    64 LDU
+    257 PUSHINT
+    LDIX
+    -ROT
+  }>
+  $WithdrawAll$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    4090352184 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    64 LDU
+    1 LDI
+    SWAP
+    IF:<{
+      1 LDI
+    }>ELSE<{
+      PUSHNULL
+      SWAP
+    }>
+    -ROT
+  }>
+  $TopUp$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    128710311 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    64 LDU
+    SWAP
+  }>
+  $NftCollectionMetadata$_store PROCINLINE:<{
+    NEWC
+    s0 s3 XCHG2
+    STSLICER
+    ENDC
+    s0 s3 XCHG2
+    STREF
+    NEWC
+    s0 s3 XCHG2
+    STSLICER
+    ENDC
+    ROT
+    STREF
+    NEWC
+    ROT
+    STSLICER
+    ENDC
+    SWAP
+    STREF
+  }>
+  $NftCollectionMetadata$_load PROCINLINE:<{
+    LDREF
+    SWAP
+    CTOS
+    SWAP
+    LDREF
+    SWAP
+    CTOS
+    SWAP
+    LDREF
+    SWAP
+    CTOS
+    s3 s3 s0 XCHG3
+  }>
+  $CreateBlog$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    4028506300 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    64 LDU
+    $NftCollectionMetadata$_load INLINECALLDICT
+    s3 s4 XCHG
+  }>
+  $InitializeBlog$_store PROCINLINE:<{
+    434975275 PUSHINT
+    s0 s6 XCHG2
+    32 STU
+    s1 s4 XCHG
+    64 STU
+    ROT
+    __tact_store_address INLINECALLDICT
+    s2 s3 XCHG2
+    $NftCollectionMetadata$_store INLINECALLDICT
+  }>
+  $InitializeBlog$_store_cell PROCINLINE:<{
+    NEWC
+    5 -ROLL
+    $InitializeBlog$_store INLINECALLDICT
+    ENDC
+  }>
+  $DSocialNetworkMaster$_store PROCINLINE:<{
+    NEWC
+    s0 s4 XCHG2
+    STSLICER
+    ENDC
+    s0 s4 XCHG2
+    STREF
+    SWAP
+    __tact_store_address INLINECALLDICT
+    ROT
+    __tact_store_address INLINECALLDICT
+    32 STU
+  }>
+  $DSocialNetworkMaster$_load PROCINLINE:<{
+    LDREF
+    SWAP
+    CTOS
+    SWAP
+    __tact_load_address INLINECALLDICT
+    SWAP
+    __tact_load_address INLINECALLDICT
+    SWAP
+    32 LDU
+    4 -ROLL
+  }>
+  $StateInit$_not_null PROCINLINE:<{
+    DUP
+    ISNULL
+    128 THROWIF
+    2 UNTUPLE
+  }>
+  $DSocialNetworkBlog$init$_store PROCINLINE:<{
+    s2 s3 XCHG2
+    257 PUSHINT
+    STIX
+    SWAP
+    __tact_store_address INLINECALLDICT
+    SWAP
+    __tact_store_address INLINECALLDICT
+  }>
+  $DSocialNetworkMaster$_contract_init PROCREF:<{
+    B{b5ee9c724101010100040000047631d4d859d1} B>boc <s PUSHSLICE
+    0 PUSHINT
+    __tact_context_get INLINECALLDICT
+    s2 s3 XCHG
+    3 BLKDROP
+    s0 s1 PUXC
+  }>
+  $DSocialNetworkMaster$_contract_load PROCREF:<{
+    c4 PUSH
+    CTOS
+    LDREF
+    SWAP
+    __tact_context_sys SETGLOB
+    1 LDI
+    SWAP
+    IFJMP:<{
+      $DSocialNetworkMaster$_load INLINECALLDICT
+      1 4 BLKDROP2
+    }>
+    DROP
+    MYADDR
+    11 PLDU
+    10 PUSHPOW2
+    EQUAL
+    137 THROWIFNOT
+    $DSocialNetworkMaster$_contract_init INLINECALLDICT
+  }>
+  $DSocialNetworkMaster$_contract_store PROCINLINE:<{
+    NEWC
+    __tact_context_sys GETGLOB
+    SWAP
+    STREF
+    TRUE
+    SWAP
+    1 STI
+    4 -ROLL
+    $DSocialNetworkMaster$_store INLINECALLDICT
+    ENDC
+    c4 POP
+  }>
+  $global_contractAddress PROCINLINE:<{
+    0 PUSHINT
+    -ROT
+    __tact_compute_contract_address INLINECALLDICT
+  }>
+  $global_send PROCREF:<{
+    NEWC
+    1 PUSHINT
+    SWAP
+    2 STI
+    s0 s7 XCHG2
+    __tact_store_bool INLINECALLDICT
+    0 PUSHINT
+    SWAP
+    3 STI
+    s0 s5 XCHG2
+    __tact_store_address INLINECALLDICT
+    s0 s3 XCHG2
+    STGRAMS
+    0 PUSHINT
+    SWAP
+    105 STI
+    s3 PUSH
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+    }>ELSE<{
+      s4 PUSH
+      ISNULL
+      NOT
+    }>
+    IF:<{
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      NEWC
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      s4 PUSH
+      ISNULL
+      NOT
+      IF:<{
+        TRUE
+        __tact_store_bool INLINECALLDICT
+        s0 s4 XCHG
+        __tact_not_null INLINECALLDICT
+        s0 s4 XCHG2
+        STREF
+      }>ELSE<{
+        s4 POP
+        s0 s3 XCHG
+        FALSE
+        __tact_store_bool INLINECALLDICT
+      }>
+      s4 PUSH
+      ISNULL
+      NOT
+      IF:<{
+        TRUE
+        __tact_store_bool INLINECALLDICT
+        s0 s4 XCHG
+        __tact_not_null INLINECALLDICT
+        s0 s4 XCHG2
+        STREF
+      }>ELSE<{
+        s4 POP
+        s0 s3 XCHG
+        FALSE
+        __tact_store_bool INLINECALLDICT
+      }>
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      s0 s2 XCHG
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      s0 s2 XCHG
+      ENDC
+      ROT
+      STREF
+    }>ELSE<{
+      s3 POP
+      s3 POP
+      SWAP
+      FALSE
+      __tact_store_bool INLINECALLDICT
+    }>
+    OVER
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      SWAP
+      __tact_not_null INLINECALLDICT
+      SWAP
+      STREF
+    }>ELSE<{
+      NIP
+      FALSE
+      __tact_store_bool INLINECALLDICT
+    }>
+    ENDC
+    SWAP
+    SENDRAWMSG
+  }>
+  $String$_fun_asComment PROCREF:<{
+    __tact_string_builder_start_comment INLINECALLDICT
+    SWAP
+    __tact_string_builder_append INLINECALLDICT
+    __tact_string_builder_end INLINECALLDICT
+  }>
+  $DSocialNetworkBlog$_init_child PROCREF:<{
+    s0 s3 XCHG
+    CTOS
+    LDDICT
+    DROP
+    NEWDICT
+    OVER
+    48247 PUSHINT
+    __tact_dict_get_code INLINECALLDICT
+    SWAP
+    48247 PUSHINT
+    s2 PUSH
+    __tact_dict_set_code INLINECALLDICT
+    s0 s2 XCHG
+    30628 PUSHINT
+    __tact_dict_get_code INLINECALLDICT
+    s1 s2 XCHG
+    30628 PUSHINT
+    SWAP
+    __tact_dict_set_code INLINECALLDICT
+    NEWC
+    SWAP
+    NEWC
+    STDICT
+    ENDC
+    SWAP
+    STREF
+    FALSE
+    SWAP
+    1 STI
+    3 -ROLL
+    s0 s4 XCHG
+    $DSocialNetworkBlog$init$_store INLINECALLDICT
+    ENDC
+  }>
+  $SendParameters$_constructor_bounce_to_value_mode_body_code_data PROCINLINE:<{
+  }>
+  $SendParameters$_constructor_to_value_mode_body PROCINLINE:<{
+    TRUE
+    4 -ROLL
+    PUSHNULL
+    PUSHNULL
+  }>
+  $DSocialNetworkMaster$_fun_get_version PROCREF:<{
+    s3 PUSH
+  }>
+  $DSocialNetworkMaster$_fun_get_blogs_count PROCREF:<{
+    DUP
+  }>
+  $DSocialNetworkMaster$_fun_getBlogInit PROCREF:<{
+    __tact_context_sys GETGLOB
+    MYADDR
+    s2 s0 s4 XC2PU
+    $DSocialNetworkBlog$_init_child INLINECALLDICT
+  }>
+  $DSocialNetworkMaster$_fun_get_blog_address_by_index PROCREF:<{
+    $DSocialNetworkMaster$_fun_getBlogInit INLINECALLDICT
+    $global_contractAddress INLINECALLDICT
+  }>
+  $DSocialNetworkMaster$_fun_forward PROCREF:<{
+    PUSHNULL
+    PUSHNULL
+    s2 PUSH
+    ISNULL
+    NOT
+    IF:<{
+      2DROP
+      $StateInit$_not_null INLINECALLDICT
+      SWAP
+    }>ELSE<{
+      s2 POP
+    }>
+    s2 s4 XCHG
+    0 PUSHINT
+    s0 s3 XCHG
+    s0 s4 XCHG
+    66 PUSHINT
+    s2 s3 XCHG2
+    $SendParameters$_constructor_bounce_to_value_mode_body_code_data INLINECALLDICT
+    $global_send INLINECALLDICT
+  }>
+  $DSocialNetworkMaster$_fun_reply PROCINLINE:<{
+    __tact_context_get_sender INLINECALLDICT
+    SWAP
+    TRUE
+    PUSHNULL
+    $DSocialNetworkMaster$_fun_forward INLINECALLDICT
+  }>
+  $DSocialNetworkMaster$_fun_notify PROCINLINE:<{
+    __tact_context_get_sender INLINECALLDICT
+    SWAP
+    FALSE
+    PUSHNULL
+    $DSocialNetworkMaster$_fun_forward INLINECALLDICT
+  }>
+  $DSocialNetworkMaster$_fun_requireOwner PROCREF:<{
+    __tact_context_get_sender INLINECALLDICT
+    s3 s(-1) PUXC
+    __tact_slice_eq_bits INLINECALLDICT
+    132 THROWIFNOT
+  }>
+  $DSocialNetworkMaster$_fun_owner PROCREF:<{
+    s2 PUSH
+  }>
+  $DSocialNetworkMaster$_fun_getGasConsumption PROCREF:<{
+    30000000 PUSHINT
+  }>
+  $DSocialNetworkMaster$_fun_getTonRecieved PROCREF:<{
+    __tact_context_get INLINECALLDICT
+    s1 s3 XCHG
+    3 BLKDROP
+  }>
+  $DSocialNetworkMaster$_fun_calculateMinOperationFee PROCREF:<{
+    __tact_my_balance INLINECALLDICT
+    4 -ROLL
+    $DSocialNetworkMaster$_fun_getTonRecieved INLINECALLDICT
+    s1 s5 XCHG
+    SUB
+    30000000 PUSHINT
+    TUCK
+    MIN
+    SUB
+    s3 s2 s1 PUSH3
+    s7 PUSH
+    s3 s7 XCHG
+    s6 s5 s8 XCHG3
+    $DSocialNetworkMaster$_fun_getGasConsumption INLINECALLDICT
+    4 1 BLKDROP2
+    ADD
+    s3 s4 XCHG
+    s1 s3 s0 XCHG3
+  }>
+  $DSocialNetworkMaster$_fun_calculateSendAmountToHoldEnoughTonForStorage PROCREF:<{
+    s3 s2 s1 PUSH3
+    s3 PUSH
+    __tact_my_balance INLINECALLDICT
+    s3 s8 XCHG
+    s7 s6 s5 XCHG3
+    $DSocialNetworkMaster$_fun_calculateMinOperationFee INLINECALLDICT
+    4 1 BLKDROP2
+    s1 s2 XCHG
+    SUB
+    s1 s4 XCHG
+    s3 s3 s0 XCHG3
+  }>
+  $DSocialNetworkMaster$_fun_calculateSendAmountToHoldFeeFromRecieved PROCREF:<{
+    s4 s3 s2 PUSH3
+    s4 PUSH
+    s3 s8 XCHG
+    s7 s6 s5 XCHG3
+    $DSocialNetworkMaster$_fun_calculateSendAmountToHoldEnoughTonForStorage INLINECALLDICT
+    4 1 BLKDROP2
+    SWAP
+    SUB
+  }>
+  $DSocialNetworkMaster$_fun_sendRemainingValueAsPersonalFee PROCREF:<{
+    0 PUSHINT
+    66 PUSHINT
+    s0 s2 XCHG
+    $String$_fun_asComment INLINECALLDICT
+    s4 PUSH
+    s3 s3 XCHG2
+    $SendParameters$_constructor_to_value_mode_body INLINECALLDICT
+    $global_send INLINECALLDICT
+  }>
+  $SendParameters$_constructor_to_value_bounce_mode_body_code_data PROCINLINE:<{
+    s4 s6 XCHG
+    s4 s5 XCHG
+  }>
+  $InitializeBlog$_constructor_query_id_owner_collection_content PROCINLINE:<{
+  }>
+  $DeployOk$_constructor_queryId PROCINLINE:<{
+  }>
+  $ChangeOwnerOk$_constructor_queryId_newOwner PROCINLINE:<{
+  }>
+  $DSocialNetworkMaster$_internal_binary_CreateBlog PROCINLINE:<{
+    s3 POP
+    50377 PUSHINT
+    s4 PUSH
+    -1 GTINT
+    THROWANYIFNOT
+    __tact_context_get INLINECALLDICT
+    DROP
+    16032 PUSHINT
+    s3 POP
+    50000000 PUSHINT
+    ADD
+    500000000 PUSHINT
+    GEQ
+    s1 s2 XCHG
+    THROWANYIFNOT
+    s3 s7 XCHG
+    s6 s5 s0 XCHG3
+    s4 s0 XCPU
+    $DSocialNetworkMaster$_fun_getBlogInit INLINECALLDICT
+    2DUP
+    $global_contractAddress INLINECALLDICT
+    s3 s6 XCHG
+    s5 s4 s6 XCHG3
+    500000000 PUSHINT
+    $DSocialNetworkMaster$_fun_calculateSendAmountToHoldFeeFromRecieved INLINECALLDICT
+    FALSE
+    2 PUSHINT
+    0 PUSHINT
+    s11 s13 s3 XCHG3
+    s12 s14 PUXC
+    $InitializeBlog$_constructor_query_id_owner_collection_content INLINECALLDICT
+    $InitializeBlog$_store_cell INLINECALLDICT
+    s6 s7 XCHG
+    s5 s11 XCHG
+    s4 s8 XCHG
+    s3 s10 XCHG
+    s0 s7 s11 XCHG3
+    $SendParameters$_constructor_to_value_bounce_mode_body_code_data INLINECALLDICT
+    $global_send INLINECALLDICT
+    INC
+    __tact_string_builder_start_string INLINECALLDICT
+    B{b5ee9c724101010100120000204420426c6f6720437265617465643a206f51e219} B>boc <s PUSHSLICE
+    __tact_string_builder_append INLINECALLDICT
+    s0 s3 XCHG2
+    __tact_string_builder_append INLINECALLDICT
+    __tact_string_builder_end_slice INLINECALLDICT
+    s4 s4 s0 XCHG3
+    $DSocialNetworkMaster$_fun_sendRemainingValueAsPersonalFee INLINECALLDICT
+  }>
+  $DSocialNetworkMaster$_internal_binary_Deploy PROCINLINE:<{
+    $DeployOk$_constructor_queryId INLINECALLDICT
+    $DeployOk$_store_cell INLINECALLDICT
+    $DSocialNetworkMaster$_fun_notify INLINECALLDICT
+  }>
+  $DSocialNetworkMaster$_internal_binary_ChangeOwner PROCINLINE:<{
+    4 2 BLKSWAP
+    $DSocialNetworkMaster$_fun_requireOwner INLINECALLDICT
+    s2 POP
+    s4 s3 XCPU
+    $ChangeOwnerOk$_constructor_queryId_newOwner INLINECALLDICT
+    $ChangeOwnerOk$_store_cell INLINECALLDICT
+    s2 s4 XCHG
+    $DSocialNetworkMaster$_fun_reply INLINECALLDICT
+  }>
+  $DSocialNetworkMaster$_internal_binary_TopUp PROCINLINE:<{
+    DROP
+  }>
+  $DSocialNetworkMaster$_internal_binary_Withdraw PROCINLINE:<{
+    NIP
+    4 -ROLL
+    $DSocialNetworkMaster$_fun_requireOwner INLINECALLDICT
+    s2 PUSH
+    s3 s4 XCHG
+    -ROT
+    $DSocialNetworkMaster$_fun_calculateSendAmountToHoldEnoughTonForStorage INLINECALLDICT
+    s1 s6 XCHG
+    MIN
+    2 PUSHINT
+    B{b5ee9c7241010101000e000018000000005769746864726177afd066d1} B>boc PUSHREF
+    s3 s6 XCHG
+    $SendParameters$_constructor_to_value_mode_body INLINECALLDICT
+    $global_send INLINECALLDICT
+    s0 s0 s3 XCHG3
+  }>
+  $DSocialNetworkMaster$_internal_binary_WithdrawAll PROCINLINE:<{
+    NIP
+    4 -ROLL
+    $DSocialNetworkMaster$_fun_requireOwner INLINECALLDICT
+    0 PUSHINT
+    s0 s5 XCHG
+    TRUE
+    __tact_int_eq_nullable_one INLINECALLDICT
+    IF:<{
+      32 PUSHINT
+      s5 POP
+    }>
+    0 PUSHINT
+    130 PUSHINT
+    s0 s6 XCHG2
+    ADD
+    B{b5ee9c7241010101001200002000000000576974686472617720616c6cb1c2ba20} B>boc PUSHREF
+    s4 PUSH
+    s0 s3 XCHG
+    s7 s7 s7 XCHG3
+    $SendParameters$_constructor_to_value_mode_body INLINECALLDICT
+    $global_send INLINECALLDICT
+    3 ROLL
+  }>
+  %get_version PROC:<{
+    $DSocialNetworkMaster$_contract_load INLINECALLDICT
+    $DSocialNetworkMaster$_fun_get_version INLINECALLDICT
+    4 1 BLKDROP2
+  }>
+  %get_blogs_count PROC:<{
+    $DSocialNetworkMaster$_contract_load INLINECALLDICT
+    $DSocialNetworkMaster$_fun_get_blogs_count INLINECALLDICT
+    4 1 BLKDROP2
+  }>
+  %get_blog_address_by_index PROC:<{
+    $DSocialNetworkMaster$_contract_load INLINECALLDICT
+    4 ROLL
+    $DSocialNetworkMaster$_fun_get_blog_address_by_index INLINECALLDICT
+    4 1 BLKDROP2
+  }>
+  %owner PROC:<{
+    $DSocialNetworkMaster$_contract_load INLINECALLDICT
+    $DSocialNetworkMaster$_fun_owner INLINECALLDICT
+    4 1 BLKDROP2
+  }>
+  supported_interfaces PROC:<{
+    123515602279859691144772641439386770278 PUSHINT
+    209801025412363888721030803524359905849 PUSHINT
+    42980537499636128163026532310500881091 PUSHINT
+    209474421377847335869795010607481022628 PUSHINT
+    322875185039650075936310953974817993034 PUSHINT
+    86142586315491086060343270784266291122 PUSHINT
+  }>
+  get_abi_ipfs PROC:<{
+    x{697066733a2f2f516d51663565705463717558686d7050774d59313557424a54363146674d4d53387456373871474b4d5065533665} PUSHSLICE
+  }>
+  lazy_deployment_completed PROC:<{
+    c4 PUSH
+    CTOS
+    1 LDI
+    SWAP
+  }>
+  $DSocialNetworkMaster$_contract_router_internal PROCREF:<{
+    SWAP
+    IFJMP:<{
+      DROP
+      TRUE
+    }>
+    0 PUSHINT
+    OVER
+    SBITS
+    31 GTINT
+    IF:<{
+      DROP
+      DUP
+      32 PLDU
+    }>
+    DUP
+    4028506300 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $CreateBlog$_load INLINECALLDICT
+      1 4 BLKDROP2
+      $DSocialNetworkMaster$_internal_binary_CreateBlog INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    2490013878 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $Deploy$_load INLINECALLDICT
+      NIP
+      $DSocialNetworkMaster$_internal_binary_Deploy INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    2174598809 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $ChangeOwner$_load INLINECALLDICT
+      1 2 BLKDROP2
+      $DSocialNetworkMaster$_internal_binary_ChangeOwner INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    128710311 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $TopUp$_load INLINECALLDICT
+      NIP
+      $DSocialNetworkMaster$_internal_binary_TopUp INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    3478132799 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $Withdraw$_load INLINECALLDICT
+      1 2 BLKDROP2
+      $DSocialNetworkMaster$_internal_binary_Withdraw INLINECALLDICT
+      TRUE
+    }>
+    4090352184 PUSHINT
+    EQUAL
+    IFJMP:<{
+      $WithdrawAll$_load INLINECALLDICT
+      1 2 BLKDROP2
+      $DSocialNetworkMaster$_internal_binary_WithdrawAll INLINECALLDICT
+      TRUE
+    }>
+    DROP
+    FALSE
+  }>
+  recv_internal PROC:<{
+    SWAP
+    CTOS
+    4 LDU
+    SWAP
+    1 PUSHINT
+    AND
+    NEGATE
+    SWAP
+    LDMSGADDR
+    SWAP
+    __tact_verify_address INLINECALLDICT
+    s0 s4 s2 PUXCPU
+    s0 s3 XCHG
+    4 TUPLE
+    __tact_context SETGLOB
+    s0 s2 XCHG
+    __tact_context_sender SETGLOB
+    $DSocialNetworkMaster$_contract_load INLINECALLDICT
+    2 4 BLKSWAP
+    $DSocialNetworkMaster$_contract_router_internal INLINECALLDICT
+    130 THROWIFNOT
+    $DSocialNetworkMaster$_contract_store INLINECALLDICT
+  }>
+}END>c

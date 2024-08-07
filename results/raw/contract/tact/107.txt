@@ -1,0 +1,66 @@
+$LuckyWallet$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyWallet.storage.fc:179:19: warning: Lack of end_parse.
+          return $sc~$LuckyWallet$_load();
+                    ^
+$LuckyWallet$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyWallet.code.fc:15:117: warning: Local variable '$self'collection_address' is not used
+      var (($self'collection_address, $self'item_index, $self'is_initialized, $self'owner, $self'individual_content)) = (null(), null(), null(), null(), null());
+                                                                                                                      ^
+$LuckyWallet$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyWallet.code.fc:15:117: warning: Local variable '$self'item_index' is not used
+      var (($self'collection_address, $self'item_index, $self'is_initialized, $self'owner, $self'individual_content)) = (null(), null(), null(), null(), null());
+                                                                                                                      ^
+$LuckyWallet$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyWallet.code.fc:15:117: warning: Local variable '$self'is_initialized' is not used
+      var (($self'collection_address, $self'item_index, $self'is_initialized, $self'owner, $self'individual_content)) = (null(), null(), null(), null(), null());
+                                                                                                                      ^
+$LuckyWallet$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyWallet.code.fc:15:117: warning: Local variable '$self'individual_content' is not used
+      var (($self'collection_address, $self'item_index, $self'is_initialized, $self'owner, $self'individual_content)) = (null(), null(), null(), null(), null());
+                                                                                                                      ^
+$LuckyWallet$_internal_binary_GetStaticData: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyWallet.code.fc:99:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$LuckyWallet$_internal_binary_GetStaticData: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyWallet.code.fc:99:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$LuckyWallet$_internal_binary_GetStaticData: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyWallet.code.fc:99:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+__tact_string_builder_append: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyWallet.stdlib.fc:114:31: warning: Lack of end_parse.
+              sc = sc~load_ref().begin_parse();
+                                ^
+$LuckyWallet$_contract_store & $LuckyWallet$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyWallet.storage.fc:175:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyWallet.storage.fc:190:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$LuckyWallet$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyWallet.code.fc:134:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyWallet.storage.fc:190:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$LuckyWallet$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyWallet.code.fc:81:199: warning: UnHandle bounced message with op: 0xd53276db
+          $global_send($SendParameters$_constructor_to_value_mode_body(__tact_not_null($msg'response_destination), $msgValue, 1, $Excesses$_store_cell($Excesses$_constructor_query_id($msg'query_id))));
+                                                                                                                                                                                                        ^
+$LuckyWallet$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyWallet.code.fc:86:278: warning: UnHandle bounced message with op: 0x5138d91
+  ... constructor_query_id_prev_owner_forward_payload($msg'query_id, $ctx'sender, $msg'forward_payload))));
+  ...                                                                                                     ^
+$LuckyWallet$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyWallet.code.fc:90:240: warning: UnHandle bounced message with op: 0xd53276db
+  ... sg'forward_amount), 1, true, $Excesses$_store_cell($Excesses$_constructor_query_id($msg'query_id))));
+  ...                                                                                                     ^
+$LuckyWallet$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBmO7g9TjaZV4d1xpKvJ2PxWH9-SFdSdCgoEwRUNPiSOGdW/output/sample_LuckyWallet.code.fc:100:250: warning: UnHandle bounced message with op: 0x8b771735
+  ... nstructor_query_id_index_id_collection($msg'query_id, $self'item_index, $self'collection_address))));
+  ...                                                                                                     ^

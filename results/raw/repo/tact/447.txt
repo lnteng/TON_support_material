@@ -1,0 +1,36 @@
+__gen_readopt_SomeStruct: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/test/features/output/maps_MapTestContract.fc:155:23: warning: Lack of end_parse.
+      var v'value = sc_0~load_int(257);
+                        ^
+__tact_dict_set_slice_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/test/features/output/maps_MapTestContract.fc:55:21: warning: Local variable 'ok' is not used
+          var (r, ok) = __tact_dict_delete(d, kl, k);
+                      ^
+__tact_dict_set_slice_cell: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/test/features/output/maps_MapTestContract.fc:73:21: warning: Local variable 'ok' is not used
+          var (r, ok) = __tact_dict_delete(d, kl, k);
+                      ^
+__tact_dict_set_int_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/test/features/output/maps_MapTestContract.fc:19:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+__gen_load_MapTestContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/test/features/output/maps_MapTestContract.fc:247:14: warning: Lack of end_parse.
+      return sc~__gen_read_MapTestContract();
+               ^
+__tact_dict_set_int_cell: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/test/features/output/maps_MapTestContract.fc:37:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+__gen_read_MapTestContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/test/features/output/maps_MapTestContract.fc:240:26: warning: Lack of end_parse.
+      var v'addrMap4 = sc_2~load_dict();
+                           ^
+__gen_read_MapTestContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/test/features/output/maps_MapTestContract.fc:237:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/test/features/output/maps_MapTestContract.fc:508:31: warning: Lack of end_parse.
+      slice msg_sender_addr = cs~load_msg_addr();
+                                ^

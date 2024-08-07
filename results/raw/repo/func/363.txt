@@ -1,0 +1,24 @@
+double_part: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./arashnm80/tsc4/contracts/3.fc:111:15: warning: Lack of end_parse.
+                .begin_parse();
+                ^
+double_part: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./arashnm80/tsc4/contracts/3.fc:128:30: warning: Lack of end_parse.
+          cell ref_ref = ref_cs~load_ref();
+                               ^
+double_part: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./arashnm80/tsc4/contracts/3.fc:120:18: warning: Local variable 'temp_int' is not used
+      int temp_int = ref_cs~load_uint(part2_size);
+                   ^
+find_and_replace: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./arashnm80/tsc4/contracts/3.fc:153:25: warning: Lack of end_parse.
+    slice cs = linked_list.begin_parse();
+                          ^
+find_and_replace: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./arashnm80/tsc4/contracts/3.fc:164:25: warning: Lack of end_parse.
+        slice ref_cs = ref.begin_parse();
+                          ^
+single_part: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./arashnm80/tsc4/contracts/3.fc:85:20: warning: Lack of end_parse.
+        cell ref = cs~load_ref();
+                     ^

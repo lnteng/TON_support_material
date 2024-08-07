@@ -1,0 +1,405 @@
+#pragma version >=0.4.1;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+forall X -> X __tact_not_null(X x) inline { throw_if(128, null?(x)); return x; }
+
+(cell, int) __tact_dict_delete(cell dict, int key_len, slice index) asm(index dict key_len) "DICTDEL";
+
+global (int, slice, int, slice) __tact_context;
+global cell __tact_context_sys;
+
+(int, slice, int, slice) __tact_context_get() inline { return __tact_context; }
+
+() __tact_verify_address(slice address) inline {
+    throw_unless(136, address.slice_bits() != 267);
+}
+
+builder __tact_store_bool(builder b, int v) inline {
+    b = b.store_int(v, 1);
+    return b;
+}
+
+builder __tact_store_address(builder b, slice address) inline {
+    __tact_verify_address(address);
+    b = b.store_slice(address);
+    return b;
+}
+
+(cell, ()) __tact_dict_set_int_int(cell d, int kl, int k, int v, int vl) inline {
+    if (null?(v)) {
+        var (r, ok) = idict_delete?(d, kl, k);
+        return (r, ());
+    } else {
+        return (idict_set_builder(d, kl, k, begin_cell().store_int(v, vl)), ());
+    }
+}
+
+int __tact_dict_get_int_int(cell d, int kl, int k, int vl) inline {
+    var (r, ok) = idict_get?(d, kl, k);
+    if (ok) {
+        return r~load_int(vl);
+    } else {
+        return null();
+    }
+}
+
+(cell, ()) __tact_dict_set_int_cell(cell d, int kl, int k, cell v) inline {
+    if (null?(v)) {
+        var (r, ok) = idict_delete?(d, kl, k);
+        return (r, ());
+    } else {
+        return (idict_set_ref(d, kl, k, v), ());
+    }
+}
+
+cell __tact_dict_get_int_cell(cell d, int kl, int k) {
+    var (r, ok) = idict_get_ref?(d, kl, k);
+    if (ok) {
+        return r;
+    } else {
+        return null();
+    }
+}
+
+(cell, ()) __tact_dict_set_slice_int(cell d, int kl, slice k, int v, int vl) {
+    if (null?(v)) {
+        var (r, ok) = __tact_dict_delete(d, kl, k);
+        return (r, ());
+    } else {
+        return (dict_set_builder(d, kl, k, begin_cell().store_int(v, vl)), ());
+    }
+}
+
+forall X0 -> (X0) __tact_tuple_destroy_1(tuple v) asm "1 UNTUPLE";
+
+(slice, ((int))) __gen_read_Deploy(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2490013878);
+    var v'queryId = sc_0~load_uint(64);
+    return (sc_0, (v'queryId));
+}
+
+builder __gen_write_DeployOk(builder build_0, (int) v) inline {
+    var (v'queryId) = v;
+    build_0 = store_uint(build_0, 2952335191, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    return build_0;
+}
+
+cell __gen_writecell_DeployOk((int) v) inline {
+    return __gen_write_DeployOk(begin_cell(), v).end_cell();
+}
+
+(slice, ((int, int))) __gen_read_Increment(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 537284411);
+    var v'key = sc_0~load_int(257);
+    var v'value = sc_0~load_int(257);
+    return (sc_0, (v'key, v'value));
+}
+
+(slice, ((int))) __gen_read_Toggle(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 1081595080);
+    var v'key = sc_0~load_int(257);
+    return (sc_0, (v'key));
+}
+
+(slice, ((int, cell))) __gen_read_Persist(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 3801943978);
+    var v'key = sc_0~load_int(257);
+    var v'content = sc_0~load_int(1) ? sc_0~load_ref() : null();
+    return (sc_0, (v'key, v'content));
+}
+
+(slice, ((int))) __gen_read_Reset(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 1718153138);
+    var v'key = sc_0~load_int(257);
+    return (sc_0, (v'key));
+}
+
+builder __gen_write_Something(builder build_0, (int) v) inline {
+    var (v'value) = v;
+    build_0 = build_0.store_int(v'value, 257);
+    return build_0;
+}
+
+cell __gen_writecell_Something((int) v) inline {
+    return __gen_write_Something(begin_cell(), v).end_cell();
+}
+
+((int)) __gen_Something_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (int vvv'value) = __tact_tuple_destroy_1(v);
+    return (vvv'value);
+}
+
+cell __gen_writecellopt_Something(tuple v) inline {
+    if (null?(v)) {
+        return null();
+    }
+    return __gen_writecell_Something(__gen_Something_not_null(v));
+}
+
+builder __gen_write_IncrementContract(builder build_0, (cell, cell, cell, cell, cell) v) inline {
+    var (v'counters, v'counters2, v'counters3, v'counters4, v'counters5) = v;
+    build_0 = build_0.store_dict(v'counters);
+    build_0 = build_0.store_dict(v'counters2);
+    var build_1 = begin_cell();
+    build_1 = build_1.store_dict(v'counters3);
+    build_1 = build_1.store_dict(v'counters4);
+    build_1 = build_1.store_dict(v'counters5);
+    build_0 = store_ref(build_0, build_1.end_cell());
+    return build_0;
+}
+
+(slice, ((cell, cell, cell, cell, cell))) __gen_read_IncrementContract(slice sc_0) inline {
+    var v'counters = sc_0~load_dict();
+    var v'counters2 = sc_0~load_dict();
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'counters3 = sc_1~load_dict();
+    var v'counters4 = sc_1~load_dict();
+    var v'counters5 = sc_1~load_dict();
+    return (sc_0, (v'counters, v'counters2, v'counters3, v'counters4, v'counters5));
+}
+
+_ __gen_Context_get_sender((int, slice, int, slice) v) inline {
+    var (v'bounced, v'sender, v'value, v'raw) = v;
+    return v'sender;
+}
+
+(cell, cell, cell, cell, cell) $__gen_IncrementContract_init() impure inline_ref {
+    var (($self'counters, $self'counters2, $self'counters3, $self'counters4, $self'counters5)) = (null(), null(), null(), null(), null());
+    return ($self'counters, $self'counters2, $self'counters3, $self'counters4, $self'counters5);
+}
+
+(cell, cell, cell, cell, cell) __gen_load_IncrementContract() impure inline {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~__gen_read_IncrementContract();
+    } else {
+        return $__gen_IncrementContract_init();
+    }
+}
+
+() __gen_store_IncrementContract((cell, cell, cell, cell, cell) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = __gen_write_IncrementContract(b, v);
+    set_data(b.end_cell());
+}
+
+() $send((int, slice, int, int, cell, cell, cell) $params) impure inline_ref {
+    var (($params'bounce, $params'to, $params'value, $params'mode, $params'body, $params'code, $params'data)) = $params;
+    builder $b = begin_cell();
+    $b = store_int($b, 1, 2);
+    $b = __tact_store_bool($b, $params'bounce);
+    $b = store_int($b, 0, 3);
+    $b = __tact_store_address($b, $params'to);
+    $b = store_coins($b, $params'value);
+    $b = store_int($b, 0, ((((1 + 4) + 4) + 64) + 32));
+    if (((~ null?($params'code)) | (~ null?($params'data)))) {
+        $b = __tact_store_bool($b, true);
+        builder $bc = begin_cell();
+        $bc = __tact_store_bool($bc, false);
+        $bc = __tact_store_bool($bc, false);
+        if ((~ null?($params'code))) {
+            $bc = __tact_store_bool($bc, true);
+            $bc = store_ref($bc, __tact_not_null($params'code));
+        } else {
+            $bc = __tact_store_bool($bc, false);
+        }
+        if ((~ null?($params'data))) {
+            $bc = __tact_store_bool($bc, true);
+            $bc = store_ref($bc, __tact_not_null($params'data));
+        } else {
+            $bc = __tact_store_bool($bc, false);
+        }
+        $bc = __tact_store_bool($bc, false);
+        $b = __tact_store_bool($b, true);
+        $b = store_ref($b, end_cell($bc));
+    } else {
+        $b = __tact_store_bool($b, false);
+    }
+    cell $body = $params'body;
+    if ((~ null?($body))) {
+        $b = __tact_store_bool($b, true);
+        $b = store_ref($b, __tact_not_null($body));
+    } else {
+        $b = __tact_store_bool($b, false);
+    }
+    cell $c = end_cell($b);
+    send_raw_message($c, $params'mode);
+}
+
+((int, slice, int, int, cell, cell, cell)) __gen_constructor_SendParameters$bounce_to_value_mode_body(int bounce, slice to, int value, int mode, cell body) inline {
+    return (bounce, to, value, mode, body, null(), null());
+}
+
+() $reply(cell $body) impure inline_ref {
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    $send(__gen_constructor_SendParameters$bounce_to_value_mode_body(true, $ctx'sender, 0, (64 + 2), $body));
+}
+
+cell $__gen_IncrementContract_counters((cell, cell, cell, cell, cell) $self) impure inline_ref {
+    var (($self'counters, $self'counters2, $self'counters3, $self'counters4, $self'counters5)) = $self;
+    return $self'counters;
+}
+
+_ $__gen_get_counters() method_id(95239) {
+    var self = __gen_load_IncrementContract();
+    var res = $__gen_IncrementContract_counters(self);
+    return res;
+}
+
+cell $__gen_IncrementContract_counters2((cell, cell, cell, cell, cell) $self) impure inline_ref {
+    var (($self'counters, $self'counters2, $self'counters3, $self'counters4, $self'counters5)) = $self;
+    return $self'counters4;
+}
+
+_ $__gen_get_counters2() method_id(77570) {
+    var self = __gen_load_IncrementContract();
+    var res = $__gen_IncrementContract_counters2(self);
+    return res;
+}
+
+(((cell, cell, cell, cell, cell)), ()) $__gen_IncrementContract_receive_Increment((cell, cell, cell, cell, cell) $self, (int, int) $msg) impure inline {
+    var ($self'counters, $self'counters2, $self'counters3, $self'counters4, $self'counters5) = $self;
+    var ($msg'key, $msg'value) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    $self'counters~__tact_dict_set_int_int(257, $msg'key, $msg'value, 257);
+    $self'counters4~__tact_dict_set_slice_int(267, $ctx'sender, $msg'value, 257);
+    return (($self'counters, $self'counters2, $self'counters3, $self'counters4, $self'counters5), ());
+}
+
+(((cell, cell, cell, cell, cell)), ()) $__gen_IncrementContract_receive_Toggle((cell, cell, cell, cell, cell) $self, (int) $msg) impure inline {
+    var ($self'counters, $self'counters2, $self'counters3, $self'counters4, $self'counters5) = $self;
+    var ($msg'key) = $msg;
+    int $ex = __tact_dict_get_int_int($self'counters2, 257, $msg'key, 1);
+    if (null?($ex)) {
+        $self'counters2~__tact_dict_set_int_int(257, $msg'key, true, 1);
+    } else {
+        $self'counters2~__tact_dict_set_int_int(257, $msg'key, (~ __tact_not_null($ex)), 1);
+    }
+    return (($self'counters, $self'counters2, $self'counters3, $self'counters4, $self'counters5), ());
+}
+
+(((cell, cell, cell, cell, cell)), ()) $__gen_IncrementContract_receive_Persist((cell, cell, cell, cell, cell) $self, (int, cell) $msg) impure inline {
+    var ($self'counters, $self'counters2, $self'counters3, $self'counters4, $self'counters5) = $self;
+    var ($msg'key, $msg'content) = $msg;
+    throw_unless(52777, null?(__tact_dict_get_int_cell($self'counters3, 257, $msg'key)));
+    $self'counters3~__tact_dict_set_int_cell(257, $msg'key, $msg'content);
+    return (($self'counters, $self'counters2, $self'counters3, $self'counters4, $self'counters5), ());
+}
+
+(((cell, cell, cell, cell, cell)), ()) $__gen_IncrementContract_receive_Reset((cell, cell, cell, cell, cell) $self, (int) $msg) impure inline {
+    var ($self'counters, $self'counters2, $self'counters3, $self'counters4, $self'counters5) = $self;
+    var ($msg'key) = $msg;
+    $self'counters~__tact_dict_set_int_int(257, $msg'key, null(), 257);
+    $self'counters2~__tact_dict_set_int_int(257, $msg'key, null(), 1);
+    $self'counters3~__tact_dict_set_int_cell(257, $msg'key, null());
+    $self'counters4~__tact_dict_set_slice_int(267, __gen_Context_get_sender(__tact_context_get()), null(), 257);
+    $self'counters5~__tact_dict_set_int_cell(257, $msg'key, __gen_writecellopt_Something(null()));
+    return (($self'counters, $self'counters2, $self'counters3, $self'counters4, $self'counters5), ());
+}
+
+((int)) __gen_constructor_DeployOk$queryId(int queryId) inline {
+    return (queryId);
+}
+
+(((cell, cell, cell, cell, cell)), ()) $__gen_IncrementContract_receive_Deploy((cell, cell, cell, cell, cell) $self, (int) $deploy) impure inline {
+    var ($self'counters, $self'counters2, $self'counters3, $self'counters4, $self'counters5) = $self;
+    var ($deploy'queryId) = $deploy;
+    $reply(__gen_writecell_DeployOk(__gen_constructor_DeployOk$queryId($deploy'queryId)));
+    return (($self'counters, $self'counters2, $self'counters3, $self'counters4, $self'counters5), ());
+}
+
+((cell, cell, cell, cell, cell), int) __gen_router_IncrementContract((cell, cell, cell, cell, cell) self, int msg_bounced, slice in_msg) impure inline_ref {
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Receive Increment message
+    if (op == 537284411) {
+        var msg = in_msg~__gen_read_Increment();
+        self~$__gen_IncrementContract_receive_Increment(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Toggle message
+    if (op == 1081595080) {
+        var msg = in_msg~__gen_read_Toggle();
+        self~$__gen_IncrementContract_receive_Toggle(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Persist message
+    if (op == 3801943978) {
+        var msg = in_msg~__gen_read_Persist();
+        self~$__gen_IncrementContract_receive_Persist(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Reset message
+    if (op == 1718153138) {
+        var msg = in_msg~__gen_read_Reset();
+        self~$__gen_IncrementContract_receive_Reset(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~__gen_read_Deploy();
+        self~$__gen_IncrementContract_receive_Deploy(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = ((msg_flags & 1) == 1 ? true : false);
+    slice msg_sender_addr = cs~load_msg_addr();
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    
+    ;; Load contract data
+    var self = __gen_load_IncrementContract();
+    
+    ;; Handle operation
+    int handled = self~__gen_router_IncrementContract(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(handled, 130);
+    
+    ;; Persist state
+    __gen_store_IncrementContract(self);
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() {
+    return "ipfs://QmZqb7ybhY2JQUBF6McGaRgBtjy6WHz3ENHzTRsLS13qk2";
+}
+
+_ lazy_deployment_completed() {
+    return get_data().begin_parse().load_int(1);
+}

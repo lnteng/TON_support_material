@@ -1,0 +1,23 @@
+$LinkedSmartContract$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_DynamicSmartContractCreator.storage.fc:131:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$DynamicSmartContractCreator$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_DynamicSmartContractCreator.storage.fc:105:19: warning: Lack of end_parse.
+          return $sc~$DynamicSmartContractCreator$_load();
+                    ^
+$DynamicSmartContract$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_DynamicSmartContractCreator.storage.fc:166:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$DynamicSmartContractCreator$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_DynamicSmartContractCreator.code.fc:92:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_DynamicSmartContractCreator.storage.fc:114:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$DynamicSmartContractCreator$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_DynamicSmartContractCreator.code.fc:44:190: warning: UnHandle bounced message with op: 0x946a98b6
+      $global_send($SendParameters$_constructor_to_value_mode_bounce_code_data_body($address, 0, (64 + 2), true, $init'code, $init'data, $Deploy$_store_cell($Deploy$_constructor_queryId(0))));
+                                                                                                                                                                                               ^

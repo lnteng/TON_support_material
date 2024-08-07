@@ -1,0 +1,19 @@
+$PriceOracle$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/ton-oracle-pattern/contracts/output/sample_PriceOracle.storage.fc:124:22: warning: Lack of end_parse.
+      int $loaded = $sc~load_int(1);
+                       ^
+$PriceOracle$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/ton-oracle-pattern/contracts/output/sample_PriceOracle.code.fc:68:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/ton-oracle-pattern/contracts/output/sample_PriceOracle.storage.fc:135:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$PriceOracle$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/ton-oracle-pattern/contracts/output/sample_PriceOracle.code.fc:35:257: warning: UnHandle bounced message with op: 0xaacba7f
+  ... nstructor_queryId_price_decimals_success_callback($msg'queryId, 0, 0, false, $global_emptyCell()))));
+  ...                                                                                                     ^
+$PriceOracle$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/ton-oracle-pattern/contracts/output/sample_PriceOracle.code.fc:39:263: warning: UnHandle bounced message with op: 0xaacba7f
+  ... d_price_decimals_success_callback($msg'queryId, $info'price, $info'decimals, true, $msg'callback))));
+  ...                                                                                                     ^

@@ -1,0 +1,65 @@
+#include "imports/stdlib.fc";
+
+builder custom::store_slice(builder b, slice s) asm(s b) "STSLICE";
+
+() recv_internal(int my_balance, int msg_value, cell in_msg_full, slice in_msg_body) impure {
+
+}
+
+() recv_external(slice in_msg) impure {
+    int op = in_msg~load_uint(32);
+    if (op == 0x9df10277) {
+        in_msg~skip_bits(64);
+        var signature = in_msg~load_bits(512);
+        var data_cell = in_msg.preload_ref();
+        slice data_cs = data_cell.begin_parse();
+        var (locked_for, new_seqno) = (data_cs~load_uint(32), data_cs.preload_uint(32));
+
+        var ds = get_data().begin_parse();
+        var (public_key, execution_time, receiver, seqno) = (ds~load_uint(256), ds~load_uint(32), ds~load_msg_addr(), ds~load_uint(32));
+
+        throw_unless(119, new_seqno == seqno + 1);
+        throw_unless(120, check_signature(data_cell.cell_hash(), signature, public_key));
+        throw_unless(121, locked_for > 0);
+        int _now = now();
+        throw_if(122, execution_time < _now);
+        throw_if(123, _now + locked_for < execution_time);
+
+        accept_message();
+
+        set_data(
+            begin_cell()
+            .store_uint(public_key, 256)
+            .store_uint(_now + locked_for, 32)
+            .custom::store_slice(receiver)
+            .store_uint(new_seqno, 32)
+            .end_cell()
+        );
+        return ();
+    }
+    if (op == 0xbb4be234) {
+        var cs = get_data().begin_parse().skip_bits(256);
+        var (execution_time, receiver) = (cs~load_uint(32), cs~load_msg_addr());
+
+        throw_if(124, execution_time > now());
+        accept_message();
+
+        send_raw_message(begin_cell()
+            .store_uint(0x18, 6)
+            .custom::store_slice(receiver)
+            ;; .store_coins(0)
+            .store_uint(0, 4 + 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .end_cell(), 128);
+        return ();
+    }
+}
+
+int get_seqno() method_id {
+    var cs = get_data().begin_parse().skip_bits(256 + 32 + 267);
+    return cs.preload_uint(32);
+}
+
+int get_execution_time() method_id {
+    var cs = get_data().begin_parse().skip_bits(256);
+    return cs.preload_uint(32);
+}

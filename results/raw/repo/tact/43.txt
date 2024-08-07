@@ -1,0 +1,26 @@
+$Todo$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-contract-deploy-another/output/sample_Todo.storage.fc:89:19: warning: Lack of end_parse.
+          return $sc~$Todo$_load();
+                    ^
+$Todo$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-contract-deploy-another/output/sample_Todo.code.fc:15:25: warning: Local variable '$self'seqno' is not used
+      var (($self'seqno)) = (null());
+                          ^
+$Todo$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-contract-deploy-another/output/sample_Todo.storage.fc:109:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$Todo$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-contract-deploy-another/output/sample_Todo.code.fc:63:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-contract-deploy-another/output/sample_Todo.storage.fc:100:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Todo$_contract_store & $Todo$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-contract-deploy-another/output/sample_Todo.storage.fc:85:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-contract-deploy-another/output/sample_Todo.storage.fc:100:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

@@ -1,0 +1,24 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/func-contest3-solutions/5.fc:152:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/func-contest3-solutions/5.fc:179:27: warning: Local variable 'stakes_flat' is not used
+          tuple stakes_flat = empty_tuple();
+                            ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/func-contest3-solutions/5.fc:211:38: warning: Local variable 'addr' is not used
+              (key, slice addr, int f) = sdict.udict_get_prev?(128 + 24 + 16, key);
+                                       ^
+get_stake_table: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/func-contest3-solutions/5.fc:247:28: warning: Local variable 'max_factor' is not used
+              int max_factor = stake~load_uint(24);
+                             ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/func-contest3-solutions/5.fc:55:18: warning: Lack of end_parse.
+          return cs~load_dict();
+                   ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/func-contest3-solutions/5.fc:232:45: warning: UnHandle bounced message with op: 0xeefa5ea4
+          send_raw_message(msg.end_cell(), 64);
+                                              ^

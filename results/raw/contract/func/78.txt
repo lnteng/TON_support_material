@@ -1,0 +1,8 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDsh-h3cHtc3FjeTz8oMLsRjlekFih6b6zphKGK0RRYDeG-/referral.fc:73:28: warning: Lack of end_parse.
+      slice from_address = cs~load_msg_addr();
+                             ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDsh-h3cHtc3FjeTz8oMLsRjlekFih6b6zphKGK0RRYDeG-/referral.fc:89:60: warning: Local variable 'query_id' is not used
+          (int query_id, int jetton_amount, slice from_user) = (in_msg_body~load_uint(64), in_msg_body~load_coins(), in_msg_body~load_msg_addr());
+                                                             ^

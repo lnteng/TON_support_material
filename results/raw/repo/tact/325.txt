@@ -1,0 +1,31 @@
+$SimpleDNSFactory$_fun_forward: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-dns-simple/sources/output/dns_SimpleDNSFactory.stdlib.fc:124:63: warning: Local variable '$ctx'bounced' is not used
+          var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                                ^
+$SimpleDNSFactory$_fun_forward: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-dns-simple/sources/output/dns_SimpleDNSFactory.stdlib.fc:124:63: warning: Local variable '$ctx'sender' is not used
+          var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                                ^
+$SimpleDNSFactory$_fun_forward: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-dns-simple/sources/output/dns_SimpleDNSFactory.stdlib.fc:124:63: warning: Local variable '$ctx'raw' is not used
+          var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                                ^
+$SimpleDNSFactory$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-dns-simple/sources/output/dns_SimpleDNSFactory.storage.fc:117:19: warning: Lack of end_parse.
+          return $sc~$SimpleDNSFactory$_load();
+                    ^
+$SimpleDNSFactory$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-dns-simple/sources/output/dns_SimpleDNSFactory.code.fc:11:27: warning: Local variable '$self'counter' is not used
+      var (($self'counter)) = (null());
+                            ^
+$SimpleDNSContract$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-dns-simple/sources/output/dns_SimpleDNSFactory.storage.fc:82:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$SimpleDNSFactory$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-dns-simple/sources/output/dns_SimpleDNSFactory.code.fc:55:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-dns-simple/sources/output/dns_SimpleDNSFactory.storage.fc:126:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

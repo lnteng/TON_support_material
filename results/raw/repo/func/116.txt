@@ -1,0 +1,16 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/nft-item.fc:164:21: warning: Lack of end_parse.
+      int fwd_fee = cs~load_coins(); ;; we use message fwd_fee for estimation of forward_payload costs
+                      ^
+lock: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/nft-item.fc:108:86: warning: Lack of end_parse.
+      (int last_index,slice claimed_prev_owner) = (relay_info~load_uint(64), relay_info~load_msg_addr());
+                                                                                       ^
+lock: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/nft-item.fc:119:23: warning: Local variable 'key' is not used
+      var (key, cs, f?) = other_nfts~udict::delete_get_min(64);
+                        ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/nft-item.fc:22:127: warning: Lack of end_parse.
+          var (characteristics, owner_address, content, nft_item_code) = ( ds~load_dict(), ds~load_msg_addr(), ds~load_ref(), ds~load_ref());
+                                                                                                                                ^

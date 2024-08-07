@@ -1,0 +1,204 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_Counter.headers.fc";
+#include "sample_Counter.stdlib.fc";
+#include "sample_Counter.constants.fc";
+#include "sample_Counter.storage.fc";
+
+;;
+;; Contract Counter functions
+;;
+
+(slice, int, int) $Counter$_contract_init() impure inline_ref {
+    var (($self'owner, $self'stopped, $self'val)) = (null(), null(), null());
+    $self'owner = __tact_context_get_sender();
+    $self'stopped = false;
+    $self'val = 0;
+    return ($self'owner, $self'stopped, $self'val);
+}
+
+((slice, int, int), int) $Counter$_fun_value((slice, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'stopped, $self'val)) = $self;
+    return (($self'owner, $self'stopped, $self'val), $self'val);
+}
+
+((slice, int, int), ()) $Counter$_fun_requireNotStopped((slice, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'stopped, $self'val)) = $self;
+    throw_unless(40368, (~ $self'stopped));
+    return (($self'owner, $self'stopped, $self'val), ());
+}
+
+((slice, int, int), ()) $Counter$_fun_requireStopped((slice, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'stopped, $self'val)) = $self;
+    throw_unless(53296, $self'stopped);
+    return (($self'owner, $self'stopped, $self'val), ());
+}
+
+((slice, int, int), int) $Counter$_fun_stopped((slice, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'stopped, $self'val)) = $self;
+    return (($self'owner, $self'stopped, $self'val), $self'stopped);
+}
+
+((slice, int, int), ()) $Counter$_fun_requireOwner((slice, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'stopped, $self'val)) = $self;
+    throw_unless(132, ( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) ));
+    return (($self'owner, $self'stopped, $self'val), ());
+}
+
+((slice, int, int), slice) $Counter$_fun_owner((slice, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'stopped, $self'val)) = $self;
+    return (($self'owner, $self'stopped, $self'val), $self'owner);
+}
+
+;;
+;; Receivers of a Contract Counter
+;;
+
+((slice, int, int), ()) $Counter$_internal_text_c4f8d72312edfdef5b7bec7833bdbb162d1511bd78a912aed0f2637af65572ae((slice, int, int) $self) impure inline {
+    var ($self'owner, $self'stopped, $self'val) = $self;
+    ($self'owner, $self'stopped, $self'val)~$Counter$_fun_requireNotStopped();
+    $self'val = ($self'val + 1);
+    return (($self'owner, $self'stopped, $self'val), ());
+}
+
+(((slice, int, int)), ()) $Counter$_internal_binary_Deploy((slice, int, int) $self, (int) $deploy) impure inline {
+    var ($self'owner, $self'stopped, $self'val) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'owner, $self'stopped, $self'val)~$Counter$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'owner, $self'stopped, $self'val), ());
+}
+
+((slice, int, int), ()) $Counter$_internal_text_6c8f44f45fedb4cdfed4de8db14aa5b13ad55d430f759d0669210b74c48fe3df((slice, int, int) $self) impure inline {
+    var ($self'owner, $self'stopped, $self'val) = $self;
+    ($self'owner, $self'stopped, $self'val)~$Counter$_fun_requireOwner();
+    ($self'owner, $self'stopped, $self'val)~$Counter$_fun_requireStopped();
+    $self'stopped = false;
+    ($self'owner, $self'stopped, $self'val)~$Counter$_fun_reply(__gen_cell_comment_514f593ead485926515219a03034c6b162f1c29390f83f2f1bd70b8b77731ec3());
+    return (($self'owner, $self'stopped, $self'val), ());
+}
+
+((slice, int, int), ()) $Counter$_internal_text_bcfaf776907c719cc8d379d8f194aaaa27e8ca2871cd591781721f215a454501((slice, int, int) $self) impure inline {
+    var ($self'owner, $self'stopped, $self'val) = $self;
+    ($self'owner, $self'stopped, $self'val)~$Counter$_fun_requireOwner();
+    ($self'owner, $self'stopped, $self'val)~$Counter$_fun_requireNotStopped();
+    $self'stopped = true;
+    ($self'owner, $self'stopped, $self'val)~$Counter$_fun_reply(__gen_cell_comment_8f4b6a166554b4f282855d0333c627d5b58d281ea4ba11e4def91a1053193b2d());
+    return (($self'owner, $self'stopped, $self'val), ());
+}
+
+;;
+;; Get methods of a Contract Counter
+;;
+
+_ %value() method_id(121536) {
+    var self = $Counter$_contract_load();
+    var res = self~$Counter$_fun_value();
+    return res;
+}
+
+_ %stopped() method_id(74107) {
+    var self = $Counter$_contract_load();
+    var res = self~$Counter$_fun_stopped();
+    return res;
+}
+
+_ %owner() method_id(83229) {
+    var self = $Counter$_contract_load();
+    var res = self~$Counter$_fun_owner();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128,
+        "org.ton.resumable"H >> 128,
+        "org.ton.stoppable"H >> 128,
+        "org.ton.ownable"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmTRoSKp6pNwVYGUL6tYXz4Rz4699RRTczSSWEnNWRPMVs";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract Counter
+;;
+
+((slice, int, int), int) $Counter$_contract_router_internal((slice, int, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$Counter$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "increment" message
+        if (text_op == 0xc4f8d72312edfdef5b7bec7833bdbb162d1511bd78a912aed0f2637af65572ae) {
+            self~$Counter$_internal_text_c4f8d72312edfdef5b7bec7833bdbb162d1511bd78a912aed0f2637af65572ae();
+            return (self, true);
+        }
+        
+        ;; Receive "Resume" message
+        if (text_op == 0x6c8f44f45fedb4cdfed4de8db14aa5b13ad55d430f759d0669210b74c48fe3df) {
+            self~$Counter$_internal_text_6c8f44f45fedb4cdfed4de8db14aa5b13ad55d430f759d0669210b74c48fe3df();
+            return (self, true);
+        }
+        
+        ;; Receive "Stop" message
+        if (text_op == 0xbcfaf776907c719cc8d379d8f194aaaa27e8ca2871cd591781721f215a454501) {
+            self~$Counter$_internal_text_bcfaf776907c719cc8d379d8f194aaaa27e8ca2871cd591781721f215a454501();
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $Counter$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$Counter$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $Counter$_contract_store(self);
+}

@@ -1,0 +1,162 @@
+;;
+;; Type: StateInit
+;; TLB: _ code:^cell data:^cell = StateInit
+;;
+
+((cell, cell)) $StateInit$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (cell vvv'code, cell vvv'data) = __tact_tuple_destroy_2(v);
+    return (vvv'code, vvv'data);
+}
+
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline {
+    return (bounce, to, value, mode, body, code, data);
+}
+
+;;
+;; Type: Deploy
+;; Header: 0x946a98b6
+;; TLB: deploy#946a98b6 queryId:uint64 = Deploy
+;;
+
+(slice, ((int))) $Deploy$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2490013878);
+    var v'queryId = sc_0~load_uint(64);
+    return (sc_0, (v'queryId));
+}
+
+;;
+;; Type: DeployOk
+;; Header: 0xaff90f57
+;; TLB: deploy_ok#aff90f57 queryId:uint64 = DeployOk
+;;
+
+builder $DeployOk$_store(builder build_0, (int) v) inline {
+    var (v'queryId) = v;
+    build_0 = store_uint(build_0, 2952335191, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    return build_0;
+}
+
+cell $DeployOk$_store_cell((int) v) inline {
+    return $DeployOk$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $DeployOk$_constructor_queryId(int queryId) inline {
+    return (queryId);
+}
+
+;;
+;; Type: StrctOpts
+;; TLB: _ sa:Maybe int257 sb:Maybe bool sc:Maybe address = StrctOpts
+;;
+
+builder $StrctOpts$_store(builder build_0, (int, int, slice) v) inline {
+    var (v'sa, v'sb, v'sc) = v;
+    build_0 = ~ null?(v'sa) ? build_0.store_int(true, 1).store_int(v'sa, 257) : build_0.store_int(false, 1);
+    build_0 = ~ null?(v'sb) ? build_0.store_int(true, 1).store_int(v'sb, 1) : build_0.store_int(false, 1);
+    build_0 = __tact_store_address_opt(build_0, v'sc);
+    return build_0;
+}
+
+(slice, ((int, int, slice))) $StrctOpts$_load(slice sc_0) inline {
+    var v'sa = sc_0~load_int(1) ? sc_0~load_int(257) : null();
+    var v'sb = sc_0~load_int(1) ? sc_0~load_int(1) : null();
+    var v'sc = sc_0~__tact_load_address_opt();
+    return (sc_0, (v'sa, v'sb, v'sc));
+}
+
+tuple $StrctOpts$_as_optional((int, int, slice) v) inline {
+    var (v'sa, v'sb, v'sc) = v;
+    return __tact_tuple_create_3(v'sa, v'sb, v'sc);
+}
+
+((int, int, slice)) $StrctOpts$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (int vvv'sa, int vvv'sb, slice vvv'sc) = __tact_tuple_destroy_3(v);
+    return (vvv'sa, vvv'sb, vvv'sc);
+}
+
+_ $StrctOpts$_get_sa((int, int, slice) v) inline {
+    var (v'sa, v'sb, v'sc) = v;
+    return v'sa;
+}
+
+((int, int, slice)) $StrctOpts$_constructor_sa_sb_sc(int sa, int sb, slice sc) inline {
+    return (sa, sb, sc);
+}
+
+;;
+;; Type: MsgOpts
+;; Header: 0x09acb3cd
+;; TLB: msg_opts#09acb3cd ma:Maybe int257 mb:Maybe bool mc:Maybe address md:Maybe StrctOpts{sa:Maybe int257,sb:Maybe bool,sc:Maybe address} = MsgOpts
+;;
+
+(slice, ((int, int, slice, tuple))) $MsgOpts$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 162313165);
+    var v'ma = sc_0~load_int(1) ? sc_0~load_int(257) : null();
+    var v'mb = sc_0~load_int(1) ? sc_0~load_int(1) : null();
+    var v'mc = sc_0~__tact_load_address_opt();
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'md = sc_1~load_int(1) ? $StrctOpts$_as_optional(sc_1~$StrctOpts$_load()) : null();
+    return (sc_0, (v'ma, v'mb, v'mc, v'md));
+}
+
+;;
+;; Type: Optionals
+;;
+
+builder $Optionals$_store(builder build_0, (int, int, slice, tuple) v) inline {
+    var (v'ca, v'cb, v'cc, v'cd) = v;
+    build_0 = ~ null?(v'ca) ? build_0.store_int(true, 1).store_int(v'ca, 257) : build_0.store_int(false, 1);
+    build_0 = ~ null?(v'cb) ? build_0.store_int(true, 1).store_int(v'cb, 1) : build_0.store_int(false, 1);
+    build_0 = __tact_store_address_opt(build_0, v'cc);
+    var build_1 = begin_cell();
+    build_1 = ~ null?(v'cd) ? build_1.store_int(true, 1).$StrctOpts$_store($StrctOpts$_not_null(v'cd)) : build_1.store_int(false, 1);
+    build_0 = store_ref(build_0, build_1.end_cell());
+    return build_0;
+}
+
+(slice, ((int, int, slice, tuple))) $Optionals$_load(slice sc_0) inline {
+    var v'ca = sc_0~load_int(1) ? sc_0~load_int(257) : null();
+    var v'cb = sc_0~load_int(1) ? sc_0~load_int(1) : null();
+    var v'cc = sc_0~__tact_load_address_opt();
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'cd = sc_1~load_int(1) ? $StrctOpts$_as_optional(sc_1~$StrctOpts$_load()) : null();
+    return (sc_0, (v'ca, v'cb, v'cc, v'cd));
+}
+
+(slice, ((int, int, slice))) $Optionals$init$_load(slice sc_0) inline {
+    var v'a = sc_0~load_int(1) ? sc_0~load_int(257) : null();
+    var v'b = sc_0~load_int(1) ? sc_0~load_int(1) : null();
+    var v'c = sc_0~__tact_load_address_opt();
+    return (sc_0, (v'a, v'b, v'c));
+}
+
+(int, int, slice, tuple) $Optionals$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$Optionals$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (int a, int b, slice c) = $sc~$Optionals$init$_load();
+        $sc.end_parse();
+        return $Optionals$_contract_init(a, b, c);
+    }
+}
+
+() $Optionals$_contract_store((int, int, slice, tuple) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $Optionals$_store(b, v);
+    set_data(b.end_cell());
+}

@@ -1,0 +1,134 @@
+{- 
+  TASK 3 - Find and replace binary substring
+  Binary string is represented as a cell linked list: string splitted to chunks,
+  first chunk stored to the root cell, next one to the cell in ref and so on;
+  each cell can have only one ref. 
+  Write the method that find and replaces one flags in the binary string
+  with another value. Flags and values can be can be of any length, but
+  strictly up to 128 bits. The method must replace every flag it finds.
+  Flag and the value to be replaced is guaranteed to be greater than 0.
+  Lets give a simple example. We have the target flag 101110101 and the value
+  to be written 111111111 as inputs, and a linked list of cells, in which the bit
+  value of the first cell ends with ...10100001011, and in the ref we have cell that
+  starts with 10101000111111...
+  The output should be a linked list where the first
+  cell ends with ...10100001111, and the second cell starts with 11111000111111...
+-}
+
+() recv_internal() {
+}
+
+int can_store_bits?(builder b, int bits) asm "BCHKBITSQ";
+
+(slice, slice) load_bit(slice cs) asm( -> 1 0) "1 LDSLICE";
+
+int ubitsize(int x) asm "UBITSIZE"; 
+
+global slice value;
+
+((slice, slice), ()) ~reshape_slices((slice, slice) tn) inline_ref {
+  (slice text, slice next) = tn;
+  
+  int nlen = next.slice_bits();
+  int plen = min(nlen, 1023 - text.slice_bits());
+  slice pref = next~load_bits(plen);
+  builder b = begin_cell().store_slice(text).store_slice(pref);
+  text = b.end_cell().begin_parse();
+
+  if next.slice_data_empty?() {
+    if next.slice_refs() {
+      next = next.preload_ref().begin_parse();
+    } else {
+      next = null();
+    }
+  }
+  return ((text, next), ());
+}
+
+builder solve_asm(int flat, slice text) asm """
+  //  f t
+  PUSHNULL	//  f t next
+  OVER	//  f t next t
+  SREFS	//  f t next _4
+  IF:<{	//  f t next
+    DROP	//  f t
+    LDREF	//  f _5 t
+    SWAP	//  f t _5
+    CTOS	//  f t next
+  }>	//  f t next
+  s2 s2 s1 XC2PU	//  next f t f
+  UBITSIZE	//  next f t fl
+  PUSHNULL	//  next f t fl blds
+  NEWC	//  next f t fl blds res
+  
+  AGAINBRK:<{
+    // f t fl blds res
+    2OVER	PLDUXQ IF:<{
+      UNTIL:
+      // f t fl blds res x
+
+      s5 PUSH	//  f t fl blds res x f
+
+      EQUAL	//  f t fl blds res _15
+      IF:<{	//  f t fl blds res 
+        2OVER SDSKIPFIRST // f t fl blds res t' 
+        s4 POP	//  f t' fl blds res
+        value GETGLOB	//  f t fl blds res v
+      }>ELSE<{	//  f t fl blds res 
+        s0 s3 XCHG	//  f res fl blds t
+        1 LDSLICE	//  f res fl blds v t
+        s4 s4 XCHG2	//  f t fl blds res v
+      }>
+
+      // f t fl blds res v
+      STSLICERQ // .. res v -1 or res' 0
+      IF:<{ 
+        // .. next f t fl blds res v
+        NEWC STSLICE // .. next f t fl blds res res'
+        SWAP 6 ROLLREV // .. res next f t fl blds res'
+      }>
+
+      2OVER	PLDUXQ NOT
+    }> // .. next f t fl blds res
+    
+    //  next f t fl blds res
+    s5 PUSH	ISNULL IFRETALT
+    
+    //  next f t fl blds res
+    s3 s5 XCHG2	//  res f blds fl t next
+    ~reshape_slices INLINECALLDICT	//  res f blds fl t next
+    s3 s5 XCHG2
+    //  next f t fl blds res
+
+  }>	//  next f t fl blds res
+  //  next f t fl blds res
+  NIP
+  //  ... next f t fl res
+  
+  NIP s3 POP NIP
+  // .. res t
+
+  STSLICERQ // .. res t -1 or res' 0
+  IF:<{ 
+    // .. res t
+    NEWC STSLICE // .. res res'
+  }>
+
+  DEPTH DEC REPEAT:<{
+    STBREFR
+  }>
+""";
+
+builder solve(int flag, slice text) {
+  return solve_asm(flag, text);
+}
+
+;; testable
+(cell) find_and_replace(int flag, int _value, cell linked_list) method_id {
+  value = begin_cell().store_uint(_value, ubitsize(_value)).end_cell().begin_parse();
+
+  builder res = solve(flag, linked_list.begin_parse());
+
+  return res.end_cell();
+}
+

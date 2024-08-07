@@ -1,0 +1,40 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./JetTon-Bot/jt-ico-smc/contracts/root/jetton-root.fc:26:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./JetTon-Bot/jt-ico-smc/contracts/root/jetton-root.fc:36:18: warning: Local variable 'query_id' is not used
+      int query_id = in_msg_body~load_uint(64);
+                   ^
+swap::top_up: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./JetTon-Bot/jt-ico-smc/contracts/root/./structure/swap.fc:3:23: warning: Local variable 'sender_addr' is not used
+      slice sender_addr = in_msg_body~load_msg_addr();
+                        ^
+storage::init: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./JetTon-Bot/jt-ico-smc/contracts/root/./structure/storage.fc:49:38: warning: Lack of end_parse.
+      ico::redeemed_tokens = coins_info~load_coins();
+                                       ^
+storage::init: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./JetTon-Bot/jt-ico-smc/contracts/root/./structure/storage.fc:47:32: warning: Lack of end_parse.
+      slice coins_info = ico_data~load_ref().begin_parse();
+                                 ^
+storage::init: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./JetTon-Bot/jt-ico-smc/contracts/root/./structure/storage.fc:45:32: warning: Lack of end_parse.
+      ico::max_months = time_info~load_uint(4);
+                                 ^
+storage::init: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./JetTon-Bot/jt-ico-smc/contracts/root/./structure/storage.fc:39:24: warning: Lack of end_parse.
+      slice ico_data = ds~load_ref().begin_parse();
+                         ^
+storage::init: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./JetTon-Bot/jt-ico-smc/contracts/root/./structure/storage.fc:37:41: warning: Lack of end_parse.
+      swap::promise_jwall_addr = swap_data~load_msg_addr();  
+                                          ^
+storage::init: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./JetTon-Bot/jt-ico-smc/contracts/root/./structure/storage.fc:32:32: warning: Lack of end_parse.
+      jtn::wallet_code = jtn_data~load_ref();
+                                 ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./JetTon-Bot/jt-ico-smc/contracts/root/./structure/swap.fc:40:39: warning: UnHandle bounced message with op: 0xf8a7ea5
+      send_raw_message(transfer_msg, 64);
+                                        ^

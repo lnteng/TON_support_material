@@ -1,0 +1,24 @@
+forward_message: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB--CRXUbqYbqJKScEWeOrnk0TKJxB071M-WwvMpMEvq6Ed/verifier-registry.fc:142:39: warning: Lack of end_parse.
+      cell payload_to_forward = msg_data~load_ref();
+                                        ^
+forward_message: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB--CRXUbqYbqJKScEWeOrnk0TKJxB071M-WwvMpMEvq6Ed/verifier-registry.fc:123:20: warning: Lack of end_parse.
+          int key = s~load_uint(256);
+                     ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB--CRXUbqYbqJKScEWeOrnk0TKJxB071M-WwvMpMEvq6Ed/verifier-registry.fc:33:34: warning: Lack of end_parse.
+      storage::verifiers_num = data~load_uint(8);
+                                   ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB--CRXUbqYbqJKScEWeOrnk0TKJxB071M-WwvMpMEvq6Ed/verifier-registry.fc:164:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB--CRXUbqYbqJKScEWeOrnk0TKJxB071M-WwvMpMEvq6Ed/verifier-registry.fc:185:48: warning: Lack of end_parse.
+          slice name_ref = in_msg_body~load_ref().begin_parse(); ;; name
+                                                 ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB--CRXUbqYbqJKScEWeOrnk0TKJxB071M-WwvMpMEvq6Ed/verifier-registry.fc:167:18: warning: Local variable 'query_id' is not used
+      int query_id = in_msg_body~load_uint(64);
+                   ^

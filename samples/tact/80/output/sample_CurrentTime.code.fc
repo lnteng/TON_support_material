@@ -1,0 +1,156 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_CurrentTime.headers.fc";
+#include "sample_CurrentTime.stdlib.fc";
+#include "sample_CurrentTime.constants.fc";
+#include "sample_CurrentTime.storage.fc";
+
+;;
+;; Contract CurrentTime functions
+;;
+
+(int) $CurrentTime$_contract_init() impure inline_ref {
+    var (($self'deployTime)) = (null());
+    $self'deployTime = now();
+    return ($self'deployTime);
+}
+
+((int), int) $CurrentTime$_fun_unixTime((int) $self) impure inline_ref {
+    var (($self'deployTime)) = $self;
+    return (($self'deployTime), now());
+}
+
+((int), slice) $CurrentTime$_fun_stringTime((int) $self) impure inline_ref {
+    var (($self'deployTime)) = $self;
+    tuple $sb = __tact_string_builder_start_string();
+    $sb~__tact_string_builder_append(__tact_int_to_string(now()));
+    $sb~__tact_string_builder_append(__gen_slice_string_18d12a462793c998f3394153664378fdf3f2d6dd20b17055bc0753108bb14619());
+    return (($self'deployTime), __tact_string_builder_end_slice($sb));
+}
+
+;;
+;; Receivers of a Contract CurrentTime
+;;
+
+((int), ()) $CurrentTime$_internal_text_a1c75fcd1d5f2d97ccd8022ee85ad77ac5754461200c75dc6e4d954a9ac61af5((int) $self) impure inline {
+    var ($self'deployTime) = $self;
+    throw_unless(58790, ((now() - $self'deployTime) > 10));
+    __tact_nop();
+    return (($self'deployTime), ());
+}
+
+((int), ()) $CurrentTime$_internal_text_5c6e6d6f5adbd5ee344b527aecabefbc1338909c10df4b0f07367806bc994fa0((int) $self) impure inline {
+    var ($self'deployTime) = $self;
+    throw_unless(58790, ((now() - $self'deployTime) > (((10 * 24) * 60) * 60)));
+    __tact_nop();
+    return (($self'deployTime), ());
+}
+
+(((int)), ()) $CurrentTime$_internal_binary_Deploy((int) $self, (int) $deploy) impure inline {
+    var ($self'deployTime) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'deployTime)~$CurrentTime$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'deployTime), ());
+}
+
+;;
+;; Get methods of a Contract CurrentTime
+;;
+
+_ %unixTime() method_id(100916) {
+    var self = $CurrentTime$_contract_load();
+    var res = self~$CurrentTime$_fun_unixTime();
+    return res;
+}
+
+_ %stringTime() method_id(107760) {
+    var self = $CurrentTime$_contract_load();
+    var res = self~$CurrentTime$_fun_stringTime();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmXVN5r1W1WXvDkwJeZ94ndXvX2APXcfjz76E8t32NCAqM";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);    ;; DEFECT: InconsistentData
+}
+
+;;
+;; Routing of a Contract CurrentTime
+;;
+
+((int), int) $CurrentTime$_contract_router_internal((int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$CurrentTime$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "wait 10s" message
+        if (text_op == 0xa1c75fcd1d5f2d97ccd8022ee85ad77ac5754461200c75dc6e4d954a9ac61af5) {
+            self~$CurrentTime$_internal_text_a1c75fcd1d5f2d97ccd8022ee85ad77ac5754461200c75dc6e4d954a9ac61af5();
+            return (self, true);
+        }
+        
+        ;; Receive "wait 10d" message
+        if (text_op == 0x5c6e6d6f5adbd5ee344b527aecabefbc1338909c10df4b0f07367806bc994fa0) {
+            self~$CurrentTime$_internal_text_5c6e6d6f5adbd5ee344b527aecabefbc1338909c10df4b0f07367806bc994fa0();
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $CurrentTime$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$CurrentTime$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $CurrentTime$_contract_store(self);
+}

@@ -1,0 +1,8 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./AndreyBurnosov/cheque/contracts/helper.fc:31:63: warning: Lack of end_parse.
+      (_, slice sender) = in_msg_full.begin_parse().skip_bits(4).load_msg_addr();
+                                                                ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./AndreyBurnosov/cheque/contracts/helper.fc:46:21: warning: UnHandle bounced message with op: 0x93d37ba8
+      .end_cell(), 64);
+                      ^

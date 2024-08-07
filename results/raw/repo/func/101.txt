@@ -1,0 +1,104 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/ZKNFT/nft-collection.fc:280:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/ZKNFT/nft-collection.fc:296:36: warning: Lack of end_parse.
+      cell nullifiers = zk_info_slice~load_dict();
+                                     ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/ZKNFT/nft-collection.fc:317:45: warning: Lack of end_parse.
+      cell JETTON_BYTECODE = jetton_info_slice~load_ref();
+                                              ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/ZKNFT/nft-collection.fc:383:50: warning: Lack of end_parse.
+          cell transfer_proof = transfer_info_slice~load_ref();
+                                                   ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/ZKNFT/nft-collection.fc:338:38: warning: Lack of end_parse.
+          cell commitment = in_msg_body~load_ref();
+                                       ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/ZKNFT/nft-collection.fc:341:34: warning: Lack of end_parse.
+          int id = commitment_slice~load_uint(32);
+                                   ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/ZKNFT/nft-collection.fc:416:48: warning: Lack of end_parse.
+          cell reveal_proof = transfer_info_slice~load_ref();
+                                                 ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/ZKNFT/nft-collection.fc:442:38: warning: Lack of end_parse.
+          int id = commitment_msg_slice~load_uint(32);
+                                       ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/ZKNFT/nft-collection.fc:309:36: warning: Local variable 'index' is not used
+          (int index, state, merkle) = insert(0, 0, merkle);
+                                     ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/ZKNFT/nft-collection.fc:465:25: warning: Local variable 'new_owner' is not used
+          slice new_owner = in_msg_body~load_msg_addr();
+                          ^
+get_last_root: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/ZKNFT/../imports/merkleTreeNFT.fc:270:24: warning: Lack of end_parse.
+      cell roots = merkle~load_dict();
+                         ^
+get_last_root: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/ZKNFT/../imports/merkleTreeNFT.fc:264:37: warning: Lack of end_parse.
+      cell merkle_cell = zk_info_slice~load_ref();
+                                      ^
+get_last_root: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/ZKNFT/../imports/merkleTreeNFT.fc:261:14: warning: Local variable 'init' is not used
+      int init = zk_info_slice~load_uint(8);
+               ^
+insert: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/ZKNFT/../imports/merkleTreeNFT.fc:153:30: warning: Lack of end_parse.
+          currentIndex = backup~load_uint(32);
+                               ^
+insert: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/ZKNFT/../imports/merkleTreeNFT.fc:167:30: warning: Lack of end_parse.
+              left = left_slice~load_uint(256);
+                               ^
+insert: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/ZKNFT/../imports/merkleTreeNFT.fc:163:32: warning: Lack of end_parse.
+              right = right_slice~load_uint(256);
+                                 ^
+is_known_root: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/ZKNFT/../imports/merkleTreeNFT.fc:223:24: warning: Lack of end_parse.
+      cell roots = merkle~load_dict();
+                         ^
+is_known_root: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/ZKNFT/../imports/merkleTreeNFT.fc:216:37: warning: Lack of end_parse.
+      cell merkle_cell = zk_info_slice~load_ref();
+                                      ^
+is_known_root: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/ZKNFT/../imports/merkleTreeNFT.fc:214:14: warning: Local variable 'init' is not used
+      int init = zk_info_slice~load_uint(8);
+               ^
+get_collection_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/ZKNFT/nft-collection.fc:479:32: warning: Lack of end_parse.
+      return (next_item_index, cs~load_ref(), owner_address);
+                                 ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/ZKNFT/../imports/storageZKNFT.fc:14:23: warning: Lack of end_parse.
+                      ds~load_ref() ;; zk_info
+                        ^
+get_nft_content: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/ZKNFT/nft-collection.fc:498:30: warning: Lack of end_parse.
+      slice common_content = cs~load_ref().begin_parse();
+                               ^
+royalty_params: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/ZKNFT/nft-collection.fc:491:51: warning: Lack of end_parse.
+      return (rs~load_uint(16), rs~load_uint(16), rs~load_msg_addr());
+                                                    ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/ZKNFT/nft-collection.fc:60:40: warning: UnHandle bounced message with op: 0xf8a7ea5
+      send_raw_message(msg.end_cell(), 1); ;; paying fees, revert on errors
+                                         ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/ZKNFT/nft-collection.fc:38:40: warning: UnHandle bounced message with op: 0x15
+      send_raw_message(msg.end_cell(), 1); ;; paying fees, revert on errors
+                                         ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/ZKNFT/nft-collection.fc:116:40: warning: UnHandle bounced message with op: 0x5fcc3d14
+      send_raw_message(msg.end_cell(), 1); ;; paying fees, revert on errors
+                                         ^

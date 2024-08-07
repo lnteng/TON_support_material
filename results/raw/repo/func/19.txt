@@ -1,0 +1,12 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/Multisig/contracts/order.func:54:22: warning: Lack of end_parse.
+      slice sender = cs~load_msg_addr();
+                       ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/Multisig/contracts/order.func:53:15: warning: Local variable 'flags' is not used
+      int flags = cs~load_uint(4);
+                ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/Multisig/contracts/order.func:31:37: warning: Lack of end_parse.
+                                    ds~load_ref());
+                                      ^

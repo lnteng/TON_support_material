@@ -1,0 +1,19 @@
+$WhitelistChildEntry$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDm4PW8r-Eua02VK7-Vjyp-Kmlws66JIgxevGHcJKOkaRnA/output/sample_WhitelistChildEntry.code.fc:14:54: warning: Local variable '$self'parent' is not used
+      var (($self'parent, $self'addr, $self'accepted)) = (null(), null(), false);
+                                                       ^
+$WhitelistChildEntry$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDm4PW8r-Eua02VK7-Vjyp-Kmlws66JIgxevGHcJKOkaRnA/output/sample_WhitelistChildEntry.code.fc:14:54: warning: Local variable '$self'addr' is not used
+      var (($self'parent, $self'addr, $self'accepted)) = (null(), null(), false);
+                                                       ^
+$WhitelistChildEntry$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDm4PW8r-Eua02VK7-Vjyp-Kmlws66JIgxevGHcJKOkaRnA/output/sample_WhitelistChildEntry.storage.fc:46:19: warning: Lack of end_parse.
+          return $sc~$WhitelistChildEntry$_load();
+                    ^
+$WhitelistChildEntry$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDm4PW8r-Eua02VK7-Vjyp-Kmlws66JIgxevGHcJKOkaRnA/output/sample_WhitelistChildEntry.code.fc:61:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDm4PW8r-Eua02VK7-Vjyp-Kmlws66JIgxevGHcJKOkaRnA/output/sample_WhitelistChildEntry.storage.fc:57:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

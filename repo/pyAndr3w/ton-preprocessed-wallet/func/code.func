@@ -1,0 +1,56 @@
+{-
+  ton-preprocessed-wallet – open-source optimized wallet for tvm-based blockchains
+
+  Copyright (C) 2022 pyAndr3w <gutarev01@gmail.com>
+
+  This file is part of ton-preprocessed-wallet.
+
+  ton-preprocessed-wallet is free software: you can redistribute it and/or modify it under the terms
+  of the GNU Lesser General Public License as published by the Free Software Foundation,
+  either version 3 of the License, or (at your option) any later version.
+
+  ton-preprocessed-wallet is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  See the GNU Lesser General Public License for more details.
+
+  You should have received a copy of the GNU Lesser General Public License along with ton-preprocessed-wallet.
+  If not, see <https://www.gnu.org/licenses/>.
+-}
+
+
+() set_actions(cell c) impure asm "c5 POP";
+
+() recv_internal(slice in_msg) impure {
+  ;; do nothing for internal messages
+}
+
+() recv_external(slice in_msg) impure {
+  slice signature = in_msg~load_bits(512);
+  int hash = slice_hash(in_msg);
+  (int subwallet_id, int valid_until, int msg_seqno) = (in_msg~load_uint(32), in_msg~load_uint(32), in_msg~load_uint(32));
+  throw_if(35, valid_until <= now());
+  slice ds = get_data().begin_parse();
+  (int stored_seqno, int stored_subwallet, int public_key) = (ds~load_uint(32), ds~load_uint(32), ds.preload_uint(256));
+  throw_unless(35, check_signature(hash, signature, public_key));
+  throw_unless(33, msg_seqno == stored_seqno);
+  throw_unless(34, subwallet_id == stored_subwallet);
+  accept_message();
+  set_actions(in_msg.preload_ref());
+  set_data(begin_cell()
+    .store_uint(stored_seqno + 1, 32)
+    .store_uint(stored_subwallet, 32)
+    .store_uint(public_key, 256)
+    .end_cell());
+}
+
+;; Get methods
+
+int seqno() method_id {
+  return get_data().begin_parse().preload_uint(32);
+}
+
+int get_public_key() method_id {
+  var cs = get_data().begin_parse();
+  cs~skip_bits(64);
+  return cs.preload_uint(256);
+}

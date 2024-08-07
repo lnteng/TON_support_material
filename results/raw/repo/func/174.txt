@@ -1,0 +1,16 @@
+find_and_replace: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Mip182/tcs4/contracts/3.fc:154:22: warning: Lack of end_parse.
+              cur_slice~skip_bits(flag_sz);
+                       ^
+find_and_replace: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Mip182/tcs4/contracts/3.fc:159:44: warning: Lack of end_parse.
+              first_cell~store_uint(cur_slice~load_uint(1), 1);
+                                             ^
+get_next_cell: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Mip182/tcs4/contracts/3.fc:96:57: warning: Lack of end_parse.
+                          next_cell~store_uint(inner_slice~load_uint(inner_slice_bits), inner_slice_bits);
+                                                          ^
+get_next_cell: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Mip182/tcs4/contracts/3.fc:108:36: warning: Lack of end_parse.
+                          inner_slice~skip_bits(flag_sz - cur_slice_bits);
+                                     ^

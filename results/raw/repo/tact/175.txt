@@ -1,0 +1,83 @@
+$DNSRecord$_load_opt: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/contract-dns-simple/sources/output/dns_SimpleDNSContract.storage.fc:166:38: warning: Lack of end_parse.
+      return $DNSRecord$_as_optional(sc~$DNSRecord$_load());
+                                       ^
+$SimpleDNSContract$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/contract-dns-simple/sources/output/dns_SimpleDNSContract.storage.fc:215:19: warning: Lack of end_parse.
+          return $sc~$SimpleDNSContract$_load();
+                    ^
+$SimpleDNSContract$_fun_doResolveDNS: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/contract-dns-simple/sources/output/dns_SimpleDNSContract.code.fc:65:281: warning: Local variable '$self'permissions'canAdd' is not used
+  ... canAdd, $self'permissions'canRemove, $self'permissions'canReplace), $self'records, $self'subdomains)~$SimpleDNSContract$_fun_resolveByKey(slice_bits($subdomain), slice_hash($subdomain), $category));
+  ...                                                                                                     ^
+$SimpleDNSContract$_fun_doResolveDNS: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/contract-dns-simple/sources/output/dns_SimpleDNSContract.code.fc:65:281: warning: Local variable '$self'permissions'canRemove' is not used
+  ... canAdd, $self'permissions'canRemove, $self'permissions'canReplace), $self'records, $self'subdomains)~$SimpleDNSContract$_fun_resolveByKey(slice_bits($subdomain), slice_hash($subdomain), $category));
+  ...                                                                                                     ^
+$SimpleDNSContract$_fun_doResolveDNS: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/contract-dns-simple/sources/output/dns_SimpleDNSContract.code.fc:65:281: warning: Local variable '$self'permissions'canReplace' is not used
+  ... canAdd, $self'permissions'canRemove, $self'permissions'canReplace), $self'records, $self'subdomains)~$SimpleDNSContract$_fun_resolveByKey(slice_bits($subdomain), slice_hash($subdomain), $category));
+  ...                                                                                                     ^
+$SimpleDNSContract$_fun_doResolveDNS: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/contract-dns-simple/sources/output/dns_SimpleDNSContract.code.fc:65:281: warning: Local variable '$self'records' is not used
+  ... canAdd, $self'permissions'canRemove, $self'permissions'canReplace), $self'records, $self'subdomains)~$SimpleDNSContract$_fun_resolveByKey(slice_bits($subdomain), slice_hash($subdomain), $category));
+  ...                                                                                                     ^
+$SimpleDNSContract$_fun_doResolveDNS: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/contract-dns-simple/sources/output/dns_SimpleDNSContract.code.fc:65:281: warning: Local variable '$self'subdomains' is not used
+  ... canAdd, $self'permissions'canRemove, $self'permissions'canReplace), $self'records, $self'subdomains)~$SimpleDNSContract$_fun_resolveByKey(slice_bits($subdomain), slice_hash($subdomain), $category));
+  ...                                                                                                     ^
+$SimpleDNSContract$_fun_doResolveDNS: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/contract-dns-simple/sources/output/dns_SimpleDNSContract.code.fc:58:285: warning: Local variable '$self'permissions'canAdd' is not used
+  ... canAdd, $self'permissions'canRemove, $self'permissions'canReplace), $self'records, $self'subdomains)~$SimpleDNSContract$_fun_resolveByKey(slice_bits($subdomain), 0, $category));
+  ...                                                                                                     ^
+$SimpleDNSContract$_fun_doResolveDNS: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/contract-dns-simple/sources/output/dns_SimpleDNSContract.code.fc:58:285: warning: Local variable '$self'permissions'canRemove' is not used
+  ... canAdd, $self'permissions'canRemove, $self'permissions'canReplace), $self'records, $self'subdomains)~$SimpleDNSContract$_fun_resolveByKey(slice_bits($subdomain), 0, $category));
+  ...                                                                                                     ^
+$SimpleDNSContract$_fun_doResolveDNS: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/contract-dns-simple/sources/output/dns_SimpleDNSContract.code.fc:58:285: warning: Local variable '$self'permissions'canReplace' is not used
+  ... canAdd, $self'permissions'canRemove, $self'permissions'canReplace), $self'records, $self'subdomains)~$SimpleDNSContract$_fun_resolveByKey(slice_bits($subdomain), 0, $category));
+  ...                                                                                                     ^
+$SimpleDNSContract$_fun_doResolveDNS: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/contract-dns-simple/sources/output/dns_SimpleDNSContract.code.fc:58:285: warning: Local variable '$self'records' is not used
+  ... canAdd, $self'permissions'canRemove, $self'permissions'canReplace), $self'records, $self'subdomains)~$SimpleDNSContract$_fun_resolveByKey(slice_bits($subdomain), 0, $category));
+  ...                                                                                                     ^
+$SimpleDNSContract$_fun_doResolveDNS: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/contract-dns-simple/sources/output/dns_SimpleDNSContract.code.fc:58:285: warning: Local variable '$self'subdomains' is not used
+  ... canAdd, $self'permissions'canRemove, $self'permissions'canReplace), $self'records, $self'subdomains)~$SimpleDNSContract$_fun_resolveByKey(slice_bits($subdomain), 0, $category));
+  ...                                                                                                     ^
+__tact_dict_set_int_cell: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/contract-dns-simple/sources/output/dns_SimpleDNSContract.stdlib.fc:41:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+$SimpleDNSContract$_fun_resolveByKey: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/contract-dns-simple/sources/output/dns_SimpleDNSContract.code.fc:51:15: warning: Local variable '$cat' is not used
+      cell $cat = __tact_dict_get_int_cell($DNSRecord$_get_categories($DNSRecord$_not_null($record)), 257, $category);
+                ^
+$SimpleDNSContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/contract-dns-simple/sources/output/dns_SimpleDNSContract.code.fc:12:145: warning: Local variable '$self'owner' is not used
+      var (($self'owner, ($self'permissions'canAdd, $self'permissions'canRemove, $self'permissions'canReplace), $self'records, $self'subdomains)) = (null(), null(), null(), null());
+                                                                                                                                                  ^
+$SimpleDNSContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/contract-dns-simple/sources/output/dns_SimpleDNSContract.code.fc:12:145: warning: Local variable '$self'permissions'canAdd' is not used
+      var (($self'owner, ($self'permissions'canAdd, $self'permissions'canRemove, $self'permissions'canReplace), $self'records, $self'subdomains)) = (null(), null(), null(), null());
+                                                                                                                                                  ^
+$SimpleDNSContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/contract-dns-simple/sources/output/dns_SimpleDNSContract.code.fc:12:145: warning: Local variable '$self'permissions'canRemove' is not used
+      var (($self'owner, ($self'permissions'canAdd, $self'permissions'canRemove, $self'permissions'canReplace), $self'records, $self'subdomains)) = (null(), null(), null(), null());
+                                                                                                                                                  ^
+$SimpleDNSContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/contract-dns-simple/sources/output/dns_SimpleDNSContract.code.fc:12:145: warning: Local variable '$self'permissions'canReplace' is not used
+      var (($self'owner, ($self'permissions'canAdd, $self'permissions'canRemove, $self'permissions'canReplace), $self'records, $self'subdomains)) = (null(), null(), null(), null());
+                                                                                                                                                  ^
+$SimpleDNSContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/contract-dns-simple/sources/output/dns_SimpleDNSContract.code.fc:12:145: warning: Local variable '$self'records' is not used
+      var (($self'owner, ($self'permissions'canAdd, $self'permissions'canRemove, $self'permissions'canReplace), $self'records, $self'subdomains)) = (null(), null(), null(), null());
+                                                                                                                                                  ^
+$SimpleDNSContract$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/contract-dns-simple/sources/output/dns_SimpleDNSContract.code.fc:241:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/contract-dns-simple/sources/output/dns_SimpleDNSContract.storage.fc:226:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

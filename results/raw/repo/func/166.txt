@@ -1,0 +1,28 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Mip182/tcs5/contracts/task3.fc:116:39: warning: Lack of end_parse.
+              set_c3(actions~list_next().begin_parse().bless());
+                                        ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Mip182/tcs5/contracts/task3.fc:121:27: warning: Lack of end_parse.
+          set_c3(update_code.begin_parse().bless());
+                            ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Mip182/tcs5/contracts/task3.fc:77:29: warning: Lack of end_parse.
+      int current_version = ds~load_uint(32);
+                              ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Mip182/tcs5/contracts/task3.fc:97:38: warning: Lack of end_parse.
+              cell migration_code = val~load_maybe_ref();
+                                       ^
+process_message: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Mip182/tcs5/contracts/task3.fc:51:23: warning: Lack of end_parse.
+      slice cs = storage.begin_parse();
+                        ^
+version: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Mip182/tcs5/contracts/task3.fc:40:14: warning: Lack of end_parse.
+      return cs~load_uint(32);
+               ^
+get_storage: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Mip182/tcs5/contracts/task3.fc:25:22: warning: Lack of end_parse.
+      cell storage = cs~load_ref();
+                       ^

@@ -1,0 +1,193 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_Task5.headers.fc";
+#include "sample_Task5.stdlib.fc";
+#include "sample_Task5.storage.fc";
+
+;;
+;; Contract Task5 functions
+;;
+
+(int, slice, cell, int) $Task5$_contract_init(int $seed, slice $owner) impure inline_ref {
+    var (($self'seed, $self'owner, $self'nfts, $self'nftCount)) = (null(), null(), null(), 0);
+    $self'owner = $owner;
+    $self'seed = $seed;
+    return ($self'seed, $self'owner, $self'nfts, $self'nftCount);
+}
+
+((int, slice, cell, int), int) $Task5$_fun_profit((int, slice, cell, int) $self) impure inline_ref {
+    var (($self'seed, $self'owner, $self'nfts, $self'nftCount)) = $self;
+    return (($self'seed, $self'owner, $self'nfts, $self'nftCount), max(0, (__tact_my_balance() - 100000000)));
+}
+
+((int, slice, cell, int), cell) $Task5$_fun_nfts((int, slice, cell, int) $self) impure inline_ref {
+    var (($self'seed, $self'owner, $self'nfts, $self'nftCount)) = $self;
+    return (($self'seed, $self'owner, $self'nfts, $self'nftCount), $self'nfts);
+}
+
+;;
+;; Receivers of a Contract Task5
+;;
+
+(((int, slice, cell, int)), ()) $Task5$_internal_binary_OwnershipAssigned((int, slice, cell, int) $self, (int, slice, slice) $msg) impure inline {
+    var ($self'seed, $self'owner, $self'nfts, $self'nftCount) = $self;
+    var ($msg'queryId, $msg'prevOwner, $msg'forwardPayload) = $msg;
+    if (( __tact_slice_eq_bits($self'owner, $msg'prevOwner) )) {
+        $self'nfts~__tact_dict_set_uint_slice(16, $self'nftCount, __tact_context_get_sender());
+        $self'nftCount = ($self'nftCount + 1);
+    } else {
+        if (($Context$_get_value(__tact_context_get()) < 2100000000)) {
+            $global_send($SendParameters$_constructor_to_value_mode_body(__tact_context_get_sender(), 0, 64, $Transfer$_store_cell($Transfer$_constructor_queryId_newOwner_responseDestination_customPayload_forwardAmount_forwardPayload($msg'queryId, $msg'prevOwner, $msg'prevOwner, null(), 0, $global_emptySlice()))));
+        } else {
+            int $index = $global_random(0, $self'nftCount);
+            slice $nftToSend = __tact_context_get_sender();
+            if (($index != $self'nftCount)) {
+                $nftToSend = __tact_not_null(__tact_dict_get_uint_slice($self'nfts, 16, $index));
+                $self'nfts~__tact_dict_set_uint_slice(16, $index, __tact_context_get_sender());
+            }
+            raw_reserve(2000000000, 0);
+            $global_send($SendParameters$_constructor_to_value_mode_body($nftToSend, 0, 64, $Transfer$_store_cell($Transfer$_constructor_queryId_newOwner_responseDestination_customPayload_forwardAmount_forwardPayload($msg'queryId, $msg'prevOwner, $msg'prevOwner, null(), 0, $global_emptySlice()))));
+        }
+    }
+    return (($self'seed, $self'owner, $self'nfts, $self'nftCount), ());
+}
+
+(((int, slice, cell, int)), ()) $Task5$_internal_binary_AdminWithdrawalProfit((int, slice, cell, int) $self, (int) $msg) impure inline {
+    var ($self'seed, $self'owner, $self'nfts, $self'nftCount) = $self;
+    var ($msg'queryId) = $msg;
+    throw_unless(40298, ( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) ));
+    $global_send($SendParameters$_constructor_to_value_mode_body(__tact_context_get_sender(), (__tact_my_balance() - 100000000), 64, $AdminFetchProfit$_store_cell($AdminFetchProfit$_constructor_queryId($msg'queryId))));
+    return (($self'seed, $self'owner, $self'nfts, $self'nftCount), ());
+}
+
+(((int, slice, cell, int)), ()) $Task5$_internal_binary_AdminWithdrawalAllNFTs((int, slice, cell, int) $self, (int) $msg) impure inline {
+    var ($self'seed, $self'owner, $self'nfts, $self'nftCount) = $self;
+    var ($msg'queryId) = $msg;
+    if (( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) )) {
+        throw_unless(62515, ($Context$_get_value(__tact_context_get()) >= (1000000000 + ($self'nftCount * 80000000))));
+    }
+    throw_unless(4429, ( (( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) )) ? (true) : (( __tact_slice_eq_bits(my_address(), __tact_context_get_sender()) )) ));
+    repeat (min(160, $self'nftCount)) {
+        $self'nftCount = ($self'nftCount - 1);
+        $global_send($SendParameters$_constructor_to_value_mode_body(__tact_not_null(__tact_dict_get_uint_slice($self'nfts, 16, $self'nftCount)), 60000000, 0, $Transfer$_store_cell($Transfer$_constructor_queryId_newOwner_responseDestination_customPayload_forwardAmount_forwardPayload($msg'queryId, $self'owner, $self'owner, null(), 0, $global_emptySlice()))));
+    }
+    if (($self'nftCount > 0)) {
+        $global_send($SendParameters$_constructor_to_value_mode_body(my_address(), 0, 128, $AdminWithdrawalAllNFTs$_store_cell($AdminWithdrawalAllNFTs$_constructor_queryId($msg'queryId))));
+    } else {
+        $self'nfts = null();
+    }
+    return (($self'seed, $self'owner, $self'nfts, $self'nftCount), ());
+}
+
+(((int, slice, cell, int)), ()) $Task5$_internal_binary_Deploy((int, slice, cell, int) $self, (int) $deploy) impure inline {
+    var ($self'seed, $self'owner, $self'nfts, $self'nftCount) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'seed, $self'owner, $self'nfts, $self'nftCount)~$Task5$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'seed, $self'owner, $self'nfts, $self'nftCount), ());
+}
+
+;;
+;; Get methods of a Contract Task5
+;;
+
+_ %profit() method_id(79823) {
+    var self = $Task5$_contract_load();
+    var res = self~$Task5$_fun_profit();
+    return res;
+}
+
+_ %nfts() method_id(88106) {
+    var self = $Task5$_contract_load();
+    var res = self~$Task5$_fun_nfts();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmVN6weuhSD1dfwHibzZY1JUWkSDypAWTscSmXDSoFiPYo";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract Task5
+;;
+
+((int, slice, cell, int), int) $Task5$_contract_router_internal((int, slice, cell, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive OwnershipAssigned message
+    if (op == 85167505) {
+        var msg = in_msg~$OwnershipAssigned$_load();
+        self~$Task5$_internal_binary_OwnershipAssigned(msg);
+        return (self, true);
+    }
+    
+    ;; Receive AdminWithdrawalProfit message
+    if (op == 2957643261) {
+        var msg = in_msg~$AdminWithdrawalProfit$_load();
+        self~$Task5$_internal_binary_AdminWithdrawalProfit(msg);
+        return (self, true);
+    }
+    
+    ;; Receive AdminWithdrawalAllNFTs message
+    if (op == 1664696863) {
+        var msg = in_msg~$AdminWithdrawalAllNFTs$_load();
+        self~$Task5$_internal_binary_AdminWithdrawalAllNFTs(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$Task5$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $Task5$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$Task5$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $Task5$_contract_store(self);
+}

@@ -1,0 +1,54 @@
+$TokenMaster$_internal_text_a2f43c647fca1834ba717617790fa8ce6fe6ee0cb77d0b3ef0a89a93b33176f2: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCRhEZMht21gBgcfx7bTtneNHSBsHJGiRjog3QOs3R_Tdu1/output/verifier_TokenMaster.code.fc:83:76: warning: Local variable '$self'mintable' is not used
+      ($self'total_supply, $self'mintable, $self'owner, $self'jetton_content)~$TokenMaster$_fun_requireOwner();
+                                                                             ^
+$TokenMaster$_internal_binary_ProvideWalletAddress: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCRhEZMht21gBgcfx7bTtneNHSBsHJGiRjog3QOs3R_Tdu1/output/verifier_TokenMaster.code.fc:71:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$TokenMaster$_internal_binary_ProvideWalletAddress: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCRhEZMht21gBgcfx7bTtneNHSBsHJGiRjog3QOs3R_Tdu1/output/verifier_TokenMaster.code.fc:71:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$TokenMaster$_internal_binary_ProvideWalletAddress: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCRhEZMht21gBgcfx7bTtneNHSBsHJGiRjog3QOs3R_Tdu1/output/verifier_TokenMaster.code.fc:71:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$TokenMaster$_internal_binary_ChangeContent: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCRhEZMht21gBgcfx7bTtneNHSBsHJGiRjog3QOs3R_Tdu1/output/verifier_TokenMaster.code.fc:49:76: warning: Local variable '$self'jetton_content' is not used
+      ($self'total_supply, $self'mintable, $self'owner, $self'jetton_content)~$TokenMaster$_fun_requireOwner();
+                                                                             ^
+$TokenMaster$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCRhEZMht21gBgcfx7bTtneNHSBsHJGiRjog3QOs3R_Tdu1/output/verifier_TokenMaster.storage.fc:305:19: warning: Lack of end_parse.
+          return $sc~$TokenMaster$_load();
+                    ^
+$TokenMaster$_internal_binary_ChangeOwner: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCRhEZMht21gBgcfx7bTtneNHSBsHJGiRjog3QOs3R_Tdu1/output/verifier_TokenMaster.code.fc:101:76: warning: Local variable '$self'owner' is not used
+      ($self'total_supply, $self'mintable, $self'owner, $self'jetton_content)~$TokenMaster$_fun_requireOwner();
+                                                                             ^
+$TokenWallet$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCRhEZMht21gBgcfx7bTtneNHSBsHJGiRjog3QOs3R_Tdu1/output/verifier_TokenMaster.storage.fc:258:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$TokenMaster$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCRhEZMht21gBgcfx7bTtneNHSBsHJGiRjog3QOs3R_Tdu1/output/verifier_TokenMaster.code.fc:153:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCRhEZMht21gBgcfx7bTtneNHSBsHJGiRjog3QOs3R_Tdu1/output/verifier_TokenMaster.storage.fc:316:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$TokenMaster$_contract_store & $TokenMaster$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCRhEZMht21gBgcfx7bTtneNHSBsHJGiRjog3QOs3R_Tdu1/output/verifier_TokenMaster.storage.fc:301:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCRhEZMht21gBgcfx7bTtneNHSBsHJGiRjog3QOs3R_Tdu1/output/verifier_TokenMaster.storage.fc:316:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$TokenMaster$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCRhEZMht21gBgcfx7bTtneNHSBsHJGiRjog3QOs3R_Tdu1/output/verifier_TokenMaster.code.fc:77:227: warning: UnHandle bounced message with op: 0xd1735400
+  ... tAddress$_constructor_queryId_wallet_address_owner_address($msg'queryId, $wallet, $owner_address))));
+  ...                                                                                                     ^
+$TokenMaster$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCRhEZMht21gBgcfx7bTtneNHSBsHJGiRjog3QOs3R_Tdu1/output/verifier_TokenMaster.code.fc:94:171: warning: UnHandle bounced message with op: 0xd53276db
+      $global_send($SendParameters$_constructor_to_value_mode_body($msg'response_destination, 0, 64, $Excesses$_store_cell($Excesses$_constructor_query_id($msg'query_id))));
+                                                                                                                                                                            ^

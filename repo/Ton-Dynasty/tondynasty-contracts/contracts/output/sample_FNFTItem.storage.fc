@@ -1,0 +1,327 @@
+;;
+;; Type: StateInit
+;; TLB: _ code:^cell data:^cell = StateInit
+;;
+
+((cell, cell)) $StateInit$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (cell vvv'code, cell vvv'data) = __tact_tuple_destroy_2(v);
+    return (vvv'code, vvv'data);
+}
+
+tuple $StateInit$_as_optional((cell, cell) v) inline {
+    var (v'code, v'data) = v;
+    return __tact_tuple_create_2(v'code, v'data);
+}
+
+;;
+;; Type: Context
+;; TLB: _ bounced:bool sender:address value:int257 raw:^slice = Context
+;;
+
+((int, slice, int, slice)) $Context$_tensor_cast((int, slice, int, slice) v) asm "NOP";
+
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline {
+    return (bounce, to, value, mode, body, code, data);
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode_bounce_body(slice to, int value, int mode, int bounce, cell body) inline {
+    return (bounce, to, value, mode, body, null(), null());
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_bounce_mode_body(slice to, int value, int bounce, int mode, cell body) inline {
+    return (bounce, to, value, mode, body, null(), null());
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode_body(slice to, int value, int mode, cell body) inline {
+    return (true, to, value, mode, body, null(), null());
+}
+
+;;
+;; Type: Transfer
+;; Header: 0x5fcc3d14
+;; TLB: transfer#5fcc3d14 query_id:uint64 new_owner:address response_destination:address custom_payload:Maybe ^cell forward_amount:coins forward_payload:remainder<slice> = Transfer
+;;
+
+(slice, ((int, slice, slice, cell, int, slice))) $Transfer$_load(slice sc_0) inline_ref {
+    throw_unless(129, sc_0~load_uint(32) == 1607220500);
+    var v'query_id = sc_0~load_uint(64);
+    var v'new_owner = sc_0~__tact_load_address();
+    var v'response_destination = sc_0~__tact_load_address();
+    var v'custom_payload = sc_0~load_int(1) ? sc_0~load_ref() : null();
+    var v'forward_amount = sc_0~load_coins();
+    var v'forward_payload = sc_0;
+    return (sc_0, (v'query_id, v'new_owner, v'response_destination, v'custom_payload, v'forward_amount, v'forward_payload));
+}
+
+;;
+;; Type: OwnershipAssigned
+;; Header: 0x05138d91
+;; TLB: ownership_assigned#05138d91 query_id:uint64 prev_owner:address forward_payload:remainder<slice> = OwnershipAssigned
+;;
+
+builder $OwnershipAssigned$_store(builder build_0, (int, slice, slice) v) inline {
+    var (v'query_id, v'prev_owner, v'forward_payload) = v;
+    build_0 = store_uint(build_0, 85167505, 32);
+    build_0 = build_0.store_uint(v'query_id, 64);
+    build_0 = __tact_store_address(build_0, v'prev_owner);
+    build_0 = build_0.store_slice(v'forward_payload);
+    return build_0;
+}
+
+cell $OwnershipAssigned$_store_cell((int, slice, slice) v) inline {
+    return $OwnershipAssigned$_store(begin_cell(), v).end_cell();
+}
+
+((int, slice, slice)) $OwnershipAssigned$_constructor_query_id_prev_owner_forward_payload(int query_id, slice prev_owner, slice forward_payload) inline {
+    return (query_id, prev_owner, forward_payload);
+}
+
+;;
+;; Type: Excesses
+;; Header: 0xd53276db
+;; TLB: excesses#d53276db query_id:uint64 = Excesses
+;;
+
+builder $Excesses$_store(builder build_0, (int) v) inline {
+    var (v'query_id) = v;
+    build_0 = store_uint(build_0, 3576854235, 32);
+    build_0 = build_0.store_uint(v'query_id, 64);
+    return build_0;
+}
+
+cell $Excesses$_store_cell((int) v) inline {
+    return $Excesses$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $Excesses$_constructor_query_id(int query_id) inline {
+    return (query_id);
+}
+
+;;
+;; Type: GetStaticData
+;; Header: 0x2fcb26a2
+;; TLB: get_static_data#2fcb26a2 query_id:uint64 = GetStaticData
+;;
+
+(slice, ((int))) $GetStaticData$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 801842850);
+    var v'query_id = sc_0~load_uint(64);
+    return (sc_0, (v'query_id));
+}
+
+((int)) $GetStaticData$_tensor_cast((int) v) asm "NOP";
+
+;;
+;; Type: ReportStaticData
+;; Header: 0x8b771735
+;; TLB: report_static_data#8b771735 query_id:uint64 index:uint256 collection:address = ReportStaticData
+;;
+
+builder $ReportStaticData$_store(builder build_0, (int, int, slice) v) inline {
+    var (v'query_id, v'index, v'collection) = v;
+    build_0 = store_uint(build_0, 2339837749, 32);
+    build_0 = build_0.store_uint(v'query_id, 64);
+    build_0 = build_0.store_uint(v'index, 256);
+    build_0 = __tact_store_address(build_0, v'collection);
+    return build_0;
+}
+
+cell $ReportStaticData$_store_cell((int, int, slice) v) inline {
+    return $ReportStaticData$_store(begin_cell(), v).end_cell();
+}
+
+((int, int, slice)) $ReportStaticData$_constructor_query_id_index_collection(int query_id, int index, slice collection) inline {
+    return (query_id, index, collection);
+}
+
+;;
+;; Type: NftData
+;; TLB: _ is_initialized:bool index:int257 collection_address:address owner_address:address individual_content:^cell = NftData
+;;
+
+(int, int, slice, slice, cell) $NftData$_to_external(((int, int, slice, slice, cell)) v) inline {
+    var (v'is_initialized, v'index, v'collection_address, v'owner_address, v'individual_content) = v; 
+    return (v'is_initialized, v'index, v'collection_address, v'owner_address, v'individual_content);
+}
+
+((int, int, slice, slice, cell)) $NftData$_constructor_is_initialized_index_collection_address_owner_address_individual_content(int is_initialized, int index, slice collection_address, slice owner_address, cell individual_content) inline {
+    return (is_initialized, index, collection_address, owner_address, individual_content);
+}
+
+;;
+;; Type: JettonMint
+;; Header: 0x89b71d09
+;; TLB: jetton_mint#89b71d09 origin:address receiver:address amount:int257 custom_payload:Maybe ^cell forward_ton_amount:coins forward_payload:remainder<slice> = JettonMint
+;;
+
+builder $JettonMint$_store(builder build_0, (slice, slice, int, cell, int, slice) v) inline_ref {
+    var (v'origin, v'receiver, v'amount, v'custom_payload, v'forward_ton_amount, v'forward_payload) = v;
+    build_0 = store_uint(build_0, 2310479113, 32);
+    build_0 = __tact_store_address(build_0, v'origin);
+    build_0 = __tact_store_address(build_0, v'receiver);
+    build_0 = build_0.store_int(v'amount, 257);
+    build_0 = ~ null?(v'custom_payload) ? build_0.store_int(true, 1).store_ref(v'custom_payload) : build_0.store_int(false, 1);
+    build_0 = build_0.store_coins(v'forward_ton_amount);
+    build_0 = build_0.store_slice(v'forward_payload);
+    return build_0;
+}
+
+cell $JettonMint$_store_cell((slice, slice, int, cell, int, slice) v) inline {
+    return $JettonMint$_store(begin_cell(), v).end_cell();
+}
+
+((slice, slice, int, cell, int, slice)) $JettonMint$_constructor_origin_receiver_amount_custom_payload_forward_ton_amount_forward_payload(slice origin, slice receiver, int amount, cell custom_payload, int forward_ton_amount, slice forward_payload) inline {
+    return (origin, receiver, amount, custom_payload, forward_ton_amount, forward_payload);
+}
+
+;;
+;; Type: FractionParams
+;; Header: 0xbbb3004f
+;; TLB: fraction_params#bbb3004f max_supply:coins jetton_content:^cell = FractionParams
+;;
+
+builder $FractionParams$_store(builder build_0, (int, cell) v) inline {
+    var (v'max_supply, v'jetton_content) = v;
+    build_0 = store_uint(build_0, 3149070415, 32);
+    build_0 = build_0.store_coins(v'max_supply);
+    build_0 = build_0.store_ref(v'jetton_content);
+    return build_0;
+}
+
+(slice, ((int, cell))) $FractionParams$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 3149070415);
+    var v'max_supply = sc_0~load_coins();
+    var v'jetton_content = sc_0~load_ref();
+    return (sc_0, (v'max_supply, v'jetton_content));
+}
+
+;;
+;; Type: TryRedeem
+;; Header: 0xbaa13f5f
+;; TLB: try_redeem#baa13f5f sender:address = TryRedeem
+;;
+
+builder $TryRedeem$_store(builder build_0, (slice) v) inline {
+    var (v'sender) = v;
+    build_0 = store_uint(build_0, 3131129695, 32);
+    build_0 = __tact_store_address(build_0, v'sender);
+    return build_0;
+}
+
+cell $TryRedeem$_store_cell((slice) v) inline {
+    return $TryRedeem$_store(begin_cell(), v).end_cell();
+}
+
+((slice)) $TryRedeem$_constructor_sender(slice sender) inline {
+    return (sender);
+}
+
+;;
+;; Type: Compose
+;; Header: 0xbac2f9a4
+;; TLB: compose#bac2f9a4 new_owner:address = Compose
+;;
+
+(slice, ((slice))) $Compose$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 3133340068);
+    var v'new_owner = sc_0~__tact_load_address();
+    return (sc_0, (v'new_owner));
+}
+
+;;
+;; Type: NFTFraction
+;;
+
+builder $NFTFraction$init$_store(builder build_0, (int, slice, cell) v) inline {
+    var (v'max_supply, v'owner, v'jetton_content) = v;
+    build_0 = build_0.store_int(v'max_supply, 257);
+    build_0 = __tact_store_address(build_0, v'owner);
+    build_0 = build_0.store_ref(v'jetton_content);
+    return build_0;
+}
+
+(cell, cell) $NFTFraction$_init_child(cell sys', int $max_supply, slice $owner, cell $jetton_content) inline_ref {
+    slice sc' = sys'.begin_parse();
+    cell source = sc'~load_dict();
+    cell contracts = new_dict();
+    
+    ;; Contract Code: NFTFraction
+    cell mine = __tact_dict_get_code(source, 58095);
+    contracts = __tact_dict_set_code(contracts, 58095, mine);
+    
+    ;; Contract Code: NFTFractionWallet
+    cell code_26611 = __tact_dict_get_code(source, 26611);
+    contracts = __tact_dict_set_code(contracts, 26611, code_26611);
+    
+    ;; Build cell
+    builder b = begin_cell();
+    b = b.store_ref(begin_cell().store_dict(contracts).end_cell());
+    b = b.store_int(false, 1);
+    b = $NFTFraction$init$_store(b, ($max_supply, $owner, $jetton_content));
+    return (mine, b.end_cell());
+}
+
+;;
+;; Type: FNFTItem
+;;
+
+builder $FNFTItem$_store(builder build_0, (slice, int, slice, cell, int, int, (int, cell)) v) inline {
+    var (v'collection_address, v'index, v'owner, v'individual_content, v'is_initialized, v'is_locked, (v'fraction_params'max_supply, v'fraction_params'jetton_content)) = v;
+    build_0 = __tact_store_address(build_0, v'collection_address);
+    build_0 = build_0.store_int(v'index, 257);
+    build_0 = __tact_store_address(build_0, v'owner);
+    build_0 = build_0.store_ref(v'individual_content);
+    build_0 = build_0.store_int(v'is_initialized, 1);
+    build_0 = build_0.store_int(v'is_locked, 1);
+    build_0 = $FractionParams$_store(build_0, (v'fraction_params'max_supply, v'fraction_params'jetton_content));
+    return build_0;
+}
+
+(slice, ((slice, int, slice, cell, int, int, (int, cell)))) $FNFTItem$_load(slice sc_0) inline {
+    var v'collection_address = sc_0~__tact_load_address();
+    var v'index = sc_0~load_int(257);
+    var v'owner = sc_0~__tact_load_address();
+    var v'individual_content = sc_0~load_ref();
+    var v'is_initialized = sc_0~load_int(1);
+    var v'is_locked = sc_0~load_int(1);
+    var v'fraction_params = sc_0~$FractionParams$_load();
+    return (sc_0, (v'collection_address, v'index, v'owner, v'individual_content, v'is_initialized, v'is_locked, v'fraction_params));
+}
+
+(slice, ((slice, int, slice, cell, (int, cell)))) $FNFTItem$init$_load(slice sc_0) inline {
+    var v'collection_address = sc_0~__tact_load_address();
+    var v'index = sc_0~load_int(257);
+    var v'owner = sc_0~__tact_load_address();
+    var v'individual_content = sc_0~load_ref();
+    var v'fraction_params = sc_0~$FractionParams$_load();
+    return (sc_0, (v'collection_address, v'index, v'owner, v'individual_content, v'fraction_params));
+}
+
+(slice, int, slice, cell, int, int, (int, cell)) $FNFTItem$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$FNFTItem$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (slice collection_address, int index, slice owner, cell individual_content, (int, cell) fraction_params) = $sc~$FNFTItem$init$_load();
+        $sc.end_parse();
+        return $FNFTItem$_contract_init(collection_address, index, owner, individual_content, fraction_params);
+    }
+}
+
+() $FNFTItem$_contract_store((slice, int, slice, cell, int, int, (int, cell)) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $FNFTItem$_store(b, v);
+    set_data(b.end_cell());
+}

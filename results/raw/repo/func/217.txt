@@ -1,0 +1,75 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./HipoFinance/contract/contracts/loan.fc:108:19: warning: Lack of end_parse.
+      slice src = cs~load_msg_addr();
+                    ^
+send_new_stake_fee: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./HipoFinance/contract/contracts/imports/utils.fc:578:19: warning: Local variable 'm_fwd_fee' is not used
+      int m_fwd_fee = msg_fwd_fee(lump_price, bit_price, cell_price, 1088, 2);
+                    ^
+get_election_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./HipoFinance/contract/contracts/imports/utils.fc:124:70: warning: Lack of end_parse.
+      return ( cs~load_uint(32), cs~load_uint(32), cs~load_uint(32), cs~load_uint(32) );
+                                                                       ^
+get_vset_times: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./HipoFinance/contract/contracts/imports/utils.fc:198:34: warning: Lack of end_parse.
+      return ( cs~load_uint(32), cs~load_uint(32) );
+                                   ^
+get_validators_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./HipoFinance/contract/contracts/imports/utils.fc:134:52: warning: Lack of end_parse.
+      return ( cs~load_uint(16), cs~load_uint(16), cs~load_uint(16) );
+                                                     ^
+get_stake_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./HipoFinance/contract/contracts/imports/utils.fc:140:67: warning: Lack of end_parse.
+      return ( cs~load_coins(), cs~load_coins(), cs~load_coins(), cs~load_uint(32) );
+                                                                    ^
+get_msg_forward_prices: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./HipoFinance/contract/contracts/imports/utils.fc:189:52: warning: Lack of end_parse.
+      return ( cs~load_uint(64), cs~load_uint(64), cs~load_uint(64) );
+                                                     ^
+get_gas_prices: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./HipoFinance/contract/contracts/imports/utils.fc:175:34: warning: Lack of end_parse.
+      return ( cs~load_uint(64), cs~load_uint(64) );
+                                   ^
+recover_stake_fee: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./HipoFinance/contract/contracts/imports/utils.fc:605:55: warning: Local variable 'bit_price' is not used
+      ( int lump_price, int bit_price, int cell_price ) = get_msg_forward_prices(config::fwd_prices);
+                                                        ^
+recover_stake_fee: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./HipoFinance/contract/contracts/imports/utils.fc:605:55: warning: Local variable 'cell_price' is not used
+      ( int lump_price, int bit_price, int cell_price ) = get_msg_forward_prices(config::fwd_prices);
+                                                        ^
+recover_stake_fee: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./HipoFinance/contract/contracts/imports/utils.fc:606:64: warning: Local variable 'mc_bit_price' is not used
+      ( int mc_lump_price, int mc_bit_price, int mc_cell_price ) = get_msg_forward_prices(config::mc_fwd_prices);
+                                                                 ^
+recover_stake_fee: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./HipoFinance/contract/contracts/imports/utils.fc:606:64: warning: Local variable 'mc_cell_price' is not used
+      ( int mc_lump_price, int mc_bit_price, int mc_cell_price ) = get_msg_forward_prices(config::mc_fwd_prices);
+                                                                 ^
+get_elector: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./HipoFinance/contract/contracts/imports/utils.fc:116:64: warning: Lack of end_parse.
+      return ( chain::main, config_param(config::elector_address).begin_parse().preload_uint(256) );
+                                                                 ^
+max_recommended_punishment_for_validator_misbehaviour: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./HipoFinance/contract/contracts/imports/utils.fc:306:49: warning: Lack of end_parse.
+          , cs~load_uint(16), cs~load_uint(16), cs~load_uint(16)
+                                                  ^
+max_recommended_punishment_for_validator_misbehaviour: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./HipoFinance/contract/contracts/imports/utils.fc:302:7: warning: Local variable 'prefix' is not used
+      ) = ( cs~load_uint(8)
+        ^
+max_recommended_punishment_for_validator_misbehaviour: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./HipoFinance/contract/contracts/imports/utils.fc:302:7: warning: Local variable 'unpunishable_interval' is not used
+      ) = ( cs~load_uint(8)
+        ^
+max_recommended_punishment_for_validator_misbehaviour: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./HipoFinance/contract/contracts/imports/utils.fc:302:7: warning: Local variable 'long_interval' is not used
+      ) = ( cs~load_uint(8)
+        ^
+save_data & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./HipoFinance/contract/contracts/loan.fc:19:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/repo/./HipoFinance/contract/contracts/loan.fc:10:9: warning: Cell of get_data and set_data are inconsistent.
+          .store_builder(current_elector)
+          ^

@@ -1,0 +1,20 @@
+messages::send_log: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/freelance-exchange-tdb/contracts/imports/messages.fc:60:14: warning: Local variable 'msg' is not used
+      cell msg = begin_cell()
+               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/freelance-exchange-tdb/contracts/user_nft.fc:35:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/freelance-exchange-tdb/contracts/user_nft.fc:144:33: warning: Local variable 'order_nft_address' is not used
+          slice order_nft_address = in_msg_body~load_msg_addr();
+                                  ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/freelance-exchange-tdb/contracts/user_nft.fc:145:22: warning: Local variable 'op_order' is not used
+          int op_order = in_msg_body~load_uint(32);
+                       ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/freelance-exchange-tdb/contracts/user_nft.fc:89:26: warning: Local variable 'with_content' is not used
+          int with_content = in_msg_body~load_uint(1);
+                           ^

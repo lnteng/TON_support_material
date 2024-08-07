@@ -1,0 +1,155 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_Strings.headers.fc";
+#include "sample_Strings.stdlib.fc";
+#include "sample_Strings.constants.fc";
+#include "sample_Strings.storage.fc";
+
+;;
+;; Contract Strings functions
+;;
+
+(slice, slice, slice, slice, slice, slice) $Strings$_contract_init() impure inline_ref {
+    var (($self's1, $self's2, $self's3, $self's4, $self's5, $self's6)) = (__gen_slice_string_e3f85eb426d40008090255016d73ef2f09a300fbb999ca2472fdf0f0c1ec6566(), __gen_slice_string_32cf4caddee342cb5e768da705885c0593929d1050fb809384143a37452450d2(), null(), null(), null(), null());
+    int $i1 = (- 12345);
+    int $i2 = 6780000000;
+    $self's3 = __tact_int_to_string($i1);
+    $self's4 = __tact_float_to_string($i1, 3);
+    $self's5 = $Int$_fun_toCoinsString($i2);
+    tuple $sb = __tact_string_builder_start_string();
+    $sb~__tact_string_builder_append($self's1);
+    $sb~__tact_string_builder_append(__gen_slice_string_95de91cc456e2efe4166ea52a3475bf51c3ce39198449de8603e33e1271e5657());
+    $sb~__tact_string_builder_append($self's5);
+    $self's6 = __tact_string_builder_end_slice($sb);
+    return ($self's1, $self's2, $self's3, $self's4, $self's5, $self's6);
+}
+
+((slice, slice, slice, slice, slice, slice), slice) $Strings$_fun_result((slice, slice, slice, slice, slice, slice) $self) impure inline_ref {
+    var (($self's1, $self's2, $self's3, $self's4, $self's5, $self's6)) = $self;
+    return (($self's1, $self's2, $self's3, $self's4, $self's5, $self's6), $self's1);
+}
+
+;;
+;; Receivers of a Contract Strings
+;;
+
+((slice, slice, slice, slice, slice, slice), ()) $Strings$_internal_text_3242cc65952f05d9b07d2b2caad91638a341c8e1f253c238d4de60b90bfd734a((slice, slice, slice, slice, slice, slice) $self) impure inline {
+    var ($self's1, $self's2, $self's3, $self's4, $self's5, $self's6) = $self;
+    __tact_nop();
+    __tact_nop();
+    __tact_nop();
+    __tact_nop();
+    __tact_nop();
+    __tact_nop();
+    return (($self's1, $self's2, $self's3, $self's4, $self's5, $self's6), ());
+}
+
+((slice, slice, slice, slice, slice, slice), ()) $Strings$_internal_text_ae9b15f0d50e95164ef677febc57a5f9ae379b3acf721b694a482c77db65c3d5((slice, slice, slice, slice, slice, slice) $self) impure inline {
+    var ($self's1, $self's2, $self's3, $self's4, $self's5, $self's6) = $self;
+    slice $s = __gen_slice_string_c8d8a8c2e64db653ae28052eeca2271e51f0459913dfac21edc005b5ae4deaf6();
+    __tact_nop();
+    return (($self's1, $self's2, $self's3, $self's4, $self's5, $self's6), ());
+}
+
+(((slice, slice, slice, slice, slice, slice)), ()) $Strings$_internal_binary_Deploy((slice, slice, slice, slice, slice, slice) $self, (int) $deploy) impure inline {
+    var ($self's1, $self's2, $self's3, $self's4, $self's5, $self's6) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self's1, $self's2, $self's3, $self's4, $self's5, $self's6)~$Strings$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self's1, $self's2, $self's3, $self's4, $self's5, $self's6), ());
+}
+
+;;
+;; Get methods of a Contract Strings
+;;
+
+_ %result() method_id(93778) {
+    var self = $Strings$_contract_load();
+    var res = self~$Strings$_fun_result();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmP51NQrjxpFwFJBTCCqbY3iXBD96zDyGkeCC1ZePaVWnp";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract Strings
+;;
+
+((slice, slice, slice, slice, slice, slice), int) $Strings$_contract_router_internal((slice, slice, slice, slice, slice, slice) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$Strings$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "show all" message
+        if (text_op == 0x3242cc65952f05d9b07d2b2caad91638a341c8e1f253c238d4de60b90bfd734a) {
+            self~$Strings$_internal_text_3242cc65952f05d9b07d2b2caad91638a341c8e1f253c238d4de60b90bfd734a();
+            return (self, true);
+        }
+        
+        ;; Receive "show ops" message
+        if (text_op == 0xae9b15f0d50e95164ef677febc57a5f9ae379b3acf721b694a482c77db65c3d5) {
+            self~$Strings$_internal_text_ae9b15f0d50e95164ef677febc57a5f9ae379b3acf721b694a482c77db65c3d5();
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $Strings$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$Strings$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $Strings$_contract_store(self);
+}

@@ -1,0 +1,34 @@
+$MyContract1$_internal_binary_Restart: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB8TwBN8UldP3Rm8Hi_7wd4-wopJ0GlzAVjb7Se6jz_abMN/tact_MyContract1.code.fc:54:54: warning: Local variable '$self'level' is not used
+      ($self'id, $self'level, $self'value, $self'owner)~$MyContract1$_fun_requireOwner();
+                                                       ^
+$MyContract1$_internal_binary_Restart: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB8TwBN8UldP3Rm8Hi_7wd4-wopJ0GlzAVjb7Se6jz_abMN/tact_MyContract1.code.fc:54:54: warning: Local variable '$self'value' is not used
+      ($self'id, $self'level, $self'value, $self'owner)~$MyContract1$_fun_requireOwner();
+                                                       ^
+$MyContract1$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB8TwBN8UldP3Rm8Hi_7wd4-wopJ0GlzAVjb7Se6jz_abMN/tact_MyContract1.code.fc:15:61: warning: Local variable '$self'id' is not used
+      var (($self'id, $self'level, $self'value, $self'owner)) = (null(), 0, 0, null());
+                                                              ^
+$MyContract1$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB8TwBN8UldP3Rm8Hi_7wd4-wopJ0GlzAVjb7Se6jz_abMN/tact_MyContract1.code.fc:15:61: warning: Local variable '$self'owner' is not used
+      var (($self'id, $self'level, $self'value, $self'owner)) = (null(), 0, 0, null());
+                                                              ^
+$MyContract1$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB8TwBN8UldP3Rm8Hi_7wd4-wopJ0GlzAVjb7Se6jz_abMN/tact_MyContract1.storage.fc:124:19: warning: Lack of end_parse.
+          return $sc~$MyContract1$_load();
+                    ^
+$MyContract1$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB8TwBN8UldP3Rm8Hi_7wd4-wopJ0GlzAVjb7Se6jz_abMN/tact_MyContract1.code.fc:129:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB8TwBN8UldP3Rm8Hi_7wd4-wopJ0GlzAVjb7Se6jz_abMN/tact_MyContract1.storage.fc:135:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$MyContract1$_contract_store & $MyContract1$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB8TwBN8UldP3Rm8Hi_7wd4-wopJ0GlzAVjb7Se6jz_abMN/tact_MyContract1.storage.fc:120:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB8TwBN8UldP3Rm8Hi_7wd4-wopJ0GlzAVjb7Se6jz_abMN/tact_MyContract1.storage.fc:135:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

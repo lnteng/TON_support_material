@@ -1,0 +1,144 @@
+getConfig: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-get-methods.fc:75:153: warning: Local variable 'asset_dynamics_collection' is not used
+    (cell meta, cell user_contract_code, cell asset_config_collection, int if_active, slice admin, cell wallet_to_master, cell asset_dynamics_collection) = storage::load();
+                                                                                                                                                          ^
+unpack_asset_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/asset-config-packer.fc:17:46: warning: Lack of end_parse.
+  	int target_utilization = asset_config_params~load_uint(64);
+  	                                            ^
+getAssetsData: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-get-methods.fc:69:153: warning: Local variable 'meta' is not used
+    (cell meta, cell user_contract_code, cell asset_config_collection, int if_active, slice admin, cell wallet_to_master, cell asset_dynamics_collection) = storage::load();
+                                                                                                                                                          ^
+getAssetsData: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-get-methods.fc:69:153: warning: Local variable 'user_contract_code' is not used
+    (cell meta, cell user_contract_code, cell asset_config_collection, int if_active, slice admin, cell wallet_to_master, cell asset_dynamics_collection) = storage::load();
+                                                                                                                                                          ^
+getAssetsData: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-get-methods.fc:69:153: warning: Local variable 'asset_config_collection' is not used
+    (cell meta, cell user_contract_code, cell asset_config_collection, int if_active, slice admin, cell wallet_to_master, cell asset_dynamics_collection) = storage::load();
+                                                                                                                                                          ^
+getAssetsData: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-get-methods.fc:69:153: warning: Local variable 'if_active' is not used
+    (cell meta, cell user_contract_code, cell asset_config_collection, int if_active, slice admin, cell wallet_to_master, cell asset_dynamics_collection) = storage::load();
+                                                                                                                                                          ^
+getAssetsData: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-get-methods.fc:69:153: warning: Local variable 'admin' is not used
+    (cell meta, cell user_contract_code, cell asset_config_collection, int if_active, slice admin, cell wallet_to_master, cell asset_dynamics_collection) = storage::load();
+                                                                                                                                                          ^
+getAssetsData: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-get-methods.fc:69:153: warning: Local variable 'wallet_to_master' is not used
+    (cell meta, cell user_contract_code, cell asset_config_collection, int if_active, slice admin, cell wallet_to_master, cell asset_dynamics_collection) = storage::load();
+                                                                                                                                                          ^
+get_asset_rates: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-utils.fc:7:116: warning: Local variable 'last_accural' is not used
+    var (_, asset_s_rate, asset_b_rate, total_supply_principal, total_borrow_principal, last_accural, token_balance) = unpack_asset_dynamics(asset_dynamics);
+                                                                                                                     ^
+get_asset_rates: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-utils.fc:7:116: warning: Local variable 'token_balance' is not used
+    var (_, asset_s_rate, asset_b_rate, total_supply_principal, total_borrow_principal, last_accural, token_balance) = unpack_asset_dynamics(asset_dynamics);
+                                                                                                                     ^
+get_asset_rates: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-utils.fc:9:263: warning: Local variable 'oracle' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+get_asset_rates: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-utils.fc:9:263: warning: Local variable 'decimals' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+get_asset_rates: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-utils.fc:9:263: warning: Local variable 'collateral_factor' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+get_asset_rates: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-utils.fc:9:263: warning: Local variable 'liquidation_threshold' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+get_asset_rates: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-utils.fc:9:263: warning: Local variable 'liquidation_penalty' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+get_assets_rates: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-get-methods.fc:24:153: warning: Local variable 'meta' is not used
+    (cell meta, cell user_contract_code, cell asset_config_collection, int if_active, slice admin, cell wallet_to_master, cell asset_dynamics_collection) = storage::load();
+                                                                                                                                                          ^
+get_assets_rates: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-get-methods.fc:24:153: warning: Local variable 'user_contract_code' is not used
+    (cell meta, cell user_contract_code, cell asset_config_collection, int if_active, slice admin, cell wallet_to_master, cell asset_dynamics_collection) = storage::load();
+                                                                                                                                                          ^
+get_assets_rates: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-get-methods.fc:24:153: warning: Local variable 'if_active' is not used
+    (cell meta, cell user_contract_code, cell asset_config_collection, int if_active, slice admin, cell wallet_to_master, cell asset_dynamics_collection) = storage::load();
+                                                                                                                                                          ^
+get_assets_rates: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-get-methods.fc:24:153: warning: Local variable 'admin' is not used
+    (cell meta, cell user_contract_code, cell asset_config_collection, int if_active, slice admin, cell wallet_to_master, cell asset_dynamics_collection) = storage::load();
+                                                                                                                                                          ^
+get_assets_rates: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-get-methods.fc:24:153: warning: Local variable 'wallet_to_master' is not used
+    (cell meta, cell user_contract_code, cell asset_config_collection, int if_active, slice admin, cell wallet_to_master, cell asset_dynamics_collection) = storage::load();
+                                                                                                                                                          ^
+get_asset_totals: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-utils.fc:119:86: warning: Local variable 'price' is not used
+    var (price, _, _, total_supply_principal, total_borrow_principal, last_accural, _) = unpack_asset_dynamics(asset_dynamics);
+                                                                                       ^
+storage::load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-storage.fc:34:38: warning: Lack of end_parse.
+    cell asset_dynamics_collection = ds~load_dict();
+                                       ^
+storage::load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-storage.fc:33:49: warning: Lack of end_parse.
+    cell wallet_to_master = unpacked_marked_config~load_dict();
+                                                  ^
+get_assets_reserves: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-get-methods.fc:47:153: warning: Local variable 'meta' is not used
+    (cell meta, cell user_contract_code, cell asset_config_collection, int if_active, slice admin, cell wallet_to_master, cell asset_dynamics_collection) = storage::load();
+                                                                                                                                                          ^
+get_assets_reserves: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-get-methods.fc:47:153: warning: Local variable 'user_contract_code' is not used
+    (cell meta, cell user_contract_code, cell asset_config_collection, int if_active, slice admin, cell wallet_to_master, cell asset_dynamics_collection) = storage::load();
+                                                                                                                                                          ^
+get_assets_reserves: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-get-methods.fc:47:153: warning: Local variable 'if_active' is not used
+    (cell meta, cell user_contract_code, cell asset_config_collection, int if_active, slice admin, cell wallet_to_master, cell asset_dynamics_collection) = storage::load();
+                                                                                                                                                          ^
+get_assets_reserves: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-get-methods.fc:47:153: warning: Local variable 'admin' is not used
+    (cell meta, cell user_contract_code, cell asset_config_collection, int if_active, slice admin, cell wallet_to_master, cell asset_dynamics_collection) = storage::load();
+                                                                                                                                                          ^
+get_assets_reserves: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-get-methods.fc:47:153: warning: Local variable 'wallet_to_master' is not used
+    (cell meta, cell user_contract_code, cell asset_config_collection, int if_active, slice admin, cell wallet_to_master, cell asset_dynamics_collection) = storage::load();
+                                                                                                                                                          ^
+get_current_rates: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-utils.fc:46:104: warning: Local variable 'total_supply_principal' is not used
+    var (_, s_rate, b_rate, total_supply_principal, total_borrow_principal, last_accural, token_balance) = unpack_asset_dynamics(asset_dynamics);
+                                                                                                         ^
+get_current_rates: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-utils.fc:46:104: warning: Local variable 'total_borrow_principal' is not used
+    var (_, s_rate, b_rate, total_supply_principal, total_borrow_principal, last_accural, token_balance) = unpack_asset_dynamics(asset_dynamics);
+                                                                                                         ^
+get_current_rates: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-utils.fc:46:104: warning: Local variable 'last_accural' is not used
+    var (_, s_rate, b_rate, total_supply_principal, total_borrow_principal, last_accural, token_balance) = unpack_asset_dynamics(asset_dynamics);
+                                                                                                         ^
+get_current_rates: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/master-utils.fc:46:104: warning: Local variable 'token_balance' is not used
+    var (_, s_rate, b_rate, total_supply_principal, total_borrow_principal, last_accural, token_balance) = unpack_asset_dynamics(asset_dynamics);
+                                                                                                         ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/master.fc:159:28: warning: Lack of end_parse.
+    slice sender_address = cs~load_msg_addr();
+                             ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/master.fc:296:31: warning: Local variable 'wc' is not used
+      var (wc, admin_addr_hash) = parse_std_addr(admin);
+                                ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/master.fc:260:31: warning: Local variable 'wc' is not used
+      var (wc, admin_addr_hash) = parse_std_addr(admin);
+                                ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/master.fc:260:31: warning: Local variable 'admin_addr_hash' is not used
+      var (wc, admin_addr_hash) = parse_std_addr(admin);
+                                ^

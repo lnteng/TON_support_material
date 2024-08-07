@@ -1,0 +1,145 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_Interest.headers.fc";
+#include "sample_Interest.stdlib.fc";
+#include "sample_Interest.storage.fc";
+
+;;
+;; Contract Interest functions
+;;
+
+(int, int, int, int) $Interest$_contract_init() impure inline_ref {
+    var (($self'interestPercent, $self'depositTime, $self'depositAmount, $self'totalEarned)) = (null(), 0, 0, 0);
+    $self'interestPercent = 3250;
+    return ($self'interestPercent, $self'depositTime, $self'depositAmount, $self'totalEarned);
+}
+
+((int, int, int, int), int) $Interest$_fun_total((int, int, int, int) $self) impure inline_ref {
+    var (($self'interestPercent, $self'depositTime, $self'depositAmount, $self'totalEarned)) = $self;
+    return (($self'interestPercent, $self'depositTime, $self'depositAmount, $self'totalEarned), $self'totalEarned);
+}
+
+;;
+;; Receivers of a Contract Interest
+;;
+
+(((int, int, int, int)), ()) $Interest$_internal_binary_Deposit((int, int, int, int) $self, (int) $msg) impure inline {
+    var ($self'interestPercent, $self'depositTime, $self'depositAmount, $self'totalEarned) = $self;
+    var ($msg'amount) = $msg;
+    throw_unless(35131, ($self'depositAmount == 0));
+    $self'depositTime = now();
+    $self'depositAmount = $msg'amount;
+    return (($self'interestPercent, $self'depositTime, $self'depositAmount, $self'totalEarned), ());
+}
+
+(((int, int, int, int)), ()) $Interest$_internal_binary_Withdraw((int, int, int, int) $self, (int) $msg) impure inline {
+    var ($self'interestPercent, $self'depositTime, $self'depositAmount, $self'totalEarned) = $self;
+    var ($msg'amount) = $msg;
+    throw_unless(42552, ($msg'amount >= $self'depositAmount));
+    $self'depositAmount = ($self'depositAmount - $msg'amount);
+    int $durationSeconds = (now() - $self'depositTime);
+    int $earned = (((($msg'amount * $durationSeconds) * $self'interestPercent) / 31536000) / 100000);
+    __tact_nop();
+    $self'totalEarned = ($self'totalEarned + $earned);
+    return (($self'interestPercent, $self'depositTime, $self'depositAmount, $self'totalEarned), ());
+}
+
+(((int, int, int, int)), ()) $Interest$_internal_binary_Deploy((int, int, int, int) $self, (int) $deploy) impure inline {
+    var ($self'interestPercent, $self'depositTime, $self'depositAmount, $self'totalEarned) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'interestPercent, $self'depositTime, $self'depositAmount, $self'totalEarned)~$Interest$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'interestPercent, $self'depositTime, $self'depositAmount, $self'totalEarned), ());
+}
+
+;;
+;; Get methods of a Contract Interest
+;;
+
+_ %total() method_id(100421) {
+    var self = $Interest$_contract_load();
+    var res = self~$Interest$_fun_total();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmdtjGPmPZ6P3CLPfk4iMaaFE3sv6JTaohHRDrtVizp1vW";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract Interest
+;;
+
+((int, int, int, int), int) $Interest$_contract_router_internal((int, int, int, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive Deposit message
+    if (op == 569292295) {
+        var msg = in_msg~$Deposit$_load();
+        self~$Interest$_internal_binary_Deposit(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Withdraw message
+    if (op == 195467089) {
+        var msg = in_msg~$Withdraw$_load();
+        self~$Interest$_internal_binary_Withdraw(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$Interest$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $Interest$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$Interest$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $Interest$_contract_store(self);
+}

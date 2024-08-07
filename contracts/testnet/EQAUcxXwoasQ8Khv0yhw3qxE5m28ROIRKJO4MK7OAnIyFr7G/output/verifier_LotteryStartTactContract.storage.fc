@@ -1,0 +1,285 @@
+;;
+;; Type: StateInit
+;; TLB: _ code:^cell data:^cell = StateInit
+;;
+
+((cell, cell)) $StateInit$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (cell vvv'code, cell vvv'data) = __tact_tuple_destroy_2(v);
+    return (vvv'code, vvv'data);
+}
+
+;;
+;; Type: Context
+;; TLB: _ bounced:bool sender:address value:int257 raw:^slice = Context
+;;
+
+_ $Context$_get_value((int, slice, int, slice) v) inline {
+    var (v'bounced, v'sender, v'value, v'raw) = v;
+    return v'value;
+}
+
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline {
+    return (bounce, to, value, mode, body, code, data);
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_body_value_mode_bounce_code_data(slice to, cell body, int value, int mode, int bounce, cell code, cell data) inline {
+    return (bounce, to, value, mode, body, code, data);
+}
+
+;;
+;; Type: Deploy
+;; Header: 0x946a98b6
+;; TLB: deploy#946a98b6 queryId:uint64 = Deploy
+;;
+
+(slice, ((int))) $Deploy$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2490013878);
+    var v'queryId = sc_0~load_uint(64);
+    return (sc_0, (v'queryId));
+}
+
+;;
+;; Type: DeployOk
+;; Header: 0xaff90f57
+;; TLB: deploy_ok#aff90f57 queryId:uint64 = DeployOk
+;;
+
+builder $DeployOk$_store(builder build_0, (int) v) inline {
+    var (v'queryId) = v;
+    build_0 = store_uint(build_0, 2952335191, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    return build_0;
+}
+
+cell $DeployOk$_store_cell((int) v) inline {
+    return $DeployOk$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $DeployOk$_constructor_queryId(int queryId) inline {
+    return (queryId);
+}
+
+;;
+;; Type: JoinInfo
+;; Header: 0xa88528e7
+;; TLB: join_info#a88528e7 seqno:uint128 quantity:uint8 = JoinInfo
+;;
+
+builder $JoinInfo$_store(builder build_0, (int, int) v) inline {
+    var (v'seqno, v'quantity) = v;
+    build_0 = store_uint(build_0, 2827299047, 32);
+    build_0 = build_0.store_uint(v'seqno, 128);
+    build_0 = build_0.store_uint(v'quantity, 8);
+    return build_0;
+}
+
+cell $JoinInfo$_store_cell((int, int) v) inline {
+    return $JoinInfo$_store(begin_cell(), v).end_cell();
+}
+
+(slice, ((int, int))) $JoinInfo$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2827299047);
+    var v'seqno = sc_0~load_uint(128);
+    var v'quantity = sc_0~load_uint(8);
+    return (sc_0, (v'seqno, v'quantity));
+}
+
+;;
+;; Type: JoinChildInfo
+;; Header: 0xe4c5a145
+;; TLB: join_child_info#e4c5a145 seqno:uint128 address:address = JoinChildInfo
+;;
+
+builder $JoinChildInfo$_store(builder build_0, (int, slice) v) inline {
+    var (v'seqno, v'address) = v;
+    build_0 = store_uint(build_0, 3838157125, 32);
+    build_0 = build_0.store_uint(v'seqno, 128);
+    build_0 = __tact_store_address(build_0, v'address);
+    return build_0;
+}
+
+cell $JoinChildInfo$_store_cell((int, slice) v) inline {
+    return $JoinChildInfo$_store(begin_cell(), v).end_cell();
+}
+
+((int, slice)) $JoinChildInfo$_constructor_address_seqno(slice address, int seqno) inline {
+    return (seqno, address);
+}
+
+;;
+;; Type: PlayInfo
+;; Header: 0x16ff293e
+;; TLB: play_info#16ff293e seqno:uint128 quantity:uint8 = PlayInfo
+;;
+
+builder $PlayInfo$_store(builder build_0, (int, int) v) inline {
+    var (v'seqno, v'quantity) = v;
+    build_0 = store_uint(build_0, 385820990, 32);
+    build_0 = build_0.store_uint(v'seqno, 128);
+    build_0 = build_0.store_uint(v'quantity, 8);
+    return build_0;
+}
+
+cell $PlayInfo$_store_cell((int, int) v) inline {
+    return $PlayInfo$_store(begin_cell(), v).end_cell();
+}
+
+(slice, ((int, int))) $PlayInfo$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 385820990);
+    var v'seqno = sc_0~load_uint(128);
+    var v'quantity = sc_0~load_uint(8);
+    return (sc_0, (v'seqno, v'quantity));
+}
+
+;;
+;; Type: PlayChildInfo
+;; Header: 0xa5cdbe37
+;; TLB: play_child_info#a5cdbe37 seqno:uint128 address:address = PlayChildInfo
+;;
+
+builder $PlayChildInfo$_store(builder build_0, (int, slice) v) inline {
+    var (v'seqno, v'address) = v;
+    build_0 = store_uint(build_0, 2781724215, 32);
+    build_0 = build_0.store_uint(v'seqno, 128);
+    build_0 = __tact_store_address(build_0, v'address);
+    return build_0;
+}
+
+cell $PlayChildInfo$_store_cell((int, slice) v) inline {
+    return $PlayChildInfo$_store(begin_cell(), v).end_cell();
+}
+
+((int, slice)) $PlayChildInfo$_constructor_address_seqno(slice address, int seqno) inline {
+    return (seqno, address);
+}
+
+;;
+;; Type: DrawInfo
+;; Header: 0x0bba854b
+;; TLB: draw_info#0bba854b seqno:uint128 quantity:uint8 = DrawInfo
+;;
+
+builder $DrawInfo$_store(builder build_0, (int, int) v) inline {
+    var (v'seqno, v'quantity) = v;
+    build_0 = store_uint(build_0, 196773195, 32);
+    build_0 = build_0.store_uint(v'seqno, 128);
+    build_0 = build_0.store_uint(v'quantity, 8);
+    return build_0;
+}
+
+cell $DrawInfo$_store_cell((int, int) v) inline {
+    return $DrawInfo$_store(begin_cell(), v).end_cell();
+}
+
+(slice, ((int, int))) $DrawInfo$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 196773195);
+    var v'seqno = sc_0~load_uint(128);
+    var v'quantity = sc_0~load_uint(8);
+    return (sc_0, (v'seqno, v'quantity));
+}
+
+;;
+;; Type: DrawChildInfo
+;; Header: 0xa5fba866
+;; TLB: draw_child_info#a5fba866 seqno:uint128 address:address = DrawChildInfo
+;;
+
+builder $DrawChildInfo$_store(builder build_0, (int, slice) v) inline {
+    var (v'seqno, v'address) = v;
+    build_0 = store_uint(build_0, 2784733286, 32);
+    build_0 = build_0.store_uint(v'seqno, 128);
+    build_0 = __tact_store_address(build_0, v'address);
+    return build_0;
+}
+
+cell $DrawChildInfo$_store_cell((int, slice) v) inline {
+    return $DrawChildInfo$_store(begin_cell(), v).end_cell();
+}
+
+((int, slice)) $DrawChildInfo$_constructor_address_seqno(slice address, int seqno) inline {
+    return (seqno, address);
+}
+
+;;
+;; Type: LotteryStartTactContract
+;;
+
+builder $LotteryStartTactContract$_store(builder build_0, (slice, int) v) inline {
+    var (v'owner, v'transno) = v;
+    build_0 = __tact_store_address(build_0, v'owner);
+    build_0 = build_0.store_uint(v'transno, 128);
+    return build_0;
+}
+
+(slice, ((slice, int))) $LotteryStartTactContract$_load(slice sc_0) inline {
+    var v'owner = sc_0~__tact_load_address();
+    var v'transno = sc_0~load_uint(128);
+    return (sc_0, (v'owner, v'transno));
+}
+
+(slice, ((slice, int))) $LotteryStartTactContract$init$_load(slice sc_0) inline {
+    var v'owner = sc_0~__tact_load_address();
+    var v'transno = sc_0~load_int(257);
+    return (sc_0, (v'owner, v'transno));
+}
+
+(slice, int) $LotteryStartTactContract$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$LotteryStartTactContract$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (slice owner, int transno) = $sc~$LotteryStartTactContract$init$_load();
+        $sc.end_parse();
+        return $LotteryStartTactContract$_contract_init(owner, transno);
+    }
+}
+
+() $LotteryStartTactContract$_contract_store((slice, int) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $LotteryStartTactContract$_store(b, v);
+    set_data(b.end_cell());
+}
+
+;;
+;; Type: LotteryPlayTactContract
+;;
+
+builder $LotteryPlayTactContract$init$_store(builder build_0, (slice, slice, int, int) v) inline {
+    var (v'owner, v'father, v'seqno, v'quantity) = v;
+    build_0 = __tact_store_address(build_0, v'owner);
+    build_0 = __tact_store_address(build_0, v'father);
+    build_0 = build_0.store_int(v'seqno, 257);
+    var build_1 = begin_cell();
+    build_1 = build_1.store_int(v'quantity, 257);
+    build_0 = store_ref(build_0, build_1.end_cell());
+    return build_0;
+}
+
+(cell, cell) $LotteryPlayTactContract$_init_child(cell sys', slice $owner, slice $father, int $seqno, int $quantity) inline_ref {
+    slice sc' = sys'.begin_parse();
+    cell source = sc'~load_dict();
+    cell contracts = new_dict();
+    
+    ;; Contract Code: LotteryPlayTactContract
+    cell mine = __tact_dict_get_code(source, 2008);
+    contracts = __tact_dict_set_code(contracts, 2008, mine);
+    
+    ;; Build cell
+    builder b = begin_cell();
+    b = b.store_ref(begin_cell().store_dict(contracts).end_cell());
+    b = b.store_int(false, 1);
+    b = $LotteryPlayTactContract$init$_store(b, ($owner, $father, $seqno, $quantity));
+    return (mine, b.end_cell());
+}

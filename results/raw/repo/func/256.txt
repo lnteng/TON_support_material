@@ -1,0 +1,88 @@
+get_node_hosts_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/dtelecom.fc:199:68: warning: Local variable 'owner_address' is not used
+      var (nodes, owner_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                     ^
+get_node_hosts_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/dtelecom.fc:199:68: warning: Local variable 'user_wallet_code' is not used
+      var (nodes, owner_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                     ^
+get_node_hosts_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/dtelecom.fc:199:68: warning: Local variable 'node_wallet_code' is not used
+      var (nodes, owner_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                     ^
+get_node_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/dtelecom.fc:194:68: warning: Local variable 'nodes' is not used
+      var (nodes, owner_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                     ^
+get_node_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/dtelecom.fc:194:68: warning: Local variable 'owner_address' is not used
+      var (nodes, owner_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                     ^
+get_user_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/dtelecom.fc:189:68: warning: Local variable 'nodes' is not used
+      var (nodes, owner_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                     ^
+get_user_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/dtelecom.fc:189:68: warning: Local variable 'owner_address' is not used
+      var (nodes, owner_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                     ^
+get_dtelecom_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/dtelecom.fc:184:68: warning: Local variable 'nodes' is not used
+      var (nodes, owner_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                     ^
+get_dtelecom_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/dtelecom.fc:184:68: warning: Local variable 'user_wallet_code' is not used
+      var (nodes, owner_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                     ^
+get_dtelecom_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/dtelecom.fc:184:68: warning: Local variable 'node_wallet_code' is not used
+      var (nodes, owner_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                     ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/dtelecom.fc:17:11: warning: Lack of end_parse.
+          ds~load_ref()       ;; node_wallet_code
+            ^
+create_user: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/dtelecom.fc:55:68: warning: Local variable 'nodes' is not used
+      var (nodes, owner_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                     ^
+create_user: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/dtelecom.fc:55:68: warning: Local variable 'owner_address' is not used
+      var (nodes, owner_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                     ^
+process_end_call: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/dtelecom.fc:109:68: warning: Local variable 'nodes' is not used
+      var (nodes, owner_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                     ^
+process_end_call: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/dtelecom.fc:109:68: warning: Local variable 'owner_address' is not used
+      var (nodes, owner_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                     ^
+withdraw: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/dtelecom.fc:33:68: warning: Local variable 'nodes' is not used
+      var (nodes, owner_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                     ^
+withdraw: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/dtelecom.fc:33:68: warning: Local variable 'user_wallet_code' is not used
+      var (nodes, owner_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                     ^
+withdraw: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/dtelecom.fc:33:68: warning: Local variable 'node_wallet_code' is not used
+      var (nodes, owner_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                     ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/dtelecom.fc:140:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/dtelecom.fc:72:60: warning: UnHandle bounced message with op: 0x6e0fc9a4
+      send_raw_message(msg.end_cell(), CARRY_REMAINING_VALUE);
+                                                             ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/dtelecom.fc:126:60: warning: UnHandle bounced message with op: 0x7a8efe57
+      send_raw_message(msg.end_cell(), CARRY_REMAINING_VALUE);
+                                                             ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/dtelecom.fc:102:60: warning: UnHandle bounced message with op: 0x3223c524
+      send_raw_message(msg.end_cell(), CARRY_REMAINING_VALUE);
+                                                             ^

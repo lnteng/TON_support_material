@@ -1,0 +1,60 @@
+get_nft_content: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC0NEpbT59ADTloDFGrQRUjnmTBfPrBIRYS4upJ8UCcacOz/sale_collection_wl.fc:370:30: warning: Lack of end_parse.
+      slice common_content = cs~load_ref().begin_parse();
+                               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC0NEpbT59ADTloDFGrQRUjnmTBfPrBIRYS4upJ8UCcacOz/sale_collection_wl.fc:55:28: warning: Lack of end_parse.
+      storage::whitelist = ds~load_ref();
+                             ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC0NEpbT59ADTloDFGrQRUjnmTBfPrBIRYS4upJ8UCcacOz/sale_collection_wl.fc:53:49: warning: Lack of end_parse.
+      storage::jetton_wallet_address = jetton_info~load_msg_addr();
+                                                  ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC0NEpbT59ADTloDFGrQRUjnmTBfPrBIRYS4upJ8UCcacOz/sale_collection_wl.fc:173:34: warning: Lack of end_parse.
+          sell_tokens(msg_value, cs~load_msg_addr(), storage::price_factor, storage::price_devider, storage::min_purchase_ton);
+                                   ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC0NEpbT59ADTloDFGrQRUjnmTBfPrBIRYS4upJ8UCcacOz/sale_collection_wl.fc:182:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC0NEpbT59ADTloDFGrQRUjnmTBfPrBIRYS4upJ8UCcacOz/sale_collection_wl.fc:203:15: warning: Lack of end_parse.
+              ws~load_ref();
+                ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC0NEpbT59ADTloDFGrQRUjnmTBfPrBIRYS4upJ8UCcacOz/sale_collection_wl.fc:229:49: warning: Lack of end_parse.
+          throw_unless(403, equal_slices(cur_slice~load_msg_addr(), sender_address));
+                                                  ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC0NEpbT59ADTloDFGrQRUjnmTBfPrBIRYS4upJ8UCcacOz/sale_collection_wl.fc:206:29: warning: Lack of end_parse.
+          slice wl_parsed = ws~load_ref().begin_parse();
+                              ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC0NEpbT59ADTloDFGrQRUjnmTBfPrBIRYS4upJ8UCcacOz/sale_collection_wl.fc:221:26: warning: Lack of end_parse.
+                  cur_slice~load_ref();
+                           ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC0NEpbT59ADTloDFGrQRUjnmTBfPrBIRYS4upJ8UCcacOz/sale_collection_wl.fc:224:34: warning: Lack of end_parse.
+              cur_slice = cur_slice~load_ref().begin_parse();
+                                   ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC0NEpbT59ADTloDFGrQRUjnmTBfPrBIRYS4upJ8UCcacOz/sale_collection_wl.fc:224:45: warning: Lack of end_parse.
+              cur_slice = cur_slice~load_ref().begin_parse();
+                                              ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC0NEpbT59ADTloDFGrQRUjnmTBfPrBIRYS4upJ8UCcacOz/sale_collection_wl.fc:194:18: warning: Local variable 'query_id' is not used
+      int query_id = in_msg_body~load_uint(64);
+                   ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC0NEpbT59ADTloDFGrQRUjnmTBfPrBIRYS4upJ8UCcacOz/sale_collection_wl.fc:215:22: warning: Local variable 'test_tmp' is not used
+          int test_tmp = index_in_wl;
+                       ^
+sell_tokens: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC0NEpbT59ADTloDFGrQRUjnmTBfPrBIRYS4upJ8UCcacOz/sale_collection_wl.fc:105:70: warning: PressionLoss
+      int purchased_amount = (msg_value - tons_for_gas) / price_factor * price_devider;
+                                                                       ^
+get_collection_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC0NEpbT59ADTloDFGrQRUjnmTBfPrBIRYS4upJ8UCcacOz/sale_collection_wl.fc:350:41: warning: Lack of end_parse.
+      return (storage::next_item_index, cs~load_ref(), "EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c"a);
+                                          ^

@@ -1,0 +1,44 @@
+{-
+  TASK 4 - Caesar Cipher
+  Implement a Caesar cipher encryption and decryption functions.
+  The input is a string (https://docs.ton.org/develop/smart-contracts/guidelines/internal-messages#simple-message-with-comment)
+  where the text is encrypted in a cell (after 32bit 00000000 prefix flag), the algorithm rotates the characters and the last ASCII
+  character should go to the beginning. Return new text encoded in cell.
+-}
+
+() recv_internal() {
+}
+
+forall X -> int is_null (X x) asm "ISNULL";
+forall X -> (tuple, ()) push_back (tuple tail, X head) asm "CONS";
+forall X -> (tuple, (X)) pop_back (tuple t) asm "UNCONS";
+
+(builder) encrypt(int shift, cell c) inline {
+  builder res = begin_cell();
+  slice s = c.begin_parse();
+  repeat (s.slice_bits() / 8) {
+    int char = s~load_uint(8);
+    if (char > 64) & (char < 91) {
+      char = (char - 65 + shift) % 26 + 65;
+    } elseif (char > 96) & (char < 123) {
+      char = (char - 97 + shift) % 26 + 97;
+    }
+    res~store_uint(char ,8);
+  }
+  if ~ s.slice_refs_empty?() {
+    return res.store_ref(encrypt(shift, s~load_ref()).end_cell());
+  }
+  return res;
+}
+
+;; testable
+(cell) caesar_cipher_encrypt(int shift, cell text) inline method_id {
+  int nshift = shift % 26;
+  return encrypt(nshift, text).end_cell();
+}
+
+;; testable
+(cell) caesar_cipher_decrypt(int shift, cell text) method_id {
+  int nshift = -1 * (shift % 26);
+  return encrypt(nshift, text).end_cell();
+}

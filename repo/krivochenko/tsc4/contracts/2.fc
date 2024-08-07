@@ -1,0 +1,45 @@
+{-
+  TASK 2 - Matrix multiplier
+  Write the method that multiplies one matrix by another.
+  The 1st and 2nd parameter of the function will contain
+  a matrix implemented using tuples (eg: [[1,2], [3,4]]).
+  Matrices can be of different sizes, ranging from 4x4
+  up to 32x32.
+  Matrix can be rectangular where matrixA must to be of size n*m & matrixB of size m*p.
+  After calculating the result matrix, the function should return final result (as tuple).
+-}
+
+(int) tlen(tuple t) asm "TLEN";
+
+() recv_internal() {
+}
+
+;; testable
+(tuple) matrix_multiplier(tuple matrixA, tuple matrixB) method_id {
+  int l = tlen(matrixA);
+  int m = tlen(matrixB);
+  int n = tlen(first(matrixB));
+
+  tuple result = empty_tuple();
+
+  int i = 0;
+  repeat (l) {
+    tuple row = empty_tuple();
+    int j = 0;
+    repeat (n) {
+      int cij = 0;
+      int r = 0;
+      repeat (m) {
+        cij = cij + matrixA.at(i).at(r) * matrixB.at(r).at(j);
+        r = r + 1;
+      }
+      j = j + 1;
+      row~tpush(cij);
+    }
+    i = i + 1;
+    result~tpush(row);
+  }
+
+  return result;
+}
+

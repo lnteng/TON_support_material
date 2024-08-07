@@ -1,0 +1,12 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./orbs-network/single-nominator/test/contracts/test-upgrade.fc:7:16: warning: Lack of end_parse.
+  	var flags = cs~load_uint(4);  ;; int_msg_info$0 ihr_disabled:Bool bounce:Bool bounced:Bool
+  	              ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./orbs-network/single-nominator/test/contracts/test-upgrade.fc:17:9: warning: Local variable 'op' is not used
+  	int op = in_msg~load_uint(32);
+  	       ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./orbs-network/single-nominator/test/contracts/test-upgrade.fc:18:15: warning: Local variable 'query_id' is not used
+  	int query_id = in_msg~load_uint(64);
+  	             ^

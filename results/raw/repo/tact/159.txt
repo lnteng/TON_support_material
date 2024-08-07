@@ -1,0 +1,12 @@
+__tact_dict_set_slice_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact-1/src/test/bugs/output/bug_18_DDDD.code.fc:48:21: warning: Local variable 'ok' is not used
+          var (r, ok) = __tact_dict_delete(d, kl, k);
+                      ^
+__tact_dict_set_int_slice: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact-1/src/test/bugs/output/bug_18_DDDD.code.fc:30:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+__gen_load_DDDD: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact-1/src/test/bugs/output/bug_18_DDDD.code.fc:86:14: warning: Lack of end_parse.
+      return sc~__gen_read_DDDD();
+               ^

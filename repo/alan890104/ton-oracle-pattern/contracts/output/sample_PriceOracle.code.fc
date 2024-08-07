@@ -1,0 +1,126 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_PriceOracle.headers.fc";
+#include "sample_PriceOracle.stdlib.fc";
+#include "sample_PriceOracle.storage.fc";
+
+;;
+;; Contract PriceOracle functions
+;;
+
+tuple $PriceOracle$_contract_init() impure inline_ref {
+    tuple $self = null();
+    return $self;
+}
+
+(tuple, tuple) $PriceOracle$_fun_getPriceResponse(tuple $self, slice $symbol) impure inline_ref {
+    var ($self) = $self;
+    if ((string_hash($symbol) == 110653145700951440592169284016847505207262467579955046479228960512756452934312)) {
+        return ($self, $PriceInfo$_as_optional($PriceInfo$_constructor_price_decimals(2000000000000, 1000000000)));
+    }
+    return ($self, null());
+}
+
+;;
+;; Receivers of a Contract PriceOracle
+;;
+
+((tuple), ()) $PriceOracle$_internal_binary_GetLatestPrice(tuple $self, (int, slice, cell) $msg) impure inline {
+    var $self = $self;
+    var ($msg'queryId, $msg'symbol, $msg'callback) = $msg;
+    tuple $priceInfo = $self~$PriceOracle$_fun_getPriceResponse($msg'symbol);
+    if (null?($priceInfo)) {
+        $global_send($SendParameters$_constructor_to_value_mode_body(__tact_context_get_sender(), 0, (64 + 2), $PriceResponse$_store_cell($PriceResponse$_constructor_queryId_price_decimals_success_callback($msg'queryId, 0, 0, false, $global_emptyCell()))));
+        return ($self, ());
+    }
+    var ($info'price, $info'decimals) = $PriceInfo$_not_null($priceInfo);
+    $global_send($SendParameters$_constructor_to_value_mode_body(__tact_context_get_sender(), 0, 64, $PriceResponse$_store_cell($PriceResponse$_constructor_queryId_price_decimals_success_callback($msg'queryId, $info'price, $info'decimals, true, $msg'callback))));
+    return ($self, ());
+}
+
+((tuple), ()) $PriceOracle$_internal_binary_Deploy(tuple $self, (int) $deploy) impure inline {
+    var $self = $self;
+    var ($deploy'queryId) = $deploy;
+    $self~$PriceOracle$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return ($self, ());
+}
+
+;;
+;; Get methods of a Contract PriceOracle
+;;
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmZ41SmU8o8oecyh5WYUB6gqeoX81AtsFfqPL2CJdPZncC";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract PriceOracle
+;;
+
+(tuple, int) $PriceOracle$_contract_router_internal(tuple self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive GetLatestPrice message
+    if (op == 2160417299) {
+        var msg = in_msg~$GetLatestPrice$_load();
+        self~$PriceOracle$_internal_binary_GetLatestPrice(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$PriceOracle$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $PriceOracle$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$PriceOracle$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $PriceOracle$_contract_store(self);
+}

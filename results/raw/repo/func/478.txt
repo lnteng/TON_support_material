@@ -1,0 +1,127 @@
+proposal_storage_price: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:633:28: warning: Lack of end_parse.
+    var cfg_dict = get_data().begin_parse().preload_ref();
+                             ^
+proposal_storage_price: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:635:115: warning: Local variable 'min_tot_rounds' is not used
+    var (min_tot_rounds, max_tot_rounds, min_wins, max_losses, min_store_sec, max_store_sec, bit_price, cell_price) = get_vote_config_internal(critical?, cparam11);
+                                                                                                                    ^
+proposal_storage_price: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:635:115: warning: Local variable 'max_tot_rounds' is not used
+    var (min_tot_rounds, max_tot_rounds, min_wins, max_losses, min_store_sec, max_store_sec, bit_price, cell_price) = get_vote_config_internal(critical?, cparam11);
+                                                                                                                    ^
+proposal_storage_price: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:635:115: warning: Local variable 'min_wins' is not used
+    var (min_tot_rounds, max_tot_rounds, min_wins, max_losses, min_store_sec, max_store_sec, bit_price, cell_price) = get_vote_config_internal(critical?, cparam11);
+                                                                                                                    ^
+proposal_storage_price: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:635:115: warning: Local variable 'max_losses' is not used
+    var (min_tot_rounds, max_tot_rounds, min_wins, max_losses, min_store_sec, max_store_sec, bit_price, cell_price) = get_vote_config_internal(critical?, cparam11);
+                                                                                                                    ^
+seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:591:20: warning: Lack of end_parse.
+    return get_data().begin_parse().preload_uint(32);
+                     ^
+perform_action: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:111:20: warning: Lack of end_parse.
+      set_c3(new_code.begin_parse().bless());
+                     ^
+recv_external: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:543:32: warning: Local variable 'total_weight' is not used
+      var (vdescr, total_weight) = get_validator_descr(idx);
+                                 ^
+perform_proposed_action: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:201:56: warning: Lack of end_parse.
+      return (cfg_dict, param_val.null?() ? 0 : param_val.begin_parse().preload_uint(256));
+                                                         ^
+perform_proposed_action: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:212:20: warning: Lack of end_parse.
+      set_c3(new_code.begin_parse().bless());
+                     ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:467:18: warning: Lack of end_parse.
+    var s_addr = cs~load_msg_addr();
+                   ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:480:70: warning: Lack of end_parse.
+      var elector_addr = cell_null?(elector_param) ? -1 : elector_param.begin_parse().preload_uint(256);
+                                                                       ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:517:32: warning: Local variable 'total_weight' is not used
+      var (vdescr, total_weight) = get_validator_descr(idx);
+                                 ^
+change_elector_code: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:82:34: warning: Lack of end_parse.
+    var dest_addr = config_param(1).begin_parse().preload_uint(256);
+                                   ^
+check_validator_set: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:55:16: warning: Lack of end_parse.
+    int main = cs~load_uint(16);
+                 ^
+get_validator_descr: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:144:34: warning: Local variable 'vset' is not used
+    var (vset, total_weight, dict) = get_current_vset();
+                                   ^
+update_proposal_status: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:234:74: warning: Local variable 'min_tot_rounds' is not used
+    var (min_tot_rounds, max_tot_rounds, min_wins, max_losses, _, _, _, _) = get_vote_config(critical?);
+                                                                           ^
+update_proposal_status: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:234:74: warning: Local variable 'max_tot_rounds' is not used
+    var (min_tot_rounds, max_tot_rounds, min_wins, max_losses, _, _, _, _) = get_vote_config(critical?);
+                                                                           ^
+update_proposal_status: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:234:74: warning: Local variable 'min_wins' is not used
+    var (min_tot_rounds, max_tot_rounds, min_wins, max_losses, _, _, _, _) = get_vote_config(critical?);
+                                                                           ^
+register_vote: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:306:74: warning: Local variable 'min_tot_rounds' is not used
+    var (min_tot_rounds, max_tot_rounds, min_wins, max_losses, _, _, _, _) = get_vote_config(critical?);
+                                                                           ^
+register_vote: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:306:74: warning: Local variable 'max_tot_rounds' is not used
+    var (min_tot_rounds, max_tot_rounds, min_wins, max_losses, _, _, _, _) = get_vote_config(critical?);
+                                                                           ^
+register_vote: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:306:74: warning: Local variable 'max_losses' is not used
+    var (min_tot_rounds, max_tot_rounds, min_wins, max_losses, _, _, _, _) = get_vote_config(critical?);
+                                                                           ^
+scan_proposal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:343:79: warning: Local variable 'voters' is not used
+    var (expires, proposal, critical?, voters, weight_remaining, vset_id, rest) = unpack_proposal_status(pstatus);
+                                                                                ^
+register_voting_proposal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:417:16: warning: Local variable 'vote_cfg' is not used
+    var vote_cfg = get_vote_config(critical?);
+                 ^
+register_voting_proposal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:417:16: warning: Local variable 'vote_cfg' is not used
+    var vote_cfg = get_vote_config(critical?);
+                 ^
+register_voting_proposal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:417:16: warning: Local variable 'vote_cfg' is not used
+    var vote_cfg = get_vote_config(critical?);
+                 ^
+register_voting_proposal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:418:115: warning: Local variable 'min_tot_rounds' is not used
+    var (min_tot_rounds, max_tot_rounds, min_wins, max_losses, min_store_sec, max_store_sec, bit_price, cell_price) = vote_cfg;
+                                                                                                                    ^
+register_voting_proposal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:418:115: warning: Local variable 'min_wins' is not used
+    var (min_tot_rounds, max_tot_rounds, min_wins, max_losses, min_store_sec, max_store_sec, bit_price, cell_price) = vote_cfg;
+                                                                                                                    ^
+register_voting_proposal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:418:115: warning: Local variable 'max_losses' is not used
+    var (min_tot_rounds, max_tot_rounds, min_wins, max_losses, min_store_sec, max_store_sec, bit_price, cell_price) = vote_cfg;
+                                                                                                                    ^
+set_conf_param & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:11:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:7:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_ref(cfg_dict).store_slice(cs).end_cell());
+                         ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/sandbox-init/config-code.fc:92:18: warning: UnHandle bounced message with op: 0x4e436f64
+    .end_cell(), 0);
+                   ^

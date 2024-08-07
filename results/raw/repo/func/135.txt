@@ -1,0 +1,56 @@
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./synswap-labs/ton-contracts/contracts/synthetic-asset/jetton-minter.fc:38:11: warning: Lack of end_parse.
+          ds~load_ref()       ;; jetton_wallet_code
+            ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./synswap-labs/ton-contracts/contracts/synthetic-asset/jetton-minter.fc:214:84: warning: Local variable 'total_supply' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code) = load_data();
+                                                                                     ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./synswap-labs/ton-contracts/contracts/synthetic-asset/jetton-minter.fc:214:84: warning: Local variable 'admin_address' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code) = load_data();
+                                                                                     ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./synswap-labs/ton-contracts/contracts/synthetic-asset/jetton-minter.fc:214:84: warning: Local variable 'content' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code) = load_data();
+                                                                                     ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./synswap-labs/ton-contracts/contracts/synthetic-asset/jetton-minter.fc:98:38: warning: Lack of end_parse.
+          cell master_msg = in_msg_body~load_ref();
+                                       ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./synswap-labs/ton-contracts/contracts/synthetic-asset/jetton-minter.fc:103:42: warning: Lack of end_parse.
+          int jetton_amount = master_msg_cs~load_coins();
+                                           ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./synswap-labs/ton-contracts/contracts/synthetic-asset/jetton-minter.fc:83:28: warning: Lack of end_parse.
+      int fwd_fee = muldiv(cs~load_coins(), 3, 2); ;; we use message fwd_fee for estimation of forward_payload costs
+                             ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./synswap-labs/ton-contracts/contracts/synthetic-asset/jetton-minter.fc:115:42: warning: Lack of end_parse.
+          cell custom_payload = in_msg_body~load_dict();
+                                           ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./synswap-labs/ton-contracts/contracts/synthetic-asset/jetton-minter.fc:129:39: warning: Lack of end_parse.
+          int destination_address = scda~load_uint(160);
+                                        ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./synswap-labs/ton-contracts/contracts/synthetic-asset/jetton-minter.fc:130:34: warning: Lack of end_parse.
+          int jetton_coin_id = scci~load_uint(32);
+                                   ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./synswap-labs/ton-contracts/contracts/synthetic-asset/jetton-minter.fc:194:46: warning: Lack of end_parse.
+          slice new_admin_address = in_msg_body~load_msg_addr();
+                                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./synswap-labs/ton-contracts/contracts/synthetic-asset/jetton-minter.fc:201:59: warning: Lack of end_parse.
+          save_data(total_supply, admin_address, in_msg_body~load_ref(), jetton_wallet_code);
+                                                            ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./synswap-labs/ton-contracts/contracts/synthetic-asset/jetton-minter.fc:169:43: warning: Lack of end_parse.
+          int include_address? = in_msg_body~load_uint(1);
+                                            ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./synswap-labs/ton-contracts/contracts/synthetic-asset/jetton-minter.fc:188:79: warning: UnHandle bounced message with op: 0xd1735400
+          send_raw_message(msg.store_maybe_ref(included_address).end_cell(), 64);
+                                                                                ^

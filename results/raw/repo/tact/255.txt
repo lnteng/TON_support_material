@@ -1,0 +1,75 @@
+__tact_dict_set_int_slice: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/child_router_Messenger.stdlib.fc:63:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+__tact_dict_set_int_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/child_router_Messenger.stdlib.fc:45:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+$Messenger$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/child_router_Messenger.storage.fc:256:37: warning: Lack of end_parse.
+      var v'subscribeFeePerTick = sc_1~load_int(257);
+                                      ^
+$Messenger$_internal_binary_BuildMessenger: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/child_router_Messenger.code.fc:65:210: warning: Local variable '$self'subscribeFeePerTick' is not used
+  ... 'hashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick)~$Messenger$_fun_requireOwner();
+  ...                                                                                                     ^
+$Messenger$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/child_router_Messenger.code.fc:14:217: warning: Local variable '$self'owner' is not used
+  ... ashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick)) = (null(), null(), null(), null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$Messenger$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/child_router_Messenger.code.fc:14:217: warning: Local variable '$self'sourceAddress' is not used
+  ... ashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick)) = (null(), null(), null(), null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$Messenger$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/child_router_Messenger.code.fc:14:217: warning: Local variable '$self'messengerId' is not used
+  ... ashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick)) = (null(), null(), null(), null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$Messenger$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/child_router_Messenger.code.fc:14:217: warning: Local variable '$self'nextSubscriberId' is not used
+  ... ashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick)) = (null(), null(), null(), null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$Messenger$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/child_router_Messenger.code.fc:14:217: warning: Local variable '$self'totalSubscriberNumber' is not used
+  ... ashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick)) = (null(), null(), null(), null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$Messenger$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/child_router_Messenger.code.fc:14:217: warning: Local variable '$self'subscribeFeePerTick' is not used
+  ... ashToSubscriber, $self'hashToSubscribeFee, $self'totalSubscriberNumber, $self'subscribeFeePerTick)) = (null(), null(), null(), null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$Messenger$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/child_router_Messenger.storage.fc:272:19: warning: Lack of end_parse.
+          return $sc~$Messenger$_load();
+                    ^
+$Messenger$_internal_binary_CreateMsgSubscriber: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/child_router_Messenger.code.fc:101:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Messenger$_internal_binary_CreateMsgSubscriber: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/child_router_Messenger.code.fc:101:59: warning: Local variable '$ctx'sender' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Messenger$_internal_binary_CreateMsgSubscriber: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/child_router_Messenger.code.fc:101:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Messenger$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/child_router_Messenger.code.fc:181:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/child_router_Messenger.storage.fc:283:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Messenger$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/child_router_Messenger.code.fc:125:205: warning: UnHandle bounced message with op: 0xaff94a61
+  ... true, $DestroyMessenger$_store_cell($DestroyMessenger$_constructor_messengerId($self'messengerId))));
+  ...                                                                                                     ^
+$Messenger$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/child_router_Messenger.code.fc:93:200: warning: UnHandle bounced message with op: 0x35c17b48
+      $global_send($SendParameters$_constructor_to_value_mode_body($self'owner, $collected_fee, 1, $CollectFee$_store_cell($CollectFee$_constructor_messengerId_fee($self'messengerId, $collected_fee))));
+                                                                                                                                                                                                         ^
+$Messenger$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/child_router_Messenger.code.fc:87:229: warning: UnHandle bounced message with op: 0x1246ebb4
+  ... e, $EventSignal$_store_cell($EventSignal$_constructor_eventId_payload($msg'eventId, $msg'payload))));
+  ...                                                                                                     ^

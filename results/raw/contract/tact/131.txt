@@ -1,0 +1,66 @@
+$LotteryStartTactContract$_internal_binary_PlayInfo: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAUcxXwoasQ8Khv0yhw3qxE5m28ROIRKJO4MK7OAnIyFr7G/output/verifier_LotteryStartTactContract.code.fc:62:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$LotteryStartTactContract$_internal_binary_PlayInfo: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAUcxXwoasQ8Khv0yhw3qxE5m28ROIRKJO4MK7OAnIyFr7G/output/verifier_LotteryStartTactContract.code.fc:62:59: warning: Local variable '$ctx'sender' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$LotteryStartTactContract$_internal_binary_PlayInfo: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAUcxXwoasQ8Khv0yhw3qxE5m28ROIRKJO4MK7OAnIyFr7G/output/verifier_LotteryStartTactContract.code.fc:62:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$LotteryStartTactContract$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAUcxXwoasQ8Khv0yhw3qxE5m28ROIRKJO4MK7OAnIyFr7G/output/verifier_LotteryStartTactContract.storage.fc:237:19: warning: Lack of end_parse.
+          return $sc~$LotteryStartTactContract$_load();
+                    ^
+$LotteryStartTactContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAUcxXwoasQ8Khv0yhw3qxE5m28ROIRKJO4MK7OAnIyFr7G/output/verifier_LotteryStartTactContract.code.fc:15:40: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'transno)) = (null(), null());
+                                         ^
+$LotteryStartTactContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAUcxXwoasQ8Khv0yhw3qxE5m28ROIRKJO4MK7OAnIyFr7G/output/verifier_LotteryStartTactContract.code.fc:15:40: warning: Local variable '$self'transno' is not used
+      var (($self'owner, $self'transno)) = (null(), null());
+                                         ^
+$LotteryStartTactContract$_internal_binary_JoinInfo: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAUcxXwoasQ8Khv0yhw3qxE5m28ROIRKJO4MK7OAnIyFr7G/output/verifier_LotteryStartTactContract.code.fc:48:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$LotteryStartTactContract$_internal_binary_JoinInfo: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAUcxXwoasQ8Khv0yhw3qxE5m28ROIRKJO4MK7OAnIyFr7G/output/verifier_LotteryStartTactContract.code.fc:48:59: warning: Local variable '$ctx'sender' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$LotteryStartTactContract$_internal_binary_JoinInfo: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAUcxXwoasQ8Khv0yhw3qxE5m28ROIRKJO4MK7OAnIyFr7G/output/verifier_LotteryStartTactContract.code.fc:48:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$LotteryPlayTactContract$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAUcxXwoasQ8Khv0yhw3qxE5m28ROIRKJO4MK7OAnIyFr7G/output/verifier_LotteryStartTactContract.storage.fc:272:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$LotteryStartTactContract$_contract_store & $LotteryStartTactContract$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAUcxXwoasQ8Khv0yhw3qxE5m28ROIRKJO4MK7OAnIyFr7G/output/verifier_LotteryStartTactContract.storage.fc:233:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAUcxXwoasQ8Khv0yhw3qxE5m28ROIRKJO4MK7OAnIyFr7G/output/verifier_LotteryStartTactContract.storage.fc:248:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$LotteryStartTactContract$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAUcxXwoasQ8Khv0yhw3qxE5m28ROIRKJO4MK7OAnIyFr7G/output/verifier_LotteryStartTactContract.code.fc:145:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAUcxXwoasQ8Khv0yhw3qxE5m28ROIRKJO4MK7OAnIyFr7G/output/verifier_LotteryStartTactContract.storage.fc:248:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$LotteryStartTactContract$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAUcxXwoasQ8Khv0yhw3qxE5m28ROIRKJO4MK7OAnIyFr7G/output/verifier_LotteryStartTactContract.code.fc:69:247: warning: UnHandle bounced message with op: 0xa5cdbe37
+  ... o$_store_cell(($playChildInfo'seqno, $playChildInfo'address)), 0, 64, true, $init'code, $init'data));
+  ...                                                                                                     ^
+$LotteryStartTactContract$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAUcxXwoasQ8Khv0yhw3qxE5m28ROIRKJO4MK7OAnIyFr7G/output/verifier_LotteryStartTactContract.code.fc:82:247: warning: UnHandle bounced message with op: 0xa5fba866
+  ... o$_store_cell(($drawChildInfo'seqno, $drawChildInfo'address)), 0, 64, true, $init'code, $init'data));
+  ...                                                                                                     ^
+$LotteryStartTactContract$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAUcxXwoasQ8Khv0yhw3qxE5m28ROIRKJO4MK7OAnIyFr7G/output/verifier_LotteryStartTactContract.code.fc:55:247: warning: UnHandle bounced message with op: 0xe4c5a145
+  ... o$_store_cell(($joinChildInfo'seqno, $joinChildInfo'address)), 0, 64, true, $init'code, $init'data));
+  ...                                                                                                     ^

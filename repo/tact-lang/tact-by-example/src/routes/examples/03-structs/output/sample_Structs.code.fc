@@ -1,0 +1,156 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_Structs.headers.fc";
+#include "sample_Structs.stdlib.fc";
+#include "sample_Structs.constants.fc";
+#include "sample_Structs.storage.fc";
+
+;;
+;; Contract Structs functions
+;;
+
+((int, int), (slice, int, (int, int))) $Structs$_contract_init() impure inline_ref {
+    var ((($self's1'x, $self's1'y), ($self's2'name, $self's2'age, ($self's2'point'x, $self's2'point'y)))) = (null(), null());
+    ($self's1'x, $self's1'y) = $Point$_constructor_x_y(2, 3);
+    ($self's2'name, $self's2'age, ($self's2'point'x, $self's2'point'y)) = $Params$_constructor_point(($self's1'x, $self's1'y));
+    return (($self's1'x, $self's1'y), ($self's2'name, $self's2'age, ($self's2'point'x, $self's2'point'y)));
+}
+
+(((int, int), (slice, int, (int, int))), (int, int)) $Structs$_fun_point(((int, int), (slice, int, (int, int))) $self) impure inline_ref {
+    var ((($self's1'x, $self's1'y), ($self's2'name, $self's2'age, ($self's2'point'x, $self's2'point'y)))) = $self;
+    return ((($self's1'x, $self's1'y), ($self's2'name, $self's2'age, ($self's2'point'x, $self's2'point'y))), ($self's1'x, $self's1'y));
+}
+
+(((int, int), (slice, int, (int, int))), (slice, int, (int, int))) $Structs$_fun_params(((int, int), (slice, int, (int, int))) $self) impure inline_ref {
+    var ((($self's1'x, $self's1'y), ($self's2'name, $self's2'age, ($self's2'point'x, $self's2'point'y)))) = $self;
+    return ((($self's1'x, $self's1'y), ($self's2'name, $self's2'age, ($self's2'point'x, $self's2'point'y))), ($self's2'name, $self's2'age, ($self's2'point'x, $self's2'point'y)));
+}
+
+;;
+;; Receivers of a Contract Structs
+;;
+
+(((int, int), (slice, int, (int, int))), ()) $Structs$_internal_text_ae9b15f0d50e95164ef677febc57a5f9ae379b3acf721b694a482c77db65c3d5(((int, int), (slice, int, (int, int))) $self) impure inline {
+    var (($self's1'x, $self's1'y), ($self's2'name, $self's2'age, ($self's2'point'x, $self's2'point'y))) = $self;
+    var ($s'x, $s'y) = $Point$_constructor_x_y(4, 5);
+    ($self's1'x, $self's1'y) = ($s'x, $s'y);
+    return ((($self's1'x, $self's1'y), ($self's2'name, $self's2'age, ($self's2'point'x, $self's2'point'y))), ());
+}
+
+((((int, int), (slice, int, (int, int)))), ()) $Structs$_internal_binary_Add(((int, int), (slice, int, (int, int))) $self, ((int, int)) $msg) impure inline {
+    var (($self's1'x, $self's1'y), ($self's2'name, $self's2'age, ($self's2'point'x, $self's2'point'y))) = $self;
+    var (($msg'point'x, $msg'point'y)) = $msg;
+    $self's1'x = ($self's1'x + $msg'point'x);
+    $self's1'y = ($self's1'y + $msg'point'y);
+    return ((($self's1'x, $self's1'y), ($self's2'name, $self's2'age, ($self's2'point'x, $self's2'point'y))), ());
+}
+
+((((int, int), (slice, int, (int, int)))), ()) $Structs$_internal_binary_Deploy(((int, int), (slice, int, (int, int))) $self, (int) $deploy) impure inline {
+    var (($self's1'x, $self's1'y), ($self's2'name, $self's2'age, ($self's2'point'x, $self's2'point'y))) = $self;
+    var ($deploy'queryId) = $deploy;
+    (($self's1'x, $self's1'y), ($self's2'name, $self's2'age, ($self's2'point'x, $self's2'point'y)))~$Structs$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return ((($self's1'x, $self's1'y), ($self's2'name, $self's2'age, ($self's2'point'x, $self's2'point'y))), ());
+}
+
+;;
+;; Get methods of a Contract Structs
+;;
+
+_ %point() method_id(99190) {
+    var self = $Structs$_contract_load();
+    var res = self~$Structs$_fun_point();
+    return $Point$_to_external(res);
+}
+
+_ %params() method_id(116437) {
+    var self = $Structs$_contract_load();
+    var res = self~$Structs$_fun_params();
+    return $Params$_to_external(res);
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmT3r6c1r2gMuaPi9jaBgUNqTBEvrFTHx88jG7KkqZ4Xeu";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract Structs
+;;
+
+(((int, int), (slice, int, (int, int))), int) $Structs$_contract_router_internal(((int, int), (slice, int, (int, int))) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive Add message
+    if (op == 4279624855) {
+        var msg = in_msg~$Add$_load();
+        self~$Structs$_internal_binary_Add(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$Structs$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "show ops" message
+        if (text_op == 0xae9b15f0d50e95164ef677febc57a5f9ae379b3acf721b694a482c77db65c3d5) {
+            self~$Structs$_internal_text_ae9b15f0d50e95164ef677febc57a5f9ae379b3acf721b694a482c77db65c3d5();
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $Structs$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$Structs$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $Structs$_contract_store(self);
+}

@@ -1,0 +1,8 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ion-finance/long-counter/contracts/long_queue_counter.fc:61:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ion-finance/long-counter/contracts/long_queue_counter.fc:94:53: warning: Local variable 'cs' is not used
+              (int next_order_index, slice cs, var f) = queue.udict_get_next?(64, -1);
+                                                      ^

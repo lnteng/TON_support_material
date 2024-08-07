@@ -1,0 +1,23 @@
+$Opt2$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/optionals_Opt2.storage.fc:78:19: warning: Lack of end_parse.
+          return $sc~$Opt2$_load();
+                    ^
+$Opt2$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/optionals_Opt2.code.fc:14:58: warning: Local variable '$self'stateInit'code' is not used
+      var ((($self'stateInit'code, $self'stateInit'data))) = (null());
+                                                           ^
+$Opt2$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/optionals_Opt2.code.fc:14:58: warning: Local variable '$self'stateInit'data' is not used
+      var ((($self'stateInit'code, $self'stateInit'data))) = (null());
+                                                           ^
+$Opt3$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/optionals_Opt2.storage.fc:104:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$Opt2$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/optionals_Opt2.code.fc:75:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/optionals_Opt2.storage.fc:85:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

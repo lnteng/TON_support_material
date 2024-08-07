@@ -1,0 +1,49 @@
+{-
+    address.fc
+
+    This library provide functions for MsgAddressInt type. 
+-}
+
+
+(int) address::is_none(slice _addr) inline {
+    return equal_slices(_addr, addr_none());
+}
+
+(int) address::is_hole(slice _addr) inline {
+    return equal_slices(_addr, HOLE_ADDRESS);
+}
+
+(int) address::get_workchain(slice _addr) inline {
+    (int wc, _) = parse_std_addr(_addr);
+    return wc;
+}
+
+(int) address::get_hashpart(slice _addr) inline {
+    (_, int hp) = parse_std_addr(_addr);
+    return hp;
+}
+
+(int) address::check_workchain(slice _addr, int _wc) inline {
+    return _addr.address::get_workchain() == _wc;
+}
+
+;; doest trigger error if addr is addr_none 
+(int) address::check_workchain_nofail(slice _addr, int _wc) inline {
+    if _addr.address::is_none() {
+        return true;
+    }
+    
+    return _addr.address::check_workchain(_wc);
+}
+
+(int) address::check_hashpart(slice _addr, int _hp) inline {
+    return _addr.address::get_hashpart() == _hp;
+}
+
+(slice) address::serialize(int _wc, int _hp) inline {
+    return begin_cell()
+        .store_uint(4, 3) ;; 0b100 = addr_std$10 tag; No anycast
+        .store_int(_wc, 8)
+        .store_uint(_hp, 256)
+    .as_slice();
+}

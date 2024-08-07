@@ -1,0 +1,16 @@
+on_bounce: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBf6-YoR9xylol_NwjHrLkrTFAZJCX-bsd-Xx_902OaPaBf/jetton-minter.fc:63:16: warning: Local variable 'query_id' is not used
+    int query_id = in_msg_body~load_uint(64);
+                 ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBf6-YoR9xylol_NwjHrLkrTFAZJCX-bsd-Xx_902OaPaBf/jetton-minter.fc:22:7: warning: Lack of end_parse.
+      ds~load_ref()  ;; jetton_wallet_code
+        ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBf6-YoR9xylol_NwjHrLkrTFAZJCX-bsd-Xx_902OaPaBf/jetton-minter.fc:84:19: warning: Lack of end_parse.
+    int fwd_fee = cs~load_coins(); ;; we use message fwd_fee for estimation of provide_wallet_address cost
+                    ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBf6-YoR9xylol_NwjHrLkrTFAZJCX-bsd-Xx_902OaPaBf/jetton-minter.fc:150:75: warning: UnHandle bounced message with op: 0xd1735400
+      send_raw_message(msg.store_maybe_ref(included_address).end_cell(), 64);
+                                                                            ^

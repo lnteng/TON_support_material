@@ -1,0 +1,4066 @@
+"Asm.fif" include
+// automatically generated from `/home/vtamara/.config/toncli/func-libs/error_codes.func` `/home/vtamara/.config/toncli/func-libs/math.func` `/home/vtamara/.config/toncli/func-libs/stdlib.func` `/home/vtamara/.config/toncli/test-libs/1.address_helpers.func` `/home/vtamara/.config/toncli/test-libs/bad_messages_generator.func` `/home/vtamara/.config/toncli/test-libs/c5_parse_helpers.func` `/home/vtamara/.config/toncli/test-libs/message_helpers.func` `/home/vtamara/.config/toncli/test-libs/storage-test-helpers.func` `/home/vtamara/.config/toncli/test-libs/tests-helpers.func` `/home/vtamara/.config/toncli/test-libs/token-helpers.func` `/home/vtamara/comp/ton/intercambiador/func/func/ads_contract.fc` incl:`/home/vtamara/comp/ton/intercambiador/func/func/ads_constants.fc` `/home/vtamara/comp/ton/intercambiador/func/tests/ruby_ayuda.fc` `/home/vtamara/comp/ton/intercambiador/func/tests/elixir_ayuda.fc` incl:`/home/vtamara/comp/ton/intercambiador/func/tests/../func/typehelpers.fc` incl:`/home/vtamara/comp/ton/intercambiador/func/tests/../func/debug.fc` 
+PROGRAM{
+  DECLPROC power
+  DECLPROC sqrt
+  DECLPROC avg
+  DECLPROC exp
+  DECLPROC log2
+  114362 DECLMETHOD generate_empty_address
+  103563 DECLMETHOD generate_internal_address
+  71142 DECLMETHOD generate_internal_address_with_custom_data
+  105789 DECLMETHOD generate_external_address
+  77760 DECLMETHOD generate_external_address_with_custom_data
+  119020 DECLMETHOD generate_var_address
+  101577 DECLMETHOD generate_var_address_with_custom_data
+  DECLPROC generate_any_address
+  76887 DECLMETHOD generate_external_out_message_with_bad_source_address
+  113901 DECLMETHOD generate_external_out_message_with_bad_destination_address
+  124331 DECLMETHOD generate_external_in_message_with_bad_source_address
+  128854 DECLMETHOD generate_external_in_message_with_bad_destination_address
+  122899 DECLMETHOD generate_internal_message_with_bad_grams_data
+  105345 DECLMETHOD generate_internal_message_with_bad_init_state_data
+  DECLPROC parse_send_raw_message
+  DECLPROC parse_lib_code
+  DECLPROC parse_raw_reserve
+  DECLPROC parse_set_code
+  DECLPROC parse_c5
+  66092 DECLMETHOD generate_init_state
+  86734 DECLMETHOD generate_init_state_with_data
+  70014 DECLMETHOD parse_init_state
+  71497 DECLMETHOD random_query_id
+  128031 DECLMETHOD generate_internal_message_body
+  103755 DECLMETHOD generate_internal_message_custom
+  DECLPROC generate_get_royalty_params
+  125184 DECLMETHOD generate_nft_transfer_request
+  93113 DECLMETHOD generate_nft_get_static_data_request
+  80940 DECLMETHOD generate_nft_deploy_request
+  72255 DECLMETHOD generate_jetton_burn_request
+  DECLPROC generate_jetton_burn_notification
+  128076 DECLMETHOD generate_jetton_internal_transfer_request
+  100003 DECLMETHOD generate_jetton_transfer_request
+  129018 DECLMETHOD generate_internal_message
+  108731 DECLMETHOD generate_internal_message_relaxed
+  115574 DECLMETHOD generate_external_in_message
+  78122 DECLMETHOD generate_external_in_message_with_empty_source_address
+  94514 DECLMETHOD generate_external_out_message
+  75192 DECLMETHOD generate_external_out_message_with_empty_destination_address
+  77897 DECLMETHOD generate_external_out_message_relaxed
+  94767 DECLMETHOD parse_internal_message
+  97177 DECLMETHOD parse_external_message
+  69682 DECLMETHOD init_environment
+  104832 DECLMETHOD storage_key
+  68533 DECLMETHOD load_storage_with_tag
+  113134 DECLMETHOD save_storage_with_tag
+  85860 DECLMETHOD get_c7
+  78457 DECLMETHOD invoke_method
+  93676 DECLMETHOD invoke_method_expect_fail
+  127733 DECLMETHOD assert_no_actions
+  DECLPROC token_snake_len
+  DECLPROC get_snake_tail
+  103208 DECLMETHOD snake_concat
+  DECLPROC snake_concat_tagged
+  DECLPROC snake_equal?
+  DECLPROC load_data
+  DECLPROC save_data
+  DECLPROC send_coins
+  DECLPROC send_utilities
+  DECLPROC recv_internal
+  85668 DECLMETHOD get_manager_address
+  78748 DECLMETHOD get_public_key
+  85143 DECLMETHOD seqno
+  94452 DECLMETHOD get_selling_ad_addresses
+  97050 DECLMETHOD get_amount_selling_ads
+  100460 DECLMETHOD get_nth_selling_ad
+  119249 DECLMETHOD get_selling_ad
+  DECLPROC __test_wrongmessage
+  DECLPROC __test_wrongseqno
+  DECLPROC __test_wrongsignature
+  DECLPROC hexdigit_to_chr
+  DECLPROC slice_to_hexstr
+  DECLPROC reconoce_c5
+  DECLPROC __test_goodsignature_badop
+  DECLPROC __test_add_ad_fewcoins
+  DECLPROC __test_add_ad_somecoins
+  DECLPROC __test_release_coins
+  DECLPROC __test_end
+  DECLGLOBVAR gseqno
+  DECLGLOBVAR selling_ads
+  DECLGLOBVAR buying_ads
+  DECLGLOBVAR payments_buying_ads
+  power PROCREF:<{
+    //  x exponent
+    OVER	//  x exponent x
+    0 EQINT	//  x exponent _3
+    IFJMP:<{	//  x exponent
+      2DROP	// 
+      0 PUSHINT	//  _4=0
+    }>	//  x exponent
+    DUP	//  x exponent exponent
+    0 EQINT	//  x exponent _6
+    IFJMP:<{	//  x exponent
+      2DROP	// 
+      1 PUSHINT	//  _7=1
+    }>	//  x exponent
+    OVER	//  x counter result
+    WHILE:<{
+      OVER	//  x counter result counter
+      1 GTINT	//  x counter result _11
+    }>DO<{	//  x counter result
+      s2 PUSH	//  x counter result x
+      MUL	//  x counter result
+      SWAP	//  x result counter
+      DEC	//  x result counter
+      SWAP	//  x counter result
+    }>	//  x counter result
+    2 1 BLKDROP2	//  result
+  }>
+  sqrt PROCREF:<{
+    //  x
+    DUP	//  x x
+    0 EQINT	//  x _2
+    IFJMP:<{	//  x
+      DROP	// 
+      0 PUSHINT	//  _3=0
+    }>	//  x
+    DUP	//  x x
+    4 LESSINT	//  x _5
+    IFJMP:<{	//  x
+      DROP	// 
+      1 PUSHINT	//  _6=1
+    }>	//  x
+    DUP	//  x x
+    INC	//  x _9
+    1 RSHIFT#	//  x z
+    OVER	//  x z y
+    WHILE:<{
+      2DUP	//  x z y z y
+      LESS	//  x z y _13
+    }>DO<{	//  x z y
+      DROP	//  x z
+      s0 s1 s0 PUSH3	//  x z y x z
+      DIV	//  x z y _14
+      ROT	//  x y _14 z
+      ADD	//  x y _15
+      1 RSHIFT#	//  x y z
+      SWAP	//  x z y
+    }>	//  x z y
+    2 1 BLKDROP2	//  y
+  }>
+  avg PROCREF:<{
+    //  x y
+    ADD	//  _2
+    1 RSHIFT#	//  _4
+  }>
+  exp PROCREF:<{
+    //  x
+    DUP	//  x x
+    -1 GTINT	//  x _2
+    IF:<{	//  x
+      POW2	//  _3
+    }>ELSE<{	//  x
+      1 PUSHINT	//  x _6=1
+      SWAP	//  _6=1 x
+      NEGATE	//  _6=1 _8
+      RSHIFT	//  _3
+    }>
+  }>
+  log2 PROCREF:<{
+    //  x
+    0 PUSHINT	//  x n=0
+    7 PUSHPOW2	//  x n=0 _3=128
+    exp INLINECALLDICT	//  x n=0 _4
+    s2 s(-1) PUXC	//  x n=0 x _4
+    GEQ	//  x n=0 _5
+    IF:<{	//  x n=0
+      DROP	//  x
+      128 RSHIFT#	//  x
+      7 PUSHPOW2	//  x n
+    }>	//  x n
+    64 PUSHINT	//  x n _10=64
+    exp INLINECALLDICT	//  x n _11
+    s2 s(-1) PUXC	//  x n x _11
+    GEQ	//  x n _12
+    IF:<{	//  x n
+      SWAP	//  n x
+      64 RSHIFT#	//  n x
+      SWAP	//  x n
+      64 ADDCONST	//  x n
+    }>	//  x n
+    32 PUSHINT	//  x n _17=32
+    exp INLINECALLDICT	//  x n _18
+    s2 s(-1) PUXC	//  x n x _18
+    GEQ	//  x n _19
+    IF:<{	//  x n
+      SWAP	//  n x
+      32 RSHIFT#	//  n x
+      SWAP	//  x n
+      32 ADDCONST	//  x n
+    }>	//  x n
+    16 PUSHINT	//  x n _24=16
+    exp INLINECALLDICT	//  x n _25
+    s2 s(-1) PUXC	//  x n x _25
+    GEQ	//  x n _26
+    IF:<{	//  x n
+      SWAP	//  n x
+      16 RSHIFT#	//  n x
+      SWAP	//  x n
+      16 ADDCONST	//  x n
+    }>	//  x n
+    8 PUSHINT	//  x n _31=8
+    exp INLINECALLDICT	//  x n _32
+    s2 s(-1) PUXC	//  x n x _32
+    GEQ	//  x n _33
+    IF:<{	//  x n
+      SWAP	//  n x
+      8 RSHIFT#	//  n x
+      SWAP	//  x n
+      8 ADDCONST	//  x n
+    }>	//  x n
+    4 PUSHINT	//  x n _38=4
+    exp INLINECALLDICT	//  x n _39
+    s2 s(-1) PUXC	//  x n x _39
+    GEQ	//  x n _40
+    IF:<{	//  x n
+      SWAP	//  n x
+      4 RSHIFT#	//  n x
+      SWAP	//  x n
+      4 ADDCONST	//  x n
+    }>	//  x n
+    2 PUSHINT	//  x n _45=2
+    exp INLINECALLDICT	//  x n _46
+    s2 s(-1) PUXC	//  x n x _46
+    GEQ	//  x n _47
+    IF:<{	//  x n
+      SWAP	//  n x
+      2 RSHIFT#	//  n x
+      SWAP	//  x n
+      2 ADDCONST	//  x n
+    }>	//  x n
+    1 PUSHINT	//  x n _52=1
+    exp INLINECALLDICT	//  x n _53
+    s1 s2 XCHG	//  n x _53
+    GEQ	//  n _54
+    IF:<{	//  n
+      INC	//  n
+    }>	//  n
+  }>
+  generate_empty_address PROC:<{
+    // 
+    0 PUSHINT	//  _0=0
+    NEWC	//  _0=0 _1
+    2 STU	//  _3
+    ENDC	//  _4
+    CTOS	//  _5
+  }>
+  generate_internal_address PROC:<{
+    // 
+    RANDU256	//  address
+    -1 PUSHINT	//  address _3=-1
+    0 PUSHINT	//  address _3=-1 _4=0
+    2 PUSHINT	//  address _3=-1 _4=0 _5=2
+    NEWC	//  address _3=-1 _4=0 _5=2 _6
+    2 STU	//  address _3=-1 _4=0 _8
+    1 STU	//  address _3=-1 _10
+    8 STI	//  address _12
+    256 STU	//  _14
+    ENDC	//  _15
+    CTOS	//  address_cell
+  }>
+  generate_internal_address_with_custom_data PROC:<{
+    //  anycast workchain_id address
+    2 PUSHINT	//  anycast workchain_id address _4=2
+    NEWC	//  anycast workchain_id address _4=2 _5
+    2 STU	//  anycast workchain_id address _7
+    s1 s3 XCHG	//  address workchain_id anycast _7
+    1 STU	//  address workchain_id _9
+    8 STI	//  address _11
+    256 STU	//  _13
+    ENDC	//  _14
+    CTOS	//  address_cell
+  }>
+  generate_external_address PROC:<{
+    //  address_length
+    RANDU256	//  address_length address
+    1 PUSHINT	//  address_length address _4=1
+    NEWC	//  address_length address _4=1 _5
+    2 STU	//  address_length address _7
+    s2 s(-1) PUXC	//  address_length address address_length _7
+    9 STU	//  address_length address _9
+    ROT	//  address _9 address_length
+    STUX	//  _10
+    ENDC	//  _11
+    CTOS	//  address_cell
+  }>
+  generate_external_address_with_custom_data PROC:<{
+    //  address_length address
+    1 PUSHINT	//  address_length address _3=1
+    NEWC	//  address_length address _3=1 _4
+    2 STU	//  address_length address _6
+    s2 s(-1) PUXC	//  address_length address address_length _6
+    9 STU	//  address_length address _8
+    ROT	//  address _8 address_length
+    STUX	//  _9
+    ENDC	//  _10
+    CTOS	//  address_cell
+  }>
+  generate_var_address PROC:<{
+    //  address_length
+    DUP
+    8 PUSHPOW2	//  address_length address_length _1=256
+    GREATER	//  address_length _2
+    IFJMP:<{	//  address_length
+      RANDU256	//  address_length address
+      RANDU256	//  address_length address address_secondpart
+      -1 PUSHINT	//  address_length address address_secondpart _8=-1
+      0 PUSHINT	//  address_length address address_secondpart _8=-1 _9=0
+      3 PUSHINT	//  address_length address address_secondpart _8=-1 _9=0 _10=3
+      NEWC	//  address_length address address_secondpart _8=-1 _9=0 _10=3 _11
+      2 STU	//  address_length address address_secondpart _8=-1 _9=0 _13
+      1 STU	//  address_length address address_secondpart _8=-1 _15
+      s1 s4 XCHG	//  _8=-1 address address_secondpart address_length _15
+      9 STU	//  _8=-1 address address_secondpart _17
+      s1 s3 XCHG	//  address_secondpart address _8=-1 _17
+      8 STI	//  address_secondpart address _19
+      256 STU	//  address_secondpart _21
+      256 STU	//  _23
+      ENDC	//  _24
+      CTOS	//  address_cell
+    }>	//  address_length
+    RANDU256	//  address_length address
+    -1 PUSHINT	//  address_length address _29=-1
+    0 PUSHINT	//  address_length address _29=-1 _30=0
+    3 PUSHINT	//  address_length address _29=-1 _30=0 _31=3
+    NEWC	//  address_length address _29=-1 _30=0 _31=3 _32
+    2 STU	//  address_length address _29=-1 _30=0 _34
+    1 STU	//  address_length address _29=-1 _36
+    s3 s(-1) PUXC	//  address_length address _29=-1 address_length _36
+    9 STU	//  address_length address _29=-1 _38
+    8 STI	//  address_length address _40
+    ROT	//  address _40 address_length
+    STUX	//  _41
+    ENDC	//  _42
+    CTOS	//  address_cell
+  }>
+  generate_var_address_with_custom_data PROC:<{
+    //  anycast workchain_id address_length address_slice
+    OVER
+    8 PUSHPOW2	//  anycast workchain_id address_length address_slice address_length _4=256
+    GREATER	//  anycast workchain_id address_length address_slice _5
+    IFJMP:<{	//  anycast workchain_id address_length address_slice
+      256 LDU	//  anycast workchain_id address_length addr address_slice
+      256 LDU	//  anycast workchain_id address_length addr _52 _51
+      DROP	//  anycast workchain_id address_length addr addr_second_part
+      3 PUSHINT	//  anycast workchain_id address_length addr addr_second_part _15=3
+      NEWC	//  anycast workchain_id address_length addr addr_second_part _15=3 _16
+      2 STU	//  anycast workchain_id address_length addr addr_second_part _18
+      s1 s5 XCHG	//  addr_second_part workchain_id address_length addr anycast _18
+      1 STU	//  addr_second_part workchain_id address_length addr _20
+      s1 s2 XCHG	//  addr_second_part workchain_id addr address_length _20
+      9 STU	//  addr_second_part workchain_id addr _22
+      s1 s2 XCHG	//  addr_second_part addr workchain_id _22
+      8 STI	//  addr_second_part addr _24
+      256 STU	//  addr_second_part _26
+      256 STU	//  _28
+      ENDC	//  _29
+      CTOS	//  address_cell
+    }>	//  anycast workchain_id address_length address_slice
+    256 LDU	//  anycast workchain_id address_length _54 _53
+    DROP	//  anycast workchain_id address_length addr
+    3 PUSHINT	//  anycast workchain_id address_length addr _36=3
+    NEWC	//  anycast workchain_id address_length addr _36=3 _37
+    2 STU	//  anycast workchain_id address_length addr _39
+    s1 s4 XCHG	//  addr workchain_id address_length anycast _39
+    1 STU	//  addr workchain_id address_length _41
+    s1 s(-1) PUXC	//  addr workchain_id address_length address_length _41
+    9 STU	//  addr workchain_id address_length _43
+    s1 s2 XCHG	//  addr address_length workchain_id _43
+    8 STI	//  addr address_length _45
+    SWAP	//  addr _45 address_length
+    STUX	//  _46
+    ENDC	//  _47
+    CTOS	//  address_cell
+  }>
+  generate_any_address PROC:<{
+    //  typeOfAddress
+    DUP	//  typeOfAddress typeOfAddress
+    0 EQINT	//  typeOfAddress _2
+    IFJMP:<{	//  typeOfAddress
+      DROP	// 
+      generate_empty_address CALLDICT	//  _3
+    }>	//  typeOfAddress
+    DUP	//  typeOfAddress typeOfAddress
+    1 EQINT	//  typeOfAddress _5
+    IFJMP:<{	//  typeOfAddress
+      DROP	// 
+      generate_internal_address CALLDICT	//  _6
+    }>	//  typeOfAddress
+    2 EQINT	//  _8
+    IFJMP:<{	// 
+      8 PUSHPOW2	//  _9=256
+      generate_external_address CALLDICT	//  _10
+    }>	// 
+    8 PUSHPOW2	//  _11=256
+    generate_var_address CALLDICT	//  _12
+  }>
+  generate_external_out_message_with_bad_source_address PROC:<{
+    // 
+    1 PUSHINT	//  _1=1
+    -1 PUSHINT	//  _1=1 _2=-1
+    0 PUSHINT	//  _1=1 _2=-1 _3=0
+    2 PUSHINT	//  _1=1 _2=-1 _3=0 _4=2
+    NEWC	//  _1=1 _2=-1 _3=0 _4=2 _5
+    2 STU	//  _1=1 _2=-1 _3=0 _7
+    1 STU	//  _1=1 _2=-1 _9
+    8 STI	//  _1=1 _11
+    10 STU	//  _13
+    ENDC	//  _14
+    CTOS	//  ssrc_invalid
+    0 PUSHINT	//  ssrc_invalid _16=0
+    3 PUSHINT	//  ssrc_invalid _16=0 _17=3
+    NEWC	//  ssrc_invalid _16=0 _17=3 _18
+    2 STU	//  ssrc_invalid _16=0 _20
+    1 STI	//  ssrc_invalid _22
+    SWAP	//  _22 ssrc_invalid
+    STSLICER	//  _23
+    ENDC	//  _24
+  }>
+  generate_external_out_message_with_bad_destination_address PROC:<{
+    // 
+    generate_internal_address CALLDICT	//  ssrc
+    0 PUSHINT	//  ssrc _2=0
+    3 PUSHINT	//  ssrc _2=0 _3=3
+    NEWC	//  ssrc _2=0 _3=3 _4
+    2 STU	//  ssrc _2=0 _6
+    ROT	//  _2=0 _6 ssrc
+    STSLICER	//  _2=0 _7
+    1 STI	//  _9
+    ENDC	//  _10
+  }>
+  generate_external_in_message_with_bad_source_address PROC:<{
+    // 
+    0 PUSHINT	//  _1=0
+    7 PUSHPOW2	//  _1=0 _2=128
+    1 PUSHINT	//  _1=0 _2=128 _3=1
+    NEWC	//  _1=0 _2=128 _3=1 _4
+    2 STU	//  _1=0 _2=128 _6
+    9 STU	//  _1=0 _8
+    10 STU	//  _10
+    ENDC	//  _11
+    CTOS	//  ssrc_invalid
+    2 PUSHINT	//  ssrc_invalid _13=2
+    NEWC	//  ssrc_invalid _13=2 _14
+    2 STU	//  ssrc_invalid _16
+    SWAP	//  _16 ssrc_invalid
+    STSLICER	//  _17
+    ENDC	//  _18
+  }>
+  generate_external_in_message_with_bad_destination_address PROC:<{
+    // 
+    8 PUSHPOW2	//  _1=256
+    generate_external_address CALLDICT	//  ssrc
+    0 PUSHINT	//  ssrc _3=0
+    2 PUSHINT	//  ssrc _3=0 _4=2
+    NEWC	//  ssrc _3=0 _4=2 _5
+    2 STU	//  ssrc _3=0 _7
+    ROT	//  _3=0 _7 ssrc
+    STSLICER	//  _3=0 _8
+    1 STI	//  _10
+    ENDC	//  _11
+  }>
+  generate_internal_message_with_bad_grams_data PROC:<{
+    // 
+    generate_internal_address CALLDICT	//  ssrc
+    generate_internal_address CALLDICT	//  ssrc sdest
+    1 PUSHINT	//  ssrc sdest _4=1
+    8 PUSHINT	//  ssrc sdest _4=1 _5=8
+    0 PUSHINT	//  ssrc sdest _4=1 _5=8 _6=0
+    s0 s0 s0 PUSH3	//  ssrc sdest _4=1 _5=8 _6=0 _7=0 _8=0 _9=0
+    NEWC	//  ssrc sdest _4=1 _5=8 _6=0 _7=0 _8=0 _9=0 _10
+    1 STU	//  ssrc sdest _4=1 _5=8 _6=0 _7=0 _8=0 _12
+    1 STU	//  ssrc sdest _4=1 _5=8 _6=0 _7=0 _14
+    1 STU	//  ssrc sdest _4=1 _5=8 _6=0 _16
+    1 STU	//  ssrc sdest _4=1 _5=8 _18
+    s0 s4 XCHG2	//  _5=8 sdest _4=1 _18 ssrc
+    STSLICER	//  _5=8 sdest _4=1 _19
+    ROT	//  _5=8 _4=1 _19 sdest
+    STSLICER	//  _5=8 _4=1 _20
+    s1 s2 XCHG	//  _4=1 _5=8 _20
+    4 STU	//  _4=1 _22
+    1 STU	//  _24
+    ENDC	//  _25
+  }>
+  generate_internal_message_with_bad_init_state_data PROC:<{
+    // 
+    generate_internal_address CALLDICT	//  ssrc
+    generate_internal_address CALLDICT	//  ssrc sdest
+    1 PUSHINT	//  ssrc sdest _5=1
+    s0 s0 PUSH2	//  ssrc sdest _5=1 _6=1 _7=1
+    0 PUSHINT	//  ssrc sdest _5=1 _6=1 _7=1 _8=0
+    s1 s1 s0 PUSH3	//  ssrc sdest _5=1 _6=1 _7=1 _8=0 _9=1 _10=1 _11=0
+    NEWC	//  ssrc sdest _5=1 _6=1 _7=1 _8=0 _9=1 _10=1 _11=0 _12
+    1 STU	//  ssrc sdest _5=1 _6=1 _7=1 _8=0 _9=1 _10=1 _14
+    1 STU	//  ssrc sdest _5=1 _6=1 _7=1 _8=0 _9=1 _16
+    1 STU	//  ssrc sdest _5=1 _6=1 _7=1 _8=0 _18
+    1 STU	//  ssrc sdest _5=1 _6=1 _7=1 _20
+    1 STU	//  ssrc sdest _5=1 _6=1 _22
+    1 STU	//  ssrc sdest _5=1 _24
+    1 STU	//  ssrc sdest init_state_with_bad_data
+    0 PUSHINT	//  ssrc sdest init_state_with_bad_data _27=0
+    SWAP	//  ssrc sdest _27=0 init_state_with_bad_data
+    ENDC	//  ssrc sdest _27=0 _28
+    1 PUSHINT	//  ssrc sdest _27=0 _28 _29=1
+    DUP	//  ssrc sdest _27=0 _28 _29=1 _30=1
+    1000 PUSHINT	//  ssrc sdest _27=0 _28 _29=1 _30=1 _31=1000
+    DUP	//  ssrc sdest _27=0 _28 _29=1 _30=1 _31=1000 _32=1000
+    PUSHNULL	//  ssrc sdest _27=0 _28 _29=1 _30=1 _31=1000 _32=1000 _33
+    s6 s6 s6 PUSH3	//  ssrc sdest _27=0 _28 _29=1 _30=1 _31=1000 _32=1000 _33 _34=0 _35=0 _36=0
+    DUP	//  ssrc sdest _27=0 _28 _29=1 _30=1 _31=1000 _32=1000 _33 _34=0 _35=0 _36=0 _37=0
+    NEWC	//  ssrc sdest _27=0 _28 _29=1 _30=1 _31=1000 _32=1000 _33 _34=0 _35=0 _36=0 _37=0 _38
+    1 STU	//  ssrc sdest _27=0 _28 _29=1 _30=1 _31=1000 _32=1000 _33 _34=0 _35=0 _36=0 _40
+    1 STU	//  ssrc sdest _27=0 _28 _29=1 _30=1 _31=1000 _32=1000 _33 _34=0 _35=0 _42
+    1 STU	//  ssrc sdest _27=0 _28 _29=1 _30=1 _31=1000 _32=1000 _33 _34=0 _44
+    1 STU	//  ssrc sdest _27=0 _28 _29=1 _30=1 _31=1000 _32=1000 _33 _46
+    s0 s9 XCHG2	//  _33 sdest _27=0 _28 _29=1 _30=1 _31=1000 _32=1000 _46 ssrc
+    STSLICER	//  _33 sdest _27=0 _28 _29=1 _30=1 _31=1000 _32=1000 _47
+    s0 s7 XCHG2	//  _33 _32=1000 _27=0 _28 _29=1 _30=1 _31=1000 _47 sdest
+    STSLICER	//  _33 _32=1000 _27=0 _28 _29=1 _30=1 _31=1000 _48
+    s5 PUSH	//  _33 _32=1000 _27=0 _28 _29=1 _30=1 _31=1000 _48 _49=0
+    STGRAMS	//  _33 _32=1000 _27=0 _28 _29=1 _30=1 _31=1000 _50
+    s1 s7 XCHG	//  _31=1000 _32=1000 _27=0 _28 _29=1 _30=1 _33 _50
+    STDICT	//  _31=1000 _32=1000 _27=0 _28 _29=1 _30=1 _51
+    s4 PUSH	//  _31=1000 _32=1000 _27=0 _28 _29=1 _30=1 _51 _52=0
+    STGRAMS	//  _31=1000 _32=1000 _27=0 _28 _29=1 _30=1 _53
+    s4 PUSH	//  _31=1000 _32=1000 _27=0 _28 _29=1 _30=1 _53 _54=0
+    STGRAMS	//  _31=1000 _32=1000 _27=0 _28 _29=1 _30=1 _55
+    s1 s5 XCHG	//  _31=1000 _30=1 _27=0 _28 _29=1 _32=1000 _55
+    64 STU	//  _31=1000 _30=1 _27=0 _28 _29=1 _57
+    s1 s5 XCHG	//  _29=1 _30=1 _27=0 _28 _31=1000 _57
+    32 STU	//  _29=1 _30=1 _27=0 _28 _59
+    s1 s3 XCHG	//  _29=1 _28 _27=0 _30=1 _59
+    1 STU	//  _29=1 _28 _27=0 _61
+    s1 s3 XCHG	//  _27=0 _28 _29=1 _61
+    1 STU	//  _27=0 _28 _63
+    STREF	//  _27=0 _64
+    1 STU	//  _66
+    ENDC	//  _67
+  }>
+  parse_send_raw_message PROCINLINE:<{
+    //  out_action
+    8 LDU	//  _1 out_action
+    LDREF	//  _1 _9 _8
+    DROP	//  _1 _4
+  }>
+  parse_lib_code PROCINLINE:<{
+    //  out_action
+    7 LDU	//  mode out_action
+    DUP	//  mode out_action out_action
+    SREFS	//  mode out_action _5
+    0 GTINT	//  mode out_action _7
+    IF:<{	//  mode out_action
+      LDREF	//  mode _20 _19
+      DROP	//  mode _8
+    }>ELSE<{	//  mode out_action
+      256 LDSLICE	//  mode _22 _21
+      DROP	//  mode loaded_bits
+      NEWC	//  mode loaded_bits _14
+      SWAP	//  mode _14 loaded_bits
+      STSLICER	//  mode _15
+      ENDC	//  mode _16
+    }>
+  }>
+  parse_raw_reserve PROCINLINE:<{
+    //  out_action
+    8 LDU	//  _1 out_action
+    LDDICT	//  _1 _9 _8
+    DROP	//  _1 _4
+  }>
+  parse_set_code PROCINLINE:<{
+    //  out_action
+    LDREF	//  _4 _3
+    DROP	//  _1
+  }>
+  parse_c5 PROCINLINE:<{
+    // 
+    NIL	//  list_of_actions_tuple
+    c5 PUSH	//  list_of_actions_tuple c5
+    NIL	//  list_of_actions_tuple c5 actions
+    SWAP	//  list_of_actions_tuple actions c5
+    CTOS	//  list_of_actions_tuple actions out_action_node
+    DUP	//  list_of_actions_tuple actions out_action_node out_action_node
+    SBITS	//  list_of_actions_tuple actions out_action_node _8
+    0 EQINT	//  list_of_actions_tuple actions out_action_node _10
+    IF:<{	//  list_of_actions_tuple actions out_action_node
+      3 BLKDROP	// 
+      PUSHNULL	//  _11
+    }>ELSE<{	//  list_of_actions_tuple actions out_action_node
+      0 PUSHINT	//  list_of_actions_tuple actions out_action_node num=0
+      UNTIL:<{
+        SWAP	//  list_of_actions_tuple actions num out_action_node
+        LDREF	//  list_of_actions_tuple actions num next out_action_node
+        s0 s3 XCHG2	//  list_of_actions_tuple next num out_action_node actions
+        CONS	//  list_of_actions_tuple next num actions
+        s0 s2 XCHG	//  list_of_actions_tuple actions num next
+        CTOS	//  list_of_actions_tuple actions num out_action_node
+        SWAP	//  list_of_actions_tuple actions out_action_node num
+        INC	//  list_of_actions_tuple actions out_action_node num
+        OVER	//  list_of_actions_tuple actions out_action_node num out_action_node
+        SBITS	//  list_of_actions_tuple actions out_action_node num _23
+        0 EQINT	//  list_of_actions_tuple actions out_action_node num break
+      }>	//  list_of_actions_tuple actions out_action_node num
+      NIP	//  list_of_actions_tuple actions num
+      0 PUSHINT	//  list_of_actions_tuple actions num i=0
+      UNTIL:<{
+        s0 s2 XCHG	//  list_of_actions_tuple i num actions
+        UNCONS	//  list_of_actions_tuple i num out_action actions
+        SWAP	//  list_of_actions_tuple i num actions out_action
+        32 LDU	//  list_of_actions_tuple i num actions action_code out_action
+        OVER
+        247711853 PUSHINT	//  list_of_actions_tuple i num actions action_code out_action action_code _35=247711853
+        EQUAL	//  list_of_actions_tuple i num actions action_code out_action _36
+        IF:<{	//  list_of_actions_tuple i num actions action_code out_action
+          NIP	//  list_of_actions_tuple i num actions out_action
+          parse_send_raw_message INLINECALLDICT	//  list_of_actions_tuple i num actions mode body
+          0 PUSHINT	//  list_of_actions_tuple i num actions mode body _42=0
+          s0 s2 XCHG	//  list_of_actions_tuple i num actions _42=0 body mode
+          TRIPLE	//  list_of_actions_tuple i num actions _41
+          s1 s4 XCHG	//  actions i num list_of_actions_tuple _41
+          TPUSH	//  actions i num list_of_actions_tuple
+        }>ELSE<{	//  list_of_actions_tuple i num actions action_code out_action
+          OVER
+          2907562126 PUSHINT	//  list_of_actions_tuple i num actions action_code out_action action_code _44=2907562126
+          EQUAL	//  list_of_actions_tuple i num actions action_code out_action _45
+          IF:<{	//  list_of_actions_tuple i num actions action_code out_action
+            NIP	//  list_of_actions_tuple i num actions out_action
+            parse_set_code INLINECALLDICT	//  list_of_actions_tuple i num actions new_setcode
+            1 PUSHINT	//  list_of_actions_tuple i num actions new_setcode _50=1
+            SWAP
+            -1 PUSHINT	//  list_of_actions_tuple i num actions _50=1 new_setcode _51=-1
+            TRIPLE	//  list_of_actions_tuple i num actions _49
+            s1 s4 XCHG	//  actions i num list_of_actions_tuple _49
+            TPUSH	//  actions i num list_of_actions_tuple
+          }>ELSE<{	//  list_of_actions_tuple i num actions action_code out_action
+            OVER
+            921090057 PUSHINT	//  list_of_actions_tuple i num actions action_code out_action action_code _53=921090057
+            EQUAL	//  list_of_actions_tuple i num actions action_code out_action _54
+            IF:<{	//  list_of_actions_tuple i num actions action_code out_action
+              NIP	//  list_of_actions_tuple i num actions out_action
+              parse_raw_reserve INLINECALLDICT	//  list_of_actions_tuple i num actions mode currencies
+              2 PUSHINT	//  list_of_actions_tuple i num actions mode currencies _60=2
+              s0 s2 XCHG	//  list_of_actions_tuple i num actions _60=2 currencies mode
+              TRIPLE	//  list_of_actions_tuple i num actions _59
+              s1 s4 XCHG	//  actions i num list_of_actions_tuple _59
+              TPUSH	//  actions i num list_of_actions_tuple
+            }>ELSE<{	//  list_of_actions_tuple i num actions action_code out_action
+              SWAP
+              653925844 PUSHINT	//  list_of_actions_tuple i num actions out_action action_code _62=653925844
+              EQUAL	//  list_of_actions_tuple i num actions out_action _63
+              IF:<{	//  list_of_actions_tuple i num actions out_action
+                parse_lib_code INLINECALLDICT	//  list_of_actions_tuple i num actions mode lib_cell_or_lib_hash
+                3 PUSHINT	//  list_of_actions_tuple i num actions mode lib_cell_or_lib_hash _69=3
+                s0 s2 XCHG	//  list_of_actions_tuple i num actions _69=3 lib_cell_or_lib_hash mode
+                TRIPLE	//  list_of_actions_tuple i num actions _68
+                s1 s4 XCHG	//  actions i num list_of_actions_tuple _68
+                TPUSH	//  actions i num list_of_actions_tuple
+                s0 s3 XCHG	//  list_of_actions_tuple i num actions
+              }>ELSE<{
+                DROP	//  list_of_actions_tuple i num actions
+              }>
+              s0 s3 XCHG	//  actions i num list_of_actions_tuple
+            }>
+          }>
+        }>
+        s0 s2 XCHG	//  actions list_of_actions_tuple num i
+        INC	//  actions list_of_actions_tuple num i
+        s0 s1 PUSH2	//  actions list_of_actions_tuple num i i num
+        GEQ	//  actions list_of_actions_tuple num i _73
+        s3 s4 XCHG	//  list_of_actions_tuple actions num i _73
+      }>	//  list_of_actions_tuple actions num i
+      3 BLKDROP	//  list_of_actions_tuple
+    }>
+  }>
+  generate_init_state PROC:<{
+    // 
+    0 PUSHINT	//  _0=0
+    s0 s0 s0 PUSH3	//  _0=0 _1=0 _2=0 _3=0
+    1 PUSHINT	//  _0=0 _1=0 _2=0 _3=0 _4=1
+    s0 s1 PUSH2	//  _0=0 _1=0 _2=0 _3=0 _4=1 _5=1 _6=0
+    NEWC	//  _0=0 _1=0 _2=0 _3=0 _4=1 _5=1 _6=0 _7
+    1 STU	//  _0=0 _1=0 _2=0 _3=0 _4=1 _5=1 _9
+    1 STU	//  _0=0 _1=0 _2=0 _3=0 _4=1 _11
+    1 STU	//  _0=0 _1=0 _2=0 _3=0 _13
+    1 STU	//  _0=0 _1=0 _2=0 _15
+    1 STU	//  _0=0 _1=0 _17
+    1 STU	//  _0=0 _19
+    1 STU	//  _21
+  }>
+  generate_init_state_with_data PROC:<{
+    //  code data library
+    1 PUSHINT	//  code data library _3=1
+    s0 s0 PUSH2	//  code data library _3=1 _4=1 _5=1
+    0 PUSHINT	//  code data library _3=1 _4=1 _5=1 _6=0
+    s1 s1 s0 PUSH3	//  code data library _3=1 _4=1 _5=1 _6=0 _7=1 _8=1 _9=0
+    NEWC	//  code data library _3=1 _4=1 _5=1 _6=0 _7=1 _8=1 _9=0 _10
+    1 STU	//  code data library _3=1 _4=1 _5=1 _6=0 _7=1 _8=1 _12
+    1 STU	//  code data library _3=1 _4=1 _5=1 _6=0 _7=1 _14
+    1 STU	//  code data library _3=1 _4=1 _5=1 _6=0 _16
+    1 STU	//  code data library _3=1 _4=1 _5=1 _18
+    1 STU	//  code data library _3=1 _4=1 _20
+    s1 s5 XCHG	//  _4=1 data library _3=1 code _20
+    STREF	//  _4=1 data library _3=1 _21
+    s1 s4 XCHG	//  _3=1 data library _4=1 _21
+    1 STU	//  _3=1 data library _23
+    s1 s2 XCHG	//  _3=1 library data _23
+    STREF	//  _3=1 library _24
+    s1 s2 XCHG	//  library _3=1 _24
+    1 STU	//  library _26
+    STREF	//  _27
+  }>
+  parse_init_state PROC:<{
+    //  cs
+    NIL	//  cs parsed_tuple
+    SWAP	//  parsed_tuple cs
+    1 LDU	//  parsed_tuple maybe_five cs
+    s2 s1 XCPU	//  cs maybe_five parsed_tuple maybe_five
+    TPUSH	//  cs maybe_five parsed_tuple
+    SWAP	//  cs parsed_tuple maybe_five
+    1 EQINT	//  cs parsed_tuple _10
+    IF:<{	//  cs parsed_tuple
+      SWAP	//  parsed_tuple cs
+      5 LDU	//  parsed_tuple _12 cs
+      -ROT	//  cs parsed_tuple _12
+      TPUSH	//  cs parsed_tuple
+    }>	//  cs parsed_tuple
+    SWAP	//  parsed_tuple cs
+    1 LDU	//  parsed_tuple maybe_tick_tock cs
+    s2 s1 XCPU	//  cs maybe_tick_tock parsed_tuple maybe_tick_tock
+    TPUSH	//  cs maybe_tick_tock parsed_tuple
+    SWAP	//  cs parsed_tuple maybe_tick_tock
+    1 EQINT	//  cs parsed_tuple _23
+    IF:<{	//  cs parsed_tuple
+      SWAP	//  parsed_tuple cs
+      1 LDU	//  parsed_tuple _25 cs
+      -ROT	//  cs parsed_tuple _25
+      TPUSH	//  cs parsed_tuple
+      SWAP	//  parsed_tuple cs
+      1 LDU	//  parsed_tuple _30 cs
+      -ROT	//  cs parsed_tuple _30
+      TPUSH	//  cs parsed_tuple
+    }>	//  cs parsed_tuple
+    SWAP	//  parsed_tuple cs
+    1 LDU	//  parsed_tuple maybe_code cs
+    s2 s1 XCPU	//  cs maybe_code parsed_tuple maybe_code
+    TPUSH	//  cs maybe_code parsed_tuple
+    SWAP	//  cs parsed_tuple maybe_code
+    1 EQINT	//  cs parsed_tuple _41
+    IF:<{	//  cs parsed_tuple
+      SWAP	//  parsed_tuple cs
+      LDREF	//  parsed_tuple _43 cs
+      -ROT	//  cs parsed_tuple _43
+      TPUSH	//  cs parsed_tuple
+    }>	//  cs parsed_tuple
+    SWAP	//  parsed_tuple cs
+    1 LDU	//  parsed_tuple maybe_data cs
+    s2 s1 XCPU	//  cs maybe_data parsed_tuple maybe_data
+    TPUSH	//  cs maybe_data parsed_tuple
+    SWAP	//  cs parsed_tuple maybe_data
+    1 EQINT	//  cs parsed_tuple _53
+    IF:<{	//  cs parsed_tuple
+      SWAP	//  parsed_tuple cs
+      LDREF	//  parsed_tuple _55 cs
+      -ROT	//  cs parsed_tuple _55
+      TPUSH	//  cs parsed_tuple
+    }>	//  cs parsed_tuple
+    SWAP	//  parsed_tuple cs
+    1 LDU	//  parsed_tuple maybe_library cs
+    s2 s1 XCPU	//  cs maybe_library parsed_tuple maybe_library
+    TPUSH	//  cs maybe_library parsed_tuple
+    SWAP	//  cs parsed_tuple maybe_library
+    1 EQINT	//  cs parsed_tuple _65
+    IF:<{	//  cs parsed_tuple
+      SWAP	//  parsed_tuple cs
+      LDREF	//  parsed_tuple _91 _90
+      DROP	//  parsed_tuple _67
+      TPUSH	//  parsed_tuple
+    }>ELSE<{
+      NIP	//  parsed_tuple
+    }>
+  }>
+  random_query_id PROC:<{
+    // 
+    LTIME
+    ADDRAND
+    64 PUSHPOW2	//  _3
+    RAND	//  _4
+    INC	//  _6
+  }>
+  generate_internal_message_body PROC:<{
+    //  op query_id
+    SWAP
+    NEWC	//  query_id op _3
+    32 STU	//  query_id body
+    OVER	//  query_id body query_id
+    0 EQINT	//  query_id body _7
+    IF:<{	//  query_id body
+      NIP	//  body
+      random_query_id CALLDICT	//  body query_id
+      SWAP	//  query_id body
+    }>	//  query_id body
+    64 STU	//  _10
+  }>
+  generate_internal_message_custom PROC:<{
+    //  bounce ton_amount init_state payload src_addr dst_addr fwd_fee
+    s2 PUSH	//  bounce ton_amount init_state payload src_addr dst_addr fwd_fee src_addr
+    ISNULL	//  bounce ton_amount init_state payload src_addr dst_addr fwd_fee _8
+    IF:<{	//  bounce ton_amount init_state payload src_addr dst_addr fwd_fee
+      s2 POP	//  bounce ton_amount init_state payload fwd_fee dst_addr
+      generate_internal_address CALLDICT	//  bounce ton_amount init_state payload fwd_fee dst_addr _9
+    }>ELSE<{	//  bounce ton_amount init_state payload _9 dst_addr fwd_fee
+      s0 s2 XCHG	//  bounce ton_amount init_state payload fwd_fee dst_addr _9
+    }>	//  bounce ton_amount init_state payload fwd_fee dst_addr ssrc
+    OVER	//  bounce ton_amount init_state payload fwd_fee dst_addr ssrc dst_addr
+    ISNULL	//  bounce ton_amount init_state payload fwd_fee dst_addr ssrc _12
+    IF:<{	//  bounce ton_amount init_state payload fwd_fee dst_addr ssrc
+      NIP	//  bounce ton_amount init_state payload fwd_fee ssrc
+      generate_internal_address CALLDICT	//  bounce ton_amount init_state payload fwd_fee ssrc _13
+    }>ELSE<{	//  bounce ton_amount init_state payload fwd_fee _13 ssrc
+      SWAP	//  bounce ton_amount init_state payload fwd_fee ssrc _13
+    }>	//  bounce ton_amount init_state payload fwd_fee ssrc sdest
+    1000 PUSHINT	//  bounce ton_amount init_state payload fwd_fee ssrc sdest _16=1000
+    DUP	//  bounce ton_amount init_state payload fwd_fee ssrc sdest _16=1000 _17=1000
+    PUSHNULL	//  bounce ton_amount init_state payload fwd_fee ssrc sdest _16=1000 _17=1000 _18
+    0 PUSHINT	//  bounce ton_amount init_state payload fwd_fee ssrc sdest _16=1000 _17=1000 _18 _19=0
+    s0 s0 PUSH2	//  bounce ton_amount init_state payload fwd_fee ssrc sdest _16=1000 _17=1000 _18 _19=0 _20=0 _21=0
+    NEWC	//  bounce ton_amount init_state payload fwd_fee ssrc sdest _16=1000 _17=1000 _18 _19=0 _20=0 _21=0 _22
+    1 STU	//  bounce ton_amount init_state payload fwd_fee ssrc sdest _16=1000 _17=1000 _18 _19=0 _20=0 _24
+    1 STU	//  bounce ton_amount init_state payload fwd_fee ssrc sdest _16=1000 _17=1000 _18 _19=0 _26
+    s1 s11 XCHG	//  _19=0 ton_amount init_state payload fwd_fee ssrc sdest _16=1000 _17=1000 _18 bounce _26
+    1 STU	//  _19=0 ton_amount init_state payload fwd_fee ssrc sdest _16=1000 _17=1000 _18 _28
+    s1 s10 XCHG	//  _18 ton_amount init_state payload fwd_fee ssrc sdest _16=1000 _17=1000 _19=0 _28
+    1 STU	//  _18 ton_amount init_state payload fwd_fee ssrc sdest _16=1000 _17=1000 _30
+    s0 s4 XCHG2	//  _18 ton_amount init_state payload fwd_fee _17=1000 sdest _16=1000 _30 ssrc
+    STSLICER	//  _18 ton_amount init_state payload fwd_fee _17=1000 sdest _16=1000 _31
+    ROT	//  _18 ton_amount init_state payload fwd_fee _17=1000 _16=1000 _31 sdest
+    STSLICER	//  _18 ton_amount init_state payload fwd_fee _17=1000 _16=1000 _32
+    s0 s6 XCHG2	//  _18 _16=1000 init_state payload fwd_fee _17=1000 _32 ton_amount
+    STGRAMS	//  _18 _16=1000 init_state payload fwd_fee _17=1000 _33
+    s1 s6 XCHG	//  _17=1000 _16=1000 init_state payload fwd_fee _18 _33
+    STDICT	//  _17=1000 _16=1000 init_state payload fwd_fee _34
+    0 PUSHINT	//  _17=1000 _16=1000 init_state payload fwd_fee _34 _35=0
+    STGRAMS	//  _17=1000 _16=1000 init_state payload fwd_fee _36
+    SWAP	//  _17=1000 _16=1000 init_state payload _36 fwd_fee
+    STGRAMS	//  _17=1000 _16=1000 init_state payload _37
+    s1 s4 XCHG	//  payload _16=1000 init_state _17=1000 _37
+    64 STU	//  payload _16=1000 init_state _39
+    s1 s2 XCHG	//  payload init_state _16=1000 _39
+    32 STU	//  payload init_state _41
+    s1 s(-1) PUXC	//  payload init_state init_state _41
+    1 STU	//  payload init_state msg
+    SWAP	//  payload msg init_state
+    1 EQINT	//  payload msg _45
+    IF:<{	//  payload msg
+      generate_init_state CALLDICT	//  payload msg init_state_builder
+      OVER	//  payload msg init_state_builder msg
+      BBITS	//  payload msg init_state_builder _48
+      OVER	//  payload msg init_state_builder _48 init_state_builder
+      BBITS	//  payload msg init_state_builder _48 _49
+      ADD	//  payload msg init_state_builder _50
+      10 PUSHPOW2DEC	//  payload msg init_state_builder _50 _51=1023
+      GEQ	//  payload msg init_state_builder _52
+      IF:<{	//  payload msg init_state_builder
+        ENDC	//  payload msg _53
+        1 PUSHINT
+        ROT	//  payload _53 _54=1 msg
+        1 STU	//  payload _53 _56
+        STREF	//  payload msg
+      }>ELSE<{	//  payload msg init_state_builder
+        0 PUSHINT
+        ROT	//  payload init_state_builder _58=0 msg
+        1 STU	//  payload init_state_builder _60
+        SWAP	//  payload _60 init_state_builder
+        STBR	//  payload msg
+      }>
+    }>	//  payload msg
+    DUP	//  payload msg msg
+    BBITS	//  payload msg _62
+    s2 PUSH	//  payload msg _62 payload
+    BBITS	//  payload msg _62 _63
+    ADD	//  payload msg _64
+    10 PUSHPOW2DEC	//  payload msg _64 _65=1023
+    GEQ	//  payload msg _66
+    IF:<{	//  payload msg
+      SWAP	//  msg payload
+      ENDC	//  msg _67
+      1 PUSHINT
+      ROT	//  _67 _68=1 msg
+      1 STU	//  _67 _70
+      STREF	//  msg
+    }>ELSE<{	//  payload msg
+      0 PUSHINT	//  payload msg _72=0
+      SWAP	//  payload _72=0 msg
+      1 STU	//  payload _74
+      SWAP	//  _74 payload
+      STBR	//  msg
+    }>
+    ENDC	//  _76
+  }>
+  generate_get_royalty_params PROC:<{
+    //  query_id
+    1765620048 PUSHINT	//  query_id _1=1765620048
+    SWAP	//  _1=1765620048 query_id
+    generate_internal_message_body CALLDICT	//  _2
+  }>
+  generate_nft_transfer_request PROC:<{
+    //  new_owner response_dst query_id custom_payload forward_amount forward_payload is_ref?
+    1607220500 PUSHINT	//  new_owner response_dst query_id custom_payload forward_amount forward_payload is_ref? _8=1607220500
+    s0 s5 XCHG2	//  new_owner response_dst is_ref? custom_payload forward_amount forward_payload _8=1607220500 query_id
+    generate_internal_message_body CALLDICT	//  new_owner response_dst is_ref? custom_payload forward_amount forward_payload _9
+    s0 s6 XCHG2	//  forward_payload response_dst is_ref? custom_payload forward_amount _9 new_owner
+    STSLICER	//  forward_payload response_dst is_ref? custom_payload forward_amount _10
+    s0 s4 XCHG2	//  forward_payload forward_amount is_ref? custom_payload _10 response_dst
+    STSLICER	//  forward_payload forward_amount is_ref? custom_payload req
+    OVER	//  forward_payload forward_amount is_ref? custom_payload req custom_payload
+    ISNULL	//  forward_payload forward_amount is_ref? custom_payload req _12
+    IF:<{	//  forward_payload forward_amount is_ref? custom_payload req
+      0 PUSHINT
+      s2 POP	//  forward_payload forward_amount is_ref? _13=0 req
+      1 STU	//  forward_payload forward_amount is_ref? req
+    }>ELSE<{	//  forward_payload forward_amount is_ref? custom_payload req
+      1 PUSHINT	//  forward_payload forward_amount is_ref? custom_payload req _16=1
+      SWAP	//  forward_payload forward_amount is_ref? custom_payload _16=1 req
+      1 STU	//  forward_payload forward_amount is_ref? custom_payload _18
+      STREF	//  forward_payload forward_amount is_ref? req
+    }>
+    ROT	//  forward_payload is_ref? req forward_amount
+    STGRAMS	//  forward_payload is_ref? req
+    s2 PUSH	//  forward_payload is_ref? req forward_payload
+    ISNULL	//  forward_payload is_ref? req _21
+    NOT	//  forward_payload is_ref? req _22
+    IF:<{	//  forward_payload is_ref? req
+      SWAP	//  forward_payload req is_ref?
+      IF:<{	//  forward_payload req
+        1 PUSHINT	//  forward_payload req _23=1
+        SWAP	//  forward_payload _23=1 req
+        1 STU	//  forward_payload _25
+        STREF	//  req
+      }>ELSE<{	//  forward_payload req
+        0 PUSHINT	//  forward_payload req _27=0
+        SWAP	//  forward_payload _27=0 req
+        1 STU	//  forward_payload _29
+        SWAP	//  _29 forward_payload
+        CTOS	//  _29 _30
+        STSLICER	//  req
+      }>
+    }>ELSE<{	//  forward_payload is_ref? req
+      NIP
+      0 PUSHINT
+      s2 POP	//  _32=0 req
+      1 STU	//  req
+    }>
+  }>
+  generate_nft_get_static_data_request PROC:<{
+    //  query_id
+    801842850 PUSHINT	//  query_id _1=801842850
+    NEWC	//  query_id _1=801842850 _2
+    32 STU	//  query_id _4
+    64 STU	//  _6
+  }>
+  generate_nft_deploy_request PROC:<{
+    //  idx content query_id forward_amount
+    1 PUSHINT
+    ROT	//  idx content forward_amount _4=1 query_id
+    generate_internal_message_body CALLDICT	//  idx content forward_amount _5
+    s1 s3 XCHG	//  forward_amount content idx _5
+    64 STU	//  forward_amount content _7
+    ROT	//  content _7 forward_amount
+    STGRAMS	//  content _8
+    STREF	//  _9
+  }>
+  generate_jetton_burn_request PROC:<{
+    //  query_id amount dst custom_payload
+    1499400124 PUSHINT	//  query_id amount dst custom_payload _5=1499400124
+    s0 s4 XCHG2	//  custom_payload amount dst _5=1499400124 query_id
+    generate_internal_message_body CALLDICT	//  custom_payload amount dst _6
+    ROT	//  custom_payload dst _6 amount
+    STGRAMS	//  custom_payload dst _7
+    SWAP	//  custom_payload _7 dst
+    STSLICER	//  custom_payload burn_msg
+    OVER	//  custom_payload burn_msg custom_payload
+    ISNULL	//  custom_payload burn_msg _9
+    NOT	//  custom_payload burn_msg _10
+    IF:<{	//  custom_payload burn_msg
+      1 PUSHINT	//  custom_payload burn_msg _11=1
+      SWAP	//  custom_payload _11=1 burn_msg
+      1 STU	//  custom_payload _13
+      STREF	//  burn_msg
+    }>ELSE<{	//  custom_payload burn_msg
+      0 PUSHINT
+      s2 POP	//  _15=0 burn_msg
+      1 STU	//  burn_msg
+    }>
+  }>
+  generate_jetton_burn_notification PROC:<{
+    //  query_id amount sender resp_dst
+    2078119902 PUSHINT	//  query_id amount sender resp_dst _4=2078119902
+    s0 s4 XCHG2	//  resp_dst amount sender _4=2078119902 query_id
+    generate_internal_message_body CALLDICT	//  resp_dst amount sender _5
+    ROT	//  resp_dst sender _5 amount
+    STGRAMS	//  resp_dst sender _6
+    SWAP	//  resp_dst _6 sender
+    STSLICER	//  resp_dst _7
+    SWAP	//  _7 resp_dst
+    STSLICER	//  _8
+  }>
+  generate_jetton_internal_transfer_request PROC:<{
+    //  query_id amount from resp_addr forward_amount forward_payload is_ref?
+    395134233 PUSHINT	//  query_id amount from resp_addr forward_amount forward_payload is_ref? _8=395134233
+    s0 s7 XCHG2	//  is_ref? amount from resp_addr forward_amount forward_payload _8=395134233 query_id
+    generate_internal_message_body CALLDICT	//  is_ref? amount from resp_addr forward_amount forward_payload _9
+    s0 s5 XCHG2	//  is_ref? forward_payload from resp_addr forward_amount _9 amount
+    STGRAMS	//  is_ref? forward_payload from resp_addr forward_amount _10
+    s0 s3 XCHG2	//  is_ref? forward_payload forward_amount resp_addr _10 from
+    STSLICER	//  is_ref? forward_payload forward_amount resp_addr _11
+    SWAP	//  is_ref? forward_payload forward_amount _11 resp_addr
+    STSLICER	//  is_ref? forward_payload forward_amount _12
+    SWAP	//  is_ref? forward_payload _12 forward_amount
+    STGRAMS	//  is_ref? forward_payload req
+    OVER	//  is_ref? forward_payload req forward_payload
+    ISNULL	//  is_ref? forward_payload req _14
+    NOT	//  is_ref? forward_payload req _15
+    IF:<{	//  is_ref? forward_payload req
+      s0 s2 XCHG	//  req forward_payload is_ref?
+      IF:<{	//  req forward_payload
+        1 PUSHINT
+        ROT	//  forward_payload _16=1 req
+        1 STU	//  forward_payload _18
+        STREF	//  req
+      }>ELSE<{	//  req forward_payload
+        0 PUSHINT
+        ROT	//  forward_payload _20=0 req
+        1 STU	//  forward_payload _22
+        SWAP	//  _22 forward_payload
+        CTOS	//  _22 _23
+        STSLICER	//  req
+      }>
+    }>ELSE<{	//  is_ref? forward_payload req
+      NIP
+      0 PUSHINT
+      s2 POP	//  _25=0 req
+      1 STU	//  req
+    }>
+  }>
+  generate_jetton_transfer_request PROC:<{
+    //  query_id amount dst resp_dst custom_payload forward_amount forward_payload is_ref?
+    260734629 PUSHINT	//  query_id amount dst resp_dst custom_payload forward_amount forward_payload is_ref? _9=260734629
+    s0 s8 XCHG2	//  is_ref? amount dst resp_dst custom_payload forward_amount forward_payload _9=260734629 query_id
+    generate_internal_message_body CALLDICT	//  is_ref? amount dst resp_dst custom_payload forward_amount forward_payload _10
+    s0 s6 XCHG2	//  is_ref? forward_payload dst resp_dst custom_payload forward_amount _10 amount
+    STGRAMS	//  is_ref? forward_payload dst resp_dst custom_payload forward_amount _11
+    s0 s4 XCHG2	//  is_ref? forward_payload forward_amount resp_dst custom_payload _11 dst
+    STSLICER	//  is_ref? forward_payload forward_amount resp_dst custom_payload _12
+    ROT	//  is_ref? forward_payload forward_amount custom_payload _12 resp_dst
+    STSLICER	//  is_ref? forward_payload forward_amount custom_payload req
+    OVER	//  is_ref? forward_payload forward_amount custom_payload req custom_payload
+    ISNULL	//  is_ref? forward_payload forward_amount custom_payload req _14
+    IF:<{	//  is_ref? forward_payload forward_amount custom_payload req
+      0 PUSHINT
+      s2 POP	//  is_ref? forward_payload forward_amount _15=0 req
+      1 STU	//  is_ref? forward_payload forward_amount req
+    }>ELSE<{	//  is_ref? forward_payload forward_amount custom_payload req
+      1 PUSHINT	//  is_ref? forward_payload forward_amount custom_payload req _18=1
+      SWAP	//  is_ref? forward_payload forward_amount custom_payload _18=1 req
+      1 STU	//  is_ref? forward_payload forward_amount custom_payload _20
+      STREF	//  is_ref? forward_payload forward_amount req
+    }>
+    SWAP	//  is_ref? forward_payload req forward_amount
+    STGRAMS	//  is_ref? forward_payload req
+    OVER	//  is_ref? forward_payload req forward_payload
+    ISNULL	//  is_ref? forward_payload req _23
+    NOT	//  is_ref? forward_payload req _24
+    IF:<{	//  is_ref? forward_payload req
+      s0 s2 XCHG	//  req forward_payload is_ref?
+      IF:<{	//  req forward_payload
+        1 PUSHINT
+        ROT	//  forward_payload _25=1 req
+        1 STU	//  forward_payload _27
+        STREF	//  req
+      }>ELSE<{	//  req forward_payload
+        0 PUSHINT
+        ROT	//  forward_payload _29=0 req
+        1 STU	//  forward_payload _31
+        SWAP	//  _31 forward_payload
+        CTOS	//  _31 _32
+        STSLICER	//  req
+      }>
+    }>ELSE<{	//  is_ref? forward_payload req
+      NIP
+      0 PUSHINT
+      s2 POP	//  _34=0 req
+      1 STU	//  req
+    }>
+  }>
+  generate_internal_message PROC:<{
+    //  bounce ton_amount init_state payload
+    generate_internal_address CALLDICT	//  bounce ton_amount init_state payload ssrc
+    generate_internal_address CALLDICT	//  bounce ton_amount init_state payload ssrc sdest
+    1000 PUSHINT	//  bounce ton_amount init_state payload ssrc sdest _9=1000
+    DUP	//  bounce ton_amount init_state payload ssrc sdest _9=1000 _10=1000
+    PUSHNULL	//  bounce ton_amount init_state payload ssrc sdest _9=1000 _10=1000 _11
+    0 PUSHINT	//  bounce ton_amount init_state payload ssrc sdest _9=1000 _10=1000 _11 _12=0
+    s0 s0 PUSH2	//  bounce ton_amount init_state payload ssrc sdest _9=1000 _10=1000 _11 _12=0 _13=0 _14=0
+    NEWC	//  bounce ton_amount init_state payload ssrc sdest _9=1000 _10=1000 _11 _12=0 _13=0 _14=0 _15
+    1 STU	//  bounce ton_amount init_state payload ssrc sdest _9=1000 _10=1000 _11 _12=0 _13=0 _17
+    1 STU	//  bounce ton_amount init_state payload ssrc sdest _9=1000 _10=1000 _11 _12=0 _19
+    s1 s10 XCHG	//  _12=0 ton_amount init_state payload ssrc sdest _9=1000 _10=1000 _11 bounce _19
+    1 STU	//  _12=0 ton_amount init_state payload ssrc sdest _9=1000 _10=1000 _11 _21
+    s1 s9 XCHG	//  _11 ton_amount init_state payload ssrc sdest _9=1000 _10=1000 _12=0 _21
+    1 STU	//  _11 ton_amount init_state payload ssrc sdest _9=1000 _10=1000 _23
+    s0 s4 XCHG2	//  _11 ton_amount init_state payload _10=1000 sdest _9=1000 _23 ssrc
+    STSLICER	//  _11 ton_amount init_state payload _10=1000 sdest _9=1000 _24
+    ROT	//  _11 ton_amount init_state payload _10=1000 _9=1000 _24 sdest
+    STSLICER	//  _11 ton_amount init_state payload _10=1000 _9=1000 _25
+    s0 s5 XCHG2	//  _11 _9=1000 init_state payload _10=1000 _25 ton_amount
+    STGRAMS	//  _11 _9=1000 init_state payload _10=1000 _26
+    s1 s5 XCHG	//  _10=1000 _9=1000 init_state payload _11 _26
+    STDICT	//  _10=1000 _9=1000 init_state payload _27
+    0 PUSHINT	//  _10=1000 _9=1000 init_state payload _27 _28=0
+    STGRAMS	//  _10=1000 _9=1000 init_state payload _29
+    0 PUSHINT	//  _10=1000 _9=1000 init_state payload _29 _30=0
+    STGRAMS	//  _10=1000 _9=1000 init_state payload _31
+    s1 s4 XCHG	//  payload _9=1000 init_state _10=1000 _31
+    64 STU	//  payload _9=1000 init_state _33
+    s1 s2 XCHG	//  payload init_state _9=1000 _33
+    32 STU	//  payload init_state _35
+    s1 s(-1) PUXC	//  payload init_state init_state _35
+    1 STU	//  payload init_state msg
+    SWAP	//  payload msg init_state
+    1 EQINT	//  payload msg _39
+    IF:<{	//  payload msg
+      generate_init_state CALLDICT	//  payload msg init_state_builder
+      OVER	//  payload msg init_state_builder msg
+      BBITS	//  payload msg init_state_builder _42
+      OVER	//  payload msg init_state_builder _42 init_state_builder
+      BBITS	//  payload msg init_state_builder _42 _43
+      ADD	//  payload msg init_state_builder _44
+      10 PUSHPOW2DEC	//  payload msg init_state_builder _44 _45=1023
+      GEQ	//  payload msg init_state_builder _46
+      IF:<{	//  payload msg init_state_builder
+        ENDC	//  payload msg _47
+        1 PUSHINT
+        ROT	//  payload _47 _48=1 msg
+        1 STU	//  payload _47 _50
+        STREF	//  payload msg
+      }>ELSE<{	//  payload msg init_state_builder
+        0 PUSHINT
+        ROT	//  payload init_state_builder _52=0 msg
+        1 STU	//  payload init_state_builder _54
+        SWAP	//  payload _54 init_state_builder
+        STBR	//  payload msg
+      }>
+    }>	//  payload msg
+    DUP	//  payload msg msg
+    BBITS	//  payload msg _56
+    s2 PUSH	//  payload msg _56 payload
+    BBITS	//  payload msg _56 _57
+    ADD	//  payload msg _58
+    10 PUSHPOW2DEC	//  payload msg _58 _59=1023
+    GEQ	//  payload msg _60
+    IF:<{	//  payload msg
+      SWAP	//  msg payload
+      ENDC	//  msg _61
+      1 PUSHINT
+      ROT	//  _61 _62=1 msg
+      1 STU	//  _61 _64
+      STREF	//  msg
+    }>ELSE<{	//  payload msg
+      0 PUSHINT	//  payload msg _66=0
+      SWAP	//  payload _66=0 msg
+      1 STU	//  payload _68
+      SWAP	//  _68 payload
+      STBR	//  msg
+    }>
+    ENDC	//  _70
+  }>
+  generate_internal_message_relaxed PROC:<{
+    //  bounce ton_amount init_state payload typeOfAnyAddress
+    generate_any_address CALLDICT	//  bounce ton_amount init_state payload ssrc
+    generate_internal_address CALLDICT	//  bounce ton_amount init_state payload ssrc sdest
+    1000 PUSHINT	//  bounce ton_amount init_state payload ssrc sdest _10=1000
+    DUP	//  bounce ton_amount init_state payload ssrc sdest _10=1000 _11=1000
+    PUSHNULL	//  bounce ton_amount init_state payload ssrc sdest _10=1000 _11=1000 _12
+    0 PUSHINT	//  bounce ton_amount init_state payload ssrc sdest _10=1000 _11=1000 _12 _13=0
+    s0 s0 PUSH2	//  bounce ton_amount init_state payload ssrc sdest _10=1000 _11=1000 _12 _13=0 _14=0 _15=0
+    NEWC	//  bounce ton_amount init_state payload ssrc sdest _10=1000 _11=1000 _12 _13=0 _14=0 _15=0 _16
+    1 STU	//  bounce ton_amount init_state payload ssrc sdest _10=1000 _11=1000 _12 _13=0 _14=0 _18
+    1 STU	//  bounce ton_amount init_state payload ssrc sdest _10=1000 _11=1000 _12 _13=0 _20
+    s1 s10 XCHG	//  _13=0 ton_amount init_state payload ssrc sdest _10=1000 _11=1000 _12 bounce _20
+    1 STU	//  _13=0 ton_amount init_state payload ssrc sdest _10=1000 _11=1000 _12 _22
+    s1 s9 XCHG	//  _12 ton_amount init_state payload ssrc sdest _10=1000 _11=1000 _13=0 _22
+    1 STU	//  _12 ton_amount init_state payload ssrc sdest _10=1000 _11=1000 _24
+    s0 s4 XCHG2	//  _12 ton_amount init_state payload _11=1000 sdest _10=1000 _24 ssrc
+    STSLICER	//  _12 ton_amount init_state payload _11=1000 sdest _10=1000 _25
+    ROT	//  _12 ton_amount init_state payload _11=1000 _10=1000 _25 sdest
+    STSLICER	//  _12 ton_amount init_state payload _11=1000 _10=1000 _26
+    s0 s5 XCHG2	//  _12 _10=1000 init_state payload _11=1000 _26 ton_amount
+    STGRAMS	//  _12 _10=1000 init_state payload _11=1000 _27
+    s1 s5 XCHG	//  _11=1000 _10=1000 init_state payload _12 _27
+    STDICT	//  _11=1000 _10=1000 init_state payload _28
+    0 PUSHINT	//  _11=1000 _10=1000 init_state payload _28 _29=0
+    STGRAMS	//  _11=1000 _10=1000 init_state payload _30
+    0 PUSHINT	//  _11=1000 _10=1000 init_state payload _30 _31=0
+    STGRAMS	//  _11=1000 _10=1000 init_state payload _32
+    s1 s4 XCHG	//  payload _10=1000 init_state _11=1000 _32
+    64 STU	//  payload _10=1000 init_state _34
+    s1 s2 XCHG	//  payload init_state _10=1000 _34
+    32 STU	//  payload init_state _36
+    s1 s(-1) PUXC	//  payload init_state init_state _36
+    1 STU	//  payload init_state msg
+    SWAP	//  payload msg init_state
+    1 EQINT	//  payload msg _40
+    IF:<{	//  payload msg
+      generate_init_state CALLDICT	//  payload msg init_state_builder
+      OVER	//  payload msg init_state_builder msg
+      BBITS	//  payload msg init_state_builder _43
+      OVER	//  payload msg init_state_builder _43 init_state_builder
+      BBITS	//  payload msg init_state_builder _43 _44
+      ADD	//  payload msg init_state_builder _45
+      10 PUSHPOW2DEC	//  payload msg init_state_builder _45 _46=1023
+      GEQ	//  payload msg init_state_builder _47
+      IF:<{	//  payload msg init_state_builder
+        ENDC	//  payload msg _48
+        1 PUSHINT
+        ROT	//  payload _48 _49=1 msg
+        1 STU	//  payload _48 _51
+        STREF	//  payload msg
+      }>ELSE<{	//  payload msg init_state_builder
+        0 PUSHINT
+        ROT	//  payload init_state_builder _53=0 msg
+        1 STU	//  payload init_state_builder _55
+        SWAP	//  payload _55 init_state_builder
+        STBR	//  payload msg
+      }>
+    }>	//  payload msg
+    DUP	//  payload msg msg
+    BBITS	//  payload msg _57
+    s2 PUSH	//  payload msg _57 payload
+    BBITS	//  payload msg _57 _58
+    ADD	//  payload msg _59
+    10 PUSHPOW2DEC	//  payload msg _59 _60=1023
+    GEQ	//  payload msg _61
+    IF:<{	//  payload msg
+      SWAP	//  msg payload
+      ENDC	//  msg _62
+      1 PUSHINT
+      ROT	//  _62 _63=1 msg
+      1 STU	//  _62 _65
+      STREF	//  msg
+    }>ELSE<{	//  payload msg
+      0 PUSHINT	//  payload msg _67=0
+      SWAP	//  payload _67=0 msg
+      1 STU	//  payload _69
+      SWAP	//  _69 payload
+      STBR	//  msg
+    }>
+    ENDC	//  _71
+  }>
+  generate_external_in_message PROC:<{
+    //  import_fee init_state payload
+    8 PUSHPOW2	//  import_fee init_state payload _4=256
+    generate_external_address CALLDICT	//  import_fee init_state payload ssrc
+    generate_internal_address CALLDICT	//  import_fee init_state payload ssrc sdest
+    2 PUSHINT	//  import_fee init_state payload ssrc sdest _9=2
+    NEWC	//  import_fee init_state payload ssrc sdest _9=2 _10
+    2 STU	//  import_fee init_state payload ssrc sdest _12
+    ROT	//  import_fee init_state payload sdest _12 ssrc
+    STSLICER	//  import_fee init_state payload sdest _13
+    SWAP	//  import_fee init_state payload _13 sdest
+    STSLICER	//  import_fee init_state payload _14
+    s0 s3 XCHG2	//  payload init_state _14 import_fee
+    STGRAMS	//  payload init_state _15
+    s1 s(-1) PUXC	//  payload init_state init_state _15
+    1 STU	//  payload init_state msg
+    SWAP	//  payload msg init_state
+    1 EQINT	//  payload msg _19
+    IF:<{	//  payload msg
+      generate_init_state CALLDICT	//  payload msg init_state_builder
+      OVER	//  payload msg init_state_builder msg
+      BBITS	//  payload msg init_state_builder _22
+      OVER	//  payload msg init_state_builder _22 init_state_builder
+      BBITS	//  payload msg init_state_builder _22 _23
+      ADD	//  payload msg init_state_builder _24
+      10 PUSHPOW2DEC	//  payload msg init_state_builder _24 _25=1023
+      GEQ	//  payload msg init_state_builder _26
+      IF:<{	//  payload msg init_state_builder
+        ENDC	//  payload msg _27
+        1 PUSHINT
+        ROT	//  payload _27 _28=1 msg
+        1 STU	//  payload _27 _30
+        STREF	//  payload msg
+      }>ELSE<{	//  payload msg init_state_builder
+        0 PUSHINT
+        ROT	//  payload init_state_builder _32=0 msg
+        1 STU	//  payload init_state_builder _34
+        SWAP	//  payload _34 init_state_builder
+        STBR	//  payload msg
+      }>
+    }>	//  payload msg
+    DUP	//  payload msg msg
+    BBITS	//  payload msg _36
+    s2 PUSH	//  payload msg _36 payload
+    BBITS	//  payload msg _36 _37
+    ADD	//  payload msg _38
+    10 PUSHPOW2DEC	//  payload msg _38 _39=1023
+    GREATER	//  payload msg _40
+    IF:<{	//  payload msg
+      SWAP	//  msg payload
+      ENDC	//  msg _41
+      1 PUSHINT
+      ROT	//  _41 _42=1 msg
+      1 STU	//  _41 _44
+      STREF	//  msg
+    }>ELSE<{	//  payload msg
+      0 PUSHINT	//  payload msg _46=0
+      SWAP	//  payload _46=0 msg
+      1 STU	//  payload _48
+      SWAP	//  _48 payload
+      STBR	//  msg
+    }>
+    ENDC	//  _50
+  }>
+  generate_external_in_message_with_empty_source_address PROC:<{
+    //  import_fee init_state payload
+    generate_empty_address CALLDICT	//  import_fee init_state payload ssrc
+    generate_internal_address CALLDICT	//  import_fee init_state payload ssrc sdest
+    2 PUSHINT	//  import_fee init_state payload ssrc sdest _8=2
+    NEWC	//  import_fee init_state payload ssrc sdest _8=2 _9
+    2 STU	//  import_fee init_state payload ssrc sdest _11
+    ROT	//  import_fee init_state payload sdest _11 ssrc
+    STSLICER	//  import_fee init_state payload sdest _12
+    SWAP	//  import_fee init_state payload _12 sdest
+    STSLICER	//  import_fee init_state payload _13
+    s0 s3 XCHG2	//  payload init_state _13 import_fee
+    STGRAMS	//  payload init_state _14
+    s1 s(-1) PUXC	//  payload init_state init_state _14
+    1 STU	//  payload init_state msg
+    SWAP	//  payload msg init_state
+    1 EQINT	//  payload msg _18
+    IF:<{	//  payload msg
+      generate_init_state CALLDICT	//  payload msg init_state_builder
+      OVER	//  payload msg init_state_builder msg
+      BBITS	//  payload msg init_state_builder _21
+      OVER	//  payload msg init_state_builder _21 init_state_builder
+      BBITS	//  payload msg init_state_builder _21 _22
+      ADD	//  payload msg init_state_builder _23
+      10 PUSHPOW2DEC	//  payload msg init_state_builder _23 _24=1023
+      GEQ	//  payload msg init_state_builder _25
+      IF:<{	//  payload msg init_state_builder
+        ENDC	//  payload msg _26
+        1 PUSHINT
+        ROT	//  payload _26 _27=1 msg
+        1 STU	//  payload _26 _29
+        STREF	//  payload msg
+      }>ELSE<{	//  payload msg init_state_builder
+        0 PUSHINT
+        ROT	//  payload init_state_builder _31=0 msg
+        1 STU	//  payload init_state_builder _33
+        SWAP	//  payload _33 init_state_builder
+        STBR	//  payload msg
+      }>
+    }>	//  payload msg
+    DUP	//  payload msg msg
+    BBITS	//  payload msg _35
+    s2 PUSH	//  payload msg _35 payload
+    BBITS	//  payload msg _35 _36
+    ADD	//  payload msg _37
+    10 PUSHPOW2DEC	//  payload msg _37 _38=1023
+    GEQ	//  payload msg _39
+    IF:<{	//  payload msg
+      SWAP	//  msg payload
+      ENDC	//  msg _40
+      1 PUSHINT
+      ROT	//  _40 _41=1 msg
+      1 STU	//  _40 _43
+      STREF	//  msg
+    }>ELSE<{	//  payload msg
+      0 PUSHINT	//  payload msg _45=0
+      SWAP	//  payload _45=0 msg
+      1 STU	//  payload _47
+      SWAP	//  _47 payload
+      STBR	//  msg
+    }>
+    ENDC	//  _49
+  }>
+  generate_external_out_message PROC:<{
+    //  import_fee init_state payload
+    s2 POP	//  payload init_state
+    generate_internal_address CALLDICT	//  payload init_state ssrc
+    8 PUSHPOW2	//  payload init_state ssrc _6=256
+    generate_external_address CALLDICT	//  payload init_state ssrc sdest
+    1000 PUSHINT	//  payload init_state ssrc sdest _9=1000
+    DUP	//  payload init_state ssrc sdest _9=1000 _10=1000
+    3 PUSHINT	//  payload init_state ssrc sdest _9=1000 _10=1000 _11=3
+    NEWC	//  payload init_state ssrc sdest _9=1000 _10=1000 _11=3 _12
+    2 STU	//  payload init_state ssrc sdest _9=1000 _10=1000 _14
+    s0 s4 XCHG2	//  payload init_state _10=1000 sdest _9=1000 _14 ssrc
+    STSLICER	//  payload init_state _10=1000 sdest _9=1000 _15
+    ROT	//  payload init_state _10=1000 _9=1000 _15 sdest
+    STSLICER	//  payload init_state _10=1000 _9=1000 _16
+    s1 s2 XCHG	//  payload init_state _9=1000 _10=1000 _16
+    64 STU	//  payload init_state _9=1000 _18
+    32 STU	//  payload init_state _20
+    s1 s(-1) PUXC	//  payload init_state init_state _20
+    1 STU	//  payload init_state msg
+    SWAP	//  payload msg init_state
+    1 EQINT	//  payload msg _24
+    IF:<{	//  payload msg
+      generate_init_state CALLDICT	//  payload msg init_state_builder
+      OVER	//  payload msg init_state_builder msg
+      BBITS	//  payload msg init_state_builder _27
+      OVER	//  payload msg init_state_builder _27 init_state_builder
+      BBITS	//  payload msg init_state_builder _27 _28
+      ADD	//  payload msg init_state_builder _29
+      10 PUSHPOW2DEC	//  payload msg init_state_builder _29 _30=1023
+      GEQ	//  payload msg init_state_builder _31
+      IF:<{	//  payload msg init_state_builder
+        ENDC	//  payload msg _32
+        1 PUSHINT
+        ROT	//  payload _32 _33=1 msg
+        1 STU	//  payload _32 _35
+        STREF	//  payload msg
+      }>ELSE<{	//  payload msg init_state_builder
+        0 PUSHINT
+        ROT	//  payload init_state_builder _37=0 msg
+        1 STU	//  payload init_state_builder _39
+        SWAP	//  payload _39 init_state_builder
+        STBR	//  payload msg
+      }>
+    }>	//  payload msg
+    DUP	//  payload msg msg
+    BBITS	//  payload msg _41
+    s2 PUSH	//  payload msg _41 payload
+    BBITS	//  payload msg _41 _42
+    ADD	//  payload msg _43
+    10 PUSHPOW2DEC	//  payload msg _43 _44=1023
+    GEQ	//  payload msg _45
+    IF:<{	//  payload msg
+      SWAP	//  msg payload
+      ENDC	//  msg _46
+      1 PUSHINT
+      ROT	//  _46 _47=1 msg
+      1 STU	//  _46 _49
+      STREF	//  msg
+    }>ELSE<{	//  payload msg
+      0 PUSHINT	//  payload msg _51=0
+      SWAP	//  payload _51=0 msg
+      1 STU	//  payload _53
+      SWAP	//  _53 payload
+      STBR	//  msg
+    }>
+    ENDC	//  _55
+  }>
+  generate_external_out_message_with_empty_destination_address PROC:<{
+    //  import_fee init_state payload
+    s2 POP	//  payload init_state
+    generate_internal_address CALLDICT	//  payload init_state ssrc
+    generate_empty_address CALLDICT	//  payload init_state ssrc sdest
+    1000 PUSHINT	//  payload init_state ssrc sdest _8=1000
+    DUP	//  payload init_state ssrc sdest _8=1000 _9=1000
+    3 PUSHINT	//  payload init_state ssrc sdest _8=1000 _9=1000 _10=3
+    NEWC	//  payload init_state ssrc sdest _8=1000 _9=1000 _10=3 _11
+    2 STU	//  payload init_state ssrc sdest _8=1000 _9=1000 _13
+    s0 s4 XCHG2	//  payload init_state _9=1000 sdest _8=1000 _13 ssrc
+    STSLICER	//  payload init_state _9=1000 sdest _8=1000 _14
+    ROT	//  payload init_state _9=1000 _8=1000 _14 sdest
+    STSLICER	//  payload init_state _9=1000 _8=1000 _15
+    s1 s2 XCHG	//  payload init_state _8=1000 _9=1000 _15
+    64 STU	//  payload init_state _8=1000 _17
+    32 STU	//  payload init_state _19
+    s1 s(-1) PUXC	//  payload init_state init_state _19
+    1 STU	//  payload init_state msg
+    SWAP	//  payload msg init_state
+    1 EQINT	//  payload msg _23
+    IF:<{	//  payload msg
+      generate_init_state CALLDICT	//  payload msg init_state_builder
+      OVER	//  payload msg init_state_builder msg
+      BBITS	//  payload msg init_state_builder _26
+      OVER	//  payload msg init_state_builder _26 init_state_builder
+      BBITS	//  payload msg init_state_builder _26 _27
+      ADD	//  payload msg init_state_builder _28
+      10 PUSHPOW2DEC	//  payload msg init_state_builder _28 _29=1023
+      GEQ	//  payload msg init_state_builder _30
+      IF:<{	//  payload msg init_state_builder
+        ENDC	//  payload msg _31
+        1 PUSHINT
+        ROT	//  payload _31 _32=1 msg
+        1 STU	//  payload _31 _34
+        STREF	//  payload msg
+      }>ELSE<{	//  payload msg init_state_builder
+        0 PUSHINT
+        ROT	//  payload init_state_builder _36=0 msg
+        1 STU	//  payload init_state_builder _38
+        SWAP	//  payload _38 init_state_builder
+        STBR	//  payload msg
+      }>
+    }>	//  payload msg
+    DUP	//  payload msg msg
+    BBITS	//  payload msg _40
+    s2 PUSH	//  payload msg _40 payload
+    BBITS	//  payload msg _40 _41
+    ADD	//  payload msg _42
+    10 PUSHPOW2DEC	//  payload msg _42 _43=1023
+    GEQ	//  payload msg _44
+    IF:<{	//  payload msg
+      SWAP	//  msg payload
+      ENDC	//  msg _45
+      1 PUSHINT
+      ROT	//  _45 _46=1 msg
+      1 STU	//  _45 _48
+      STREF	//  msg
+    }>ELSE<{	//  payload msg
+      0 PUSHINT	//  payload msg _50=0
+      SWAP	//  payload _50=0 msg
+      1 STU	//  payload _52
+      SWAP	//  _52 payload
+      STBR	//  msg
+    }>
+    ENDC	//  _54
+  }>
+  generate_external_out_message_relaxed PROC:<{
+    //  ton_amount init_state payload typeOfAnyAddress
+    s3 POP	//  typeOfAnyAddress init_state payload
+    s0 s2 XCHG	//  payload init_state typeOfAnyAddress
+    generate_any_address CALLDICT	//  payload init_state ssrc
+    8 PUSHPOW2	//  payload init_state ssrc _7=256
+    generate_external_address CALLDICT	//  payload init_state ssrc sdest
+    1000 PUSHINT	//  payload init_state ssrc sdest _10=1000
+    DUP	//  payload init_state ssrc sdest _10=1000 _11=1000
+    3 PUSHINT	//  payload init_state ssrc sdest _10=1000 _11=1000 _12=3
+    NEWC	//  payload init_state ssrc sdest _10=1000 _11=1000 _12=3 _13
+    2 STU	//  payload init_state ssrc sdest _10=1000 _11=1000 _15
+    s0 s4 XCHG2	//  payload init_state _11=1000 sdest _10=1000 _15 ssrc
+    STSLICER	//  payload init_state _11=1000 sdest _10=1000 _16
+    ROT	//  payload init_state _11=1000 _10=1000 _16 sdest
+    STSLICER	//  payload init_state _11=1000 _10=1000 _17
+    s1 s2 XCHG	//  payload init_state _10=1000 _11=1000 _17
+    64 STU	//  payload init_state _10=1000 _19
+    32 STU	//  payload init_state _21
+    s1 s(-1) PUXC	//  payload init_state init_state _21
+    1 STU	//  payload init_state msg
+    SWAP	//  payload msg init_state
+    1 EQINT	//  payload msg _25
+    IF:<{	//  payload msg
+      generate_init_state CALLDICT	//  payload msg init_state_builder
+      OVER	//  payload msg init_state_builder msg
+      BBITS	//  payload msg init_state_builder _28
+      OVER	//  payload msg init_state_builder _28 init_state_builder
+      BBITS	//  payload msg init_state_builder _28 _29
+      ADD	//  payload msg init_state_builder _30
+      10 PUSHPOW2DEC	//  payload msg init_state_builder _30 _31=1023
+      GEQ	//  payload msg init_state_builder _32
+      IF:<{	//  payload msg init_state_builder
+        ENDC	//  payload msg _33
+        1 PUSHINT
+        ROT	//  payload _33 _34=1 msg
+        1 STU	//  payload _33 _36
+        STREF	//  payload msg
+      }>ELSE<{	//  payload msg init_state_builder
+        0 PUSHINT
+        ROT	//  payload init_state_builder _38=0 msg
+        1 STU	//  payload init_state_builder _40
+        SWAP	//  payload _40 init_state_builder
+        STBR	//  payload msg
+      }>
+    }>	//  payload msg
+    DUP	//  payload msg msg
+    BBITS	//  payload msg _42
+    s2 PUSH	//  payload msg _42 payload
+    BBITS	//  payload msg _42 _43
+    ADD	//  payload msg _44
+    10 PUSHPOW2DEC	//  payload msg _44 _45=1023
+    GEQ	//  payload msg _46
+    IF:<{	//  payload msg
+      SWAP	//  msg payload
+      ENDC	//  msg _47
+      1 PUSHINT
+      ROT	//  _47 _48=1 msg
+      1 STU	//  _47 _50
+      STREF	//  msg
+    }>ELSE<{	//  payload msg
+      0 PUSHINT	//  payload msg _52=0
+      SWAP	//  payload _52=0 msg
+      1 STU	//  payload _54
+      SWAP	//  _54 payload
+      STBR	//  msg
+    }>
+    ENDC	//  _56
+  }>
+  parse_internal_message PROC:<{
+    //  message
+    CTOS	//  cs
+    112 PUSHINT	//  cs _3
+    SWAP	//  _3 cs
+    1 LDU	//  _3 _4 cs
+    SWAP	//  _3 cs _4
+    0 NEQINT	//  _3 cs _8
+    s1 s2 XCHG	//  cs _3 _8
+    THROWANYIF
+    1 LDU	//  ihr_disabled cs
+    1 LDU	//  ihr_disabled bounce cs
+    1 LDU	//  ihr_disabled bounce bounced cs
+    LDMSGADDR	//  ihr_disabled bounce bounced src cs
+    LDMSGADDR	//  ihr_disabled bounce bounced src to_address cs
+    LDVARUINT16	//  ihr_disabled bounce bounced src to_address money cs
+    LDDICT	//  ihr_disabled bounce bounced src to_address money _86 _85
+    NIP	//  ihr_disabled bounce bounced src to_address money cs
+    LDGRAMS	//  ihr_disabled bounce bounced src to_address money _88 _87
+    NIP	//  ihr_disabled bounce bounced src to_address money cs
+    LDGRAMS	//  ihr_disabled bounce bounced src to_address money _90 _89
+    NIP	//  ihr_disabled bounce bounced src to_address money cs
+    96 LDU	//  ihr_disabled bounce bounced src to_address money timestamps cs
+    1 LDU	//  ihr_disabled bounce bounced src to_address money timestamps maybe_init_state cs
+    NIL	//  ihr_disabled bounce bounced src to_address money timestamps maybe_init_state cs init_state
+    s0 s2 XCHG	//  ihr_disabled bounce bounced src to_address money timestamps init_state cs maybe_init_state
+    1 EQINT	//  ihr_disabled bounce bounced src to_address money timestamps init_state cs _50
+    IF:<{	//  ihr_disabled bounce bounced src to_address money timestamps init_state cs
+      NIP	//  ihr_disabled bounce bounced src to_address money timestamps cs
+      1 LDU	//  ihr_disabled bounce bounced src to_address money timestamps _51 cs
+      SWAP	//  ihr_disabled bounce bounced src to_address money timestamps cs _51
+      IF:<{	//  ihr_disabled bounce bounced src to_address money timestamps cs
+        LDREF	//  ihr_disabled bounce bounced src to_address money timestamps _54 cs
+        SWAP	//  ihr_disabled bounce bounced src to_address money timestamps cs _54
+        CTOS	//  ihr_disabled bounce bounced src to_address money timestamps cs _56
+        parse_init_state CALLDICT	//  ihr_disabled bounce bounced src to_address money timestamps cs init_state
+      }>ELSE<{	//  ihr_disabled bounce bounced src to_address money timestamps cs
+        DUP	//  ihr_disabled bounce bounced src to_address money timestamps cs cs
+        parse_init_state CALLDICT	//  ihr_disabled bounce bounced src to_address money timestamps cs init_state
+      }>
+      SWAP	//  ihr_disabled bounce bounced src to_address money timestamps init_state cs
+    }>	//  ihr_disabled bounce bounced src to_address money timestamps init_state cs
+    1 LDU	//  ihr_disabled bounce bounced src to_address money timestamps init_state body_flag cs
+    SWAP	//  ihr_disabled bounce bounced src to_address money timestamps init_state cs body_flag
+    0 EQINT	//  ihr_disabled bounce bounced src to_address money timestamps init_state cs _66
+    IF:<{	//  ihr_disabled bounce bounced src to_address money timestamps init_state body
+    }>ELSE<{	//  ihr_disabled bounce bounced src to_address money timestamps init_state cs
+      LDREF	//  ihr_disabled bounce bounced src to_address money timestamps init_state _102 _101
+      DROP	//  ihr_disabled bounce bounced src to_address money timestamps init_state _67
+      CTOS	//  ihr_disabled bounce bounced src to_address money timestamps init_state body
+    }>
+    9 TUPLE	//  _70
+  }>
+  parse_external_message PROC:<{
+    //  message
+    CTOS	//  cs
+    2 LDU	//  msg_info cs
+    113 PUSHINT	//  msg_info cs _7
+    s2 PUSH	//  msg_info cs _7 msg_info
+    2 NEQINT	//  msg_info cs _7 _9
+    s3 PUSH	//  msg_info cs _7 _9 msg_info
+    3 NEQINT	//  msg_info cs _7 _9 _11
+    AND	//  msg_info cs _7 _12
+    THROWANYIF
+    LDMSGADDR	//  msg_info src cs
+    LDMSGADDR	//  msg_info src to_address cs
+    0 PUSHINT	//  msg_info src to_address cs import_fee=0
+    s0 s4 PUXC	//  timestamps=0 src to_address cs import_fee=0 msg_info
+    2 EQINT	//  timestamps=0 src to_address cs import_fee=0 _25
+    IF:<{	//  timestamps=0 src to_address cs import_fee=0
+      DROP	//  timestamps=0 src to_address cs
+      LDGRAMS	//  timestamps=0 src to_address import_fee cs
+    }>ELSE<{	//  timestamps=0 src to_address cs import_fee=0
+      s4 POP	//  import_fee=0 src to_address cs
+      96 LDU	//  import_fee=0 src to_address timestamps cs
+      s1 s4 XCHG	//  timestamps src to_address import_fee cs
+    }>
+    1 LDU	//  timestamps src to_address import_fee maybe_init_state cs
+    NIL	//  timestamps src to_address import_fee maybe_init_state cs init_state
+    s0 s2 XCHG	//  timestamps src to_address import_fee init_state cs maybe_init_state
+    1 EQINT	//  timestamps src to_address import_fee init_state cs _38
+    IF:<{	//  timestamps src to_address import_fee init_state cs
+      NIP	//  timestamps src to_address import_fee cs
+      DUP	//  timestamps src to_address import_fee cs cs
+      parse_init_state CALLDICT	//  timestamps src to_address import_fee cs init_state
+      SWAP	//  timestamps src to_address import_fee init_state cs
+    }>	//  timestamps src to_address import_fee init_state cs
+    1 LDU	//  timestamps src to_address import_fee init_state body_flag cs
+    SWAP	//  timestamps src to_address import_fee init_state cs body_flag
+    0 EQINT	//  timestamps src to_address import_fee init_state cs _47
+    IF:<{	//  timestamps src to_address import_fee init_state body
+    }>ELSE<{	//  timestamps src to_address import_fee init_state cs
+      LDREF	//  timestamps src to_address import_fee init_state _67 _66
+      DROP	//  timestamps src to_address import_fee init_state _48
+      CTOS	//  timestamps src to_address import_fee init_state body
+    }>
+    s4 s5 XCHG
+    s3 s4 XCHG
+    s2 s3 XCHG	//  src to_address import_fee timestamps init_state body
+    6 TUPLE	//  _51
+  }>
+  init_environment PROC:<{
+    // 
+    PUSHNULL	//  _0
+    NEWC	//  _0 _1
+    STDICT	//  _2
+    ENDC	//  _3
+    c4 POP
+  }>
+  storage_key PROC:<{
+    //  tag
+    2824609491042946229920590003095732224 PUSHINTX	//  tag _3
+    SWAP	//  _3 tag
+    ADD	//  _4
+  }>
+  load_storage_with_tag PROC:<{
+    //  tag
+    storage_key CALLDICT	//  _1
+    c4 PUSH	//  _1 _2
+    CTOS	//  _1 _3
+    PLDDICT	//  _1 _4
+    8 PUSHPOW2	//  _1 _4 _5=256
+    DICTIGETOPTREF	//  _6
+  }>
+  save_storage_with_tag PROC:<{
+    //  tag storage
+    c4 PUSH	//  tag storage _3
+    CTOS	//  tag storage _4
+    PLDDICT	//  tag storage dict
+    s0 s2 XCHG	//  dict storage tag
+    storage_key CALLDICT	//  dict storage _7
+    ROT
+    8 PUSHPOW2	//  storage _7 dict _8=256
+    DICTISETREF	//  dict
+    NEWC	//  dict _10
+    STDICT	//  _11
+    ENDC	//  _12
+    c4 POP
+  }>
+  get_c7 PROCINLINE:<{
+    // 
+    124711402 PUSHINT	//  _2=124711402
+    0 PUSHINT	//  _2=124711402 _3=0
+    DUP	//  _2=124711402 _3=0 _4=0
+    NOW	//  _2=124711402 _3=0 _4=0 _5
+    1 PUSHINT	//  _2=124711402 _3=0 _4=0 _5 _6=1
+    DUP	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1
+    239 PUSHINT	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1 _8=239
+    1000000000 PUSHINT	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1 _8=239 _10=1000000000
+    PUSHNULL	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1 _8=239 _10=1000000000 _11
+    PAIR	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1 _8=239 _12
+    MYADDR	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1 _8=239 _12 _13
+    CONFIGROOT	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1 _8=239 _12 _13 _14
+    10 TUPLE	//  _15
+    SINGLE	//  _16
+  }>
+  invoke_method PROC:<{
+    //  fun args
+    {
+    c7 PUSH DUP FIRST
+    GASLIMITSTEMP SWAP DROP
+    11 SETINDEX 0 SETINDEX c7 POP
+    } : save-gas-remaining
+    {
+    GASLIMITSTEMP SWAP DROP
+    11 GETPARAM SWAP SUB
+    145 PUSHINT SUB
+    } : compute-gas-used
+    NEWC ENDC c5 POP
+    RESETLOADEDCELLS
+    255 PUSHINT EXPLODEVAR
+    DUP INC ROLLX
+    <{
+    <{
+    save-gas-remaining
+    EXECUTE
+    compute-gas-used
+    DEPTH DEC ROLLREVX
+    DEPTH DEC TUPLEVAR
+    ZERO ROTREV
+    }> PUSHCONT
+    <{
+    compute-gas-used
+    ROT DROP NIL
+    }> PUSHCONT
+    TRY
+    }> PUSHCONT
+    ROT INC -1 PUSHINT
+    CALLXVARARGS	//  exit_code gas_used return_values
+    s2 PUSH	//  exit_code gas_used return_values exit_code
+    0 NEQINT	//  exit_code gas_used return_values _7
+    s3 PUSH	//  exit_code gas_used return_values _7 exit_code
+    1 NEQINT	//  exit_code gas_used return_values _7 _9
+    AND	//  exit_code gas_used return_values _10
+    s1 s3 XCHG	//  return_values gas_used exit_code _10
+    THROWANYIF
+    SWAP	//  gas_used return_values
+  }>
+  invoke_method_expect_fail PROC:<{
+    //  fun args
+    {
+    c7 PUSH DUP FIRST
+    GASLIMITSTEMP SWAP DROP
+    11 SETINDEX 0 SETINDEX c7 POP
+    } : save-gas-remaining
+    {
+    GASLIMITSTEMP SWAP DROP
+    11 GETPARAM SWAP SUB
+    145 PUSHINT SUB
+    } : compute-gas-used
+    NEWC ENDC c5 POP
+    RESETLOADEDCELLS
+    255 PUSHINT EXPLODEVAR
+    DUP INC ROLLX
+    <{
+    <{
+    save-gas-remaining
+    EXECUTE
+    compute-gas-used
+    DEPTH DEC ROLLREVX
+    DEPTH DEC TUPLEVAR
+    ZERO ROTREV
+    }> PUSHCONT
+    <{
+    compute-gas-used
+    ROT DROP NIL
+    }> PUSHCONT
+    TRY
+    }> PUSHCONT
+    ROT INC -1 PUSHINT
+    CALLXVARARGS	//  _13 _14 _15
+    DROP	//  exit_code gas_used
+    OVER	//  exit_code gas_used exit_code
+    0 EQINT	//  exit_code gas_used _8
+    s0 s2 XCHG	//  _8 gas_used exit_code
+    1 EQINT	//  _8 gas_used _10
+    s1 s2 XCHG	//  gas_used _8 _10
+    OR	//  gas_used _11
+    201 THROWIF
+  }>
+  assert_no_actions PROCINLINE:<{
+    // 
+    c5 PUSH CTOS	//  _1
+    SEMPTY	//  _2
+    NOT	//  _3
+    202 THROWIF
+  }>
+  token_snake_len PROCINLINE:<{
+    //  content
+    0 PUSHINT	//  content len=0
+    WHILE:<{
+      OVER	//  content len content
+      ISNULL	//  content len _3
+      NOT	//  content len _4
+    }>DO<{	//  content len
+      OVER	//  content len content
+      SBITS	//  content len _5
+      ADD	//  content len
+      OVER	//  content len content
+      SREFS	//  content len _7
+      IF:<{	//  content len
+        SWAP	//  len content
+        LDREF	//  len _14 _13
+        DROP	//  len _9
+        CTOS	//  len _8
+      }>ELSE<{	//  content len
+        NIP	//  len
+        PUSHNULL	//  len _8
+      }>	//  len content
+      SWAP	//  content len
+    }>	//  content len
+    NIP	//  len
+  }>
+  get_snake_tail PROCINLINE:<{
+    //  tail
+    WHILE:<{
+      DUP	//  tail tail
+      ISNULL	//  tail _1
+      NOT	//  tail _2
+    }>DO<{	//  tail
+      CTOS	//  tail_slice
+      DUP	//  tail_slice tail_slice
+      SREFS	//  tail_slice _5
+      IF:<{	//  tail_slice
+        LDREF	//  _11 _10
+        DROP	//  _6
+      }>ELSE<{	//  tail_slice
+        DROP	// 
+        PUSHNULL	//  _6
+      }>	//  tail
+    }>	//  tail
+  }>
+  snake_concat PROC:<{
+    //  head tail
+    SWAP	//  tail head
+    CTOS	//  tail head_sl
+    NEWC	//  tail head_sl _5
+    OVER	//  tail head_sl _5 head_sl
+    SBITS	//  tail head_sl _5 _7
+    s1 s2 XCHG	//  tail _5 head_sl _7
+    LDSLICEX	//  tail _5 _6 head_sl
+    -ROT	//  tail head_sl _5 _6
+    STSLICER	//  tail head_sl snake
+    OVER	//  tail head_sl snake head_sl
+    SREFS	//  tail head_sl snake _10
+    IF:<{	//  tail head_sl snake
+      SWAP	//  tail snake head_sl
+      LDREF	//  tail snake _20 _19
+      DROP	//  tail snake _11
+      ROT	//  snake _11 tail
+      snake_concat CALLDICT	//  snake _13
+      SWAP	//  _13 snake
+      STREF	//  snake
+    }>ELSE<{	//  tail head_sl snake
+      NIP	//  tail snake
+      STREF	//  snake
+    }>
+    ENDC	//  _16
+  }>
+  snake_concat_tagged PROCINLINE:<{
+    //  tag head tail
+    OVER	//  tag head tail head
+    CTOS	//  tag head tail head_sl
+    s0 s3 XCHG
+    NEWC	//  head_sl head tail tag _6
+    8 STU	//  head_sl head tail snake
+    1015 PUSHINT	//  head_sl head tail snake lbits
+    s4 PUSH	//  head_sl head tail snake lbits head_sl
+    SBITS	//  head_sl head tail snake lbits _15
+    SWAP	//  head_sl head tail snake _15 lbits
+    GREATER	//  head_sl head tail snake _16
+    IF:<{	//  head_sl head tail snake
+      s3 POP	//  snake head tail
+      snake_concat CALLDICT	//  snake _17
+      SWAP	//  _17 snake
+      STREF	//  _18
+      ENDC	//  tagged
+    }>ELSE<{	//  head_sl head tail snake
+      s2 POP	//  head_sl snake tail
+      s0 s2 XCHG	//  tail snake head_sl
+      STSLICER	//  tail _20
+      ENDC	//  tail _21
+      SWAP	//  _21 tail
+      snake_concat CALLDICT	//  tagged
+    }>
+  }>
+  snake_equal? PROCINLINE:<{
+    //  snake1 snake2
+    TRUE	//  snake1 snake2 equal
+    UNTIL:<{
+      s2 PUSH	//  snake1 snake2 equal snake1
+      SBITS	//  snake1 snake2 equal s1_data
+      s2 PUSH	//  snake1 snake2 equal s1_data snake2
+      SBITS	//  snake1 snake2 equal s1_data s2_data
+      2DUP	//  snake1 snake2 equal s1_data s2_data s1_data s2_data
+      LEQ	//  snake1 snake2 equal s1_data s2_data _8
+      IF:<{	//  snake1 snake2 equal s1_data s2_data
+        OVER	//  snake1 snake2 equal s1_data s2_data s1_data
+        0 GTINT	//  snake1 snake2 equal s1_data s2_data _10
+        IF:<{	//  snake1 snake2 equal s1_data s2_data
+          s2 POP	//  snake1 snake2 s2_data s1_data
+          s2 s2 XCPU	//  snake1 s1_data s2_data snake2 s1_data
+          LDSLICEX	//  snake1 s1_data s2_data _11 snake2
+          s4 s1 PUXC	//  snake1 s1_data s2_data snake2 snake1 _11
+          SDEQ	//  snake1 s1_data s2_data snake2 equal
+          2SWAP	//  snake1 snake2 equal s1_data s2_data
+        }>	//  snake1 snake2 equal s1_data s2_data
+        s4 PUSH	//  snake1 snake2 equal s1_data s2_data snake1
+        SREFS	//  snake1 snake2 equal s1_data s2_data _14
+        IF:<{	//  snake1 snake2 equal s1_data s2_data
+          s0 s4 XCHG	//  s2_data snake2 equal s1_data snake1
+          LDREF	//  s2_data snake2 equal s1_data _48 _47
+          DROP	//  s2_data snake2 equal s1_data _16
+          CTOS	//  s2_data snake2 equal s1_data _15
+        }>ELSE<{	//  snake1 snake2 equal s1_data s2_data
+          s4 POP	//  s2_data snake2 equal s1_data
+          PUSHNULL	//  s2_data snake2 equal s1_data _15
+        }>	//  s2_data snake2 equal s1_data snake1
+        DUP	//  s2_data snake2 equal s1_data snake1 snake1
+        ISNULL	//  s2_data snake2 equal s1_data snake1 _20
+        s5 PUSH	//  s2_data snake2 equal s1_data snake1 _20 s2_data
+        AND	//  s2_data snake2 equal s1_data snake1 _21
+        s2 PUSH	//  s2_data snake2 equal s1_data snake1 _21 s1_data
+        GREATER	//  s2_data snake2 equal s1_data snake1 _22
+        IF:<{	//  s2_data snake2 equal s1_data snake1
+          s4 POP
+          2DROP	//  snake1 snake2
+          FALSE	//  snake1 snake2 equal
+        }>ELSE<{	//  s2_data snake2 equal s1_data snake1
+          s4 s4 XCHG2	//  snake1 snake2 equal s2_data s1_data
+          EQUAL	//  snake1 snake2 equal _24
+          IF:<{	//  snake1 snake2 equal
+            OVER	//  snake1 snake2 equal snake2
+            SREFS	//  snake1 snake2 equal _25
+            IF:<{	//  snake1 snake2 equal
+              SWAP	//  snake1 equal snake2
+              LDREF	//  snake1 equal _50 _49
+              DROP	//  snake1 equal _27
+              CTOS	//  snake1 equal _26
+            }>ELSE<{	//  snake1 snake2 equal
+              NIP	//  snake1 equal
+              PUSHNULL	//  snake1 equal _26
+            }>	//  snake1 equal snake2
+            SWAP	//  snake1 snake2 equal
+          }>	//  snake1 snake2 equal
+        }>
+      }>ELSE<{	//  snake1 snake2 equal s1_data s2_data
+        2 1 BLKDROP2	//  snake1 snake2 s2_data
+        s1 s2 XCHG	//  snake2 snake1 s2_data
+        LDSLICEX	//  snake2 _31 snake1
+        s2 s1 PUXC	//  snake2 snake1 snake2 _31
+        SDEQ	//  snake2 snake1 equal
+        s2 PUSH	//  snake2 snake1 equal snake2
+        SREFS	//  snake2 snake1 equal _34
+        IF:<{	//  snake2 snake1 equal
+          s0 s2 XCHG	//  equal snake1 snake2
+          LDREF	//  equal snake1 _54 _53
+          DROP	//  equal snake1 _36
+          CTOS	//  equal snake1 _35
+        }>ELSE<{	//  snake2 snake1 equal
+          s2 POP	//  equal snake1
+          PUSHNULL	//  equal snake1 _35
+        }>	//  equal snake1 snake2
+        ROT	//  snake1 snake2 equal
+      }>
+      DUP	//  snake1 snake2 equal equal
+      NOT	//  snake1 snake2 equal _40
+      s3 PUSH	//  snake1 snake2 equal _40 snake1
+      ISNULL	//  snake1 snake2 equal _40 _41
+      s3 PUSH	//  snake1 snake2 equal _40 _41 snake2
+      ISNULL	//  snake1 snake2 equal _40 _41 _42
+      AND	//  snake1 snake2 equal _40 _43
+      OR	//  snake1 snake2 equal _44
+    }>	//  snake1 snake2 equal
+    2 1 BLKDROP2	//  equal
+  }>
+  load_data PROC:<{
+    // 
+    c4 PUSH	//  _1
+    CTOS	//  ds
+    32 LDU	//  _6 ds
+    SWAP	//  ds _6
+    gseqno SETGLOB
+    LDDICT	//  _9 ds
+    SWAP	//  ds _9
+    selling_ads SETGLOB
+    LDDICT	//  _12 ds
+    SWAP	//  ds _12
+    buying_ads SETGLOB
+    LDDICT	//  _23 _22
+    DROP	//  _15
+    payments_buying_ads SETGLOB
+  }>
+  save_data PROCREF:<{
+    // 
+    payments_buying_ads GETGLOB	//  _0
+    buying_ads GETGLOB	//  _0 _1
+    selling_ads GETGLOB	//  _0 _1 _2
+    gseqno GETGLOB	//  _0 _1 _2 _3
+    INC	//  _0 _1 _2 _5
+    NEWC	//  _0 _1 _2 _5 _6
+    32 STU	//  _0 _1 _2 _8
+    STDICT	//  _0 _1 _9
+    STDICT	//  _0 _10
+    STDICT	//  _11
+    ENDC	//  _12
+    c4 POP
+  }>
+  send_coins PROC:<{
+    //  address coins text
+    0 PUSHINT	//  address coins text _4=0
+    24 PUSHINT	//  address coins text _4=0 _5=24
+    NEWC	//  address coins text _4=0 _5=24 _6
+    6 STU	//  address coins text _4=0 _8
+    s0 s4 XCHG2	//  _4=0 coins text _8 address
+    STSLICER	//  _4=0 coins text _9
+    ROT	//  _4=0 text _9 coins
+    STVARUINT16	//  _4=0 text _10
+    s1 s2 XCHG	//  text _4=0 _10
+    107 STU	//  text _24
+    SWAP	//  _24 text
+    STSLICER	//  _25
+    ENDC	//  msg
+    DUP	//  msg msg
+    CTOS	//  msg smsg
+    SBITS	//  msg lsmsg
+    s0 DUMP	//  msg _32
+    DROP	//  msg
+    0 PUSHINT	//  msg _33=0
+    SENDRAWMSG
+  }>
+  send_utilities PROC:<{
+    //  sender_address utility
+    s0 DUMP	//  sender_address utility
+    DUP	//  sender_address utility utility
+    10 MULCONST	//  sender_address utility _6
+    100 PUSHINT	//  sender_address utility _6 _7=100
+    DIV	//  sender_address utility forfund
+    s0 DUMP	//  sender_address utility forfund
+    TUCK	//  sender_address forfund utility forfund
+    SUB	//  sender_address forfund formanager
+    s0 DUMP	//  sender_address forfund formanager
+    0 PUSHINT	//  sender_address forfund formanager _16=0
+    24 PUSHINT	//  sender_address forfund formanager _16=0 _17=24
+    NEWC	//  sender_address forfund formanager _16=0 _17=24 _18
+    6 STU	//  sender_address forfund formanager _16=0 _20
+    x{800ADF2B9D75A1028C845513A136F00F5062A8571B6466FBC9BC1D666537DF5776B_} PUSHSLICE	//  sender_address forfund formanager _16=0 _20 _21
+    STSLICER	//  sender_address forfund formanager _16=0 _22
+    s0 s3 XCHG2	//  sender_address _16=0 formanager _22 forfund
+    STVARUINT16	//  sender_address _16=0 formanager _23
+    s1 s2 XCHG	//  sender_address formanager _16=0 _23
+    107 STU	//  sender_address formanager _37
+    s2 PUSH	//  sender_address formanager _37 sender_address
+    STSLICER	//  sender_address formanager _38
+    ENDC	//  sender_address formanager msgfund
+    0 PUSHINT	//  sender_address formanager msgfund _40=0
+    SENDRAWMSG
+    0 PUSHINT	//  sender_address formanager _43=0
+    24 PUSHINT	//  sender_address formanager _43=0 _44=24
+    NEWC	//  sender_address formanager _43=0 _44=24 _45
+    6 STU	//  sender_address formanager _43=0 _47
+    x{800E1B352B01520AA93365D882AFBB35232EBE554A71779752029D4F963F177F55D_} PUSHSLICE	//  sender_address formanager _43=0 _47 _48
+    STSLICER	//  sender_address formanager _43=0 _49
+    ROT	//  sender_address _43=0 _49 formanager
+    STVARUINT16	//  sender_address _43=0 _50
+    107 STU	//  sender_address _64
+    SWAP	//  _64 sender_address
+    STSLICER	//  _65
+    ENDC	//  msgmanager
+    0 PUSHINT	//  msgmanager _67=0
+    SENDRAWMSG
+  }>
+  recv_internal PROC:<{
+    //  balance msg_value in_msg_full in_msg_body
+    s3 POP
+    NIP	//  in_msg_body in_msg_full
+    CTOS	//  in_msg_body fm
+    4 LDU	//  in_msg_body _422 _421
+    NIP	//  in_msg_body fm
+    LDMSGADDR	//  in_msg_body sender_address fm
+    LDMSGADDR	//  in_msg_body sender_address _426 _425
+    NIP	//  in_msg_body sender_address fm
+    LDVARUINT16	//  in_msg_body sender_address _428 _427
+    DROP	//  in_msg_body sender_address coins
+    s0 s2 XCHG
+    9 PUSHPOW2	//  coins sender_address in_msg_body _21=512
+    LDSLICEX	//  coins sender_address signature in_msg_body
+    LDREF	//  coins sender_address signature _432 _431
+    DROP	//  coins sender_address signature body2
+    CTOS	//  coins sender_address signature cs
+    DUP	//  coins sender_address signature cs cs2
+    load_data CALLDICT
+    32 LDU	//  coins sender_address signature cs mseqno cs2
+    gseqno GETGLOB	//  coins sender_address signature cs mseqno cs2 _35
+    s1 s2 XCHG	//  coins sender_address signature cs cs2 mseqno _35
+    EQUAL	//  coins sender_address signature cs cs2 _36
+    503 THROWIFNOT
+    32 LDU	//  coins sender_address signature cs op cs2
+    s2 PUSH	//  coins sender_address signature cs op cs2 cs
+    HASHSU	//  coins sender_address signature cs op cs2 _43
+    s3 POP	//  coins sender_address signature msg_hash op cs2
+    s2 s3 XCHG2
+    80707734765953252277396461989487177013786725744056774214746834774813238654892 PUSHINT	//  coins sender_address cs2 op msg_hash signature _45=80707734765953252277396461989487177013786725744056774214746834774813238654892
+    CHKSIGNU	//  coins sender_address cs2 op _46
+    500 THROWIFNOT
+    s2 PUSH	//  coins sender_address cs2 op sender_address
+    SBITS	//  coins sender_address cs2 op _49
+    267 PUSHINT	//  coins sender_address cs2 op _49 _50=267
+    EQUAL	//  coins sender_address cs2 op _51
+    502 THROWIFNOT
+    DUP
+    1000 PUSHINT	//  coins sender_address cs2 op op _53=1000
+    EQUAL	//  coins sender_address cs2 op _54
+    IFJMP:<{	//  coins sender_address cs2 op
+      2DROP	//  coins sender_address
+      SWAP	//  sender_address coins
+      s0 DUMP	//  sender_address coins
+      DUP
+      5200000000 PUSHINT	//  sender_address coins coins _58=5200000000
+      LESS	//  sender_address coins _59
+      504 THROWIF
+      selling_ads GETGLOB	//  sender_address coins _63
+      s2 s(-1) PUXC
+      267 PUSHINT	//  sender_address coins sender_address _63 _64=267
+      DICTGET
+      NULLSWAPIFNOT	//  sender_address coins _437 _438
+      NIP	//  sender_address coins success
+      -1 EQINT	//  sender_address coins _68
+      1002 THROWIF
+      DUP
+      1000000000 PUSHINT	//  sender_address coins coins _71=1000000000
+      DIV	//  sender_address coins forad
+      1000000000 PUSHINT	//  sender_address coins forad _73=1000000000
+      MUL	//  sender_address coins forad
+      TUCK	//  sender_address forad coins forad
+      SUB	//  sender_address forad exed
+      10000000 PUSHINT	//  sender_address forad exed _77=10000000
+      SUB	//  sender_address forad exed
+      DUP
+      100000000 PUSHINT	//  sender_address forad exed exed _80=100000000
+      LESS	//  sender_address forad exed _81
+      504 THROWIF
+      NOW	//  sender_address forad exed _84
+      864000 PUSHINT	//  sender_address forad exed _84 _85=864000
+      ADD	//  sender_address forad exed _86
+      NEWC	//  sender_address forad exed _86 _87
+      s0 s3 XCHG2	//  sender_address _86 exed _87 forad
+      STVARUINT16	//  sender_address _86 exed _88
+      s1 s2 XCHG	//  sender_address exed _86 _88
+      64 STU	//  sender_address exed _90
+      ENDC	//  sender_address exed datad
+      CTOS	//  sender_address exed _94
+      selling_ads GETGLOB	//  sender_address exed _94 _95
+      s3 s(-1) PUXC
+      267 PUSHINT	//  sender_address exed _94 sender_address _95 _96=267
+      DICTADD	//  sender_address exed _98 _93
+      SWAP	//  sender_address exed _93 _98
+      selling_ads SETGLOB	//  sender_address exed success
+      -1 NEQINT	//  sender_address exed _101
+      1001 THROWIF
+      save_data INLINECALLDICT
+      send_utilities CALLDICT
+    }>	//  coins sender_address cs2 op
+    DUP
+    1100 PUSHINT	//  coins sender_address cs2 op op _105=1100
+    EQUAL	//  coins sender_address cs2 op _106
+    IFJMP:<{	//  coins sender_address cs2 op
+      DROP	//  coins sender_address cs2
+      LDMSGADDR	//  coins sender_address buyeraddr cs2
+      SWAP	//  coins sender_address cs2 buyeraddr
+      s0 DUMP	//  coins sender_address cs2 buyeraddr
+      SWAP	//  coins sender_address buyeraddr cs2
+      LDVARUINT16	//  coins sender_address buyeraddr _444 _443
+      DROP	//  coins sender_address buyeraddr buyercoins
+      selling_ads GETGLOB	//  coins sender_address buyeraddr buyercoins _117
+      s3 s(-1) PUXC
+      267 PUSHINT	//  coins sender_address buyeraddr buyercoins sender_address _117 _118=267
+      DICTGET
+      NULLSWAPIFNOT	//  coins sender_address buyeraddr buyercoins sd success
+      NOT	//  coins sender_address buyeraddr buyercoins sd _121
+      505 THROWIF
+      SWAP	//  coins sender_address buyeraddr sd buyercoins
+      s0 DUMP	//  coins sender_address buyeraddr sd buyercoins
+      SWAP	//  coins sender_address buyeraddr buyercoins sd
+      LDVARUINT16	//  coins sender_address buyeraddr buyercoins adcoins sd
+      64 LDU	//  coins sender_address buyeraddr buyercoins adcoins _450 _449
+      DROP	//  coins sender_address buyeraddr buyercoins adcoins validuntil
+      s0 DUMP	//  coins sender_address buyeraddr buyercoins adcoins _133
+      DROP	//  coins sender_address buyeraddr buyercoins adcoins
+      s0 DUMP	//  coins sender_address buyeraddr buyercoins adcoins
+      2DUP	//  coins sender_address buyeraddr buyercoins adcoins buyercoins adcoins
+      GREATER	//  coins sender_address buyeraddr buyercoins adcoins _137
+      508 THROWIF
+      s4 PUSH
+      200000000 PUSHINT	//  coins sender_address buyeraddr buyercoins adcoins coins _140=200000000
+      LESS	//  coins sender_address buyeraddr buyercoins adcoins _141
+      504 THROWIF
+      selling_ads GETGLOB	//  coins sender_address buyeraddr buyercoins adcoins _145
+      s4 s(-1) PUXC
+      267 PUSHINT	//  coins sender_address buyeraddr buyercoins adcoins sender_address _145 _146=267
+      DICTDEL	//  coins sender_address buyeraddr buyercoins adcoins _148 _144
+      SWAP	//  coins sender_address buyeraddr buyercoins adcoins _144 _148
+      selling_ads SETGLOB	//  coins sender_address buyeraddr buyercoins adcoins success
+      506 THROWIFNOT
+      s2 s1 XCPU
+      x{436f6d707261646f20656e2068747470733a2f2f696e74657263616d626961646f722e7061736f7364654a657375732e6f7267} PUSHSLICE	//  coins sender_address adcoins buyercoins buyeraddr buyercoins _151
+      send_coins CALLDICT
+      SUB	//  coins sender_address remcoins
+      DUP	//  coins sender_address remcoins remcoins
+      0 GTINT	//  coins sender_address remcoins _156
+      IF:<{	//  coins sender_address remcoins
+        s1 s(-1) PUXC
+        x{51756564c3b320747261732076656e7461} PUSHSLICE	//  coins sender_address sender_address remcoins _157
+        send_coins CALLDICT
+      }>ELSE<{
+        DROP	//  coins sender_address
+      }>
+      save_data INLINECALLDICT
+      SWAP	//  sender_address coins
+      send_utilities CALLDICT
+    }>	//  coins sender_address cs2 op
+    DUP
+    1200 PUSHINT	//  coins sender_address cs2 op op _161=1200
+    EQUAL	//  coins sender_address cs2 op _162
+    IFJMP:<{	//  coins sender_address cs2 op
+      2DROP	//  coins sender_address
+      selling_ads GETGLOB	//  coins sender_address _165
+      s1 s(-1) PUXC
+      267 PUSHINT	//  coins sender_address sender_address _165 _166=267
+      DICTGET
+      NULLSWAPIFNOT	//  coins sender_address sd success
+      NOT	//  coins sender_address sd _169
+      505 THROWIF
+      LDVARUINT16	//  coins sender_address _456 _455
+      DROP	//  coins sender_address adcoins
+      s2 PUSH
+      200000000 PUSHINT	//  coins sender_address adcoins coins _179=200000000
+      LESS	//  coins sender_address adcoins _180
+      504 THROWIF
+      selling_ads GETGLOB	//  coins sender_address adcoins _184
+      s2 s(-1) PUXC
+      267 PUSHINT	//  coins sender_address adcoins sender_address _184 _185=267
+      DICTDEL	//  coins sender_address adcoins _187 _183
+      SWAP	//  coins sender_address adcoins _183 _187
+      selling_ads SETGLOB	//  coins sender_address adcoins success
+      506 THROWIFNOT
+      s1 s(-1) PUXC
+      x{416e756e63696f2063616e63656c61646f} PUSHSLICE	//  coins sender_address sender_address adcoins _190
+      send_coins CALLDICT
+      save_data INLINECALLDICT
+      SWAP	//  sender_address coins
+      send_utilities CALLDICT
+    }>	//  coins sender_address cs2 op
+    DUP
+    1300 PUSHINT	//  coins sender_address cs2 op op _194=1300
+    EQUAL	//  coins sender_address cs2 op _195
+    IFJMP:<{	//  coins sender_address cs2 op
+      DROP	//  coins sender_address cs2
+      SWAP
+      x{800E1B352B01520AA93365D882AFBB35232EBE554A71779752029D4F963F177F55D_} PUSHSLICE	//  coins cs2 sender_address _197
+      SDEQ	//  coins cs2 _198
+      507 THROWIFNOT
+      LDMSGADDR	//  coins selleraddr cs2
+      selling_ads GETGLOB	//  coins selleraddr cs2 _205
+      s2 s(-1) PUXC
+      267 PUSHINT	//  coins selleraddr cs2 selleraddr _205 _206=267
+      DICTGET
+      NULLSWAPIFNOT	//  coins selleraddr cs2 sd success
+      NOT	//  coins selleraddr cs2 sd _209
+      505 THROWIF
+      LDVARUINT16	//  coins selleraddr cs2 _466 _465
+      DROP	//  coins selleraddr cs2 adcoins
+      OVER	//  coins selleraddr cs2 adcoins cs2
+      SBITS	//  coins selleraddr cs2 adcoins _218
+      0 EQINT	//  coins selleraddr cs2 adcoins _220
+      IF:<{	//  coins selleraddr cs2 adcoins
+        NIP	//  coins selleraddr adcoins
+        selling_ads GETGLOB	//  coins selleraddr adcoins _223
+        s2 s(-1) PUXC
+        267 PUSHINT	//  coins selleraddr adcoins selleraddr _223 _224=267
+        DICTDEL	//  coins selleraddr adcoins _226 _222
+        SWAP	//  coins selleraddr adcoins _222 _226
+        selling_ads SETGLOB	//  coins selleraddr adcoins success
+        506 THROWIFNOT
+        x{416e756e63696f2063616e63656c61646f20706f722061646d696e6973747261646f72} PUSHSLICE	//  coins selleraddr adcoins _229
+        send_coins CALLDICT
+      }>ELSE<{	//  coins selleraddr cs2 adcoins
+        SWAP	//  coins selleraddr adcoins cs2
+        LDVARUINT16	//  coins selleraddr adcoins coinsseller cs2
+        LDMSGADDR	//  coins selleraddr adcoins coinsseller _474 _473
+        DROP	//  coins selleraddr adcoins coinsseller buyeraddr
+        s1 s2 PUSH2	//  coins selleraddr adcoins coinsseller buyeraddr coinsseller adcoins
+        GREATER	//  coins selleraddr adcoins coinsseller buyeraddr _238
+        508 THROWIF
+        selling_ads GETGLOB	//  coins selleraddr adcoins coinsseller buyeraddr _242
+        s4 s(-1) PUXC
+        267 PUSHINT	//  coins selleraddr adcoins coinsseller buyeraddr selleraddr _242 _243=267
+        DICTDEL	//  coins selleraddr adcoins coinsseller buyeraddr _245 _241
+        SWAP	//  coins selleraddr adcoins coinsseller buyeraddr _241 _245
+        selling_ads SETGLOB	//  coins selleraddr adcoins coinsseller buyeraddr success
+        506 THROWIFNOT
+        s3 s1 XCPU
+        x{5265746f726e61646f2074726173207265736f6c756369c3b36e} PUSHSLICE	//  coins buyeraddr adcoins coinsseller selleraddr coinsseller _248
+        send_coins CALLDICT
+        s0 s1 PUSH2	//  coins buyeraddr adcoins coinsseller coinsseller adcoins
+        LESS	//  coins buyeraddr adcoins coinsseller _250
+        IF:<{	//  coins buyeraddr adcoins coinsseller
+          SUB	//  coins buyeraddr _251
+          x{50616761646f2074726173207265736f6c756369c3b36e} PUSHSLICE	//  coins buyeraddr _251 _252
+          send_coins CALLDICT
+        }>ELSE<{
+          3 BLKDROP	//  coins
+        }>
+      }>
+      save_data INLINECALLDICT
+      DUP
+      10000000 PUSHINT	//  coins coins _255=10000000
+      GREATER	//  coins _256
+      IF:<{	//  coins
+        x{800E1B352B01520AA93365D882AFBB35232EBE554A71779752029D4F963F177F55D_} PUSHSLICE	//  coins _257
+        SWAP
+        10000000 PUSHINT	//  _257 coins _258=10000000
+        SUB	//  _257 _259
+        send_utilities CALLDICT
+      }>ELSE<{
+        DROP	// 
+      }>
+    }>	//  coins sender_address cs2 op
+    NIP
+    s2 POP	//  op sender_address
+    OVER
+    3000 PUSHINT	//  op sender_address op _261=3000
+    EQUAL	//  op sender_address _262
+    IFJMP:<{	//  op sender_address
+      NIP	//  sender_address
+      x{800E1B352B01520AA93365D882AFBB35232EBE554A71779752029D4F963F177F55D_} PUSHSLICE	//  sender_address _264
+      SDEQ	//  _265
+      507 THROWIFNOT
+      0 PUSHINT	//  sellers_coins=0
+      DUP	//  sellers_coins=0 numop=0
+      selling_ads GETGLOB	//  sellers_coins=0 numop=0 copy_sa
+      UNTIL:<{
+        267 PUSHINT	//  sellers_coins numop copy_sa _277=267
+        DICTREMMIN
+        NULLSWAPIFNOT2	//  sellers_coins numop _480 _482 _481 _483
+        NIP	//  sellers_coins numop copy_sa sd success
+        DUP	//  sellers_coins numop copy_sa sd success success
+        IF:<{	//  sellers_coins numop copy_sa sd success
+          SWAP	//  sellers_coins numop copy_sa success sd
+          LDVARUINT16	//  sellers_coins numop copy_sa success _485 _484
+          DROP	//  sellers_coins numop copy_sa success adcoins
+          s1 s4 XCHG	//  success numop copy_sa sellers_coins adcoins
+          ADD	//  success numop copy_sa sellers_coins
+          s0 s2 XCHG	//  success sellers_coins copy_sa numop
+          INC	//  success sellers_coins copy_sa numop
+          s0 s1 s3 XCHG3	//  sellers_coins numop copy_sa success
+        }>ELSE<{
+          NIP	//  sellers_coins numop copy_sa success
+        }>
+        NOT	//  sellers_coins numop copy_sa _285
+      }>	//  sellers_coins numop copy_sa
+      DROP	//  sellers_coins numop
+      buying_ads GETGLOB	//  sellers_coins numop copy_ba
+      UNTIL:<{
+        267 PUSHINT	//  sellers_coins numop copy_ba _292=267
+        DICTREMMIN
+        NULLSWAPIFNOT2	//  sellers_coins numop _489 _491 _490 _492
+        2 1 BLKDROP2	//  sellers_coins numop copy_ba success
+        DUP	//  sellers_coins numop copy_ba success success
+        IF:<{	//  sellers_coins numop copy_ba success
+          s0 s2 XCHG	//  sellers_coins success copy_ba numop
+          INC	//  sellers_coins success copy_ba numop
+          s0 s2 XCHG	//  sellers_coins numop copy_ba success
+        }>	//  sellers_coins numop copy_ba success
+        NOT	//  sellers_coins numop copy_ba _296
+      }>	//  sellers_coins numop copy_ba
+      DROP	//  sellers_coins numop
+      payments_buying_ads GETGLOB	//  sellers_coins numop copy_pba
+      UNTIL:<{
+        267 PUSHINT	//  sellers_coins numop copy_pba _303=267
+        DICTREMMIN
+        NULLSWAPIFNOT2	//  sellers_coins numop _496 _498 _497 _499
+        NIP	//  sellers_coins numop copy_pba sd success
+        DUP	//  sellers_coins numop copy_pba sd success success
+        IF:<{	//  sellers_coins numop copy_pba sd success
+          SWAP	//  sellers_coins numop copy_pba success sd
+          LDMSGADDR	//  sellers_coins numop copy_pba success _501 _500
+          NIP	//  sellers_coins numop copy_pba success sd
+          LDVARUINT16	//  sellers_coins numop copy_pba success _503 _502
+          DROP	//  sellers_coins numop copy_pba success pcoins
+          s1 s4 XCHG	//  success numop copy_pba sellers_coins pcoins
+          ADD	//  success numop copy_pba sellers_coins
+          s0 s2 XCHG	//  success sellers_coins copy_pba numop
+          INC	//  success sellers_coins copy_pba numop
+          s0 s1 s3 XCHG3	//  sellers_coins numop copy_pba success
+        }>ELSE<{
+          NIP	//  sellers_coins numop copy_pba success
+        }>
+        NOT	//  sellers_coins numop copy_pba _314
+      }>	//  sellers_coins numop copy_pba
+      DROP	//  sellers_coins numop
+      BALANCE	//  sellers_coins numop _317
+      UNPAIR	//  sellers_coins numop _504 _505
+      DROP	//  sellers_coins numop balance
+      ROT	//  numop balance sellers_coins
+      SUB	//  numop _320
+      SWAP
+      100000000 PUSHINT	//  _320 numop _321=100000000
+      MUL	//  _320 _322
+      SUB	//  utility
+      3001 PUSHINT	//  utility _324=3001
+      OVER	//  utility _324=3001 utility
+      0 LESSINT	//  utility _324=3001 _326
+      THROWANYIF
+      save_data INLINECALLDICT
+      x{800E1B352B01520AA93365D882AFBB35232EBE554A71779752029D4F963F177F55D_} PUSHSLICE	//  utility _329
+      SWAP	//  _329 utility
+      send_utilities CALLDICT
+    }>	//  op sender_address
+    SWAP
+    4000 PUSHINT	//  sender_address op _331=4000
+    EQUAL	//  sender_address _332
+    IFJMP:<{	//  sender_address
+      x{800E1B352B01520AA93365D882AFBB35232EBE554A71779752029D4F963F177F55D_} PUSHSLICE	//  sender_address _334
+      SDEQ	//  _335
+      507 THROWIFNOT
+      UNTIL:<{
+        selling_ads GETGLOB	//  _341
+        267 PUSHINT	//  _341 _342=267
+        DICTREMMIN
+        NULLSWAPIFNOT2	//  _344 _507 _506 _508
+        s0 s3 XCHG	//  _508 _507 _506 _344
+        selling_ads SETGLOB	//  success sd address
+        s2 PUSH	//  success sd address success
+        IF:<{	//  success sd address
+          SWAP	//  success address sd
+          LDVARUINT16	//  success address _514 _513
+          DROP	//  success address mcoins
+          x{416e756e63696f2063616e63656c61646f20706f722066696e206465206f706572616369c3b36e} PUSHSLICE	//  success address mcoins _352
+          send_coins CALLDICT
+        }>ELSE<{
+          2DROP	//  success
+        }>
+        NOT	//  _354
+      }>	// 
+      UNTIL:<{
+        buying_ads GETGLOB	//  _359
+        267 PUSHINT	//  _359 _360=267
+        DICTREMMIN
+        NULLSWAPIFNOT2	//  _520 _522 _521 _523
+        2 1 BLKDROP2	//  _362 _519
+        SWAP	//  _519 _362
+        buying_ads SETGLOB	//  success
+        NOT	//  _363
+      }>	// 
+      UNTIL:<{
+        payments_buying_ads GETGLOB	//  _368
+        267 PUSHINT	//  _368 _369=267
+        DICTREMMIN
+        NULLSWAPIFNOT2	//  _527 _529 _528 _530
+        NIP	//  _371 _525 _526
+        s0 s2 XCHG	//  _526 _525 _371
+        payments_buying_ads SETGLOB	//  success sd
+        OVER	//  success sd success
+        IF:<{	//  success sd
+          LDMSGADDR	//  success payeer sd
+          LDVARUINT16	//  success payeer _534 _533
+          DROP	//  success payeer pcoins
+          x{5061676f207265746f726e61646f20706f722066696e206465206f706572616369c3b36e} PUSHSLICE	//  success payeer pcoins _382
+          send_coins CALLDICT
+        }>ELSE<{
+          DROP	//  success
+        }>
+        NOT	//  _384
+      }>	// 
+      save_data INLINECALLDICT
+      BALANCE	//  _388
+      UNPAIR	//  _537 _538
+      DROP	//  balance
+      0 PUSHINT	//  balance _391=0
+      16 PUSHINT	//  balance _391=0 _392=16
+      NEWC	//  balance _391=0 _392=16 _393
+      6 STU	//  balance _391=0 _395
+      x{800E1B352B01520AA93365D882AFBB35232EBE554A71779752029D4F963F177F55D_} PUSHSLICE	//  balance _391=0 _395 _396
+      STSLICER	//  balance _391=0 _397
+      ROT	//  _391=0 _397 balance
+      STVARUINT16	//  _391=0 _398
+      107 STU	//  _412
+      x{46696e206465206f706572616369c3b36e} PUSHSLICE	//  _412 _413
+      STSLICER	//  _414
+      ENDC	//  msgmanager
+      160 PUSHINT	//  msgmanager _416=160
+      SENDRAWMSG
+    }>	//  sender_address
+    DROP	// 
+    501 THROW
+  }>
+  get_manager_address PROC:<{
+    // 
+    load_data CALLDICT
+    x{800E1B352B01520AA93365D882AFBB35232EBE554A71779752029D4F963F177F55D_} PUSHSLICE	//  _1
+  }>
+  get_public_key PROC:<{
+    // 
+    load_data CALLDICT
+    80707734765953252277396461989487177013786725744056774214746834774813238654892 PUSHINT	//  _1=80707734765953252277396461989487177013786725744056774214746834774813238654892
+  }>
+  seqno PROC:<{
+    // 
+    load_data CALLDICT
+    gseqno GETGLOB	//  _1
+  }>
+  get_selling_ad_addresses PROC:<{
+    // 
+    load_data CALLDICT
+    0 TUPLE	//  ret
+    selling_ads GETGLOB	//  ret copy_sa
+    UNTIL:<{
+      267 PUSHINT	//  ret copy_sa _10=267
+      DICTREMMIN
+      NULLSWAPIFNOT2	//  ret _18 _20 _19 _21
+      s2 POP	//  ret copy_sa success address
+      OVER	//  ret copy_sa success address success
+      IF:<{	//  ret copy_sa success address
+        s1 s3 XCHG	//  success copy_sa ret address
+        TPUSH	//  success copy_sa ret
+        s0 s2 XCHG	//  ret copy_sa success
+      }>ELSE<{
+        DROP	//  ret copy_sa success
+      }>
+      NOT	//  ret copy_sa _14
+    }>	//  ret copy_sa
+    DROP	//  ret
+  }>
+  get_amount_selling_ads PROC:<{
+    // 
+    load_data CALLDICT
+    selling_ads GETGLOB	//  copy_sa
+    0 PUSHINT	//  copy_sa amount=0
+    UNTIL:<{
+      SWAP
+      267 PUSHINT	//  amount copy_sa _9=267
+      DICTREMMIN
+      NULLSWAPIFNOT2	//  amount _17 _19 _18 _20
+      2 1 BLKDROP2	//  amount copy_sa success
+      DUP	//  amount copy_sa success success
+      IF:<{	//  amount copy_sa success
+        s0 s2 XCHG	//  success copy_sa amount
+        INC	//  success copy_sa amount
+        s0 s2 XCHG	//  amount copy_sa success
+      }>	//  amount copy_sa success
+      NOT	//  amount copy_sa _13
+      s1 s2 XCHG	//  copy_sa amount _13
+    }>	//  copy_sa amount
+    NIP	//  amount
+  }>
+  get_nth_selling_ad PROC:<{
+    c2 SAVE
+    SAMEALTSAVE	//  n
+    load_data CALLDICT
+    selling_ads GETGLOB	//  n copy_sa
+    OVER	//  n copy_sa n
+    0 LESSINT	//  n copy_sa _5
+    IFJMP:<{	//  n copy_sa
+      2DROP	// 
+      x{} PUSHSLICE	//  _6
+      -1 PUSHINT	//  _6 _7=-1
+      0 PUSHINT	//  _6 _7=-1 _8=0
+    }>	//  n copy_sa
+    0 PUSHINT	//  n copy_sa i=0
+    UNTIL:<{
+      SWAP
+      267 PUSHINT	//  n i copy_sa _15=267
+      DICTREMMIN
+      NULLSWAPIFNOT2	//  n i copy_sa sd address success
+      DUP	//  n i copy_sa sd address success success
+      IF:<{	//  n i copy_sa sd address success
+        s5 s4 PUSH2	//  n i copy_sa sd address success n i
+        EQUAL	//  n i copy_sa sd address success _17
+        IFJMP:<{	//  n i copy_sa sd address success
+          DROP
+          2 2 BLKDROP2
+          s2 POP	//  address sd
+          LDVARUINT16	//  address adcoins sd
+          64 LDU	//  address adcoins _41 _40
+          DROP	//  address adcoins validuntil
+          RETALT
+        }>	//  n i copy_sa sd address success
+        2 1 BLKDROP2	//  n i copy_sa success
+        s0 s2 XCHG	//  n success copy_sa i
+        INC	//  n success copy_sa i
+        s0 s2 XCHG	//  n i copy_sa success
+      }>ELSE<{
+        2 1 BLKDROP2	//  n i copy_sa success
+      }>
+      NOT	//  n i copy_sa _27
+      s1 s2 XCHG	//  n copy_sa i _27
+    }>	//  n copy_sa i
+    3 BLKDROP	// 
+    x{} PUSHSLICE	//  _28
+    -1 PUSHINT	//  _28 _29=-1
+    0 PUSHINT	//  _28 _29=-1 _30=0
+  }>
+  get_selling_ad PROC:<{
+    //  address
+    load_data CALLDICT
+    selling_ads GETGLOB	//  address _4
+    267 PUSHINT	//  address _4 _5=267
+    DICTGET
+    NULLSWAPIFNOT	//  sd success
+    505 THROWIFNOT
+    LDVARUINT16	//  adcoins sd
+    64 LDU	//  adcoins _21 _20
+    DROP	//  adcoins validuntil
+  }>
+  __test_wrongmessage PROC:<{
+    // 
+    MYADDR	//  ad
+    123 PUSHINT	//  ad _3=123
+    1 PUSHINT	//  ad _3=123 _4=1
+    NEWC	//  ad _3=123 _4=1 _5
+    32 STU	//  ad _3=123 _7
+    32 STU	//  ad _9
+    MYADDR	//  ad _9 _10
+    STSLICER	//  ad _11
+    ENDC	//  ad body
+    DUP	//  ad body body
+    CTOS	//  ad body sbody
+    1 PUSHINT	//  ad body sbody _16=1
+    0 PUSHINT	//  ad body sbody _16=1 _17=0
+    6 PUSHINT	//  ad body sbody _16=1 _17=0 _18=6
+    NEWC	//  ad body sbody _16=1 _17=0 _18=6 _19
+    4 STU	//  ad body sbody _16=1 _17=0 _21
+    s5 PUSH	//  ad body sbody _16=1 _17=0 _21 ad
+    STSLICER	//  ad body sbody _16=1 _17=0 _22
+    s5 PUSH	//  ad body sbody _16=1 _17=0 _22 ad
+    STSLICER	//  ad body sbody _16=1 _17=0 _23
+    s5 POP	//  _23 body sbody _16=1 _17=0
+    s0 s4 XCHG
+    1000 PUSHINT	//  _17=0 body sbody _16=1 _23 _24=1000
+    STVARUINT16	//  _17=0 body sbody _16=1 _25
+    s1 s4 XCHG	//  _16=1 body sbody _17=0 _25
+    106 STU	//  _16=1 body sbody _37
+    s1 s3 XCHG	//  sbody body _16=1 _37
+    1 STU	//  sbody body _39
+    STREF	//  sbody _40
+    ENDC	//  sbody full
+    1000 PUSHINT	//  sbody full _46=1000
+    s0 s2 XCHG
+    10 PUSHINT
+    -ROT	//  _46=1000 _47=10 full sbody
+    4 TUPLE	//  pila
+    CONT:<{
+      recv_internal CALLDICT
+    }>	//  pila _61
+    SWAP	//  _61 pila
+    {
+    c7 PUSH DUP FIRST
+    GASLIMITSTEMP SWAP DROP
+    11 SETINDEX 0 SETINDEX c7 POP
+    } : save-gas-remaining
+    {
+    GASLIMITSTEMP SWAP DROP
+    11 GETPARAM SWAP SUB
+    145 PUSHINT SUB
+    } : compute-gas-used
+    NEWC ENDC c5 POP
+    RESETLOADEDCELLS
+    255 PUSHINT EXPLODEVAR
+    DUP INC ROLLX
+    <{
+    <{
+    save-gas-remaining
+    EXECUTE
+    compute-gas-used
+    DEPTH DEC ROLLREVX
+    DEPTH DEC TUPLEVAR
+    ZERO ROTREV
+    }> PUSHCONT
+    <{
+    compute-gas-used
+    ROT DROP NIL
+    }> PUSHCONT
+    TRY
+    }> PUSHCONT
+    ROT INC -1 PUSHINT
+    CALLXVARARGS	//  _69 _70 _71
+    DROP	//  exit_code gas_usado1
+    SWAP	//  gas_usado1 exit_code
+    s0 DUMP	//  gas_usado1 exit_code
+    9 NEQINT	//  gas_usado1 _67
+    100 THROWIF
+  }>
+  __test_wrongseqno PROC:<{
+    // 
+    MYADDR	//  ad
+    1000 PUSHINT	//  ad _3=1000
+    1 PUSHINT	//  ad _3=1000 _4=1
+    NEWC	//  ad _3=1000 _4=1 _5
+    32 STU	//  ad _3=1000 _7
+    32 STU	//  ad _9
+    ENDC	//  ad body2
+    0 PUSHINT	//  ad body2 _12=0
+    DUP	//  ad body2 _12=0 _13=0
+    NEWC	//  ad body2 _12=0 _13=0 _14
+    256 STU	//  ad body2 _12=0 _16
+    256 STU	//  ad body2 _18
+    STREF	//  ad _19
+    ENDC	//  ad body
+    DUP	//  ad body body
+    CTOS	//  ad body sbody
+    1 PUSHINT	//  ad body sbody _24=1
+    0 PUSHINT	//  ad body sbody _24=1 _25=0
+    6 PUSHINT	//  ad body sbody _24=1 _25=0 _26=6
+    NEWC	//  ad body sbody _24=1 _25=0 _26=6 _27
+    4 STU	//  ad body sbody _24=1 _25=0 _29
+    s5 PUSH	//  ad body sbody _24=1 _25=0 _29 ad
+    STSLICER	//  ad body sbody _24=1 _25=0 _30
+    s0 s5 XCHG2	//  _25=0 body sbody _24=1 _30 ad
+    STSLICER	//  _25=0 body sbody _24=1 _31
+    1000 PUSHINT	//  _25=0 body sbody _24=1 _31 _32=1000
+    STVARUINT16	//  _25=0 body sbody _24=1 _33
+    s1 s4 XCHG	//  _24=1 body sbody _25=0 _33
+    106 STU	//  _24=1 body sbody _45
+    s1 s3 XCHG	//  sbody body _24=1 _45
+    1 STU	//  sbody body _47
+    STREF	//  sbody _48
+    ENDC	//  sbody full
+    1000 PUSHINT	//  sbody full _54=1000
+    s0 s2 XCHG
+    10 PUSHINT
+    -ROT	//  _54=1000 _55=10 full sbody
+    4 TUPLE	//  pila
+    NEWDICT	//  pila _58
+    NEWDICT	//  pila _58 _59
+    NEWDICT	//  pila _58 _59 _60
+    2 PUSHINT	//  pila _58 _59 _60 _61=2
+    NEWC	//  pila _58 _59 _60 _61=2 _62
+    32 STU	//  pila _58 _59 _60 _64
+    STDICT	//  pila _58 _59 _65
+    STDICT	//  pila _58 _66
+    STDICT	//  pila _67
+    ENDC	//  pila data
+    c4 POP
+    CONT:<{
+      recv_internal CALLDICT
+    }>	//  pila _73
+    SWAP	//  _73 pila
+    {
+    c7 PUSH DUP FIRST
+    GASLIMITSTEMP SWAP DROP
+    11 SETINDEX 0 SETINDEX c7 POP
+    } : save-gas-remaining
+    {
+    GASLIMITSTEMP SWAP DROP
+    11 GETPARAM SWAP SUB
+    145 PUSHINT SUB
+    } : compute-gas-used
+    NEWC ENDC c5 POP
+    RESETLOADEDCELLS
+    255 PUSHINT EXPLODEVAR
+    DUP INC ROLLX
+    <{
+    <{
+    save-gas-remaining
+    EXECUTE
+    compute-gas-used
+    DEPTH DEC ROLLREVX
+    DEPTH DEC TUPLEVAR
+    ZERO ROTREV
+    }> PUSHCONT
+    <{
+    compute-gas-used
+    ROT DROP NIL
+    }> PUSHCONT
+    TRY
+    }> PUSHCONT
+    ROT INC -1 PUSHINT
+    CALLXVARARGS	//  _81 _82 _83
+    DROP	//  exit_code gas_usado1
+    SWAP	//  gas_usado1 exit_code
+    s0 DUMP	//  gas_usado1 exit_code
+    503 PUSHINT	//  gas_usado1 exit_code _78=503
+    NEQ	//  gas_usado1 _79
+    100 THROWIF
+  }>
+  __test_wrongsignature PROC:<{
+    // 
+    MYADDR	//  ad
+    1000 PUSHINT	//  ad _3=1000
+    1 PUSHINT	//  ad _3=1000 _4=1
+    NEWC	//  ad _3=1000 _4=1 _5
+    32 STU	//  ad _3=1000 _7
+    32 STU	//  ad _9
+    MYADDR	//  ad _9 _10
+    STSLICER	//  ad _11
+    ENDC	//  ad body2
+    0 PUSHINT	//  ad body2 _14=0
+    DUP	//  ad body2 _14=0 _15=0
+    NEWC	//  ad body2 _14=0 _15=0 _16
+    256 STU	//  ad body2 _14=0 _18
+    256 STU	//  ad body2 _20
+    STREF	//  ad _21
+    ENDC	//  ad body
+    DUP	//  ad body body
+    CTOS	//  ad body sbody
+    1 PUSHINT	//  ad body sbody _26=1
+    0 PUSHINT	//  ad body sbody _26=1 _27=0
+    6 PUSHINT	//  ad body sbody _26=1 _27=0 _28=6
+    NEWC	//  ad body sbody _26=1 _27=0 _28=6 _29
+    4 STU	//  ad body sbody _26=1 _27=0 _31
+    s5 PUSH	//  ad body sbody _26=1 _27=0 _31 ad
+    STSLICER	//  ad body sbody _26=1 _27=0 _32
+    s0 s5 XCHG2	//  _27=0 body sbody _26=1 _32 ad
+    STSLICER	//  _27=0 body sbody _26=1 _33
+    1000 PUSHINT	//  _27=0 body sbody _26=1 _33 _34=1000
+    STVARUINT16	//  _27=0 body sbody _26=1 _35
+    s1 s4 XCHG	//  _26=1 body sbody _27=0 _35
+    106 STU	//  _26=1 body sbody _47
+    s1 s3 XCHG	//  sbody body _26=1 _47
+    1 STU	//  sbody body _49
+    STREF	//  sbody _50
+    ENDC	//  sbody full
+    1000 PUSHINT	//  sbody full _56=1000
+    s0 s2 XCHG
+    10 PUSHINT
+    -ROT	//  _56=1000 _57=10 full sbody
+    4 TUPLE	//  pila
+    NEWDICT	//  pila _60
+    NEWDICT	//  pila _60 _61
+    NEWDICT	//  pila _60 _61 _62
+    1 PUSHINT	//  pila _60 _61 _62 _63=1
+    NEWC	//  pila _60 _61 _62 _63=1 _64
+    32 STU	//  pila _60 _61 _62 _66
+    STDICT	//  pila _60 _61 _67
+    STDICT	//  pila _60 _68
+    STDICT	//  pila _69
+    ENDC	//  pila data
+    c4 POP
+    CONT:<{
+      recv_internal CALLDICT
+    }>	//  pila _75
+    SWAP	//  _75 pila
+    {
+    c7 PUSH DUP FIRST
+    GASLIMITSTEMP SWAP DROP
+    11 SETINDEX 0 SETINDEX c7 POP
+    } : save-gas-remaining
+    {
+    GASLIMITSTEMP SWAP DROP
+    11 GETPARAM SWAP SUB
+    145 PUSHINT SUB
+    } : compute-gas-used
+    NEWC ENDC c5 POP
+    RESETLOADEDCELLS
+    255 PUSHINT EXPLODEVAR
+    DUP INC ROLLX
+    <{
+    <{
+    save-gas-remaining
+    EXECUTE
+    compute-gas-used
+    DEPTH DEC ROLLREVX
+    DEPTH DEC TUPLEVAR
+    ZERO ROTREV
+    }> PUSHCONT
+    <{
+    compute-gas-used
+    ROT DROP NIL
+    }> PUSHCONT
+    TRY
+    }> PUSHCONT
+    ROT INC -1 PUSHINT
+    CALLXVARARGS	//  _83 _84 _85
+    DROP	//  exit_code gas_usado1
+    SWAP	//  gas_usado1 exit_code
+    s0 DUMP	//  gas_usado1 exit_code
+    500 PUSHINT	//  gas_usado1 exit_code _80=500
+    NEQ	//  gas_usado1 _81
+    101 THROWIF
+  }>
+  hexdigit_to_chr PROC:<{
+    //  d
+    DUP	//  d d
+    10 LESSINT	//  d _2
+    IFJMP:<{	//  d
+      48 ADDCONST	//  _4
+    }>	//  d
+    55 ADDCONST	//  _6
+  }>
+  slice_to_hexstr PROC:<{
+    //  s
+    DUP	//  s s
+    SBITS	//  s ls
+    DUP	//  s ls ls
+    8 GTINT	//  s ls _4
+    IFJMP:<{	//  s ls
+      -8 ADDCONST	//  s _8
+      LDSLICEX	//  ant s
+      8 LDU	//  ant _57 _56
+      DROP	//  ant u
+      SWAP	//  u ant
+      slice_to_hexstr CALLDICT	//  u c1
+      OVER	//  u c1 u
+      4 RSHIFT#	//  u c1 d1
+      hexdigit_to_chr CALLDICT	//  u c1 sd1
+      s0 s2 XCHG	//  sd1 c1 u
+      4 MODPOW2#	//  sd1 c1 d2
+      hexdigit_to_chr CALLDICT	//  sd1 c1 sd2
+      NEWC
+      ROT	//  sd1 sd2 _27 c1
+      STSLICER	//  sd1 sd2 _28
+      s1 s2 XCHG	//  sd2 sd1 _28
+      8 STU	//  sd2 _30
+      8 STU	//  _32
+      ENDC	//  r
+      CTOS	//  ret
+    }>	//  s ls
+    LDUX	//  _59 _58
+    DROP	//  u
+    DUP	//  u u
+    4 MODPOW2#	//  u _41
+    hexdigit_to_chr CALLDICT	//  u _42
+    SWAP	//  _42 u
+    4 RSHIFT#	//  _42 _44
+    hexdigit_to_chr CALLDICT	//  _42 _45
+    NEWC	//  _42 _45 _46
+    8 STU	//  _42 _48
+    8 STU	//  _50
+    ENDC	//  r
+    CTOS	//  ret
+  }>
+  reconoce_c5 PROCINLINE:<{
+    // 
+    c5 PUSH	//  c5
+    NIL	//  c5 actions
+    SWAP	//  actions c5
+    CTOS	//  actions out_action_node
+    DUP	//  actions out_action_node out_action_node
+    SBITS	//  actions out_action_node _6
+    0 EQINT	//  actions out_action_node _8
+    IF:<{	//  actions out_action_node
+      2DROP	// 
+      NIL	//  _9
+    }>ELSE<{	//  actions out_action_node
+      NIL	//  actions out_action_node list_of_actions_tuple
+      0 PUSHINT	//  actions out_action_node list_of_actions_tuple num=0
+      UNTIL:<{
+        s0 s2 XCHG	//  actions num list_of_actions_tuple out_action_node
+        LDREF	//  actions num list_of_actions_tuple next out_action_node
+        s0 s4 XCHG2	//  next num list_of_actions_tuple out_action_node actions
+        CONS	//  next num list_of_actions_tuple actions
+        s0 s3 XCHG	//  actions num list_of_actions_tuple next
+        CTOS	//  actions num list_of_actions_tuple out_action_node
+        s0 s2 XCHG	//  actions out_action_node list_of_actions_tuple num
+        INC	//  actions out_action_node list_of_actions_tuple num
+        s2 PUSH	//  actions out_action_node list_of_actions_tuple num out_action_node
+        SBITS	//  actions out_action_node list_of_actions_tuple num _23
+        0 EQINT	//  actions out_action_node list_of_actions_tuple num break
+      }>	//  actions out_action_node list_of_actions_tuple num
+      s2 POP	//  actions num list_of_actions_tuple
+      0 PUSHINT	//  actions num list_of_actions_tuple i=0
+      UNTIL:<{
+        s0 s3 XCHG	//  i num list_of_actions_tuple actions
+        UNCONS	//  i num list_of_actions_tuple out_action actions
+        SWAP	//  i num list_of_actions_tuple actions out_action
+        32 LDU	//  i num list_of_actions_tuple actions action_code out_action
+        OVER
+        247711853 PUSHINT	//  i num list_of_actions_tuple actions action_code out_action action_code _35=247711853
+        EQUAL	//  i num list_of_actions_tuple actions action_code out_action _36
+        IF:<{	//  i num list_of_actions_tuple actions action_code out_action
+          NIP	//  i num list_of_actions_tuple actions out_action
+          parse_send_raw_message INLINECALLDICT	//  i num list_of_actions_tuple actions mode body
+          0 PUSHINT	//  i num list_of_actions_tuple actions mode body _42=0
+          s0 s2 XCHG	//  i num list_of_actions_tuple actions _42=0 body mode
+          TRIPLE	//  i num list_of_actions_tuple actions _41
+          s1 s2 XCHG	//  i num actions list_of_actions_tuple _41
+          TPUSH	//  i num actions list_of_actions_tuple
+        }>ELSE<{	//  i num list_of_actions_tuple actions action_code out_action
+          OVER
+          2907562126 PUSHINT	//  i num list_of_actions_tuple actions action_code out_action action_code _44=2907562126
+          EQUAL	//  i num list_of_actions_tuple actions action_code out_action _45
+          IF:<{	//  i num list_of_actions_tuple actions action_code out_action
+            NIP	//  i num list_of_actions_tuple actions out_action
+            parse_set_code INLINECALLDICT	//  i num list_of_actions_tuple actions new_setcode
+            1 PUSHINT	//  i num list_of_actions_tuple actions new_setcode _50=1
+            SWAP
+            -1 PUSHINT	//  i num list_of_actions_tuple actions _50=1 new_setcode _51=-1
+            TRIPLE	//  i num list_of_actions_tuple actions _49
+            s1 s2 XCHG	//  i num actions list_of_actions_tuple _49
+            TPUSH	//  i num actions list_of_actions_tuple
+          }>ELSE<{	//  i num list_of_actions_tuple actions action_code out_action
+            OVER
+            921090057 PUSHINT	//  i num list_of_actions_tuple actions action_code out_action action_code _53=921090057
+            EQUAL	//  i num list_of_actions_tuple actions action_code out_action _54
+            IF:<{	//  i num list_of_actions_tuple actions action_code out_action
+              NIP	//  i num list_of_actions_tuple actions out_action
+              parse_raw_reserve INLINECALLDICT	//  i num list_of_actions_tuple actions mode reserve
+              2 PUSHINT	//  i num list_of_actions_tuple actions mode reserve _60=2
+              s0 s2 XCHG	//  i num list_of_actions_tuple actions _60=2 reserve mode
+              TRIPLE	//  i num list_of_actions_tuple actions _59
+              s1 s2 XCHG	//  i num actions list_of_actions_tuple _59
+              TPUSH	//  i num actions list_of_actions_tuple
+            }>ELSE<{	//  i num list_of_actions_tuple actions action_code out_action
+              SWAP
+              653925844 PUSHINT	//  i num list_of_actions_tuple actions out_action action_code _62=653925844
+              EQUAL	//  i num list_of_actions_tuple actions out_action _63
+              IF:<{	//  i num list_of_actions_tuple actions out_action
+                parse_lib_code INLINECALLDICT	//  i num list_of_actions_tuple actions mode lib_cell_or_lib_hash
+                3 PUSHINT	//  i num list_of_actions_tuple actions mode lib_cell_or_lib_hash _69=3
+                s0 s2 XCHG	//  i num list_of_actions_tuple actions _69=3 lib_cell_or_lib_hash mode
+                TRIPLE	//  i num list_of_actions_tuple actions _68
+                s1 s2 XCHG	//  i num actions list_of_actions_tuple _68
+                TPUSH	//  i num actions list_of_actions_tuple
+                SWAP	//  i num list_of_actions_tuple actions
+              }>ELSE<{
+                DROP	//  i num list_of_actions_tuple actions
+              }>
+              SWAP	//  i num actions list_of_actions_tuple
+            }>
+          }>
+        }>
+        s0 s3 XCHG	//  list_of_actions_tuple num actions i
+        INC	//  list_of_actions_tuple num actions i
+        s0 s2 PUSH2	//  list_of_actions_tuple num actions i i num
+        GEQ	//  list_of_actions_tuple num actions i _73
+        s2 s4 XCHG	//  actions num list_of_actions_tuple i _73
+      }>	//  actions num list_of_actions_tuple i
+      s1 s3 XCHG
+      3 BLKDROP	//  list_of_actions_tuple
+    }>
+  }>
+  __test_goodsignature_badop PROC:<{
+    // 
+    MYADDR	//  ad
+    1 PUSHINT	//  ad _3=1
+    NEWC	//  ad _3=1 _4
+    32 STU	//  ad _6
+    x{31323334} PUSHSLICE	//  ad _6 _7
+    STSLICER	//  ad _8
+    ENDC	//  ad body_to_sign
+    DUP	//  ad body_to_sign body_to_sign
+    HASHCU	//  ad body_to_sign tmphash
+    x{4861736820646520626f64795f746f5f7369676e} PUSHSLICE	//  ad body_to_sign tmphash _12
+    STRDUMP	//  ad body_to_sign tmphash _13
+    DROP	//  ad body_to_sign tmphash
+    s0 DUMP	//  ad body_to_sign tmphash
+    76062567842973554250617779367060955649762229441026628547894021881107430199239 PUSHINT	//  ad body_to_sign tmphash _17=76062567842973554250617779367060955649762229441026628547894021881107430199239
+    NEQ	//  ad body_to_sign _18
+    100 THROWIF
+    77457789748311439661918980830127397825669225773014840297918072166882249621515 PUSHINT	//  ad body_to_sign _21=77457789748311439661918980830127397825669225773014840297918072166882249621515
+    25200840620019446809759566974926850156826275583457103873313183460677510965286 PUSHINT	//  ad body_to_sign _21=77457789748311439661918980830127397825669225773014840297918072166882249621515 _22=25200840620019446809759566974926850156826275583457103873313183460677510965286
+    NEWC	//  ad body_to_sign _21=77457789748311439661918980830127397825669225773014840297918072166882249621515 _22=25200840620019446809759566974926850156826275583457103873313183460677510965286 _23
+    256 STU	//  ad body_to_sign _21=77457789748311439661918980830127397825669225773014840297918072166882249621515 _25
+    256 STU	//  ad body_to_sign _27
+    STREF	//  ad _28
+    ENDC	//  ad body
+    DUP	//  ad body body
+    CTOS	//  ad body sbody
+    1 PUSHINT	//  ad body sbody _33=1
+    0 PUSHINT	//  ad body sbody _33=1 _34=0
+    6 PUSHINT	//  ad body sbody _33=1 _34=0 _35=6
+    NEWC	//  ad body sbody _33=1 _34=0 _35=6 _36
+    4 STU	//  ad body sbody _33=1 _34=0 _38
+    s5 PUSH	//  ad body sbody _33=1 _34=0 _38 ad
+    STSLICER	//  ad body sbody _33=1 _34=0 _39
+    s0 s5 XCHG2	//  _34=0 body sbody _33=1 _39 ad
+    STSLICER	//  _34=0 body sbody _33=1 _40
+    1000 PUSHINT	//  _34=0 body sbody _33=1 _40 _41=1000
+    STVARUINT16	//  _34=0 body sbody _33=1 _42
+    s1 s4 XCHG	//  _33=1 body sbody _34=0 _42
+    106 STU	//  _33=1 body sbody _54
+    s1 s3 XCHG	//  sbody body _33=1 _54
+    1 STU	//  sbody body _56
+    STREF	//  sbody _57
+    ENDC	//  sbody full
+    20000000 PUSHINT	//  sbody full _63=20000000
+    s0 s2 XCHG
+    10 PUSHINT
+    -ROT	//  _63=20000000 _64=10 full sbody
+    4 TUPLE	//  pila
+    NEWDICT	//  pila _67
+    NEWDICT	//  pila _67 _68
+    NEWDICT	//  pila _67 _68 _69
+    1 PUSHINT	//  pila _67 _68 _69 _70=1
+    NEWC	//  pila _67 _68 _69 _70=1 _71
+    32 STU	//  pila _67 _68 _69 _73
+    STDICT	//  pila _67 _68 _74
+    STDICT	//  pila _67 _75
+    STDICT	//  pila _76
+    ENDC	//  pila data
+    c4 POP
+    CONT:<{
+      recv_internal CALLDICT
+    }>	//  pila _82
+    SWAP	//  _82 pila
+    {
+    c7 PUSH DUP FIRST
+    GASLIMITSTEMP SWAP DROP
+    11 SETINDEX 0 SETINDEX c7 POP
+    } : save-gas-remaining
+    {
+    GASLIMITSTEMP SWAP DROP
+    11 GETPARAM SWAP SUB
+    145 PUSHINT SUB
+    } : compute-gas-used
+    NEWC ENDC c5 POP
+    RESETLOADEDCELLS
+    255 PUSHINT EXPLODEVAR
+    DUP INC ROLLX
+    <{
+    <{
+    save-gas-remaining
+    EXECUTE
+    compute-gas-used
+    DEPTH DEC ROLLREVX
+    DEPTH DEC TUPLEVAR
+    ZERO ROTREV
+    }> PUSHCONT
+    <{
+    compute-gas-used
+    ROT DROP NIL
+    }> PUSHCONT
+    TRY
+    }> PUSHCONT
+    ROT INC -1 PUSHINT
+    CALLXVARARGS	//  _90 _91 _92
+    DROP	//  exit_code gas_usado1
+    SWAP	//  gas_usado1 exit_code
+    s0 DUMP	//  gas_usado1 exit_code
+    501 PUSHINT	//  gas_usado1 exit_code _87=501
+    NEQ	//  gas_usado1 _88
+    101 THROWIF
+  }>
+  __test_add_ad_fewcoins PROC:<{
+    // 
+    MYADDR	//  ad
+    1000 PUSHINT	//  ad _3=1000
+    1 PUSHINT	//  ad _3=1000 _4=1
+    NEWC	//  ad _3=1000 _4=1 _5
+    32 STU	//  ad _3=1000 _7
+    32 STU	//  ad _9
+    ENDC	//  ad body_to_sign
+    DUP	//  ad body_to_sign body_to_sign
+    HASHCU	//  ad body_to_sign tmphash
+    x{4861736820646520626f64795f746f5f7369676e} PUSHSLICE	//  ad body_to_sign tmphash _13
+    STRDUMP	//  ad body_to_sign tmphash _14
+    DROP	//  ad body_to_sign tmphash
+    s0 DUMP	//  ad body_to_sign tmphash
+    29357836411124981285495765108012652830917040149534034395677251036887651600221 PUSHINT	//  ad body_to_sign tmphash _18=29357836411124981285495765108012652830917040149534034395677251036887651600221
+    NEQ	//  ad body_to_sign _19
+    100 THROWIF
+    65022224361929422683891631100150983158072580151415779771643245947955362773516 PUSHINT	//  ad body_to_sign _22=65022224361929422683891631100150983158072580151415779771643245947955362773516
+    81337640637907098905805977225654971152465559727101284480981647084238576954762 PUSHINT	//  ad body_to_sign _22=65022224361929422683891631100150983158072580151415779771643245947955362773516 _23=81337640637907098905805977225654971152465559727101284480981647084238576954762
+    NEWC	//  ad body_to_sign _22=65022224361929422683891631100150983158072580151415779771643245947955362773516 _23=81337640637907098905805977225654971152465559727101284480981647084238576954762 _24
+    256 STU	//  ad body_to_sign _22=65022224361929422683891631100150983158072580151415779771643245947955362773516 _26
+    256 STU	//  ad body_to_sign _28
+    STREF	//  ad _29
+    ENDC	//  ad body
+    DUP	//  ad body body
+    CTOS	//  ad body sbody
+    1 PUSHINT	//  ad body sbody _34=1
+    0 PUSHINT	//  ad body sbody _34=1 _35=0
+    6 PUSHINT	//  ad body sbody _34=1 _35=0 _36=6
+    NEWC	//  ad body sbody _34=1 _35=0 _36=6 _37
+    4 STU	//  ad body sbody _34=1 _35=0 _39
+    s5 PUSH	//  ad body sbody _34=1 _35=0 _39 ad
+    STSLICER	//  ad body sbody _34=1 _35=0 _40
+    s0 s5 XCHG2	//  _35=0 body sbody _34=1 _40 ad
+    STSLICER	//  _35=0 body sbody _34=1 _41
+    1000 PUSHINT	//  _35=0 body sbody _34=1 _41 _42=1000
+    STVARUINT16	//  _35=0 body sbody _34=1 _43
+    s1 s4 XCHG	//  _34=1 body sbody _35=0 _43
+    106 STU	//  _34=1 body sbody _55
+    s1 s3 XCHG	//  sbody body _34=1 _55
+    1 STU	//  sbody body _57
+    STREF	//  sbody _58
+    ENDC	//  sbody full
+    20000000 PUSHINT	//  sbody full _64=20000000
+    s0 s2 XCHG
+    10 PUSHINT
+    -ROT	//  _64=20000000 _65=10 full sbody
+    4 TUPLE	//  pila
+    NEWDICT	//  pila _68
+    NEWDICT	//  pila _68 _69
+    NEWDICT	//  pila _68 _69 _70
+    1 PUSHINT	//  pila _68 _69 _70 _71=1
+    NEWC	//  pila _68 _69 _70 _71=1 _72
+    32 STU	//  pila _68 _69 _70 _74
+    STDICT	//  pila _68 _69 _75
+    STDICT	//  pila _68 _76
+    STDICT	//  pila _77
+    ENDC	//  pila data
+    c4 POP
+    CONT:<{
+      recv_internal CALLDICT
+    }>	//  pila _83
+    SWAP	//  _83 pila
+    {
+    c7 PUSH DUP FIRST
+    GASLIMITSTEMP SWAP DROP
+    11 SETINDEX 0 SETINDEX c7 POP
+    } : save-gas-remaining
+    {
+    GASLIMITSTEMP SWAP DROP
+    11 GETPARAM SWAP SUB
+    145 PUSHINT SUB
+    } : compute-gas-used
+    NEWC ENDC c5 POP
+    RESETLOADEDCELLS
+    255 PUSHINT EXPLODEVAR
+    DUP INC ROLLX
+    <{
+    <{
+    save-gas-remaining
+    EXECUTE
+    compute-gas-used
+    DEPTH DEC ROLLREVX
+    DEPTH DEC TUPLEVAR
+    ZERO ROTREV
+    }> PUSHCONT
+    <{
+    compute-gas-used
+    ROT DROP NIL
+    }> PUSHCONT
+    TRY
+    }> PUSHCONT
+    ROT INC -1 PUSHINT
+    CALLXVARARGS	//  _107 _108 _109
+    DROP	//  exit_code gas_usado1
+    SWAP	//  gas_usado1 exit_code
+    s0 DUMP	//  gas_usado1 exit_code
+    504 PUSHINT	//  gas_usado1 exit_code _88=504
+    NEQ	//  gas_usado1 _89
+    101 THROWIF
+    c4 PUSH	//  gas_usado1 _92
+    CTOS	//  gas_usado1 ds
+    32 LDU	//  gas_usado1 _111 _110
+    DROP	//  gas_usado1 _95
+    1 EQINT	//  gas_usado1 _99
+    104 THROWIFNOT
+  }>
+  __test_add_ad_somecoins PROC:<{
+    // 
+    MYADDR	//  myaddress
+    1000 PUSHINT	//  myaddress _3=1000
+    1 PUSHINT	//  myaddress _3=1000 _4=1
+    NEWC	//  myaddress _3=1000 _4=1 _5
+    32 STU	//  myaddress _3=1000 _7
+    32 STU	//  myaddress _9
+    ENDC	//  myaddress body_to_sign
+    DUP	//  myaddress body_to_sign body_to_sign
+    HASHCU	//  myaddress body_to_sign tmphash
+    x{4861736820646520626f64795f746f5f7369676e} PUSHSLICE	//  myaddress body_to_sign tmphash _13
+    STRDUMP	//  myaddress body_to_sign tmphash _14
+    DROP	//  myaddress body_to_sign tmphash
+    s0 DUMP	//  myaddress body_to_sign tmphash
+    29357836411124981285495765108012652830917040149534034395677251036887651600221 PUSHINT	//  myaddress body_to_sign tmphash _18=29357836411124981285495765108012652830917040149534034395677251036887651600221
+    NEQ	//  myaddress body_to_sign _19
+    100 THROWIF
+    65022224361929422683891631100150983158072580151415779771643245947955362773516 PUSHINT	//  myaddress body_to_sign _22=65022224361929422683891631100150983158072580151415779771643245947955362773516
+    81337640637907098905805977225654971152465559727101284480981647084238576954762 PUSHINT	//  myaddress body_to_sign _22=65022224361929422683891631100150983158072580151415779771643245947955362773516 _23=81337640637907098905805977225654971152465559727101284480981647084238576954762
+    NEWC	//  myaddress body_to_sign _22=65022224361929422683891631100150983158072580151415779771643245947955362773516 _23=81337640637907098905805977225654971152465559727101284480981647084238576954762 _24
+    256 STU	//  myaddress body_to_sign _22=65022224361929422683891631100150983158072580151415779771643245947955362773516 _26
+    256 STU	//  myaddress body_to_sign _28
+    STREF	//  myaddress _29
+    ENDC	//  myaddress body
+    DUP	//  myaddress body body
+    CTOS	//  myaddress body sbody
+    1 PUSHINT	//  myaddress body sbody _34=1
+    0 PUSHINT	//  myaddress body sbody _34=1 _35=0
+    6 PUSHINT	//  myaddress body sbody _34=1 _35=0 _36=6
+    NEWC	//  myaddress body sbody _34=1 _35=0 _36=6 _37
+    4 STU	//  myaddress body sbody _34=1 _35=0 _39
+    s5 PUSH	//  myaddress body sbody _34=1 _35=0 _39 myaddress
+    STSLICER	//  myaddress body sbody _34=1 _35=0 _40
+    s5 PUSH	//  myaddress body sbody _34=1 _35=0 _40 myaddress
+    STSLICER	//  myaddress body sbody _34=1 _35=0 _41
+    10290000000 PUSHINT	//  myaddress body sbody _34=1 _35=0 _41 _42=10290000000
+    STVARUINT16	//  myaddress body sbody _34=1 _35=0 _43
+    106 STU	//  myaddress body sbody _34=1 _55
+    1 STU	//  myaddress body sbody _57
+    s1 s2 XCHG	//  myaddress sbody body _57
+    STREF	//  myaddress sbody _58
+    ENDC	//  myaddress sbody full
+    20000000 PUSHINT	//  myaddress sbody full _64=20000000
+    s0 s2 XCHG
+    10 PUSHINT
+    -ROT	//  myaddress _64=20000000 _65=10 full sbody
+    4 TUPLE	//  myaddress pila
+    NEWDICT	//  myaddress pila _68
+    NEWDICT	//  myaddress pila _68 _69
+    NEWDICT	//  myaddress pila _68 _69 _70
+    1 PUSHINT	//  myaddress pila _68 _69 _70 _71=1
+    NEWC	//  myaddress pila _68 _69 _70 _71=1 _72
+    32 STU	//  myaddress pila _68 _69 _70 _74
+    STDICT	//  myaddress pila _68 _69 _75
+    STDICT	//  myaddress pila _68 _76
+    STDICT	//  myaddress pila _77
+    ENDC	//  myaddress pila data
+    c4 POP
+    CONT:<{
+      recv_internal CALLDICT
+    }>	//  myaddress pila _83
+    SWAP	//  myaddress _83 pila
+    {
+    c7 PUSH DUP FIRST
+    GASLIMITSTEMP SWAP DROP
+    11 SETINDEX 0 SETINDEX c7 POP
+    } : save-gas-remaining
+    {
+    GASLIMITSTEMP SWAP DROP
+    11 GETPARAM SWAP SUB
+    145 PUSHINT SUB
+    } : compute-gas-used
+    NEWC ENDC c5 POP
+    RESETLOADEDCELLS
+    255 PUSHINT EXPLODEVAR
+    DUP INC ROLLX
+    <{
+    <{
+    save-gas-remaining
+    EXECUTE
+    compute-gas-used
+    DEPTH DEC ROLLREVX
+    DEPTH DEC TUPLEVAR
+    ZERO ROTREV
+    }> PUSHCONT
+    <{
+    compute-gas-used
+    ROT DROP NIL
+    }> PUSHCONT
+    TRY
+    }> PUSHCONT
+    ROT INC -1 PUSHINT
+    CALLXVARARGS	//  myaddress _359 _360 _361
+    DROP	//  myaddress exit_code gas_usado1
+    SWAP	//  myaddress gas_usado1 exit_code
+    s0 DUMP	//  myaddress gas_usado1 exit_code
+    0 NEQINT	//  myaddress gas_usado1 _89
+    101 THROWIF
+    c4 PUSH	//  myaddress gas_usado1 data
+    DUP	//  myaddress gas_usado1 data2 data
+    CTOS	//  myaddress gas_usado1 data2 ds
+    32 LDU	//  myaddress gas_usado1 data2 lseqno ds
+    SWAP	//  myaddress gas_usado1 data2 ds lseqno
+    s0 DUMP	//  myaddress gas_usado1 data2 ds lseqno
+    2 EQINT	//  myaddress gas_usado1 data2 ds _104
+    104 THROWIFNOT
+    LDDICT	//  myaddress gas_usado1 data2 s_ads ds
+    LDDICT	//  myaddress gas_usado1 data2 s_ads ba ds
+    LDDICT	//  myaddress gas_usado1 data2 s_ads ba _369 _368
+    DROP	//  myaddress gas_usado1 data2 s_ads ba pba
+    s2 PUSH	//  myaddress gas_usado1 data2 s_ads ba pba s_ads
+    DICTEMPTY	//  myaddress gas_usado1 data2 s_ads ba pba _116
+    106 THROWIF
+    SWAP	//  myaddress gas_usado1 data2 s_ads pba ba
+    DICTEMPTY	//  myaddress gas_usado1 data2 s_ads pba _119
+    107 THROWIFNOT
+    DICTEMPTY	//  myaddress gas_usado1 data2 s_ads _122
+    107 THROWIFNOT
+    s3 s3 XCPU
+    267 PUSHINT	//  s_ads gas_usado1 data2 myaddress s_ads _126=267
+    DICTGET
+    NULLSWAPIFNOT	//  s_ads gas_usado1 data2 sd success
+    -1 EQINT	//  s_ads gas_usado1 data2 sd _130
+    108 THROWIFNOT
+    LDVARUINT16	//  s_ads gas_usado1 data2 rec sd
+    SWAP	//  s_ads gas_usado1 data2 sd rec
+    s0 DUMP	//  s_ads gas_usado1 data2 sd rec
+    10000000000 PUSHINT	//  s_ads gas_usado1 data2 sd rec _138=10000000000
+    EQUAL	//  s_ads gas_usado1 data2 sd _139
+    109 THROWIFNOT
+    64 LDU	//  s_ads gas_usado1 data2 _375 _374
+    DROP	//  s_ads gas_usado1 data2 valid
+    s0 DUMP	//  s_ads gas_usado1 data2 valid
+    NOW	//  s_ads gas_usado1 data2 valid _148
+    SUB	//  s_ads gas_usado1 data2 _149
+    3600 PUSHINT	//  s_ads gas_usado1 data2 _149 _150=3600
+    DIV	//  s_ads gas_usado1 data2 hours_to_expire
+    240 PUSHINT	//  s_ads gas_usado1 data2 hours_to_expire _153=240
+    EQUAL	//  s_ads gas_usado1 data2 _154
+    110 THROWIFNOT
+    reconoce_c5 INLINECALLDICT	//  s_ads gas_usado1 data2 actions
+    s0 DUMP	//  s_ads gas_usado1 data2 actions
+    DUP	//  s_ads gas_usado1 data2 actions actions
+    TLEN	//  s_ads gas_usado1 data2 actions _161
+    2 EQINT	//  s_ads gas_usado1 data2 actions _163
+    111 THROWIFNOT
+    DUP	//  s_ads gas_usado1 data2 actions actions
+    0 INDEX	//  s_ads gas_usado1 data2 actions a0
+    1 INDEX	//  s_ads gas_usado1 data2 actions _170
+    CTOS	//  s_ads gas_usado1 data2 actions sb0
+    s0 DUMP	//  s_ads gas_usado1 data2 actions sb0
+    4 LDU	//  s_ads gas_usado1 data2 actions flags sb0
+    SWAP	//  s_ads gas_usado1 data2 actions sb0 flags
+    s0 DUMP	//  s_ads gas_usado1 data2 actions sb0 flags
+    6 EQINT	//  s_ads gas_usado1 data2 actions sb0 _182
+    112 THROWIFNOT
+    2 LDU	//  s_ads gas_usado1 data2 actions sa sb0
+    SWAP	//  s_ads gas_usado1 data2 actions sb0 sa
+    s0 DUMP	//  s_ads gas_usado1 data2 actions sb0 sa
+    0 EQINT	//  s_ads gas_usado1 data2 actions sb0 _192
+    113 THROWIFNOT
+    LDMSGADDR	//  s_ads gas_usado1 data2 actions ra sb0
+    SWAP	//  s_ads gas_usado1 data2 actions sb0 ra
+    s0 DUMP	//  s_ads gas_usado1 data2 actions sb0 ra
+    x{800ADF2B9D75A1028C845513A136F00F5062A8571B6466FBC9BC1D666537DF5776B_} PUSHSLICE	//  s_ads gas_usado1 data2 actions sb0 ra _200
+    SDEQ	//  s_ads gas_usado1 data2 actions sb0 _201
+    114 THROWIFNOT
+    LDVARUINT16	//  s_ads gas_usado1 data2 actions _383 _382
+    DROP	//  s_ads gas_usado1 data2 actions rcoins
+    s0 DUMP	//  s_ads gas_usado1 data2 actions rcoins
+    28000000 PUSHINT	//  s_ads gas_usado1 data2 actions rcoins _209=28000000
+    EQUAL	//  s_ads gas_usado1 data2 actions _210
+    115 THROWIFNOT
+    1 INDEX	//  s_ads gas_usado1 data2 a1
+    1 INDEX	//  s_ads gas_usado1 data2 _216
+    CTOS	//  s_ads gas_usado1 data2 sb0
+    s0 DUMP	//  s_ads gas_usado1 data2 sb0
+    4 LDU	//  s_ads gas_usado1 data2 flags sb0
+    SWAP	//  s_ads gas_usado1 data2 sb0 flags
+    s0 DUMP	//  s_ads gas_usado1 data2 sb0 flags
+    6 EQINT	//  s_ads gas_usado1 data2 sb0 _227
+    116 THROWIFNOT
+    2 LDU	//  s_ads gas_usado1 data2 sa sb0
+    SWAP	//  s_ads gas_usado1 data2 sb0 sa
+    s0 DUMP	//  s_ads gas_usado1 data2 sb0 sa
+    0 EQINT	//  s_ads gas_usado1 data2 sb0 _236
+    117 THROWIFNOT
+    LDMSGADDR	//  s_ads gas_usado1 data2 _389 _388
+    NIP	//  s_ads gas_usado1 data2 sb0
+    LDVARUINT16	//  s_ads gas_usado1 data2 _391 _390
+    DROP	//  s_ads gas_usado1 data2 rcoins
+    s0 DUMP	//  s_ads gas_usado1 data2 rcoins
+    252000000 PUSHINT	//  s_ads gas_usado1 data2 rcoins _245=252000000
+    EQUAL	//  s_ads gas_usado1 data2 _246
+    118 THROWIFNOT
+    x{436865636b696e672074686174206d6574686f6420746f20697465726174652064696374696f6e617269657320646f65736e27742064657374726f79207468656d} PUSHSLICE	//  s_ads gas_usado1 data2 _248
+    STRDUMP	//  s_ads gas_usado1 data2 _249
+    DROP	//  s_ads gas_usado1 data2
+    s2 PUSH	//  s_ads gas_usado1 data2 copia_sa
+    0 PUSHINT	//  s_ads gas_usado1 data2 copia_sa num=0
+    UNTIL:<{
+      SWAP
+      267 PUSHINT	//  s_ads gas_usado1 data2 num copia_sa _257=267
+      DICTREMMIN
+      NULLSWAPIFNOT2	//  s_ads gas_usado1 data2 num _395 _397 _396 _398
+      2 1 BLKDROP2	//  s_ads gas_usado1 data2 num copia_sa success
+      DUP	//  s_ads gas_usado1 data2 num copia_sa success success
+      IF:<{	//  s_ads gas_usado1 data2 num copia_sa success
+        s0 s2 XCHG	//  s_ads gas_usado1 data2 success copia_sa num
+        INC	//  s_ads gas_usado1 data2 success copia_sa num
+        s0 s2 XCHG	//  s_ads gas_usado1 data2 num copia_sa success
+      }>	//  s_ads gas_usado1 data2 num copia_sa success
+      NOT	//  s_ads gas_usado1 data2 num copia_sa _261
+      s1 s2 XCHG	//  s_ads gas_usado1 data2 copia_sa num _261
+    }>	//  s_ads gas_usado1 data2 copia_sa num
+    NIP	//  s_ads gas_usado1 data2 num
+    1 EQINT	//  s_ads gas_usado1 data2 _264
+    199 THROWIFNOT	//  copia_sa gas_usado1 data2
+    0 PUSHINT	//  copia_sa gas_usado1 data2 num=0
+    UNTIL:<{
+      s0 s3 XCHG
+      267 PUSHINT	//  num gas_usado1 data2 copia_sa _272=267
+      DICTREMMIN
+      NULLSWAPIFNOT2	//  num gas_usado1 data2 _402 _404 _403 _405
+      2 1 BLKDROP2	//  num gas_usado1 data2 copia_sa success
+      DUP	//  num gas_usado1 data2 copia_sa success success
+      IF:<{	//  num gas_usado1 data2 copia_sa success
+        s0 s4 XCHG	//  success gas_usado1 data2 copia_sa num
+        INC	//  success gas_usado1 data2 copia_sa num
+        s0 s4 XCHG	//  num gas_usado1 data2 copia_sa success
+      }>	//  num gas_usado1 data2 copia_sa success
+      NOT	//  num gas_usado1 data2 copia_sa _276
+      s1 s4 XCHG	//  copia_sa gas_usado1 data2 num _276
+    }>	//  copia_sa gas_usado1 data2 num
+    s3 POP	//  num gas_usado1 data2
+    s0 s2 XCHG	//  data2 gas_usado1 num
+    1 EQINT	//  data2 gas_usado1 _279
+    200 THROWIFNOT
+    x{436865636b696e67206765745f616d6f756e745f73656c6c696e675f6164732066697273742074696d65} PUSHSLICE	//  data2 gas_usado1 _281
+    STRDUMP	//  data2 gas_usado1 _282
+    DROP	//  data2 gas_usado1
+    SWAP	//  gas_usado1 data2
+    c4 POP
+    0 TUPLE	//  gas_usado1 pila
+    CONT:<{
+      get_amount_selling_ads CALLDICT
+    }>	//  gas_usado1 pila _290
+    SWAP	//  gas_usado1 _290 pila
+    {
+    c7 PUSH DUP FIRST
+    GASLIMITSTEMP SWAP DROP
+    11 SETINDEX 0 SETINDEX c7 POP
+    } : save-gas-remaining
+    {
+    GASLIMITSTEMP SWAP DROP
+    11 GETPARAM SWAP SUB
+    145 PUSHINT SUB
+    } : compute-gas-used
+    NEWC ENDC c5 POP
+    RESETLOADEDCELLS
+    255 PUSHINT EXPLODEVAR
+    DUP INC ROLLX
+    <{
+    <{
+    save-gas-remaining
+    EXECUTE
+    compute-gas-used
+    DEPTH DEC ROLLREVX
+    DEPTH DEC TUPLEVAR
+    ZERO ROTREV
+    }> PUSHCONT
+    <{
+    compute-gas-used
+    ROT DROP NIL
+    }> PUSHCONT
+    TRY
+    }> PUSHCONT
+    ROT INC -1 PUSHINT
+    CALLXVARARGS	//  gas_usado1 _406 _407 _408
+    NIP	//  gas_usado1 exit_code return_values
+    SWAP	//  gas_usado1 return_values exit_code
+    s0 DUMP	//  gas_usado1 return_values exit_code
+    0 NEQINT	//  gas_usado1 return_values _296
+    103 THROWIF
+    0 INDEX	//  gas_usado1 _300
+    1 EQINT	//  gas_usado1 _302
+    104 THROWIFNOT
+    x{436865636b696e67206765745f616d6f756e745f73656c6c696e675f616473207365636f6e642074696d6520286974206469646e27742064657374726f7920737461746529} PUSHSLICE	//  gas_usado1 _304
+    STRDUMP	//  gas_usado1 _305
+    DROP	//  gas_usado1
+    c4 PUSH	//  gas_usado1 data3
+    c4 POP
+    DUMPSTK
+    0 TUPLE	//  gas_usado1 pila
+    CONT:<{
+      get_amount_selling_ads CALLDICT
+    }>	//  gas_usado1 pila _316
+    SWAP	//  gas_usado1 _316 pila
+    {
+    c7 PUSH DUP FIRST
+    GASLIMITSTEMP SWAP DROP
+    11 SETINDEX 0 SETINDEX c7 POP
+    } : save-gas-remaining
+    {
+    GASLIMITSTEMP SWAP DROP
+    11 GETPARAM SWAP SUB
+    145 PUSHINT SUB
+    } : compute-gas-used
+    NEWC ENDC c5 POP
+    RESETLOADEDCELLS
+    255 PUSHINT EXPLODEVAR
+    DUP INC ROLLX
+    <{
+    <{
+    save-gas-remaining
+    EXECUTE
+    compute-gas-used
+    DEPTH DEC ROLLREVX
+    DEPTH DEC TUPLEVAR
+    ZERO ROTREV
+    }> PUSHCONT
+    <{
+    compute-gas-used
+    ROT DROP NIL
+    }> PUSHCONT
+    TRY
+    }> PUSHCONT
+    ROT INC -1 PUSHINT
+    CALLXVARARGS	//  gas_usado1 exit_code gas_usado3 return_values
+    s0 s2 XCHG	//  gas_usado1 return_values gas_usado3 exit_code
+    s0 DUMP	//  gas_usado1 return_values gas_usado3 exit_code
+    0 NEQINT	//  gas_usado1 return_values gas_usado3 _322
+    123 THROWIF
+    SWAP	//  gas_usado1 gas_usado3 return_values
+    0 INDEX	//  gas_usado1 gas_usado3 _326
+    1 EQINT	//  gas_usado1 gas_usado3 _328
+    124 THROWIFNOT
+    c4 PUSH	//  gas_usado1 gas_usado3 data4
+    c4 POP
+    0 PUSHINT	//  gas_usado1 gas_usado3 _335=0
+    SINGLE	//  gas_usado1 gas_usado3 pila
+    CONT:<{
+      get_nth_selling_ad CALLDICT
+    }>	//  gas_usado1 gas_usado3 pila _340
+    SWAP	//  gas_usado1 gas_usado3 _340 pila
+    {
+    c7 PUSH DUP FIRST
+    GASLIMITSTEMP SWAP DROP
+    11 SETINDEX 0 SETINDEX c7 POP
+    } : save-gas-remaining
+    {
+    GASLIMITSTEMP SWAP DROP
+    11 GETPARAM SWAP SUB
+    145 PUSHINT SUB
+    } : compute-gas-used
+    NEWC ENDC c5 POP
+    RESETLOADEDCELLS
+    255 PUSHINT EXPLODEVAR
+    DUP INC ROLLX
+    <{
+    <{
+    save-gas-remaining
+    EXECUTE
+    compute-gas-used
+    DEPTH DEC ROLLREVX
+    DEPTH DEC TUPLEVAR
+    ZERO ROTREV
+    }> PUSHCONT
+    <{
+    compute-gas-used
+    ROT DROP NIL
+    }> PUSHCONT
+    TRY
+    }> PUSHCONT
+    ROT INC -1 PUSHINT
+    CALLXVARARGS	//  gas_usado1 gas_usado3 exit_code gas_usado2 return_values
+    s0 s2 XCHG	//  gas_usado1 gas_usado3 return_values gas_usado2 exit_code
+    s0 DUMP	//  gas_usado1 gas_usado3 return_values gas_usado2 exit_code
+    0 NEQINT	//  gas_usado1 gas_usado3 return_values gas_usado2 _346
+    105 THROWIF
+    SWAP	//  gas_usado1 gas_usado3 gas_usado2 return_values
+    s0 DUMP	//  gas_usado1 gas_usado3 gas_usado2 return_values
+    DUMPSTK
+    1 INDEX	//  gas_usado1 gas_usado3 gas_usado2 _353
+    10000000000 PUSHINT	//  gas_usado1 gas_usado3 gas_usado2 _353 _354=10000000000
+    EQUAL	//  gas_usado1 gas_usado3 gas_usado2 _355
+    106 THROWIFNOT
+    s1 s2 XCHG	//  gas_usado3 gas_usado1 gas_usado2
+    ADD	//  gas_usado3 _357
+    SWAP	//  _357 gas_usado3
+    ADD	//  _358
+  }>
+  __test_release_coins PROC:<{
+    // 
+    MYADDR	//  myaddress
+    456 PUSHINT	//  myaddress _3=456
+    10 PUSHINT	//  myaddress _3=456 _4=10
+    4 PUSHINT	//  myaddress _3=456 _4=10 _5=4
+    1100 PUSHINT	//  myaddress _3=456 _4=10 _5=4 _6=1100
+    2 PUSHINT	//  myaddress _3=456 _4=10 _5=4 _6=1100 _7=2
+    NEWC	//  myaddress _3=456 _4=10 _5=4 _6=1100 _7=2 _8
+    32 STU	//  myaddress _3=456 _4=10 _5=4 _6=1100 _10
+    32 STU	//  myaddress _3=456 _4=10 _5=4 _12
+    3 STU	//  myaddress _3=456 _4=10 _14
+    8 STU	//  myaddress _3=456 _16
+    256 STU	//  myaddress _18
+    5000000000 PUSHINT	//  myaddress _18 _19=5000000000
+    STVARUINT16	//  myaddress _20
+    ENDC	//  myaddress body_to_sign
+    DUP	//  myaddress body_to_sign body_to_sign
+    HASHCU	//  myaddress body_to_sign tmphash
+    s0 DUMP	//  myaddress body_to_sign tmphash
+    41910469873814935573045619605681105550490891720547882356612539347020904940347 PUSHINT	//  myaddress body_to_sign tmphash _27=41910469873814935573045619605681105550490891720547882356612539347020904940347
+    NEQ	//  myaddress body_to_sign _28
+    100 THROWIF
+    4090334718856674773384738229910813916504298618461452046933458283576013256451 PUSHINT	//  myaddress body_to_sign _31=4090334718856674773384738229910813916504298618461452046933458283576013256451
+    30897984454958315119411092091039612757908613629130233167072357766534951962024 PUSHINT	//  myaddress body_to_sign _31=4090334718856674773384738229910813916504298618461452046933458283576013256451 _32=30897984454958315119411092091039612757908613629130233167072357766534951962024
+    NEWC	//  myaddress body_to_sign _31=4090334718856674773384738229910813916504298618461452046933458283576013256451 _32=30897984454958315119411092091039612757908613629130233167072357766534951962024 _33
+    256 STU	//  myaddress body_to_sign _31=4090334718856674773384738229910813916504298618461452046933458283576013256451 _35
+    256 STU	//  myaddress body_to_sign _37
+    STREF	//  myaddress _38
+    ENDC	//  myaddress body
+    DUP	//  myaddress body body
+    CTOS	//  myaddress body sbody
+    1 PUSHINT	//  myaddress body sbody _43=1
+    0 PUSHINT	//  myaddress body sbody _43=1 _44=0
+    6 PUSHINT	//  myaddress body sbody _43=1 _44=0 _45=6
+    NEWC	//  myaddress body sbody _43=1 _44=0 _45=6 _46
+    4 STU	//  myaddress body sbody _43=1 _44=0 _48
+    s5 PUSH	//  myaddress body sbody _43=1 _44=0 _48 myaddress
+    STSLICER	//  myaddress body sbody _43=1 _44=0 _49
+    s5 PUSH	//  myaddress body sbody _43=1 _44=0 _49 myaddress
+    STSLICER	//  myaddress body sbody _43=1 _44=0 _50
+    200000000 PUSHINT	//  myaddress body sbody _43=1 _44=0 _50 _51=200000000
+    STVARUINT16	//  myaddress body sbody _43=1 _44=0 _52
+    106 STU	//  myaddress body sbody _43=1 _64
+    1 STU	//  myaddress body sbody _66
+    s1 s2 XCHG	//  myaddress sbody body _66
+    STREF	//  myaddress sbody _67
+    ENDC	//  myaddress sbody full
+    20000000 PUSHINT	//  myaddress sbody full _73=20000000
+    s0 s2 XCHG
+    10 PUSHINT
+    -ROT	//  myaddress _73=20000000 _74=10 full sbody
+    4 TUPLE	//  myaddress pila
+    NEWDICT	//  myaddress pila selldict
+    NOW	//  myaddress pila selldict _79
+    10000 PUSHINT	//  myaddress pila selldict _79 _80=10000
+    ADD	//  myaddress pila selldict _81
+    NEWC	//  myaddress pila selldict _81 _82
+    10000000000 PUSHINT	//  myaddress pila selldict _81 _82 _83=10000000000
+    STVARUINT16	//  myaddress pila selldict _81 _84
+    64 STU	//  myaddress pila selldict _86
+    ENDC	//  myaddress pila selldict datad
+    CTOS	//  myaddress pila selldict sdatad
+    s0 s3 s3 XCHG3
+    267 PUSHINT	//  pila sdatad myaddress selldict _92=267
+    DICTADD	//  pila selldict success
+    800 THROWIFNOT
+    NEWDICT	//  pila selldict _97
+    NEWDICT	//  pila selldict _97 _98
+    2 PUSHINT	//  pila selldict _97 _98 _99=2
+    NEWC	//  pila selldict _97 _98 _99=2 _100
+    32 STU	//  pila selldict _97 _98 _102
+    s1 s3 XCHG	//  pila _98 _97 selldict _102
+    STDICT	//  pila _98 _97 _103
+    s1 s2 XCHG	//  pila _97 _98 _103
+    STDICT	//  pila _97 _104
+    STDICT	//  pila _105
+    ENDC	//  pila data
+    c4 POP
+    CONT:<{
+      recv_internal CALLDICT
+    }>	//  pila _111
+    SWAP	//  _111 pila
+    {
+    c7 PUSH DUP FIRST
+    GASLIMITSTEMP SWAP DROP
+    11 SETINDEX 0 SETINDEX c7 POP
+    } : save-gas-remaining
+    {
+    GASLIMITSTEMP SWAP DROP
+    11 GETPARAM SWAP SUB
+    145 PUSHINT SUB
+    } : compute-gas-used
+    NEWC ENDC c5 POP
+    RESETLOADEDCELLS
+    255 PUSHINT EXPLODEVAR
+    DUP INC ROLLX
+    <{
+    <{
+    save-gas-remaining
+    EXECUTE
+    compute-gas-used
+    DEPTH DEC ROLLREVX
+    DEPTH DEC TUPLEVAR
+    ZERO ROTREV
+    }> PUSHCONT
+    <{
+    compute-gas-used
+    ROT DROP NIL
+    }> PUSHCONT
+    TRY
+    }> PUSHCONT
+    ROT INC -1 PUSHINT
+    CALLXVARARGS	//  _182 _183 _184
+    DROP	//  exit_code gas_usado1
+    SWAP	//  gas_usado1 exit_code
+    s0 DUMP	//  gas_usado1 exit_code
+    0 NEQINT	//  gas_usado1 _117
+    101 THROWIF
+    c4 PUSH	//  gas_usado1 data
+    x{416e616c697a616e646f} PUSHSLICE	//  gas_usado1 data _121
+    STRDUMP	//  gas_usado1 data _122
+    DROP	//  gas_usado1 data
+    c4 PUSH	//  gas_usado1 data _124
+    CTOS	//  gas_usado1 data ds2
+    32 LDU	//  gas_usado1 data gseqno2 ds2
+    SWAP	//  gas_usado1 data ds2 gseqno2
+    s0 DUMP	//  gas_usado1 data ds2 gseqno2
+    3 EQINT	//  gas_usado1 data ds2 _134
+    105 THROWIFNOT
+    LDDICT	//  gas_usado1 data selling_ads2 ds2
+    SWAP	//  gas_usado1 data ds2 selling_ads2
+    s0 DUMP	//  gas_usado1 data ds2 selling_ads2
+    DICTEMPTY	//  gas_usado1 data ds2 _142
+    106 THROWIFNOT
+    LDDICT	//  gas_usado1 data buying_ads2 ds2
+    SWAP	//  gas_usado1 data ds2 buying_ads2
+    s0 DUMP	//  gas_usado1 data ds2 buying_ads2
+    DICTEMPTY	//  gas_usado1 data ds2 _150
+    106 THROWIFNOT
+    LDDICT	//  gas_usado1 data _192 _191
+    DROP	//  gas_usado1 data payments_buying_ads2
+    s0 DUMP	//  gas_usado1 data payments_buying_ads2
+    DICTEMPTY	//  gas_usado1 data _158
+    106 THROWIFNOT
+    c4 POP
+    0 TUPLE	//  gas_usado1 pila
+    CONT:<{
+      get_amount_selling_ads CALLDICT
+    }>	//  gas_usado1 pila _166
+    SWAP	//  gas_usado1 _166 pila
+    {
+    c7 PUSH DUP FIRST
+    GASLIMITSTEMP SWAP DROP
+    11 SETINDEX 0 SETINDEX c7 POP
+    } : save-gas-remaining
+    {
+    GASLIMITSTEMP SWAP DROP
+    11 GETPARAM SWAP SUB
+    145 PUSHINT SUB
+    } : compute-gas-used
+    NEWC ENDC c5 POP
+    RESETLOADEDCELLS
+    255 PUSHINT EXPLODEVAR
+    DUP INC ROLLX
+    <{
+    <{
+    save-gas-remaining
+    EXECUTE
+    compute-gas-used
+    DEPTH DEC ROLLREVX
+    DEPTH DEC TUPLEVAR
+    ZERO ROTREV
+    }> PUSHCONT
+    <{
+    compute-gas-used
+    ROT DROP NIL
+    }> PUSHCONT
+    TRY
+    }> PUSHCONT
+    ROT INC -1 PUSHINT
+    CALLXVARARGS	//  gas_usado1 _193 _194 _195
+    NIP	//  gas_usado1 exit_code return_values
+    SWAP	//  gas_usado1 return_values exit_code
+    s0 DUMP	//  gas_usado1 return_values exit_code
+    0 NEQINT	//  gas_usado1 return_values _172
+    107 THROWIF
+    0 INDEX	//  gas_usado1 _176
+    0 EQINT	//  gas_usado1 _178
+    108 THROWIFNOT
+  }>
+  __test_end PROC:<{
+    // 
+    MYADDR	//  myaddress
+    4000 PUSHINT	//  myaddress _3=4000
+    2 PUSHINT	//  myaddress _3=4000 _4=2
+    NEWC	//  myaddress _3=4000 _4=2 _5
+    32 STU	//  myaddress _3=4000 _7
+    32 STU	//  myaddress _9
+    ENDC	//  myaddress body_to_sign
+    DUP	//  myaddress body_to_sign body_to_sign
+    HASHCU	//  myaddress body_to_sign tmphash
+    s0 DUMP	//  myaddress body_to_sign tmphash
+    19628012290069340860609293167367498616118345354005210669087707131081901183457 PUSHINT	//  myaddress body_to_sign tmphash _16=19628012290069340860609293167367498616118345354005210669087707131081901183457
+    NEQ	//  myaddress body_to_sign _17
+    100 THROWIF
+    67007350735801824008014894016613596343591943945488611439234850185551089340416 PUSHINT	//  myaddress body_to_sign _20=67007350735801824008014894016613596343591943945488611439234850185551089340416
+    63721334857323908724111397497447115055981967514355889161690703554970726536909 PUSHINT	//  myaddress body_to_sign _20=67007350735801824008014894016613596343591943945488611439234850185551089340416 _21=63721334857323908724111397497447115055981967514355889161690703554970726536909
+    NEWC	//  myaddress body_to_sign _20=67007350735801824008014894016613596343591943945488611439234850185551089340416 _21=63721334857323908724111397497447115055981967514355889161690703554970726536909 _22
+    256 STU	//  myaddress body_to_sign _20=67007350735801824008014894016613596343591943945488611439234850185551089340416 _24
+    256 STU	//  myaddress body_to_sign _26
+    STREF	//  myaddress _27
+    ENDC	//  myaddress body
+    DUP	//  myaddress body body
+    CTOS	//  myaddress body sbody
+    1 PUSHINT	//  myaddress body sbody _32=1
+    0 PUSHINT	//  myaddress body sbody _32=1 _33=0
+    6 PUSHINT	//  myaddress body sbody _32=1 _33=0 _34=6
+    NEWC	//  myaddress body sbody _32=1 _33=0 _34=6 _35
+    4 STU	//  myaddress body sbody _32=1 _33=0 _37
+    x{800E1B352B01520AA93365D882AFBB35232EBE554A71779752029D4F963F177F55D_} PUSHSLICE	//  myaddress body sbody _32=1 _33=0 _37 _38
+    STSLICER	//  myaddress body sbody _32=1 _33=0 _39
+    s5 PUSH	//  myaddress body sbody _32=1 _33=0 _39 myaddress
+    STSLICER	//  myaddress body sbody _32=1 _33=0 _40
+    200000000 PUSHINT	//  myaddress body sbody _32=1 _33=0 _40 _41=200000000
+    STVARUINT16	//  myaddress body sbody _32=1 _33=0 _42
+    106 STU	//  myaddress body sbody _32=1 _54
+    1 STU	//  myaddress body sbody _56
+    s1 s2 XCHG	//  myaddress sbody body _56
+    STREF	//  myaddress sbody _57
+    ENDC	//  myaddress sbody full
+    20000000 PUSHINT	//  myaddress sbody full _63=20000000
+    s0 s2 XCHG
+    10 PUSHINT
+    -ROT	//  myaddress _63=20000000 _64=10 full sbody
+    4 TUPLE	//  myaddress pila
+    NEWDICT	//  myaddress pila selldict
+    NOW	//  myaddress pila selldict _69
+    10000 PUSHINT	//  myaddress pila selldict _69 _70=10000
+    ADD	//  myaddress pila selldict _71
+    NEWC	//  myaddress pila selldict _71 _72
+    10000000000 PUSHINT	//  myaddress pila selldict _71 _72 _73=10000000000
+    STVARUINT16	//  myaddress pila selldict _71 _74
+    64 STU	//  myaddress pila selldict _76
+    ENDC	//  myaddress pila selldict datad
+    CTOS	//  myaddress pila selldict sdatad
+    s0 s3 s3 XCHG3
+    267 PUSHINT	//  pila sdatad myaddress selldict _82=267
+    DICTADD	//  pila selldict success
+    800 THROWIFNOT
+    NEWDICT	//  pila selldict _87
+    NEWDICT	//  pila selldict _87 _88
+    2 PUSHINT	//  pila selldict _87 _88 _89=2
+    NEWC	//  pila selldict _87 _88 _89=2 _90
+    32 STU	//  pila selldict _87 _88 _92
+    s1 s3 XCHG	//  pila _88 _87 selldict _92
+    STDICT	//  pila _88 _87 _93
+    s1 s2 XCHG	//  pila _87 _88 _93
+    STDICT	//  pila _87 _94
+    STDICT	//  pila _95
+    ENDC	//  pila data
+    c4 POP
+    CONT:<{
+      recv_internal CALLDICT
+    }>	//  pila _101
+    SWAP	//  _101 pila
+    {
+    c7 PUSH DUP FIRST
+    GASLIMITSTEMP SWAP DROP
+    11 SETINDEX 0 SETINDEX c7 POP
+    } : save-gas-remaining
+    {
+    GASLIMITSTEMP SWAP DROP
+    11 GETPARAM SWAP SUB
+    145 PUSHINT SUB
+    } : compute-gas-used
+    NEWC ENDC c5 POP
+    RESETLOADEDCELLS
+    255 PUSHINT EXPLODEVAR
+    DUP INC ROLLX
+    <{
+    <{
+    save-gas-remaining
+    EXECUTE
+    compute-gas-used
+    DEPTH DEC ROLLREVX
+    DEPTH DEC TUPLEVAR
+    ZERO ROTREV
+    }> PUSHCONT
+    <{
+    compute-gas-used
+    ROT DROP NIL
+    }> PUSHCONT
+    TRY
+    }> PUSHCONT
+    ROT INC -1 PUSHINT
+    CALLXVARARGS	//  _172 _173 _174
+    DROP	//  exit_code gas_usado1
+    SWAP	//  gas_usado1 exit_code
+    s0 DUMP	//  gas_usado1 exit_code
+    0 NEQINT	//  gas_usado1 _107
+    101 THROWIF
+    c4 PUSH	//  gas_usado1 data
+    x{416e616c697a616e646f} PUSHSLICE	//  gas_usado1 data _111
+    STRDUMP	//  gas_usado1 data _112
+    DROP	//  gas_usado1 data
+    c4 PUSH	//  gas_usado1 data _114
+    CTOS	//  gas_usado1 data ds2
+    32 LDU	//  gas_usado1 data gseqno2 ds2
+    SWAP	//  gas_usado1 data ds2 gseqno2
+    s0 DUMP	//  gas_usado1 data ds2 gseqno2
+    3 EQINT	//  gas_usado1 data ds2 _124
+    105 THROWIFNOT
+    LDDICT	//  gas_usado1 data selling_ads2 ds2
+    SWAP	//  gas_usado1 data ds2 selling_ads2
+    s0 DUMP	//  gas_usado1 data ds2 selling_ads2
+    DICTEMPTY	//  gas_usado1 data ds2 _132
+    106 THROWIFNOT
+    LDDICT	//  gas_usado1 data buying_ads2 ds2
+    SWAP	//  gas_usado1 data ds2 buying_ads2
+    s0 DUMP	//  gas_usado1 data ds2 buying_ads2
+    DICTEMPTY	//  gas_usado1 data ds2 _140
+    106 THROWIFNOT
+    LDDICT	//  gas_usado1 data _182 _181
+    DROP	//  gas_usado1 data payments_buying_ads2
+    s0 DUMP	//  gas_usado1 data payments_buying_ads2
+    DICTEMPTY	//  gas_usado1 data _148
+    106 THROWIFNOT
+    c4 POP
+    0 TUPLE	//  gas_usado1 pila
+    CONT:<{
+      get_amount_selling_ads CALLDICT
+    }>	//  gas_usado1 pila _156
+    SWAP	//  gas_usado1 _156 pila
+    {
+    c7 PUSH DUP FIRST
+    GASLIMITSTEMP SWAP DROP
+    11 SETINDEX 0 SETINDEX c7 POP
+    } : save-gas-remaining
+    {
+    GASLIMITSTEMP SWAP DROP
+    11 GETPARAM SWAP SUB
+    145 PUSHINT SUB
+    } : compute-gas-used
+    NEWC ENDC c5 POP
+    RESETLOADEDCELLS
+    255 PUSHINT EXPLODEVAR
+    DUP INC ROLLX
+    <{
+    <{
+    save-gas-remaining
+    EXECUTE
+    compute-gas-used
+    DEPTH DEC ROLLREVX
+    DEPTH DEC TUPLEVAR
+    ZERO ROTREV
+    }> PUSHCONT
+    <{
+    compute-gas-used
+    ROT DROP NIL
+    }> PUSHCONT
+    TRY
+    }> PUSHCONT
+    ROT INC -1 PUSHINT
+    CALLXVARARGS	//  gas_usado1 _183 _184 _185
+    NIP	//  gas_usado1 exit_code return_values
+    SWAP	//  gas_usado1 return_values exit_code
+    s0 DUMP	//  gas_usado1 return_values exit_code
+    0 NEQINT	//  gas_usado1 return_values _162
+    107 THROWIF
+    0 INDEX	//  gas_usado1 _166
+    0 EQINT	//  gas_usado1 _168
+    108 THROWIFNOT
+  }>
+}END>c

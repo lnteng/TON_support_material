@@ -1,0 +1,373 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "verifier_KeyCollection.headers.fc";
+#include "verifier_KeyCollection.stdlib.fc";
+#include "verifier_KeyCollection.storage.fc";
+
+;;
+;; Contract KeyCollection functions
+;;
+
+(int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $KeyCollection$_contract_init(slice $owner) impure inline_ref {
+    var (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)) = (0, 0, null(), null(), 0, null(), 0, null(), null(), null(), 0, null());
+    $self'owner = $owner;
+    int $i = 0;
+    repeat (8) {
+        $i = ($i + 1);
+        $self'subKeySharesMap~__tact_dict_set_int_int(257, $i, 0, 257);
+        $self'vLuckMap~__tact_dict_set_int_int(257, $i, 0, 257);
+    }
+    return ($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap);
+}
+
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), int) $KeyCollection$_fun_calcPrice((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self, int $shares) impure inline_ref {
+    var (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)) = $self;
+    int $tmp = ($shares * $shares);
+    $tmp = ($tmp * 1000000);
+    return (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap), $tmp);
+}
+
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), int) $KeyCollection$_fun_getVLuckByAddr((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self, slice $user) impure inline_ref {
+    var (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)) = $self;
+    int $vLuck = 0;
+    if ((~ null?(__tact_dict_get_slice_int($self'uservLuckMap, 267, $user, 257)))) {
+        $vLuck = __tact_not_null(__tact_dict_get_slice_int($self'uservLuckMap, 267, $user, 257));
+    }
+    return (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap), $vLuck);
+}
+
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), ()) $KeyCollection$_fun_updateSubKeySharesMap((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self, int $keyNum, int $count) impure inline_ref {
+    var (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)) = $self;
+    int $subKeyNum = __tact_not_null(__tact_dict_get_int_int($self'subKeySharesMap, 257, $keyNum, 257));
+    $subKeyNum = ($subKeyNum + $count);
+    $self'subKeySharesMap~__tact_dict_set_int_int(257, $keyNum, $subKeyNum, 257);
+    return (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap), ());
+}
+
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), ()) $KeyCollection$_fun_updateVLuckMap((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self, int $keyNum, int $vlock) impure inline_ref {
+    var (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)) = $self;
+    int $totalVlock = __tact_not_null(__tact_dict_get_int_int($self'vLuckMap, 257, $keyNum, 257));
+    $totalVlock = ($totalVlock + $vlock);
+    $self'vLuckMap~__tact_dict_set_int_int(257, $keyNum, $totalVlock, 257);
+    return (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap), ());
+}
+
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), ()) $KeyCollection$_fun_updateUserVLuckMap((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self, slice $user, int $vlock) impure inline_ref {
+    var (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)) = $self;
+    if ((~ null?(__tact_dict_get_slice_int($self'uservLuckMap, 267, $user, 257)))) {
+        int $userVlock = __tact_not_null(__tact_dict_get_slice_int($self'uservLuckMap, 267, $user, 257));
+        $userVlock = ($userVlock + $vlock);
+        $self'uservLuckMap~__tact_dict_set_slice_int(267, $user, $userVlock, 257);
+    }
+    return (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap), ());
+}
+
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), ()) $KeyCollection$_fun_updateUserAwardMap((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self, slice $user, int $reward) impure inline_ref {
+    var (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)) = $self;
+    int $totalReward = $reward;
+    if ((~ null?(__tact_dict_get_slice_int($self'userAwardMap, 267, $user, 257)))) {
+        int $haveReward = __tact_not_null(__tact_dict_get_slice_int($self'userAwardMap, 267, $user, 257));
+        $totalReward = ($totalReward + $haveReward);
+    }
+    $self'userAwardMap~__tact_dict_set_slice_int(267, $user, $totalReward, 257);
+    return (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap), ());
+}
+
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), ()) $KeyCollection$_fun_updateUserWalletMap((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self, slice $user, int $amount) impure inline_ref {
+    var (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)) = $self;
+    int $totalAmout = $amount;
+    if ((~ null?(__tact_dict_get_slice_int($self'userWalletMap, 267, $user, 257)))) {
+        int $currentAmount = __tact_not_null(__tact_dict_get_slice_int($self'userWalletMap, 267, $user, 257));
+        $totalAmout = ($totalAmout + $currentAmount);
+    }
+    $self'userWalletMap~__tact_dict_set_slice_int(267, $user, $totalAmout, 257);
+    return (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap), ());
+}
+
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), int) $KeyCollection$_fun_currentPrice((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self) impure inline_ref {
+    var (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)) = $self;
+    int $shares = ($self'keyShares + 1);
+    return (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap), ($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)~$KeyCollection$_fun_calcPrice($shares));
+}
+
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), int) $KeyCollection$_fun_random((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self) impure inline_ref {
+    var (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)) = $self;
+    return (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap), $global_random(1, 8));
+}
+
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), int) $KeyCollection$_fun_uservLuck((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self, slice $user) impure inline_ref {
+    var (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)) = $self;
+    return (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap), ($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)~$KeyCollection$_fun_getVLuckByAddr($user));
+}
+
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), int) $KeyCollection$_fun_keySupply((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self) impure inline_ref {
+    var (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)) = $self;
+    return (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap), $self'keySupply);
+}
+
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), tuple) $KeyCollection$_fun_keyInfoById((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self, int $id) impure inline_ref {
+    var (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)) = $self;
+    return (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap), $KeyInfo$_load_opt(__tact_dict_get_int_cell($self'keyInfoMap, 257, $id)));
+}
+
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), int) $KeyCollection$_fun_vLuckShares((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self) impure inline_ref {
+    var (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)) = $self;
+    return (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap), $self'vLuckShares);
+}
+
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), int) $KeyCollection$_fun_vLuckByNum((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self, int $num) impure inline_ref {
+    var (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)) = $self;
+    return (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap), __tact_not_null(__tact_dict_get_int_int($self'vLuckMap, 257, $num, 257)));
+}
+
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), int) $KeyCollection$_fun_luckNum((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self) impure inline_ref {
+    var (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)) = $self;
+    return (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap), $self'luckNum);
+}
+
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), int) $KeyCollection$_fun_userAward((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self, slice $user) impure inline_ref {
+    var (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)) = $self;
+    return (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap), __tact_dict_get_slice_int($self'userAwardMap, 267, $user, 257));
+}
+
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), int) $KeyCollection$_fun_rewardPreVluck((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self) impure inline_ref {
+    var (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)) = $self;
+    return (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap), $self'rewardPreVluck);
+}
+
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), int) $KeyCollection$_fun_userWallet((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self, slice $user) impure inline_ref {
+    var (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)) = $self;
+    return (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap), __tact_dict_get_slice_int($self'userWalletMap, 267, $user, 257));
+}
+
+;;
+;; Receivers of a Contract KeyCollection
+;;
+
+(((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell)), ()) $KeyCollection$_internal_binary_PurchaseOnekey((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self, (int) $msg) impure inline {
+    var ($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap) = $self;
+    var ($msg'keyNum) = $msg;
+    $self'keySupply = ($self'keySupply + 1);
+    $self'keyShares = ($self'keyShares + 1);
+    ($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)~$KeyCollection$_fun_updateSubKeySharesMap($msg'keyNum, 1);
+    int $price = ($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)~$KeyCollection$_fun_calcPrice($self'keyShares);
+    $self'vLuckShares = ($self'vLuckShares + $price);
+    $self'keyInfoMap~__tact_dict_set_int_cell(257, $self'keySupply, $KeyInfo$_store_cell($KeyInfo$_constructor_owner_keyNum_price(__tact_context_get_sender(), $msg'keyNum, $price)));
+    ($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)~$KeyCollection$_fun_updateUserVLuckMap(__tact_context_get_sender(), $price);
+    ($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)~$KeyCollection$_fun_updateVLuckMap($msg'keyNum, $price);
+    return (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap), ());
+}
+
+(((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell)), ()) $KeyCollection$_internal_binary_Redeem((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self, (int) $msg) impure inline {
+    var ($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap) = $self;
+    var ($msg'keyId) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    var ($keyInfo'owner, $keyInfo'keyNum, $keyInfo'price) = $KeyInfo$_not_null($KeyInfo$_load_opt(__tact_dict_get_int_cell($self'keyInfoMap, 257, $msg'keyId)));
+    throw_unless(45456, ( __tact_slice_eq_bits($keyInfo'owner, $ctx'sender) ));
+    int $cPrice = ($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)~$KeyCollection$_fun_calcPrice($self'keyShares);
+    ($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)~$KeyCollection$_fun_updateUserWalletMap($keyInfo'owner, $cPrice);
+    $self'keyShares = ($self'keyShares - 1);
+    $self'vLuckShares = ($self'vLuckShares - $keyInfo'price);
+    ($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)~$KeyCollection$_fun_updateSubKeySharesMap($keyInfo'keyNum, (- 1));
+    ($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)~$KeyCollection$_fun_updateUserVLuckMap($keyInfo'owner, (- $keyInfo'price));
+    $self'keyInfoMap~__tact_dict_set_int_cell(257, $msg'keyId, $KeyInfo$_store_opt(null()));
+    return (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap), ());
+}
+
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), ()) $KeyCollection$_internal_text_59da1ac9554122d9210e95d65c026635796de46d5c125119c84785250566d13f((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self) impure inline {
+    var ($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap) = $self;
+    $self'luckNum = $global_random(1, 8);
+    int $vluck = __tact_not_null(__tact_dict_get_int_int($self'vLuckMap, 257, $self'luckNum, 257));
+    $self'vLuckShares = ($self'vLuckShares - $vluck);
+    $self'vLuckMap~__tact_dict_set_int_int(257, $self'luckNum, 0, 257);
+    $self'rewardPreVluck = ($vluck * 10);
+    $self'rewardPreVluck = ($self'rewardPreVluck / $self'vLuckShares);
+    int $i = 0;
+    repeat ($self'keySupply) {
+        $i = ($i + 1);
+        if ((~ null?($KeyInfo$_load_opt(__tact_dict_get_int_cell($self'keyInfoMap, 257, $i))))) {
+            var ($keyInfo'owner, $keyInfo'keyNum, $keyInfo'price) = $KeyInfo$_not_null($KeyInfo$_load_opt(__tact_dict_get_int_cell($self'keyInfoMap, 257, $i)));
+            int $reward = ($self'rewardPreVluck * $keyInfo'price);
+            $reward = ($reward / 10);
+            ($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)~$KeyCollection$_fun_updateUserAwardMap($keyInfo'owner, $reward);
+        }
+    }
+    return (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap), ());
+}
+
+(((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell)), ()) $KeyCollection$_internal_binary_Deploy((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $self, (int) $deploy) impure inline {
+    var ($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap)~$KeyCollection$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'keySupply, $self'keyShares, $self'subKeySharesMap, $self'owner, $self'vLuckShares, $self'vLuckMap, $self'rewardPreVluck, $self'uservLuckMap, $self'userAwardMap, $self'keyInfoMap, $self'luckNum, $self'userWalletMap), ());
+}
+
+;;
+;; Get methods of a Contract KeyCollection
+;;
+
+_ %currentPrice() method_id(78418) {
+    var self = $KeyCollection$_contract_load();
+    var res = self~$KeyCollection$_fun_currentPrice();
+    return res;
+}
+
+_ %random() method_id(92013) {
+    var self = $KeyCollection$_contract_load();
+    var res = self~$KeyCollection$_fun_random();
+    return res;
+}
+
+_ %uservLuck(slice $$user) method_id(123374) {
+    slice $user = __tact_verify_address($$user);
+    var self = $KeyCollection$_contract_load();
+    var res = self~$KeyCollection$_fun_uservLuck($user);
+    return res;
+}
+
+_ %keySupply() method_id(77076) {
+    var self = $KeyCollection$_contract_load();
+    var res = self~$KeyCollection$_fun_keySupply();
+    return res;
+}
+
+_ %keyInfoById(int $$id) method_id(68151) {
+    int $id = $$id;
+    var self = $KeyCollection$_contract_load();
+    var res = self~$KeyCollection$_fun_keyInfoById($id);
+    return $KeyInfo$_to_opt_external(res);
+}
+
+_ %vLuckShares() method_id(79949) {
+    var self = $KeyCollection$_contract_load();
+    var res = self~$KeyCollection$_fun_vLuckShares();
+    return res;
+}
+
+_ %vLuckByNum(int $$num) method_id(123269) {
+    int $num = $$num;
+    var self = $KeyCollection$_contract_load();
+    var res = self~$KeyCollection$_fun_vLuckByNum($num);
+    return res;
+}
+
+_ %luckNum() method_id(72484) {
+    var self = $KeyCollection$_contract_load();
+    var res = self~$KeyCollection$_fun_luckNum();
+    return res;
+}
+
+_ %userAward(slice $$user) method_id(124460) {
+    slice $user = __tact_verify_address($$user);
+    var self = $KeyCollection$_contract_load();
+    var res = self~$KeyCollection$_fun_userAward($user);
+    return res;
+}
+
+_ %rewardPreVluck() method_id(74507) {
+    var self = $KeyCollection$_contract_load();
+    var res = self~$KeyCollection$_fun_rewardPreVluck();
+    return res;
+}
+
+_ %userWallet(slice $$user) method_id(99220) {
+    slice $user = __tact_verify_address($$user);
+    var self = $KeyCollection$_contract_load();
+    var res = self~$KeyCollection$_fun_userWallet($user);
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.debug.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmdHVvzkgtiyBXQo1EY8zWMxWhtNzAriZc3Dr4dpM7nXU9";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract KeyCollection
+;;
+
+((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell), int) $KeyCollection$_contract_router_internal((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive PurchaseOnekey message
+    if (op == 1173223484) {
+        var msg = in_msg~$PurchaseOnekey$_load();
+        self~$KeyCollection$_internal_binary_PurchaseOnekey(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Redeem message
+    if (op == 3546654350) {
+        var msg = in_msg~$Redeem$_load();
+        self~$KeyCollection$_internal_binary_Redeem(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$KeyCollection$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "openLuck" message
+        if (text_op == 0x59da1ac9554122d9210e95d65c026635796de46d5c125119c84785250566d13f) {
+            self~$KeyCollection$_internal_text_59da1ac9554122d9210e95d65c026635796de46d5c125119c84785250566d13f();
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $KeyCollection$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$KeyCollection$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $KeyCollection$_contract_store(self);
+}

@@ -1,0 +1,123 @@
+$NFTItemAuction$_internal_text_30c235c575c09a25ce30996c65a238c82028ca965674e382afb7b536ecec4382: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.code.fc:193:474: warning: Local variable '$self'isInitialized' is not used
+  ... , $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)~$NFTItemAuction$_fun__transfer_nft($buyer);
+  ...                                                                                                     ^
+$NFTItemAuction$_fun__fraction_bid: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.code.fc:103:474: warning: Local variable '$self'auctionInfo'nftHighestBid' is not used
+  ... , $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)~$NFTItemAuction$_fun__send_prev_bid_back($ctx'sender, $bidValue);
+  ...                                                                                                     ^
+$NFTItemAuction$_fun__fraction_bid: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.code.fc:103:474: warning: Local variable '$self'auctionInfo'nftHighestBidder' is not used
+  ... , $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)~$NFTItemAuction$_fun__send_prev_bid_back($ctx'sender, $bidValue);
+  ...                                                                                                     ^
+$BuildNftAuction$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.storage.fc:124:29: warning: Lack of end_parse.
+      var v'auctionInfo = sc_1~$AuctionInfo$_load();
+                              ^
+$ReviseAuction$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.storage.fc:111:35: warning: Lack of end_parse.
+      var v'reviseAuctionInfo = sc_1~$AuctionInfo$_load();
+                                    ^
+$AuctionInfo$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.storage.fc:89:29: warning: Lack of end_parse.
+      var v'beneficiary = sc_2~__tact_load_address();
+                              ^
+$AuctionInfo$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.storage.fc:87:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+$NFTItemAuction$_fun__trade_bid: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.code.fc:79:478: warning: Local variable '$self'isInitialized' is not used
+  ... , $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)~$NFTItemAuction$_fun__transfer_nft($buyer);
+  ...                                                                                                     ^
+$NFTItemAuction$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.storage.fc:155:32: warning: Lack of end_parse.
+      var v'auctionEndTime = sc_2~load_int(257);
+                                 ^
+$NFTItemAuction$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.storage.fc:152:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+$NFTItemAuction$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.code.fc:15:481: warning: Local variable '$self'nft_item' is not used
+  ... $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = (null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$NFTItemAuction$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.code.fc:15:481: warning: Local variable '$self'seller' is not used
+  ... $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = (null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$NFTItemAuction$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.code.fc:15:481: warning: Local variable '$self'auctionInfo'bidIncreasePercentage' is not used
+  ... $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = (null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$NFTItemAuction$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.code.fc:15:481: warning: Local variable '$self'auctionInfo'auctionBidPeriod' is not used
+  ... $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = (null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$NFTItemAuction$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.code.fc:15:481: warning: Local variable '$self'auctionInfo'auctionPeriod' is not used
+  ... $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = (null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$NFTItemAuction$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.code.fc:15:481: warning: Local variable '$self'auctionInfo'reservePrice' is not used
+  ... $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = (null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$NFTItemAuction$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.code.fc:15:481: warning: Local variable '$self'auctionInfo'buyNowPrice' is not used
+  ... $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = (null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$NFTItemAuction$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.code.fc:15:481: warning: Local variable '$self'auctionInfo'nftHighestBid' is not used
+  ... $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = (null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$NFTItemAuction$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.code.fc:15:481: warning: Local variable '$self'auctionInfo'nftHighestBidder' is not used
+  ... $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = (null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$NFTItemAuction$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.code.fc:15:481: warning: Local variable '$self'auctionInfo'nftSeller' is not used
+  ... $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = (null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$NFTItemAuction$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.code.fc:15:481: warning: Local variable '$self'auctionInfo'whitelistedBuyer' is not used
+  ... $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = (null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$NFTItemAuction$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.code.fc:15:481: warning: Local variable '$self'auctionInfo'nftRecipient' is not used
+  ... $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = (null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$NFTItemAuction$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.code.fc:15:481: warning: Local variable '$self'auctionInfo'beneficiary' is not used
+  ... $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = (null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$NFTItemAuction$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.code.fc:15:481: warning: Local variable '$self'auctionBidPeriod' is not used
+  ... $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = (null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$NFTItemAuction$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.code.fc:15:481: warning: Local variable '$self'isInitialized' is not used
+  ... $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = (null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$NFTItemAuction$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.code.fc:15:481: warning: Local variable '$self'auctionEndTime' is not used
+  ... $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = (null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$NFTItemAuction$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.storage.fc:170:19: warning: Lack of end_parse.
+          return $sc~$NFTItemAuction$_load();
+                    ^
+$NFTItemAuction$_internal_text_f197588d96bb7ed9becf4e3b632fca58694ded2d3437a44d065235b8213e4c66: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.code.fc:226:478: warning: Local variable '$self'isInitialized' is not used
+  ... , $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)~$NFTItemAuction$_fun__transfer_nft($seller);
+  ...                                                                                                     ^
+$NFTItemAuction$_internal_text_f197588d96bb7ed9becf4e3b632fca58694ded2d3437a44d065235b8213e4c66: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.code.fc:222:478: warning: Local variable '$self'isInitialized' is not used
+  ... , $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)~$NFTItemAuction$_fun__transfer_nft($buyer);
+  ...                                                                                                     ^
+$NFTItemAuction$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.code.fc:274:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_NFTItemAuction.storage.fc:181:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

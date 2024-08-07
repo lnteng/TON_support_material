@@ -1,0 +1,26 @@
+$Wallet$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA-AlFqr-feB3vYKUMUChw6HwsumHeXpXfi84lN8SSk-Ton/output/sample_Wallet.storage.fc:50:19: warning: Lack of end_parse.
+          return $sc~$Wallet$_load();
+                    ^
+$Wallet$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA-AlFqr-feB3vYKUMUChw6HwsumHeXpXfi84lN8SSk-Ton/output/sample_Wallet.code.fc:15:38: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'seqno)) = (null(), null());
+                                       ^
+$Wallet$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA-AlFqr-feB3vYKUMUChw6HwsumHeXpXfi84lN8SSk-Ton/output/sample_Wallet.code.fc:15:38: warning: Local variable '$self'seqno' is not used
+      var (($self'owner, $self'seqno)) = (null(), null());
+                                       ^
+$Wallet$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA-AlFqr-feB3vYKUMUChw6HwsumHeXpXfi84lN8SSk-Ton/output/sample_Wallet.code.fc:64:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA-AlFqr-feB3vYKUMUChw6HwsumHeXpXfi84lN8SSk-Ton/output/sample_Wallet.storage.fc:61:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Wallet$_contract_store & $Wallet$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA-AlFqr-feB3vYKUMUChw6HwsumHeXpXfi84lN8SSk-Ton/output/sample_Wallet.storage.fc:46:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA-AlFqr-feB3vYKUMUChw6HwsumHeXpXfi84lN8SSk-Ton/output/sample_Wallet.storage.fc:61:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

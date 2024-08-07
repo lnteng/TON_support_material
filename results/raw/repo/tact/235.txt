@@ -1,0 +1,15 @@
+__gen_load_Native: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/examples/output/native_Native.code.fc:34:19: warning: Lack of end_parse.
+          return $sc~__gen_read_Native();
+                    ^
+$__gen_Native_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/examples/output/native_Native.code.fc:24:25: warning: Local variable '$self'value' is not used
+      var (($self'value)) = (null());
+                          ^
+__gen_store_Native & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/examples/output/native_Native.code.fc:116:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/examples/output/native_Native.code.fc:41:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

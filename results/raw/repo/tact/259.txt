@@ -1,0 +1,27 @@
+$BugDetector$_internal_binary_SetEventId: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/bug_detector_BugDetector.code.fc:80:63: warning: Local variable '$self'eventId' is not used
+      ($self'owner, $self'universalRouterAddress, $self'eventId)~$BugDetector$_fun_requireOwner();
+                                                                ^
+$BugDetector$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/bug_detector_BugDetector.storage.fc:177:19: warning: Lack of end_parse.
+          return $sc~$BugDetector$_load();
+                    ^
+$BugDetector$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/bug_detector_BugDetector.code.fc:14:70: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'universalRouterAddress, $self'eventId)) = (null(), null(), null());
+                                                                       ^
+$BugDetector$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/bug_detector_BugDetector.code.fc:14:70: warning: Local variable '$self'universalRouterAddress' is not used
+      var (($self'owner, $self'universalRouterAddress, $self'eventId)) = (null(), null(), null());
+                                                                       ^
+$BugDetector$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/bug_detector_BugDetector.code.fc:14:70: warning: Local variable '$self'eventId' is not used
+      var (($self'owner, $self'universalRouterAddress, $self'eventId)) = (null(), null(), null());
+                                                                       ^
+$BugDetector$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/bug_detector_BugDetector.code.fc:116:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/bug_detector_BugDetector.storage.fc:188:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

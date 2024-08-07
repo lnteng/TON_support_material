@@ -1,0 +1,137 @@
+;;
+;; Type: StateInit
+;; TLB: _ code:^cell data:^cell = StateInit
+;;
+
+((cell, cell)) $StateInit$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (cell vvv'code, cell vvv'data) = __tact_tuple_destroy_2(v);
+    return (vvv'code, vvv'data);
+}
+
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline {
+    return (bounce, to, value, mode, body, code, data);
+}
+
+;;
+;; Type: Deploy
+;; Header: 0x946a98b6
+;; TLB: deploy#946a98b6 queryId:uint64 = Deploy
+;;
+
+(slice, ((int))) $Deploy$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2490013878);
+    var v'queryId = sc_0~load_uint(64);
+    return (sc_0, (v'queryId));
+}
+
+;;
+;; Type: DeployOk
+;; Header: 0xaff90f57
+;; TLB: deploy_ok#aff90f57 queryId:uint64 = DeployOk
+;;
+
+builder $DeployOk$_store(builder build_0, (int) v) inline {
+    var (v'queryId) = v;
+    build_0 = store_uint(build_0, 2952335191, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    return build_0;
+}
+
+cell $DeployOk$_store_cell((int) v) inline {
+    return $DeployOk$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $DeployOk$_constructor_queryId(int queryId) inline {
+    return (queryId);
+}
+
+;;
+;; Type: AdInfo
+;; Header: 0xd9172ad5
+;; TLB: ad_info#d9172ad5 name:^string description:^string location:^string cost:coins owner:address = AdInfo
+;;
+
+(slice, ((slice, slice, slice, int, slice))) $AdInfo$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 3642174165);
+    var v'name = sc_0~load_ref().begin_parse();
+    var v'description = sc_0~load_ref().begin_parse();
+    var v'location = sc_0~load_ref().begin_parse();
+    var v'cost = sc_0~load_coins();
+    var v'owner = sc_0~__tact_load_address();
+    return (sc_0, (v'name, v'description, v'location, v'cost, v'owner));
+}
+
+(slice, slice, slice, int, slice) $AdInfo$_to_external(((slice, slice, slice, int, slice)) v) inline {
+    var (v'name, v'description, v'location, v'cost, v'owner) = v; 
+    return (v'name, v'description, v'location, v'cost, v'owner);
+}
+
+((slice, slice, slice, int, slice)) $AdInfo$_constructor_name_description_location_cost_owner(slice name, slice description, slice location, int cost, slice owner) inline {
+    return (name, description, location, cost, owner);
+}
+
+;;
+;; Type: MarketplaceAd
+;;
+
+builder $MarketplaceAd$_store(builder build_0, (slice, slice, int, slice, slice, slice, int) v) inline {
+    var (v'name, v'description, v'cost, v'location, v'master, v'owner, v'idx) = v;
+    build_0 = build_0.store_ref(begin_cell().store_slice(v'name).end_cell());
+    build_0 = build_0.store_ref(begin_cell().store_slice(v'description).end_cell());
+    build_0 = build_0.store_coins(v'cost);
+    var build_1 = begin_cell();
+    build_1 = build_1.store_ref(begin_cell().store_slice(v'location).end_cell());
+    build_1 = __tact_store_address(build_1, v'master);
+    build_1 = __tact_store_address(build_1, v'owner);
+    build_1 = build_1.store_int(v'idx, 257);
+    build_0 = store_ref(build_0, build_1.end_cell());
+    return build_0;
+}
+
+(slice, ((slice, slice, int, slice, slice, slice, int))) $MarketplaceAd$_load(slice sc_0) inline {
+    var v'name = sc_0~load_ref().begin_parse();
+    var v'description = sc_0~load_ref().begin_parse();
+    var v'cost = sc_0~load_coins();
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'location = sc_1~load_ref().begin_parse();
+    var v'master = sc_1~__tact_load_address();
+    var v'owner = sc_1~__tact_load_address();
+    var v'idx = sc_1~load_int(257);
+    return (sc_0, (v'name, v'description, v'cost, v'location, v'master, v'owner, v'idx));
+}
+
+(slice, ((slice, slice, int))) $MarketplaceAd$init$_load(slice sc_0) inline {
+    var v'master = sc_0~__tact_load_address();
+    var v'location = sc_0~load_ref().begin_parse();
+    var v'idx = sc_0~load_int(257);
+    return (sc_0, (v'master, v'location, v'idx));
+}
+
+(slice, slice, int, slice, slice, slice, int) $MarketplaceAd$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$MarketplaceAd$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (slice master, slice location, int idx) = $sc~$MarketplaceAd$init$_load();
+        $sc.end_parse();
+        return $MarketplaceAd$_contract_init(master, location, idx);
+    }
+}
+
+() $MarketplaceAd$_contract_store((slice, slice, int, slice, slice, slice, int) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $MarketplaceAd$_store(b, v);
+    set_data(b.end_cell());
+}

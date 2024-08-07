@@ -1,0 +1,78 @@
+#!/usr/bin/env fift -s
+"multisig-utils.fif" include
+
+{ ."<workchain-id> <n> [<k> <filename-base>] [-C <code-fif>]" cr
+  ."Creates a new multisig wallet with n keypairs and requiring at least k signatures, with private keys saved to or loaded from <filename-base>-<i>.pk" cr
+  ."('new-ms-wallet-<i>.pk' by default)." cr
+  ."By default uses the full code of the wallet. If you want to use stripped-down version (without get-methods), pass 'multisig-code' as last argument."
+} : usage()
+
+// == Parsing command-line arguments
+
+{
+  "-C" "--code-file" 1 { +".fif" include =: WalletCode } option-long()
+
+  1 { parse-workchain-id =: WorkchainId } nth-argument()
+  2 { (number) 1- abort"n must be an integer number" =: n } nth-argument()
+  3 { (number) 1- abort"k must be an integer number" =: k } nth-argument()
+  4 { =: FileBase } nth-argument()
+  no-more-arguments() // Prevents adding too much arguments
+} scan-args()
+
+2 < { // Checks that there's enough arguments
+  show-usage()
+} if
+
+// Default values
+n =:? k
+"new-ms-wallet" =:? FileBase
+"code-getters.fif" include =:? WalletCode
+
+// == End of parsing command-line arguments
+
+."Creating new wallet in workchain " WorkchainId . cr
+
+// Generating list of owners
+0 dictnew {
+  over <b swap 8 u, // Saving index to builder
+  FileBase +"-" 3 pick 1 + (.) $+ +".pk" load-generate-keypair // Loading/saving pubkey and privkey
+    // .s -> data:builder index:int keylist:dict builder pubkey:bytes privkey:bytes
+   
+  def? PrimaryPrivateKey {
+    drop
+  } { // no need for this key anymore
+    =: PrimaryPrivateKey
+    dup =: PrimaryPublicKey
+  } cond
+  256 B>u@ // Converting pubkey to int
+    // udict requires order: value(builder) key(pubkey) dict(keylist) n=256
+  rot 256 b>udict!
+  0= abort"Unable to store public key in the contract data"
+    // .s -> data:builder index:int keylist:dict
+  swap 1+ swap
+} n times nip =: WalletOwners
+
+0 0 n k WalletOwners null data() =: WalletData
+."WalletData: " WalletData <s csr. cr
+
+WalletCode WalletData null state-init() =: StateInit
+."StateInit: " StateInit <s csr. cr
+
+WorkchainId StateInit hashu 2constant WalletAddr
+."New wallet address = " WalletAddr .addr cr
+WalletAddr FileBase +".addr" save-address-verbose
+
+."Non-bounceable address (for init): " WalletAddr 7 .Addr cr
+."Bounceable address (for later access): " WalletAddr 6 .Addr cr
+
+0 -1 PrimaryPublicKey empty-message() =: WalletMessageBody
+."Signing message: " WalletMessageBody <s csr. cr
+
+WalletAddr StateInit
+  WalletMessageBody PrimaryPrivateKey sign-message()
+external-message() =: ExtMessage
+
+."External message for initialization is " ExtMessage <s csr. cr
+ExtMessage 2 boc+>B dup Bx. cr
+FileBase +"-init-query.boc" tuck B>file
+."(Saved wallet creating query to file " type .")" cr

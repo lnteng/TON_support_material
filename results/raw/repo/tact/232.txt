@@ -1,0 +1,39 @@
+__gen_read_MapTestContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/examples/output/maps_MapTestContract.code.fc:226:26: warning: Lack of end_parse.
+      var v'addrMap4 = sc_2~load_dict();
+                           ^
+__gen_read_MapTestContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/examples/output/maps_MapTestContract.code.fc:223:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+__gen_readopt_SomeStruct: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/examples/output/maps_MapTestContract.code.fc:161:43: warning: Lack of end_parse.
+      return __gen_SomeStruct_as_optional(sc~__gen_read_SomeStruct());
+                                            ^
+__tact_dict_set_int_cell: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/examples/output/maps_MapTestContract.code.fc:46:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+__tact_dict_set_slice_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/examples/output/maps_MapTestContract.code.fc:64:21: warning: Local variable 'ok' is not used
+          var (r, ok) = __tact_dict_delete(d, kl, k);
+                      ^
+__tact_dict_set_slice_cell: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/examples/output/maps_MapTestContract.code.fc:82:21: warning: Local variable 'ok' is not used
+          var (r, ok) = __tact_dict_delete(d, kl, k);
+                      ^
+__tact_dict_set_int_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/examples/output/maps_MapTestContract.code.fc:28:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+__gen_load_MapTestContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/examples/output/maps_MapTestContract.code.fc:259:19: warning: Lack of end_parse.
+          return $sc~__gen_read_MapTestContract();
+                    ^
+__gen_store_MapTestContract & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/examples/output/maps_MapTestContract.code.fc:620:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/examples/output/maps_MapTestContract.code.fc:266:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

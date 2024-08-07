@@ -1,0 +1,23 @@
+__tact_string_builder_append: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDXFv8eK7qLrL2DHRpbmj6G9kr52vykrwkiGf8OiN9sF3-T/output/verifier_Echo.code.fc:82:31: warning: Lack of end_parse.
+              sc = sc~load_ref().begin_parse();
+                                ^
+$reply: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDXFv8eK7qLrL2DHRpbmj6G9kr52vykrwkiGf8OiN9sF3-T/output/verifier_Echo.code.fc:177:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$reply: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDXFv8eK7qLrL2DHRpbmj6G9kr52vykrwkiGf8OiN9sF3-T/output/verifier_Echo.code.fc:177:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$reply: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDXFv8eK7qLrL2DHRpbmj6G9kr52vykrwkiGf8OiN9sF3-T/output/verifier_Echo.code.fc:177:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+__gen_store_Echo & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDXFv8eK7qLrL2DHRpbmj6G9kr52vykrwkiGf8OiN9sF3-T/output/verifier_Echo.code.fc:282:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDXFv8eK7qLrL2DHRpbmj6G9kr52vykrwkiGf8OiN9sF3-T/output/verifier_Echo.code.fc:120:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

@@ -1,0 +1,481 @@
+#pragma version >=0.4.1;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+slice __tact_str_to_slice(slice s) asm "NOP";
+
+int __tact_my_balance() inline {
+    return pair_first(get_balance());
+}
+
+forall X -> X __tact_not_null(X x) inline { throw_if(128, null?(x)); return x; }
+
+global (int, slice, int, slice) __tact_context;
+global cell __tact_context_sys;
+
+(int, slice, int, slice) __tact_context_get() inline { return __tact_context; }
+
+() __tact_verify_address(slice address) inline {
+    throw_unless(136, address.slice_bits() != 267);
+}
+
+builder __tact_store_bool(builder b, int v) inline {
+    b = b.store_int(v, 1);
+    return b;
+}
+
+(slice, slice) __tact_load_address(slice cs) inline {
+    slice raw = cs~load_msg_addr();
+    __tact_verify_address(raw);
+    return (cs, raw);
+}
+
+builder __tact_store_address(builder b, slice address) inline {
+    __tact_verify_address(address);
+    b = b.store_slice(address);
+    return b;
+}
+
+slice __tact_create_address(int chain, int hash) inline {
+    var b = begin_cell();
+    b = b.store_uint(2, 2);
+    b = b.store_uint(0, 1);
+    b = b.store_int(chain, 8);
+    b = b.store_uint(hash, 256);
+    return b.end_cell().begin_parse();
+}
+
+slice __tact_compute_contract_address(int chain, cell code, cell data) inline {
+    var b = begin_cell();
+    b = b.store_uint(0, 2);
+    b = b.store_uint(3, 2);
+    b = b.store_uint(0, 1);
+    b = b.store_ref(code);
+    b = b.store_ref(data);
+    var hash = cell_hash(b.end_cell());
+    return __tact_create_address(chain, hash);
+}
+
+int __tact_address_eq(slice a, slice b) inline {
+    return equal_slice_bits(a, b);
+}
+
+cell __tact_dict_set_code(cell dict, int id, cell code) inline {
+    return udict_set_ref(dict, 16, id, code);
+}
+
+cell __tact_dict_get_code(cell dict, int id) inline {
+    var (data, ok) = udict_get_ref?(dict, 16, id);
+    throw_unless(135, ok);
+    return data;
+}
+
+tuple __tact_string_builder_start(builder b) inline {
+    return tpush(tpush(empty_tuple(), b), null());
+}
+
+tuple __tact_string_builder_start_comment() inline {
+    return __tact_string_builder_start(begin_cell().store_uint(0, 32));
+}
+
+cell __tact_string_builder_end(tuple builders) inline {
+    (builder b, tuple tail) = uncons(builders);
+    cell c = b.end_cell();
+    while(~ null?(tail)) {
+        (b, tail) = uncons(tail);
+        c = b.store_ref(c).end_cell();
+    }
+    return c;
+}
+
+((tuple), ()) __tact_string_builder_append(tuple builders, slice sc) inline_ref {
+    int sliceRefs = slice_refs(sc);
+    int sliceBits = slice_bits(sc);
+
+    while((sliceBits > 0) | (sliceRefs > 0)) {
+
+        ;; Load the current builder
+        (builder b, tuple tail) = uncons(builders);
+        int remBytes = 127 - (builder_bits(b) / 8);
+        int exBytes = sliceBits / 8;
+
+        ;; Append bits
+        int amount = min(remBytes, exBytes);
+        if (amount > 0) {
+            slice read = sc~load_bits(amount * 8);
+            b = b.store_slice(read);
+        }
+
+        ;; Update builders
+        builders = cons(b, tail);
+
+        ;; Check if we need to add a new cell and continue
+        if (exBytes - amount > 0) {
+            var bb = begin_cell();
+            builders = cons(bb, builders);
+            sliceBits = (exBytes - amount) * 8;
+        } elseif (sliceRefs > 0) {
+            sc = sc~load_ref().begin_parse();
+            sliceRefs = slice_refs(sc);
+            sliceBits = slice_bits(sc);
+        } else {
+            sliceBits = 0;
+            sliceRefs = 0;
+        }
+    }
+
+    return ((builders), ());
+}
+
+(slice, ((slice))) __gen_read_ChangeOwner(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 256331011);
+    var v'newOwner = sc_0~__tact_load_address();
+    return (sc_0, (v'newOwner));
+}
+
+builder __gen_write_CanPayout(builder build_0, (int) v) inline {
+    var (v'amount) = v;
+    build_0 = store_uint(build_0, 3289991647, 32);
+    build_0 = build_0.store_int(v'amount, 257);
+    return build_0;
+}
+
+cell __gen_writecell_CanPayout((int) v) inline {
+    return __gen_write_CanPayout(begin_cell(), v).end_cell();
+}
+
+(slice, ((int, slice, int))) __gen_read_CanPayoutResponse(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 4293607646);
+    var v'amount = sc_0~load_int(257);
+    var v'address = sc_0~__tact_load_address();
+    var v'ok = sc_0~load_int(1);
+    return (sc_0, (v'amount, v'address, v'ok));
+}
+
+builder __gen_write_Payouts(builder build_0, (slice, int) v) inline {
+    var (v'owner, v'publicKey) = v;
+    build_0 = __tact_store_address(build_0, v'owner);
+    build_0 = build_0.store_int(v'publicKey, 257);
+    return build_0;
+}
+
+(slice, ((slice, int))) __gen_read_Payouts(slice sc_0) inline {
+    var v'owner = sc_0~__tact_load_address();
+    var v'publicKey = sc_0~load_int(257);
+    return (sc_0, (v'owner, v'publicKey));
+}
+
+_ __gen_Context_get_sender((int, slice, int, slice) v) inline {
+    var (v'bounced, v'sender, v'value, v'raw) = v;
+    return v'sender;
+}
+
+builder __gen_write_$init$Beacon(builder build_0, (slice, slice) v) inline {
+    var (v'master, v'owner) = v;
+    build_0 = __tact_store_address(build_0, v'master);
+    build_0 = __tact_store_address(build_0, v'owner);
+    return build_0;
+}
+
+(slice, ((slice, int))) __gen_read_$init$Payouts(slice sc_0) inline {
+    var v'owner = sc_0~__tact_load_address();
+    var v'publicKey = sc_0~load_int(257);
+    return (sc_0, (v'owner, v'publicKey));
+}
+
+(slice, int) $__gen_Payouts_init(slice $owner, int $publicKey) impure inline_ref {
+    var (($self'owner, $self'publicKey)) = (null(), null());
+    $self'owner = $owner;
+    $self'publicKey = $publicKey;
+    return ($self'owner, $self'publicKey);
+}
+
+(slice, int) __gen_load_Payouts() impure inline {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~__gen_read_Payouts();
+    } else {
+        (slice owner, int publicKey) = $sc~__gen_read_$init$Payouts();
+        $sc.end_parse();
+        return $__gen_Payouts_init(owner, publicKey);
+    }
+}
+
+() __gen_store_Payouts((slice, int) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = __gen_write_Payouts(b, v);
+    set_data(b.end_cell());
+}
+
+;; String "Success"
+slice __gen_str_3364490128() asm "B{b5ee9c7241010101000900000e5375636365737315355de8} B>boc <s PUSHSLICE";
+
+;; String "Already paid"
+slice __gen_str_2620117026() asm "B{b5ee9c7241010101000e000018416c72656164792070616964d417bf7a} B>boc <s PUSHSLICE";
+
+slice $contractAddress((cell, cell) $s) impure inline_ref {
+    var (($s'code, $s'data)) = $s;
+    return __tact_compute_contract_address(0, $s'code, $s'data);
+}
+
+() $send((int, slice, int, int, cell, cell, cell) $params) impure inline_ref {
+    var (($params'bounce, $params'to, $params'value, $params'mode, $params'body, $params'code, $params'data)) = $params;
+    builder $b = begin_cell();
+    $b = store_int($b, 1, 2);
+    $b = __tact_store_bool($b, $params'bounce);
+    $b = store_int($b, 0, 3);
+    $b = __tact_store_address($b, $params'to);
+    $b = store_coins($b, $params'value);
+    $b = store_int($b, 0, ((((1 + 4) + 4) + 64) + 32));
+    if (((~ null?($params'code)) | (~ null?($params'data)))) {
+        $b = __tact_store_bool($b, true);
+        builder $bc = begin_cell();
+        $bc = __tact_store_bool($bc, false);
+        $bc = __tact_store_bool($bc, false);
+        if ((~ null?($params'code))) {
+            $bc = __tact_store_bool($bc, true);
+            $bc = store_ref($bc, __tact_not_null($params'code));
+        } else {
+            $bc = __tact_store_bool($bc, false);
+        }
+        if ((~ null?($params'data))) {
+            $bc = __tact_store_bool($bc, true);
+            $bc = store_ref($bc, __tact_not_null($params'data));
+        } else {
+            $bc = __tact_store_bool($bc, false);
+        }
+        $bc = __tact_store_bool($bc, false);
+        $b = __tact_store_bool($b, true);
+        $b = store_ref($b, end_cell($bc));
+    } else {
+        $b = __tact_store_bool($b, false);
+    }
+    cell $body = $params'body;
+    if ((~ null?($body))) {
+        $b = __tact_store_bool($b, true);
+        $b = store_ref($b, __tact_not_null($body));
+    } else {
+        $b = __tact_store_bool($b, false);
+    }
+    cell $c = end_cell($b);
+    send_raw_message($c, $params'mode);
+}
+
+slice $__gen_Builder_asSlice(builder $self) impure inline_ref {
+    var ($self) = $self;
+    return begin_parse(end_cell($self));
+}
+
+cell $__gen_Builder_asCell(builder $self) impure inline_ref {
+    var ($self) = $self;
+    return end_cell($self);
+}
+
+slice $__gen_Slice_fromBase64(slice $self) impure inline_ref {
+    var ($self) = $self;
+    int $size = (slice_bits($self) / 8);
+    builder $result = begin_cell();
+    repeat ($size) {
+        int $code = $self~load_uint(8);
+        if ((($code >= 65) & ($code <= 90))) {
+            $result = store_uint($result, ($code - 65), 6);
+        } elseif ((($code >= 97) & ($code <= 122))) {
+            $result = store_uint($result, ($code - (97 - 26)), 6);
+        } elseif ((($code >= 48) & ($code <= 57))) {
+            $result = store_uint($result, ($code + (52 - 48)), 6);
+        } elseif ((($code == 45) | ($code == 43))) {
+            $result = store_uint($result, 62, 6);
+        } elseif ((($code == 95) | ($code == 47))) {
+            $result = store_uint($result, 63, 6);
+        } elseif (($code == 61)) {
+        } else {
+            throw(134);
+        }
+    }
+    int $total = builder_bits($result);
+    int $padding = ($total % 8);
+    if (($padding != 0)) {
+        slice $s = $__gen_Builder_asSlice($result);
+        return $s~load_bits(($total - $padding));
+    } else {
+        return $__gen_Builder_asSlice($result);
+    }
+}
+
+cell $__gen_String_asComment(slice $self) impure inline_ref {
+    var ($self) = $self;
+    tuple $b = __tact_string_builder_start_comment();
+    $b~__tact_string_builder_append($self);
+    return __tact_string_builder_end($b);
+}
+
+slice $__gen_String_fromBase64(slice $self) impure inline_ref {
+    var ($self) = $self;
+    return $__gen_Slice_fromBase64(__tact_str_to_slice($self));
+}
+
+(cell, cell) $__gen_Beacon_init_child(cell sys', slice $master, slice $owner) {
+    slice sc' = sys'.begin_parse();
+    cell source = sc'~load_dict();
+    cell contracts = new_dict();
+    
+    ;; Contract Code: Beacon
+    cell mine = __tact_dict_get_code(source, 41210);
+    contracts = __tact_dict_set_code(contracts, 41210, mine);
+    
+    ;; Build cell
+    builder b = begin_cell();
+    b = b.store_ref(begin_cell().store_dict(contracts).end_cell());
+    b = b.store_int(false, 1);
+    b = __gen_write_$init$Beacon(b, ($master, $owner));
+    return (mine, b.end_cell());
+}
+
+((slice, int), ()) $__gen_Payouts_requireOwner((slice, int) $self) impure inline_ref {
+    var (($self'owner, $self'publicKey)) = $self;
+    throw_unless(132, __tact_address_eq(__gen_Context_get_sender(__tact_context_get()), $self'owner));
+    return (($self'owner, $self'publicKey), ());
+}
+
+slice $__gen_Payouts_owner((slice, int) $self) impure inline_ref {
+    var (($self'owner, $self'publicKey)) = $self;
+    return $self'owner;
+}
+
+_ $__gen_get_owner() method_id(83229) {
+    var self = __gen_load_Payouts();
+    var res = $__gen_Payouts_owner(self);
+    return res;
+}
+
+((int, slice, int, int, cell, cell, cell)) __gen_constructor_SendParameters$to_value_mode_bounce_body(slice to, int value, int mode, int bounce, cell body) inline {
+    return (bounce, to, value, mode, body, null(), null());
+}
+
+((int)) __gen_constructor_CanPayout$amount(int amount) inline {
+    return (amount);
+}
+
+((slice, int), ()) $__gen_Payouts_receive_comment((slice, int) $self, slice $msg) impure inline {
+    var ($self'owner, $self'publicKey) = $self;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    throw_unless(16059, ($ctx'value >= 1000000000));
+    slice $data = $__gen_String_fromBase64($msg);
+    int $amount = $data~load_coins();
+    slice $signature = $data~load_bits(512);
+    builder $dataToSign = begin_cell();
+    $dataToSign = __tact_store_address($dataToSign, $ctx'sender);
+    $dataToSign = store_coins($dataToSign, $amount);
+    int $hash = cell_hash($__gen_Builder_asCell($dataToSign));
+    throw_unless(48401, check_signature($hash, $signature, $self'publicKey));
+    var ($init'code, $init'data) = $__gen_Beacon_init_child(__tact_context_sys, my_address(), $ctx'sender);
+    slice $address = $contractAddress(($init'code, $init'data));
+    $send(__gen_constructor_SendParameters$to_value_mode_bounce_body($address, 0, (64 + 2), true, __gen_writecell_CanPayout(__gen_constructor_CanPayout$amount($amount))));
+    return (($self'owner, $self'publicKey), ());
+}
+
+(((slice, int)), ()) $__gen_Payouts_receive_CanPayoutResponse((slice, int) $self, (int, slice, int) $msg) impure inline {
+    var ($self'owner, $self'publicKey) = $self;
+    var ($msg'amount, $msg'address, $msg'ok) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    var ($init'code, $init'data) = $__gen_Beacon_init_child(__tact_context_sys, my_address(), $msg'address);
+    slice $address = $contractAddress(($init'code, $init'data));
+    throw_unless(4429, __tact_address_eq($ctx'sender, $address));
+    if ($msg'ok) {
+        throw_unless(62972, ((((__tact_my_balance() - $ctx'value) - 1000000000) - $msg'amount) > 0));
+        $send(__gen_constructor_SendParameters$to_value_mode_bounce_body($msg'address, $msg'amount, (64 + 2), false, $__gen_String_asComment(__gen_str_3364490128())));
+    } else {
+        $send(__gen_constructor_SendParameters$to_value_mode_bounce_body($msg'address, 0, (64 + 2), false, $__gen_String_asComment(__gen_str_2620117026())));
+    }
+    return (($self'owner, $self'publicKey), ());
+}
+
+(((slice, int)), ()) $__gen_Payouts_receive_ChangeOwner((slice, int) $self, (slice) $msg) impure inline {
+    var ($self'owner, $self'publicKey) = $self;
+    var ($msg'newOwner) = $msg;
+    ($self'owner, $self'publicKey)~$__gen_Payouts_requireOwner();
+    $self'owner = $msg'newOwner;
+    return (($self'owner, $self'publicKey), ());
+}
+
+((slice, int), int) __gen_router_Payouts((slice, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Receive CanPayoutResponse message
+    if (op == 4293607646) {
+        var msg = in_msg~__gen_read_CanPayoutResponse();
+        self~$__gen_Payouts_receive_CanPayoutResponse(msg);
+        return (self, true);
+    }
+    
+    ;; Receive ChangeOwner message
+    if (op == 256331011) {
+        var msg = in_msg~__gen_read_ChangeOwner();
+        self~$__gen_Payouts_receive_ChangeOwner(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        if (slice_bits(in_msg) >= 32) {
+            self~$__gen_Payouts_receive_comment(in_msg.skip_bits(32));
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = ((msg_flags & 1) == 1 ? true : false);
+    slice msg_sender_addr = cs~load_msg_addr();
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    
+    ;; Load contract data
+    var self = __gen_load_Payouts();
+    
+    ;; Handle operation
+    int handled = self~__gen_router_Payouts(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(handled, 130);
+    
+    ;; Persist state
+    __gen_store_Payouts(self);
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.ownable.transferable"H >> 128,
+        "org.ton.ownable"H >> 128
+    );
+}
+
+_ get_abi_ipfs() {
+    return "ipfs://QmQGyicLR8R8cw9umCwJgj2kiG5MbhDmRPu8LqcFxHJvuW";
+}
+
+_ lazy_deployment_completed() {
+    return get_data().begin_parse().load_int(1);
+}

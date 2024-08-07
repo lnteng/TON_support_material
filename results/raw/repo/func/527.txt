@@ -1,0 +1,40 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/func-contest3-solutions/2.fc:130:47: warning: Lack of end_parse.
+          slice bucket_old = queue_in~load_ref().begin_parse();
+                                                ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/func-contest3-solutions/2.fc:225:45: warning: Lack of end_parse.
+                  slice last_bucket = queue_in~load_ref().begin_parse();
+                                              ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/func-contest3-solutions/2.fc:227:58: warning: Lack of end_parse.
+                      bucket = bucket.store_ref(last_bucket~load_ref());
+                                                           ^
+recv_internal & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/func-contest3-solutions/2.fc:79:32: warning: Cell of get_data and set_data are inconsistent.
+      slice queue_in = get_data().begin_parse();
+                                 ^
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/func-contest3-solutions/2.fc:81:37: warning: Cell of get_data and set_data are inconsistent.
+      builder queue_out = begin_cell();
+                                      ^
+recv_internal & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/func-contest3-solutions/2.fc:79:32: warning: Cell of get_data and set_data are inconsistent.
+      slice queue_in = get_data().begin_parse();
+                                 ^
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/func-contest3-solutions/2.fc:81:37: warning: Cell of get_data and set_data are inconsistent.
+      builder queue_out = begin_cell();
+                                      ^
+recv_internal & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/func-contest3-solutions/2.fc:79:32: warning: Cell of get_data and set_data are inconsistent.
+      slice queue_in = get_data().begin_parse();
+                                 ^
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/func-contest3-solutions/2.fc:81:37: warning: Cell of get_data and set_data are inconsistent.
+      builder queue_out = begin_cell();
+                                      ^
+recv_internal & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/func-contest3-solutions/2.fc:79:32: warning: Cell of get_data and set_data are inconsistent.
+      slice queue_in = get_data().begin_parse();
+                                 ^
+/home/lentg/Movebit/ton-datasets1111/repo/./shuva10v/func-contest3-solutions/2.fc:81:37: warning: Cell of get_data and set_data are inconsistent.
+      builder queue_out = begin_cell();
+                                      ^

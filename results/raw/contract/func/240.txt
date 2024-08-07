@@ -1,0 +1,8 @@
+validate_dictionary_sequence: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBo6F4lFhRC1eXxTY77-ll4UKLmzCg34JbScMOyh9vUlaRv/multisig.func:12:42: warning: Local variable 'value' is not used
+          (index, slice value, int found?) = dict.udict_get_next?(INDEX_SIZE, index);
+                                           ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBo6F4lFhRC1eXxTY77-ll4UKLmzCg34JbScMOyh9vUlaRv/multisig.func:90:45: warning: Lack of end_parse.
+      slice sender_address = in_msg_full_slice~load_msg_addr();
+                                              ^

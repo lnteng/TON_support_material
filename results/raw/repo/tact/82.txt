@@ -1,0 +1,54 @@
+$Safe$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./paprikashio/moneybox_twa/contract/build/Minter/tact_Safe.code.fc:15:146: warning: Local variable '$self'id' is not used
+      var (($self'id, $self'owner, $self'parent, ($self'goal'is_init, $self'goal'name, $self'goal'amount, $self'goal'deadline, $self'goal'image))) = (null(), null(), null(), null());
+                                                                                                                                                   ^
+$Safe$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./paprikashio/moneybox_twa/contract/build/Minter/tact_Safe.code.fc:15:146: warning: Local variable '$self'owner' is not used
+      var (($self'id, $self'owner, $self'parent, ($self'goal'is_init, $self'goal'name, $self'goal'amount, $self'goal'deadline, $self'goal'image))) = (null(), null(), null(), null());
+                                                                                                                                                   ^
+$Safe$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./paprikashio/moneybox_twa/contract/build/Minter/tact_Safe.code.fc:15:146: warning: Local variable '$self'parent' is not used
+      var (($self'id, $self'owner, $self'parent, ($self'goal'is_init, $self'goal'name, $self'goal'amount, $self'goal'deadline, $self'goal'image))) = (null(), null(), null(), null());
+                                                                                                                                                   ^
+$Safe$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./paprikashio/moneybox_twa/contract/build/Minter/tact_Safe.code.fc:15:146: warning: Local variable '$self'goal'is_init' is not used
+      var (($self'id, $self'owner, $self'parent, ($self'goal'is_init, $self'goal'name, $self'goal'amount, $self'goal'deadline, $self'goal'image))) = (null(), null(), null(), null());
+                                                                                                                                                   ^
+$Safe$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./paprikashio/moneybox_twa/contract/build/Minter/tact_Safe.code.fc:15:146: warning: Local variable '$self'goal'name' is not used
+      var (($self'id, $self'owner, $self'parent, ($self'goal'is_init, $self'goal'name, $self'goal'amount, $self'goal'deadline, $self'goal'image))) = (null(), null(), null(), null());
+                                                                                                                                                   ^
+$Safe$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./paprikashio/moneybox_twa/contract/build/Minter/tact_Safe.code.fc:15:146: warning: Local variable '$self'goal'amount' is not used
+      var (($self'id, $self'owner, $self'parent, ($self'goal'is_init, $self'goal'name, $self'goal'amount, $self'goal'deadline, $self'goal'image))) = (null(), null(), null(), null());
+                                                                                                                                                   ^
+$Safe$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./paprikashio/moneybox_twa/contract/build/Minter/tact_Safe.code.fc:15:146: warning: Local variable '$self'goal'deadline' is not used
+      var (($self'id, $self'owner, $self'parent, ($self'goal'is_init, $self'goal'name, $self'goal'amount, $self'goal'deadline, $self'goal'image))) = (null(), null(), null(), null());
+                                                                                                                                                   ^
+$Safe$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./paprikashio/moneybox_twa/contract/build/Minter/tact_Safe.code.fc:15:146: warning: Local variable '$self'goal'image' is not used
+      var (($self'id, $self'owner, $self'parent, ($self'goal'is_init, $self'goal'name, $self'goal'amount, $self'goal'deadline, $self'goal'image))) = (null(), null(), null(), null());
+                                                                                                                                                   ^
+__tact_string_builder_append: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./paprikashio/moneybox_twa/contract/build/Minter/tact_Safe.stdlib.fc:102:31: warning: Lack of end_parse.
+              sc = sc~load_ref().begin_parse();
+                                ^
+$Safe$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./paprikashio/moneybox_twa/contract/build/Minter/tact_Safe.storage.fc:166:19: warning: Lack of end_parse.
+          return $sc~$Safe$_load();
+                    ^
+$Safe$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./paprikashio/moneybox_twa/contract/build/Minter/tact_Safe.code.fc:150:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./paprikashio/moneybox_twa/contract/build/Minter/tact_Safe.storage.fc:177:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Safe$_contract_store & $Safe$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./paprikashio/moneybox_twa/contract/build/Minter/tact_Safe.storage.fc:162:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./paprikashio/moneybox_twa/contract/build/Minter/tact_Safe.storage.fc:177:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

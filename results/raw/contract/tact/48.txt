@@ -1,0 +1,38 @@
+$TokenParent$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzjrt33epk-3QNmBzhFeF-UAVn_zPnTVar-jZFc1guXjvd/output/verifier_TokenParent.storage.fc:126:19: warning: Lack of end_parse.
+          return $sc~$TokenParent$_load();
+                    ^
+$TokenParent$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzjrt33epk-3QNmBzhFeF-UAVn_zPnTVar-jZFc1guXjvd/output/verifier_TokenParent.code.fc:21:57: warning: Local variable '$self'name' is not used
+      var (($self'name, $self'symbol, $self'totalSupply)) = (null(), null(), null());
+                                                          ^
+$TokenParent$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzjrt33epk-3QNmBzhFeF-UAVn_zPnTVar-jZFc1guXjvd/output/verifier_TokenParent.code.fc:21:57: warning: Local variable '$self'symbol' is not used
+      var (($self'name, $self'symbol, $self'totalSupply)) = (null(), null(), null());
+                                                          ^
+$TokenParent$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzjrt33epk-3QNmBzhFeF-UAVn_zPnTVar-jZFc1guXjvd/output/verifier_TokenParent.code.fc:21:57: warning: Local variable '$self'totalSupply' is not used
+      var (($self'name, $self'symbol, $self'totalSupply)) = (null(), null(), null());
+                                                          ^
+$TokenChild$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzjrt33epk-3QNmBzhFeF-UAVn_zPnTVar-jZFc1guXjvd/output/verifier_TokenParent.storage.fc:157:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$TokenParent$_contract_store & $TokenParent$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzjrt33epk-3QNmBzhFeF-UAVn_zPnTVar-jZFc1guXjvd/output/verifier_TokenParent.storage.fc:122:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzjrt33epk-3QNmBzhFeF-UAVn_zPnTVar-jZFc1guXjvd/output/verifier_TokenParent.storage.fc:137:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$TokenParent$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzjrt33epk-3QNmBzhFeF-UAVn_zPnTVar-jZFc1guXjvd/output/verifier_TokenParent.code.fc:81:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzjrt33epk-3QNmBzhFeF-UAVn_zPnTVar-jZFc1guXjvd/output/verifier_TokenParent.storage.fc:137:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$TokenParent$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzjrt33epk-3QNmBzhFeF-UAVn_zPnTVar-jZFc1guXjvd/output/verifier_TokenParent.code.fc:16:266: warning: UnHandle bounced message with op: 0xf813c89b
+  ... lAddTokens$_constructor_amount_origin($amount, my_address())), 30000000, 2, $init'code, $init'data));
+  ...                                                                                                     ^

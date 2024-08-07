@@ -1,0 +1,138 @@
+get_wallet_params: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:206:95: warning: Lack of end_parse.
+      var (stored_seqno, stored_subwallet, public_key) = (ds~load_uint(32), ds~load_uint(32), ds~load_uint(256));
+                                                                                                ^
+seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:194:22: warning: Lack of end_parse.
+      return get_data().begin_parse().preload_uint(32);
+                       ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:86:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:105:32: warning: Lack of end_parse.
+          int file_size = info_cs~load_uint(64);
+                                 ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:140:29: warning: Lack of end_parse.
+          var wallet_data = ds~load_bits(32 + 32 + 256);
+                              ^
+deploy_storage_contract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:59:15: warning: Lack of end_parse.
+              ds~load_uint(64));
+                ^
+deploy_storage_contract: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:54:32: warning: Local variable 'wallet_data' is not used
+              maximal_file_size) = (ds~load_bits(32 + 32 + 256),
+                                 ^
+get_storage_params: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:222:15: warning: Lack of end_parse.
+              ds~load_uint(64));
+                ^
+get_storage_params: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:217:32: warning: Local variable 'wallet_data' is not used
+              maximal_file_size) = (ds~load_bits(32 + 32 + 256),
+                                 ^
+get_public_key: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:199:7: warning: Lack of end_parse.
+      cs~load_uint(64);
+        ^
+recv_external & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:139:28: warning: Cell of get_data and set_data are inconsistent.
+          var ds = get_data().begin_parse();
+                             ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:184:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(stored_seqno + 1, 32)
+              ^
+recv_external & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:122:28: warning: Cell of get_data and set_data are inconsistent.
+          var ds = get_data().begin_parse();
+                             ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:184:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(stored_seqno + 1, 32)
+              ^
+recv_external & deploy_storage_contract: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:48:24: warning: Cell of get_data and set_data are inconsistent.
+      var ds = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:184:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(stored_seqno + 1, 32)
+              ^
+recv_external & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:198:24: warning: Cell of get_data and set_data are inconsistent.
+      var cs = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:184:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(stored_seqno + 1, 32)
+              ^
+recv_internal & get_wallet_params: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:205:24: warning: Cell of get_data and set_data are inconsistent.
+      var ds = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:151:17: warning: Cell of get_data and set_data are inconsistent.
+                  .store_slice(wallet_data)
+                  ^
+recv_internal & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:139:28: warning: Cell of get_data and set_data are inconsistent.
+          var ds = get_data().begin_parse();
+                             ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:151:17: warning: Cell of get_data and set_data are inconsistent.
+                  .store_slice(wallet_data)
+                  ^
+recv_internal & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:122:28: warning: Cell of get_data and set_data are inconsistent.
+          var ds = get_data().begin_parse();
+                             ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:151:17: warning: Cell of get_data and set_data are inconsistent.
+                  .store_slice(wallet_data)
+                  ^
+recv_internal & deploy_storage_contract: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:48:24: warning: Cell of get_data and set_data are inconsistent.
+      var ds = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:151:17: warning: Cell of get_data and set_data are inconsistent.
+                  .store_slice(wallet_data)
+                  ^
+recv_internal & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:198:24: warning: Cell of get_data and set_data are inconsistent.
+      var cs = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:151:17: warning: Cell of get_data and set_data are inconsistent.
+                  .store_slice(wallet_data)
+                  ^
+recv_internal & get_wallet_params: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:205:24: warning: Cell of get_data and set_data are inconsistent.
+      var ds = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:130:17: warning: Cell of get_data and set_data are inconsistent.
+                  .store_slice(seqno_subwallet)
+                  ^
+recv_internal & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:139:28: warning: Cell of get_data and set_data are inconsistent.
+          var ds = get_data().begin_parse();
+                             ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:130:17: warning: Cell of get_data and set_data are inconsistent.
+                  .store_slice(seqno_subwallet)
+                  ^
+recv_internal & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:122:28: warning: Cell of get_data and set_data are inconsistent.
+          var ds = get_data().begin_parse();
+                             ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:130:17: warning: Cell of get_data and set_data are inconsistent.
+                  .store_slice(seqno_subwallet)
+                  ^
+recv_internal & deploy_storage_contract: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:48:24: warning: Cell of get_data and set_data are inconsistent.
+      var ds = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:130:17: warning: Cell of get_data and set_data are inconsistent.
+                  .store_slice(seqno_subwallet)
+                  ^
+recv_internal & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:198:24: warning: Cell of get_data and set_data are inconsistent.
+      var cs = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/ton-testnet/storage/storage-daemon/smartcont/storage-provider.fc:130:17: warning: Cell of get_data and set_data are inconsistent.
+                  .store_slice(seqno_subwallet)
+                  ^

@@ -1,0 +1,15 @@
+$Dex$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/dex_Dex.storage.fc:92:19: warning: Lack of end_parse.
+          return $sc~$Dex$_load();
+                    ^
+$Dex$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/dex_Dex.code.fc:14:25: warning: Local variable '$self'owner' is not used
+      var (($self'owner)) = (null());
+                          ^
+$Dex$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/dex_Dex.code.fc:72:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/dex_Dex.storage.fc:103:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

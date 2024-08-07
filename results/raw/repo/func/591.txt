@@ -1,0 +1,28 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/TON-Marketplace-NFT-All/smartcont/marketplace.func:47:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/TON-Marketplace-NFT-All/smartcont/marketplace.func:83:30: warning: Lack of end_parse.
+          var signature = check~load_bits(512); ;; apparent signature
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/TON-Marketplace-NFT-All/smartcont/marketplace.func:49:75: warning: Local variable 'initialized' is not used
+      var (initialized, owner_address, public_key, sale_code, amounts_cell) = load_data();
+                                                                            ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/TON-Marketplace-NFT-All/smartcont/marketplace.func:79:34: warning: Local variable 'prev_owner_address' is not used
+          slice prev_owner_address = in_msg_body~load_msg_addr(); ;; Previous owner is the account that put item up for sale
+                                   ^
+load_amounts: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/TON-Marketplace-NFT-All/smartcont/marketplace.func:33:15: warning: Lack of end_parse.
+              ds~load_coins() ;; transfer_amount, how much does it cost to transfer an item
+                ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/TON-Marketplace-NFT-All/smartcont/marketplace.func:25:23: warning: Lack of end_parse.
+                      ds~load_ref() ;; amounts_cell
+                        ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/TON-Marketplace-NFT-All/smartcont/marketplace.func:133:49: warning: UnHandle bounced message with op: 0x5fcc3d14
+          send_raw_message(item_msg.end_cell(), 1); ;; Fees separately
+                                                  ^

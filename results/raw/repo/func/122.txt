@@ -1,0 +1,56 @@
+messages::send_log: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/TDB-template/contracts/imports/messages.fc:62:14: warning: Local variable 'msg' is not used
+      cell msg = begin_cell()
+               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/TDB-template/contracts/nft_dapp.fc:343:22: warning: Lack of end_parse.
+        change_owner(cs~load_msg_addr());
+                       ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/TDB-template/contracts/nft_dapp.fc:350:33: warning: Lack of end_parse.
+        withdraw_funds(balance, cs~load_coins());
+                                  ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/TDB-template/contracts/nft_dapp.fc:357:19: warning: Lack of end_parse.
+        edit_code(cs~load_ref());
+                    ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/TDB-template/contracts/nft_dapp.fc:246:72: warning: Local variable 'next_collection_index' is not used
+    (slice dapp_owner, int next_collection_index, cell collections_dict) = load_data();
+                                                                         ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/TDB-template/contracts/nft_dapp.fc:246:72: warning: Local variable 'collections_dict' is not used
+    (slice dapp_owner, int next_collection_index, cell collections_dict) = load_data();
+                                                                         ^
+parse_external_message: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/TDB-template/contracts/imports/test-libs/message_helpers.fc:676:14: warning: Local variable 'body' is not used
+      var body = null();
+               ^
+parse_internal_message: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/TDB-template/contracts/imports/test-libs/message_helpers.fc:632:53: warning: Lack of end_parse.
+                      init_state = parse_init_state(cs~load_ref().begin_parse());
+                                                      ^
+parse_internal_message: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/TDB-template/contracts/imports/test-libs/message_helpers.fc:622:17: warning: Local variable 'ihr_fee' is not used
+      int ihr_fee = cs~load_grams();
+                  ^
+parse_internal_message: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/TDB-template/contracts/imports/test-libs/message_helpers.fc:623:17: warning: Local variable 'fwd_fee' is not used
+      int fwd_fee = cs~load_grams();
+                  ^
+parse_internal_message: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/TDB-template/contracts/imports/test-libs/message_helpers.fc:639:14: warning: Local variable 'body' is not used
+      var body = null();
+               ^
+change_owner: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/TDB-template/contracts/nft_dapp.fc:50:72: warning: Local variable 'dapp_owner' is not used
+    (slice dapp_owner, int next_collection_index, cell collections_dict) = load_data();
+                                                                         ^
+edit_code: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/TDB-template/contracts/nft_dapp.fc:72:18: warning: Lack of end_parse.
+    set_c3(new_code.begin_parse().bless());
+                   ^
+edit_code: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/TDB-template/contracts/nft_dapp.fc:71:17: warning: Local variable 'old_code' is not used
+    cont old_code = get_c3();
+                  ^

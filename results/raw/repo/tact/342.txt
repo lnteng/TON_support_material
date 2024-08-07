@@ -1,0 +1,42 @@
+$__gen_PositionAddressContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionAddressContract.code.fc:98:76: warning: Local variable '$self'id' is not used
+      var (($self'id, $self'positionAddress, $self'positionsManagerAddress)) = (null(), null(), null());
+                                                                             ^
+$__gen_PositionAddressContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionAddressContract.code.fc:98:76: warning: Local variable '$self'positionAddress' is not used
+      var (($self'id, $self'positionAddress, $self'positionsManagerAddress)) = (null(), null(), null());
+                                                                             ^
+$__gen_PositionAddressContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionAddressContract.code.fc:98:76: warning: Local variable '$self'positionsManagerAddress' is not used
+      var (($self'id, $self'positionAddress, $self'positionsManagerAddress)) = (null(), null(), null());
+                                                                             ^
+$__gen_PositionAddressContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionAddressContract.code.fc:99:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$__gen_PositionAddressContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionAddressContract.code.fc:99:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$__gen_PositionAddressContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionAddressContract.code.fc:99:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+__gen_load_PositionAddressContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionAddressContract.code.fc:111:19: warning: Lack of end_parse.
+          return $sc~__gen_read_PositionAddressContract();
+                    ^
+__gen_store_PositionAddressContract & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionAddressContract.code.fc:284:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionAddressContract.code.fc:122:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+__gen_store_PositionAddressContract & __gen_load_PositionAddressContract: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionAddressContract.code.fc:107:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionAddressContract.code.fc:122:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

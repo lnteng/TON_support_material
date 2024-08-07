@@ -1,0 +1,40 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAJH3hes0tpc-2QZxVJUHfCxEm3WwkuknHVWrmdiSBLnZsV/./jetton-wallet.fc:28:21: warning: Lack of end_parse.
+      int fwd_fee = cs~load_coins(); ;; we use message fwd_fee for estimation of forward_payload costs
+                      ^
+handle::receive_tokens: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAJH3hes0tpc-2QZxVJUHfCxEm3WwkuknHVWrmdiSBLnZsV/././structure/handles.fc:183:44: warning: Lack of end_parse.
+          int end_unlock_time = lockup_params~load_uint(32);
+                                             ^
+handle::on_bounce: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAJH3hes0tpc-2QZxVJUHfCxEm3WwkuknHVWrmdiSBLnZsV/././structure/handles.fc:262:18: warning: Local variable 'query_id' is not used
+      int query_id = in_msg_body~load_uint(64);
+                   ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAJH3hes0tpc-2QZxVJUHfCxEm3WwkuknHVWrmdiSBLnZsV/././structure/storage.fc:33:43: warning: Lack of end_parse.
+      authentic::wallet_code = authentic_ref~load_ref();
+                                            ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAJH3hes0tpc-2QZxVJUHfCxEm3WwkuknHVWrmdiSBLnZsV/././structure/storage.fc:29:29: warning: Lack of end_parse.
+      slice authentic_ref = ds~load_ref().begin_parse();
+                              ^
+handle::calculate_unlocked_amount: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAJH3hes0tpc-2QZxVJUHfCxEm3WwkuknHVWrmdiSBLnZsV/././structure/handles.fc:32:54: warning: PressionLoss
+                  int tokens_unlocked = seconds_passed * tokens_per_second;
+                                                       ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAJH3hes0tpc-2QZxVJUHfCxEm3WwkuknHVWrmdiSBLnZsV/././structure/handles.fc:238:81: warning: UnHandle bounced message with op: 0x7362d09c
+          send_raw_message(msg.end_cell(), REVERT_ON_ERRORS | PAY_FEES_SEPARATELY);
+                                                                                  ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAJH3hes0tpc-2QZxVJUHfCxEm3WwkuknHVWrmdiSBLnZsV/././structure/handles.fc:155:55: warning: UnHandle bounced message with op: 0x178d4519
+      send_raw_message(msg.end_cell(), REVERT_ON_ERRORS);
+                                                        ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAJH3hes0tpc-2QZxVJUHfCxEm3WwkuknHVWrmdiSBLnZsV/././structure/handles.fc:98:55: warning: UnHandle bounced message with op: 0x7bdd97de
+      send_raw_message(msg.end_cell(), REVERT_ON_ERRORS);
+                                                        ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAJH3hes0tpc-2QZxVJUHfCxEm3WwkuknHVWrmdiSBLnZsV/././structure/authentic.fc:30:29: warning: UnHandle bounced message with op: 0xf8a7ea5
+      send_raw_message(msg, 1);
+                              ^

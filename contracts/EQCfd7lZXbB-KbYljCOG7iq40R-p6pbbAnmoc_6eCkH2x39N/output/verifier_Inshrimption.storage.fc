@@ -1,0 +1,204 @@
+;;
+;; Type: StateInit
+;; TLB: _ code:^cell data:^cell = StateInit
+;;
+
+((cell, cell)) $StateInit$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (cell vvv'code, cell vvv'data) = __tact_tuple_destroy_2(v);
+    return (vvv'code, vvv'data);
+}
+
+;;
+;; Type: Context
+;; TLB: _ bounced:bool sender:address value:int257 raw:^slice = Context
+;;
+
+_ $Context$_get_value((int, slice, int, slice) v) inline {
+    var (v'bounced, v'sender, v'value, v'raw) = v;
+    return v'value;
+}
+
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline {
+    return (bounce, to, value, mode, body, code, data);
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode(slice to, int value, int mode) inline {
+    return (true, to, value, mode, null(), null(), null());
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_bounce_value_mode(slice to, int bounce, int value, int mode) inline {
+    return (bounce, to, value, mode, null(), null(), null());
+}
+
+;;
+;; Type: Deploy
+;; Header: 0x946a98b6
+;; TLB: deploy#946a98b6 queryId:uint64 = Deploy
+;;
+
+(slice, ((int))) $Deploy$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2490013878);
+    var v'queryId = sc_0~load_uint(64);
+    return (sc_0, (v'queryId));
+}
+
+;;
+;; Type: DeployOk
+;; Header: 0xaff90f57
+;; TLB: deploy_ok#aff90f57 queryId:uint64 = DeployOk
+;;
+
+builder $DeployOk$_store(builder build_0, (int) v) inline {
+    var (v'queryId) = v;
+    build_0 = store_uint(build_0, 2952335191, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    return build_0;
+}
+
+cell $DeployOk$_store_cell((int) v) inline {
+    return $DeployOk$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $DeployOk$_constructor_queryId(int queryId) inline {
+    return (queryId);
+}
+
+;;
+;; Type: ChangeOwner
+;; Header: 0x819dbe99
+;; TLB: change_owner#819dbe99 queryId:uint64 newOwner:address = ChangeOwner
+;;
+
+(slice, ((int, slice))) $ChangeOwner$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2174598809);
+    var v'queryId = sc_0~load_uint(64);
+    var v'newOwner = sc_0~__tact_load_address();
+    return (sc_0, (v'queryId, v'newOwner));
+}
+
+;;
+;; Type: ChangeOwnerOk
+;; Header: 0x327b2b4a
+;; TLB: change_owner_ok#327b2b4a queryId:uint64 newOwner:address = ChangeOwnerOk
+;;
+
+builder $ChangeOwnerOk$_store(builder build_0, (int, slice) v) inline {
+    var (v'queryId, v'newOwner) = v;
+    build_0 = store_uint(build_0, 846932810, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    build_0 = __tact_store_address(build_0, v'newOwner);
+    return build_0;
+}
+
+cell $ChangeOwnerOk$_store_cell((int, slice) v) inline {
+    return $ChangeOwnerOk$_store(begin_cell(), v).end_cell();
+}
+
+((int, slice)) $ChangeOwnerOk$_constructor_queryId_newOwner(int queryId, slice newOwner) inline {
+    return (queryId, newOwner);
+}
+
+;;
+;; Type: Buy
+;; Header: 0x5bc58ae8
+;; TLB: buy#5bc58ae8 seller:address amount:uint32 price:uint256 nonce:uint32 = Buy
+;;
+
+(slice, ((slice, int, int, int))) $Buy$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 1539672808);
+    var v'seller = sc_0~__tact_load_address();
+    var v'amount = sc_0~load_uint(32);
+    var v'price = sc_0~load_uint(256);
+    var v'nonce = sc_0~load_uint(32);
+    return (sc_0, (v'seller, v'amount, v'price, v'nonce));
+}
+
+;;
+;; Type: Cancel
+;; Header: 0x768b4d10
+;; TLB: cancel#768b4d10 amount:uint32 price:uint256 nonce:uint32 = Cancel
+;;
+
+(slice, ((int, int, int))) $Cancel$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 1988840720);
+    var v'amount = sc_0~load_uint(32);
+    var v'price = sc_0~load_uint(256);
+    var v'nonce = sc_0~load_uint(32);
+    return (sc_0, (v'amount, v'price, v'nonce));
+}
+
+;;
+;; Type: Fee
+;; Header: 0xd3bdb940
+;; TLB: fee#d3bdb940 sellPerc:int257 msg:int257 inscribe:int257 = Fee
+;;
+
+(slice, ((int, int, int))) $Fee$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 3552426304);
+    var v'sellPerc = sc_0~load_int(257);
+    var v'msg = sc_0~load_int(257);
+    var v'inscribe = sc_0~load_int(257);
+    return (sc_0, (v'sellPerc, v'msg, v'inscribe));
+}
+
+;;
+;; Type: Inshrimption
+;;
+
+builder $Inshrimption$_store(builder build_0, (int, slice, cell, int, int, int) v) inline {
+    var (v'currSeqno, v'owner, v'used, v'sellFeePerc, v'msgFee, v'inscribeFee) = v;
+    build_0 = build_0.store_int(v'currSeqno, 257);
+    build_0 = __tact_store_address(build_0, v'owner);
+    build_0 = build_0.store_dict(v'used);
+    build_0 = build_0.store_int(v'sellFeePerc, 257);
+    var build_1 = begin_cell();
+    build_1 = build_1.store_int(v'msgFee, 257);
+    build_1 = build_1.store_int(v'inscribeFee, 257);
+    build_0 = store_ref(build_0, build_1.end_cell());
+    return build_0;
+}
+
+(slice, ((int, slice, cell, int, int, int))) $Inshrimption$_load(slice sc_0) inline {
+    var v'currSeqno = sc_0~load_int(257);
+    var v'owner = sc_0~__tact_load_address();
+    var v'used = sc_0~load_dict();
+    var v'sellFeePerc = sc_0~load_int(257);
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'msgFee = sc_1~load_int(257);
+    var v'inscribeFee = sc_1~load_int(257);
+    return (sc_0, (v'currSeqno, v'owner, v'used, v'sellFeePerc, v'msgFee, v'inscribeFee));
+}
+
+(slice, ((int))) $Inshrimption$init$_load(slice sc_0) inline {
+    var v'initSeqno = sc_0~load_int(257);
+    return (sc_0, (v'initSeqno));
+}
+
+(int, slice, cell, int, int, int) $Inshrimption$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$Inshrimption$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (int initSeqno) = $sc~$Inshrimption$init$_load();
+        $sc.end_parse();
+        return $Inshrimption$_contract_init(initSeqno);
+    }
+}
+
+() $Inshrimption$_contract_store((int, slice, cell, int, int, int) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $Inshrimption$_store(b, v);
+    set_data(b.end_cell());
+}

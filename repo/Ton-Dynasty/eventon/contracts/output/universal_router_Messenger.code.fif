@@ -1,0 +1,1037 @@
+PROGRAM{
+  DECLPROC __tact_verify_address
+  DECLPROC __tact_load_address
+  DECLPROC __tact_store_address
+  DECLPROC __tact_my_balance
+  DECLPROC __tact_not_null
+  DECLPROC __tact_context_get
+  DECLPROC __tact_context_get_sender
+  DECLPROC __tact_store_bool
+  DECLPROC __tact_dict_set_int_int
+  DECLPROC __tact_dict_get_int_int
+  DECLPROC __tact_dict_set_int_slice
+  DECLPROC __tact_dict_get_int_slice
+  DECLPROC __tact_slice_eq_bits
+  DECLPROC $Deploy$_load
+  DECLPROC $DeployOk$_store
+  DECLPROC $DeployOk$_store_cell
+  DECLPROC $EventSignal$_store
+  DECLPROC $EventSignal$_store_cell
+  DECLPROC $EventSignal$_load
+  DECLPROC $BuildMessenger$_load
+  DECLPROC $ProtcolRegisterSuccess$_store
+  DECLPROC $ProtcolRegisterSuccess$_store_cell
+  DECLPROC $CreateMsgSubscriber$_load
+  DECLPROC $CreateMsgSubscriberSuccess$_store
+  DECLPROC $CreateMsgSubscriberSuccess$_store_cell
+  DECLPROC $DeleteSubscriber$_load
+  DECLPROC $DestroyMessenger$_store
+  DECLPROC $DestroyMessenger$_store_cell
+  DECLPROC $CollectFee$_store
+  DECLPROC $CollectFee$_store_cell
+  DECLPROC $Messenger$_store
+  DECLPROC $Messenger$_load
+  DECLPROC $StateInit$_not_null
+  DECLPROC $Messenger$init$_load
+  DECLPROC $Messenger$_contract_init
+  DECLPROC $Messenger$_contract_load
+  DECLPROC $Messenger$_contract_store
+  DECLPROC $global_send
+  DECLPROC $global_emit
+  DECLPROC $Cell$_fun_asSlice
+  DECLPROC $SendParameters$_constructor_bounce_to_value_mode_body_code_data
+  DECLPROC $Messenger$_fun_idToSubscriber
+  DECLPROC $Messenger$_fun_getsubId
+  DECLPROC $Messenger$_fun_totalSubscriberNumber
+  DECLPROC $Messenger$_fun_forward
+  DECLPROC $Messenger$_fun_reply
+  DECLPROC $Messenger$_fun_notify
+  DECLPROC $Messenger$_fun_requireOwner
+  DECLPROC $Messenger$_fun_owner
+  DECLPROC $ProtcolRegisterSuccess$_constructor_sourceAddress_eventId_maxUserStakeAmount_subscribeFeePerTick_template_sourceName
+  DECLPROC $SendParameters$_constructor_to_value_mode_bounce_body
+  DECLPROC $EventSignal$_constructor_eventId_payload
+  DECLPROC $SendParameters$_constructor_to_value_mode_body
+  DECLPROC $CollectFee$_constructor_messengerId_fee
+  DECLPROC $CreateMsgSubscriberSuccess$_constructor_callbackAddress
+  DECLPROC $DestroyMessenger$_constructor_messengerId
+  DECLPROC $DeployOk$_constructor_queryId
+  DECLPROC %$Messenger$_internal_empty
+  DECLPROC $Messenger$_internal_binary_BuildMessenger
+  DECLPROC $Messenger$_internal_binary_EventSignal
+  DECLPROC $Messenger$_internal_binary_CreateMsgSubscriber
+  DECLPROC $Messenger$_internal_binary_DeleteSubscriber
+  DECLPROC $Messenger$_internal_binary_Deploy
+  81607 DECLMETHOD %idToSubscriber
+  106553 DECLMETHOD %getsubId
+  87208 DECLMETHOD %totalSubscriberNumber
+  83229 DECLMETHOD %owner
+  113617 DECLMETHOD supported_interfaces
+  121275 DECLMETHOD get_abi_ipfs
+  115390 DECLMETHOD lazy_deployment_completed
+  DECLPROC $Messenger$_contract_router_internal
+  DECLPROC recv_internal
+  DECLGLOBVAR __tact_context
+  DECLGLOBVAR __tact_context_sender
+  DECLGLOBVAR __tact_context_sys
+  DECLGLOBVAR __tact_randomized
+  __tact_verify_address PROCINLINE:<{
+    DUP
+    SBITS
+    267 PUSHINT
+    EQUAL
+    136 THROWIFNOT
+    DUP
+    11 PLDU
+    DUP
+    1279 PUSHINT
+    EQUAL
+    137 THROWIF
+    10 PUSHPOW2
+    EQUAL
+    136 THROWIFNOT
+  }>
+  __tact_load_address PROCINLINE:<{
+    LDMSGADDR
+    SWAP
+    __tact_verify_address INLINECALLDICT
+  }>
+  __tact_store_address PROCINLINE:<{
+    __tact_verify_address INLINECALLDICT
+    STSLICER
+  }>
+  __tact_my_balance PROCINLINE:<{
+    BALANCE
+    FIRST
+  }>
+  __tact_not_null PROCINLINE:<{
+    DUP
+    ISNULL
+    128 THROWIF
+  }>
+  __tact_context_get PROCINLINE:<{
+    __tact_context GETGLOB
+    4 UNTUPLE
+  }>
+  __tact_context_get_sender PROCINLINE:<{
+    __tact_context_sender GETGLOB
+  }>
+  __tact_store_bool PROCINLINE:<{
+    SWAP
+    1 STI
+  }>
+  __tact_dict_set_int_int PROCINLINE:<{
+    OVER
+    ISNULL
+    IF:<{
+      2DROP
+      -ROT
+      DICTIDEL
+      DROP
+    }>ELSE<{
+      NEWC
+      SWAP
+      STIX
+      s1 s3 s3 XCHG3
+      DICTISETB
+    }>
+  }>
+  __tact_dict_get_int_int PROCINLINE:<{
+    s1 s3 s3 XCHG3
+    DICTIGET
+    NULLSWAPIFNOT
+    IF:<{
+      SWAP
+      LDIX
+      DROP
+    }>ELSE<{
+      2DROP
+      PUSHNULL
+    }>
+  }>
+  __tact_dict_set_int_slice PROCINLINE:<{
+    DUP
+    ISNULL
+    IF:<{
+      DROP
+      -ROT
+      DICTIDEL
+      DROP
+    }>ELSE<{
+      s1 s3 s3 XCHG3
+      DICTISET
+    }>
+  }>
+  __tact_dict_get_int_slice PROCINLINE:<{
+    -ROT
+    DICTIGET
+    NULLSWAPIFNOT
+    IF:<{
+    }>ELSE<{
+      DROP
+      PUSHNULL
+    }>
+  }>
+  __tact_slice_eq_bits PROCINLINE:<{
+    SDEQ
+  }>
+  $Deploy$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    2490013878 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    64 LDU
+    SWAP
+  }>
+  $DeployOk$_store PROCINLINE:<{
+    2952335191 PUSHINT
+    ROT
+    32 STU
+    64 STU
+  }>
+  $DeployOk$_store_cell PROCINLINE:<{
+    NEWC
+    SWAP
+    $DeployOk$_store INLINECALLDICT
+    ENDC
+  }>
+  $EventSignal$_store PROCINLINE:<{
+    306637748 PUSHINT
+    s0 s3 XCHG2
+    32 STU
+    257 PUSHINT
+    STIX
+    STREF
+  }>
+  $EventSignal$_store_cell PROCINLINE:<{
+    NEWC
+    -ROT
+    $EventSignal$_store INLINECALLDICT
+    ENDC
+  }>
+  $EventSignal$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    306637748 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    257 PUSHINT
+    LDIX
+    LDREF
+    -ROT
+  }>
+  $BuildMessenger$_load PROCREF:<{
+    32 LDU
+    SWAP
+    2826761911 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    __tact_load_address INLINECALLDICT
+    SWAP
+    257 PUSHINT
+    LDIX
+    LDGRAMS
+    LDGRAMS
+    LDREF
+    LDREF
+    SWAP
+    CTOS
+    s1 s6 XCHG
+    s1 s5 XCHG
+    s1 s4 XCHG
+    s3 s3 s0 XCHG3
+  }>
+  $ProtcolRegisterSuccess$_store PROCREF:<{
+    2543656262 PUSHINT
+    s0 s7 XCHG2
+    32 STU
+    s0 s5 XCHG2
+    __tact_store_address INLINECALLDICT
+    s1 s3 XCHG
+    257 PUSHINT
+    STIX
+    SWAP
+    STGRAMS
+    SWAP
+    STGRAMS
+    STREF
+    NEWC
+    ROT
+    STSLICER
+    ENDC
+    SWAP
+    STREF
+  }>
+  $ProtcolRegisterSuccess$_store_cell PROCINLINE:<{
+    NEWC
+    6 -ROLL
+    $ProtcolRegisterSuccess$_store INLINECALLDICT
+    ENDC
+  }>
+  $CreateMsgSubscriber$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    2100856841 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    __tact_load_address INLINECALLDICT
+    SWAP
+    __tact_load_address INLINECALLDICT
+    SWAP
+    257 PUSHINT
+    LDIX
+    3 -ROLL
+  }>
+  $CreateMsgSubscriberSuccess$_store PROCINLINE:<{
+    3382650231 PUSHINT
+    ROT
+    32 STU
+    SWAP
+    __tact_store_address INLINECALLDICT
+  }>
+  $CreateMsgSubscriberSuccess$_store_cell PROCINLINE:<{
+    NEWC
+    SWAP
+    $CreateMsgSubscriberSuccess$_store INLINECALLDICT
+    ENDC
+  }>
+  $DeleteSubscriber$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    380345681 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    __tact_load_address INLINECALLDICT
+    SWAP
+    __tact_load_address INLINECALLDICT
+    SWAP
+    257 PUSHINT
+    LDIX
+    3 -ROLL
+  }>
+  $DestroyMessenger$_store PROCINLINE:<{
+    2952350305 PUSHINT
+    ROT
+    32 STU
+    257 PUSHINT
+    STIX
+  }>
+  $DestroyMessenger$_store_cell PROCINLINE:<{
+    NEWC
+    SWAP
+    $DestroyMessenger$_store INLINECALLDICT
+    ENDC
+  }>
+  $CollectFee$_store PROCINLINE:<{
+    901872456 PUSHINT
+    s0 s3 XCHG2
+    32 STU
+    257 PUSHINT
+    STIX
+    SWAP
+    STGRAMS
+  }>
+  $CollectFee$_store_cell PROCINLINE:<{
+    NEWC
+    -ROT
+    $CollectFee$_store INLINECALLDICT
+    ENDC
+  }>
+  $Messenger$_store PROCINLINE:<{
+    s9 s8 XCHG2
+    __tact_store_address INLINECALLDICT
+    s0 s6 XCHG2
+    __tact_store_address INLINECALLDICT
+    s1 s4 XCHG
+    257 PUSHINT
+    STIX
+    s0 s2 XCHG
+    NEWC
+    257 PUSHINT
+    STIX
+    STDICT
+    s1 s2 XCHG
+    STDICT
+    s1 s2 XCHG
+    STDICT
+    s1 s3 XCHG
+    257 PUSHINT
+    STIX
+    257 PUSHINT
+    STIX
+    ENDC
+    SWAP
+    STREF
+  }>
+  $Messenger$_load PROCINLINE:<{
+    __tact_load_address INLINECALLDICT
+    SWAP
+    __tact_load_address INLINECALLDICT
+    SWAP
+    257 PUSHINT
+    LDIX
+    LDREF
+    SWAP
+    CTOS
+    257 PUSHINT
+    LDIX
+    LDDICT
+    LDDICT
+    LDDICT
+    257 PUSHINT
+    LDIX
+    257 PUSHINT
+    LDIX
+    DROP
+    s6 s9 XCHG
+    s6 s8 XCHG
+    s6 s7 XCHG
+  }>
+  $StateInit$_not_null PROCINLINE:<{
+    DUP
+    ISNULL
+    128 THROWIF
+    2 UNTUPLE
+  }>
+  $Messenger$init$_load PROCINLINE:<{
+    __tact_load_address INLINECALLDICT
+    SWAP
+    __tact_load_address INLINECALLDICT
+    SWAP
+    257 PUSHINT
+    LDIX
+    3 -ROLL
+  }>
+  $Messenger$_contract_init PROCREF:<{
+    PUSHNULL
+    PUSHNULL
+    PUSHNULL
+    0 PUSHINT
+    s3 s3 s3 XCPU2
+    s2 s4 XCHG
+    s2 s3 XCHG
+  }>
+  $Messenger$_contract_load PROCREF:<{
+    c4 PUSH
+    CTOS
+    LDREF
+    SWAP
+    __tact_context_sys SETGLOB
+    1 LDI
+    SWAP
+    IFJMP:<{
+      $Messenger$_load INLINECALLDICT
+      1 9 BLKDROP2
+    }>
+    MYADDR
+    11 PLDU
+    10 PUSHPOW2
+    EQUAL
+    137 THROWIFNOT
+    $Messenger$init$_load INLINECALLDICT
+    s0 s3 XCHG
+    ENDS
+    ROT
+    $Messenger$_contract_init INLINECALLDICT
+  }>
+  $Messenger$_contract_store PROCINLINE:<{
+    NEWC
+    __tact_context_sys GETGLOB
+    SWAP
+    STREF
+    TRUE
+    SWAP
+    1 STI
+    9 -ROLL
+    $Messenger$_store INLINECALLDICT
+    ENDC
+    c4 POP
+  }>
+  $global_send PROCREF:<{
+    NEWC
+    1 PUSHINT
+    SWAP
+    2 STI
+    s0 s7 XCHG2
+    __tact_store_bool INLINECALLDICT
+    0 PUSHINT
+    SWAP
+    3 STI
+    s0 s5 XCHG2
+    __tact_store_address INLINECALLDICT
+    s0 s3 XCHG2
+    STGRAMS
+    0 PUSHINT
+    SWAP
+    105 STI
+    s3 PUSH
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+    }>ELSE<{
+      s4 PUSH
+      ISNULL
+      NOT
+    }>
+    IF:<{
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      NEWC
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      s4 PUSH
+      ISNULL
+      NOT
+      IF:<{
+        TRUE
+        __tact_store_bool INLINECALLDICT
+        s0 s4 XCHG
+        __tact_not_null INLINECALLDICT
+        s0 s4 XCHG2
+        STREF
+      }>ELSE<{
+        s4 POP
+        s0 s3 XCHG
+        FALSE
+        __tact_store_bool INLINECALLDICT
+      }>
+      s4 PUSH
+      ISNULL
+      NOT
+      IF:<{
+        TRUE
+        __tact_store_bool INLINECALLDICT
+        s0 s4 XCHG
+        __tact_not_null INLINECALLDICT
+        s0 s4 XCHG2
+        STREF
+      }>ELSE<{
+        s4 POP
+        s0 s3 XCHG
+        FALSE
+        __tact_store_bool INLINECALLDICT
+      }>
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      s0 s2 XCHG
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      s0 s2 XCHG
+      ENDC
+      ROT
+      STREF
+    }>ELSE<{
+      s3 POP
+      s3 POP
+      SWAP
+      FALSE
+      __tact_store_bool INLINECALLDICT
+    }>
+    OVER
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      SWAP
+      __tact_not_null INLINECALLDICT
+      SWAP
+      STREF
+    }>ELSE<{
+      NIP
+      FALSE
+      __tact_store_bool INLINECALLDICT
+    }>
+    ENDC
+    SWAP
+    SENDRAWMSG
+  }>
+  $global_emit PROCINLINE:<{
+    NEWC
+    15211807202738752817960438464513 PUSHINT
+    SWAP
+    104 STU
+    STREF
+    ENDC
+    0 PUSHINT
+    SENDRAWMSG
+  }>
+  $Cell$_fun_asSlice PROCINLINE:<{
+    CTOS
+  }>
+  $SendParameters$_constructor_bounce_to_value_mode_body_code_data PROCINLINE:<{
+  }>
+  $Messenger$_fun_idToSubscriber PROCREF:<{
+    s0 s6 PUSH2
+    GEQ
+    IFJMP:<{
+      DROP
+      PUSHNULL
+    }>
+    257 PUSHINT
+    s6 PUSH
+    s0 s2 XCHG
+    __tact_dict_get_int_slice INLINECALLDICT
+    __tact_not_null INLINECALLDICT
+  }>
+  $Messenger$_fun_getsubId PROCREF:<{
+    s5 PUSH
+  }>
+  $Messenger$_fun_totalSubscriberNumber PROCREF:<{
+    OVER
+  }>
+  $Messenger$_fun_forward PROCREF:<{
+    PUSHNULL
+    PUSHNULL
+    s2 PUSH
+    ISNULL
+    NOT
+    IF:<{
+      2DROP
+      $StateInit$_not_null INLINECALLDICT
+      SWAP
+    }>ELSE<{
+      s2 POP
+    }>
+    s2 s4 XCHG
+    0 PUSHINT
+    s0 s3 XCHG
+    s0 s4 XCHG
+    66 PUSHINT
+    s2 s3 XCHG2
+    $SendParameters$_constructor_bounce_to_value_mode_body_code_data INLINECALLDICT
+    $global_send INLINECALLDICT
+  }>
+  $Messenger$_fun_reply PROCINLINE:<{
+    __tact_context_get_sender INLINECALLDICT
+    SWAP
+    TRUE
+    PUSHNULL
+    $Messenger$_fun_forward INLINECALLDICT
+  }>
+  $Messenger$_fun_notify PROCINLINE:<{
+    __tact_context_get_sender INLINECALLDICT
+    SWAP
+    FALSE
+    PUSHNULL
+    $Messenger$_fun_forward INLINECALLDICT
+  }>
+  $Messenger$_fun_requireOwner PROCREF:<{
+    __tact_context_get_sender INLINECALLDICT
+    s9 s(-1) PUXC
+    __tact_slice_eq_bits INLINECALLDICT
+    132 THROWIFNOT
+  }>
+  $Messenger$_fun_owner PROCREF:<{
+    s8 PUSH
+  }>
+  $ProtcolRegisterSuccess$_constructor_sourceAddress_eventId_maxUserStakeAmount_subscribeFeePerTick_template_sourceName PROCINLINE:<{
+  }>
+  $SendParameters$_constructor_to_value_mode_bounce_body PROCINLINE:<{
+    s1 s4 XCHG
+    s3 s3 s0 XCHG3
+    PUSHNULL
+    PUSHNULL
+  }>
+  $EventSignal$_constructor_eventId_payload PROCINLINE:<{
+  }>
+  $SendParameters$_constructor_to_value_mode_body PROCINLINE:<{
+    TRUE
+    4 -ROLL
+    PUSHNULL
+    PUSHNULL
+  }>
+  $CollectFee$_constructor_messengerId_fee PROCINLINE:<{
+  }>
+  $CreateMsgSubscriberSuccess$_constructor_callbackAddress PROCINLINE:<{
+  }>
+  $DestroyMessenger$_constructor_messengerId PROCINLINE:<{
+  }>
+  $DeployOk$_constructor_queryId PROCINLINE:<{
+  }>
+  %$Messenger$_internal_empty PROCINLINE:<{
+  }>
+  $Messenger$_internal_binary_BuildMessenger PROCINLINE:<{
+    s8 s14 XCHG
+    s7 s13 XCHG
+    s6 s12 XCHG
+    s5 s11 XCHG
+    s4 s10 XCHG
+    s3 s9 XCHG
+    s14 s13 s12 XCHG3
+    $Messenger$_fun_requireOwner INLINECALLDICT
+    DROP
+    s6 s10 PUSH2
+    __tact_slice_eq_bits INLINECALLDICT
+    NOT
+    IF:<{
+      1004 THROW
+    }>
+    s13 PUSH
+    s5 s11 XCHG
+    s4 s10 XCHG
+    s3 s9 XCHG
+    s14 s13 s12 XCHG3
+    $ProtcolRegisterSuccess$_constructor_sourceAddress_eventId_maxUserStakeAmount_subscribeFeePerTick_template_sourceName INLINECALLDICT
+    $ProtcolRegisterSuccess$_store_cell INLINECALLDICT
+    s3 s9 XCHG
+    s8 s7 s0 XCHG3
+    $Messenger$_fun_reply INLINECALLDICT
+  }>
+  $Messenger$_internal_binary_EventSignal PROCINLINE:<{
+    s8 s10 XCHG
+    5 6 REVERSE
+    s5 s9 XCHG
+    s4 s10 XCHG
+    s3 s9 XCHG
+    s10 s9 s10 XCHG3
+    $Messenger$_fun_requireOwner INLINECALLDICT
+    0 PUSHINT
+    DUP
+    WHILE:<{
+      s1 s7 PUSH2
+      LESS
+    }>DO<{
+      s6 PUSH
+      257 PUSHINT
+      s3 PUSH
+      __tact_dict_get_int_slice INLINECALLDICT
+      DUP
+      ISNULL
+      NOT
+      IF:<{
+        NEWC
+        OVER
+        __tact_not_null INLINECALLDICT
+        __tact_store_address INLINECALLDICT
+        s13 s(-1) PUXC
+        8 STI
+        ENDC
+        $Cell$_fun_asSlice INLINECALLDICT
+        HASHSU
+        100000000 PUSHINT
+        257 PUSHINT
+        s0 s8 PUSH2
+        s0 s3 XCHG
+        s4 s4 XCHG2
+        __tact_dict_get_int_int INLINECALLDICT
+        DUP
+        ISNULL
+        NOT
+        IF:<{
+          __tact_not_null INLINECALLDICT
+          s5 PUSH
+          GREATER
+        }>ELSE<{
+          DROP
+          FALSE
+        }>
+        IF:<{
+          s4 s0 PUSH2
+          GEQ
+        }>ELSE<{
+          FALSE
+        }>
+        IF:<{
+          SWAP
+          __tact_not_null INLINECALLDICT
+          1 PUSHINT
+          TRUE
+          s15 PUSH
+          17 s() PUSH
+          $EventSignal$_constructor_eventId_payload INLINECALLDICT
+          $EventSignal$_store_cell INLINECALLDICT
+          s4 PUSH
+          3 -ROLL
+          $SendParameters$_constructor_to_value_mode_bounce_body INLINECALLDICT
+          $global_send INLINECALLDICT
+          s3 s(-1) PUXC
+          SUB
+          ADD
+        }>ELSE<{
+          2DROP
+        }>
+      }>ELSE<{
+        DROP
+      }>
+      SWAP
+      INC
+      SWAP
+    }>
+    NIP
+    s10 POP
+    s10 POP
+    1 PUSHINT
+    s6 s9 PUSH2
+    $CollectFee$_constructor_messengerId_fee INLINECALLDICT
+    $CollectFee$_store_cell INLINECALLDICT
+    s9 PUSH
+    s0 s3 XCHG
+    s11 s11 s11 XCHG3
+    $SendParameters$_constructor_to_value_mode_body INLINECALLDICT
+    $global_send INLINECALLDICT
+    s6 s8 XCHG
+    2 6 BLKSWAP
+  }>
+  $Messenger$_internal_binary_CreateMsgSubscriber PROCINLINE:<{
+    s2 POP
+    s8 s10 XCHG
+    5 6 REVERSE
+    s5 s9 XCHG
+    s4 s10 XCHG
+    s3 s9 XCHG
+    s10 s9 s10 XCHG3
+    $Messenger$_fun_requireOwner INLINECALLDICT
+    __tact_context_get INLINECALLDICT
+    s1 s3 XCHG
+    3 BLKDROP
+    s0 s5 XCHG
+    257 PUSHINT
+    s7 s12 PUSH2
+    __tact_dict_set_int_slice INLINECALLDICT
+    NEWC
+    s12 PUSH
+    __tact_store_address INLINECALLDICT
+    s1 s11 XCHG
+    8 STI
+    ENDC
+    $Cell$_fun_asSlice INLINECALLDICT
+    HASHSU
+    257 PUSHINT
+    1 PUSHINT
+    s1 s2 PUSH2
+    s4 s8 XCHG
+    -ROT
+    __tact_dict_set_int_int INLINECALLDICT
+    257 PUSHINT
+    DUP
+    s4 s5 XCHG
+    s6 s3 s0 XCHG3
+    s1 s7 XCHG
+    __tact_dict_set_int_int INLINECALLDICT
+    s0 s4 XCHG
+    INC
+    SWAP
+    INC
+    s0 s9 XCHG
+    $CreateMsgSubscriberSuccess$_constructor_callbackAddress INLINECALLDICT
+    $CreateMsgSubscriberSuccess$_store_cell INLINECALLDICT
+    $global_emit INLINECALLDICT
+    s6 s8 XCHG
+    s5 s7 XCHG
+    s4 s6 XCHG
+    s0 s5 XCHG
+    s4 s4 XCHG2
+    s3 s1 s3 XCHG3
+  }>
+  $Messenger$_internal_binary_DeleteSubscriber PROCINLINE:<{
+    s2 POP
+    s8 s10 XCHG
+    5 6 REVERSE
+    s5 s9 XCHG
+    s4 s10 XCHG
+    s3 s9 XCHG
+    s10 s9 s10 XCHG3
+    $Messenger$_fun_requireOwner INLINECALLDICT
+    NEWC
+    s0 s11 XCHG2
+    __tact_store_address INLINECALLDICT
+    s1 s9 XCHG
+    8 STI
+    ENDC
+    $Cell$_fun_asSlice INLINECALLDICT
+    HASHSU
+    257 PUSHINT
+    s3 s(-1) s(-1) PUXCPU
+    s3 s(-1) PUXC
+    __tact_dict_get_int_int INLINECALLDICT
+    ISNULL
+    IF:<{
+      1005 THROW
+    }>
+    s0 s3 XCHG
+    257 PUSHINT
+    s5 PUSH
+    PUSHNULL
+    __tact_dict_set_int_slice INLINECALLDICT
+    257 PUSHINT
+    0 PUSHINT
+    s1 s5 PUSH2
+    s4 s6 XCHG
+    -ROT
+    __tact_dict_set_int_int INLINECALLDICT
+    257 PUSHINT
+    0 PUSHINT
+    s2 s0 s2 XC2PU
+    s2 s6 XCHG
+    __tact_dict_set_int_int INLINECALLDICT
+    s0 s7 XCHG
+    DEC
+    DUP
+    0 EQINT
+    IF:<{
+      0 PUSHINT
+      160 PUSHINT
+      TRUE
+      s7 PUSH
+      $DestroyMessenger$_constructor_messengerId INLINECALLDICT
+      $DestroyMessenger$_store_cell INLINECALLDICT
+      s10 PUSH
+      4 -ROLL
+      $SendParameters$_constructor_to_value_mode_bounce_body INLINECALLDICT
+      $global_send INLINECALLDICT
+    }>
+    s6 s8 XCHG
+    s5 s7 XCHG
+    s4 s6 XCHG
+    s3 s5 XCHG
+    s3 s0 s4 XCHG3
+  }>
+  $Messenger$_internal_binary_Deploy PROCINLINE:<{
+    $DeployOk$_constructor_queryId INLINECALLDICT
+    $DeployOk$_store_cell INLINECALLDICT
+    $Messenger$_fun_notify INLINECALLDICT
+  }>
+  %idToSubscriber PROC:<{
+    $Messenger$_contract_load INLINECALLDICT
+    9 ROLL
+    $Messenger$_fun_idToSubscriber INLINECALLDICT
+    9 1 BLKDROP2
+  }>
+  %getsubId PROC:<{
+    $Messenger$_contract_load INLINECALLDICT
+    $Messenger$_fun_getsubId INLINECALLDICT
+    9 1 BLKDROP2
+  }>
+  %totalSubscriberNumber PROC:<{
+    $Messenger$_contract_load INLINECALLDICT
+    $Messenger$_fun_totalSubscriberNumber INLINECALLDICT
+    9 1 BLKDROP2
+  }>
+  %owner PROC:<{
+    $Messenger$_contract_load INLINECALLDICT
+    $Messenger$_fun_owner INLINECALLDICT
+    9 1 BLKDROP2
+  }>
+  supported_interfaces PROC:<{
+    123515602279859691144772641439386770278 PUSHINT
+    209801025412363888721030803524359905849 PUSHINT
+    42980537499636128163026532310500881091 PUSHINT
+    209474421377847335869795010607481022628 PUSHINT
+    86142586315491086060343270784266291122 PUSHINT
+  }>
+  get_abi_ipfs PROC:<{
+    x{697066733a2f2f516d53456571415a6f3959613150776135796a776a57464c68477832706a44374a666a7452644c70344767457334} PUSHSLICE
+  }>
+  lazy_deployment_completed PROC:<{
+    c4 PUSH
+    CTOS
+    1 LDI
+    SWAP
+  }>
+  $Messenger$_contract_router_internal PROCREF:<{
+    SWAP
+    IFJMP:<{
+      DROP
+      TRUE
+    }>
+    0 PUSHINT
+    OVER
+    SBITS
+    31 GTINT
+    IF:<{
+      DROP
+      DUP
+      32 PLDU
+    }>
+    DUP
+    0 EQINT
+    s2 PUSH
+    SBITS
+    33 LESSINT
+    AND
+    IFJMP:<{
+      2DROP
+      %$Messenger$_internal_empty INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    2826761911 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $BuildMessenger$_load INLINECALLDICT
+      1 6 BLKDROP2
+      $Messenger$_internal_binary_BuildMessenger INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    306637748 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $EventSignal$_load INLINECALLDICT
+      1 2 BLKDROP2
+      $Messenger$_internal_binary_EventSignal INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    2100856841 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $CreateMsgSubscriber$_load INLINECALLDICT
+      1 3 BLKDROP2
+      $Messenger$_internal_binary_CreateMsgSubscriber INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    380345681 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $DeleteSubscriber$_load INLINECALLDICT
+      1 3 BLKDROP2
+      $Messenger$_internal_binary_DeleteSubscriber INLINECALLDICT
+      TRUE
+    }>
+    2490013878 PUSHINT
+    EQUAL
+    IFJMP:<{
+      $Deploy$_load INLINECALLDICT
+      NIP
+      $Messenger$_internal_binary_Deploy INLINECALLDICT
+      TRUE
+    }>
+    DROP
+    FALSE
+  }>
+  recv_internal PROC:<{
+    SWAP
+    CTOS
+    4 LDU
+    SWAP
+    1 PUSHINT
+    AND
+    NEGATE
+    SWAP
+    LDMSGADDR
+    SWAP
+    __tact_verify_address INLINECALLDICT
+    s0 s4 s2 PUXCPU
+    s0 s3 XCHG
+    4 TUPLE
+    __tact_context SETGLOB
+    s0 s2 XCHG
+    __tact_context_sender SETGLOB
+    $Messenger$_contract_load INLINECALLDICT
+    2 9 BLKSWAP
+    $Messenger$_contract_router_internal INLINECALLDICT
+    130 THROWIFNOT
+    $Messenger$_contract_store INLINECALLDICT
+  }>
+}END>c

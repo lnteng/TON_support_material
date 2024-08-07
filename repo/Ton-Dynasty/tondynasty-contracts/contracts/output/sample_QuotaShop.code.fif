@@ -1,0 +1,699 @@
+PROGRAM{
+  DECLPROC __tact_verify_address
+  DECLPROC __tact_load_address
+  DECLPROC __tact_store_address
+  DECLPROC __tact_my_balance
+  DECLPROC __tact_not_null
+  DECLPROC __tact_context_get
+  DECLPROC __tact_context_get_sender
+  DECLPROC __tact_store_bool
+  DECLPROC __tact_slice_eq_bits
+  DECLPROC $Deploy$_load
+  DECLPROC $DeployOk$_store
+  DECLPROC $DeployOk$_store_cell
+  DECLPROC $IssueQuota$_load
+  DECLPROC $BuyQuota$_load
+  DECLPROC $IncreaseQuota$_store
+  DECLPROC $IncreaseQuota$_store_cell
+  DECLPROC $WithdrawQuotaShop$_store
+  DECLPROC $WithdrawQuotaShop$_store_cell
+  DECLPROC $WithdrawQuotaShop$_load_bounced
+  DECLPROC $BuildQuotaShop$_load
+  DECLPROC $QuotaShop$_store
+  DECLPROC $QuotaShop$_load
+  DECLPROC $StateInit$_not_null
+  DECLPROC $QuotaShop$init$_load
+  DECLPROC $QuotaShop$_contract_init
+  DECLPROC $QuotaShop$_contract_load
+  DECLPROC $QuotaShop$_contract_store
+  DECLPROC $global_emptyCell
+  DECLPROC $global_send
+  DECLPROC $SendParameters$_constructor_bounce_to_value_mode_body_code_data
+  DECLPROC $SendParameters$_constructor_to_value_bounce_mode_body
+  DECLPROC $SendParameters$_constructor_to_value_bounce_mode
+  DECLPROC $QuotaShop$_fun_debug_get_quota_price
+  DECLPROC $QuotaShop$_fun_debug_get_quota_amount
+  DECLPROC $QuotaShop$_fun_debug_get_balance
+  DECLPROC $QuotaShop$_fun_forward
+  DECLPROC $QuotaShop$_fun_notify
+  DECLPROC $QuotaShop$_fun_estimate_rest_value
+  DECLPROC $IncreaseQuota$_constructor_amount_sender
+  DECLPROC $WithdrawQuotaShop$_constructor_amount_custom_payload
+  DECLPROC $DeployOk$_constructor_queryId
+  DECLPROC $QuotaShop$_internal_binary_IssueQuota
+  DECLPROC $QuotaShop$_internal_binary_BuyQuota
+  DECLPROC $QuotaShop$_internal_text_250b76e2b9576fc6b4c45129483006b0003a0c39b6f7ae413d177f4e3479dbca
+  DECLPROC $QuotaShop$_internal_binary_BuildQuotaShop
+  DECLPROC $QuotaShop$_receive_binary_bounce_WithdrawQuotaShop
+  DECLPROC $QuotaShop$_internal_binary_Deploy
+  81931 DECLMETHOD %debug_get_quota_price
+  84464 DECLMETHOD %debug_get_quota_amount
+  86183 DECLMETHOD %debug_get_balance
+  113617 DECLMETHOD supported_interfaces
+  121275 DECLMETHOD get_abi_ipfs
+  115390 DECLMETHOD lazy_deployment_completed
+  DECLPROC $QuotaShop$_contract_router_internal
+  DECLPROC recv_internal
+  DECLGLOBVAR __tact_context
+  DECLGLOBVAR __tact_context_sender
+  DECLGLOBVAR __tact_context_sys
+  DECLGLOBVAR __tact_randomized
+  __tact_verify_address PROCINLINE:<{
+    DUP
+    SBITS
+    267 PUSHINT
+    EQUAL
+    136 THROWIFNOT
+    DUP
+    11 PLDU
+    DUP
+    1279 PUSHINT
+    EQUAL
+    137 THROWIF
+    10 PUSHPOW2
+    EQUAL
+    136 THROWIFNOT
+  }>
+  __tact_load_address PROCINLINE:<{
+    LDMSGADDR
+    SWAP
+    __tact_verify_address INLINECALLDICT
+  }>
+  __tact_store_address PROCINLINE:<{
+    __tact_verify_address INLINECALLDICT
+    STSLICER
+  }>
+  __tact_my_balance PROCINLINE:<{
+    BALANCE
+    FIRST
+  }>
+  __tact_not_null PROCINLINE:<{
+    DUP
+    ISNULL
+    128 THROWIF
+  }>
+  __tact_context_get PROCINLINE:<{
+    __tact_context GETGLOB
+    4 UNTUPLE
+  }>
+  __tact_context_get_sender PROCINLINE:<{
+    __tact_context_sender GETGLOB
+  }>
+  __tact_store_bool PROCINLINE:<{
+    SWAP
+    1 STI
+  }>
+  __tact_slice_eq_bits PROCINLINE:<{
+    SDEQ
+  }>
+  $Deploy$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    2490013878 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    64 LDU
+    SWAP
+  }>
+  $DeployOk$_store PROCINLINE:<{
+    2952335191 PUSHINT
+    ROT
+    32 STU
+    64 STU
+  }>
+  $DeployOk$_store_cell PROCINLINE:<{
+    NEWC
+    SWAP
+    $DeployOk$_store INLINECALLDICT
+    ENDC
+  }>
+  $IssueQuota$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    777836759 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    32 LDU
+    LDGRAMS
+    -ROT
+  }>
+  $BuyQuota$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    1459055192 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    32 LDU
+    SWAP
+  }>
+  $IncreaseQuota$_store PROCINLINE:<{
+    990749732 PUSHINT
+    s0 s3 XCHG2
+    32 STU
+    32 STU
+    SWAP
+    __tact_store_address INLINECALLDICT
+  }>
+  $IncreaseQuota$_store_cell PROCINLINE:<{
+    NEWC
+    -ROT
+    $IncreaseQuota$_store INLINECALLDICT
+    ENDC
+  }>
+  $WithdrawQuotaShop$_store PROCINLINE:<{
+    678215722 PUSHINT
+    s0 s3 XCHG2
+    32 STU
+    SWAP
+    STGRAMS
+    STREF
+  }>
+  $WithdrawQuotaShop$_store_cell PROCINLINE:<{
+    NEWC
+    -ROT
+    $WithdrawQuotaShop$_store INLINECALLDICT
+    ENDC
+  }>
+  $WithdrawQuotaShop$_load_bounced PROCINLINE:<{
+    32 LDU
+    SWAP
+    678215722 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    LDGRAMS
+    SWAP
+  }>
+  $BuildQuotaShop$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    277390441 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    __tact_load_address INLINECALLDICT
+  }>
+  $QuotaShop$_store PROCINLINE:<{
+    s4 s5 XCHG2
+    32 STU
+    ROT
+    STGRAMS
+    SWAP
+    __tact_store_address INLINECALLDICT
+    SWAP
+    STGRAMS
+    SWAP
+    __tact_store_address INLINECALLDICT
+  }>
+  $QuotaShop$_load PROCINLINE:<{
+    32 LDU
+    LDGRAMS
+    __tact_load_address INLINECALLDICT
+    SWAP
+    LDGRAMS
+    __tact_load_address INLINECALLDICT
+    s1 s5 XCHG
+    s1 s4 XCHG
+    s3 s3 s0 XCHG3
+  }>
+  $StateInit$_not_null PROCINLINE:<{
+    DUP
+    ISNULL
+    128 THROWIF
+    2 UNTUPLE
+  }>
+  $QuotaShop$init$_load PROCINLINE:<{
+    __tact_load_address INLINECALLDICT
+    SWAP
+    __tact_load_address INLINECALLDICT
+    s1 s2 XCHG
+  }>
+  $QuotaShop$_contract_init PROCREF:<{
+    0 PUSHINT
+    s2 s2 s2 XCPU2
+    s0 s3 XCHG
+  }>
+  $QuotaShop$_contract_load PROCREF:<{
+    c4 PUSH
+    CTOS
+    LDREF
+    SWAP
+    __tact_context_sys SETGLOB
+    1 LDI
+    SWAP
+    IFJMP:<{
+      $QuotaShop$_load INLINECALLDICT
+      1 5 BLKDROP2
+    }>
+    MYADDR
+    11 PLDU
+    10 PUSHPOW2
+    EQUAL
+    137 THROWIFNOT
+    $QuotaShop$init$_load INLINECALLDICT
+    s0 s2 XCHG
+    ENDS
+    SWAP
+    $QuotaShop$_contract_init INLINECALLDICT
+  }>
+  $QuotaShop$_contract_store PROCINLINE:<{
+    NEWC
+    __tact_context_sys GETGLOB
+    SWAP
+    STREF
+    TRUE
+    SWAP
+    1 STI
+    5 -ROLL
+    $QuotaShop$_store INLINECALLDICT
+    ENDC
+    c4 POP
+  }>
+  $global_emptyCell PROCINLINE:<{
+    NEWC
+    ENDC
+  }>
+  $global_send PROCREF:<{
+    NEWC
+    1 PUSHINT
+    SWAP
+    2 STI
+    s0 s7 XCHG2
+    __tact_store_bool INLINECALLDICT
+    0 PUSHINT
+    SWAP
+    3 STI
+    s0 s5 XCHG2
+    __tact_store_address INLINECALLDICT
+    s0 s3 XCHG2
+    STGRAMS
+    0 PUSHINT
+    SWAP
+    105 STI
+    s3 PUSH
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+    }>ELSE<{
+      s4 PUSH
+      ISNULL
+      NOT
+    }>
+    IF:<{
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      NEWC
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      s4 PUSH
+      ISNULL
+      NOT
+      IF:<{
+        TRUE
+        __tact_store_bool INLINECALLDICT
+        s0 s4 XCHG
+        __tact_not_null INLINECALLDICT
+        s0 s4 XCHG2
+        STREF
+      }>ELSE<{
+        s4 POP
+        s0 s3 XCHG
+        FALSE
+        __tact_store_bool INLINECALLDICT
+      }>
+      s4 PUSH
+      ISNULL
+      NOT
+      IF:<{
+        TRUE
+        __tact_store_bool INLINECALLDICT
+        s0 s4 XCHG
+        __tact_not_null INLINECALLDICT
+        s0 s4 XCHG2
+        STREF
+      }>ELSE<{
+        s4 POP
+        s0 s3 XCHG
+        FALSE
+        __tact_store_bool INLINECALLDICT
+      }>
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      s0 s2 XCHG
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      s0 s2 XCHG
+      ENDC
+      ROT
+      STREF
+    }>ELSE<{
+      s3 POP
+      s3 POP
+      SWAP
+      FALSE
+      __tact_store_bool INLINECALLDICT
+    }>
+    OVER
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      SWAP
+      __tact_not_null INLINECALLDICT
+      SWAP
+      STREF
+    }>ELSE<{
+      NIP
+      FALSE
+      __tact_store_bool INLINECALLDICT
+    }>
+    ENDC
+    SWAP
+    SENDRAWMSG
+  }>
+  $SendParameters$_constructor_bounce_to_value_mode_body_code_data PROCINLINE:<{
+  }>
+  $SendParameters$_constructor_to_value_bounce_mode_body PROCINLINE:<{
+    s2 s4 XCHG
+    s2 s3 XCHG
+    PUSHNULL
+    PUSHNULL
+  }>
+  $SendParameters$_constructor_to_value_bounce_mode PROCINLINE:<{
+    s3 s3 s0 XCHG3
+    PUSHNULL
+    PUSHNULL
+    PUSHNULL
+  }>
+  $QuotaShop$_fun_debug_get_quota_price PROCREF:<{
+    s3 PUSH
+  }>
+  $QuotaShop$_fun_debug_get_quota_amount PROCREF:<{
+    s4 PUSH
+  }>
+  $QuotaShop$_fun_debug_get_balance PROCREF:<{
+    OVER
+  }>
+  $QuotaShop$_fun_forward PROCREF:<{
+    PUSHNULL
+    PUSHNULL
+    s2 PUSH
+    ISNULL
+    NOT
+    IF:<{
+      2DROP
+      $StateInit$_not_null INLINECALLDICT
+      SWAP
+    }>ELSE<{
+      s2 POP
+    }>
+    s2 s4 XCHG
+    0 PUSHINT
+    s0 s3 XCHG
+    s0 s4 XCHG
+    66 PUSHINT
+    s2 s3 XCHG2
+    $SendParameters$_constructor_bounce_to_value_mode_body_code_data INLINECALLDICT
+    $global_send INLINECALLDICT
+  }>
+  $QuotaShop$_fun_notify PROCINLINE:<{
+    __tact_context_get_sender INLINECALLDICT
+    SWAP
+    FALSE
+    PUSHNULL
+    $QuotaShop$_fun_forward INLINECALLDICT
+  }>
+  $QuotaShop$_fun_estimate_rest_value PROCREF:<{
+    s1 s3 XCHG
+    3 BLKDROP
+    __tact_my_balance INLINECALLDICT
+    OVER
+    SUB
+    40000000 PUSHINT
+    TUCK
+    MIN
+    SUB
+    50000000 PUSHINT
+    ADD
+    SUB
+  }>
+  $IncreaseQuota$_constructor_amount_sender PROCINLINE:<{
+  }>
+  $WithdrawQuotaShop$_constructor_amount_custom_payload PROCINLINE:<{
+  }>
+  $DeployOk$_constructor_queryId PROCINLINE:<{
+  }>
+  $QuotaShop$_internal_binary_IssueQuota PROCINLINE:<{
+    s5 POP
+    __tact_context_get INLINECALLDICT
+    s2 s3 XCHG
+    3 BLKDROP
+    s4 PUSH
+    19932 PUSHINT
+    s0 s2 XCHG
+    __tact_slice_eq_bits INLINECALLDICT
+    THROWANYIFNOT
+    41925 PUSHINT
+    s0 s6 XCHG
+    0 EQINT
+    s1 s6 XCHG
+    THROWANYIFNOT
+  }>
+  $QuotaShop$_internal_binary_BuyQuota PROCINLINE:<{
+    __tact_context_get INLINECALLDICT
+    30583 PUSHINT
+    s10 PUSH
+    0 GTINT
+    THROWANYIFNOT
+    34380 PUSHINT
+    s10 s5 PUSH2
+    GEQ
+    THROWANYIFNOT
+    s9 s4 XCPU
+    SUB
+    s8 s4 PUSH2
+    MUL
+    s1 s7 XCHG
+    ADD
+    s2 PUSH
+    s3 s4 XCHG
+    s0 s0 s10 XCHG3
+    s7 s8 XCHG
+    s7 s9 XCHG
+    s6 s9 XCHG
+    s5 s10 XCHG
+    s4 s9 XCHG
+    $QuotaShop$_fun_estimate_rest_value INLINECALLDICT
+    s4 s7 PUSH2
+    MUL
+    SUB
+    FALSE
+    s0 s8 XCHG
+    3 PUSHINT
+    s0 s8 XCHG
+    $IncreaseQuota$_constructor_amount_sender INLINECALLDICT
+    $IncreaseQuota$_store_cell INLINECALLDICT
+    s2 PUSH
+    s3 s1 s4 XCHG3
+    s9 s8 s8 XCHG3
+    $SendParameters$_constructor_to_value_bounce_mode_body INLINECALLDICT
+    $global_send INLINECALLDICT
+    s0 s3 s4 XCHG3
+  }>
+  $QuotaShop$_internal_text_250b76e2b9576fc6b4c45129483006b0003a0c39b6f7ae413d177f4e3479dbca PROCINLINE:<{
+    __tact_context_get INLINECALLDICT
+    s2 s3 XCHG
+    3 BLKDROP
+    s3 PUSH
+    6078 PUSHINT
+    s0 s2 XCHG
+    __tact_slice_eq_bits INLINECALLDICT
+    THROWANYIFNOT
+    TRUE
+    64 PUSHINT
+    $global_emptyCell INLINECALLDICT
+    s4 s(-1) PUXC
+    $WithdrawQuotaShop$_constructor_amount_custom_payload INLINECALLDICT
+    $WithdrawQuotaShop$_store_cell INLINECALLDICT
+    s5 PUSH
+    s0 s4 XCHG
+    s0 s5 XCHG
+    3 -ROLL
+    $SendParameters$_constructor_to_value_bounce_mode_body INLINECALLDICT
+    $global_send INLINECALLDICT
+    0 PUSHINT
+    SWAP
+  }>
+  $QuotaShop$_internal_binary_BuildQuotaShop PROCINLINE:<{
+    __tact_context_get INLINECALLDICT
+    s1 s3 XCHG
+    3 BLKDROP
+    0 GTINT
+    IF:<{
+      0 PUSHINT
+      FALSE
+      66 PUSHINT
+      $SendParameters$_constructor_to_value_bounce_mode INLINECALLDICT
+      $global_send INLINECALLDICT
+    }>ELSE<{
+      DROP
+    }>
+  }>
+  $QuotaShop$_receive_binary_bounce_WithdrawQuotaShop PROCINLINE:<{
+    s1 s2 XCHG
+    ADD
+    SWAP
+  }>
+  $QuotaShop$_internal_binary_Deploy PROCINLINE:<{
+    $DeployOk$_constructor_queryId INLINECALLDICT
+    $DeployOk$_store_cell INLINECALLDICT
+    $QuotaShop$_fun_notify INLINECALLDICT
+  }>
+  %debug_get_quota_price PROC:<{
+    $QuotaShop$_contract_load INLINECALLDICT
+    $QuotaShop$_fun_debug_get_quota_price INLINECALLDICT
+    5 1 BLKDROP2
+  }>
+  %debug_get_quota_amount PROC:<{
+    $QuotaShop$_contract_load INLINECALLDICT
+    $QuotaShop$_fun_debug_get_quota_amount INLINECALLDICT
+    5 1 BLKDROP2
+  }>
+  %debug_get_balance PROC:<{
+    $QuotaShop$_contract_load INLINECALLDICT
+    $QuotaShop$_fun_debug_get_balance INLINECALLDICT
+    5 1 BLKDROP2
+  }>
+  supported_interfaces PROC:<{
+    123515602279859691144772641439386770278 PUSHINT
+    209801025412363888721030803524359905849 PUSHINT
+    42980537499636128163026532310500881091 PUSHINT
+    209474421377847335869795010607481022628 PUSHINT
+  }>
+  get_abi_ipfs PROC:<{
+    x{697066733a2f2f516d634b4c3457756d5870755461726641747a515233756f63796a63726d3162414572694e55467357566a354642} PUSHSLICE
+  }>
+  lazy_deployment_completed PROC:<{
+    c4 PUSH
+    CTOS
+    1 LDI
+    SWAP
+  }>
+  $QuotaShop$_contract_router_internal PROCREF:<{
+    c2 SAVE
+    SAMEALTSAVE
+    SWAP
+    IFJMP:<{
+      32 PUSHINT
+      SDSKIPFIRST
+      0 PUSHINT
+      OVER
+      SBITS
+      31 GTINT
+      IF:<{
+        DROP
+        DUP
+        32 PLDU
+      }>
+      678215722 PUSHINT
+      EQUAL
+      IFJMP:<{
+        $WithdrawQuotaShop$_load_bounced INLINECALLDICT
+        NIP
+        $QuotaShop$_receive_binary_bounce_WithdrawQuotaShop INLINECALLDICT
+        TRUE
+      }>
+      DROP
+      TRUE
+    }>
+    0 PUSHINT
+    OVER
+    SBITS
+    31 GTINT
+    IF:<{
+      DROP
+      DUP
+      32 PLDU
+    }>
+    DUP
+    777836759 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $IssueQuota$_load INLINECALLDICT
+      1 2 BLKDROP2
+      $QuotaShop$_internal_binary_IssueQuota INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    1459055192 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $BuyQuota$_load INLINECALLDICT
+      NIP
+      $QuotaShop$_internal_binary_BuyQuota INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    277390441 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $BuildQuotaShop$_load INLINECALLDICT
+      NIP
+      $QuotaShop$_internal_binary_BuildQuotaShop INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    2490013878 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $Deploy$_load INLINECALLDICT
+      NIP
+      $QuotaShop$_internal_binary_Deploy INLINECALLDICT
+      TRUE
+    }>
+    0 EQINT
+    IF:<{
+      HASHSU
+      16755831233829029960236183814598340968099579476287469518633057839499026488266 PUSHINT
+      EQUAL
+      IFJMP:<{
+        $QuotaShop$_internal_text_250b76e2b9576fc6b4c45129483006b0003a0c39b6f7ae413d177f4e3479dbca INLINECALLDICT
+        TRUE
+        RETALT
+      }>
+    }>ELSE<{
+      DROP
+    }>
+    FALSE
+  }>
+  recv_internal PROC:<{
+    SWAP
+    CTOS
+    4 LDU
+    SWAP
+    1 PUSHINT
+    AND
+    NEGATE
+    SWAP
+    LDMSGADDR
+    SWAP
+    __tact_verify_address INLINECALLDICT
+    s0 s4 s2 PUXCPU
+    s0 s3 XCHG
+    4 TUPLE
+    __tact_context SETGLOB
+    s0 s2 XCHG
+    __tact_context_sender SETGLOB
+    $QuotaShop$_contract_load INLINECALLDICT
+    2 5 BLKSWAP
+    $QuotaShop$_contract_router_internal INLINECALLDICT
+    130 THROWIFNOT
+    $QuotaShop$_contract_store INLINECALLDICT
+  }>
+}END>c

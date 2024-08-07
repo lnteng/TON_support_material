@@ -1,0 +1,24 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./TonoxDeFi/WTON/src/minter.func:28:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./TonoxDeFi/WTON/src/minter/storage.func:7:9: warning: Lack of end_parse.
+        ds~load_ref()  ;; jetton_wallet_code
+          ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./TonoxDeFi/WTON/src/minter.func:109:84: warning: Local variable 'total_supply' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code) = load_data();
+                                                                                     ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./TonoxDeFi/WTON/src/minter.func:109:84: warning: Local variable 'admin_address' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code) = load_data();
+                                                                                     ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./TonoxDeFi/WTON/src/minter.func:109:84: warning: Local variable 'content' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code) = load_data();
+                                                                                     ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./TonoxDeFi/WTON/src/minter.func:83:44: warning: UnHandle bounced message with op: 0xd53276db
+          send_raw_message(msg.end_cell(), 1); 
+                                             ^

@@ -1,0 +1,45 @@
+int tuple_length(tuple) asm "TLEN";
+;; forall X -> X at(tuple, int) asm "INDEXVAR";
+
+() recv_internal() { }
+
+{-
+  TASK 2 - Matrix multiplier
+  Write the method that multiplies one matrix by another.
+  The 1st and 2nd parameter of the function will contain a row-major matrix
+  represented using nested tuples (eg: [[1,2], [3,4]]).
+  
+  Matrices can be of different sizes, ranging from 4x4 up to 32x32.
+  matrixA is guaranteed to be of size m*n & matrixB of size n*p.
+  
+  After calculating the result matrix, the function should return it as tuple.
+-}
+
+tuple matrix_multiplier(tuple matrixA, tuple matrixB) method_id {
+  int n = matrixB.tuple_length();
+  int p = matrixB.at(0).tuple_length();
+  
+  tuple matrixC = empty_tuple();
+  int j = 0;
+  int m = matrixA.tuple_length();
+  repeat(m) {
+    tuple a_row = matrixA.at(j);
+    tuple row = empty_tuple();
+    int i = 0;
+    repeat(p) {
+      int v = 0;
+      int k = 0;
+      repeat(n) {
+        v += a_row.at(k) * matrixB.at(k).at(i);
+        k += 1;
+      }
+      row~tpush(v);
+      i += 1;
+    }
+    matrixC~tpush(row);
+    j += 1;
+  }
+  
+  return matrixC;
+}
+

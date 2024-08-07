@@ -1,0 +1,66 @@
+$Task3_COPY$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task3_COPY.storage.fc:122:32: warning: Lack of end_parse.
+      var v'jettonAddressB = sc_1~__tact_load_address();
+                                 ^
+$Task3_COPY$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task3_COPY.storage.fc:138:19: warning: Lack of end_parse.
+          return $sc~$Task3_COPY$_load();
+                    ^
+$Task3_COPY$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task3_COPY.code.fc:14:99: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB)) = (null(), null(), null(), null(), null());
+                                                                                                    ^
+$Task3_COPY$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task3_COPY.code.fc:14:99: warning: Local variable '$self'aAmount' is not used
+      var (($self'owner, $self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB)) = (null(), null(), null(), null(), null());
+                                                                                                    ^
+$Task3_COPY$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task3_COPY.code.fc:14:99: warning: Local variable '$self'bAmount' is not used
+      var (($self'owner, $self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB)) = (null(), null(), null(), null(), null());
+                                                                                                    ^
+$Task3_COPY$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task3_COPY.code.fc:14:99: warning: Local variable '$self'jettonAddressA' is not used
+      var (($self'owner, $self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB)) = (null(), null(), null(), null(), null());
+                                                                                                    ^
+$Task3_COPY$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task3_COPY.code.fc:14:99: warning: Local variable '$self'jettonAddressB' is not used
+      var (($self'owner, $self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB)) = (null(), null(), null(), null(), null());
+                                                                                                    ^
+$Task3_COPY$_internal_binary_TokenNotification: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task3_COPY.code.fc:66:79: warning: PressionLoss
+          int $bAmountToSend = (((($self'bAmount * 1000000000) / $self'aAmount) * $msg'amount) / 1000000000);
+                                                                                ^
+$Task3_COPY$_internal_binary_TokenNotification: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task3_COPY.code.fc:52:79: warning: PressionLoss
+          int $aAmountToSend = (((($self'aAmount * 1000000000) / $self'bAmount) * $msg'amount) / 1000000000);
+                                                                                ^
+$Task3_COPY$_contract_store & $Task3_COPY$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task3_COPY.storage.fc:134:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task3_COPY.storage.fc:149:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task3_COPY$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task3_COPY.code.fc:119:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task3_COPY.storage.fc:149:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task3_COPY$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task3_COPY.code.fc:54:334: warning: UnHandle bounced message with op: 0xf8a7ea5
+  ... t_forwardPayload(0, $msg'amount, $msg'from, my_address(), null(), 10000000, $global_emptySlice()))));
+  ...                                                                                                     ^
+$Task3_COPY$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task3_COPY.code.fc:59:333: warning: UnHandle bounced message with op: 0xf8a7ea5
+  ... orwardPayload(0, $aAmountToSend, $msg'from, my_address(), null(), 10000000, $global_emptySlice()))));
+  ...                                                                                                     ^
+$Task3_COPY$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task3_COPY.code.fc:68:334: warning: UnHandle bounced message with op: 0xf8a7ea5
+  ... t_forwardPayload(0, $msg'amount, $msg'from, my_address(), null(), 10000000, $global_emptySlice()))));
+  ...                                                                                                     ^
+$Task3_COPY$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task3_COPY.code.fc:73:333: warning: UnHandle bounced message with op: 0xf8a7ea5
+  ... orwardPayload(0, $bAmountToSend, $msg'from, my_address(), null(), 10000000, $global_emptySlice()))));
+  ...                                                                                                     ^

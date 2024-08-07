@@ -1,0 +1,260 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/user.fc:48:28: warning: Lack of end_parse.
+    slice sender_address = cs~load_msg_addr();
+                             ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/user.fc:49:23: warning: Local variable 'wc' is not used
+    var (wc, addr_hash) = parse_std_addr(sender_address);
+                        ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/user.fc:49:23: warning: Local variable 'addr_hash' is not used
+    var (wc, addr_hash) = parse_std_addr(sender_address);
+                        ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/user.fc:172:34: warning: Local variable 'sender_address_hash' is not used
+      var (_, sender_address_hash) = parse_std_addr(sender_address);
+                                   ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/user.fc:173:26: warning: Local variable 'master_hash' is not used
+      var (_, master_hash) = parse_std_addr(master_address);
+                           ^
+getAccountBalances: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-get-methods.fc:8:64: warning: Local variable 'master' is not used
+    (slice master, slice user, cell user_principals, int locked) = storage::load();
+                                                                 ^
+getAccountBalances: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-get-methods.fc:8:64: warning: Local variable 'user' is not used
+    (slice master, slice user, cell user_principals, int locked) = storage::load();
+                                                                 ^
+getAccountBalances: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-get-methods.fc:8:64: warning: Local variable 'locked' is not used
+    (slice master, slice user, cell user_principals, int locked) = storage::load();
+                                                                 ^
+getAccountBalances: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-get-methods.fc:13:122: warning: Local variable 'price' is not used
+      var (price, asset_s_rate, asset_b_rate, total_supply_principal, total_borrow_principal, last_accural, token_balance) = unpack_asset_dynamics(asset_dynamics);
+                                                                                                                           ^
+getAccountBalances: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-get-methods.fc:13:122: warning: Local variable 'total_supply_principal' is not used
+      var (price, asset_s_rate, asset_b_rate, total_supply_principal, total_borrow_principal, last_accural, token_balance) = unpack_asset_dynamics(asset_dynamics);
+                                                                                                                           ^
+getAccountBalances: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-get-methods.fc:13:122: warning: Local variable 'total_borrow_principal' is not used
+      var (price, asset_s_rate, asset_b_rate, total_supply_principal, total_borrow_principal, last_accural, token_balance) = unpack_asset_dynamics(asset_dynamics);
+                                                                                                                           ^
+getAccountBalances: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-get-methods.fc:13:122: warning: Local variable 'last_accural' is not used
+      var (price, asset_s_rate, asset_b_rate, total_supply_principal, total_borrow_principal, last_accural, token_balance) = unpack_asset_dynamics(asset_dynamics);
+                                                                                                                           ^
+getAccountBalances: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-get-methods.fc:13:122: warning: Local variable 'token_balance' is not used
+      var (price, asset_s_rate, asset_b_rate, total_supply_principal, total_borrow_principal, last_accural, token_balance) = unpack_asset_dynamics(asset_dynamics);
+                                                                                                                           ^
+unpack_asset_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/asset-config-packer.fc:17:46: warning: Lack of end_parse.
+  	int target_utilization = asset_config_params~load_uint(64);
+  	                                            ^
+getAvailableToBorrow: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-get-methods.fc:23:44: warning: Local variable 'locked' is not used
+    (_, _, cell user_principals, int locked) = storage::load();
+                                             ^
+storage::load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-storage.fc:25:18: warning: Lack of end_parse.
+    int locked = ds~load_bool();
+                   ^
+get_avaliable_to_borrow: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:36:122: warning: Local variable 'total_supply_principal' is not used
+      var (price, asset_s_rate, asset_b_rate, total_supply_principal, total_borrow_principal, last_accural, token_balance) = unpack_asset_dynamics(asset_dynamics);
+                                                                                                                           ^
+get_avaliable_to_borrow: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:36:122: warning: Local variable 'total_borrow_principal' is not used
+      var (price, asset_s_rate, asset_b_rate, total_supply_principal, total_borrow_principal, last_accural, token_balance) = unpack_asset_dynamics(asset_dynamics);
+                                                                                                                           ^
+get_avaliable_to_borrow: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:36:122: warning: Local variable 'last_accural' is not used
+      var (price, asset_s_rate, asset_b_rate, total_supply_principal, total_borrow_principal, last_accural, token_balance) = unpack_asset_dynamics(asset_dynamics);
+                                                                                                                           ^
+get_avaliable_to_borrow: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:36:122: warning: Local variable 'token_balance' is not used
+      var (price, asset_s_rate, asset_b_rate, total_supply_principal, total_borrow_principal, last_accural, token_balance) = unpack_asset_dynamics(asset_dynamics);
+                                                                                                                           ^
+get_avaliable_to_borrow: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:37:265: warning: Local variable 'oracle' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+get_avaliable_to_borrow: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:37:265: warning: Local variable 'liquidation_threshold' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+get_avaliable_to_borrow: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:37:265: warning: Local variable 'liquidation_penalty' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+get_avaliable_to_borrow: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:37:265: warning: Local variable 'base_borrow_rate' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+get_avaliable_to_borrow: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:37:265: warning: Local variable 'borrow_rate_slope_low' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+get_avaliable_to_borrow: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:37:265: warning: Local variable 'borrow_rate_slope_high' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+get_avaliable_to_borrow: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:37:265: warning: Local variable 'supply_rate_slope_low' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+get_avaliable_to_borrow: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:37:265: warning: Local variable 'supply_rate_slope_high' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+get_avaliable_to_borrow: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:37:265: warning: Local variable 'target_utilization' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+get_agregated_balances: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:77:64: warning: Local variable 'master' is not used
+    (slice master, slice user, cell user_principals, int locked) = storage::load();
+                                                                 ^
+get_agregated_balances: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:77:64: warning: Local variable 'user' is not used
+    (slice master, slice user, cell user_principals, int locked) = storage::load();
+                                                                 ^
+get_agregated_balances: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:77:64: warning: Local variable 'locked' is not used
+    (slice master, slice user, cell user_principals, int locked) = storage::load();
+                                                                 ^
+get_agregated_balances: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:83:122: warning: Local variable 'total_supply_principal' is not used
+      var (price, asset_s_rate, asset_b_rate, total_supply_principal, total_borrow_principal, last_accural, token_balance) = unpack_asset_dynamics(asset_dynamics);
+                                                                                                                           ^
+get_agregated_balances: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:83:122: warning: Local variable 'total_borrow_principal' is not used
+      var (price, asset_s_rate, asset_b_rate, total_supply_principal, total_borrow_principal, last_accural, token_balance) = unpack_asset_dynamics(asset_dynamics);
+                                                                                                                           ^
+get_agregated_balances: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:83:122: warning: Local variable 'last_accural' is not used
+      var (price, asset_s_rate, asset_b_rate, total_supply_principal, total_borrow_principal, last_accural, token_balance) = unpack_asset_dynamics(asset_dynamics);
+                                                                                                                           ^
+get_agregated_balances: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:83:122: warning: Local variable 'token_balance' is not used
+      var (price, asset_s_rate, asset_b_rate, total_supply_principal, total_borrow_principal, last_accural, token_balance) = unpack_asset_dynamics(asset_dynamics);
+                                                                                                                           ^
+get_agregated_balances: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:84:265: warning: Local variable 'oracle' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+get_agregated_balances: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:84:265: warning: Local variable 'collateral_factor' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+get_agregated_balances: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:84:265: warning: Local variable 'liquidation_threshold' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+get_agregated_balances: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:84:265: warning: Local variable 'liquidation_penalty' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+get_agregated_balances: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:84:265: warning: Local variable 'base_borrow_rate' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+get_agregated_balances: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:84:265: warning: Local variable 'borrow_rate_slope_low' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+get_agregated_balances: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:84:265: warning: Local variable 'borrow_rate_slope_high' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+get_agregated_balances: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:84:265: warning: Local variable 'supply_rate_slope_low' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+get_agregated_balances: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:84:265: warning: Local variable 'supply_rate_slope_high' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+get_agregated_balances: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:84:265: warning: Local variable 'target_utilization' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+is_liquidatable: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:4:64: warning: Local variable 'master' is not used
+    (slice master, slice user, cell user_principals, int locked) = storage::load();
+                                                                 ^
+is_liquidatable: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:4:64: warning: Local variable 'user' is not used
+    (slice master, slice user, cell user_principals, int locked) = storage::load();
+                                                                 ^
+is_liquidatable: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:4:64: warning: Local variable 'locked' is not used
+    (slice master, slice user, cell user_principals, int locked) = storage::load();
+                                                                 ^
+is_liquidatable: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:10:122: warning: Local variable 'total_supply_principal' is not used
+      var (price, asset_s_rate, asset_b_rate, total_supply_principal, total_borrow_principal, last_accural, token_balance) = unpack_asset_dynamics(asset_dynamics);
+                                                                                                                           ^
+is_liquidatable: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:10:122: warning: Local variable 'total_borrow_principal' is not used
+      var (price, asset_s_rate, asset_b_rate, total_supply_principal, total_borrow_principal, last_accural, token_balance) = unpack_asset_dynamics(asset_dynamics);
+                                                                                                                           ^
+is_liquidatable: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:10:122: warning: Local variable 'last_accural' is not used
+      var (price, asset_s_rate, asset_b_rate, total_supply_principal, total_borrow_principal, last_accural, token_balance) = unpack_asset_dynamics(asset_dynamics);
+                                                                                                                           ^
+is_liquidatable: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:10:122: warning: Local variable 'token_balance' is not used
+      var (price, asset_s_rate, asset_b_rate, total_supply_principal, total_borrow_principal, last_accural, token_balance) = unpack_asset_dynamics(asset_dynamics);
+                                                                                                                           ^
+is_liquidatable: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:11:265: warning: Local variable 'oracle' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+is_liquidatable: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:11:265: warning: Local variable 'collateral_factor' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+is_liquidatable: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:11:265: warning: Local variable 'liquidation_penalty' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+is_liquidatable: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:11:265: warning: Local variable 'base_borrow_rate' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+is_liquidatable: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:11:265: warning: Local variable 'borrow_rate_slope_low' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+is_liquidatable: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:11:265: warning: Local variable 'borrow_rate_slope_high' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+is_liquidatable: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:11:265: warning: Local variable 'supply_rate_slope_low' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+is_liquidatable: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:11:265: warning: Local variable 'supply_rate_slope_high' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+is_liquidatable: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:11:265: warning: Local variable 'target_utilization' is not used
+  ... row_rate_slope_high, int supply_rate_slope_low, int supply_rate_slope_high, int target_utilization) = unpack_asset_config(asset_config);
+  ...                                                                                                     ^
+get_account_asset_balance: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:63:64: warning: Local variable 'master' is not used
+    (slice master, slice user, cell user_principals, int locked) = storage::load();
+                                                                 ^
+get_account_asset_balance: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:63:64: warning: Local variable 'user' is not used
+    (slice master, slice user, cell user_principals, int locked) = storage::load();
+                                                                 ^
+get_account_asset_balance: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./wdshin/evaafi-contracts/contracts/src/user-utils.fc:63:64: warning: Local variable 'locked' is not used
+    (slice master, slice user, cell user_principals, int locked) = storage::load();
+                                                                 ^

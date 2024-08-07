@@ -1,0 +1,12 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/test/contracts/case-4.SampleContract.fc:47:31: warning: Lack of end_parse.
+      slice msg_sender_addr = cs~load_msg_addr();
+                                ^
+__gen_load_SampleContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/test/contracts/case-4.SampleContract.fc:22:14: warning: Lack of end_parse.
+      return sc~__gen_read_SampleContract();
+               ^
+__gen_read_SampleContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/test/contracts/case-4.SampleContract.fc:15:19: warning: Lack of end_parse.
+      var v'd = sc_1~load_dict();
+                    ^

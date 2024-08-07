@@ -1,0 +1,43 @@
+$Coinflip$_internal_text_f3e40838d000ed9f74039fc5586024485f2abb6513b587532d3fecbf6bd9852f: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB94RSjLRvYC1bkwpUaPlE7Hyd8YSnkLVaAofrT-Vg3WziM/output/sample_Coinflip.code.fc:33:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Coinflip$_internal_text_f3e40838d000ed9f74039fc5586024485f2abb6513b587532d3fecbf6bd9852f: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB94RSjLRvYC1bkwpUaPlE7Hyd8YSnkLVaAofrT-Vg3WziM/output/sample_Coinflip.code.fc:33:59: warning: Local variable '$ctx'sender' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Coinflip$_internal_text_f3e40838d000ed9f74039fc5586024485f2abb6513b587532d3fecbf6bd9852f: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB94RSjLRvYC1bkwpUaPlE7Hyd8YSnkLVaAofrT-Vg3WziM/output/sample_Coinflip.code.fc:33:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Coinflip$_internal_text_f3e40838d000ed9f74039fc5586024485f2abb6513b587532d3fecbf6bd9852f: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB94RSjLRvYC1bkwpUaPlE7Hyd8YSnkLVaAofrT-Vg3WziM/output/sample_Coinflip.code.fc:33:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Coinflip$_internal_text_f3e40838d000ed9f74039fc5586024485f2abb6513b587532d3fecbf6bd9852f: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB94RSjLRvYC1bkwpUaPlE7Hyd8YSnkLVaAofrT-Vg3WziM/output/sample_Coinflip.code.fc:34:17: warning: Local variable '$amount' is not used
+      int $amount = $ctx'value;
+                  ^
+__tact_string_builder_append: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB94RSjLRvYC1bkwpUaPlE7Hyd8YSnkLVaAofrT-Vg3WziM/output/sample_Coinflip.stdlib.fc:105:31: warning: Lack of end_parse.
+              sc = sc~load_ref().begin_parse();
+                                ^
+$Coinflip$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB94RSjLRvYC1bkwpUaPlE7Hyd8YSnkLVaAofrT-Vg3WziM/output/sample_Coinflip.code.fc:15:37: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'test)) = (null(), null());
+                                      ^
+$Coinflip$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB94RSjLRvYC1bkwpUaPlE7Hyd8YSnkLVaAofrT-Vg3WziM/output/sample_Coinflip.code.fc:15:37: warning: Local variable '$self'test' is not used
+      var (($self'owner, $self'test)) = (null(), null());
+                                      ^
+$Coinflip$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB94RSjLRvYC1bkwpUaPlE7Hyd8YSnkLVaAofrT-Vg3WziM/output/sample_Coinflip.storage.fc:80:19: warning: Lack of end_parse.
+          return $sc~$Coinflip$_load();
+                    ^
+$Coinflip$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB94RSjLRvYC1bkwpUaPlE7Hyd8YSnkLVaAofrT-Vg3WziM/output/sample_Coinflip.code.fc:74:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB94RSjLRvYC1bkwpUaPlE7Hyd8YSnkLVaAofrT-Vg3WziM/output/sample_Coinflip.storage.fc:89:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

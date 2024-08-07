@@ -1,0 +1,217 @@
+;;
+;; Type: StateInit
+;; TLB: _ code:^cell data:^cell = StateInit
+;;
+
+((cell, cell)) $StateInit$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (cell vvv'code, cell vvv'data) = __tact_tuple_destroy_2(v);
+    return (vvv'code, vvv'data);
+}
+
+;;
+;; Type: Context
+;; TLB: _ bounced:bool sender:address value:int257 raw:^slice = Context
+;;
+
+_ $Context$_get_value((int, slice, int, slice) v) inline {
+    var (v'bounced, v'sender, v'value, v'raw) = v;
+    return v'value;
+}
+
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline {
+    return (bounce, to, value, mode, body, code, data);
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode(slice to, int value, int mode) inline {
+    return (true, to, value, mode, null(), null(), null());
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_bounce_value_mode(slice to, int bounce, int value, int mode) inline {
+    return (bounce, to, value, mode, null(), null(), null());
+}
+
+;;
+;; Type: Deploy
+;; Header: 0x946a98b6
+;; TLB: deploy#946a98b6 queryId:uint64 = Deploy
+;;
+
+(slice, ((int))) $Deploy$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2490013878);
+    var v'queryId = sc_0~load_uint(64);
+    return (sc_0, (v'queryId));
+}
+
+;;
+;; Type: DeployOk
+;; Header: 0xaff90f57
+;; TLB: deploy_ok#aff90f57 queryId:uint64 = DeployOk
+;;
+
+builder $DeployOk$_store(builder build_0, (int) v) inline {
+    var (v'queryId) = v;
+    build_0 = store_uint(build_0, 2952335191, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    return build_0;
+}
+
+cell $DeployOk$_store_cell((int) v) inline {
+    return $DeployOk$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $DeployOk$_constructor_queryId(int queryId) inline {
+    return (queryId);
+}
+
+;;
+;; Type: ChangeOwner
+;; Header: 0x819dbe99
+;; TLB: change_owner#819dbe99 queryId:uint64 newOwner:address = ChangeOwner
+;;
+
+(slice, ((int, slice))) $ChangeOwner$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2174598809);
+    var v'queryId = sc_0~load_uint(64);
+    var v'newOwner = sc_0~__tact_load_address();
+    return (sc_0, (v'queryId, v'newOwner));
+}
+
+;;
+;; Type: ChangeOwnerOk
+;; Header: 0x327b2b4a
+;; TLB: change_owner_ok#327b2b4a queryId:uint64 newOwner:address = ChangeOwnerOk
+;;
+
+builder $ChangeOwnerOk$_store(builder build_0, (int, slice) v) inline {
+    var (v'queryId, v'newOwner) = v;
+    build_0 = store_uint(build_0, 846932810, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    build_0 = __tact_store_address(build_0, v'newOwner);
+    return build_0;
+}
+
+cell $ChangeOwnerOk$_store_cell((int, slice) v) inline {
+    return $ChangeOwnerOk$_store(begin_cell(), v).end_cell();
+}
+
+((int, slice)) $ChangeOwnerOk$_constructor_queryId_newOwner(int queryId, slice newOwner) inline {
+    return (queryId, newOwner);
+}
+
+;;
+;; Type: Buy
+;; Header: 0x5bc58ae8
+;; TLB: buy#5bc58ae8 seller:address amount:uint32 price:uint256 nonce:uint32 = Buy
+;;
+
+(slice, ((slice, int, int, int))) $Buy$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 1539672808);
+    var v'seller = sc_0~__tact_load_address();
+    var v'amount = sc_0~load_uint(32);
+    var v'price = sc_0~load_uint(256);
+    var v'nonce = sc_0~load_uint(32);
+    return (sc_0, (v'seller, v'amount, v'price, v'nonce));
+}
+
+;;
+;; Type: Cancel
+;; Header: 0x768b4d10
+;; TLB: cancel#768b4d10 amount:uint32 price:uint256 nonce:uint32 = Cancel
+;;
+
+(slice, ((int, int, int))) $Cancel$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 1988840720);
+    var v'amount = sc_0~load_uint(32);
+    var v'price = sc_0~load_uint(256);
+    var v'nonce = sc_0~load_uint(32);
+    return (sc_0, (v'amount, v'price, v'nonce));
+}
+
+;;
+;; Type: Settings
+;; Header: 0xfe3552ad
+;; TLB: settings#fe3552ad sellPerc:Maybe int257 msg:Maybe int257 inscribe:Maybe int257 maxOrderLength:Maybe int257 = Settings
+;;
+
+(slice, ((int, int, int, int))) $Settings$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 4264907437);
+    var v'sellPerc = sc_0~load_int(1) ? sc_0~load_int(257) : null();
+    var v'msg = sc_0~load_int(1) ? sc_0~load_int(257) : null();
+    var v'inscribe = sc_0~load_int(1) ? sc_0~load_int(257) : null();
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'maxOrderLength = sc_1~load_int(1) ? sc_1~load_int(257) : null();
+    return (sc_0, (v'sellPerc, v'msg, v'inscribe, v'maxOrderLength));
+}
+
+;;
+;; Type: Insquidtion
+;;
+
+builder $Insquidtion$_store(builder build_0, (int, slice, int, cell, cell, int, int, int, int, int) v) inline {
+    var (v'seqno, v'owner, v'stopped, v'orderClosed, v'orderHashList, v'orderHashListIndex, v'sellFeePerc, v'msgFee, v'inscribeFee, v'maxOrderLength) = v;
+    build_0 = build_0.store_int(v'seqno, 257);
+    build_0 = __tact_store_address(build_0, v'owner);
+    build_0 = build_0.store_int(v'stopped, 1);
+    build_0 = build_0.store_dict(v'orderClosed);
+    build_0 = build_0.store_dict(v'orderHashList);
+    build_0 = build_0.store_int(v'orderHashListIndex, 257);
+    var build_1 = begin_cell();
+    build_1 = build_1.store_int(v'sellFeePerc, 257);
+    build_1 = build_1.store_int(v'msgFee, 257);
+    build_1 = build_1.store_int(v'inscribeFee, 257);
+    var build_2 = begin_cell();
+    build_2 = build_2.store_int(v'maxOrderLength, 257);
+    build_1 = store_ref(build_1, build_2.end_cell());
+    build_0 = store_ref(build_0, build_1.end_cell());
+    return build_0;
+}
+
+(slice, ((int, slice, int, cell, cell, int, int, int, int, int))) $Insquidtion$_load(slice sc_0) inline {
+    var v'seqno = sc_0~load_int(257);
+    var v'owner = sc_0~__tact_load_address();
+    var v'stopped = sc_0~load_int(1);
+    var v'orderClosed = sc_0~load_dict();
+    var v'orderHashList = sc_0~load_dict();
+    var v'orderHashListIndex = sc_0~load_int(257);
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'sellFeePerc = sc_1~load_int(257);
+    var v'msgFee = sc_1~load_int(257);
+    var v'inscribeFee = sc_1~load_int(257);
+    slice sc_2 = sc_1~load_ref().begin_parse();
+    var v'maxOrderLength = sc_2~load_int(257);
+    return (sc_0, (v'seqno, v'owner, v'stopped, v'orderClosed, v'orderHashList, v'orderHashListIndex, v'sellFeePerc, v'msgFee, v'inscribeFee, v'maxOrderLength));
+}
+
+(slice, ((int))) $Insquidtion$init$_load(slice sc_0) inline {
+    var v'initSeqno = sc_0~load_int(257);
+    return (sc_0, (v'initSeqno));
+}
+
+(int, slice, int, cell, cell, int, int, int, int, int) $Insquidtion$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$Insquidtion$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (int initSeqno) = $sc~$Insquidtion$init$_load();
+        $sc.end_parse();
+        return $Insquidtion$_contract_init(initSeqno);
+    }
+}
+
+() $Insquidtion$_contract_store((int, slice, int, cell, cell, int, int, int, int, int) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $Insquidtion$_store(b, v);
+    set_data(b.end_cell());
+}

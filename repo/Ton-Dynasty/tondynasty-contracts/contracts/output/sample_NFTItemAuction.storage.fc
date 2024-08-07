@@ -1,0 +1,186 @@
+;;
+;; Type: Context
+;; TLB: _ bounced:bool sender:address value:int257 raw:^slice = Context
+;;
+
+((int, slice, int, slice)) $Context$_tensor_cast((int, slice, int, slice) v) asm "NOP";
+
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode_bounce_body(slice to, int value, int mode, int bounce, cell body) inline {
+    return (bounce, to, value, mode, body, null(), null());
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_bounce_mode_body(slice to, int value, int bounce, int mode, cell body) inline {
+    return (bounce, to, value, mode, body, null(), null());
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode_body_bounce(slice to, int value, int mode, cell body, int bounce) inline {
+    return (bounce, to, value, mode, body, null(), null());
+}
+
+;;
+;; Type: Transfer
+;; Header: 0x5fcc3d14
+;; TLB: transfer#5fcc3d14 query_id:uint64 new_owner:address response_destination:address custom_payload:Maybe ^cell forward_amount:coins forward_payload:remainder<slice> = Transfer
+;;
+
+builder $Transfer$_store(builder build_0, (int, slice, slice, cell, int, slice) v) inline_ref {
+    var (v'query_id, v'new_owner, v'response_destination, v'custom_payload, v'forward_amount, v'forward_payload) = v;
+    build_0 = store_uint(build_0, 1607220500, 32);
+    build_0 = build_0.store_uint(v'query_id, 64);
+    build_0 = __tact_store_address(build_0, v'new_owner);
+    build_0 = __tact_store_address(build_0, v'response_destination);
+    build_0 = ~ null?(v'custom_payload) ? build_0.store_int(true, 1).store_ref(v'custom_payload) : build_0.store_int(false, 1);
+    build_0 = build_0.store_coins(v'forward_amount);
+    build_0 = build_0.store_slice(v'forward_payload);
+    return build_0;
+}
+
+cell $Transfer$_store_cell((int, slice, slice, cell, int, slice) v) inline {
+    return $Transfer$_store(begin_cell(), v).end_cell();
+}
+
+((int, slice, slice, cell, int, slice)) $Transfer$_constructor_query_id_new_owner_response_destination_custom_payload_forward_amount_forward_payload(int query_id, slice new_owner, slice response_destination, cell custom_payload, int forward_amount, slice forward_payload) inline {
+    return (query_id, new_owner, response_destination, custom_payload, forward_amount, forward_payload);
+}
+
+;;
+;; Type: AuctionInfo
+;; TLB: _ bidIncreasePercentage:uint256 auctionBidPeriod:uint256 auctionPeriod:uint256 reservePrice:coins buyNowPrice:coins nftHighestBid:coins nftHighestBidder:address nftSeller:address whitelistedBuyer:address nftRecipient:address beneficiary:address = AuctionInfo
+;;
+
+builder $AuctionInfo$_store(builder build_0, (int, int, int, int, int, int, slice, slice, slice, slice, slice) v) inline_ref {
+    var (v'bidIncreasePercentage, v'auctionBidPeriod, v'auctionPeriod, v'reservePrice, v'buyNowPrice, v'nftHighestBid, v'nftHighestBidder, v'nftSeller, v'whitelistedBuyer, v'nftRecipient, v'beneficiary) = v;
+    build_0 = build_0.store_uint(v'bidIncreasePercentage, 256);
+    build_0 = build_0.store_uint(v'auctionBidPeriod, 256);
+    build_0 = build_0.store_uint(v'auctionPeriod, 256);
+    build_0 = build_0.store_coins(v'reservePrice);
+    build_0 = build_0.store_coins(v'buyNowPrice);
+    var build_1 = begin_cell();
+    build_1 = build_1.store_coins(v'nftHighestBid);
+    build_1 = __tact_store_address(build_1, v'nftHighestBidder);
+    build_1 = __tact_store_address(build_1, v'nftSeller);
+    build_1 = __tact_store_address(build_1, v'whitelistedBuyer);
+    var build_2 = begin_cell();
+    build_2 = __tact_store_address(build_2, v'nftRecipient);
+    build_2 = __tact_store_address(build_2, v'beneficiary);
+    build_1 = store_ref(build_1, build_2.end_cell());
+    build_0 = store_ref(build_0, build_1.end_cell());
+    return build_0;
+}
+
+(slice, ((int, int, int, int, int, int, slice, slice, slice, slice, slice))) $AuctionInfo$_load(slice sc_0) inline_ref {
+    var v'bidIncreasePercentage = sc_0~load_uint(256);
+    var v'auctionBidPeriod = sc_0~load_uint(256);
+    var v'auctionPeriod = sc_0~load_uint(256);
+    var v'reservePrice = sc_0~load_coins();
+    var v'buyNowPrice = sc_0~load_coins();
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'nftHighestBid = sc_1~load_coins();
+    var v'nftHighestBidder = sc_1~__tact_load_address();
+    var v'nftSeller = sc_1~__tact_load_address();
+    var v'whitelistedBuyer = sc_1~__tact_load_address();
+    slice sc_2 = sc_1~load_ref().begin_parse();
+    var v'nftRecipient = sc_2~__tact_load_address();
+    var v'beneficiary = sc_2~__tact_load_address();
+    return (sc_0, (v'bidIncreasePercentage, v'auctionBidPeriod, v'auctionPeriod, v'reservePrice, v'buyNowPrice, v'nftHighestBid, v'nftHighestBidder, v'nftSeller, v'whitelistedBuyer, v'nftRecipient, v'beneficiary));
+}
+
+(int, int, int, int, int, int, slice, slice, slice, slice, slice) $AuctionInfo$_to_external(((int, int, int, int, int, int, slice, slice, slice, slice, slice)) v) inline {
+    var (v'bidIncreasePercentage, v'auctionBidPeriod, v'auctionPeriod, v'reservePrice, v'buyNowPrice, v'nftHighestBid, v'nftHighestBidder, v'nftSeller, v'whitelistedBuyer, v'nftRecipient, v'beneficiary) = v; 
+    return (v'bidIncreasePercentage, v'auctionBidPeriod, v'auctionPeriod, v'reservePrice, v'buyNowPrice, v'nftHighestBid, v'nftHighestBidder, v'nftSeller, v'whitelistedBuyer, v'nftRecipient, v'beneficiary);
+}
+
+((int, int, int, int, int, int, slice, slice, slice, slice, slice)) $AuctionInfo$_constructor_bidIncreasePercentage_auctionBidPeriod_auctionPeriod_reservePrice_buyNowPrice_nftHighestBid_nftHighestBidder_nftSeller_whitelistedBuyer_nftRecipient_beneficiary(int bidIncreasePercentage, int auctionBidPeriod, int auctionPeriod, int reservePrice, int buyNowPrice, int nftHighestBid, slice nftHighestBidder, slice nftSeller, slice whitelistedBuyer, slice nftRecipient, slice beneficiary) inline {
+    return (bidIncreasePercentage, auctionBidPeriod, auctionPeriod, reservePrice, buyNowPrice, nftHighestBid, nftHighestBidder, nftSeller, whitelistedBuyer, nftRecipient, beneficiary);
+}
+
+;;
+;; Type: ReviseAuction
+;; Header: 0xb78ba468
+;; TLB: revise_auction#b78ba468 reviseAuctionInfo:AuctionInfo{bidIncreasePercentage:uint256,auctionBidPeriod:uint256,auctionPeriod:uint256,reservePrice:coins,buyNowPrice:coins,nftHighestBid:coins,nftHighestBidder:address,nftSeller:address,whitelistedBuyer:address,nftRecipient:address,beneficiary:address} = ReviseAuction
+;;
+
+(slice, (((int, int, int, int, int, int, slice, slice, slice, slice, slice)))) $ReviseAuction$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 3079382120);
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'reviseAuctionInfo = sc_1~$AuctionInfo$_load();
+    return (sc_0, (v'reviseAuctionInfo));
+}
+
+;;
+;; Type: BuildNftAuction
+;; Header: 0xeb94a059
+;; TLB: build_nft_auction#eb94a059 auctionInfo:AuctionInfo{bidIncreasePercentage:uint256,auctionBidPeriod:uint256,auctionPeriod:uint256,reservePrice:coins,buyNowPrice:coins,nftHighestBid:coins,nftHighestBidder:address,nftSeller:address,whitelistedBuyer:address,nftRecipient:address,beneficiary:address} = BuildNftAuction
+;;
+
+(slice, (((int, int, int, int, int, int, slice, slice, slice, slice, slice)))) $BuildNftAuction$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 3952386137);
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'auctionInfo = sc_1~$AuctionInfo$_load();
+    return (sc_0, (v'auctionInfo));
+}
+
+;;
+;; Type: NFTItemAuction
+;;
+
+builder $NFTItemAuction$_store(builder build_0, (slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int) v) inline {
+    var (v'nft_item, v'seller, (v'auctionInfo'bidIncreasePercentage, v'auctionInfo'auctionBidPeriod, v'auctionInfo'auctionPeriod, v'auctionInfo'reservePrice, v'auctionInfo'buyNowPrice, v'auctionInfo'nftHighestBid, v'auctionInfo'nftHighestBidder, v'auctionInfo'nftSeller, v'auctionInfo'whitelistedBuyer, v'auctionInfo'nftRecipient, v'auctionInfo'beneficiary), v'auctionBidPeriod, v'isInitialized, v'auctionEndTime) = v;
+    build_0 = __tact_store_address(build_0, v'nft_item);
+    build_0 = __tact_store_address(build_0, v'seller);
+    var build_1 = begin_cell();
+    build_1 = $AuctionInfo$_store(build_1, (v'auctionInfo'bidIncreasePercentage, v'auctionInfo'auctionBidPeriod, v'auctionInfo'auctionPeriod, v'auctionInfo'reservePrice, v'auctionInfo'buyNowPrice, v'auctionInfo'nftHighestBid, v'auctionInfo'nftHighestBidder, v'auctionInfo'nftSeller, v'auctionInfo'whitelistedBuyer, v'auctionInfo'nftRecipient, v'auctionInfo'beneficiary));
+    var build_2 = begin_cell();
+    build_2 = build_2.store_int(v'auctionBidPeriod, 257);
+    build_2 = build_2.store_int(v'isInitialized, 257);
+    build_2 = build_2.store_int(v'auctionEndTime, 257);
+    build_1 = store_ref(build_1, build_2.end_cell());
+    build_0 = store_ref(build_0, build_1.end_cell());
+    return build_0;
+}
+
+(slice, ((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int))) $NFTItemAuction$_load(slice sc_0) inline {
+    var v'nft_item = sc_0~__tact_load_address();
+    var v'seller = sc_0~__tact_load_address();
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'auctionInfo = sc_1~$AuctionInfo$_load();
+    slice sc_2 = sc_1~load_ref().begin_parse();
+    var v'auctionBidPeriod = sc_2~load_int(257);
+    var v'isInitialized = sc_2~load_int(257);
+    var v'auctionEndTime = sc_2~load_int(257);
+    return (sc_0, (v'nft_item, v'seller, v'auctionInfo, v'auctionBidPeriod, v'isInitialized, v'auctionEndTime));
+}
+
+(slice, ((slice, slice))) $NFTItemAuction$init$_load(slice sc_0) inline {
+    var v'nft_item = sc_0~__tact_load_address();
+    var v'seller = sc_0~__tact_load_address();
+    return (sc_0, (v'nft_item, v'seller));
+}
+
+(slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int) $NFTItemAuction$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$NFTItemAuction$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (slice nft_item, slice seller) = $sc~$NFTItemAuction$init$_load();
+        $sc.end_parse();
+        return $NFTItemAuction$_contract_init(nft_item, seller);
+    }
+}
+
+() $NFTItemAuction$_contract_store((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $NFTItemAuction$_store(b, v);
+    set_data(b.end_cell());
+}

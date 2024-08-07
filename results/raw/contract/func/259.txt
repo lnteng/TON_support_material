@@ -1,0 +1,40 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlZmzaDds9YkXgvENrpTAgpNh--NcWJ5fuQc7AqxEBQk98/bill.fc:251:19: warning: Lack of end_parse.
+      slice src = cs~load_msg_addr();
+                    ^
+get_elector: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlZmzaDds9YkXgvENrpTAgpNh--NcWJ5fuQc7AqxEBQk98/imports/utils.fc:134:64: warning: Lack of end_parse.
+      return ( chain::main, config_param(config::elector_address).begin_parse().preload_uint(256) );
+                                                                 ^
+get_vset_times: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlZmzaDds9YkXgvENrpTAgpNh--NcWJ5fuQc7AqxEBQk98/imports/utils.fc:167:34: warning: Lack of end_parse.
+      return ( cs~load_uint(32), cs~load_uint(32) );
+                                   ^
+get_validators_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlZmzaDds9YkXgvENrpTAgpNh--NcWJ5fuQc7AqxEBQk98/imports/utils.fc:152:52: warning: Lack of end_parse.
+      return ( cs~load_uint(16), cs~load_uint(16), cs~load_uint(16) );
+                                                     ^
+get_election_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlZmzaDds9YkXgvENrpTAgpNh--NcWJ5fuQc7AqxEBQk98/imports/utils.fc:142:70: warning: Lack of end_parse.
+      return ( cs~load_uint(32), cs~load_uint(32), cs~load_uint(32), cs~load_uint(32) );
+                                                                       ^
+get_stake_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlZmzaDds9YkXgvENrpTAgpNh--NcWJ5fuQc7AqxEBQk98/imports/utils.fc:158:67: warning: Lack of end_parse.
+      return ( cs~load_coins(), cs~load_coins(), cs~load_coins(), cs~load_uint(32) );
+                                                                    ^
+max_recommended_punishment_for_validator_misbehaviour: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlZmzaDds9YkXgvENrpTAgpNh--NcWJ5fuQc7AqxEBQk98/imports/utils.fc:351:49: warning: Lack of end_parse.
+          , cs~load_uint(16), cs~load_uint(16), cs~load_uint(16)
+                                                  ^
+max_recommended_punishment_for_validator_misbehaviour: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlZmzaDds9YkXgvENrpTAgpNh--NcWJ5fuQc7AqxEBQk98/imports/utils.fc:347:7: warning: Local variable 'prefix' is not used
+      ) = ( cs~load_uint(8)
+        ^
+max_recommended_punishment_for_validator_misbehaviour: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlZmzaDds9YkXgvENrpTAgpNh--NcWJ5fuQc7AqxEBQk98/imports/utils.fc:347:7: warning: Local variable 'unpunishable_interval' is not used
+      ) = ( cs~load_uint(8)
+        ^
+max_recommended_punishment_for_validator_misbehaviour: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlZmzaDds9YkXgvENrpTAgpNh--NcWJ5fuQc7AqxEBQk98/imports/utils.fc:347:7: warning: Local variable 'long_interval' is not used
+      ) = ( cs~load_uint(8)
+        ^

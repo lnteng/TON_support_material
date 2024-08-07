@@ -1,0 +1,355 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_NFTItemAuction.headers.fc";
+#include "sample_NFTItemAuction.stdlib.fc";
+#include "sample_NFTItemAuction.constants.fc";
+#include "sample_NFTItemAuction.storage.fc";
+
+;;
+;; Contract NFTItemAuction functions
+;;
+
+(slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int) $NFTItemAuction$_contract_init(slice $nft_item, slice $seller) impure inline_ref {
+    var (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = (null(), null(), null(), null(), null(), null());
+    $self'nft_item = $nft_item;
+    $self'seller = $seller;
+    $self'isInitialized = 0;
+    $self'auctionBidPeriod = 0;
+    $self'auctionEndTime = 0;
+    ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary) = $AuctionInfo$_constructor_bidIncreasePercentage_auctionBidPeriod_auctionPeriod_reservePrice_buyNowPrice_nftHighestBid_nftHighestBidder_nftSeller_whitelistedBuyer_nftRecipient_beneficiary(0, 0, 0, 0, 0, 0, __tact_create_address(0, 0), $seller, $seller, $seller, $seller);
+    return ($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime);
+}
+
+((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int), ()) $NFTItemAuction$_fun__send_winning_bid_amount((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int) $self) impure inline {
+    var (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = $self;
+    slice $seller = $self'auctionInfo'beneficiary;
+    int $winningBidAmount = $self'auctionInfo'nftHighestBid;
+    $global_send($SendParameters$_constructor_to_value_mode_body_bounce($seller, ($winningBidAmount - 60000000), 1, __gen_cell_comment_c3b2ed4c95d786ff3a9f195e9c2403aa86d31ed5a28fbfc8bdac8ff8b324136e(), false));
+    return (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime), ());
+}
+
+((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int), ()) $NFTItemAuction$_fun__transfer_nft((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int) $self, slice $buyer) impure inline {
+    var (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = $self;
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body($self'nft_item, 0, false, (128 + 32), $Transfer$_store_cell($Transfer$_constructor_query_id_new_owner_response_destination_custom_payload_forward_amount_forward_payload(0, $buyer, $buyer, $global_emptyCell(), 0, $global_emptySlice()))));
+    return (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime), ());
+}
+
+((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int), ()) $NFTItemAuction$_fun__send_prev_bid_back((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int) $self, slice $bidder, int $bidValue) impure inline {
+    var (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = $self;
+    slice $prevNftHighestBidder = $self'auctionInfo'nftHighestBidder;
+    int $prevNftHighestBid = $self'auctionInfo'nftHighestBid;
+    int $paybackTon = ($prevNftHighestBid - 30000000);
+    if (($paybackTon > 0)) {
+        $global_send($SendParameters$_constructor_to_value_mode_bounce_body($prevNftHighestBidder, $paybackTon, 2, false, __gen_cell_comment_8e3c77c1e4fe005a524d1b77d416c3423c8e54a86757e71ab68e4eda288e6470()));
+    }
+    return (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime), ());
+}
+
+((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int), ()) $NFTItemAuction$_fun__update_auction_bid_period((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int) $self) impure inline {
+    var (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = $self;
+    $self'auctionBidPeriod = (now() + $self'auctionInfo'auctionBidPeriod);
+    return (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime), ());
+}
+
+((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int), ()) $NFTItemAuction$_fun__update_auction_end_time((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int) $self) impure inline {
+    var (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = $self;
+    $self'auctionEndTime = (now() + $self'auctionInfo'auctionPeriod);
+    return (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime), ());
+}
+
+((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int), ()) $NFTItemAuction$_fun__update_auction((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int) $self) impure inline {
+    var (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = $self;
+    ($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)~$NFTItemAuction$_fun__update_auction_bid_period();
+    if (($self'auctionEndTime == 0)) {
+        ($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)~$NFTItemAuction$_fun__update_auction_end_time();
+    }
+    return (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime), ());
+}
+
+((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int), ()) $NFTItemAuction$_fun__trade_bid((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int) $self, (int, slice, int, slice) $ctx, int $buyNowPrice) impure inline {
+    var (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = $self;
+    var (($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw)) = $ctx;
+    int $bidValue = $ctx'value;
+    slice $buyer = $ctx'sender;
+    if (($bidValue >= $buyNowPrice)) {
+        $self'auctionInfo'nftHighestBid = $bidValue;
+        ($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)~$NFTItemAuction$_fun__send_winning_bid_amount();
+        ($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)~$NFTItemAuction$_fun__transfer_nft($buyer);
+        $self'isInitialized = 0;
+        return (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime), ());
+    }
+    int $bidIncreaseAmount = (($self'auctionInfo'nftHighestBid * (10000 + $self'auctionInfo'bidIncreasePercentage)) / 10000);
+    throw_unless(3724, ($bidValue > $bidIncreaseAmount));
+    if (($self'auctionInfo'nftHighestBid != 0)) {
+        ($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)~$NFTItemAuction$_fun__send_prev_bid_back($ctx'sender, $bidValue);
+    }
+    $self'auctionInfo'nftHighestBidder = $buyer;
+    $self'auctionInfo'nftHighestBid = $bidValue;
+    if (($bidValue > $self'auctionInfo'reservePrice)) {
+        ($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)~$NFTItemAuction$_fun__update_auction();
+    }
+    return (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime), ());
+}
+
+((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int), ()) $NFTItemAuction$_fun__fraction_bid((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int) $self, (int, slice, int, slice) $ctx) impure inline {
+    var (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = $self;
+    var (($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw)) = $ctx;
+    int $bidValue = $ctx'value;
+    slice $buyer = $ctx'sender;
+    int $bidIncreaseAmount = (($self'auctionInfo'nftHighestBid * (10000 + $self'auctionInfo'bidIncreasePercentage)) / 10000);
+    throw_unless(18526, ($bidValue > $bidIncreaseAmount));
+    ($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)~$NFTItemAuction$_fun__send_prev_bid_back($ctx'sender, $bidValue);
+    $self'auctionInfo'nftHighestBidder = $buyer;
+    $self'auctionInfo'nftHighestBid = $bidValue;
+    ($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)~$NFTItemAuction$_fun__update_auction();
+    return (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime), ());
+}
+
+((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int), ()) $NFTItemAuction$_fun__initialized_validate((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int) $self) impure inline {
+    var (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = $self;
+    throw_unless(11017, ($self'isInitialized == 0));
+    return (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime), ());
+}
+
+((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int), ()) $NFTItemAuction$_fun__owner_validate((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int) $self, (int, slice, int, slice) $ctx) impure inline {
+    var (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = $self;
+    var (($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw)) = $ctx;
+    throw_unless(8440, ( __tact_slice_eq_bits($self'nft_item, $ctx'sender) ));
+    return (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime), ());
+}
+
+((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int), ()) $NFTItemAuction$_fun__set_price_validate((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int) $self, int $buyNowPrice, int $reservePrice) impure inline {
+    var (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = $self;
+    throw_unless(55234, ($buyNowPrice > $reservePrice));
+    return (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime), ());
+}
+
+((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int), (int, int, int, int, int, int, slice, slice, slice, slice, slice)) $NFTItemAuction$_fun_get_auction_info((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int) $self) impure inline_ref {
+    var (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = $self;
+    return (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime), ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary));
+}
+
+((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int), int) $NFTItemAuction$_fun_get_is_initialized((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int) $self) impure inline_ref {
+    var (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = $self;
+    return (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime), $self'isInitialized);
+}
+
+((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int), int) $NFTItemAuction$_fun_get_auction_end((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int) $self) impure inline_ref {
+    var (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = $self;
+    return (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime), $self'auctionEndTime);
+}
+
+((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int), int) $NFTItemAuction$_fun_get_auction_bid_period((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int) $self) impure inline_ref {
+    var (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)) = $self;
+    return (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime), $self'auctionBidPeriod);
+}
+
+;;
+;; Receivers of a Contract NFTItemAuction
+;;
+
+(((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int)), ()) $NFTItemAuction$_internal_binary_BuildNftAuction((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int) $self, ((int, int, int, int, int, int, slice, slice, slice, slice, slice)) $msg) impure inline {
+    var ($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime) = $self;
+    var (($msg'auctionInfo'bidIncreasePercentage, $msg'auctionInfo'auctionBidPeriod, $msg'auctionInfo'auctionPeriod, $msg'auctionInfo'reservePrice, $msg'auctionInfo'buyNowPrice, $msg'auctionInfo'nftHighestBid, $msg'auctionInfo'nftHighestBidder, $msg'auctionInfo'nftSeller, $msg'auctionInfo'whitelistedBuyer, $msg'auctionInfo'nftRecipient, $msg'auctionInfo'beneficiary)) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    ($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)~$NFTItemAuction$_fun__owner_validate($Context$_tensor_cast(($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw)));
+    ($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)~$NFTItemAuction$_fun__initialized_validate();
+    if (($msg'auctionInfo'buyNowPrice != 0)) {
+        ($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)~$NFTItemAuction$_fun__set_price_validate($msg'auctionInfo'buyNowPrice, $msg'auctionInfo'reservePrice);
+    } else {
+        $msg'auctionInfo'nftHighestBid = $msg'auctionInfo'reservePrice;
+    }
+    ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary) = ($msg'auctionInfo'bidIncreasePercentage, $msg'auctionInfo'auctionBidPeriod, $msg'auctionInfo'auctionPeriod, $msg'auctionInfo'reservePrice, $msg'auctionInfo'buyNowPrice, $msg'auctionInfo'nftHighestBid, $msg'auctionInfo'nftHighestBidder, $msg'auctionInfo'nftSeller, $msg'auctionInfo'whitelistedBuyer, $msg'auctionInfo'nftRecipient, $msg'auctionInfo'beneficiary);
+    $self'isInitialized = 1;
+    $self'auctionBidPeriod = 0;
+    $self'auctionEndTime = 0;
+    return (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime), ());
+}
+
+((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int), ()) $NFTItemAuction$_internal_text_83bbd8c8652c4386acfdf3d05d1df6fb78b5e3ef8843ddd1cd3a1af6804054b4((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int) $self) impure inline {
+    var ($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime) = $self;
+    throw_unless(46984, ( ((now() < $self'auctionEndTime)) ? (true) : (($self'auctionEndTime == 0)) ));
+    throw_unless(42237, ($self'isInitialized == 1));
+    throw_unless(50905, ((now() < ($self'auctionBidPeriod | $self'auctionBidPeriod)) == 0));
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    slice $buyer = $ctx'sender;
+    throw_unless(37031, ( ~ __tact_slice_eq_bits($self'auctionInfo'nftSeller, $buyer) ));
+    int $buyNowPrice = $self'auctionInfo'buyNowPrice;
+    if (($buyNowPrice != 0)) {
+        ($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)~$NFTItemAuction$_fun__trade_bid(($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw), $buyNowPrice);
+    } else {
+        ($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)~$NFTItemAuction$_fun__fraction_bid($Context$_tensor_cast(($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw)));
+    }
+    return (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime), ());
+}
+
+((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int), ()) $NFTItemAuction$_internal_text_30c235c575c09a25ce30996c65a238c82028ca965674e382afb7b536ecec4382((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int) $self) impure inline {
+    var ($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime) = $self;
+    throw_unless(45065, (now() >= $self'auctionBidPeriod));
+    ($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)~$NFTItemAuction$_fun__send_winning_bid_amount();
+    slice $buyer = $self'auctionInfo'nftHighestBidder;
+    ($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)~$NFTItemAuction$_fun__transfer_nft($buyer);
+    $self'isInitialized = 0;
+    return (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime), ());
+}
+
+(((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int)), ()) $NFTItemAuction$_internal_binary_ReviseAuction((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int) $self, ((int, int, int, int, int, int, slice, slice, slice, slice, slice)) $msg) impure inline {
+    var ($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime) = $self;
+    var (($msg'reviseAuctionInfo'bidIncreasePercentage, $msg'reviseAuctionInfo'auctionBidPeriod, $msg'reviseAuctionInfo'auctionPeriod, $msg'reviseAuctionInfo'reservePrice, $msg'reviseAuctionInfo'buyNowPrice, $msg'reviseAuctionInfo'nftHighestBid, $msg'reviseAuctionInfo'nftHighestBidder, $msg'reviseAuctionInfo'nftSeller, $msg'reviseAuctionInfo'whitelistedBuyer, $msg'reviseAuctionInfo'nftRecipient, $msg'reviseAuctionInfo'beneficiary)) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    ($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)~$NFTItemAuction$_fun__owner_validate($Context$_tensor_cast(($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw)));
+    throw_unless(59374, ( (($self'auctionInfo'reservePrice == $msg'reviseAuctionInfo'reservePrice)) ? (true) : (($msg'reviseAuctionInfo'buyNowPrice == $self'auctionInfo'buyNowPrice)) ));
+    if (( (( (($self'auctionEndTime == 0)) ? (($self'auctionInfo'reservePrice != $msg'reviseAuctionInfo'reservePrice)) : (false) )) ? (($msg'reviseAuctionInfo'reservePrice < $self'auctionInfo'buyNowPrice)) : (false) )) {
+        $self'auctionInfo'reservePrice = $msg'reviseAuctionInfo'reservePrice;
+        if (($self'auctionInfo'nftHighestBid > $self'auctionInfo'reservePrice)) {
+            ($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)~$NFTItemAuction$_fun__update_auction_bid_period();
+            ($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)~$NFTItemAuction$_fun__update_auction_end_time();
+        }
+    }
+    if (( (( (($self'auctionEndTime == 0)) ? (($msg'reviseAuctionInfo'buyNowPrice != $self'auctionInfo'buyNowPrice)) : (false) )) ? (($msg'reviseAuctionInfo'buyNowPrice > $self'auctionInfo'reservePrice)) : (false) )) {
+        $self'auctionInfo'buyNowPrice = $msg'reviseAuctionInfo'buyNowPrice;
+    }
+    return (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime), ());
+}
+
+((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int), ()) $NFTItemAuction$_internal_text_f197588d96bb7ed9becf4e3b632fca58694ded2d3437a44d065235b8213e4c66((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int) $self) impure inline {
+    var ($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime) = $self;
+    if (($self'auctionEndTime > 0)) {
+        ($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)~$NFTItemAuction$_fun__send_winning_bid_amount();
+        slice $buyer = $self'auctionInfo'nftHighestBidder;
+        ($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)~$NFTItemAuction$_fun__transfer_nft($buyer);
+        $self'isInitialized = 0;
+    } else {
+        slice $seller = $self'auctionInfo'beneficiary;
+        ($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime)~$NFTItemAuction$_fun__transfer_nft($seller);
+        $self'isInitialized = 0;
+    }
+    return (($self'nft_item, $self'seller, ($self'auctionInfo'bidIncreasePercentage, $self'auctionInfo'auctionBidPeriod, $self'auctionInfo'auctionPeriod, $self'auctionInfo'reservePrice, $self'auctionInfo'buyNowPrice, $self'auctionInfo'nftHighestBid, $self'auctionInfo'nftHighestBidder, $self'auctionInfo'nftSeller, $self'auctionInfo'whitelistedBuyer, $self'auctionInfo'nftRecipient, $self'auctionInfo'beneficiary), $self'auctionBidPeriod, $self'isInitialized, $self'auctionEndTime), ());
+}
+
+;;
+;; Get methods of a Contract NFTItemAuction
+;;
+
+_ %get_auction_info() method_id(80697) {
+    var self = $NFTItemAuction$_contract_load();
+    var res = self~$NFTItemAuction$_fun_get_auction_info();
+    return $AuctionInfo$_to_external(res);
+}
+
+_ %get_is_initialized() method_id(119927) {
+    var self = $NFTItemAuction$_contract_load();
+    var res = self~$NFTItemAuction$_fun_get_is_initialized();
+    return res;
+}
+
+_ %get_auction_end() method_id(74379) {
+    var self = $NFTItemAuction$_contract_load();
+    var res = self~$NFTItemAuction$_fun_get_auction_end();
+    return res;
+}
+
+_ %get_auction_bid_period() method_id(79486) {
+    var self = $NFTItemAuction$_contract_load();
+    var res = self~$NFTItemAuction$_fun_get_auction_bid_period();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmQZWp5vjafuLXMn12hoKRF5SSCmaGVKXr9FpVwL6tAi6V";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract NFTItemAuction
+;;
+
+((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int), int) $NFTItemAuction$_contract_router_internal((slice, slice, (int, int, int, int, int, int, slice, slice, slice, slice, slice), int, int, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive BuildNftAuction message
+    if (op == 3952386137) {
+        var msg = in_msg~$BuildNftAuction$_load();
+        self~$NFTItemAuction$_internal_binary_BuildNftAuction(msg);
+        return (self, true);
+    }
+    
+    ;; Receive ReviseAuction message
+    if (op == 3079382120) {
+        var msg = in_msg~$ReviseAuction$_load();
+        self~$NFTItemAuction$_internal_binary_ReviseAuction(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "Bid" message
+        if (text_op == 0x83bbd8c8652c4386acfdf3d05d1df6fb78b5e3ef8843ddd1cd3a1af6804054b4) {
+            self~$NFTItemAuction$_internal_text_83bbd8c8652c4386acfdf3d05d1df6fb78b5e3ef8843ddd1cd3a1af6804054b4();
+            return (self, true);
+        }
+        
+        ;; Receive "settleAuction" message
+        if (text_op == 0x30c235c575c09a25ce30996c65a238c82028ca965674e382afb7b536ecec4382) {
+            self~$NFTItemAuction$_internal_text_30c235c575c09a25ce30996c65a238c82028ca965674e382afb7b536ecec4382();
+            return (self, true);
+        }
+        
+        ;; Receive "EndAuction" message
+        if (text_op == 0xf197588d96bb7ed9becf4e3b632fca58694ded2d3437a44d065235b8213e4c66) {
+            self~$NFTItemAuction$_internal_text_f197588d96bb7ed9becf4e3b632fca58694ded2d3437a44d065235b8213e4c66();
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $NFTItemAuction$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$NFTItemAuction$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $NFTItemAuction$_contract_store(self);
+}

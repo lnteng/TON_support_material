@@ -1,0 +1,75 @@
+__tact_string_builder_append: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBY6u-mHDpQX6-r1voFOEvOoG_jJoaDcfhEvwBHcORVMJiV/output/verifier_Lottery.stdlib.fc:169:31: warning: Lack of end_parse.
+              sc = sc~load_ref().begin_parse();
+                                ^
+__tact_dict_set_int_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBY6u-mHDpQX6-r1voFOEvOoG_jJoaDcfhEvwBHcORVMJiV/output/verifier_Lottery.stdlib.fc:58:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+__tact_dict_set_slice_cell: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBY6u-mHDpQX6-r1voFOEvOoG_jJoaDcfhEvwBHcORVMJiV/output/verifier_Lottery.stdlib.fc:94:21: warning: Local variable 'ok' is not used
+          var (r, ok) = __tact_dict_delete(d, kl, k);
+                      ^
+__tact_dict_set_int_slice: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBY6u-mHDpQX6-r1voFOEvOoG_jJoaDcfhEvwBHcORVMJiV/output/verifier_Lottery.stdlib.fc:76:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+$Lottery$_internal_binary_TokenPayout: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBY6u-mHDpQX6-r1voFOEvOoG_jJoaDcfhEvwBHcORVMJiV/output/verifier_Lottery.code.fc:58:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Lottery$_internal_binary_TokenPayout: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBY6u-mHDpQX6-r1voFOEvOoG_jJoaDcfhEvwBHcORVMJiV/output/verifier_Lottery.code.fc:58:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Lottery$_internal_binary_TokenPayout: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBY6u-mHDpQX6-r1voFOEvOoG_jJoaDcfhEvwBHcORVMJiV/output/verifier_Lottery.code.fc:58:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Lottery$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBY6u-mHDpQX6-r1voFOEvOoG_jJoaDcfhEvwBHcORVMJiV/output/verifier_Lottery.storage.fc:185:19: warning: Lack of end_parse.
+          return $sc~$Lottery$_load();
+                    ^
+$TokenPayoutResponse$_load_opt: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBY6u-mHDpQX6-r1voFOEvOoG_jJoaDcfhEvwBHcORVMJiV/output/verifier_Lottery.storage.fc:106:48: warning: Lack of end_parse.
+      return $TokenPayoutResponse$_as_optional(sc~$TokenPayoutResponse$_load());
+                                                 ^
+$Lottery$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBY6u-mHDpQX6-r1voFOEvOoG_jJoaDcfhEvwBHcORVMJiV/output/verifier_Lottery.storage.fc:176:34: warning: Lack of end_parse.
+      var v'tokenArrayLength = sc_1~load_int(257);
+                                   ^
+$Lottery$_internal_text_62053394eda83a15abf74de3ed26f6ee8fcb1ec7dbdda521fcc1c87fc96410cf: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBY6u-mHDpQX6-r1voFOEvOoG_jJoaDcfhEvwBHcORVMJiV/output/verifier_Lottery.code.fc:82:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Lottery$_internal_text_62053394eda83a15abf74de3ed26f6ee8fcb1ec7dbdda521fcc1c87fc96410cf: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBY6u-mHDpQX6-r1voFOEvOoG_jJoaDcfhEvwBHcORVMJiV/output/verifier_Lottery.code.fc:82:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Lottery$_internal_text_62053394eda83a15abf74de3ed26f6ee8fcb1ec7dbdda521fcc1c87fc96410cf: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBY6u-mHDpQX6-r1voFOEvOoG_jJoaDcfhEvwBHcORVMJiV/output/verifier_Lottery.code.fc:82:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Lottery$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBY6u-mHDpQX6-r1voFOEvOoG_jJoaDcfhEvwBHcORVMJiV/output/verifier_Lottery.code.fc:15:200: warning: Local variable '$self'winner'value' is not used
+      var ((($self'winner'value, $self'winner'token, $self'winner'address), $self'owner, $self'balance, $self'tokenCost, $self'usersToken, $self'tokensUser, $self'tokensIndex, $self'tokenArrayLength)) = (null(), null(), 0, 1000000000, null(), null(), null(), 0);
+                                                                                                                                                                                                         ^
+$Lottery$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBY6u-mHDpQX6-r1voFOEvOoG_jJoaDcfhEvwBHcORVMJiV/output/verifier_Lottery.code.fc:15:200: warning: Local variable '$self'winner'token' is not used
+      var ((($self'winner'value, $self'winner'token, $self'winner'address), $self'owner, $self'balance, $self'tokenCost, $self'usersToken, $self'tokensUser, $self'tokensIndex, $self'tokenArrayLength)) = (null(), null(), 0, 1000000000, null(), null(), null(), 0);
+                                                                                                                                                                                                         ^
+$Lottery$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBY6u-mHDpQX6-r1voFOEvOoG_jJoaDcfhEvwBHcORVMJiV/output/verifier_Lottery.code.fc:15:200: warning: Local variable '$self'winner'address' is not used
+      var ((($self'winner'value, $self'winner'token, $self'winner'address), $self'owner, $self'balance, $self'tokenCost, $self'usersToken, $self'tokensUser, $self'tokensIndex, $self'tokenArrayLength)) = (null(), null(), 0, 1000000000, null(), null(), null(), 0);
+                                                                                                                                                                                                         ^
+$Lottery$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBY6u-mHDpQX6-r1voFOEvOoG_jJoaDcfhEvwBHcORVMJiV/output/verifier_Lottery.code.fc:15:200: warning: Local variable '$self'owner' is not used
+      var ((($self'winner'value, $self'winner'token, $self'winner'address), $self'owner, $self'balance, $self'tokenCost, $self'usersToken, $self'tokensUser, $self'tokensIndex, $self'tokenArrayLength)) = (null(), null(), 0, 1000000000, null(), null(), null(), 0);
+                                                                                                                                                                                                         ^
+$Lottery$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBY6u-mHDpQX6-r1voFOEvOoG_jJoaDcfhEvwBHcORVMJiV/output/verifier_Lottery.code.fc:143:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBY6u-mHDpQX6-r1voFOEvOoG_jJoaDcfhEvwBHcORVMJiV/output/verifier_Lottery.storage.fc:194:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

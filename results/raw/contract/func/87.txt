@@ -1,0 +1,12 @@
+royalty_params: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBPIJPKd1G8eJ8vIWUnkpRf-5rpRp_oqiOepv3Tf571LKbq/nft-single.fc:190:51: warning: Lack of end_parse.
+      return (rs~load_uint(16), rs~load_uint(16), rs~load_msg_addr());
+                                                    ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBPIJPKd1G8eJ8vIWUnkpRf-5rpRp_oqiOepv3Tf571LKbq/nft-single.fc:145:21: warning: Lack of end_parse.
+      int fwd_fee = cs~load_coins(); ;; we use message fwd_fee for estimation of forward_payload costs
+                      ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBPIJPKd1G8eJ8vIWUnkpRf-5rpRp_oqiOepv3Tf571LKbq/nft-single.fc:23:11: warning: Lack of end_parse.
+          ds~load_ref()           ;; royalty_params
+            ^

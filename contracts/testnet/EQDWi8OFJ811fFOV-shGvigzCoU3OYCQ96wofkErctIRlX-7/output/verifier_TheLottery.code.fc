@@ -1,0 +1,224 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "verifier_TheLottery.headers.fc";
+#include "verifier_TheLottery.stdlib.fc";
+#include "verifier_TheLottery.constants.fc";
+#include "verifier_TheLottery.storage.fc";
+
+;;
+;; Contract TheLottery functions
+;;
+
+(slice, cell, int, int, int) $TheLottery$_contract_init(slice $owner) impure inline_ref {
+    var (($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue)) = (null(), null(), null(), 0, 0);
+    $self'owner = $owner;
+    $self'currGameIdx = 0;
+    $self'games = null();
+    cell $players = null();
+    $self'games~__tact_dict_set_int_cell(257, $self'currGameIdx, $Game$_store_cell($Game$_constructor_players_currPlayerIdx_winPlayerIdx_timestamp($players, (- 1), (- 1), now())));
+    return ($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue);
+}
+
+((slice, cell, int, int, int), int) $TheLottery$_fun_isUserInGame((slice, cell, int, int, int) $self, slice $address, (cell, int, int, int) $game) impure inline_ref {
+    var (($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue)) = $self;
+    var (($game'players, $game'currPlayerIdx, $game'winPlayerIdx, $game'timestamp)) = $game;
+    int $i = 0;
+    while (($i < ($game'currPlayerIdx + 1))) {
+        if (( __tact_slice_eq_bits($address, $Player$_get_address($Player$_not_null($Player$_load_opt(__tact_dict_get_int_cell($game'players, 257, $i))))) )) {
+            return (($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue), true);
+        }
+        $i = ($i + 1);
+    }
+    return (($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue), false);
+}
+
+((slice, cell, int, int, int), ()) $TheLottery$_fun_rewardTheWinner((slice, cell, int, int, int) $self, (slice, int) $player) impure inline_ref {
+    var (($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue)) = $self;
+    var (($player'address, $player'bit)) = $player;
+    return (($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue), ());
+}
+
+((slice, cell, int, int, int), ()) $TheLottery$_fun_requireOwner((slice, cell, int, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue)) = $self;
+    throw_unless(132, ( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) ));
+    return (($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue), ());
+}
+
+((slice, cell, int, int, int), slice) $TheLottery$_fun_balance((slice, cell, int, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue)) = $self;
+    ($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue)~$TheLottery$_fun_requireOwner();
+    return (($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue), $Int$_fun_toCoinsString((__tact_my_balance() - $self'lockedBalance)));
+}
+
+((slice, cell, int, int, int), int) $TheLottery$_fun_totalGames((slice, cell, int, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue)) = $self;
+    return (($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue), $self'currGameIdx);
+}
+
+((slice, cell, int, int, int), int) $TheLottery$_fun_totalRevenue((slice, cell, int, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue)) = $self;
+    return (($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue), $self'totalRevenue);
+}
+
+((slice, cell, int, int, int), slice) $TheLottery$_fun_owner((slice, cell, int, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue)) = $self;
+    return (($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue), $self'owner);
+}
+
+;;
+;; Receivers of a Contract TheLottery
+;;
+
+(((slice, cell, int, int, int)), ()) $TheLottery$_internal_binary_Withdraw((slice, cell, int, int, int) $self, tuple $msg) impure inline {
+    var ($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue) = $self;
+    var $msg = $msg;
+    ($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue)~$TheLottery$_fun_requireOwner();
+    $global_send($SendParameters$_constructor_to_bounce_value_mode_body($self'owner, true, (((__tact_my_balance() - $self'lockedBalance) - $Context$_get_value(__tact_context_get())) - 500000000), (64 + 2), __gen_cell_comment_c8ddbfd387f15feaa96487d6ab319ae9d887f843f1b3a2da6c04cba9d4002aca()));
+    return (($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue), ());
+}
+
+(((slice, cell, int, int, int)), ()) %$TheLottery$_internal_empty((slice, cell, int, int, int) $self) impure inline {
+    var ($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue) = $self;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    var ($currGame'players, $currGame'currPlayerIdx, $currGame'winPlayerIdx, $currGame'timestamp) = $Game$_not_null($Game$_load_opt(__tact_dict_get_int_cell($self'games, 257, $self'currGameIdx)));
+    throw_unless(56234, (($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue)~$TheLottery$_fun_isUserInGame($ctx'sender, ($currGame'players, $currGame'currPlayerIdx, $currGame'winPlayerIdx, $currGame'timestamp)) == false));
+    throw_unless(9389, ($ctx'value >= 1000000000));
+    var ($player'address, $player'bit) = $Player$_constructor_address_bit($ctx'sender, $ctx'value);
+    $self'lockedBalance = ($self'lockedBalance + $ctx'value);
+    $currGame'currPlayerIdx = ($currGame'currPlayerIdx + 1);
+    $currGame'players~__tact_dict_set_int_cell(257, $currGame'currPlayerIdx, $Player$_store_cell(($player'address, $player'bit)));
+    $currGame'timestamp = now();
+    if (($currGame'currPlayerIdx < 5)) {
+        $self'games~__tact_dict_set_int_cell(257, $self'currGameIdx, $Game$_store_cell(($currGame'players, $currGame'currPlayerIdx, $currGame'winPlayerIdx, $currGame'timestamp)));
+    } else {
+        randomize_lt();
+        $currGame'winPlayerIdx = $global_random(0, ($currGame'currPlayerIdx + 1));
+        $self'games~__tact_dict_set_int_cell(257, $self'currGameIdx, $Game$_store_cell(($currGame'players, $currGame'currPlayerIdx, $currGame'winPlayerIdx, $currGame'timestamp)));
+        tuple $winner = $Player$_load_opt(__tact_dict_get_int_cell($currGame'players, 257, $currGame'winPlayerIdx));
+        if ((~ null?($winner))) {
+            ($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue)~$TheLottery$_fun_rewardTheWinner($Player$_tensor_cast($Player$_not_null($winner)));
+        }
+        $self'currGameIdx = ($self'currGameIdx + 1);
+        cell $players = null();
+        $self'games~__tact_dict_set_int_cell(257, $self'currGameIdx, $Game$_store_cell($Game$_constructor_players_currPlayerIdx_winPlayerIdx_timestamp($players, (- 1), (- 1), now())));
+    }
+    return (($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue), ());
+}
+
+(((slice, cell, int, int, int)), ()) $TheLottery$_internal_binary_Deploy((slice, cell, int, int, int) $self, (int) $deploy) impure inline {
+    var ($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue)~$TheLottery$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue), ());
+}
+
+;;
+;; Get methods of a Contract TheLottery
+;;
+
+_ %balance() method_id(104128) {
+    var self = $TheLottery$_contract_load();
+    var res = self~$TheLottery$_fun_balance();
+    return res;
+}
+
+_ %totalGames() method_id(116975) {
+    var self = $TheLottery$_contract_load();
+    var res = self~$TheLottery$_fun_totalGames();
+    return res;
+}
+
+_ %totalRevenue() method_id(129401) {
+    var self = $TheLottery$_contract_load();
+    var res = self~$TheLottery$_fun_totalRevenue();
+    return res;
+}
+
+_ %owner() method_id(83229) {
+    var self = $TheLottery$_contract_load();
+    var res = self~$TheLottery$_fun_owner();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128,
+        "org.ton.ownable"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmRDohLjjgubHd4HPJAMPTyKxnaQ53WDfZSHGRML74v6oC";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract TheLottery
+;;
+
+((slice, cell, int, int, int), int) $TheLottery$_contract_router_internal((slice, cell, int, int, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive Withdraw message
+    if (op == 593874976) {
+        var msg = in_msg~$Withdraw$_load();
+        self~$TheLottery$_internal_binary_Withdraw(msg);
+        return (self, true);
+    }
+    
+    ;; Receive empty message
+    if ((op == 0) & (slice_bits(in_msg) <= 32)) {
+        self~%$TheLottery$_internal_empty();
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$TheLottery$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $TheLottery$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$TheLottery$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $TheLottery$_contract_store(self);
+}

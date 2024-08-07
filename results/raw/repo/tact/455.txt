@@ -1,0 +1,60 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/examples/output/rugpull_RugPull.fc:275:31: warning: Lack of end_parse.
+      slice msg_sender_addr = cs~load_msg_addr();
+                                ^
+__gen_load_RugPull: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/examples/output/rugpull_RugPull.fc:89:14: warning: Lack of end_parse.
+      return sc~__gen_read_RugPull();
+               ^
+__tact_dict_set_int_slice: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/examples/output/rugpull_RugPull.fc:20:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+__gen_RugPull_receive_comment_6f3575ac1ff681c8cbc50a4cc1ca6f4687f9da770212d6df8cfe84c22d861d9f: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/examples/output/rugpull_RugPull.fc:259:146: warning: Local variable 'self'stopped' is not used
+      (self'owner, self'investment, self'returns, self'fee, self'balance, self'rugpulled, self'stopped, self'queueStart, self'queueEnd, self'queue)~__gen_RugPull_requireNotStopped();
+                                                                                                                                                   ^
+__gen_read_RugPull: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/examples/output/rugpull_RugPull.fc:77:23: warning: Lack of end_parse.
+      var v'queue = sc_2~load_dict();
+                        ^
+__gen_read_RugPull: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/examples/output/rugpull_RugPull.fc:75:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+__gen_RugPull_receive: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/examples/output/rugpull_RugPull.fc:217:46: warning: Local variable 'ctx'bounced' is not used
+      var (ctx'bounced, ctx'sender, ctx'value) = __tact_context_get();
+                                               ^
+__gen_RugPull_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/examples/output/rugpull_RugPull.fc:155:153: warning: Local variable 'self'owner' is not used
+      var ((self'owner, self'investment, self'returns, self'fee, self'balance, self'rugpulled, self'stopped, self'queueStart, self'queueEnd, self'queue)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                                          ^
+__gen_RugPull_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/examples/output/rugpull_RugPull.fc:155:153: warning: Local variable 'self'investment' is not used
+      var ((self'owner, self'investment, self'returns, self'fee, self'balance, self'rugpulled, self'stopped, self'queueStart, self'queueEnd, self'queue)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                                          ^
+__gen_RugPull_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/examples/output/rugpull_RugPull.fc:155:153: warning: Local variable 'self'returns' is not used
+      var ((self'owner, self'investment, self'returns, self'fee, self'balance, self'rugpulled, self'stopped, self'queueStart, self'queueEnd, self'queue)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                                          ^
+__gen_RugPull_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/examples/output/rugpull_RugPull.fc:155:153: warning: Local variable 'self'fee' is not used
+      var ((self'owner, self'investment, self'returns, self'fee, self'balance, self'rugpulled, self'stopped, self'queueStart, self'queueEnd, self'queue)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                                          ^
+__gen_RugPull_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/examples/output/rugpull_RugPull.fc:155:153: warning: Local variable 'self'balance' is not used
+      var ((self'owner, self'investment, self'returns, self'fee, self'balance, self'rugpulled, self'stopped, self'queueStart, self'queueEnd, self'queue)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                                          ^
+__gen_RugPull_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/examples/output/rugpull_RugPull.fc:155:153: warning: Local variable 'self'rugpulled' is not used
+      var ((self'owner, self'investment, self'returns, self'fee, self'balance, self'rugpulled, self'stopped, self'queueStart, self'queueEnd, self'queue)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                                          ^
+__gen_RugPull_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/examples/output/rugpull_RugPull.fc:155:153: warning: Local variable 'self'queueStart' is not used
+      var ((self'owner, self'investment, self'returns, self'fee, self'balance, self'rugpulled, self'stopped, self'queueStart, self'queueEnd, self'queue)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                                          ^
+__gen_RugPull_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/examples/output/rugpull_RugPull.fc:155:153: warning: Local variable 'self'queueEnd' is not used
+      var ((self'owner, self'investment, self'returns, self'fee, self'balance, self'rugpulled, self'stopped, self'queueStart, self'queueEnd, self'queue)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                                          ^

@@ -1,0 +1,116 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBNo5qAG8I8J6IxGaz15SfQVB-kX98YhKV_mT36Xo5vYxUa/treasury.fc:1501:19: warning: Lack of end_parse.
+      slice src = cs~load_msg_addr();
+                    ^
+on_bounce: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBNo5qAG8I8J6IxGaz15SfQVB-kX98YhKV_mT36Xo5vYxUa/treasury.fc:1471:18: warning: Local variable 'query_id' is not used
+      int query_id = s~load_uint(64);
+                   ^
+upgrade_code: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBNo5qAG8I8J6IxGaz15SfQVB-kX98YhKV_mT36Xo5vYxUa/treasury.fc:1415:20: warning: Lack of end_parse.
+      set_c3(new_code.begin_parse().bless());
+                     ^
+recover_stake_result: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBNo5qAG8I8J6IxGaz15SfQVB-kX98YhKV_mT36Xo5vYxUa/treasury.fc:1061:13: warning: Local variable 'ok?' is not used
+      int ok? = s~load_int(1);
+              ^
+vset_changed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBNo5qAG8I8J6IxGaz15SfQVB-kX98YhKV_mT36Xo5vYxUa/treasury.fc:902:18: warning: Local variable 'query_id' is not used
+      int query_id = s~load_uint(64);
+                   ^
+vset_changed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBNo5qAG8I8J6IxGaz15SfQVB-kX98YhKV_mT36Xo5vYxUa/treasury.fc:921:7: warning: Local variable 'stake_held_until' is not used
+      ) = unpack_participation(ps);
+        ^
+convert_wallet: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBNo5qAG8I8J6IxGaz15SfQVB-kX98YhKV_mT36Xo5vYxUa/treasury.fc:478:26: warning: Local variable 'wallet_code_hash' is not used
+      int wallet_code_hash = rs~load_uint(256); ;; ignored for now, useful when another wallet version is added
+                           ^
+send_message_to_loan: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBNo5qAG8I8J6IxGaz15SfQVB-kX98YhKV_mT36Xo5vYxUa/treasury.fc:1336:18: warning: Local variable 'query_id' is not used
+      int query_id = s~load_uint(64);
+                   ^
+get_elector: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBNo5qAG8I8J6IxGaz15SfQVB-kX98YhKV_mT36Xo5vYxUa/imports/utils.fc:118:64: warning: Lack of end_parse.
+      return ( chain::main, config_param(config::elector_address).begin_parse().preload_uint(256) );
+                                                                 ^
+recover_stake_fee: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBNo5qAG8I8J6IxGaz15SfQVB-kX98YhKV_mT36Xo5vYxUa/imports/utils.fc:663:55: warning: Local variable 'bit_price' is not used
+      ( int lump_price, int bit_price, int cell_price ) = get_msg_forward_prices(config::fwd_prices);
+                                                        ^
+recover_stake_fee: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBNo5qAG8I8J6IxGaz15SfQVB-kX98YhKV_mT36Xo5vYxUa/imports/utils.fc:663:55: warning: Local variable 'cell_price' is not used
+      ( int lump_price, int bit_price, int cell_price ) = get_msg_forward_prices(config::fwd_prices);
+                                                        ^
+recover_stake_fee: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBNo5qAG8I8J6IxGaz15SfQVB-kX98YhKV_mT36Xo5vYxUa/imports/utils.fc:664:64: warning: Local variable 'mc_bit_price' is not used
+      ( int mc_lump_price, int mc_bit_price, int mc_cell_price ) = get_msg_forward_prices(config::mc_fwd_prices);
+                                                                 ^
+recover_stake_fee: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBNo5qAG8I8J6IxGaz15SfQVB-kX98YhKV_mT36Xo5vYxUa/imports/utils.fc:664:64: warning: Local variable 'mc_cell_price' is not used
+      ( int mc_lump_price, int mc_bit_price, int mc_cell_price ) = get_msg_forward_prices(config::mc_fwd_prices);
+                                                                 ^
+get_gas_prices: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBNo5qAG8I8J6IxGaz15SfQVB-kX98YhKV_mT36Xo5vYxUa/imports/utils.fc:177:34: warning: Lack of end_parse.
+      return ( cs~load_uint(64), cs~load_uint(64) );
+                                   ^
+burn_tokens: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBNo5qAG8I8J6IxGaz15SfQVB-kX98YhKV_mT36Xo5vYxUa/treasury.fc:331:26: warning: Local variable 'wallet_code_hash' is not used
+      int wallet_code_hash = s~load_uint(256); ;; ignored for now, useful when another wallet version is added
+                           ^
+get_msg_forward_prices: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBNo5qAG8I8J6IxGaz15SfQVB-kX98YhKV_mT36Xo5vYxUa/imports/utils.fc:191:52: warning: Lack of end_parse.
+      return ( cs~load_uint(64), cs~load_uint(64), cs~load_uint(64) );
+                                                     ^
+max_recommended_punishment_for_validator_misbehaviour: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBNo5qAG8I8J6IxGaz15SfQVB-kX98YhKV_mT36Xo5vYxUa/imports/utils.fc:308:49: warning: Lack of end_parse.
+          , cs~load_uint(16), cs~load_uint(16), cs~load_uint(16)
+                                                  ^
+max_recommended_punishment_for_validator_misbehaviour: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBNo5qAG8I8J6IxGaz15SfQVB-kX98YhKV_mT36Xo5vYxUa/imports/utils.fc:304:7: warning: Local variable 'prefix' is not used
+      ) = ( cs~load_uint(8)
+        ^
+max_recommended_punishment_for_validator_misbehaviour: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBNo5qAG8I8J6IxGaz15SfQVB-kX98YhKV_mT36Xo5vYxUa/imports/utils.fc:304:7: warning: Local variable 'unpunishable_interval' is not used
+      ) = ( cs~load_uint(8)
+        ^
+max_recommended_punishment_for_validator_misbehaviour: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBNo5qAG8I8J6IxGaz15SfQVB-kX98YhKV_mT36Xo5vYxUa/imports/utils.fc:304:7: warning: Local variable 'long_interval' is not used
+      ) = ( cs~load_uint(8)
+        ^
+get_stake_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBNo5qAG8I8J6IxGaz15SfQVB-kX98YhKV_mT36Xo5vYxUa/imports/utils.fc:142:67: warning: Lack of end_parse.
+      return ( cs~load_coins(), cs~load_coins(), cs~load_coins(), cs~load_uint(32) );
+                                                                    ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBNo5qAG8I8J6IxGaz15SfQVB-kX98YhKV_mT36Xo5vYxUa/treasury.fc:57:19: warning: Lack of end_parse.
+      extension = ds~load_ref();
+                    ^
+get_validators_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBNo5qAG8I8J6IxGaz15SfQVB-kX98YhKV_mT36Xo5vYxUa/imports/utils.fc:136:52: warning: Lack of end_parse.
+      return ( cs~load_uint(16), cs~load_uint(16), cs~load_uint(16) );
+                                                     ^
+get_election_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBNo5qAG8I8J6IxGaz15SfQVB-kX98YhKV_mT36Xo5vYxUa/imports/utils.fc:126:70: warning: Lack of end_parse.
+      return ( cs~load_uint(32), cs~load_uint(32), cs~load_uint(32), cs~load_uint(32) );
+                                                                       ^
+send_new_stake_fee: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBNo5qAG8I8J6IxGaz15SfQVB-kX98YhKV_mT36Xo5vYxUa/imports/utils.fc:636:19: warning: Local variable 'm_fwd_fee' is not used
+      int m_fwd_fee = msg_fwd_fee(lump_price, bit_price, cell_price, 1088, 2);
+                    ^
+deposit_coins: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBNo5qAG8I8J6IxGaz15SfQVB-kX98YhKV_mT36Xo5vYxUa/treasury.fc:181:20: warning: Local variable 'referrer' is not used
+      slice referrer = s~load_msg_addr(); ;; only used externally to know the referrer for this deposit
+                     ^
+reserve_tokens: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBNo5qAG8I8J6IxGaz15SfQVB-kX98YhKV_mT36Xo5vYxUa/treasury.fc:292:26: warning: Local variable 'wallet_code_hash' is not used
+      int wallet_code_hash = s~load_uint(256); ;; ignored for now, useful when another wallet version is added
+                           ^
+mint_tokens: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBNo5qAG8I8J6IxGaz15SfQVB-kX98YhKV_mT36Xo5vYxUa/treasury.fc:231:26: warning: Local variable 'wallet_code_hash' is not used
+      int wallet_code_hash = rs~load_uint(256); ;; ignored for now, useful when another wallet version is added
+                           ^
+get_vset_times: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBNo5qAG8I8J6IxGaz15SfQVB-kX98YhKV_mT36Xo5vYxUa/imports/utils.fc:200:34: warning: Lack of end_parse.
+      return ( cs~load_uint(32), cs~load_uint(32) );
+                                   ^

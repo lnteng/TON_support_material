@@ -1,0 +1,22 @@
+$JettonDefaultWallet$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDnUWte1GIiaQbX2LxLWZtn8a_f6jS7AnLMzmKmpGqs8Qo5/output/verifier_JettonDefaultWallet.storage.fc:252:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$JettonDefaultWallet$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDnUWte1GIiaQbX2LxLWZtn8a_f6jS7AnLMzmKmpGqs8Qo5/output/verifier_JettonDefaultWallet.storage.fc:232:19: warning: Lack of end_parse.
+          return $sc~$JettonDefaultWallet$_load();
+                    ^
+$JettonDefaultWallet$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDnUWte1GIiaQbX2LxLWZtn8a_f6jS7AnLMzmKmpGqs8Qo5/output/verifier_JettonDefaultWallet.code.fc:128:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDnUWte1GIiaQbX2LxLWZtn8a_f6jS7AnLMzmKmpGqs8Qo5/output/verifier_JettonDefaultWallet.storage.fc:243:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$JettonDefaultWallet$_contract_store & $JettonDefaultWallet$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDnUWte1GIiaQbX2LxLWZtn8a_f6jS7AnLMzmKmpGqs8Qo5/output/verifier_JettonDefaultWallet.storage.fc:228:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDnUWte1GIiaQbX2LxLWZtn8a_f6jS7AnLMzmKmpGqs8Qo5/output/verifier_JettonDefaultWallet.storage.fc:243:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

@@ -1,0 +1,12 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./krivochenko/t11n-contracts/contracts/mapmaker.fc:33:19: warning: Lack of end_parse.
+      int coins = cs~load_coins();
+                    ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./krivochenko/t11n-contracts/contracts/mapmaker.fc:33:15: warning: Local variable 'coins' is not used
+      int coins = cs~load_coins();
+                ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./krivochenko/t11n-contracts/contracts/mapmaker.fc:12:22: warning: Lack of end_parse.
+      storage::map = ds~load_dict();
+                       ^

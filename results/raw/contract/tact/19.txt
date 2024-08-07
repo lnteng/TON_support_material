@@ -1,0 +1,54 @@
+$TokenDistributionChild$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB9DSylRejRkcus1MFWjPXqEom0FbO7L_xGopUQfNM2kc8F/output/verifier_TokenDistributionChild.storage.fc:75:19: warning: Lack of end_parse.
+          return $sc~$TokenDistributionChild$_load();
+                    ^
+$TokenDistributionChild$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB9DSylRejRkcus1MFWjPXqEom0FbO7L_xGopUQfNM2kc8F/output/verifier_TokenDistributionChild.code.fc:14:121: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'parentContract, $self'claimAmount, $self'claimInterval, $self'lastClaimTime, $self'seqno)) = (null(), null(), null(), null(), null(), null());
+                                                                                                                          ^
+$TokenDistributionChild$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB9DSylRejRkcus1MFWjPXqEom0FbO7L_xGopUQfNM2kc8F/output/verifier_TokenDistributionChild.code.fc:14:121: warning: Local variable '$self'parentContract' is not used
+      var (($self'owner, $self'parentContract, $self'claimAmount, $self'claimInterval, $self'lastClaimTime, $self'seqno)) = (null(), null(), null(), null(), null(), null());
+                                                                                                                          ^
+$TokenDistributionChild$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB9DSylRejRkcus1MFWjPXqEom0FbO7L_xGopUQfNM2kc8F/output/verifier_TokenDistributionChild.code.fc:14:121: warning: Local variable '$self'claimAmount' is not used
+      var (($self'owner, $self'parentContract, $self'claimAmount, $self'claimInterval, $self'lastClaimTime, $self'seqno)) = (null(), null(), null(), null(), null(), null());
+                                                                                                                          ^
+$TokenDistributionChild$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB9DSylRejRkcus1MFWjPXqEom0FbO7L_xGopUQfNM2kc8F/output/verifier_TokenDistributionChild.code.fc:14:121: warning: Local variable '$self'claimInterval' is not used
+      var (($self'owner, $self'parentContract, $self'claimAmount, $self'claimInterval, $self'lastClaimTime, $self'seqno)) = (null(), null(), null(), null(), null(), null());
+                                                                                                                          ^
+$TokenDistributionChild$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB9DSylRejRkcus1MFWjPXqEom0FbO7L_xGopUQfNM2kc8F/output/verifier_TokenDistributionChild.code.fc:14:121: warning: Local variable '$self'lastClaimTime' is not used
+      var (($self'owner, $self'parentContract, $self'claimAmount, $self'claimInterval, $self'lastClaimTime, $self'seqno)) = (null(), null(), null(), null(), null(), null());
+                                                                                                                          ^
+$TokenDistributionChild$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB9DSylRejRkcus1MFWjPXqEom0FbO7L_xGopUQfNM2kc8F/output/verifier_TokenDistributionChild.code.fc:14:121: warning: Local variable '$self'seqno' is not used
+      var (($self'owner, $self'parentContract, $self'claimAmount, $self'claimInterval, $self'lastClaimTime, $self'seqno)) = (null(), null(), null(), null(), null(), null());
+                                                                                                                          ^
+$TokenDistributionChild$init$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB9DSylRejRkcus1MFWjPXqEom0FbO7L_xGopUQfNM2kc8F/output/verifier_TokenDistributionChild.storage.fc:66:23: warning: Lack of end_parse.
+      var v'seqno = sc_1~load_int(257);
+                        ^
+$TokenDistributionChild$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB9DSylRejRkcus1MFWjPXqEom0FbO7L_xGopUQfNM2kc8F/output/verifier_TokenDistributionChild.storage.fc:56:23: warning: Lack of end_parse.
+      var v'seqno = sc_1~load_uint(64);
+                        ^
+$TokenDistributionChild$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB9DSylRejRkcus1MFWjPXqEom0FbO7L_xGopUQfNM2kc8F/output/verifier_TokenDistributionChild.code.fc:79:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB9DSylRejRkcus1MFWjPXqEom0FbO7L_xGopUQfNM2kc8F/output/verifier_TokenDistributionChild.storage.fc:86:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$TokenDistributionChild$_contract_store & $TokenDistributionChild$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB9DSylRejRkcus1MFWjPXqEom0FbO7L_xGopUQfNM2kc8F/output/verifier_TokenDistributionChild.storage.fc:71:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB9DSylRejRkcus1MFWjPXqEom0FbO7L_xGopUQfNM2kc8F/output/verifier_TokenDistributionChild.storage.fc:86:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$TokenDistributionChild$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB9DSylRejRkcus1MFWjPXqEom0FbO7L_xGopUQfNM2kc8F/output/verifier_TokenDistributionChild.code.fc:43:197: warning: UnHandle bounced message with op: 0x8c7991ee
+      $global_send($SendParameters$_constructor_to_body_value_mode($self'parentContract, $TokenClaimRequest$_store_cell($TokenClaimRequest$_constructor_user_seqno($self'owner, $self'seqno)), 0, 64));
+                                                                                                                                                                                                      ^

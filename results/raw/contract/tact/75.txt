@@ -1,0 +1,66 @@
+$TokenDistributionParent$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBApgkw4uwVJs08bbyJT8kJXpJk4zVUtdytRzLl5j1R4ozc/output/verifier_TokenDistributionParent.storage.fc:178:19: warning: Lack of end_parse.
+          return $sc~$TokenDistributionParent$_load();
+                    ^
+$TokenDistributionParent$init$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBApgkw4uwVJs08bbyJT8kJXpJk4zVUtdytRzLl5j1R4ozc/output/verifier_TokenDistributionParent.storage.fc:169:23: warning: Lack of end_parse.
+      var v'seqno = sc_1~load_int(257);
+                        ^
+$TokenDistributionParent$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBApgkw4uwVJs08bbyJT8kJXpJk4zVUtdytRzLl5j1R4ozc/output/verifier_TokenDistributionParent.storage.fc:159:25: warning: Lack of end_parse.
+      var v'claimed = sc_1~load_int(257);
+                          ^
+$TokenDistributionParent$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBApgkw4uwVJs08bbyJT8kJXpJk4zVUtdytRzLl5j1R4ozc/output/verifier_TokenDistributionParent.code.fc:14:127: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed)) = (null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                ^
+$TokenDistributionParent$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBApgkw4uwVJs08bbyJT8kJXpJk4zVUtdytRzLl5j1R4ozc/output/verifier_TokenDistributionParent.code.fc:14:127: warning: Local variable '$self'tokenAddress' is not used
+      var (($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed)) = (null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                ^
+$TokenDistributionParent$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBApgkw4uwVJs08bbyJT8kJXpJk4zVUtdytRzLl5j1R4ozc/output/verifier_TokenDistributionParent.code.fc:14:127: warning: Local variable '$self'supply' is not used
+      var (($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed)) = (null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                ^
+$TokenDistributionParent$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBApgkw4uwVJs08bbyJT8kJXpJk4zVUtdytRzLl5j1R4ozc/output/verifier_TokenDistributionParent.code.fc:14:127: warning: Local variable '$self'claimAmount' is not used
+      var (($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed)) = (null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                ^
+$TokenDistributionParent$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBApgkw4uwVJs08bbyJT8kJXpJk4zVUtdytRzLl5j1R4ozc/output/verifier_TokenDistributionParent.code.fc:14:127: warning: Local variable '$self'claimInterval' is not used
+      var (($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed)) = (null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                ^
+$TokenDistributionParent$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBApgkw4uwVJs08bbyJT8kJXpJk4zVUtdytRzLl5j1R4ozc/output/verifier_TokenDistributionParent.code.fc:14:127: warning: Local variable '$self'seqno' is not used
+      var (($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed)) = (null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                ^
+$TokenDistributionParent$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBApgkw4uwVJs08bbyJT8kJXpJk4zVUtdytRzLl5j1R4ozc/output/verifier_TokenDistributionParent.code.fc:14:127: warning: Local variable '$self'claimed' is not used
+      var (($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed)) = (null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                ^
+$TokenDistributionChild$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBApgkw4uwVJs08bbyJT8kJXpJk4zVUtdytRzLl5j1R4ozc/output/verifier_TokenDistributionParent.storage.fc:214:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$TokenDistributionParent$_contract_store & $TokenDistributionParent$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBApgkw4uwVJs08bbyJT8kJXpJk4zVUtdytRzLl5j1R4ozc/output/verifier_TokenDistributionParent.storage.fc:174:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBApgkw4uwVJs08bbyJT8kJXpJk4zVUtdytRzLl5j1R4ozc/output/verifier_TokenDistributionParent.storage.fc:189:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$TokenDistributionParent$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBApgkw4uwVJs08bbyJT8kJXpJk4zVUtdytRzLl5j1R4ozc/output/verifier_TokenDistributionParent.code.fc:183:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBApgkw4uwVJs08bbyJT8kJXpJk4zVUtdytRzLl5j1R4ozc/output/verifier_TokenDistributionParent.storage.fc:189:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$TokenDistributionParent$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBApgkw4uwVJs08bbyJT8kJXpJk4zVUtdytRzLl5j1R4ozc/output/verifier_TokenDistributionParent.code.fc:91:334: warning: UnHandle bounced message with op: 0xf8a7ea5
+  ... orwardPayload(0, $self'claimAmount, $msg'user, $msg'user, null(), 10000000, $global_emptySlice()))));
+  ...                                                                                                     ^
+$TokenDistributionParent$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBApgkw4uwVJs08bbyJT8kJXpJk4zVUtdytRzLl5j1R4ozc/output/verifier_TokenDistributionParent.code.fc:108:329: warning: UnHandle bounced message with op: 0xf8a7ea5
+  ... nAmount_forwardPayload(0, $self'supply, $msg'to, $msg'to, null(), 10000000, $global_emptySlice()))));
+  ...                                                                                                     ^

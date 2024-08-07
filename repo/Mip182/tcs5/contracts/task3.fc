@@ -1,0 +1,129 @@
+#include "imports/stdlib.fc";
+
+forall X -> (tuple) to_tuple (X x) asm "NOP";
+(int) tlen (tuple t) asm "TLEN";
+forall X -> int is_null (X x) asm "ISNULL";
+
+;; All the code in recv_internal, get_storage, wrap_storage, and version
+;; serves as an example of the intended structure.
+
+;; The provided code is an "empty wrapper." It:
+;; + Parses "wrapped" incoming messages (discards versioning information)
+;; + "Wraps" the call to the version-specific process_message
+;; + Implements "get_storage" for version-specific get-methods
+;; However, it does not yet implement any upgrade logic, which is your task.
+
+;; The empty wrapper is provided to demonstrate
+;; how version-specific code is intended to be "wrapped" and interacted with.
+;; You may delete and rewrite as needed,
+;; but the final implementation must adhere to the same structure
+
+
+cell get_storage() {
+    slice cs = get_data().begin_parse();
+
+    cell storage = cs~load_ref();
+
+    return storage;
+}
+
+cell wrap_storage(int version_id, cell storage) {
+    return begin_cell()
+    .store_ref(storage)
+    .store_uint(version_id, 32)
+    .end_cell();
+}
+
+int version() method_id {
+    slice cs = get_data().begin_parse();
+
+    return cs~load_uint(32);
+}
+
+;; <<<<< Custom version-specific code begins
+;; This section (everything between << and >> characters) will be fully substituted for each version.
+;; This is an IMPORTANT part, and these exact lines with <<<<< and >>>>> must be present in your code for the testing system to work correctly.
+;; All the code provided here serves as an example of the version-code, which your update code must be compatible with.
+;; Refer to the "3-example" directory for more version examples.
+
+;; from counter-v0.fc
+cell process_message(cell storage, int msg_value, int balance, cell in_msg_full, slice in_msg_body) impure {
+    slice cs = storage.begin_parse();
+    int current_amount = cs.preload_uint(32);
+    return begin_cell().store_uint(current_amount + 1, 32).end_cell();
+}
+
+cell migrate_one(cell old_storage) { ;; it's just a placeholder that is required for correct compilation
+    return old_storage;
+}
+
+;; Custom version-specific code ends >>>>>
+
+
+() recv_internal(int msg_value, int balance, cell in_msg_full, slice in_msg_body) impure {
+    int expected_version = in_msg_body~load_uint(32);
+    if (expected_version == 0) {
+        set_data(wrap_storage(1, get_data()));
+        return ();
+    }
+
+    ;; ---
+    ;; here you should check if it's the first call or not based on `expected_version` as stated in the task
+    ;; if it is the first call, wrap the storage and finish execution by returning from the function
+    ;; ---
+
+    slice ds = get_data().begin_parse();
+    cell storage = ds~load_ref();
+    int current_version = ds~load_uint(32);
+
+    if (current_version != expected_version) {
+        cell update_code = in_msg_body~load_maybe_ref();
+
+        throw_if(200, is_null(update_code));
+
+        cell migrations = in_msg_body~load_dict();
+
+        int found_need = false;
+
+        tuple actions = null();
+
+        int total_size = 0;
+
+        (slice val, int flag) = migrations.udict_get?(32, current_version);
+
+        while (flag) {
+            int new_version = val~load_uint(32);
+
+            cell migration_code = val~load_maybe_ref();
+
+            ifnot (is_null(migration_code)) {
+                actions = cons(migration_code, actions);
+                total_size += 1;
+            }
+
+            if (new_version >= expected_version) {
+                found_need = new_version == expected_version;
+                flag = false;
+            }
+            else {
+                (val, flag) = migrations.udict_get?(32, new_version);
+            }
+        }
+
+        throw_unless(400, found_need);
+
+        repeat (total_size) {
+            set_c3(actions~list_next().begin_parse().bless());
+            storage = migrate_one(storage);
+        }
+
+        set_code(update_code);
+        set_c3(update_code.begin_parse().bless());
+    }
+
+    cell payload = in_msg_body~load_ref();
+
+    storage = process_message(storage, msg_value, balance, in_msg_full, payload.begin_parse());
+
+    set_data(wrap_storage(expected_version, storage));
+}

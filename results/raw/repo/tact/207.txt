@@ -1,0 +1,19 @@
+$BulkAdder$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/references/output/sample_BulkAdder.code.fc:15:26: warning: Local variable '$self'target' is not used
+      var (($self'target)) = (null());
+                           ^
+$BulkAdder$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/references/output/sample_BulkAdder.storage.fc:137:19: warning: Lack of end_parse.
+          return $sc~$BulkAdder$_load();
+                    ^
+$BulkAdder$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/references/output/sample_BulkAdder.code.fc:79:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/references/output/sample_BulkAdder.storage.fc:146:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$BulkAdder$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/references/output/sample_BulkAdder.code.fc:50:158: warning: UnHandle bounced message with op: 0x87d43ac2
+      $global_send($SendParameters$_constructor_to_value_mode_body($msg'counterContract, 0, (64 + 2), $Add$_store_cell($Add$_constructor_amount($msg'amount))));
+                                                                                                                                                               ^

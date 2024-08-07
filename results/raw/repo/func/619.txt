@@ -1,0 +1,48 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./1IxI1/jetton_dao/tests/dao/minter-upd.func:75:28: warning: Lack of end_parse.
+      int fwd_fee = muldiv(cs~load_coins(), 3, 2); ;; we use message fwd_fee for estimation of forward_payload costs
+                             ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./1IxI1/jetton_dao/tests/dao/minter-upd.func:218:46: warning: Local variable 'expiration_date' is not used
+          (int voting_id, int expiration_date) = (in_msg_body~load_uint(64), in_msg_body~load_uint(48));
+                                               ^
+get_voting_code: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./1IxI1/jetton_dao/tests/dao/minter-upd.func:291:46: warning: Local variable 'total_supply' is not used
+              int voting_id, cell voting_code) = load_data();
+                                               ^
+get_voting_code: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./1IxI1/jetton_dao/tests/dao/minter-upd.func:291:46: warning: Local variable 'admin_address' is not used
+              int voting_id, cell voting_code) = load_data();
+                                               ^
+get_voting_code: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./1IxI1/jetton_dao/tests/dao/minter-upd.func:291:46: warning: Local variable 'content' is not used
+              int voting_id, cell voting_code) = load_data();
+                                               ^
+get_voting_code: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./1IxI1/jetton_dao/tests/dao/minter-upd.func:291:46: warning: Local variable 'voting_id' is not used
+              int voting_id, cell voting_code) = load_data();
+                                               ^
+get_jetton_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./1IxI1/jetton_dao/tests/dao/minter-upd.func:274:46: warning: Local variable 'voting_id' is not used
+              int voting_id, cell voting_code) = load_data();
+                                               ^
+get_jetton_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./1IxI1/jetton_dao/tests/dao/minter-upd.func:274:46: warning: Local variable 'voting_code' is not used
+              int voting_id, cell voting_code) = load_data();
+                                               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./1IxI1/jetton_dao/tests/dao/minter-upd.func:29:15: warning: Lack of end_parse.
+              ds~load_ref() ;; voting_code
+                ^
+get_voting_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./1IxI1/jetton_dao/tests/dao/minter-upd.func:285:34: warning: Local variable 'total_supply' is not used
+              _, cell voting_code) = load_data();
+                                   ^
+get_voting_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./1IxI1/jetton_dao/tests/dao/minter-upd.func:285:34: warning: Local variable 'admin_address' is not used
+              _, cell voting_code) = load_data();
+                                   ^
+get_voting_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./1IxI1/jetton_dao/tests/dao/minter-upd.func:285:34: warning: Local variable 'content' is not used
+              _, cell voting_code) = load_data();
+                                   ^

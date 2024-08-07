@@ -1,0 +1,19 @@
+$TodoParent$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-parent-child/output/sample_TodoParent.storage.fc:105:19: warning: Lack of end_parse.
+          return $sc~$TodoParent$_load();
+                    ^
+$TodoChild$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-parent-child/output/sample_TodoParent.storage.fc:70:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$TodoParent$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-parent-child/output/sample_TodoParent.code.fc:15:31: warning: Local variable '$self'numChildren' is not used
+      var (($self'numChildren)) = (null());
+                                ^
+$TodoParent$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-parent-child/output/sample_TodoParent.code.fc:68:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-parent-child/output/sample_TodoParent.storage.fc:114:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

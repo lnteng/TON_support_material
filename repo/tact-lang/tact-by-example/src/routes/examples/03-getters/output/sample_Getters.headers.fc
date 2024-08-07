@@ -1,0 +1,103 @@
+;;
+;; Header files for Getters
+;; NOTE: declarations are sorted for optimal order
+;;
+
+;; __tact_verify_address
+slice __tact_verify_address(slice address) inline;
+
+;; __tact_store_address
+builder __tact_store_address(builder b, slice address) inline;
+
+;; __tact_my_balance
+int __tact_my_balance() inline;
+
+;; __tact_not_null
+forall X -> X __tact_not_null(X x) inline;
+
+;; __tact_context_get
+(int, slice, int, slice) __tact_context_get() inline;
+
+;; __tact_context_get_sender
+slice __tact_context_get_sender() inline;
+
+;; __tact_store_bool
+builder __tact_store_bool(builder b, int v) inline;
+
+;; __tact_string_builder_start
+tuple __tact_string_builder_start(builder b) inline;
+
+;; __tact_string_builder_start_string
+tuple __tact_string_builder_start_string() inline;
+
+;; __tact_string_builder_end
+cell __tact_string_builder_end(tuple builders) inline;
+
+;; __tact_string_builder_end_slice
+slice __tact_string_builder_end_slice(tuple builders) inline;
+
+;; __tact_string_builder_append
+((tuple), ()) __tact_string_builder_append(tuple builders, slice sc) inline_ref;
+
+;; __tact_int_to_string
+slice __tact_int_to_string(int src) inline_ref;
+
+;; $Deploy$_load
+(slice, ((int))) $Deploy$_load(slice sc_0) inline;
+
+;; $DeployOk$_store
+builder $DeployOk$_store(builder build_0, (int) v) inline;
+
+;; $DeployOk$_store_cell
+cell $DeployOk$_store_cell((int) v) inline;
+
+;; $Getters$_store
+builder $Getters$_store(builder build_0, (int) v) inline;
+
+;; $Getters$_load
+(slice, ((int))) $Getters$_load(slice sc_0) inline;
+
+;; $StateInit$_not_null
+((cell, cell)) $StateInit$_not_null(tuple v) inline;
+
+;; $Getters$_contract_init
+(int) $Getters$_contract_init() impure inline_ref;
+
+;; $Getters$_contract_load
+(int) $Getters$_contract_load() impure inline_ref;
+
+;; $Getters$_contract_store
+() $Getters$_contract_store((int) v) impure inline;
+
+;; $global_send
+() $global_send((int, slice, int, int, cell, cell, cell) $params) impure inline_ref;
+
+;; $Getters$_fun_counter
+((int), int) $Getters$_fun_counter((int) $self) impure inline_ref;
+
+;; $Getters$_fun_location
+((int), slice) $Getters$_fun_location((int) $self) impure inline_ref;
+
+;; $Getters$_fun_greeting
+((int), slice) $Getters$_fun_greeting((int) $self) impure inline_ref;
+
+;; $Getters$_fun_sum
+((int), int) $Getters$_fun_sum((int) $self, int $a, int $b) impure inline_ref;
+
+;; $Getters$_fun_and
+((int), int) $Getters$_fun_and((int) $self, int $a, int $b) impure inline_ref;
+
+;; $Getters$_fun_answer
+((int), slice) $Getters$_fun_answer((int) $self, int $a) impure inline_ref;
+
+;; $SendParameters$_constructor_bounce_to_value_mode_body_code_data
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline;
+
+;; $Getters$_fun_forward
+((int), ()) $Getters$_fun_forward((int) $self, slice $to, cell $body, int $bounce, tuple $init) impure inline_ref;
+
+;; $Getters$_fun_notify
+((int), ()) $Getters$_fun_notify((int) $self, cell $body) impure inline;
+
+;; $DeployOk$_constructor_queryId
+((int)) $DeployOk$_constructor_queryId(int queryId) inline;

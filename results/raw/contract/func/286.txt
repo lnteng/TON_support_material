@@ -1,0 +1,16 @@
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBA2OHm523e1Yzk5-HfZIF--L0iMHct98FIlqL3OEV0np48/contracts/operation.fc:27:62: warning: Local variable 'memorized_address' is not used
+              (slice manager_address, slice memorized_address) = load_data();
+                                                               ^
+parse_sender_address: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBA2OHm523e1Yzk5-HfZIF--L0iMHct98FIlqL3OEV0np48/contracts/operation.fc:17:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+parse_sender_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBA2OHm523e1Yzk5-HfZIF--L0iMHct98FIlqL3OEV0np48/contracts/operation.fc:16:15: warning: Local variable 'flags' is not used
+      var flags = cs~load_uint(4);
+                ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBA2OHm523e1Yzk5-HfZIF--L0iMHct98FIlqL3OEV0np48/contracts/operation.fc:7:35: warning: Lack of end_parse.
+      return (ds~load_msg_addr(), ds~load_msg_addr());
+                                    ^

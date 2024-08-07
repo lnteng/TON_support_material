@@ -1,0 +1,159 @@
+{-
+	Implement Curve25519 addition and multiplication.
+-}
+
+const int prime = 57896044618658097711785492504343953926634992332820282019728792003956564819949; ;; (1 << 255) - 19;
+const int A = 486662;
+const int doubleA = 973324; ;; 2 * A;
+;; const int B = 1;
+
+
+;; MULDIVMOD (x y z – q r)
+(int, int) mul_div_mod(int a, int b, int mod) inline asm "MULDIVMOD";
+int mul_mod(int a, int b, int mod) inline {
+	(_, int r) = mul_div_mod(a, b, mod);
+	return r;
+}
+
+
+;; Code from:
+;; https://www.geeksforgeeks.org/multiplicative-inverse-under-modulo-m/
+int inverse_mod(int v, int mod) inline method_id
+{
+    int m0 = mod;
+    int y = 0;
+	int x = 1;
+ 
+    if (mod == 1) {
+        return 0;
+	}
+ 
+    while (v > 1) {
+        ;; q is quotient
+        int q = v / mod;
+        int t = mod;
+ 
+        ;; m is remainder now, process same as
+        ;; Euclid's algo
+        mod = v % mod;
+		v = t;
+        t = y;
+ 
+        ;; Update y and x
+        y = x - q * y;
+        x = t;
+    }
+ 
+    ;; Make x positive
+    if (x < 0) {
+        x += m0;
+	}
+ 
+    return x;
+}
+
+int divide_mod(int a, int b, int mod) inline {
+	return mul_mod(a, inverse_mod(b, mod), mod);
+}
+
+int mult(int a, int b) inline { return mul_mod(a, b, prime); }
+int sqr(int v) inline { return mult(v, v); } ;; v ** 2
+int pow3(int v) inline { return mult(v, sqr(v)); } ;; v ** 3
+int div(int a, int b) inline { return divide_mod(a, b, prime); }
+
+
+
+;; Formulas for addition from:
+;; https://www.intechopen.com/chapters/68653
+;; testable
+(int, int) add(int x1, int y1, int x2, int y2) method_id {
+	int slope = -1;
+	
+	if (x1 == x2) {
+		int numerator = mult(sqr(x1), 3);
+		numerator = (numerator + mult(doubleA, x1) + 1) % prime;
+
+		slope = div(
+			numerator,
+			mult(2, y1) ;; mult(2, mult(B, y1)) with B = 1
+		);
+	}
+	else {
+		slope = div(
+			(y2 - y1) % prime,
+			(x2 - x1) % prime
+		);
+	}
+
+	;; (slope ** 2 - A - x1 - x2) % prime
+	int x3 = sqr(slope);
+	x3 = (x3 - A - x1) % prime;
+	;; x3 = (x3 - x1) % prime;
+	x3 = (x3 - x2) % prime;
+	;; y3 = (slope * (x1 - x3) - y1) % prime
+	int y3 = mult(slope, x1 - x3);
+	y3 = (y3 - y1) % prime;
+	
+	return (x3, y3);
+}
+
+(int, int) double_XZ(int X, int Z) inline {
+	int XZ = mult(X, Z);
+	int Xsq = sqr(X);
+	int Zsq = sqr(Z);
+
+	;; (X**2 - Z**2) ** 2 % prime
+	int NX = sqr(Xsq - Zsq);
+	int XsqYsq = (Xsq + Zsq) % prime;
+	;; 4*X*Z*(X**2 + A*X*Z + Z**2) % prime
+	int NZ = mult(
+		;; mult(XZ, mult(XZ, A) + XsqYsq),
+		mult(XZ, XsqYsq + mult(XZ, A)),
+		4
+	);
+	
+	return (NX, NZ);
+}
+
+(int, int) add_neighbour_XZ(int X1, int Z1, int X2, int Z2, base_x) inline {
+	return (
+		sqr(mult(X1, X2) - mult(Z1, Z2)),
+		mult(base_x, sqr(mult(X1, Z2) - mult(X2, Z1)))
+	);
+}
+
+
+int ubitsize(int v) asm "UBITSIZE";
+
+;; Formulas for multiplication from:
+;; https://www.cl.cam.ac.uk/teaching/2122/Crypto/curve25519.pdf
+;; starting from page 23
+;; testable
+int mul(int x1, int factor) method_id {
+	var (X0, Z0) = (x1, 1);
+	var (X1, Z1) = double_XZ(X0, Z0);
+	int skip = -1;
+
+	;; int i = ubitsize(factor) - 1;
+	int mask = (1 << ubitsize(factor)) >> 1;
+	while (mask > 1) {
+		mask >>= 1;
+		int bit = factor & mask;
+
+		if (bit) {
+			(X0, Z0) = add_neighbour_XZ(X0, Z0, X1, Z1, x1); ;; var (midX, midZ) = 
+			(X1, Z1) = double_XZ(X1, Z1); ;; var (highX, highZ) = 
+		} else {
+			(X1, Z1) = add_neighbour_XZ(X0, Z0, X1, Z1, x1); ;; var (midX, midZ) = 
+			(X0, Z0) = double_XZ(X0, Z0); ;; var (lowX, lowZ) = 
+		}
+	}
+
+	int res_x = div(X0, Z0);
+
+	return res_x;
+}
+
+
+() recv_internal () {
+}

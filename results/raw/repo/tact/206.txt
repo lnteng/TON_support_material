@@ -1,0 +1,102 @@
+$NexTon$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/output/sample_NexTon.code.fc:16:201: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent)) = (null(), false, null(), null(), 0, null(), 0, null(), null(), null());
+                                                                                                                                                                                                          ^
+$NexTon$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/output/sample_NexTon.code.fc:16:201: warning: Local variable '$self'nftItemCode' is not used
+      var (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent)) = (null(), false, null(), null(), 0, null(), 0, null(), null(), null());
+                                                                                                                                                                                                          ^
+$NexTon$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/output/sample_NexTon.code.fc:16:201: warning: Local variable '$self'nFTContractAddress' is not used
+      var (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent)) = (null(), false, null(), null(), 0, null(), 0, null(), null(), null());
+                                                                                                                                                                                                          ^
+$NexTon$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/output/sample_NexTon.code.fc:16:201: warning: Local variable '$self'latestStakeBlock' is not used
+      var (($self'owner, $self'stopped, $self'nftItemCode, $self'nFTContractAddress, $self'counter, $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent)) = (null(), false, null(), null(), 0, null(), 0, null(), null(), null());
+                                                                                                                                                                                                          ^
+$NexTon$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/output/sample_NexTon.storage.fc:225:19: warning: Lack of end_parse.
+          return $sc~$NexTon$_load();
+                    ^
+__tact_dict_set_uint_slice: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/output/sample_NexTon.stdlib.fc:93:21: warning: Local variable 'ok' is not used
+          var (r, ok) = udict_delete?(d, kl, k);
+                      ^
+__tact_dict_set_int_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/output/sample_NexTon.stdlib.fc:66:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+$NexTon$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/output/sample_NexTon.storage.fc:210:29: warning: Lack of end_parse.
+      var v'itemContent = sc_1~load_dict();
+                              ^
+$NexTon$_internal_binary_UserDeposit: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/output/sample_NexTon.code.fc:96:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$NexTon$_internal_binary_UserDeposit: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/output/sample_NexTon.code.fc:96:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$NexTon$_internal_binary_UserDeposit: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/output/sample_NexTon.code.fc:98:53: warning: Local variable '$attributes'trait_type' is not used
+      var ($attributes'trait_type, $attributes'value) = $Attribute$_constructor_trait_type_value(__gen_slice_string_9d5b4412217cae19bea7c01d778a946a94cefc77631202e50069f31be8eb0ee7(), ($ctx'value - 100000000));
+                                                      ^
+$NexTon$_internal_binary_UserDeposit: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/output/sample_NexTon.code.fc:98:53: warning: Local variable '$attributes'value' is not used
+      var ($attributes'trait_type, $attributes'value) = $Attribute$_constructor_trait_type_value(__gen_slice_string_9d5b4412217cae19bea7c01d778a946a94cefc77631202e50069f31be8eb0ee7(), ($ctx'value - 100000000));
+                                                      ^
+$NexTon$_fun_getNftAddressByIndex: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/output/sample_NexTon.code.fc:44:417: warning: Local variable '$self'stopped' is not used
+  ... $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent)~$NexTon$_fun_getNftItemInit($itemIndex)));
+  ...                                                                                                     ^
+$NexTon$_fun_getNftAddressByIndex: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/output/sample_NexTon.code.fc:44:417: warning: Local variable '$self'nftItemCode' is not used
+  ... $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent)~$NexTon$_fun_getNftItemInit($itemIndex)));
+  ...                                                                                                     ^
+$NexTon$_fun_getNftAddressByIndex: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/output/sample_NexTon.code.fc:44:417: warning: Local variable '$self'nFTContractAddress' is not used
+  ... $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent)~$NexTon$_fun_getNftItemInit($itemIndex)));
+  ...                                                                                                     ^
+$NexTon$_fun_getNftAddressByIndex: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/output/sample_NexTon.code.fc:44:417: warning: Local variable '$self'counter' is not used
+  ... $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent)~$NexTon$_fun_getNftItemInit($itemIndex)));
+  ...                                                                                                     ^
+$NexTon$_fun_getNftAddressByIndex: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/output/sample_NexTon.code.fc:44:417: warning: Local variable '$self'latestStakeBlock' is not used
+  ... $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent)~$NexTon$_fun_getNftItemInit($itemIndex)));
+  ...                                                                                                     ^
+$NexTon$_fun_getNftAddressByIndex: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/output/sample_NexTon.code.fc:44:417: warning: Local variable '$self'itemCounter' is not used
+  ... $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent)~$NexTon$_fun_getNftItemInit($itemIndex)));
+  ...                                                                                                     ^
+$NexTon$_fun_getNftAddressByIndex: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/output/sample_NexTon.code.fc:44:417: warning: Local variable '$self'userItemClaimed' is not used
+  ... $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent)~$NexTon$_fun_getNftItemInit($itemIndex)));
+  ...                                                                                                     ^
+$NexTon$_fun_getNftAddressByIndex: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/output/sample_NexTon.code.fc:44:417: warning: Local variable '$self'claimers' is not used
+  ... $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent)~$NexTon$_fun_getNftItemInit($itemIndex)));
+  ...                                                                                                     ^
+$NexTon$_fun_getNftAddressByIndex: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/output/sample_NexTon.code.fc:44:417: warning: Local variable '$self'itemContent' is not used
+  ... $self'latestStakeBlock, $self'itemCounter, $self'userItemClaimed, $self'claimers, $self'itemContent)~$NexTon$_fun_getNftItemInit($itemIndex)));
+  ...                                                                                                     ^
+__tact_dict_set_uint_cell: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/output/sample_NexTon.stdlib.fc:84:21: warning: Local variable 'ok' is not used
+          var (r, ok) = udict_delete?(d, kl, k);
+                      ^
+$NexTon$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/output/sample_NexTon.code.fc:208:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/output/sample_NexTon.storage.fc:236:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$NexTon$_contract_store & $NexTon$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/output/sample_NexTon.storage.fc:221:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/output/sample_NexTon.storage.fc:236:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

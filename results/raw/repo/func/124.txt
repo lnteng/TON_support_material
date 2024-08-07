@@ -1,0 +1,20 @@
+messages::send_log: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/TDB-template/contracts/imports/messages.fc:62:14: warning: Local variable 'msg' is not used
+      cell msg = begin_cell()
+               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/TDB-template/contracts/admin_nft.fc:80:28: warning: Lack of end_parse.
+      int fwd_fee = muldiv(cs~load_coins(), 3, 2);
+                             ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/TDB-template/contracts/admin_nft.fc:199:31: warning: Lack of end_parse.
+          cell keyvalue_map = cs~load_dict();
+                                ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/TDB-template/contracts/admin_nft.fc:80:17: warning: Local variable 'fwd_fee' is not used
+      int fwd_fee = muldiv(cs~load_coins(), 3, 2);
+                  ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/TDB-template/contracts/admin_nft.fc:29:103: warning: Lack of end_parse.
+        return (-1, index, collection_address, ds~load_msg_addr(), ds~load_ref(), ds~load_msg_addr(), ds~load_uint(64));
+                                                                                                        ^

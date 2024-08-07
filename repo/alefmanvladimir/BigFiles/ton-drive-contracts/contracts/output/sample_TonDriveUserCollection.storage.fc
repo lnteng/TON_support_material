@@ -1,0 +1,216 @@
+;;
+;; Type: StateInit
+;; TLB: _ code:^cell data:^cell = StateInit
+;;
+
+((cell, cell)) $StateInit$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (cell vvv'code, cell vvv'data) = __tact_tuple_destroy_2(v);
+    return (vvv'code, vvv'data);
+}
+
+;;
+;; Type: Context
+;; TLB: _ bounced:bool sender:address value:int257 raw:^slice = Context
+;;
+
+_ $Context$_get_value((int, slice, int, slice) v) inline {
+    var (v'bounced, v'sender, v'value, v'raw) = v;
+    return v'value;
+}
+
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline {
+    return (bounce, to, value, mode, body, code, data);
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_value_to_mode_body(int value, slice to, int mode, cell body) inline {
+    return (true, to, value, mode, body, null(), null());
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_body_value_mode(slice to, cell body, int value, int mode) inline {
+    return (true, to, value, mode, body, null(), null());
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode_body(slice to, int value, int mode, cell body) inline {
+    return (true, to, value, mode, body, null(), null());
+}
+
+;;
+;; Type: Deploy
+;; Header: 0x946a98b6
+;; TLB: deploy#946a98b6 queryId:uint64 = Deploy
+;;
+
+(slice, ((int))) $Deploy$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2490013878);
+    var v'queryId = sc_0~load_uint(64);
+    return (sc_0, (v'queryId));
+}
+
+;;
+;; Type: DeployOk
+;; Header: 0xaff90f57
+;; TLB: deploy_ok#aff90f57 queryId:uint64 = DeployOk
+;;
+
+builder $DeployOk$_store(builder build_0, (int) v) inline {
+    var (v'queryId) = v;
+    build_0 = store_uint(build_0, 2952335191, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    return build_0;
+}
+
+cell $DeployOk$_store_cell((int) v) inline {
+    return $DeployOk$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $DeployOk$_constructor_queryId(int queryId) inline {
+    return (queryId);
+}
+
+;;
+;; Type: FileInfo
+;; TLB: _ storageContractAddress:Maybe address closed:bool fileSize:int257 name:^string created:int257 = FileInfo
+;;
+
+builder $FileInfo$_store(builder build_0, (slice, int, int, slice, int) v) inline {
+    var (v'storageContractAddress, v'closed, v'fileSize, v'name, v'created) = v;
+    build_0 = __tact_store_address_opt(build_0, v'storageContractAddress);
+    build_0 = build_0.store_int(v'closed, 1);
+    build_0 = build_0.store_int(v'fileSize, 257);
+    build_0 = build_0.store_ref(begin_cell().store_slice(v'name).end_cell());
+    build_0 = build_0.store_int(v'created, 257);
+    return build_0;
+}
+
+cell $FileInfo$_store_cell((slice, int, int, slice, int) v) inline {
+    return $FileInfo$_store(begin_cell(), v).end_cell();
+}
+
+(slice, ((slice, int, int, slice, int))) $FileInfo$_load(slice sc_0) inline {
+    var v'storageContractAddress = sc_0~__tact_load_address_opt();
+    var v'closed = sc_0~load_int(1);
+    var v'fileSize = sc_0~load_int(257);
+    var v'name = sc_0~load_ref().begin_parse();
+    var v'created = sc_0~load_int(257);
+    return (sc_0, (v'storageContractAddress, v'closed, v'fileSize, v'name, v'created));
+}
+
+tuple $FileInfo$_as_optional((slice, int, int, slice, int) v) inline {
+    var (v'storageContractAddress, v'closed, v'fileSize, v'name, v'created) = v;
+    return __tact_tuple_create_5(v'storageContractAddress, v'closed, v'fileSize, v'name, v'created);
+}
+
+tuple $FileInfo$_load_opt(cell cl) inline {
+    if (null?(cl)) {
+        return null();
+    }
+    var sc = cl.begin_parse();
+    return $FileInfo$_as_optional(sc~$FileInfo$_load());
+}
+
+_ $FileInfo$_get_storageContractAddress((slice, int, int, slice, int) v) inline {
+    var (v'storageContractAddress, v'closed, v'fileSize, v'name, v'created) = v;
+    return v'storageContractAddress;
+}
+
+_ $FileInfo$_get_fileSize((slice, int, int, slice, int) v) inline {
+    var (v'storageContractAddress, v'closed, v'fileSize, v'name, v'created) = v;
+    return v'fileSize;
+}
+
+_ $FileInfo$_get_name((slice, int, int, slice, int) v) inline {
+    var (v'storageContractAddress, v'closed, v'fileSize, v'name, v'created) = v;
+    return v'name;
+}
+
+_ $FileInfo$_get_created((slice, int, int, slice, int) v) inline {
+    var (v'storageContractAddress, v'closed, v'fileSize, v'name, v'created) = v;
+    return v'created;
+}
+
+((slice, int, int, slice, int)) $FileInfo$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (slice vvv'storageContractAddress, int vvv'closed, int vvv'fileSize, slice vvv'name, int vvv'created) = __tact_tuple_destroy_5(v);
+    return (vvv'storageContractAddress, vvv'closed, vvv'fileSize, vvv'name, vvv'created);
+}
+
+((slice, int, int, slice, int)) $FileInfo$_constructor_storageContractAddress_fileSize_name_closed_created(slice storageContractAddress, int fileSize, slice name, int closed, int created) inline {
+    return (storageContractAddress, closed, fileSize, name, created);
+}
+
+;;
+;; Type: Create
+;; Header: 0x5d2b085d
+;; TLB: create#5d2b085d payload:^cell storageProviderAddress:Maybe address name:^string = Create
+;;
+
+(slice, ((cell, slice, slice))) $Create$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 1563101277);
+    var v'payload = sc_0~load_ref();
+    var v'storageProviderAddress = sc_0~__tact_load_address_opt();
+    var v'name = sc_0~load_ref().begin_parse();
+    return (sc_0, (v'payload, v'storageProviderAddress, v'name));
+}
+
+;;
+;; Type: CloseItem
+;; Header: 0x1ebfc39c
+;; TLB: close_item#1ebfc39c torrentHash:int257 = CloseItem
+;;
+
+(slice, ((int))) $CloseItem$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 515883932);
+    var v'torrentHash = sc_0~load_int(257);
+    return (sc_0, (v'torrentHash));
+}
+
+;;
+;; Type: TonDriveUserCollection
+;;
+
+builder $TonDriveUserCollection$_store(builder build_0, (slice, cell) v) inline {
+    var (v'owner, v'hash_to_info_map) = v;
+    build_0 = __tact_store_address(build_0, v'owner);
+    build_0 = build_0.store_dict(v'hash_to_info_map);
+    return build_0;
+}
+
+(slice, ((slice, cell))) $TonDriveUserCollection$_load(slice sc_0) inline {
+    var v'owner = sc_0~__tact_load_address();
+    var v'hash_to_info_map = sc_0~load_dict();
+    return (sc_0, (v'owner, v'hash_to_info_map));
+}
+
+(slice, ((slice))) $TonDriveUserCollection$init$_load(slice sc_0) inline {
+    var v'owner = sc_0~__tact_load_address();
+    return (sc_0, (v'owner));
+}
+
+(slice, cell) $TonDriveUserCollection$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$TonDriveUserCollection$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (slice owner) = $sc~$TonDriveUserCollection$init$_load();
+        $sc.end_parse();
+        return $TonDriveUserCollection$_contract_init(owner);
+    }
+}
+
+() $TonDriveUserCollection$_contract_store((slice, cell) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $TonDriveUserCollection$_store(b, v);
+    set_data(b.end_cell());
+}

@@ -1,0 +1,34 @@
+$LootBoxContract$_internal_text_1e3a46cb5cc3f633146032961a17c344b327be9f09f86cb2980f110fe6d5a55e: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBt17-2ASRpLphuhwHt844s3mfsOm83ymJGCo4IWoFW1wpT/output/verifier_LootBoxContract.code.fc:44:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$LootBoxContract$_internal_text_1e3a46cb5cc3f633146032961a17c344b327be9f09f86cb2980f110fe6d5a55e: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBt17-2ASRpLphuhwHt844s3mfsOm83ymJGCo4IWoFW1wpT/output/verifier_LootBoxContract.code.fc:44:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$LootBoxContract$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBt17-2ASRpLphuhwHt844s3mfsOm83ymJGCo4IWoFW1wpT/output/verifier_LootBoxContract.storage.fc:80:32: warning: Lack of end_parse.
+      var v'lastGameAmount = sc_1~load_int(257);
+                                 ^
+$LootBoxContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBt17-2ASRpLphuhwHt844s3mfsOm83ymJGCo4IWoFW1wpT/output/verifier_LootBoxContract.code.fc:15:102: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'counter, $self'lastWinner, $self'lastMultiplier, $self'lastGameAmount)) = (null(), 0, null(), 0, 0);
+                                                                                                       ^
+$LootBoxContract$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBt17-2ASRpLphuhwHt844s3mfsOm83ymJGCo4IWoFW1wpT/output/verifier_LootBoxContract.storage.fc:94:19: warning: Lack of end_parse.
+          return $sc~$LootBoxContract$_load();
+                    ^
+$LootBoxContract$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBt17-2ASRpLphuhwHt844s3mfsOm83ymJGCo4IWoFW1wpT/output/verifier_LootBoxContract.code.fc:104:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBt17-2ASRpLphuhwHt844s3mfsOm83ymJGCo4IWoFW1wpT/output/verifier_LootBoxContract.storage.fc:105:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$LootBoxContract$_contract_store & $LootBoxContract$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBt17-2ASRpLphuhwHt844s3mfsOm83ymJGCo4IWoFW1wpT/output/verifier_LootBoxContract.storage.fc:90:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQBt17-2ASRpLphuhwHt844s3mfsOm83ymJGCo4IWoFW1wpT/output/verifier_LootBoxContract.storage.fc:105:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

@@ -1,0 +1,150 @@
+#include "imports/stdlib.fc";
+
+() recv_internal(int my_balance, int msg_value, cell in_msg_full, slice in_msg_body) impure {
+
+}
+
+;;; Returns the first element of a tuple (with unknown element types).
+forall X -> X first(tuple t) asm "FIRST";
+
+;;; Returns the second element of a tuple (with unknown element types).
+forall X -> X second(tuple t) asm "SECOND";
+
+
+;;; Returns the third element of a tuple (with unknown element types).
+forall X -> X third(tuple t) asm "THIRD";
+
+;;; Returns the fourth element of a tuple (with unknown element types).
+forall X -> X fourth(tuple t) asm "3 INDEX";
+
+forall X -> tuple tpush(tuple t, X value) asm "TPUSH";
+
+slice slice_last(slice s, int len) asm "SDCUTLAST";
+forall X -> X car(tuple list) asm "CAR";
+
+(int, int) find_end(int n, int m, tuple maze) {
+    int x = 0;
+    int y = 0;
+    slice ender = maze.begin_parse();
+    while ((x < n) or (slice_last(slice_last(ender, y), x) != "S")){
+        while ((slice_last(slice_last(ender, y), x) != "S") or (y< m)){
+            y = y + 1;
+    }
+        x = x+1;
+    }
+    if (slice_last(slice_last(ender, y), x) != "S")
+    {return (null, null);}
+
+    return (x, y);
+    
+}
+
+cell dfs(int n, int m, tuple maze) {
+    (int,int) start = find_start(n, m, maze);
+    (int, int) end = find_end(n, m, maze);
+    tuple directions = ((-1, 0), (1, 0), (0, -1), (0, 1), (-1, -1), (-1, 1), (1, -1), (1, 1));
+
+    tuple q = (start, 0, (0, 0), 1, 0);
+    cell visited = null();
+    cell path = null();
+
+    while (q.size() > 0) {
+        (int, int, (int, int),int, int) current = car(q);
+        int current_row = first(current);
+        int current_col = second(current);
+        (int, int) current_obstacles = third(current);
+        int current_superposition_obstacles = forth(current);
+
+        if (end == current_obstacles) and (current_superposition_obstacles == 0) {
+            return construct_path(n, m, maze, visited, start, end);
+        }
+
+        for (Direction dir in directions); {
+            int next_row = current_row + first(dir);
+            int next_col = current_col + second(dir);
+
+            if (next_row >= 0) and (next_row < n) and (next_col >= 0) and (next_col < m) {
+                slice position = maze.begin_parse();
+                slice next_row = slice_last(position, next_row);
+                slice next_col = slice_last(next_row, next_col);
+                if (next_col == "X"){
+                    int new_obstacles = current_obstacles +1;
+                }
+                if (next_col == "?"){
+                    int new_superposition_obstacles = current_superposition_obstacles + 1;
+
+                }
+                slice visitedslice = visited.begin_parse();
+                slice visited_row = slice_last(visitedslice, next_row);
+                slice visited_col = slice_last(visited_row, next_col);
+                if (slice_last(visited_col, new_superposition_obstacles) == 0) {
+                    slice_last(visited_col, new_superposition_obstacles) = 1;
+                    q.tpush(next_row, next_col, new_obstacles, new_superposition_obstacles, current_distance + 1);
+                }
+            }
+        }
+    }
+
+    return null;
+}
+
+(int, int) find_start(int n, int m, tuple maze) {
+    int x = 0;
+    int y = 0;
+    slice starter = maze.begin_parse();
+    while ((x < n) or (slice_last(slice_last(starter, y), x) != "S")){
+        while ((slice_last(slice_last(starter, y), x) != "S") or (y< m)){
+            y = y + 1;
+    }
+        x = x+1;
+    }
+    if (slice_last(slice_last(starter, y), x) != "S")
+    {return (null, null);}
+
+    return (x, y);
+    
+}
+
+cell solve(int n, int m, tuple maze) {
+    cell path = dfs(n, m, maze);
+    if (path != null) {
+        return path;
+    } else {
+        return null;
+    }
+}
+
+
+
+cell construct_path(int n, int m, tuple maze, int visited, start, end) {
+    int current_row = first(end);
+    int current_col = second(end);
+    tuple path = (n, m, 0);
+
+    while ((current_row != first(start)) or (current_col != second(start))) {
+        int dir_index = 0;
+        while (dir_index < 8){
+            dir = slice_last(directions, dir_index)
+            int prev_row = current_row - first(dir);
+            int prev_col = current_col - second(dir);
+            int prev_row = current_row - first(dir);
+            int prev_col = current_col - second(dir);
+
+            if ((prev_row >= 0) and (prev_row < n) and (prev_col >= 0) and (prev_col < m) and (slice_last(visited_col, new_superposition_obstacles)== 1)) {
+                search_path = path
+                slice_last((slice_last(search_path, current_row), current_col)) = "!";
+                
+                current_row = prev_row;
+                current_col = prev_col;
+                path = search_path;
+                break;
+            }
+            dir_index = dir_index +1;
+
+        }
+
+        
+    }
+
+    return path;
+}

@@ -1,0 +1,57 @@
+struct Rectangle : Item
+{
+    color: Color {}
+};
+
+// Update
+
+function update(EventState events, any parent, (Rectangle rectangle, Rectangle nextItem))
+{
+	return rectangle with
+    {
+        children: update(events, rectangle, ...(expand(...rectangle.children) | expand(...nextItem.children)))
+    };
+}
+
+function update(EventState events, any parent, ((Rectangle rectangle, Rectangle nextItem), ...controls))
+{
+    let r = rectangle with
+    {
+        children: update(events, rectangle, ...(expand(...rectangle.children) | expand(...nextItem.children)))
+    };
+
+	return r -> update(events, parent, ...controls);
+}
+
+// Process
+
+function process(ApplicationState state, (Rectangle rectangle, ...controls))
+{
+	let s = state with
+	{
+		user: process(state, rectangle.children)
+	};
+
+    return tail process(s, ...controls);
+}
+
+function process(ApplicationState state, Rectangle rectangle)
+{
+    return process(state, rectangle.children);
+}
+
+// Draw
+
+function draw(i64 renderer, any parent, without item)
+{
+    return nothing;
+}
+
+function draw(i64 renderer, any parent, Rectangle rectangle)
+{
+    setRenderDrawColor(renderer, rectangle.color);
+
+    SDL::SDL_RenderFillRect(renderer, boundingRect(rectangle));
+
+    return tail draw(renderer, rectangle, ...rectangle.children);
+}

@@ -1,0 +1,99 @@
+$DSocialNetworkMaster$_internal_binary_ChangeOwner: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./d0rich/esprit/contracts/contracts/output/sample_DSocialNetworkMaster.code.fc:118:89: warning: Local variable '$self'owner' is not used
+      ($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)~$DSocialNetworkMaster$_fun_requireOwner();
+                                                                                          ^
+$DSocialNetworkMaster$_fun_calculateSendAmountToHoldFeeFromRecieved: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./d0rich/esprit/contracts/contracts/output/sample_DSocialNetworkMaster.code.fc:79:184: warning: Local variable '$self'owner' is not used
+      return (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index), (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)~$DSocialNetworkMaster$_fun_calculateSendAmountToHoldEnoughTonForStorage() - $personalFee));
+                                                                                                                                                                                         ^
+$DSocialNetworkMaster$_fun_calculateSendAmountToHoldFeeFromRecieved: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./d0rich/esprit/contracts/contracts/output/sample_DSocialNetworkMaster.code.fc:79:184: warning: Local variable '$self'personal_fees_destination' is not used
+      return (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index), (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)~$DSocialNetworkMaster$_fun_calculateSendAmountToHoldEnoughTonForStorage() - $personalFee));
+                                                                                                                                                                                         ^
+$DSocialNetworkMaster$_fun_calculateSendAmountToHoldFeeFromRecieved: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./d0rich/esprit/contracts/contracts/output/sample_DSocialNetworkMaster.code.fc:79:184: warning: Local variable '$self'next_blog_index' is not used
+      return (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index), (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)~$DSocialNetworkMaster$_fun_calculateSendAmountToHoldEnoughTonForStorage() - $personalFee));
+                                                                                                                                                                                         ^
+__tact_string_builder_append: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./d0rich/esprit/contracts/contracts/output/sample_DSocialNetworkMaster.stdlib.fc:137:31: warning: Lack of end_parse.
+              sc = sc~load_ref().begin_parse();
+                                ^
+$DSocialNetworkMaster$_fun_getTonRecieved: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./d0rich/esprit/contracts/contracts/output/sample_DSocialNetworkMaster.code.fc:61:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$DSocialNetworkMaster$_fun_getTonRecieved: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./d0rich/esprit/contracts/contracts/output/sample_DSocialNetworkMaster.code.fc:61:59: warning: Local variable '$ctx'sender' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$DSocialNetworkMaster$_fun_getTonRecieved: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./d0rich/esprit/contracts/contracts/output/sample_DSocialNetworkMaster.code.fc:61:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$DSocialNetworkMaster$_internal_binary_CreateBlog: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./d0rich/esprit/contracts/contracts/output/sample_DSocialNetworkMaster.code.fc:96:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$DSocialNetworkMaster$_internal_binary_CreateBlog: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./d0rich/esprit/contracts/contracts/output/sample_DSocialNetworkMaster.code.fc:96:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$DSocialNetworkMaster$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./d0rich/esprit/contracts/contracts/output/sample_DSocialNetworkMaster.code.fc:15:96: warning: Local variable '$self'owner' is not used
+      var (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)) = (__gen_slice_string_0fd4153e7a328e1ce5dee013798f8c9b134a93a5f6812ba7b2bdd51653ce0486(), null(), null(), 0);
+                                                                                                 ^
+$DSocialNetworkMaster$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./d0rich/esprit/contracts/contracts/output/sample_DSocialNetworkMaster.code.fc:15:96: warning: Local variable '$self'personal_fees_destination' is not used
+      var (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)) = (__gen_slice_string_0fd4153e7a328e1ce5dee013798f8c9b134a93a5f6812ba7b2bdd51653ce0486(), null(), null(), 0);
+                                                                                                 ^
+$DSocialNetworkMaster$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./d0rich/esprit/contracts/contracts/output/sample_DSocialNetworkMaster.code.fc:16:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$DSocialNetworkMaster$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./d0rich/esprit/contracts/contracts/output/sample_DSocialNetworkMaster.code.fc:16:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$DSocialNetworkMaster$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./d0rich/esprit/contracts/contracts/output/sample_DSocialNetworkMaster.code.fc:16:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$DSocialNetworkMaster$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./d0rich/esprit/contracts/contracts/output/sample_DSocialNetworkMaster.storage.fc:250:19: warning: Lack of end_parse.
+          return $sc~$DSocialNetworkMaster$_load();
+                    ^
+$DSocialNetworkBlog$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./d0rich/esprit/contracts/contracts/output/sample_DSocialNetworkMaster.storage.fc:205:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$DSocialNetworkMaster$_fun_calculateSendAmountToHoldEnoughTonForStorage: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./d0rich/esprit/contracts/contracts/output/sample_DSocialNetworkMaster.code.fc:74:206: warning: Local variable '$self'owner' is not used
+  ... _my_balance() - ($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)~$DSocialNetworkMaster$_fun_calculateMinOperationFee()));
+  ...                                                                                                     ^
+$DSocialNetworkMaster$_fun_calculateSendAmountToHoldEnoughTonForStorage: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./d0rich/esprit/contracts/contracts/output/sample_DSocialNetworkMaster.code.fc:74:206: warning: Local variable '$self'personal_fees_destination' is not used
+  ... _my_balance() - ($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)~$DSocialNetworkMaster$_fun_calculateMinOperationFee()));
+  ...                                                                                                     ^
+$DSocialNetworkMaster$_fun_calculateSendAmountToHoldEnoughTonForStorage: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./d0rich/esprit/contracts/contracts/output/sample_DSocialNetworkMaster.code.fc:74:206: warning: Local variable '$self'next_blog_index' is not used
+  ... _my_balance() - ($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)~$DSocialNetworkMaster$_fun_calculateMinOperationFee()));
+  ...                                                                                                     ^
+$DSocialNetworkMaster$_fun_calculateMinOperationFee: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./d0rich/esprit/contracts/contracts/output/sample_DSocialNetworkMaster.code.fc:69:198: warning: Local variable '$self'owner' is not used
+      return (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index), ($storageFee + ($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)~$DSocialNetworkMaster$_fun_getGasConsumption()));
+                                                                                                                                                                                                       ^
+$DSocialNetworkMaster$_fun_calculateMinOperationFee: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./d0rich/esprit/contracts/contracts/output/sample_DSocialNetworkMaster.code.fc:69:198: warning: Local variable '$self'personal_fees_destination' is not used
+      return (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index), ($storageFee + ($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)~$DSocialNetworkMaster$_fun_getGasConsumption()));
+                                                                                                                                                                                                       ^
+$DSocialNetworkMaster$_fun_calculateMinOperationFee: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./d0rich/esprit/contracts/contracts/output/sample_DSocialNetworkMaster.code.fc:69:198: warning: Local variable '$self'next_blog_index' is not used
+      return (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index), ($storageFee + ($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)~$DSocialNetworkMaster$_fun_getGasConsumption()));
+                                                                                                                                                                                                       ^
+$DSocialNetworkMaster$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./d0rich/esprit/contracts/contracts/output/sample_DSocialNetworkMaster.code.fc:195:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./d0rich/esprit/contracts/contracts/output/sample_DSocialNetworkMaster.storage.fc:259:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

@@ -1,0 +1,36 @@
+process_user_msg: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./cod1ng-studio/ton-exchange/dex.fc:223:124: warning: Local variable 'to_value' is not used
+        (slice order_sender, int from_value, slice from_currency, int to_value, slice to_currency, int paid, int expired_at) = parse_order(order_slice);
+                                                                                                                             ^
+process_user_msg: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./cod1ng-studio/ton-exchange/dex.fc:223:124: warning: Local variable 'to_currency' is not used
+        (slice order_sender, int from_value, slice from_currency, int to_value, slice to_currency, int paid, int expired_at) = parse_order(order_slice);
+                                                                                                                             ^
+parse_order: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./cod1ng-studio/ton-exchange/dex.fc:28:126: warning: Lack of end_parse.
+    return (cs~load_bits(264), cs~load_grams(), cs~load_currency(), ref~load_grams(), ref~load_currency(), ref~load_int(1), ref~load_uint(32));
+                                                                                                                               ^
+orders: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./cod1ng-studio/ton-exchange/dex.fc:332:28: warning: Local variable 'seqno' is not used
+    (int seqno, cell orders) = (ds~load_uint(64), ds~load_dict());
+                             ^
+orders: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./cod1ng-studio/ton-exchange/dex.fc:340:118: warning: Local variable 'expired_at' is not used
+        (slice sender, int from_value, slice from_currency, int to_value, slice to_currency, int paid, int expired_at) = parse_order(order_slice);
+                                                                                                                       ^
+seqno: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./cod1ng-studio/ton-exchange/dex.fc:323:28: warning: Local variable 'orders' is not used
+    (int seqno, cell orders) = (ds~load_uint(64), ds~load_dict());
+                             ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./cod1ng-studio/ton-exchange/dex.fc:258:29: warning: Lack of end_parse.
+    cell extra_currencies = cs~load_dict();
+                              ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./cod1ng-studio/ton-exchange/dex.fc:278:18: warning: Local variable 'query_id' is not used
+      int query_id = cs~load_uint(64);
+                   ^
+find_match_order: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./cod1ng-studio/ton-exchange/dex.fc:132:118: warning: Local variable 'expired_at' is not used
+        (slice sender, int from_value, slice from_currency, int to_value, slice to_currency, int paid, int expired_at) = parse_order(order_slice);
+                                                                                                                       ^

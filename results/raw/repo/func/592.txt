@@ -1,0 +1,36 @@
+load_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-nft/packages/nft/ton-nft/ton-nft-sellable.fc:99:16: warning: Local variable 'inited' is not used
+      int inited = ds~load_uint(1);     ;; inited
+                 ^
+handle_disable_selling: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-nft/packages/nft/ton-nft/ton-nft-sellable.fc:417:11: warning: Lack of end_parse.
+      ) = ds~load_sales_data();
+            ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-nft/packages/nft/ton-nft/ton-nft-sellable.fc:619:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+handle_place_a_bid: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-nft/packages/nft/ton-nft/ton-nft-sellable.fc:279:11: warning: Lack of end_parse.
+      ) = ds~load_sales_data();
+            ^
+handle_accept_last_bid: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-nft/packages/nft/ton-nft/ton-nft-sellable.fc:518:54: warning: PressionLoss
+          int royalties_value = (last_bid_value / 100) * royalties_percent;
+                                                       ^
+handle_accept_last_bid: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-nft/packages/nft/ton-nft/ton-nft-sellable.fc:508:49: warning: PressionLoss
+          int fees_value = (last_bid_value / 100) * fees_percent;
+                                                  ^
+handle_accept_last_bid: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-nft/packages/nft/ton-nft/ton-nft-sellable.fc:484:11: warning: Lack of end_parse.
+      ) = ds~load_sales_data();
+            ^
+handle_enable_selling: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-nft/packages/nft/ton-nft/ton-nft-sellable.fc:359:11: warning: Lack of end_parse.
+      ) = ds~load_sales_data();
+            ^
+handle_enable_selling: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-nft/packages/nft/ton-nft/ton-nft-sellable.fc:359:7: warning: Local variable 'is_last_bid_historical' is not used
+      ) = ds~load_sales_data();
+        ^

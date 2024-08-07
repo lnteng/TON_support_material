@@ -1,0 +1,212 @@
+#include "imports/stdlib.fc";
+
+;; storage
+;; admin_address: MsgAddressInt
+;; users: (HashmapE 256 uint32)
+;; total_share optional
+
+(cell, (slice, int)) ~udict_set_get_builder?(cell dict, int key_len, int index, builder value) asm(value index dict key_len) "DICTUSETGETB NULLSWAPIFNOT";
+(int, slice, int) udict_get_next_mod(cell dict, int key_len, int pivot) asm(pivot dict key_len -> 1 0 2) "DICTUGETNEXT";
+
+() recv_internal(int msg_value, cell in_msg_full, slice in_msg_body) impure {
+
+    if (in_msg_body.slice_bits() < 32) { ;; ignore short messages and init storage at deploy
+        var ds = get_data().begin_parse();
+        ds~load_uint(11);
+        var (owner, dict) = (ds~load_uint(256), ds.preload_dict());
+        set_data(
+                begin_cell()
+                        .store_uint(1024,11)
+                        .store_uint(owner, 256)
+                        .store_dict(dict)
+                        .store_uint(0, 64)
+                        .store_uint(0, 10)
+                        .end_cell()
+        );
+        return ();
+    }
+
+    int op = in_msg_body~load_uint(32);
+
+    ;; add_user#368ddef3 query_id:uint64 address:MsgAddressInt share:uint32 = InternalMsgBody;
+    if (op == 0x368ddef3) { ;; add user
+
+        var cs = in_msg_full.begin_parse();
+        cs~load_uint(4 + 11); ;; flags + addr std op + wc
+        int sender_address = cs.preload_uint(256); ;; sender address
+
+        var ds = get_data().begin_parse();
+        ds~load_uint(11);
+        int owner = ds~load_uint(256);
+
+        throw_unless(120, sender_address == owner);
+
+        (cell dict, int total_share, int count) = (ds~load_dict(), ds~load_uint(64), ds.preload_uint(10) + 1);
+
+        in_msg_body~load_uint(64 + 11); ;; query_id and addr prefix
+        (int user, int share) = (in_msg_body~load_uint(256), in_msg_body.preload_uint(32));
+        total_share += share;
+
+        var (old_share, res) = dict~udict_set_get_builder?(256, user, begin_cell().store_uint(share, 32));
+
+        if res {
+            total_share -= old_share.preload_uint(32);
+            count -= 1;
+        }
+
+        set_data(
+                begin_cell()
+                        .store_uint(1024,11)
+                        .store_uint(owner, 256)
+                        .store_dict(dict)
+                        .store_uint(total_share, 64)
+                        .store_uint(count, 10)
+                        .end_cell()
+        );
+
+        return();
+    }
+
+    ;; remove_user#278205c8 query_id:uint64 address:MsgAddressInt = InternalMsgBody;
+    if (op == 0x278205c8) { ;; remove user
+
+        var cs = in_msg_full.begin_parse();
+        cs~load_uint(4 + 11); ;; flags + addr std op + wc
+        int sender_address = cs.preload_uint(256); ;; sender address
+
+        var ds = get_data().begin_parse();
+        ds~load_uint(11);
+        int owner = ds~load_uint(256);
+
+        throw_unless(120, sender_address == owner);
+
+        in_msg_body~load_uint(64 + 11);
+        int user = in_msg_body.preload_uint(256);
+
+        var dict = ds~load_dict();
+        var (old_share, res) = dict~udict_delete_get?(256, user);
+        throw_unless(121, res);
+
+        (int total_share, int count) = (ds~load_uint(64), ds.preload_uint(10));
+        total_share -= old_share.preload_uint(32);
+        count -= 1;
+
+        set_data(
+                begin_cell()
+                        .store_uint(1024,11)
+                        .store_uint(owner, 256)
+                        .store_dict(dict)
+                        .store_uint(total_share, 64)
+                        .store_uint(count, 10)
+                        .end_cell()
+        );
+        return();
+    }
+
+    ;; split_ton#068530b3 query_id:uint64 amount:Coins = InternalMsgBody;
+    if (op == 0x068530b3) { ;; split ton
+
+        var ds = get_data().begin_parse();
+        ds~skip_bits(11 + 256); ;; skip owner
+        var dict = ds~load_dict();
+        throw_if(122, dict.dict_empty?());
+
+        (int total_share, int count) = (ds~load_uint(64), ds.preload_uint(10));
+
+        var prebuild_message = begin_cell()
+                .store_uint(33792, 6 + 11);
+
+        int user = -1;
+        repeat count {
+            (user, slice cs, _) = dict.udict_get_next_mod(256, user);
+            int part = cs.preload_uint(32) * msg_value / total_share;
+            send_raw_message(prebuild_message
+;;                     .store_uint(0x10, 6) ;; nobounce - int_msg_info$0 ihr_disabled:Bool bounce:Bool bounced:Bool src:MsgAddress -> 010000
+;;                     .store_uint(1024, 11) ;; std addr 0 workchain
+                    .store_uint(user, 256)
+                    .store_coins(part)
+                    .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+                    .end_cell(), 1);
+        };
+        commit();
+        throw(0);
+    }
+
+    ;; transfer_notification#701c09a6 query_id:uint64 amount:Coins = InternalMsgBody;
+    if (op == 0x7362d09c) { ;; transfer notification
+
+        var ds = get_data().begin_parse();
+        ds~skip_bits(11 + 256); ;; skip owner
+        var dict = ds~load_dict();
+        throw_if(122, dict.dict_empty?());
+
+        in_msg_body~skip_bits(64); ;; query_id
+        int amount = in_msg_body~load_coins(); ;; TODO: maybe optimize
+
+        var cs = in_msg_full.begin_parse();
+        cs~load_uint(4 + 11); ;; flags + addr std op + wc
+        int sender_address = cs.preload_uint(256); ;; sender address
+
+        (int total_share, int count) = (ds~load_uint(64), ds.preload_uint(10));
+
+        var prebuild_message = begin_cell()
+                .store_uint(33792, 6 + 11)
+                .store_uint(sender_address, 256)
+                .store_uint(0x200989680000000000000000000000000001, 143)
+                ;
+
+        var prebuild_body = begin_cell()
+                .store_uint(0xF8A7EA50000000000000000, 32 + 64);
+
+        int user = -1;
+        repeat count {
+            (user, slice cs, _) = dict.udict_get_next_mod(256, user);
+            int part = cs.preload_uint(32) * amount / total_share;
+            send_raw_message(prebuild_message
+;;                     .store_uint(33792, 6 + 11)
+;;                     .store_uint(0x18, 6) ;; bounce - int_msg_info$0 ihr_disabled:Bool bounce:Bool bounced:Bool src:MsgAddress -> 010000
+;;                     .store_uint(1024, 11) ;; std addr 0 workchain
+;;                     .store_uint(sender_address, 256)
+;;                     .store_uint(17199869184, 36) ;; .store_coins(20000000)
+;;                     .store_uint(1, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+                    .store_ref(prebuild_body
+;;                             begin_cell()
+;;                             .store_uint(0xF8A7EA50000000000000000, 32 + 64) ;; op + queryId
+                            .store_coins(part) ;; amount
+                            .store_uint(1024, 11) ;; std addr 0 workchain
+                            .store_uint(user, 256) ;; destination
+                            .store_uint(1024, 11) ;; std addr 0 workchain
+                            .store_uint(user, 256) ;; responseDestination
+                            .store_uint(514, 14)
+;;                             .store_uint(0, 1) ;; custom payload
+;;                             .store_coins(1) ;; forward amount
+;;                             .store_uint(0,1) ;; forward payload
+                            .end_cell()
+                    )
+                    .end_cell(), 1);
+        };
+        commit();
+        throw(0);
+    }
+}
+
+;; Get methods
+
+cell get_users() method_id {
+    var cs = get_data().begin_parse();
+    cs~skip_bits(267);
+;;     var dict = cs~load_dict();
+;;     if dict.dict_empty?() {
+;;        return null();
+;;     }
+    return cs.preload_dict();
+}
+
+int get_user_share(slice user_address) method_id {
+    var cs = get_data().begin_parse();
+    cs~skip_bits(267);
+    var dict = cs.preload_dict();
+    user_address~load_uint(11);
+    var (share, _) = dict.udict_get?(256, user_address~load_uint(256));
+    return share.preload_uint(32);
+}

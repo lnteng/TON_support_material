@@ -1,0 +1,736 @@
+PROGRAM{
+  DECLPROC __tact_verify_address
+  DECLPROC __tact_load_address
+  DECLPROC __tact_store_address
+  DECLPROC __tact_my_balance
+  DECLPROC __tact_not_null
+  DECLPROC __tact_context_get
+  DECLPROC __tact_context_get_sender
+  DECLPROC __tact_prepare_random
+  DECLPROC __tact_store_bool
+  DECLPROC __tact_dict_set_slice_uint
+  DECLPROC __tact_dict_get_slice_uint
+  DECLPROC __tact_slice_eq_bits
+  DECLPROC $MintEvent$_store
+  DECLPROC $MintEvent$_store_cell
+  DECLPROC $MintJetton$_load
+  DECLPROC $MintWar$_store
+  DECLPROC $MintWar$_load
+  DECLPROC $Context$_get_value
+  DECLPROC $AccountState$_to_external
+  DECLPROC $MintWar$init$_load
+  DECLPROC $MintWar$_contract_init
+  DECLPROC $MintWar$_contract_load
+  DECLPROC $MintWar$_contract_store
+  DECLPROC $global_random
+  DECLPROC $global_send
+  DECLPROC $global_emit
+  DECLPROC $MintWar$_fun_get_points_by_address
+  DECLPROC $MintWar$_fun_get_shares_by_address
+  DECLPROC $MintWar$_fun_get_totalPoints
+  DECLPROC $MintWar$_fun_get_all_accounts
+  DECLPROC $AccountState$_constructor_points_fees_totalPoints_totalFees
+  DECLPROC $MintWar$_fun_get_account_state
+  DECLPROC $MintEvent$_constructor_sender_value_rate_points
+  DECLPROC $SendParameters$_constructor_to_value_bounce_mode
+  DECLPROC %$MintWar$_internal_empty
+  DECLPROC $MintWar$_internal_any
+  DECLPROC $MintWar$_internal_binary_MintJetton
+  DECLPROC $MintWar$_internal_text_1a63ed6eba39c11ba2540547ceb5f79b6fe0ab29a1055bb0ed7d53e4ab5089ac
+  88159 DECLMETHOD %get_points_by_address
+  107853 DECLMETHOD %get_shares_by_address
+  75046 DECLMETHOD %get_totalPoints
+  68880 DECLMETHOD %get_all_accounts
+  122798 DECLMETHOD %get_account_state
+  113617 DECLMETHOD supported_interfaces
+  121275 DECLMETHOD get_abi_ipfs
+  115390 DECLMETHOD lazy_deployment_completed
+  DECLPROC $MintWar$_contract_router_internal
+  DECLPROC recv_internal
+  DECLGLOBVAR __tact_context
+  DECLGLOBVAR __tact_context_sender
+  DECLGLOBVAR __tact_context_sys
+  DECLGLOBVAR __tact_randomized
+  __tact_verify_address PROCINLINE:<{
+    DUP
+    SBITS
+    267 PUSHINT
+    EQUAL
+    136 THROWIFNOT
+    DUP
+    11 PLDU
+    DUP
+    1279 PUSHINT
+    EQUAL
+    137 THROWIF
+    10 PUSHPOW2
+    EQUAL
+    136 THROWIFNOT
+  }>
+  __tact_load_address PROCINLINE:<{
+    LDMSGADDR
+    SWAP
+    __tact_verify_address INLINECALLDICT
+  }>
+  __tact_store_address PROCINLINE:<{
+    __tact_verify_address INLINECALLDICT
+    STSLICER
+  }>
+  __tact_my_balance PROCINLINE:<{
+    BALANCE
+    FIRST
+  }>
+  __tact_not_null PROCINLINE:<{
+    DUP
+    ISNULL
+    128 THROWIF
+  }>
+  __tact_context_get PROCINLINE:<{
+    __tact_context GETGLOB
+    4 UNTUPLE
+  }>
+  __tact_context_get_sender PROCINLINE:<{
+    __tact_context_sender GETGLOB
+  }>
+  __tact_prepare_random PROCINLINE:<{
+    __tact_randomized GETGLOB
+    ISNULL
+    IF:<{
+      LTIME
+      ADDRAND
+      TRUE
+      __tact_randomized SETGLOB
+    }>
+  }>
+  __tact_store_bool PROCINLINE:<{
+    SWAP
+    1 STI
+  }>
+  __tact_dict_set_slice_uint PROCINLINE:<{
+    OVER
+    ISNULL
+    IF:<{
+      2DROP
+      -ROT
+      DICTDEL
+      DROP
+    }>ELSE<{
+      NEWC
+      SWAP
+      STUX
+      s1 s3 s3 XCHG3
+      DICTSETB
+    }>
+  }>
+  __tact_dict_get_slice_uint PROCINLINE:<{
+    s1 s3 s3 XCHG3
+    DICTGET
+    NULLSWAPIFNOT
+    IF:<{
+      SWAP
+      LDUX
+      DROP
+    }>ELSE<{
+      2DROP
+      PUSHNULL
+    }>
+  }>
+  __tact_slice_eq_bits PROCINLINE:<{
+    SDEQ
+  }>
+  $MintEvent$_store PROCINLINE:<{
+    1428761267 PUSHINT
+    s0 s5 XCHG2
+    32 STU
+    s0 s3 XCHG2
+    __tact_store_address INLINECALLDICT
+    256 STU
+    256 STU
+    SWAP
+    NEWC
+    256 STU
+    ENDC
+    SWAP
+    STREF
+  }>
+  $MintEvent$_store_cell PROCINLINE:<{
+    NEWC
+    4 -ROLL
+    $MintEvent$_store INLINECALLDICT
+    ENDC
+  }>
+  $MintJetton$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    710663172 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    256 LDU
+    SWAP
+  }>
+  $MintWar$_store PROCINLINE:<{
+    s7 s6 XCHG2
+    __tact_store_address INLINECALLDICT
+    s1 s4 XCHG
+    257 PUSHINT
+    STIX
+    s1 s2 XCHG
+    257 PUSHINT
+    STIX
+    SWAP
+    NEWC
+    256 STU
+    s1 s2 XCHG
+    256 STU
+    s1 s3 XCHG
+    STDICT
+    STDICT
+    ENDC
+    SWAP
+    STREF
+  }>
+  $MintWar$_load PROCINLINE:<{
+    __tact_load_address INLINECALLDICT
+    SWAP
+    257 PUSHINT
+    LDIX
+    257 PUSHINT
+    LDIX
+    LDREF
+    SWAP
+    CTOS
+    256 LDU
+    256 LDU
+    LDDICT
+    LDDICT
+    DROP
+    s4 s7 XCHG
+    s4 s6 XCHG
+    s4 s5 XCHG
+  }>
+  $Context$_get_value PROCINLINE:<{
+    s1 s3 XCHG
+    3 BLKDROP
+  }>
+  $AccountState$_to_external PROCINLINE:<{
+  }>
+  $MintWar$init$_load PROCINLINE:<{
+    __tact_load_address INLINECALLDICT
+    SWAP
+    257 PUSHINT
+    LDIX
+    257 PUSHINT
+    LDIX
+    3 -ROLL
+  }>
+  $MintWar$_contract_init PROCREF:<{
+    PUSHNULL
+    PUSHNULL
+    0 PUSHINT
+    s0 s1 PUXC
+    s1 s3 XCHG
+  }>
+  $MintWar$_contract_load PROCREF:<{
+    c4 PUSH
+    CTOS
+    LDREF
+    SWAP
+    __tact_context_sys SETGLOB
+    1 LDI
+    SWAP
+    IFJMP:<{
+      $MintWar$_load INLINECALLDICT
+      1 7 BLKDROP2
+    }>
+    MYADDR
+    11 PLDU
+    10 PUSHPOW2
+    EQUAL
+    137 THROWIFNOT
+    $MintWar$init$_load INLINECALLDICT
+    s0 s3 XCHG
+    ENDS
+    ROT
+    $MintWar$_contract_init INLINECALLDICT
+  }>
+  $MintWar$_contract_store PROCINLINE:<{
+    NEWC
+    __tact_context_sys GETGLOB
+    SWAP
+    STREF
+    TRUE
+    SWAP
+    1 STI
+    7 -ROLL
+    $MintWar$_store INLINECALLDICT
+    ENDC
+    c4 POP
+  }>
+  $global_random PROCINLINE:<{
+    __tact_prepare_random INLINECALLDICT
+    OVER
+    SUB
+    RAND
+    ADD
+  }>
+  $global_send PROCREF:<{
+    NEWC
+    1 PUSHINT
+    SWAP
+    2 STI
+    s0 s7 XCHG2
+    __tact_store_bool INLINECALLDICT
+    0 PUSHINT
+    SWAP
+    3 STI
+    s0 s5 XCHG2
+    __tact_store_address INLINECALLDICT
+    s0 s3 XCHG2
+    STGRAMS
+    0 PUSHINT
+    SWAP
+    105 STI
+    s3 PUSH
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+    }>ELSE<{
+      s4 PUSH
+      ISNULL
+      NOT
+    }>
+    IF:<{
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      NEWC
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      s4 PUSH
+      ISNULL
+      NOT
+      IF:<{
+        TRUE
+        __tact_store_bool INLINECALLDICT
+        s0 s4 XCHG
+        __tact_not_null INLINECALLDICT
+        s0 s4 XCHG2
+        STREF
+      }>ELSE<{
+        s4 POP
+        s0 s3 XCHG
+        FALSE
+        __tact_store_bool INLINECALLDICT
+      }>
+      s4 PUSH
+      ISNULL
+      NOT
+      IF:<{
+        TRUE
+        __tact_store_bool INLINECALLDICT
+        s0 s4 XCHG
+        __tact_not_null INLINECALLDICT
+        s0 s4 XCHG2
+        STREF
+      }>ELSE<{
+        s4 POP
+        s0 s3 XCHG
+        FALSE
+        __tact_store_bool INLINECALLDICT
+      }>
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      s0 s2 XCHG
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      s0 s2 XCHG
+      ENDC
+      ROT
+      STREF
+    }>ELSE<{
+      s3 POP
+      s3 POP
+      SWAP
+      FALSE
+      __tact_store_bool INLINECALLDICT
+    }>
+    OVER
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      SWAP
+      __tact_not_null INLINECALLDICT
+      SWAP
+      STREF
+    }>ELSE<{
+      NIP
+      FALSE
+      __tact_store_bool INLINECALLDICT
+    }>
+    ENDC
+    SWAP
+    SENDRAWMSG
+  }>
+  $global_emit PROCINLINE:<{
+    NEWC
+    15211807202738752817960438464513 PUSHINT
+    SWAP
+    104 STU
+    STREF
+    ENDC
+    0 PUSHINT
+    SENDRAWMSG
+  }>
+  $MintWar$_fun_get_points_by_address PROCREF:<{
+    267 PUSHINT
+    s3 PUSH
+    s0 s2 XCHG
+    8 PUSHPOW2
+    __tact_dict_get_slice_uint INLINECALLDICT
+    DUP
+    ISNULL
+    IFJMP:<{
+      DROP
+      0 PUSHINT
+    }>
+    __tact_not_null INLINECALLDICT
+  }>
+  $MintWar$_fun_get_shares_by_address PROCREF:<{
+    267 PUSHINT
+    s3 PUSH
+    s0 s2 XCHG
+    8 PUSHPOW2
+    __tact_dict_get_slice_uint INLINECALLDICT
+    DUP
+    ISNULL
+    IFJMP:<{
+      DROP
+      0 PUSHINT
+    }>
+    __tact_not_null INLINECALLDICT
+    100000 PUSHINT
+    MUL
+    s4 PUSH
+    DIV
+  }>
+  $MintWar$_fun_get_totalPoints PROCREF:<{
+    s3 PUSH
+  }>
+  $MintWar$_fun_get_all_accounts PROCREF:<{
+    OVER
+  }>
+  $AccountState$_constructor_points_fees_totalPoints_totalFees PROCINLINE:<{
+  }>
+  $MintWar$_fun_get_account_state PROCREF:<{
+    s2 PUSH
+    267 PUSHINT
+    s2 PUSH
+    8 PUSHPOW2
+    __tact_dict_get_slice_uint INLINECALLDICT
+    DUP
+    ISNULL
+    IF:<{
+      DROP
+      0 PUSHINT
+    }>
+    267 PUSHINT
+    s3 s0 s2 PUXC2
+    8 PUSHPOW2
+    __tact_dict_get_slice_uint INLINECALLDICT
+    DUP
+    ISNULL
+    IF:<{
+      DROP
+      0 PUSHINT
+    }>
+    SWAP
+    __tact_not_null INLINECALLDICT
+    SWAP
+    __tact_not_null INLINECALLDICT
+    s5 s4 PUSH2
+    $AccountState$_constructor_points_fees_totalPoints_totalFees INLINECALLDICT
+  }>
+  $MintEvent$_constructor_sender_value_rate_points PROCINLINE:<{
+  }>
+  $SendParameters$_constructor_to_value_bounce_mode PROCINLINE:<{
+    s3 s3 s0 XCHG3
+    PUSHNULL
+    PUSHNULL
+    PUSHNULL
+  }>
+  %$MintWar$_internal_empty PROCINLINE:<{
+  }>
+  $MintWar$_internal_any PROCINLINE:<{
+    DROP
+  }>
+  $MintWar$_internal_binary_MintJetton PROCINLINE:<{
+    40176 PUSHINT
+    OVER
+    0 GTINT
+    IF:<{
+      OVER
+      100000 PUSHINT
+      LEQ
+    }>ELSE<{
+      FALSE
+    }>
+    THROWANYIFNOT
+    55259 PUSHINT
+    __tact_context_get INLINECALLDICT
+    $Context$_get_value INLINECALLDICT
+    200000000 PUSHINT
+    GEQ
+    THROWANYIFNOT
+    6852 PUSHINT
+    NOW
+    s8 PUSH
+    GEQ
+    THROWANYIFNOT
+    29082 PUSHINT
+    NOW
+    s7 PUSH
+    LESS
+    THROWANYIFNOT
+    267 PUSHINT
+    __tact_context_get_sender INLINECALLDICT
+    s3 PUSH
+    -ROT
+    8 PUSHPOW2
+    __tact_dict_get_slice_uint INLINECALLDICT
+    DUP
+    ISNULL
+    IF:<{
+      DROP
+      267 PUSHINT
+      __tact_context_get_sender INLINECALLDICT
+      __tact_context_get INLINECALLDICT
+      $Context$_get_value INLINECALLDICT
+      s3 s4 XCHG
+      8 PUSHPOW2
+      __tact_dict_set_slice_uint INLINECALLDICT
+    }>ELSE<{
+      267 PUSHINT
+      __tact_context_get_sender INLINECALLDICT
+      __tact_context_get INLINECALLDICT
+      $Context$_get_value INLINECALLDICT
+      s0 s3 XCHG
+      __tact_not_null INLINECALLDICT
+      s1 s3 XCHG
+      ADD
+      s3 s4 XCHG
+      s1 s2 XCHG
+      8 PUSHPOW2
+      __tact_dict_set_slice_uint INLINECALLDICT
+    }>
+    __tact_context_get INLINECALLDICT
+    $Context$_get_value INLINECALLDICT
+    s1 s4 XCHG
+    ADD
+    0 PUSHINT
+    100000 PUSHINT
+    $global_random INLINECALLDICT
+    s2 PUSH
+    LESS
+    IF:<{
+      __tact_context_get INLINECALLDICT
+      $Context$_get_value INLINECALLDICT
+      100000 PUSHINT
+      MUL
+      s2 PUSH
+      DIV
+      s5 s5 XCPU
+      ADD
+      267 PUSHINT
+      __tact_context_get_sender INLINECALLDICT
+      s5 PUSH
+      -ROT
+      8 PUSHPOW2
+      __tact_dict_get_slice_uint INLINECALLDICT
+      DUP
+      ISNULL
+      IF:<{
+        DROP
+        267 PUSHINT
+        __tact_context_get_sender INLINECALLDICT
+        s7 PUSH
+        s3 s6 XCHG
+        8 PUSHPOW2
+        __tact_dict_set_slice_uint INLINECALLDICT
+      }>ELSE<{
+        267 PUSHINT
+        __tact_context_get_sender INLINECALLDICT
+        s0 s2 XCHG
+        __tact_not_null INLINECALLDICT
+        s8 PUSH
+        ADD
+        s3 s6 XCHG
+        s1 s2 XCHG
+        8 PUSHPOW2
+        __tact_dict_set_slice_uint INLINECALLDICT
+      }>
+      __tact_context_get_sender INLINECALLDICT
+      __tact_context_get INLINECALLDICT
+      $Context$_get_value INLINECALLDICT
+      s0 s3 s7 XCHG3
+      s1 s4 XCHG
+      $MintEvent$_constructor_sender_value_rate_points INLINECALLDICT
+      $MintEvent$_store_cell INLINECALLDICT
+      $global_emit INLINECALLDICT
+    }>ELSE<{
+      __tact_context_get_sender INLINECALLDICT
+      __tact_context_get INLINECALLDICT
+      $Context$_get_value INLINECALLDICT
+      3 ROLL
+      0 PUSHINT
+      $MintEvent$_constructor_sender_value_rate_points INLINECALLDICT
+      $MintEvent$_store_cell INLINECALLDICT
+      $global_emit INLINECALLDICT
+      s1 s3 XCHG
+    }>
+    2SWAP
+  }>
+  $MintWar$_internal_text_1a63ed6eba39c11ba2540547ceb5f79b6fe0ab29a1055bb0ed7d53e4ab5089ac PROCINLINE:<{
+    59445 PUSHINT
+    __tact_context_get_sender INLINECALLDICT
+    s8 s(-1) PUXC
+    __tact_slice_eq_bits INLINECALLDICT
+    THROWANYIFNOT
+    __tact_my_balance INLINECALLDICT
+    100000000 PUSHINT
+    SUB
+    s7 s(-1) PUXC
+    FALSE
+    1 PUSHINT
+    $SendParameters$_constructor_to_value_bounce_mode INLINECALLDICT
+    $global_send INLINECALLDICT
+  }>
+  %get_points_by_address PROC:<{
+    __tact_verify_address INLINECALLDICT
+    $MintWar$_contract_load INLINECALLDICT
+    7 ROLL
+    $MintWar$_fun_get_points_by_address INLINECALLDICT
+    7 1 BLKDROP2
+  }>
+  %get_shares_by_address PROC:<{
+    __tact_verify_address INLINECALLDICT
+    $MintWar$_contract_load INLINECALLDICT
+    7 ROLL
+    $MintWar$_fun_get_shares_by_address INLINECALLDICT
+    7 1 BLKDROP2
+  }>
+  %get_totalPoints PROC:<{
+    $MintWar$_contract_load INLINECALLDICT
+    $MintWar$_fun_get_totalPoints INLINECALLDICT
+    7 1 BLKDROP2
+  }>
+  %get_all_accounts PROC:<{
+    $MintWar$_contract_load INLINECALLDICT
+    $MintWar$_fun_get_all_accounts INLINECALLDICT
+    7 1 BLKDROP2
+  }>
+  %get_account_state PROC:<{
+    __tact_verify_address INLINECALLDICT
+    $MintWar$_contract_load INLINECALLDICT
+    7 ROLL
+    $MintWar$_fun_get_account_state INLINECALLDICT
+    7 4 BLKDROP2
+    $AccountState$_to_external INLINECALLDICT
+  }>
+  supported_interfaces PROC:<{
+    123515602279859691144772641439386770278 PUSHINT
+    209801025412363888721030803524359905849 PUSHINT
+    42980537499636128163026532310500881091 PUSHINT
+    209474421377847335869795010607481022628 PUSHINT
+  }>
+  get_abi_ipfs PROC:<{
+    x{697066733a2f2f516d527454666534346953584a5a6555633170425979624e627871466f514570705562675669734b464a6f446f63} PUSHSLICE
+  }>
+  lazy_deployment_completed PROC:<{
+    c4 PUSH
+    CTOS
+    1 LDI
+    SWAP
+  }>
+  $MintWar$_contract_router_internal PROCREF:<{
+    c2 SAVE
+    SAMEALTSAVE
+    SWAP
+    IFJMP:<{
+      DROP
+      TRUE
+    }>
+    0 PUSHINT
+    OVER
+    SBITS
+    31 GTINT
+    IF:<{
+      DROP
+      DUP
+      32 PLDU
+    }>
+    DUP
+    0 EQINT
+    s2 PUSH
+    SBITS
+    33 LESSINT
+    AND
+    IFJMP:<{
+      2DROP
+      %$MintWar$_internal_empty INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    710663172 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $MintJetton$_load INLINECALLDICT
+      NIP
+      $MintWar$_internal_binary_MintJetton INLINECALLDICT
+      TRUE
+    }>
+    0 EQINT
+    IF:<{
+      DUP
+      HASHSU
+      11936690621668153899321202839689207458589344828676915272339929183736294312364 PUSHINT
+      EQUAL
+      IFJMP:<{
+        DROP
+        $MintWar$_internal_text_1a63ed6eba39c11ba2540547ceb5f79b6fe0ab29a1055bb0ed7d53e4ab5089ac INLINECALLDICT
+        TRUE
+        RETALT
+      }>
+    }>
+    $MintWar$_internal_any INLINECALLDICT
+    TRUE
+  }>
+  recv_internal PROC:<{
+    SWAP
+    CTOS
+    4 LDU
+    SWAP
+    1 PUSHINT
+    AND
+    NEGATE
+    SWAP
+    LDMSGADDR
+    SWAP
+    __tact_verify_address INLINECALLDICT
+    s0 s4 s2 PUXCPU
+    s0 s3 XCHG
+    4 TUPLE
+    __tact_context SETGLOB
+    s0 s2 XCHG
+    __tact_context_sender SETGLOB
+    $MintWar$_contract_load INLINECALLDICT
+    2 7 BLKSWAP
+    $MintWar$_contract_router_internal INLINECALLDICT
+    130 THROWIFNOT
+    $MintWar$_contract_store INLINECALLDICT
+  }>
+}END>c

@@ -1,0 +1,967 @@
+PROGRAM{
+  DECLPROC __tact_verify_address
+  DECLPROC __tact_load_address
+  DECLPROC __tact_store_address
+  DECLPROC __tact_create_address
+  DECLPROC __tact_not_null
+  DECLPROC __tact_context_get
+  DECLPROC __tact_store_bool
+  DECLPROC __tact_slice_eq_bits
+  DECLPROC $AuctionInfo$_store
+  DECLPROC $AuctionInfo$_load
+  DECLPROC $ReviseAuction$_load
+  DECLPROC $BuildNftAuction$_load
+  DECLPROC $TransferNFT$_store
+  DECLPROC $TransferNFT$_store_cell
+  DECLPROC $ExampleNFTAuction$_store
+  DECLPROC $ExampleNFTAuction$_load
+  DECLPROC $AuctionInfo$_to_external
+  DECLPROC $ExampleNFTAuction$init$_load
+  DECLPROC $AuctionInfo$_constructor_bidIncreasePercentage_auctionBidPeriod_auctionPeriod_reservePrice_buyNowPrice_nftHighestBid_nftHighestBidder_nftSeller_whitelistedBuyer_nftRecipient_beneficiary
+  DECLPROC $ExampleNFTAuction$_contract_init
+  DECLPROC $ExampleNFTAuction$_contract_load
+  DECLPROC $ExampleNFTAuction$_contract_store
+  DECLPROC $global_emptyCell
+  DECLPROC $Cell$_fun_asSlice
+  DECLPROC $global_emptySlice
+  DECLPROC $global_send
+  DECLPROC $ExampleNFTAuction$_fun__update_auction_bid_period
+  DECLPROC $ExampleNFTAuction$_fun__update_auction_end_time
+  DECLPROC $SendParameters$_constructor_to_value_bounce_mode_body
+  DECLPROC $TransferNFT$_constructor_nftAddress_seller_query_id_new_owner_response_destination_custom_payload_forward_amount_forward_payload
+  DECLPROC $ExampleNFTAuction$_fun__transfer_nft
+  DECLPROC $SendParameters$_constructor_to_value_mode_bounce_body
+  DECLPROC $ExampleNFTAuction$_fun__send_winning_bid_amount
+  DECLPROC $ExampleNFTAuction$_fun_get_auctin_info
+  DECLPROC $ExampleNFTAuction$_fun_get_is__initialized
+  DECLPROC $ExampleNFTAuction$_fun_get_auction_end
+  DECLPROC $ExampleNFTAuction$_fun_get_auction_bid_period
+  DECLPROC %$ExampleNFTAuction$_internal_empty
+  DECLPROC $ExampleNFTAuction$_internal_binary_BuildNftAuction
+  DECLPROC $ExampleNFTAuction$_internal_text_83bbd8c8652c4386acfdf3d05d1df6fb78b5e3ef8843ddd1cd3a1af6804054b4
+  DECLPROC $ExampleNFTAuction$_internal_text_30c235c575c09a25ce30996c65a238c82028ca965674e382afb7b536ecec4382
+  DECLPROC $ExampleNFTAuction$_internal_binary_ReviseAuction
+  DECLPROC $ExampleNFTAuction$_internal_text_f197588d96bb7ed9becf4e3b632fca58694ded2d3437a44d065235b8213e4c66
+  66263 DECLMETHOD %get_auctin_info
+  127982 DECLMETHOD %get_is__initialized
+  74379 DECLMETHOD %get_auction_end
+  79486 DECLMETHOD %get_auction_bid_period
+  113617 DECLMETHOD supported_interfaces
+  121275 DECLMETHOD get_abi_ipfs
+  115390 DECLMETHOD lazy_deployment_completed
+  DECLPROC $ExampleNFTAuction$_contract_router_internal
+  DECLPROC recv_internal
+  DECLGLOBVAR __tact_context
+  DECLGLOBVAR __tact_context_sender
+  DECLGLOBVAR __tact_context_sys
+  DECLGLOBVAR __tact_randomized
+  __tact_verify_address PROCINLINE:<{
+    DUP
+    SBITS
+    267 PUSHINT
+    EQUAL
+    136 THROWIFNOT
+    DUP
+    11 PLDU
+    DUP
+    1279 PUSHINT
+    EQUAL
+    137 THROWIF
+    10 PUSHPOW2
+    EQUAL
+    136 THROWIFNOT
+  }>
+  __tact_load_address PROCINLINE:<{
+    LDMSGADDR
+    SWAP
+    __tact_verify_address INLINECALLDICT
+  }>
+  __tact_store_address PROCINLINE:<{
+    __tact_verify_address INLINECALLDICT
+    STSLICER
+  }>
+  __tact_create_address PROCINLINE:<{
+    NEWC
+    2 PUSHINT
+    SWAP
+    2 STU
+    0 PUSHINT
+    SWAP
+    1 STU
+    s1 s2 XCHG
+    8 STI
+    256 STU
+    ENDC
+    CTOS
+    __tact_verify_address INLINECALLDICT
+  }>
+  __tact_not_null PROCINLINE:<{
+    DUP
+    ISNULL
+    128 THROWIF
+  }>
+  __tact_context_get PROCINLINE:<{
+    __tact_context GETGLOB
+    4 UNTUPLE
+  }>
+  __tact_store_bool PROCINLINE:<{
+    SWAP
+    1 STI
+  }>
+  __tact_slice_eq_bits PROCINLINE:<{
+    SDEQ
+  }>
+  $AuctionInfo$_store PROCREF:<{
+    s10 s11 XCHG2
+    256 STU
+    s1 s8 XCHG
+    256 STU
+    s1 s6 XCHG
+    256 STU
+    s0 s4 XCHG2
+    STGRAMS
+    ROT
+    STGRAMS
+    NEWC
+    ROT
+    STGRAMS
+    ROT
+    __tact_store_address INLINECALLDICT
+    ROT
+    __tact_store_address INLINECALLDICT
+    ROT
+    __tact_store_address INLINECALLDICT
+    NEWC
+    s0 s3 XCHG2
+    __tact_store_address INLINECALLDICT
+    s0 s3 XCHG2
+    __tact_store_address INLINECALLDICT
+    ENDC
+    SWAP
+    STREF
+    ENDC
+    SWAP
+    STREF
+  }>
+  $AuctionInfo$_load PROCREF:<{
+    256 LDU
+    256 LDU
+    256 LDU
+    LDGRAMS
+    LDGRAMS
+    LDREF
+    SWAP
+    CTOS
+    LDGRAMS
+    __tact_load_address INLINECALLDICT
+    SWAP
+    __tact_load_address INLINECALLDICT
+    SWAP
+    __tact_load_address INLINECALLDICT
+    SWAP
+    LDREF
+    DROP
+    CTOS
+    __tact_load_address INLINECALLDICT
+    SWAP
+    __tact_load_address INLINECALLDICT
+    NIP
+    s6 s11 XCHG
+    s6 s10 XCHG
+    s6 s9 XCHG
+    s6 s8 XCHG
+    s6 s7 XCHG
+  }>
+  $ReviseAuction$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    3079382120 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    LDREF
+    SWAP
+    CTOS
+    $AuctionInfo$_load INLINECALLDICT
+    1 11 BLKDROP2
+  }>
+  $BuildNftAuction$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    3952386137 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    LDREF
+    SWAP
+    CTOS
+    $AuctionInfo$_load INLINECALLDICT
+    1 11 BLKDROP2
+  }>
+  $TransferNFT$_store PROCREF:<{
+    2329522910 PUSHINT
+    s0 s9 XCHG2
+    32 STU
+    s0 s7 XCHG2
+    __tact_store_address INLINECALLDICT
+    s0 s5 XCHG2
+    __tact_store_address INLINECALLDICT
+    s1 s3 XCHG
+    64 STU
+    SWAP
+    __tact_store_address INLINECALLDICT
+    NEWC
+    ROT
+    __tact_store_address INLINECALLDICT
+    s2 PUSH
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+      SWAP
+      1 STI
+      s1 s2 XCHG
+      STREF
+    }>ELSE<{
+      s2 POP
+      FALSE
+      ROT
+      1 STI
+    }>
+    ROT
+    STGRAMS
+    ROT
+    STSLICER
+    ENDC
+    SWAP
+    STREF
+  }>
+  $TransferNFT$_store_cell PROCINLINE:<{
+    NEWC
+    8 -ROLL
+    $TransferNFT$_store INLINECALLDICT
+    ENDC
+  }>
+  $ExampleNFTAuction$_store PROCINLINE:<{
+    s1 17 s() XCHG
+    s0 16 s() XCHG
+    __tact_store_address INLINECALLDICT
+    s0 s14 XCHG2
+    __tact_store_address INLINECALLDICT
+    s0 s12 XCHG2
+    __tact_store_address INLINECALLDICT
+    NEWC
+    11 -ROLL
+    s0 s12 XCHG
+    $AuctionInfo$_store INLINECALLDICT
+    s0 s2 XCHG
+    NEWC
+    257 PUSHINT
+    STIX
+    s1 s4 XCHG
+    257 PUSHINT
+    STIX
+    s1 s2 XCHG
+    257 PUSHINT
+    STIX
+    ENDC
+    SWAP
+    STREF
+    ENDC
+    SWAP
+    STREF
+  }>
+  $ExampleNFTAuction$_load PROCINLINE:<{
+    __tact_load_address INLINECALLDICT
+    SWAP
+    __tact_load_address INLINECALLDICT
+    SWAP
+    __tact_load_address INLINECALLDICT
+    SWAP
+    LDREF
+    SWAP
+    CTOS
+    $AuctionInfo$_load INLINECALLDICT
+    s0 s11 XCHG
+    LDREF
+    DROP
+    CTOS
+    257 PUSHINT
+    LDIX
+    257 PUSHINT
+    LDIX
+    257 PUSHINT
+    LDIX
+    DROP
+    s14 17 s() XCHG
+    s14 16 s() XCHG
+    s14 s15 XCHG
+    s12 s13 XCHG
+    s11 s12 XCHG
+    s10 s11 XCHG
+    s9 s10 XCHG
+    s8 s9 XCHG
+    s7 s8 XCHG
+    s6 s7 XCHG
+    s5 s6 XCHG
+    s4 s5 XCHG
+    s3 s4 XCHG
+  }>
+  $AuctionInfo$_to_external PROCINLINE:<{
+  }>
+  $ExampleNFTAuction$init$_load PROCINLINE:<{
+    __tact_load_address INLINECALLDICT
+    SWAP
+    __tact_load_address INLINECALLDICT
+    SWAP
+    __tact_load_address INLINECALLDICT
+    s3 s3 s0 XCHG3
+  }>
+  $AuctionInfo$_constructor_bidIncreasePercentage_auctionBidPeriod_auctionPeriod_reservePrice_buyNowPrice_nftHighestBid_nftHighestBidder_nftSeller_whitelistedBuyer_nftRecipient_beneficiary PROCINLINE:<{
+  }>
+  $ExampleNFTAuction$_contract_init PROCREF:<{
+    DUP
+    0 PUSHINT
+    s0 s0 s0 PUSH3
+    s0 s0 s0 PUSH3
+    s0 s0 s0 PUSH3
+    DUP
+    __tact_create_address INLINECALLDICT
+    7 ROLL
+    s11 s0 s(-2) PU2XC
+    s13 s0 XCPU
+    $AuctionInfo$_constructor_bidIncreasePercentage_auctionBidPeriod_auctionPeriod_reservePrice_buyNowPrice_nftHighestBid_nftHighestBidder_nftSeller_whitelistedBuyer_nftRecipient_beneficiary INLINECALLDICT
+    s13 s14 XCHG
+    s10 s13 XCHG
+    s9 s12 XCHG
+    s8 s11 XCHG
+    s7 s10 XCHG
+    s6 s9 XCHG
+    s5 s8 XCHG
+    s4 s7 XCHG
+    s3 s6 XCHG
+    s5 s1 s3 XCHG3
+    s4 s2 XCHG2
+  }>
+  $ExampleNFTAuction$_contract_load PROCREF:<{
+    c4 PUSH
+    CTOS
+    LDREF
+    SWAP
+    __tact_context_sys SETGLOB
+    1 LDI
+    SWAP
+    IFJMP:<{
+      $ExampleNFTAuction$_load INLINECALLDICT
+      17 s() POP
+      s15 16 s() XCHG
+      15 ROLL
+    }>
+    MYADDR
+    11 PLDU
+    10 PUSHPOW2
+    EQUAL
+    137 THROWIFNOT
+    $ExampleNFTAuction$init$_load INLINECALLDICT
+    s0 s3 XCHG
+    ENDS
+    ROT
+    $ExampleNFTAuction$_contract_init INLINECALLDICT
+  }>
+  $ExampleNFTAuction$_contract_store PROCINLINE:<{
+    NEWC
+    __tact_context_sys GETGLOB
+    SWAP
+    STREF
+    TRUE
+    SWAP
+    1 STI
+    s0 17 s() XCHG
+    s0 16 s() XCHG
+    15 -ROLL
+    $ExampleNFTAuction$_store INLINECALLDICT
+    ENDC
+    c4 POP
+  }>
+  $global_emptyCell PROCINLINE:<{
+    NEWC
+    ENDC
+  }>
+  $Cell$_fun_asSlice PROCINLINE:<{
+    CTOS
+  }>
+  $global_emptySlice PROCINLINE:<{
+    $global_emptyCell INLINECALLDICT
+    $Cell$_fun_asSlice INLINECALLDICT
+  }>
+  $global_send PROCREF:<{
+    NEWC
+    1 PUSHINT
+    SWAP
+    2 STI
+    s0 s7 XCHG2
+    __tact_store_bool INLINECALLDICT
+    0 PUSHINT
+    SWAP
+    3 STI
+    s0 s5 XCHG2
+    __tact_store_address INLINECALLDICT
+    s0 s3 XCHG2
+    STGRAMS
+    0 PUSHINT
+    SWAP
+    105 STI
+    s3 PUSH
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+    }>ELSE<{
+      s4 PUSH
+      ISNULL
+      NOT
+    }>
+    IF:<{
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      NEWC
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      s4 PUSH
+      ISNULL
+      NOT
+      IF:<{
+        TRUE
+        __tact_store_bool INLINECALLDICT
+        s0 s4 XCHG
+        __tact_not_null INLINECALLDICT
+        s0 s4 XCHG2
+        STREF
+      }>ELSE<{
+        s4 POP
+        s0 s3 XCHG
+        FALSE
+        __tact_store_bool INLINECALLDICT
+      }>
+      s4 PUSH
+      ISNULL
+      NOT
+      IF:<{
+        TRUE
+        __tact_store_bool INLINECALLDICT
+        s0 s4 XCHG
+        __tact_not_null INLINECALLDICT
+        s0 s4 XCHG2
+        STREF
+      }>ELSE<{
+        s4 POP
+        s0 s3 XCHG
+        FALSE
+        __tact_store_bool INLINECALLDICT
+      }>
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      s0 s2 XCHG
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      s0 s2 XCHG
+      ENDC
+      ROT
+      STREF
+    }>ELSE<{
+      s3 POP
+      s3 POP
+      SWAP
+      FALSE
+      __tact_store_bool INLINECALLDICT
+    }>
+    OVER
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      SWAP
+      __tact_not_null INLINECALLDICT
+      SWAP
+      STREF
+    }>ELSE<{
+      NIP
+      FALSE
+      __tact_store_bool INLINECALLDICT
+    }>
+    ENDC
+    SWAP
+    SENDRAWMSG
+  }>
+  $ExampleNFTAuction$_fun__update_auction_bid_period PROCINLINE:<{
+    s2 POP
+    NOW
+    s12 PUSH
+    ADD
+    s0 s2 XCHG
+  }>
+  $ExampleNFTAuction$_fun__update_auction_end_time PROCINLINE:<{
+    DROP
+    NOW
+    s11 PUSH
+    ADD
+  }>
+  $SendParameters$_constructor_to_value_bounce_mode_body PROCINLINE:<{
+    s2 s4 XCHG
+    s2 s3 XCHG
+    PUSHNULL
+    PUSHNULL
+  }>
+  $TransferNFT$_constructor_nftAddress_seller_query_id_new_owner_response_destination_custom_payload_forward_amount_forward_payload PROCINLINE:<{
+  }>
+  $ExampleNFTAuction$_fun__transfer_nft PROCINLINE:<{
+    60000000 PUSHINT
+    TRUE
+    1 PUSHINT
+    0 PUSHINT
+    $global_emptyCell INLINECALLDICT
+    OVER
+    $global_emptySlice INLINECALLDICT
+    23 s() PUSH
+    s5 s15 XCPU
+    s0 s5 XCHG
+    s4 s9 XCPU
+    s0 s4 XCHG
+    s3 s10 XCHG
+    s1 s0 s10 XCHG3
+    $TransferNFT$_constructor_nftAddress_seller_query_id_new_owner_response_destination_custom_payload_forward_amount_forward_payload INLINECALLDICT
+    $TransferNFT$_store_cell INLINECALLDICT
+    20 s() PUSH
+    s4 s4 XCHG2
+    $SendParameters$_constructor_to_value_bounce_mode_body INLINECALLDICT
+    $global_send INLINECALLDICT
+  }>
+  $SendParameters$_constructor_to_value_mode_bounce_body PROCINLINE:<{
+    s1 s4 XCHG
+    s3 s3 s0 XCHG3
+    PUSHNULL
+    PUSHNULL
+  }>
+  $ExampleNFTAuction$_fun__send_winning_bid_amount PROCINLINE:<{
+    s3 s8 PUSH2
+    60000000 PUSHINT
+    SUB
+    1 PUSHINT
+    FALSE
+    B{b5ee9c7241010101001c000034000000005061792077696e6e696e672062696420616d6f756e74082406c0} B>boc PUSHREF
+    $SendParameters$_constructor_to_value_mode_bounce_body INLINECALLDICT
+    $global_send INLINECALLDICT
+  }>
+  $ExampleNFTAuction$_fun_get_auctin_info PROCREF:<{
+    s13 s12 s11 PUSH3
+    s13 s12 s11 PUSH3
+    s13 s12 s11 PUSH3
+    s13 s12 PUSH2
+  }>
+  $ExampleNFTAuction$_fun_get_is__initialized PROCREF:<{
+    OVER
+  }>
+  $ExampleNFTAuction$_fun_get_auction_end PROCREF:<{
+    DUP
+  }>
+  $ExampleNFTAuction$_fun_get_auction_bid_period PROCREF:<{
+    s2 PUSH
+  }>
+  %$ExampleNFTAuction$_internal_empty PROCINLINE:<{
+  }>
+  $ExampleNFTAuction$_internal_binary_BuildNftAuction PROCINLINE:<{
+    s11 POP
+    12 12 BLKDROP2
+    __tact_context_get INLINECALLDICT
+    s2 s3 XCHG
+    3 BLKDROP
+    s15 PUSH
+    19941 PUSHINT
+    s0 s2 XCHG
+    __tact_slice_eq_bits INLINECALLDICT
+    THROWANYIFNOT
+    11017 PUSHINT
+    s0 s12 XCHG
+    0 EQINT
+    s1 s12 XCHG
+    THROWANYIFNOT
+    20844 PUSHINT
+    s5 s6 PUSH2
+    GREATER
+    THROWANYIFNOT
+    1 PUSHINT
+    0 PUSHINT
+    DUP
+    s11 s13 XCHG
+    s10 s12 XCHG
+    s9 s11 XCHG
+    s8 s10 XCHG
+    s7 s9 XCHG
+    s6 s8 XCHG
+    s5 s7 XCHG
+    s4 s6 XCHG
+    s3 s5 XCHG
+    s3 s4 XCHG
+    s1 s2 XCHG
+  }>
+  $ExampleNFTAuction$_internal_text_83bbd8c8652c4386acfdf3d05d1df6fb78b5e3ef8843ddd1cd3a1af6804054b4 PROCINLINE:<{
+    46984 PUSHINT
+    NOW
+    s2 PUSH
+    LESS
+    IF:<{
+      TRUE
+    }>ELSE<{
+      OVER
+      0 EQINT
+    }>
+    THROWANYIFNOT
+    42237 PUSHINT
+    s2 PUSH
+    1 EQINT
+    THROWANYIFNOT
+    50905 PUSHINT
+    NOW
+    s4 s4 PUSH2
+    OR
+    LESS
+    0 EQINT
+    THROWANYIFNOT
+    __tact_context_get INLINECALLDICT
+    DROP
+    s2 POP
+    DUP
+    37031 PUSHINT
+    s10 s1 PUSH2
+    __tact_slice_eq_bits INLINECALLDICT
+    NOT
+    THROWANYIFNOT
+    s2 s12 PUSH2
+    GEQ
+    IF:<{
+      NIP
+      s10 POP
+      16 s() 17 s() XCHG
+      s15 17 s() XCHG
+      s14 17 s() XCHG
+      s13 17 s() XCHG
+      s12 17 s() XCHG
+      s11 17 s() XCHG
+      s10 17 s() XCHG
+      s9 17 s() XCHG
+      8 -ROLL
+      $ExampleNFTAuction$_fun__send_winning_bid_amount INLINECALLDICT
+      16 s() 17 s() XCHG
+      s15 16 s() XCHG
+      15 ROLL
+      $ExampleNFTAuction$_fun__transfer_nft INLINECALLDICT
+      0 PUSHINT
+      s2 POP
+    }>ELSE<{
+      DROP
+      10000 PUSHINT
+      16 s() PUSH
+      ADD
+      s11 s(-1) PUXC
+      MUL
+      10000 PUSHINT
+      DIV
+      s2 PUSH
+      3724 PUSHINT
+      s0 s2 XCHG
+      GREATER
+      THROWANYIFNOT
+      s0 s10 XCHG
+      30000000 PUSHINT
+      SUB
+      30000000 PUSHINT
+      SUB
+      0 PUSHINT
+      MAX
+      1 PUSHINT
+      FALSE
+      B{b5ee9c724101010100340000640000000050617920626964206d6f6e6579206261636b20746f2074686520707265764e667448696768657374426964646572b579e5f1} B>boc PUSHREF
+      s4 s12 XCHG
+      $SendParameters$_constructor_to_value_mode_bounce_body INLINECALLDICT
+      $global_send INLINECALLDICT
+      s7 s10 PUSH2
+      GREATER
+      IF:<{
+        s7 s8 XCHG
+        $ExampleNFTAuction$_fun__update_auction_bid_period INLINECALLDICT
+        DUP
+        0 EQINT
+        IF:<{
+          $ExampleNFTAuction$_fun__update_auction_end_time INLINECALLDICT
+        }>
+        s7 s8 XCHG
+      }>
+      s7 s8 XCHG
+    }>
+  }>
+  $ExampleNFTAuction$_internal_text_30c235c575c09a25ce30996c65a238c82028ca965674e382afb7b536ecec4382 PROCINLINE:<{
+    45065 PUSHINT
+    NOW
+    s4 PUSH
+    GEQ
+    THROWANYIFNOT
+    $ExampleNFTAuction$_fun__send_winning_bid_amount INLINECALLDICT
+    s7 PUSH
+    $ExampleNFTAuction$_fun__transfer_nft INLINECALLDICT
+    0 PUSHINT
+    s2 POP
+  }>
+  $ExampleNFTAuction$_internal_binary_ReviseAuction PROCINLINE:<{
+    6 BLKDROP
+    2 2 BLKDROP2
+    s2 POP
+    __tact_context_get INLINECALLDICT
+    s2 s3 XCHG
+    3 BLKDROP
+    19 s() PUSH
+    42345 PUSHINT
+    s0 s2 XCHG
+    __tact_slice_eq_bits INLINECALLDICT
+    THROWANYIFNOT
+    59374 PUSHINT
+    s13 s1 PUSH2
+    EQUAL
+    IF:<{
+      TRUE
+    }>ELSE<{
+      s2 s12 PUSH2
+      EQUAL
+    }>
+    THROWANYIFNOT
+    s2 PUSH
+    0 EQINT
+    IF:<{
+      s12 s0 PUSH2
+      NEQ
+    }>ELSE<{
+      FALSE
+    }>
+    IF:<{
+      s0 s11 PUSH2
+      LESS
+    }>ELSE<{
+      FALSE
+    }>
+    IF:<{
+      s12 POP
+      s9 s11 PUSH2
+      GREATER
+      IF:<{
+        16 s() 17 s() XCHG
+        s15 17 s() XCHG
+        s14 17 s() XCHG
+        s13 17 s() XCHG
+        s12 17 s() XCHG
+        s11 17 s() XCHG
+        s10 17 s() XCHG
+        s9 17 s() XCHG
+        s0 17 s() XCHG
+        s0 s8 XCHG
+        s0 s7 XCHG
+        s0 s6 XCHG
+        5 -ROLL
+        $ExampleNFTAuction$_fun__update_auction_bid_period INLINECALLDICT
+        $ExampleNFTAuction$_fun__update_auction_end_time INLINECALLDICT
+        16 s() 17 s() XCHG
+        s15 16 s() XCHG
+        15 ROLL
+      }>
+    }>ELSE<{
+      DROP
+    }>
+    OVER
+    0 EQINT
+    IF:<{
+      s0 s10 PUSH2
+      NEQ
+    }>ELSE<{
+      FALSE
+    }>
+    IF:<{
+      s0 s11 PUSH2
+      GREATER
+    }>ELSE<{
+      FALSE
+    }>
+    IF:<{
+      s10 POP
+    }>ELSE<{
+      DROP
+    }>
+  }>
+  $ExampleNFTAuction$_internal_text_f197588d96bb7ed9becf4e3b632fca58694ded2d3437a44d065235b8213e4c66 PROCINLINE:<{
+    DUP
+    0 GTINT
+    IF:<{
+      $ExampleNFTAuction$_fun__send_winning_bid_amount INLINECALLDICT
+      s7 PUSH
+      $ExampleNFTAuction$_fun__transfer_nft INLINECALLDICT
+      NIP
+      0 PUSHINT
+    }>ELSE<{
+      s6 PUSH
+      $ExampleNFTAuction$_fun__transfer_nft INLINECALLDICT
+      NIP
+      0 PUSHINT
+    }>
+    SWAP
+  }>
+  %get_auctin_info PROC:<{
+    $ExampleNFTAuction$_contract_load INLINECALLDICT
+    $ExampleNFTAuction$_fun_get_auctin_info INLINECALLDICT
+    11 11 BLKDROP2
+    6 11 BLKDROP2
+    $AuctionInfo$_to_external INLINECALLDICT
+  }>
+  %get_is__initialized PROC:<{
+    $ExampleNFTAuction$_contract_load INLINECALLDICT
+    $ExampleNFTAuction$_fun_get_is__initialized INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    NIP
+  }>
+  %get_auction_end PROC:<{
+    $ExampleNFTAuction$_contract_load INLINECALLDICT
+    $ExampleNFTAuction$_fun_get_auction_end INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    NIP
+  }>
+  %get_auction_bid_period PROC:<{
+    $ExampleNFTAuction$_contract_load INLINECALLDICT
+    $ExampleNFTAuction$_fun_get_auction_bid_period INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    NIP
+  }>
+  supported_interfaces PROC:<{
+    123515602279859691144772641439386770278 PUSHINT
+    209801025412363888721030803524359905849 PUSHINT
+    42980537499636128163026532310500881091 PUSHINT
+    209474421377847335869795010607481022628 PUSHINT
+  }>
+  get_abi_ipfs PROC:<{
+    x{697066733a2f2f516d573231476a31714864475445333667554b5a6969464b53485378684a4c7136544e6d4e66634c6f434262314a} PUSHSLICE
+  }>
+  lazy_deployment_completed PROC:<{
+    c4 PUSH
+    CTOS
+    1 LDI
+    SWAP
+  }>
+  $ExampleNFTAuction$_contract_router_internal PROCREF:<{
+    c2 SAVE
+    SAMEALTSAVE
+    SWAP
+    IFJMP:<{
+      DROP
+      TRUE
+    }>
+    0 PUSHINT
+    OVER
+    SBITS
+    31 GTINT
+    IF:<{
+      DROP
+      DUP
+      32 PLDU
+    }>
+    DUP
+    0 EQINT
+    s2 PUSH
+    SBITS
+    33 LESSINT
+    AND
+    IFJMP:<{
+      2DROP
+      %$ExampleNFTAuction$_internal_empty INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    3952386137 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $BuildNftAuction$_load INLINECALLDICT
+      1 11 BLKDROP2
+      $ExampleNFTAuction$_internal_binary_BuildNftAuction INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    3079382120 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $ReviseAuction$_load INLINECALLDICT
+      1 11 BLKDROP2
+      $ExampleNFTAuction$_internal_binary_ReviseAuction INLINECALLDICT
+      TRUE
+    }>
+    0 EQINT
+    IF:<{
+      HASHSU
+      DUP
+      59584879745376445457320745011160487503091462253376522768962450460582285956276 PUSHINT
+      EQUAL
+      IFJMP:<{
+        DROP
+        $ExampleNFTAuction$_internal_text_83bbd8c8652c4386acfdf3d05d1df6fb78b5e3ef8843ddd1cd3a1af6804054b4 INLINECALLDICT
+        TRUE
+        RETALT
+      }>
+      DUP
+      22054156178630436580155442015060352110843303842218316424280882333695850857346 PUSHINT
+      EQUAL
+      IFJMP:<{
+        DROP
+        $ExampleNFTAuction$_internal_text_30c235c575c09a25ce30996c65a238c82028ca965674e382afb7b536ecec4382 INLINECALLDICT
+        TRUE
+        RETALT
+      }>
+      109274801586253708198933345809206983338424798113111067470793015002028299930726 PUSHINT
+      EQUAL
+      IFJMP:<{
+        $ExampleNFTAuction$_internal_text_f197588d96bb7ed9becf4e3b632fca58694ded2d3437a44d065235b8213e4c66 INLINECALLDICT
+        TRUE
+        RETALT
+      }>
+    }>ELSE<{
+      DROP
+    }>
+    FALSE
+  }>
+  recv_internal PROC:<{
+    SWAP
+    CTOS
+    4 LDU
+    SWAP
+    1 PUSHINT
+    AND
+    NEGATE
+    SWAP
+    LDMSGADDR
+    SWAP
+    __tact_verify_address INLINECALLDICT
+    s0 s4 s2 PUXCPU
+    s0 s3 XCHG
+    4 TUPLE
+    __tact_context SETGLOB
+    s0 s2 XCHG
+    __tact_context_sender SETGLOB
+    $ExampleNFTAuction$_contract_load INLINECALLDICT
+    16 s() 18 s() XCHG
+    s15 17 s() XCHG
+    s14 16 s() XCHG
+    s13 s15 XCHG
+    2 13 BLKSWAP
+    $ExampleNFTAuction$_contract_router_internal INLINECALLDICT
+    130 THROWIFNOT
+    $ExampleNFTAuction$_contract_store INLINECALLDICT
+  }>
+}END>c

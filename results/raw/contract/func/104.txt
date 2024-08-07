@@ -1,0 +1,15 @@
+get_public_key: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAKrpy_p3V_nQPgpILizrEpa3rUf3JqpDxacx9Fvu9NNIsm/bridge-wallet-v2.fc:139:13: warning: Lack of end_parse.
+              .skip_bits(32 + 64)
+              ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAKrpy_p3V_nQPgpILizrEpa3rUf3JqpDxacx9Fvu9NNIsm/bridge-wallet-v2.fc:16:19: warning: Lack of end_parse.
+      var flags = cs~load_uint(4); ;; int_msg_info$0 ihr_disabled:Bool bounce:Bool bounced:Bool
+                    ^
+recv_external & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAKrpy_p3V_nQPgpILizrEpa3rUf3JqpDxacx9Fvu9NNIsm/bridge-wallet-v2.fc:138:13: warning: Cell of get_data and set_data are inconsistent.
+              .begin_parse()
+              ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAKrpy_p3V_nQPgpILizrEpa3rUf3JqpDxacx9Fvu9NNIsm/bridge-wallet-v2.fc:107:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(stored_subwallet, 32)
+              ^

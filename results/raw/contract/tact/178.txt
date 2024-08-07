@@ -1,0 +1,70 @@
+$NftItem$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCyJf8x_EkoSTn3aef4ZcvXt_-tS22j9w7djSpPAhosgQYt/output/verifier_NftItem.storage.fc:251:19: warning: Lack of end_parse.
+          return $sc~$NftItem$_load();
+                    ^
+$NftItem$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCyJf8x_EkoSTn3aef4ZcvXt_-tS22j9w7djSpPAhosgQYt/output/verifier_NftItem.storage.fc:236:29: warning: Lack of end_parse.
+      var v'denominator = sc_1~load_uint(16);
+                              ^
+$NftItem$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCyJf8x_EkoSTn3aef4ZcvXt_-tS22j9w7djSpPAhosgQYt/output/verifier_NftItem.code.fc:14:188: warning: Local variable '$self'collection' is not used
+      var (($self'deployed, $self'collection, $self'owner, $self'index, $self'content, $self'ch_content, $self'count_owners, $self'royalty_destination, $self'numerator, $self'denominator)) = (false, null(), null(), null(), null(), null(), null(), null(), 0, 1);
+                                                                                                                                                                                             ^
+$NftItem$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCyJf8x_EkoSTn3aef4ZcvXt_-tS22j9w7djSpPAhosgQYt/output/verifier_NftItem.code.fc:14:188: warning: Local variable '$self'owner' is not used
+      var (($self'deployed, $self'collection, $self'owner, $self'index, $self'content, $self'ch_content, $self'count_owners, $self'royalty_destination, $self'numerator, $self'denominator)) = (false, null(), null(), null(), null(), null(), null(), null(), 0, 1);
+                                                                                                                                                                                             ^
+$NftItem$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCyJf8x_EkoSTn3aef4ZcvXt_-tS22j9w7djSpPAhosgQYt/output/verifier_NftItem.code.fc:14:188: warning: Local variable '$self'index' is not used
+      var (($self'deployed, $self'collection, $self'owner, $self'index, $self'content, $self'ch_content, $self'count_owners, $self'royalty_destination, $self'numerator, $self'denominator)) = (false, null(), null(), null(), null(), null(), null(), null(), 0, 1);
+                                                                                                                                                                                             ^
+$NftItem$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCyJf8x_EkoSTn3aef4ZcvXt_-tS22j9w7djSpPAhosgQYt/output/verifier_NftItem.code.fc:14:188: warning: Local variable '$self'content' is not used
+      var (($self'deployed, $self'collection, $self'owner, $self'index, $self'content, $self'ch_content, $self'count_owners, $self'royalty_destination, $self'numerator, $self'denominator)) = (false, null(), null(), null(), null(), null(), null(), null(), 0, 1);
+                                                                                                                                                                                             ^
+$NftItem$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCyJf8x_EkoSTn3aef4ZcvXt_-tS22j9w7djSpPAhosgQYt/output/verifier_NftItem.code.fc:14:188: warning: Local variable '$self'ch_content' is not used
+      var (($self'deployed, $self'collection, $self'owner, $self'index, $self'content, $self'ch_content, $self'count_owners, $self'royalty_destination, $self'numerator, $self'denominator)) = (false, null(), null(), null(), null(), null(), null(), null(), 0, 1);
+                                                                                                                                                                                             ^
+$NftItem$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCyJf8x_EkoSTn3aef4ZcvXt_-tS22j9w7djSpPAhosgQYt/output/verifier_NftItem.code.fc:14:188: warning: Local variable '$self'count_owners' is not used
+      var (($self'deployed, $self'collection, $self'owner, $self'index, $self'content, $self'ch_content, $self'count_owners, $self'royalty_destination, $self'numerator, $self'denominator)) = (false, null(), null(), null(), null(), null(), null(), null(), 0, 1);
+                                                                                                                                                                                             ^
+$NftItem$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCyJf8x_EkoSTn3aef4ZcvXt_-tS22j9w7djSpPAhosgQYt/output/verifier_NftItem.code.fc:14:188: warning: Local variable '$self'royalty_destination' is not used
+      var (($self'deployed, $self'collection, $self'owner, $self'index, $self'content, $self'ch_content, $self'count_owners, $self'royalty_destination, $self'numerator, $self'denominator)) = (false, null(), null(), null(), null(), null(), null(), null(), 0, 1);
+                                                                                                                                                                                             ^
+$NftItem$_contract_store & $NftItem$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCyJf8x_EkoSTn3aef4ZcvXt_-tS22j9w7djSpPAhosgQYt/output/verifier_NftItem.storage.fc:247:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCyJf8x_EkoSTn3aef4ZcvXt_-tS22j9w7djSpPAhosgQYt/output/verifier_NftItem.storage.fc:262:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$NftItem$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCyJf8x_EkoSTn3aef4ZcvXt_-tS22j9w7djSpPAhosgQYt/output/verifier_NftItem.code.fc:136:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCyJf8x_EkoSTn3aef4ZcvXt_-tS22j9w7djSpPAhosgQYt/output/verifier_NftItem.storage.fc:262:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$NftItem$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCyJf8x_EkoSTn3aef4ZcvXt_-tS22j9w7djSpPAhosgQYt/output/verifier_NftItem.code.fc:60:180: warning: UnHandle bounced message with op: 0x6f89f5e3
+      $global_send($SendParameters$_constructor_to_value_mode_body(__tact_context_get_sender(), 0, 128, $NftExcesses$_store_cell($NftExcesses$_constructor_query_id($msg'query_id))));
+                                                                                                                                                                                     ^
+$NftItem$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCyJf8x_EkoSTn3aef4ZcvXt_-tS22j9w7djSpPAhosgQYt/output/verifier_NftItem.code.fc:79:267: warning: UnHandle bounced message with op: 0x5138d91
+  ... constructor_query_id_prev_owner_forward_payload($msg'query_id, $self'owner, $msg'forward_payload))));
+  ...                                                                                                     ^
+$NftItem$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCyJf8x_EkoSTn3aef4ZcvXt_-tS22j9w7djSpPAhosgQYt/output/verifier_NftItem.code.fc:87:180: warning: UnHandle bounced message with op: 0x6f89f5e3
+          $global_send($SendParameters$_constructor_to_value_body($msg'response_destination, $cashback, $NftExcesses$_store_cell($NftExcesses$_constructor_query_id($msg'query_id))));
+                                                                                                                                                                                     ^
+$NftItem$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCyJf8x_EkoSTn3aef4ZcvXt_-tS22j9w7djSpPAhosgQYt/output/verifier_NftItem.code.fc:95:243: warning: UnHandle bounced message with op: 0x8b771735
+  ... rtStaticData$_constructor_query_id_index_collection($msg'query_id, $self'index, $self'collection))));
+  ...                                                                                                     ^
+$NftItem$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCyJf8x_EkoSTn3aef4ZcvXt_-tS22j9w7djSpPAhosgQYt/output/verifier_NftItem.code.fc:102:298: warning: UnHandle bounced message with op: 0xa8cb00ad
+  ... minator_destination($msg'query_id, $self'numerator, $self'denominator, $self'royalty_destination))));
+  ...                                                                                                     ^

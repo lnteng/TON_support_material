@@ -1,0 +1,256 @@
+;;
+;; Type: StateInit
+;; TLB: _ code:^cell data:^cell = StateInit
+;;
+
+((cell, cell)) $StateInit$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (cell vvv'code, cell vvv'data) = __tact_tuple_destroy_2(v);
+    return (vvv'code, vvv'data);
+}
+
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_bounce_mode_body(slice to, int value, int bounce, int mode, cell body) inline {
+    return (bounce, to, value, mode, body, null(), null());
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline {
+    return (bounce, to, value, mode, body, code, data);
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_bounce_mode(slice to, int value, int bounce, int mode) inline {
+    return (bounce, to, value, mode, null(), null(), null());
+}
+
+;;
+;; Type: Deploy
+;; Header: 0x946a98b6
+;; TLB: deploy#946a98b6 queryId:uint64 = Deploy
+;;
+
+(slice, ((int))) $Deploy$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2490013878);
+    var v'queryId = sc_0~load_uint(64);
+    return (sc_0, (v'queryId));
+}
+
+;;
+;; Type: DeployOk
+;; Header: 0xaff90f57
+;; TLB: deploy_ok#aff90f57 queryId:uint64 = DeployOk
+;;
+
+builder $DeployOk$_store(builder build_0, (int) v) inline {
+    var (v'queryId) = v;
+    build_0 = store_uint(build_0, 2952335191, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    return build_0;
+}
+
+cell $DeployOk$_store_cell((int) v) inline {
+    return $DeployOk$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $DeployOk$_constructor_queryId(int queryId) inline {
+    return (queryId);
+}
+
+;;
+;; Type: TokenTransfer
+;; Header: 0x0f8a7ea5
+;; TLB: token_transfer#0f8a7ea5 query_id:uint64 amount:coins sender:address response_destination:Maybe address custom_payload:Maybe ^cell forward_ton_amount:coins forward_payload:remainder<slice> = TokenTransfer
+;;
+
+builder $TokenTransfer$_store(builder build_0, (int, int, slice, slice, cell, int, slice) v) inline_ref {
+    var (v'query_id, v'amount, v'sender, v'response_destination, v'custom_payload, v'forward_ton_amount, v'forward_payload) = v;
+    build_0 = store_uint(build_0, 260734629, 32);
+    build_0 = build_0.store_uint(v'query_id, 64);
+    build_0 = build_0.store_coins(v'amount);
+    build_0 = __tact_store_address(build_0, v'sender);
+    build_0 = __tact_store_address_opt(build_0, v'response_destination);
+    build_0 = ~ null?(v'custom_payload) ? build_0.store_int(true, 1).store_ref(v'custom_payload) : build_0.store_int(false, 1);
+    build_0 = build_0.store_coins(v'forward_ton_amount);
+    build_0 = build_0.store_slice(v'forward_payload);
+    return build_0;
+}
+
+cell $TokenTransfer$_store_cell((int, int, slice, slice, cell, int, slice) v) inline {
+    return $TokenTransfer$_store(begin_cell(), v).end_cell();
+}
+
+((int, int, slice, slice, cell, int, slice)) $TokenTransfer$_constructor_query_id_amount_sender_response_destination_custom_payload_forward_ton_amount_forward_payload(int query_id, int amount, slice sender, slice response_destination, cell custom_payload, int forward_ton_amount, slice forward_payload) inline {
+    return (query_id, amount, sender, response_destination, custom_payload, forward_ton_amount, forward_payload);
+}
+
+;;
+;; Type: TokenWithdraw
+;; Header: 0xe21f25d5
+;; TLB: token_withdraw#e21f25d5 amount:uint256 jettonWalletAddress:address receiver:address = TokenWithdraw
+;;
+
+(slice, ((int, slice, slice))) $TokenWithdraw$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 3793692117);
+    var v'amount = sc_0~load_uint(256);
+    var v'jettonWalletAddress = sc_0~__tact_load_address();
+    var v'receiver = sc_0~__tact_load_address();
+    return (sc_0, (v'amount, v'jettonWalletAddress, v'receiver));
+}
+
+;;
+;; Type: WhiteListMint
+;; TLB: _ seqno:uint32 amount:uint256 receiver:address jettonWalletAddress:address = WhiteListMint
+;;
+
+builder $WhiteListMint$_store(builder build_0, (int, int, slice, slice) v) inline {
+    var (v'seqno, v'amount, v'receiver, v'jettonWalletAddress) = v;
+    build_0 = build_0.store_uint(v'seqno, 32);
+    build_0 = build_0.store_uint(v'amount, 256);
+    build_0 = __tact_store_address(build_0, v'receiver);
+    build_0 = __tact_store_address(build_0, v'jettonWalletAddress);
+    return build_0;
+}
+
+cell $WhiteListMint$_store_cell((int, int, slice, slice) v) inline {
+    return $WhiteListMint$_store(begin_cell(), v).end_cell();
+}
+
+(slice, ((int, int, slice, slice))) $WhiteListMint$_load(slice sc_0) inline {
+    var v'seqno = sc_0~load_uint(32);
+    var v'amount = sc_0~load_uint(256);
+    var v'receiver = sc_0~__tact_load_address();
+    var v'jettonWalletAddress = sc_0~__tact_load_address();
+    return (sc_0, (v'seqno, v'amount, v'receiver, v'jettonWalletAddress));
+}
+
+;;
+;; Type: WhiteListMintMessage
+;; Header: 0xd17d0fd9
+;; TLB: white_list_mint_message#d17d0fd9 signature:^slice whiteListMint:WhiteListMint{seqno:uint32,amount:uint256,receiver:address,jettonWalletAddress:address} = WhiteListMintMessage
+;;
+
+(slice, ((slice, (int, int, slice, slice)))) $WhiteListMintMessage$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 3514634201);
+    var v'signature = sc_0~load_ref().begin_parse();
+    var v'whiteListMint = sc_0~$WhiteListMint$_load();
+    return (sc_0, (v'signature, v'whiteListMint));
+}
+
+;;
+;; Type: PublicMintMessage
+;; Header: 0x2fb545d1
+;; TLB: public_mint_message#2fb545d1 amount:uint256 receiver:address jettonWalletAddress:address = PublicMintMessage
+;;
+
+(slice, ((int, slice, slice))) $PublicMintMessage$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 800409041);
+    var v'amount = sc_0~load_uint(256);
+    var v'receiver = sc_0~__tact_load_address();
+    var v'jettonWalletAddress = sc_0~__tact_load_address();
+    return (sc_0, (v'amount, v'receiver, v'jettonWalletAddress));
+}
+
+;;
+;; Type: UpdateWlSignKey
+;; Header: 0xf23e801c
+;; TLB: update_wl_sign_key#f23e801c pKey:uint256 = UpdateWlSignKey
+;;
+
+(slice, ((int))) $UpdateWlSignKey$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 4064182300);
+    var v'pKey = sc_0~load_uint(256);
+    return (sc_0, (v'pKey));
+}
+
+;;
+;; Type: MintInfo
+;; TLB: _ owner:address wlSignKey:uint256 totalWlMintAmount:uint256 totalPublicMintAmount:uint256 totalMintAmount:uint256 wlMintMinAmount:uint32 wlMintMaxAmount:uint32 publicMintMinAmount:uint32 wlMintTonPrice:int257 publicMintTonPrice:int257 = MintInfo
+;;
+
+(slice, int, int, int, int, int, int, int, int, int) $MintInfo$_to_external(((slice, int, int, int, int, int, int, int, int, int)) v) inline {
+    var (v'owner, v'wlSignKey, v'totalWlMintAmount, v'totalPublicMintAmount, v'totalMintAmount, v'wlMintMinAmount, v'wlMintMaxAmount, v'publicMintMinAmount, v'wlMintTonPrice, v'publicMintTonPrice) = v; 
+    return (v'owner, v'wlSignKey, v'totalWlMintAmount, v'totalPublicMintAmount, v'totalMintAmount, v'wlMintMinAmount, v'wlMintMaxAmount, v'publicMintMinAmount, v'wlMintTonPrice, v'publicMintTonPrice);
+}
+
+((slice, int, int, int, int, int, int, int, int, int)) $MintInfo$_constructor_owner_wlSignKey_totalWlMintAmount_totalPublicMintAmount_totalMintAmount_wlMintMinAmount_wlMintMaxAmount_publicMintMinAmount_wlMintTonPrice_publicMintTonPrice(slice owner, int wlSignKey, int totalWlMintAmount, int totalPublicMintAmount, int totalMintAmount, int wlMintMinAmount, int wlMintMaxAmount, int publicMintMinAmount, int wlMintTonPrice, int publicMintTonPrice) inline {
+    return (owner, wlSignKey, totalWlMintAmount, totalPublicMintAmount, totalMintAmount, wlMintMinAmount, wlMintMaxAmount, publicMintMinAmount, wlMintTonPrice, publicMintTonPrice);
+}
+
+;;
+;; Type: CTonMint
+;;
+
+builder $CTonMint$_store(builder build_0, (int, int, slice, int, cell, cell, cell, int, int, int, int, int, int, int) v) inline {
+    var (v'wlMintTonPrice, v'publicMintTonPrice, v'owner, v'wlSignKey, v'seqnoMap, v'wlMintAmountMap, v'publicMintAmountMap, v'totalWlMintAmount, v'totalPublicMintAmount, v'totalMintAmount, v'wlMintMinAmount, v'wlMintMaxAmount, v'publicMintMinAmount, v'publicMintMaxAmount) = v;
+    build_0 = build_0.store_int(v'wlMintTonPrice, 257);
+    build_0 = build_0.store_int(v'publicMintTonPrice, 257);
+    build_0 = __tact_store_address(build_0, v'owner);
+    var build_1 = begin_cell();
+    build_1 = build_1.store_uint(v'wlSignKey, 256);
+    build_1 = build_1.store_dict(v'seqnoMap);
+    build_1 = build_1.store_dict(v'wlMintAmountMap);
+    build_1 = build_1.store_dict(v'publicMintAmountMap);
+    build_1 = build_1.store_uint(v'totalWlMintAmount, 256);
+    build_1 = build_1.store_uint(v'totalPublicMintAmount, 256);
+    var build_2 = begin_cell();
+    build_2 = build_2.store_uint(v'totalMintAmount, 256);
+    build_2 = build_2.store_uint(v'wlMintMinAmount, 32);
+    build_2 = build_2.store_uint(v'wlMintMaxAmount, 32);
+    build_2 = build_2.store_uint(v'publicMintMinAmount, 32);
+    build_2 = build_2.store_uint(v'publicMintMaxAmount, 32);
+    build_1 = store_ref(build_1, build_2.end_cell());
+    build_0 = store_ref(build_0, build_1.end_cell());
+    return build_0;
+}
+
+(slice, ((int, int, slice, int, cell, cell, cell, int, int, int, int, int, int, int))) $CTonMint$_load(slice sc_0) inline {
+    var v'wlMintTonPrice = sc_0~load_int(257);
+    var v'publicMintTonPrice = sc_0~load_int(257);
+    var v'owner = sc_0~__tact_load_address();
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'wlSignKey = sc_1~load_uint(256);
+    var v'seqnoMap = sc_1~load_dict();
+    var v'wlMintAmountMap = sc_1~load_dict();
+    var v'publicMintAmountMap = sc_1~load_dict();
+    var v'totalWlMintAmount = sc_1~load_uint(256);
+    var v'totalPublicMintAmount = sc_1~load_uint(256);
+    slice sc_2 = sc_1~load_ref().begin_parse();
+    var v'totalMintAmount = sc_2~load_uint(256);
+    var v'wlMintMinAmount = sc_2~load_uint(32);
+    var v'wlMintMaxAmount = sc_2~load_uint(32);
+    var v'publicMintMinAmount = sc_2~load_uint(32);
+    var v'publicMintMaxAmount = sc_2~load_uint(32);
+    return (sc_0, (v'wlMintTonPrice, v'publicMintTonPrice, v'owner, v'wlSignKey, v'seqnoMap, v'wlMintAmountMap, v'publicMintAmountMap, v'totalWlMintAmount, v'totalPublicMintAmount, v'totalMintAmount, v'wlMintMinAmount, v'wlMintMaxAmount, v'publicMintMinAmount, v'publicMintMaxAmount));
+}
+
+(slice, ((slice, int))) $CTonMint$init$_load(slice sc_0) inline {
+    var v'owner = sc_0~__tact_load_address();
+    var v'wlSignKey = sc_0~load_int(257);
+    return (sc_0, (v'owner, v'wlSignKey));
+}
+
+(int, int, slice, int, cell, cell, cell, int, int, int, int, int, int, int) $CTonMint$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$CTonMint$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (slice owner, int wlSignKey) = $sc~$CTonMint$init$_load();
+        $sc.end_parse();
+        return $CTonMint$_contract_init(owner, wlSignKey);
+    }
+}
+
+() $CTonMint$_contract_store((int, int, slice, int, cell, cell, cell, int, int, int, int, int, int, int) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $CTonMint$_store(b, v);
+    set_data(b.end_cell());
+}

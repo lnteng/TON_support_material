@@ -1,0 +1,80 @@
+get_user_share: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task2.fc:164:40: warning: Lack of end_parse.
+      var data = get_data().begin_parse().skip_bits(267);
+                                         ^
+get_user_share: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task2.fc:166:24: warning: Local variable 'wc' is not used
+      (int wc, int addr) = parse_std_addr(user_address);
+                         ^
+get_users: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task2.fc:159:40: warning: Lack of end_parse.
+      var data = get_data().begin_parse().skip_bits(267);
+                                         ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task2.fc:25:27: warning: Lack of end_parse.
+          slice sender = cs2~load_msg_addr();
+                            ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task2.fc:21:25: warning: Lack of end_parse.
+          slice admin = cs~load_msg_addr();
+                          ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task2.fc:50:27: warning: Lack of end_parse.
+          slice sender = cs2~load_msg_addr();
+                            ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task2.fc:46:25: warning: Lack of end_parse.
+          slice admin = cs~load_msg_addr();
+                          ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task2.fc:122:26: warning: Lack of end_parse.
+          slice sender = cs~load_msg_addr();
+                           ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task2.fc:70:42: warning: Lack of end_parse.
+          var cs = get_data().begin_parse().skip_bits(267);
+                                           ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task2.fc:104:42: warning: Lack of end_parse.
+          var cs = get_data().begin_parse().skip_bits(267);
+                                           ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task2.fc:136:36: warning: Local variable 'f' is not used
+              (key, slice cs, int f) = users.udict_get_next?::exist(256, key);
+                                     ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task2.fc:91:36: warning: Local variable 'f' is not used
+              (key, slice cs, int f) = users.udict_get_next?::exist(256, key);
+                                     ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task2.fc:59:18: warning: Local variable 'cs' is not used
+          slice cs = users~udict_delete_get?::121(256, user_id);
+                   ^
+recv_internal & get_user_share: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task2.fc:164:26: warning: Cell of get_data and set_data are inconsistent.
+      var data = get_data().begin_parse().skip_bits(267);
+                           ^
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task2.fc:38:17: warning: Cell of get_data and set_data are inconsistent.
+                  .custom::store_slice(admin)
+                  ^
+recv_internal & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task2.fc:20:30: warning: Cell of get_data and set_data are inconsistent.
+          slice cs = get_data().begin_parse();
+                               ^
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task2.fc:38:17: warning: Cell of get_data and set_data are inconsistent.
+                  .custom::store_slice(admin)
+                  ^
+recv_internal & get_user_share: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task2.fc:164:26: warning: Cell of get_data and set_data are inconsistent.
+      var data = get_data().begin_parse().skip_bits(267);
+                           ^
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task2.fc:63:17: warning: Cell of get_data and set_data are inconsistent.
+                  .custom::store_slice(admin)
+                  ^
+recv_internal & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task2.fc:20:30: warning: Cell of get_data and set_data are inconsistent.
+          slice cs = get_data().begin_parse();
+                               ^
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task2.fc:63:17: warning: Cell of get_data and set_data are inconsistent.
+                  .custom::store_slice(admin)
+                  ^

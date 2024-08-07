@@ -1,0 +1,26 @@
+$MyContract1$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCnkG589ahFOtOEgc4FWkzpPRCEAPQEKimXrl4w6iPnWJP7/tact_MyContract1.code.fc:15:48: warning: Local variable '$self'id' is not used
+      var (($self'id, $self'level, $self'owner)) = (null(), 0, null());
+                                                 ^
+$MyContract1$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCnkG589ahFOtOEgc4FWkzpPRCEAPQEKimXrl4w6iPnWJP7/tact_MyContract1.code.fc:15:48: warning: Local variable '$self'owner' is not used
+      var (($self'id, $self'level, $self'owner)) = (null(), 0, null());
+                                                 ^
+$MyContract1$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCnkG589ahFOtOEgc4FWkzpPRCEAPQEKimXrl4w6iPnWJP7/tact_MyContract1.storage.fc:122:19: warning: Lack of end_parse.
+          return $sc~$MyContract1$_load();
+                    ^
+$MyContract1$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCnkG589ahFOtOEgc4FWkzpPRCEAPQEKimXrl4w6iPnWJP7/tact_MyContract1.code.fc:134:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCnkG589ahFOtOEgc4FWkzpPRCEAPQEKimXrl4w6iPnWJP7/tact_MyContract1.storage.fc:133:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$MyContract1$_contract_store & $MyContract1$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCnkG589ahFOtOEgc4FWkzpPRCEAPQEKimXrl4w6iPnWJP7/tact_MyContract1.storage.fc:118:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCnkG589ahFOtOEgc4FWkzpPRCEAPQEKimXrl4w6iPnWJP7/tact_MyContract1.storage.fc:133:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

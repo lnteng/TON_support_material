@@ -1,0 +1,19 @@
+$Spender$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./zjor/hello-tact/03-ton-spender/web3/src/output/sample_Spender.code.fc:14:38: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'total)) = (null(), null());
+                                       ^
+$Spender$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./zjor/hello-tact/03-ton-spender/web3/src/output/sample_Spender.code.fc:14:38: warning: Local variable '$self'total' is not used
+      var (($self'owner, $self'total)) = (null(), null());
+                                       ^
+$Spender$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./zjor/hello-tact/03-ton-spender/web3/src/output/sample_Spender.storage.fc:102:19: warning: Lack of end_parse.
+          return $sc~$Spender$_load();
+                    ^
+$Spender$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./zjor/hello-tact/03-ton-spender/web3/src/output/sample_Spender.code.fc:88:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./zjor/hello-tact/03-ton-spender/web3/src/output/sample_Spender.storage.fc:111:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

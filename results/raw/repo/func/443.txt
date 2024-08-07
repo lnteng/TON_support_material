@@ -1,0 +1,12 @@
+recv_internal: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/repo/./cryshado/ton-share-smc/share.fc:50:77: warning: PressionLoss
+                  begin_message(0x10, data~load_msg_addr(), msg_value / 10000 * data~load_uint(14))
+                                                                              ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./cryshado/ton-share-smc/share.fc:43:30: warning: Lack of end_parse.
+      cell holders = get_data().begin_parse().preload_dict();
+                               ^
+get_holders: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./cryshado/ton-share-smc/share.fc:62:30: warning: Lack of end_parse.
+      cell holders = get_data().begin_parse().preload_dict();
+                               ^

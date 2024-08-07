@@ -1,0 +1,24 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/tsc5/contracts/task3.fc:65:21: warning: Lack of end_parse.
+      int version = ds~load_uint(32);
+                      ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/tsc5/contracts/task3.fc:94:29: warning: Lack of end_parse.
+          set_c3(expected_code.begin_parse().bless());
+                              ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/tsc5/contracts/task3.fc:87:29: warning: Lack of end_parse.
+                  storage = mc.begin_parse().bless().execute_cc(storage);
+                              ^
+process_message: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/tsc5/contracts/task3.fc:27:23: warning: Lack of end_parse.
+      slice cs = storage.begin_parse();
+                        ^
+version: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/tsc5/contracts/task3.fc:21:22: warning: Lack of end_parse.
+      return get_data().begin_parse().preload_uint(32);
+                       ^
+get_storage: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/tsc5/contracts/task3.fc:8:22: warning: Lack of end_parse.
+      return get_data().begin_parse().preload_ref();
+                       ^

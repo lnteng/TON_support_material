@@ -1,0 +1,110 @@
+global O_RDONLY: 0
+
+import i32 printNumber(i32 number);
+import i32 open(string apathname, i32 flags);
+import i32 getc(i64 stream);
+
+import i64 fdopen(i32 fildes, string mode);
+
+function readChar(i64 file)
+{
+    return getc(file) -> readChar(file);
+}
+
+function nextNumber(i32 accumulation, (i32 char, ...chars))
+{
+    if (char == '\n') // New line
+    {
+        return accumulation -> nextNumber(0, ...chars);
+    }
+
+    if (char < 0) // EOF
+    {
+        return accumulation;
+    }
+
+    return tail nextNumber((accumulation * 10) + (char - '0'), ...chars);
+}
+
+function part1(i32 count, i32 previous, i32 number)
+{
+    if (number > previous)
+    {
+        return count + 1;
+    }
+
+    return count;
+}
+
+function part1(i32 count, i32 previous, (i32 number, ...numbers))
+{
+    if (previous < 0)
+    {
+        return tail part1(count, number, ...numbers);
+    }
+
+    if (number < previous)
+    {
+        return tail part1(count, number, ...numbers);
+    }
+
+    return tail part1(count + 1, number, ...numbers);
+}
+
+function part2(i32 i, i32 count, i32 x, i32 y, i32 z, i32 number)
+{
+    return count;
+}
+
+function part2(i32 i, i32 count, i32 x, i32 y, i32 z, (i32 number, ...numbers))
+{
+    if (i < 3)
+    {
+        return tail part2(i + 1, count, y, z, number, ...numbers);
+    }
+
+    if ((x + y + z) < (y + z + number))
+    {
+        return tail part2(i + 1, count + 1, y, z, number, ...numbers);
+    }
+
+    return tail part2(i + 1, count, y, z, number, ...numbers);
+}
+
+function bind(i32 result1, i32 result2)
+{
+    return [result1, result2];
+}
+
+function run()
+{
+    return bind(
+        part1(0, -1
+            , ...nextNumber(0
+                , ...readChar(fdopen(open(@"input", O_RDONLY), @"r"))
+                )
+            ),
+        part2(0, 0, 0, 0, 0
+            , ...nextNumber(0
+                , ...readChar(fdopen(open(@"input", O_RDONLY), @"r"))
+                )
+            )
+    );
+}
+
+function printNumbers(i32 number)
+{
+    return printNumber(number);
+}
+
+function printNumbers((i32 number, ...numbers))
+{
+    printNumber(number);
+
+    return tail printNumbers(...numbers);
+}
+
+export i32 main()
+{
+    return printNumbers(...run());
+}

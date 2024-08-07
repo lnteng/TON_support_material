@@ -1,0 +1,61 @@
+$VftStatementContract$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftStatementContract.storage.fc:221:19: warning: Lack of end_parse.
+          return $sc~$VftStatementContract$_load();
+                    ^
+$VftStatementContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftStatementContract.code.fc:14:143: warning: Local variable '$self'parent' is not used
+      var (($self'parent, $self'idx, $self'pro, $self'owner, $self'data, $self'proStatementsCount, $self'conStatementsCount, $self'votesCount)) = (null(), null(), null(), null(), null(), 0, 0, 0);
+                                                                                                                                                ^
+$VftStatementContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftStatementContract.code.fc:14:143: warning: Local variable '$self'idx' is not used
+      var (($self'parent, $self'idx, $self'pro, $self'owner, $self'data, $self'proStatementsCount, $self'conStatementsCount, $self'votesCount)) = (null(), null(), null(), null(), null(), 0, 0, 0);
+                                                                                                                                                ^
+$VftStatementContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftStatementContract.code.fc:14:143: warning: Local variable '$self'pro' is not used
+      var (($self'parent, $self'idx, $self'pro, $self'owner, $self'data, $self'proStatementsCount, $self'conStatementsCount, $self'votesCount)) = (null(), null(), null(), null(), null(), 0, 0, 0);
+                                                                                                                                                ^
+$VftStatementContract$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftStatementContract.storage.fc:241:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$VftStatementContract$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftStatementContract.storage.fc:197:28: warning: Lack of end_parse.
+      var v'votesCount = sc_1~load_uint(256);
+                             ^
+$VftVoteContract$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftStatementContract.storage.fc:273:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$VftStatementContract$_contract_store & $VftStatementContract$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftStatementContract.storage.fc:217:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftStatementContract.storage.fc:232:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$VftStatementContract$_contract_store & $VftStatementContract$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftStatementContract.storage.fc:217:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftStatementContract.storage.fc:232:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$VftStatementContract$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftStatementContract.code.fc:200:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftStatementContract.storage.fc:232:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$VftStatementContract$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftStatementContract.code.fc:80:309: warning: UnHandle bounced message with op: 0x53eae83c
+  ... _context_get_sender(), ($msg'data'statement, $msg'data'url))), 10000000, 2, $init'code, $init'data));
+  ...                                                                                                     ^
+$VftStatementContract$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftStatementContract.code.fc:85:309: warning: UnHandle bounced message with op: 0x53eae83c
+  ... _context_get_sender(), ($msg'data'statement, $msg'data'url))), 10000000, 2, $init'code, $init'data));
+  ...                                                                                                     ^
+$VftStatementContract$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftStatementContract.code.fc:95:252: warning: UnHandle bounced message with op: 0xe7cec7c2
+  ... $SetVoteData$_constructor_owner(__tact_context_get_sender())), 10000000, 2, $init'code, $init'data));
+  ...                                                                                                     ^

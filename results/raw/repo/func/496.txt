@@ -1,0 +1,79 @@
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./markokhman/ton-storage/crypto/smartcont/dns-auto-code.fc:51:7: warning: Lack of end_parse.
+      cs~load_uint(32)      ;; last housekeeping done at
+        ^
+load_prices: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./markokhman/ton-storage/crypto/smartcont/dns-auto-code.fc:58:65: warning: Lack of end_parse.
+    return (cs~load_uint(30), cs~load_grams(), cs~load_grams(), cs~load_grams());
+                                                                  ^
+check_owner: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./markokhman/ton-storage/crypto/smartcont/dns-auto-code.fc:161:41: warning: Lack of end_parse.
+    (int owner_wc, int owner_addr) = (sown~load_int(8), sown.preload_uint(256));
+                                          ^
+perform_ctl_op: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./markokhman/ton-storage/crypto/smartcont/dns-auto-code.fc:189:39: warning: Lack of end_parse.
+    if ((cs~load_int(8) != src_wc) | (cs~load_uint(256) != src_addr)) {
+                                        ^
+perform_ctl_op: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./markokhman/ton-storage/crypto/smartcont/dns-auto-code.fc:205:42: warning: Local variable 'ctl' is not used
+      (ctl, domdata, gc, prices, nhk, lhk) = load_data();
+                                           ^
+perform_ctl_op: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./markokhman/ton-storage/crypto/smartcont/dns-auto-code.fc:205:42: warning: Local variable 'gc' is not used
+      (ctl, domdata, gc, prices, nhk, lhk) = load_data();
+                                           ^
+perform_ctl_op: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./markokhman/ton-storage/crypto/smartcont/dns-auto-code.fc:205:42: warning: Local variable 'prices' is not used
+      (ctl, domdata, gc, prices, nhk, lhk) = load_data();
+                                           ^
+perform_ctl_op: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./markokhman/ton-storage/crypto/smartcont/dns-auto-code.fc:205:42: warning: Local variable 'nhk' is not used
+      (ctl, domdata, gc, prices, nhk, lhk) = load_data();
+                                           ^
+perform_ctl_op: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./markokhman/ton-storage/crypto/smartcont/dns-auto-code.fc:205:42: warning: Local variable 'lhk' is not used
+      (ctl, domdata, gc, prices, nhk, lhk) = load_data();
+                                           ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./markokhman/ton-storage/crypto/smartcont/dns-auto-code.fc:230:20: warning: Lack of end_parse.
+    slice s_addr = cs~load_msg_addr();
+                     ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./markokhman/ton-storage/crypto/smartcont/dns-auto-code.fc:281:18: warning: Lack of end_parse.
+      fail = domain.slice_last(8).preload_uint(8);
+                   ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./markokhman/ton-storage/crypto/smartcont/dns-auto-code.fc:336:23: warning: Lack of end_parse.
+          var cs = oinfo.begin_parse();
+                        ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./markokhman/ton-storage/crypto/smartcont/dns-auto-code.fc:266:16: warning: Local variable 'domain' is not used
+    slice domain = null();
+                 ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./markokhman/ton-storage/crypto/smartcont/dns-auto-code.fc:327:13: warning: Local variable 'data' is not used
+    cell data = null();
+              ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./markokhman/ton-storage/crypto/smartcont/dns-auto-code.fc:361:22: warning: Local variable 'req_expires_at' is not used
+    int req_expires_at = in_msg~load_uint(32);
+                       ^
+recv_external: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./markokhman/ton-storage/crypto/smartcont/dns-auto-code.fc:411:62: warning: Local variable 'nhk' is not used
+    (cell ctl, cell dd, cell gc, var prices, int nhk, int lhk) = load_data();
+                                                               ^
+dnsdictlookup: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./markokhman/ton-storage/crypto/smartcont/dns-auto-code.fc:447:38: warning: Lack of end_parse.
+    (_, cell root) = (ds~load_ref(), ds~load_dict());
+                                       ^
+dnsdictlookup: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./markokhman/ton-storage/crypto/smartcont/dns-auto-code.fc:470:33: warning: Lack of end_parse.
+    return (val~load_uint(32), val~load_ref(), tail_bits == 0, domain.skip_last_bits(tail_bits));
+                                  ^
+store_data & dnsdictlookup: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./markokhman/ton-storage/crypto/smartcont/dns-auto-code.fc:446:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./markokhman/ton-storage/crypto/smartcont/dns-auto-code.fc:64:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_ref(ctl) ;; control data
+        ^

@@ -1,0 +1,140 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_Emit.headers.fc";
+#include "sample_Emit.stdlib.fc";
+#include "sample_Emit.constants.fc";
+#include "sample_Emit.storage.fc";
+
+;;
+;; Contract Emit functions
+;;
+
+tuple $Emit$_contract_init() impure inline_ref {
+    tuple $self = null();
+    return $self;
+}
+
+;;
+;; Receivers of a Contract Emit
+;;
+
+(tuple, ()) $Emit$_internal_text_5eca02b63ceef769fc06dfce3a652be27629a0cfcd539f104a0ed85a8b034884(tuple $self) impure inline {
+    var $self = $self;
+    $global_emit(__gen_cell_comment_685c56e0596533e0daaec93914c37b813a43cda632a7cd9a3a7454e52b3024a0());
+    return ($self, ());
+}
+
+(tuple, ()) $Emit$_internal_text_a7c2bd7c0775f941c28fc71977bf7fc27b48995300077dd224283f434335f8dc(tuple $self) impure inline {
+    var $self = $self;
+    $global_emit($TransferEvent$_store_cell($TransferEvent$_constructor_amount_recipient(1250000000, __tact_context_get_sender())));
+    return ($self, ());
+}
+
+(tuple, ()) $Emit$_internal_text_b8e6c2ffe2508d506aa1ccaa0178be919d5ecb0785b4b688c6afcf96becbb59e(tuple $self) impure inline {
+    var $self = $self;
+    $global_emit($StakeEvent$_store_cell($StakeEvent$_constructor_amount(7000000)));
+    return ($self, ());
+}
+
+((tuple), ()) $Emit$_internal_binary_Deploy(tuple $self, (int) $deploy) impure inline {
+    var $self = $self;
+    var ($deploy'queryId) = $deploy;
+    $self~$Emit$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return ($self, ());
+}
+
+;;
+;; Get methods of a Contract Emit
+;;
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmWhqt9xBowzEqwDzDhYXj9DXLqGFBgSj62Nf5unseyeuU";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract Emit
+;;
+
+(tuple, int) $Emit$_contract_router_internal(tuple self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$Emit$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "action" message
+        if (text_op == 0x5eca02b63ceef769fc06dfce3a652be27629a0cfcd539f104a0ed85a8b034884) {
+            self~$Emit$_internal_text_5eca02b63ceef769fc06dfce3a652be27629a0cfcd539f104a0ed85a8b034884();
+            return (self, true);
+        }
+        
+        ;; Receive "transfer" message
+        if (text_op == 0xa7c2bd7c0775f941c28fc71977bf7fc27b48995300077dd224283f434335f8dc) {
+            self~$Emit$_internal_text_a7c2bd7c0775f941c28fc71977bf7fc27b48995300077dd224283f434335f8dc();
+            return (self, true);
+        }
+        
+        ;; Receive "stake" message
+        if (text_op == 0xb8e6c2ffe2508d506aa1ccaa0178be919d5ecb0785b4b688c6afcf96becbb59e) {
+            self~$Emit$_internal_text_b8e6c2ffe2508d506aa1ccaa0178be919d5ecb0785b4b688c6afcf96becbb59e();
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $Emit$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$Emit$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $Emit$_contract_store(self);
+}

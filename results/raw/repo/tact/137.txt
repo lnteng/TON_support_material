@@ -1,0 +1,15 @@
+$Item2$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson5/build/Item/tact_Item2.storage.fc:103:19: warning: Lack of end_parse.
+          return $sc~$Item2$_load();
+                    ^
+$Item$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson5/build/Item/tact_Item2.storage.fc:64:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$Item2$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson5/build/Item/tact_Item2.code.fc:70:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson5/build/Item/tact_Item2.storage.fc:112:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

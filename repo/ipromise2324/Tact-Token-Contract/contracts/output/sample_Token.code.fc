@@ -1,0 +1,240 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_Token.headers.fc";
+#include "sample_Token.stdlib.fc";
+#include "sample_Token.storage.fc";
+
+;;
+;; Contract Token functions
+;;
+
+(int, slice, (slice, slice, int), int) $Token$_contract_init(slice $owner, (slice, slice, int) $content) impure inline_ref {
+    var (($content'name, $content'symbol, $content'decimals)) = $content;
+    var (($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables)) = (null(), null(), null(), null());
+    $self'totalSupply = 0;
+    $self'owner = $owner;
+    ($self'content'name, $self'content'symbol, $self'content'decimals) = ($content'name, $content'symbol, $content'decimals);
+    $self'mintables = true;
+    return ($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables);
+}
+
+((int, slice, (slice, slice, int), int), (cell, cell)) $Token$_fun_getJettonWalletInit((int, slice, (slice, slice, int), int) $self, slice $address) impure inline_ref {
+    var (($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables)) = $self;
+    return (($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables), $JettonDefaultWallet$_init_child(__tact_context_sys, my_address(), $address));
+}
+
+((int, slice, (slice, slice, int), int), ()) $Token$_fun_mint((int, slice, (slice, slice, int), int) $self, slice $to, int $amount, slice $responseAddress) impure inline_ref {
+    var (($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables)) = $self;
+    $self'totalSupply = ($self'totalSupply + $amount);
+    var ($winit'code, $winit'data) = ($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables)~$Token$_fun_getJettonWalletInit($to);
+    slice $walletAddress = $global_contractAddress(($winit'code, $winit'data));
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body_code_data($walletAddress, 0, false, 64, $TokenTransferInternal$_store_cell($TokenTransferInternal$_constructor_amount_queryId_from_responseAddress_forwardTonAmount_forwardPayload($amount, 0, my_address(), $responseAddress, 0, $global_emptySlice())), $winit'code, $winit'data));
+    return (($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables), ());
+}
+
+((int, slice, (slice, slice, int), int), ()) $Token$_fun_burn((int, slice, (slice, slice, int), int) $self, int $burnAmount, slice $to, int $queryId) impure inline_ref {
+    var (($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables)) = $self;
+    $self'totalSupply = ($self'totalSupply - $burnAmount);
+    var ($winit'code, $winit'data) = ($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables)~$Token$_fun_getJettonWalletInit($to);
+    slice $walletAddress = $global_contractAddress(($winit'code, $winit'data));
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body_code_data($walletAddress, 0, false, 64, $TokenBurnConfirmation$_store_cell($TokenBurnConfirmation$_constructor_queryId_amount($queryId, $burnAmount)), $winit'code, $winit'data));
+    return (($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables), ());
+}
+
+((int, slice, (slice, slice, int), int), slice) $Token$_fun_getWalletAddress((int, slice, (slice, slice, int), int) $self, slice $owner) impure inline_ref {
+    var (($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables)) = $self;
+    var ($winit'code, $winit'data) = ($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables)~$Token$_fun_getJettonWalletInit($owner);
+    return (($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables), $global_contractAddress(($winit'code, $winit'data)));
+}
+
+((int, slice, (slice, slice, int), int), int) $Token$_fun_getTotalSupply((int, slice, (slice, slice, int), int) $self) impure inline_ref {
+    var (($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables)) = $self;
+    return (($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables), $self'totalSupply);
+}
+
+((int, slice, (slice, slice, int), int), slice) $Token$_fun_tokenName((int, slice, (slice, slice, int), int) $self) impure inline_ref {
+    var (($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables)) = $self;
+    return (($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables), $self'content'name);
+}
+
+((int, slice, (slice, slice, int), int), slice) $Token$_fun_tokenSymbol((int, slice, (slice, slice, int), int) $self) impure inline_ref {
+    var (($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables)) = $self;
+    return (($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables), $self'content'symbol);
+}
+
+((int, slice, (slice, slice, int), int), int) $Token$_fun_tokenDecimals((int, slice, (slice, slice, int), int) $self) impure inline_ref {
+    var (($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables)) = $self;
+    return (($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables), $self'content'decimals);
+}
+
+((int, slice, (slice, slice, int), int), ()) $Token$_fun_requireOwner((int, slice, (slice, slice, int), int) $self) impure inline_ref {
+    var (($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables)) = $self;
+    throw_unless(132, ( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) ));
+    return (($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables), ());
+}
+
+((int, slice, (slice, slice, int), int), slice) $Token$_fun_owner((int, slice, (slice, slice, int), int) $self) impure inline_ref {
+    var (($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables)) = $self;
+    return (($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables), $self'owner);
+}
+
+;;
+;; Receivers of a Contract Token
+;;
+
+(((int, slice, (slice, slice, int), int)), ()) $Token$_internal_binary_Mint((int, slice, (slice, slice, int), int) $self, (slice, int) $msg) impure inline {
+    var ($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables) = $self;
+    var ($msg'to, $msg'amount) = $msg;
+    ($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables)~$Token$_fun_requireOwner();
+    ($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables)~$Token$_fun_mint($msg'to, $msg'amount, $msg'to);
+    return (($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables), ());
+}
+
+(((int, slice, (slice, slice, int), int)), ()) $Token$_internal_binary_SafeTokenBurn((int, slice, (slice, slice, int), int) $self, (int, int, slice, slice) $msg) impure inline {
+    var ($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables) = $self;
+    var ($msg'queryId, $msg'amount, $msg'owner, $msg'responseAddress) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    throw_unless(61400, ( __tact_slice_eq_bits($msg'owner, $ctx'sender) ));
+    throw_unless(62176, (($self'totalSupply - $msg'amount) >= 0));
+    ($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables)~$Token$_fun_burn($msg'amount, $msg'owner, $msg'queryId);
+    return (($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables), ());
+}
+
+(((int, slice, (slice, slice, int), int)), ()) $Token$_internal_binary_Deploy((int, slice, (slice, slice, int), int) $self, (int) $deploy) impure inline {
+    var ($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables)~$Token$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'totalSupply, $self'owner, ($self'content'name, $self'content'symbol, $self'content'decimals), $self'mintables), ());
+}
+
+;;
+;; Get methods of a Contract Token
+;;
+
+_ %getWalletAddress(slice $$owner) method_id(96826) {
+    slice $owner = __tact_verify_address($$owner);
+    var self = $Token$_contract_load();
+    var res = self~$Token$_fun_getWalletAddress($owner);
+    return res;
+}
+
+_ %getJettonWalletInit(slice $$address) method_id(109053) {
+    slice $address = __tact_verify_address($$address);
+    var self = $Token$_contract_load();
+    var res = self~$Token$_fun_getJettonWalletInit($address);
+    return $StateInit$_to_external(res);
+}
+
+_ %getTotalSupply() method_id(98914) {
+    var self = $Token$_contract_load();
+    var res = self~$Token$_fun_getTotalSupply();
+    return res;
+}
+
+_ %tokenName() method_id(94462) {
+    var self = $Token$_contract_load();
+    var res = self~$Token$_fun_tokenName();
+    return res;
+}
+
+_ %tokenSymbol() method_id(92054) {
+    var self = $Token$_contract_load();
+    var res = self~$Token$_fun_tokenSymbol();
+    return res;
+}
+
+_ %tokenDecimals() method_id(77224) {
+    var self = $Token$_contract_load();
+    var res = self~$Token$_fun_tokenDecimals();
+    return res;
+}
+
+_ %owner() method_id(83229) {
+    var self = $Token$_contract_load();
+    var res = self~$Token$_fun_owner();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128,
+        "org.ton.ownable"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmaoJrT8BjmM6A2EHdo9qUq1owsQwEBKUqXPqe85pE6zEH";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract Token
+;;
+
+((int, slice, (slice, slice, int), int), int) $Token$_contract_router_internal((int, slice, (slice, slice, int), int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive Mint message
+    if (op == 275720840) {
+        var msg = in_msg~$Mint$_load();
+        self~$Token$_internal_binary_Mint(msg);
+        return (self, true);
+    }
+    
+    ;; Receive SafeTokenBurn message
+    if (op == 3823045169) {
+        var msg = in_msg~$SafeTokenBurn$_load();
+        self~$Token$_internal_binary_SafeTokenBurn(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$Token$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $Token$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$Token$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $Token$_contract_store(self);
+}

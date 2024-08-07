@@ -1,0 +1,164 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_Factory.headers.fc";
+#include "sample_Factory.stdlib.fc";
+#include "sample_Factory.constants.fc";
+#include "sample_Factory.storage.fc";
+
+;;
+;; Contract Factory functions
+;;
+
+(slice, int) $Factory$_contract_init() impure inline_ref {
+    var (($self'owner, $self'numVaults)) = (null(), null());
+    $self'owner = __tact_context_get_sender();
+    $self'numVaults = 0;
+    return ($self'owner, $self'numVaults);
+}
+
+((slice, int), int) $Factory$_fun_numVaults((slice, int) $self) impure inline_ref {
+    var (($self'owner, $self'numVaults)) = $self;
+    return (($self'owner, $self'numVaults), $self'numVaults);
+}
+
+((slice, int), ()) $Factory$_fun_requireOwner((slice, int) $self) impure inline_ref {
+    var (($self'owner, $self'numVaults)) = $self;
+    throw_unless(132, ( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) ));
+    return (($self'owner, $self'numVaults), ());
+}
+
+((slice, int), slice) $Factory$_fun_owner((slice, int) $self) impure inline_ref {
+    var (($self'owner, $self'numVaults)) = $self;
+    return (($self'owner, $self'numVaults), $self'owner);
+}
+
+;;
+;; Receivers of a Contract Factory
+;;
+
+(((slice, int)), ()) $Factory$_internal_binary_NewVault((slice, int) $self, (slice, (slice, slice, int)) $msg) impure inline {
+    var ($self'owner, $self'numVaults) = $self;
+    var ($msg'asset, ($msg'content'name, $msg'content'symbol, $msg'content'decimals)) = $msg;
+    $self'numVaults = ($self'numVaults + 1);
+    var ($init'code, $init'data) = $Vault$_init_child(__tact_context_sys, $self'numVaults, $msg'asset, __tact_context_get_sender(), ($msg'content'name, $msg'content'symbol, $msg'content'decimals));
+    $global_send($SendParameters$_constructor_to_value_mode_code_data_body($global_contractAddress(($init'code, $init'data)), 100000000, 2, $init'code, $init'data, __gen_cell_comment_766d21891e865f29f0a677076e378ac23ddb4ecf4a39022d4441db6f2cd484d0()));
+    ($self'owner, $self'numVaults)~$Factory$_fun_reply($NewVaultResponse$_store_cell($NewVaultResponse$_constructor_seqno($self'numVaults)));
+    return (($self'owner, $self'numVaults), ());
+}
+
+(((slice, int)), ()) $Factory$_internal_binary_Deploy((slice, int) $self, (int) $deploy) impure inline {
+    var ($self'owner, $self'numVaults) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'owner, $self'numVaults)~$Factory$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'owner, $self'numVaults), ());
+}
+
+(((slice, int)), ()) $Factory$_internal_binary_ChangeOwner((slice, int) $self, (int, slice) $msg) impure inline {
+    var ($self'owner, $self'numVaults) = $self;
+    var ($msg'queryId, $msg'newOwner) = $msg;
+    ($self'owner, $self'numVaults)~$Factory$_fun_requireOwner();
+    $self'owner = $msg'newOwner;
+    ($self'owner, $self'numVaults)~$Factory$_fun_reply($ChangeOwnerOk$_store_cell($ChangeOwnerOk$_constructor_queryId_newOwner($msg'queryId, $msg'newOwner)));
+    return (($self'owner, $self'numVaults), ());
+}
+
+;;
+;; Get methods of a Contract Factory
+;;
+
+_ %numVaults() method_id(130651) {
+    var self = $Factory$_contract_load();
+    var res = self~$Factory$_fun_numVaults();
+    return res;
+}
+
+_ %owner() method_id(83229) {
+    var self = $Factory$_contract_load();
+    var res = self~$Factory$_fun_owner();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128,
+        "org.ton.ownable.transferable.v2"H >> 128,
+        "org.ton.ownable"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://Qmda38bsokk5jPumiMui7YrP5CssDCc4oyBkNFyYnuRkWB";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract Factory
+;;
+
+((slice, int), int) $Factory$_contract_router_internal((slice, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive NewVault message
+    if (op == 1397763046) {
+        var msg = in_msg~$NewVault$_load();
+        self~$Factory$_internal_binary_NewVault(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$Factory$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Receive ChangeOwner message
+    if (op == 2174598809) {
+        var msg = in_msg~$ChangeOwner$_load();
+        self~$Factory$_internal_binary_ChangeOwner(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $Factory$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$Factory$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $Factory$_contract_store(self);
+}

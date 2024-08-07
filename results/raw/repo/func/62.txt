@@ -1,0 +1,12 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./1IxI1/jetton-spammer-contract/contracts/spammer.fc:18:19: warning: Lack of end_parse.
+      int flags = cs~load_uint(4);
+                    ^
+check_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./1IxI1/jetton-spammer-contract/contracts/spammer.fc:13:25: warning: Lack of end_parse.
+      throw_if(666, config.begin_parse().preload_uint(16) == 1);
+                          ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./1IxI1/jetton-spammer-contract/contracts/spammer.fc:59:41: warning: UnHandle bounced message with op: 0xf8a7ea5
+      send_raw_message(msg.end_cell(), 64);
+                                          ^

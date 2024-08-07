@@ -1,0 +1,28 @@
+lockup_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCXbi5hivdrPA_R0VN_fi19iZTiuM8ca-MKsTHWba1eQAHq/jetton_lockup.fc:192:67: warning: Lack of end_parse.
+          ds~load_dict(), ds~load_msg_addr(), ds~load_msg_addr(), ds~load_uint(64)
+                                                                    ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCXbi5hivdrPA_R0VN_fi19iZTiuM8ca-MKsTHWba1eQAHq/jetton_lockup.fc:24:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCXbi5hivdrPA_R0VN_fi19iZTiuM8ca-MKsTHWba1eQAHq/jetton_lockup.fc:55:67: warning: Lack of end_parse.
+          ds~load_dict(), ds~load_msg_addr(), ds~load_msg_addr(), ds~load_uint(64)
+                                                                    ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCXbi5hivdrPA_R0VN_fi19iZTiuM8ca-MKsTHWba1eQAHq/jetton_lockup.fc:156:24: warning: Lack of end_parse.
+                  ms = ms~load_ref().begin_parse();
+                         ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCXbi5hivdrPA_R0VN_fi19iZTiuM8ca-MKsTHWba1eQAHq/jetton_lockup.fc:171:57: warning: Lack of end_parse.
+                                  max(vs~load_coins() - ms~load_coins(), 0)
+                                                          ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCXbi5hivdrPA_R0VN_fi19iZTiuM8ca-MKsTHWba1eQAHq/jetton_lockup.fc:159:50: warning: Local variable 'target_wc' is not used
+              (int target_wc, int target_hashpart) = target_address.parse_std_addr();
+                                                   ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCXbi5hivdrPA_R0VN_fi19iZTiuM8ca-MKsTHWba1eQAHq/jetton_lockup.fc:109:14: warning: UnHandle bounced message with op: 0xf8a7ea5
+              );
+               ^

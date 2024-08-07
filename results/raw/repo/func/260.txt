@@ -1,0 +1,36 @@
+get_gas_limits_prices: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/imports/gas.fc:36:28: warning: Lack of end_parse.
+      return gas_price_config~load_gas_limits_prices();
+                             ^
+load_storage: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/router/storage.fc:25:31: warning: Lack of end_parse.
+      storage::temp_upgrade = ds~load_ref();
+                                ^
+load_storage: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/router/storage.fc:20:42: warning: Lack of end_parse.
+      storage::lp_account_code = code_slice~load_ref();
+                                           ^
+handle_admin_messages: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/router/admin-calls.fc:9:87: warning: Lack of end_parse.
+          (slice jetton_wallet0, slice jetton_wallet1) = (ref_ds~load_msg_addr(), ref_ds~load_msg_addr());
+                                                                                        ^
+handle_admin_messages: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/router/admin-calls.fc:119:28: warning: Local variable 'res' is not used
+          (slice res, int f) = storage::pools_dict.dict_get?(267, pool_to_remove);
+                             ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/router.fc:37:21: warning: Lack of end_parse.
+      int fwd_fee = cs~load_coins();
+                      ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/router.fc:51:151: warning: Lack of end_parse.
+          (int amount0_out, slice token0_address, int amount1_out, slice token1_address) = (psd~load_coins(), psd~load_msg_addr(), psd~load_coins(), psd~load_msg_addr());
+                                                                                                                                                        ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/router.fc:131:40: warning: Lack of end_parse.
+                  int min_lp_out = ref_ds~load_coins();
+                                         ^
+unpack_temp_upgrade: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/router/utils.fc:60:136: warning: Lack of end_parse.
+      (int end_code, int end_admin, slice admin, cell code) = (s_data~load_uint(64), s_data~load_uint(64), s_data~load_msg_addr(), s_data~load_ref());
+                                                                                                                                         ^

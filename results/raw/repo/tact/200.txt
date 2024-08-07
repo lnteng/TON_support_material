@@ -1,0 +1,11 @@
+__tact_string_builder_append: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/echo_Echo.code.fc:83:31: warning: Lack of end_parse.
+              sc = sc~load_ref().begin_parse();
+                                ^
+__gen_store_Echo & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/echo_Echo.code.fc:283:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/echo_Echo.code.fc:121:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

@@ -1,0 +1,36 @@
+optimize_effective_stake: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-3/func/5_workchain.fc:121:42: warning: Local variable 'hash' is not used
+  			(int hash, int stake, int max_factor) = untriple(ps.at(i));
+  			                                      ^
+sort_participants_into_tuple: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-3/func/5_workchain.fc:89:29: warning: Lack of end_parse.
+  				int max_factor = list_cs~load_uint(24);
+  				                        ^
+sort_participants_into_tuple: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-3/func/5_workchain.fc:67:19: warning: Local variable 'max_factor' is not used
+  			int max_factor = cs~load_uint(24);
+  			               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-3/func/5_workchain.fc:141:26: warning: Lack of end_parse.
+  	slice sender = header_cs~load_msg_addr();
+  	                        ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-3/func/5_workchain.fc:142:35: warning: Local variable 'sender_wc' is not used
+  	(int sender_wc, int sender_hash) = sender.parse_std_addr(); ;; !! Sketchy, might not be correct
+  	                                 ^
+get_stake_table: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-3/func/5_workchain.fc:206:30: warning: Local variable 'total_stake' is not used
+  	(tuple ps, int total_stake) = sort_participants_into_tuple(participants);
+  	                            ^
+get_stake_table: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-3/func/5_workchain.fc:207:43: warning: Local variable 'opt_effective_total' is not used
+  	(int opt_count, int opt_effective_total) = optimize_effective_stake(ps);
+  	                                         ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-3/func/5_workchain.fc:41:24: warning: Lack of end_parse.
+  	cell participants = cs~load_dict();
+  	                      ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-3/func/5_workchain.fc:184:28: warning: UnHandle bounced message with op: 0xeefa5ea4
+  		send_raw_message(msg, 64);
+  		                         ^

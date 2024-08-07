@@ -1,0 +1,27 @@
+__tact_dict_set_slice_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/increment_IncrementContract.stdlib.fc:78:21: warning: Local variable 'ok' is not used
+          var (r, ok) = __tact_dict_delete(d, kl, k);
+                      ^
+__tact_dict_set_int_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/increment_IncrementContract.stdlib.fc:42:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+$IncrementContract$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/increment_IncrementContract.storage.fc:163:19: warning: Lack of end_parse.
+          return $sc~$IncrementContract$_load();
+                    ^
+__tact_dict_set_int_cell: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/increment_IncrementContract.stdlib.fc:60:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+$IncrementContract$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/increment_IncrementContract.storage.fc:154:27: warning: Lack of end_parse.
+      var v'counters5 = sc_1~load_dict();
+                            ^
+$IncrementContract$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/increment_IncrementContract.code.fc:108:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/increment_IncrementContract.storage.fc:172:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

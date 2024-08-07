@@ -1,0 +1,288 @@
+;;
+;; Type: StateInit
+;; TLB: _ code:^cell data:^cell = StateInit
+;;
+
+((cell, cell)) $StateInit$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (cell vvv'code, cell vvv'data) = __tact_tuple_destroy_2(v);
+    return (vvv'code, vvv'data);
+}
+
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline {
+    return (bounce, to, value, mode, body, code, data);
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode_bounce_body(slice to, int value, int mode, int bounce, cell body) inline {
+    return (bounce, to, value, mode, body, null(), null());
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode_body(slice to, int value, int mode, cell body) inline {
+    return (true, to, value, mode, body, null(), null());
+}
+
+;;
+;; Type: Deploy
+;; Header: 0x946a98b6
+;; TLB: deploy#946a98b6 queryId:uint64 = Deploy
+;;
+
+(slice, ((int))) $Deploy$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2490013878);
+    var v'queryId = sc_0~load_uint(64);
+    return (sc_0, (v'queryId));
+}
+
+;;
+;; Type: DeployOk
+;; Header: 0xaff90f57
+;; TLB: deploy_ok#aff90f57 queryId:uint64 = DeployOk
+;;
+
+builder $DeployOk$_store(builder build_0, (int) v) inline {
+    var (v'queryId) = v;
+    build_0 = store_uint(build_0, 2952335191, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    return build_0;
+}
+
+cell $DeployOk$_store_cell((int) v) inline {
+    return $DeployOk$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $DeployOk$_constructor_queryId(int queryId) inline {
+    return (queryId);
+}
+
+;;
+;; Type: EventSignal
+;; Header: 0x1246ebb4
+;; TLB: event_signal#1246ebb4 eventId:int257 payload:^cell = EventSignal
+;;
+
+builder $EventSignal$_store(builder build_0, (int, cell) v) inline {
+    var (v'eventId, v'payload) = v;
+    build_0 = store_uint(build_0, 306637748, 32);
+    build_0 = build_0.store_int(v'eventId, 257);
+    build_0 = build_0.store_ref(v'payload);
+    return build_0;
+}
+
+cell $EventSignal$_store_cell((int, cell) v) inline {
+    return $EventSignal$_store(begin_cell(), v).end_cell();
+}
+
+(slice, ((int, cell))) $EventSignal$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 306637748);
+    var v'eventId = sc_0~load_int(257);
+    var v'payload = sc_0~load_ref();
+    return (sc_0, (v'eventId, v'payload));
+}
+
+((int, cell)) $EventSignal$_constructor_eventId_payload(int eventId, cell payload) inline {
+    return (eventId, payload);
+}
+
+;;
+;; Type: BuildMessenger
+;; Header: 0xa87cf6b7
+;; TLB: build_messenger#a87cf6b7 sourceAddress:address eventId:int257 maxUserStakeAmount:coins subscribeFeePerTick:coins template:^cell sourceName:^string = BuildMessenger
+;;
+
+(slice, ((slice, int, int, int, cell, slice))) $BuildMessenger$_load(slice sc_0) inline_ref {
+    throw_unless(129, sc_0~load_uint(32) == 2826761911);
+    var v'sourceAddress = sc_0~__tact_load_address();
+    var v'eventId = sc_0~load_int(257);
+    var v'maxUserStakeAmount = sc_0~load_coins();
+    var v'subscribeFeePerTick = sc_0~load_coins();
+    var v'template = sc_0~load_ref();
+    var v'sourceName = sc_0~load_ref().begin_parse();
+    return (sc_0, (v'sourceAddress, v'eventId, v'maxUserStakeAmount, v'subscribeFeePerTick, v'template, v'sourceName));
+}
+
+;;
+;; Type: ProtcolRegisterSuccess
+;; Header: 0x979d1d46
+;; TLB: protcol_register_success#979d1d46 sourceAddress:address eventId:int257 maxUserStakeAmount:coins subscribeFeePerTick:coins template:^cell sourceName:^string = ProtcolRegisterSuccess
+;;
+
+builder $ProtcolRegisterSuccess$_store(builder build_0, (slice, int, int, int, cell, slice) v) inline_ref {
+    var (v'sourceAddress, v'eventId, v'maxUserStakeAmount, v'subscribeFeePerTick, v'template, v'sourceName) = v;
+    build_0 = store_uint(build_0, 2543656262, 32);
+    build_0 = __tact_store_address(build_0, v'sourceAddress);
+    build_0 = build_0.store_int(v'eventId, 257);
+    build_0 = build_0.store_coins(v'maxUserStakeAmount);
+    build_0 = build_0.store_coins(v'subscribeFeePerTick);
+    build_0 = build_0.store_ref(v'template);
+    build_0 = build_0.store_ref(begin_cell().store_slice(v'sourceName).end_cell());
+    return build_0;
+}
+
+cell $ProtcolRegisterSuccess$_store_cell((slice, int, int, int, cell, slice) v) inline {
+    return $ProtcolRegisterSuccess$_store(begin_cell(), v).end_cell();
+}
+
+((slice, int, int, int, cell, slice)) $ProtcolRegisterSuccess$_constructor_sourceAddress_eventId_maxUserStakeAmount_subscribeFeePerTick_template_sourceName(slice sourceAddress, int eventId, int maxUserStakeAmount, int subscribeFeePerTick, cell template, slice sourceName) inline {
+    return (sourceAddress, eventId, maxUserStakeAmount, subscribeFeePerTick, template, sourceName);
+}
+
+;;
+;; Type: CreateMsgSubscriber
+;; Header: 0x7d388809
+;; TLB: create_msg_subscriber#7d388809 walletAddress:address callbackAddress:address eventId:int257 = CreateMsgSubscriber
+;;
+
+(slice, ((slice, slice, int))) $CreateMsgSubscriber$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2100856841);
+    var v'walletAddress = sc_0~__tact_load_address();
+    var v'callbackAddress = sc_0~__tact_load_address();
+    var v'eventId = sc_0~load_int(257);
+    return (sc_0, (v'walletAddress, v'callbackAddress, v'eventId));
+}
+
+;;
+;; Type: CreateMsgSubscriberSuccess
+;; Header: 0xc99f2577
+;; TLB: create_msg_subscriber_success#c99f2577 callbackAddress:address = CreateMsgSubscriberSuccess
+;;
+
+builder $CreateMsgSubscriberSuccess$_store(builder build_0, (slice) v) inline {
+    var (v'callbackAddress) = v;
+    build_0 = store_uint(build_0, 3382650231, 32);
+    build_0 = __tact_store_address(build_0, v'callbackAddress);
+    return build_0;
+}
+
+cell $CreateMsgSubscriberSuccess$_store_cell((slice) v) inline {
+    return $CreateMsgSubscriberSuccess$_store(begin_cell(), v).end_cell();
+}
+
+((slice)) $CreateMsgSubscriberSuccess$_constructor_callbackAddress(slice callbackAddress) inline {
+    return (callbackAddress);
+}
+
+;;
+;; Type: DeleteSubscriber
+;; Header: 0x16ab9d51
+;; TLB: delete_subscriber#16ab9d51 walletAddress:address callbackAddress:address eventId:int257 = DeleteSubscriber
+;;
+
+(slice, ((slice, slice, int))) $DeleteSubscriber$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 380345681);
+    var v'walletAddress = sc_0~__tact_load_address();
+    var v'callbackAddress = sc_0~__tact_load_address();
+    var v'eventId = sc_0~load_int(257);
+    return (sc_0, (v'walletAddress, v'callbackAddress, v'eventId));
+}
+
+;;
+;; Type: DestroyMessenger
+;; Header: 0xaff94a61
+;; TLB: destroy_messenger#aff94a61 messengerId:int257 = DestroyMessenger
+;;
+
+builder $DestroyMessenger$_store(builder build_0, (int) v) inline {
+    var (v'messengerId) = v;
+    build_0 = store_uint(build_0, 2952350305, 32);
+    build_0 = build_0.store_int(v'messengerId, 257);
+    return build_0;
+}
+
+cell $DestroyMessenger$_store_cell((int) v) inline {
+    return $DestroyMessenger$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $DestroyMessenger$_constructor_messengerId(int messengerId) inline {
+    return (messengerId);
+}
+
+;;
+;; Type: CollectFee
+;; Header: 0x35c17b48
+;; TLB: collect_fee#35c17b48 messengerId:int257 fee:coins = CollectFee
+;;
+
+builder $CollectFee$_store(builder build_0, (int, int) v) inline {
+    var (v'messengerId, v'fee) = v;
+    build_0 = store_uint(build_0, 901872456, 32);
+    build_0 = build_0.store_int(v'messengerId, 257);
+    build_0 = build_0.store_coins(v'fee);
+    return build_0;
+}
+
+cell $CollectFee$_store_cell((int, int) v) inline {
+    return $CollectFee$_store(begin_cell(), v).end_cell();
+}
+
+((int, int)) $CollectFee$_constructor_messengerId_fee(int messengerId, int fee) inline {
+    return (messengerId, fee);
+}
+
+;;
+;; Type: Messenger
+;;
+
+builder $Messenger$_store(builder build_0, (slice, slice, int, int, cell, cell, cell, int, int) v) inline {
+    var (v'owner, v'sourceAddress, v'messengerId, v'nextSubscriberId, v'idToSubscriber, v'hashToSubscriber, v'hashToSubscribeFee, v'totalSubscriberNumber, v'subscribeFeePerTick) = v;
+    build_0 = __tact_store_address(build_0, v'owner);
+    build_0 = __tact_store_address(build_0, v'sourceAddress);
+    build_0 = build_0.store_int(v'messengerId, 257);
+    var build_1 = begin_cell();
+    build_1 = build_1.store_int(v'nextSubscriberId, 257);
+    build_1 = build_1.store_dict(v'idToSubscriber);
+    build_1 = build_1.store_dict(v'hashToSubscriber);
+    build_1 = build_1.store_dict(v'hashToSubscribeFee);
+    build_1 = build_1.store_int(v'totalSubscriberNumber, 257);
+    build_1 = build_1.store_int(v'subscribeFeePerTick, 257);
+    build_0 = store_ref(build_0, build_1.end_cell());
+    return build_0;
+}
+
+(slice, ((slice, slice, int, int, cell, cell, cell, int, int))) $Messenger$_load(slice sc_0) inline {
+    var v'owner = sc_0~__tact_load_address();
+    var v'sourceAddress = sc_0~__tact_load_address();
+    var v'messengerId = sc_0~load_int(257);
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'nextSubscriberId = sc_1~load_int(257);
+    var v'idToSubscriber = sc_1~load_dict();
+    var v'hashToSubscriber = sc_1~load_dict();
+    var v'hashToSubscribeFee = sc_1~load_dict();
+    var v'totalSubscriberNumber = sc_1~load_int(257);
+    var v'subscribeFeePerTick = sc_1~load_int(257);
+    return (sc_0, (v'owner, v'sourceAddress, v'messengerId, v'nextSubscriberId, v'idToSubscriber, v'hashToSubscriber, v'hashToSubscribeFee, v'totalSubscriberNumber, v'subscribeFeePerTick));
+}
+
+(slice, ((slice, slice, int))) $Messenger$init$_load(slice sc_0) inline {
+    var v'owner = sc_0~__tact_load_address();
+    var v'sourceAddress = sc_0~__tact_load_address();
+    var v'messengerId = sc_0~load_int(257);
+    return (sc_0, (v'owner, v'sourceAddress, v'messengerId));
+}
+
+(slice, slice, int, int, cell, cell, cell, int, int) $Messenger$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$Messenger$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (slice owner, slice sourceAddress, int messengerId) = $sc~$Messenger$init$_load();
+        $sc.end_parse();
+        return $Messenger$_contract_init(owner, sourceAddress, messengerId);
+    }
+}
+
+() $Messenger$_contract_store((slice, slice, int, int, cell, cell, cell, int, int) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $Messenger$_store(b, v);
+    set_data(b.end_cell());
+}

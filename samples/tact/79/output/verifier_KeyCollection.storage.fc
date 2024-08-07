@@ -1,0 +1,220 @@
+;;
+;; Type: StateInit
+;; TLB: _ code:^cell data:^cell = StateInit
+;;
+
+((cell, cell)) $StateInit$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (cell vvv'code, cell vvv'data) = __tact_tuple_destroy_2(v);
+    return (vvv'code, vvv'data);
+}
+
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline {
+    return (bounce, to, value, mode, body, code, data);
+}
+
+;;
+;; Type: Deploy
+;; Header: 0x946a98b6
+;; TLB: deploy#946a98b6 queryId:uint64 = Deploy
+;;
+
+(slice, ((int))) $Deploy$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2490013878);
+    var v'queryId = sc_0~load_uint(64);
+    return (sc_0, (v'queryId));
+}
+
+;;
+;; Type: DeployOk
+;; Header: 0xaff90f57
+;; TLB: deploy_ok#aff90f57 queryId:uint64 = DeployOk
+;;
+
+builder $DeployOk$_store(builder build_0, (int) v) inline {
+    var (v'queryId) = v;
+    build_0 = store_uint(build_0, 2952335191, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    return build_0;
+}
+
+cell $DeployOk$_store_cell((int) v) inline {
+    return $DeployOk$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $DeployOk$_constructor_queryId(int queryId) inline {
+    return (queryId);
+}
+
+;;
+;; Type: PurchaseOnekey
+;; Header: 0x45edf83c
+;; TLB: purchase_onekey#45edf83c keyNum:uint8 = PurchaseOnekey
+;;
+
+(slice, ((int))) $PurchaseOnekey$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 1173223484);
+    var v'keyNum = sc_0~load_uint(8);
+    return (sc_0, (v'keyNum));
+}
+
+;;
+;; Type: Redeem
+;; Header: 0xd365a68e
+;; TLB: redeem#d365a68e keyId:uint128 = Redeem
+;;
+
+(slice, ((int))) $Redeem$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 3546654350);
+    var v'keyId = sc_0~load_uint(128);
+    return (sc_0, (v'keyId));
+}
+
+;;
+;; Type: KeyInfo
+;; TLB: _ owner:address keyNum:uint8 price:uint256 = KeyInfo
+;;
+
+builder $KeyInfo$_store(builder build_0, (slice, int, int) v) inline {
+    var (v'owner, v'keyNum, v'price) = v;
+    build_0 = __tact_store_address(build_0, v'owner);
+    build_0 = build_0.store_uint(v'keyNum, 8);
+    build_0 = build_0.store_uint(v'price, 256);
+    return build_0;
+}
+
+cell $KeyInfo$_store_cell((slice, int, int) v) inline {
+    return $KeyInfo$_store(begin_cell(), v).end_cell();
+}
+
+((slice, int, int)) $KeyInfo$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (slice vvv'owner, int vvv'keyNum, int vvv'price) = __tact_tuple_destroy_3(v);
+    return (vvv'owner, vvv'keyNum, vvv'price);
+}
+
+cell $KeyInfo$_store_opt(tuple v) inline {
+    if (null?(v)) {
+        return null();
+    }
+    return $KeyInfo$_store_cell($KeyInfo$_not_null(v));
+}
+
+(slice, ((slice, int, int))) $KeyInfo$_load(slice sc_0) inline {
+    var v'owner = sc_0~__tact_load_address();
+    var v'keyNum = sc_0~load_uint(8);
+    var v'price = sc_0~load_uint(256);
+    return (sc_0, (v'owner, v'keyNum, v'price));
+}
+
+tuple $KeyInfo$_as_optional((slice, int, int) v) inline {
+    var (v'owner, v'keyNum, v'price) = v;
+    return __tact_tuple_create_3(v'owner, v'keyNum, v'price);
+}
+
+tuple $KeyInfo$_load_opt(cell cl) inline {
+    if (null?(cl)) {
+        return null();
+    }
+    var sc = cl.begin_parse();
+    return $KeyInfo$_as_optional(sc~$KeyInfo$_load());    ;; DEFECT: LackEndParse
+}
+
+tuple $KeyInfo$_to_tuple(((slice, int, int)) v) inline {
+    var (v'owner, v'keyNum, v'price) = v;
+    return __tact_tuple_create_3(v'owner, v'keyNum, v'price);
+}
+
+tuple $KeyInfo$_to_opt_tuple(tuple v) inline {
+    if (null?(v)) { return null(); } 
+    return $KeyInfo$_to_tuple($KeyInfo$_not_null(v)); 
+}
+
+tuple $KeyInfo$_to_opt_external(tuple v) inline {
+    var loaded = $KeyInfo$_to_opt_tuple(v);
+    if (null?(loaded)) {
+        return null();
+    } else {
+        return (loaded);
+    }
+}
+
+((slice, int, int)) $KeyInfo$_constructor_owner_keyNum_price(slice owner, int keyNum, int price) inline {
+    return (owner, keyNum, price);
+}
+
+;;
+;; Type: KeyCollection
+;;
+
+builder $KeyCollection$_store(builder build_0, (int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) v) inline {
+    var (v'keySupply, v'keyShares, v'subKeySharesMap, v'owner, v'vLuckShares, v'vLuckMap, v'rewardPreVluck, v'uservLuckMap, v'userAwardMap, v'keyInfoMap, v'luckNum, v'userWalletMap) = v;
+    build_0 = build_0.store_uint(v'keySupply, 128);
+    build_0 = build_0.store_uint(v'keyShares, 128);
+    build_0 = build_0.store_dict(v'subKeySharesMap);
+    build_0 = __tact_store_address(build_0, v'owner);
+    build_0 = build_0.store_uint(v'vLuckShares, 256);
+    build_0 = build_0.store_dict(v'vLuckMap);
+    var build_1 = begin_cell();
+    build_1 = build_1.store_uint(v'rewardPreVluck, 256);
+    build_1 = build_1.store_dict(v'uservLuckMap);
+    build_1 = build_1.store_dict(v'userAwardMap);
+    build_1 = build_1.store_dict(v'keyInfoMap);
+    build_1 = build_1.store_uint(v'luckNum, 8);
+    var build_2 = begin_cell();
+    build_2 = build_2.store_dict(v'userWalletMap);
+    build_1 = store_ref(build_1, build_2.end_cell());
+    build_0 = store_ref(build_0, build_1.end_cell());
+    return build_0;
+}
+
+(slice, ((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell))) $KeyCollection$_load(slice sc_0) inline {
+    var v'keySupply = sc_0~load_uint(128);
+    var v'keyShares = sc_0~load_uint(128);
+    var v'subKeySharesMap = sc_0~load_dict();
+    var v'owner = sc_0~__tact_load_address();
+    var v'vLuckShares = sc_0~load_uint(256);
+    var v'vLuckMap = sc_0~load_dict();
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'rewardPreVluck = sc_1~load_uint(256);
+    var v'uservLuckMap = sc_1~load_dict();
+    var v'userAwardMap = sc_1~load_dict();
+    var v'keyInfoMap = sc_1~load_dict();
+    var v'luckNum = sc_1~load_uint(8);
+    slice sc_2 = sc_1~load_ref().begin_parse();    ;; DEFECT: LackEndParse
+    var v'userWalletMap = sc_2~load_dict();    ;; DEFECT: LackEndParse
+    return (sc_0, (v'keySupply, v'keyShares, v'subKeySharesMap, v'owner, v'vLuckShares, v'vLuckMap, v'rewardPreVluck, v'uservLuckMap, v'userAwardMap, v'keyInfoMap, v'luckNum, v'userWalletMap));
+}
+
+(slice, ((slice))) $KeyCollection$init$_load(slice sc_0) inline {
+    var v'owner = sc_0~__tact_load_address();
+    return (sc_0, (v'owner));
+}
+
+(int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) $KeyCollection$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$KeyCollection$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (slice owner) = $sc~$KeyCollection$init$_load();
+        $sc.end_parse();
+        return $KeyCollection$_contract_init(owner);
+    }
+}
+
+() $KeyCollection$_contract_store((int, int, cell, slice, int, cell, int, cell, cell, cell, int, cell) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $KeyCollection$_store(b, v);
+    set_data(b.end_cell());
+}

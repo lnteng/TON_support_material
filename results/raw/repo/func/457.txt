@@ -1,0 +1,20 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/wallet-contract/func/simple-subscription-plugin.fc:103:20: warning: Lack of end_parse.
+    slice s_addr = cs~load_msg_addr();
+                     ^
+load_storage: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/wallet-contract/func/simple-subscription-plugin.fc:34:49: warning: Lack of end_parse.
+            ds~load_uint(32), ds~load_uint(32), ds~load_uint(32));
+                                                  ^
+chain::short_msg_fwd_fee: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/wallet-contract/func/simple-subscription-plugin.fc:19:50: warning: Lack of end_parse.
+    return config_param(config_index).begin_parse().skip_bits(8).preload_uint(64);
+                                                   ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/wallet-contract/func/simple-subscription-plugin.fc:95:38: warning: UnHandle bounced message with op: 0x706c7567
+    send_raw_message(msg.end_cell(), 3);
+                                       ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/wallet-contract/func/simple-subscription-plugin.fc:83:38: warning: UnHandle bounced message with op: 0x64737472
+    send_raw_message(msg.end_cell(), 3);
+                                       ^

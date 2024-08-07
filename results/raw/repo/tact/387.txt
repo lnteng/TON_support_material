@@ -1,0 +1,62 @@
+__tact_dict_set_uint_slice: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./hitaspdotnet/tact-challenge/contracts/output/sample_Task5.stdlib.fc:45:21: warning: Local variable 'ok' is not used
+          var (r, ok) = udict_delete?(d, kl, k);
+                      ^
+$Task5$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./hitaspdotnet/tact-challenge/contracts/output/sample_Task5.code.fc:14:66: warning: Local variable '$self'seed' is not used
+      var (($self'seed, $self'owner, $self'nfts, $self'next_item)) = (null(), null(), null(), 0);
+                                                                   ^
+$Task5$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./hitaspdotnet/tact-challenge/contracts/output/sample_Task5.code.fc:14:66: warning: Local variable '$self'owner' is not used
+      var (($self'seed, $self'owner, $self'nfts, $self'next_item)) = (null(), null(), null(), 0);
+                                                                   ^
+$Task5$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./hitaspdotnet/tact-challenge/contracts/output/sample_Task5.storage.fc:190:19: warning: Lack of end_parse.
+          return $sc~$Task5$_load();
+                    ^
+$Task5$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./hitaspdotnet/tact-challenge/contracts/output/sample_Task5.code.fc:145:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./hitaspdotnet/tact-challenge/contracts/output/sample_Task5.storage.fc:201:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task5$_contract_store & $Task5$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./hitaspdotnet/tact-challenge/contracts/output/sample_Task5.storage.fc:186:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./hitaspdotnet/tact-challenge/contracts/output/sample_Task5.storage.fc:201:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./hitaspdotnet/tact-challenge/contracts/output/sample_Task5.code.fc:94:357: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... tore_uint(begin_cell(), 1607220500, 32), $msg'queryId, 64), $self'owner), $self'owner), 0, 1), 0))));
+  ...                                                                                                     ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./hitaspdotnet/tact-challenge/contracts/output/sample_Task5.code.fc:100:357: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... tore_uint(begin_cell(), 1607220500, 32), $msg'queryId, 64), $self'owner), $self'owner), 0, 1), 0))));
+  ...                                                                                                     ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./hitaspdotnet/tact-challenge/contracts/output/sample_Task5.code.fc:103:195: warning: UnHandle bounced message with op: 0x85b44291
+          $global_send($SendParameters$_constructor_to_value_mode_body(my_address(), 0, 128, $WithdrawalAllNFTsInternal$_store_cell($WithdrawalAllNFTsInternal$_constructor_queryId($msg'queryId))));
+                                                                                                                                                                                                    ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./hitaspdotnet/tact-challenge/contracts/output/sample_Task5.code.fc:74:357: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... tore_uint(begin_cell(), 1607220500, 32), $msg'queryId, 64), $self'owner), $self'owner), 0, 1), 0))));
+  ...                                                                                                     ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./hitaspdotnet/tact-challenge/contracts/output/sample_Task5.code.fc:80:357: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... tore_uint(begin_cell(), 1607220500, 32), $msg'queryId, 64), $self'owner), $self'owner), 0, 1), 0))));
+  ...                                                                                                     ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./hitaspdotnet/tact-challenge/contracts/output/sample_Task5.code.fc:83:195: warning: UnHandle bounced message with op: 0x85b44291
+          $global_send($SendParameters$_constructor_to_value_mode_body(my_address(), 0, 128, $WithdrawalAllNFTsInternal$_store_cell($WithdrawalAllNFTsInternal$_constructor_queryId($msg'queryId))));
+                                                                                                                                                                                                    ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./hitaspdotnet/tact-challenge/contracts/output/sample_Task5.code.fc:50:395: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... int(begin_cell(), 1607220500, 32), $msg'queryId, 64), $msg'prevOwner), $msg'prevOwner), 0, 1), 0))));
+  ...                                                                                                     ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./hitaspdotnet/tact-challenge/contracts/output/sample_Task5.code.fc:63:219: warning: UnHandle bounced message with op: 0xfda48b79
+  ... 00000000), 64, $AdminFetchProfit$_store_cell($AdminFetchProfit$_constructor_queryId($msg'queryId))));
+  ...                                                                                                     ^

@@ -1,0 +1,227 @@
+;;
+;; Type: StateInit
+;; TLB: _ code:^cell data:^cell = StateInit
+;;
+
+((cell, cell)) $StateInit$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (cell vvv'code, cell vvv'data) = __tact_tuple_destroy_2(v);
+    return (vvv'code, vvv'data);
+}
+
+;;
+;; Type: Context
+;; TLB: _ bounced:bool sender:address value:int257 raw:^slice = Context
+;;
+
+_ $Context$_get_value((int, slice, int, slice) v) inline {
+    var (v'bounced, v'sender, v'value, v'raw) = v;
+    return v'value;
+}
+
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline {
+    return (bounce, to, value, mode, body, code, data);
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_bounce_value_body_mode(slice to, int bounce, int value, cell body, int mode) inline {
+    return (bounce, to, value, mode, body, null(), null());
+}
+
+;;
+;; Type: Deploy
+;; Header: 0x946a98b6
+;; TLB: deploy#946a98b6 queryId:uint64 = Deploy
+;;
+
+(slice, ((int))) $Deploy$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2490013878);
+    var v'queryId = sc_0~load_uint(64);
+    return (sc_0, (v'queryId));
+}
+
+;;
+;; Type: DeployOk
+;; Header: 0xaff90f57
+;; TLB: deploy_ok#aff90f57 queryId:uint64 = DeployOk
+;;
+
+builder $DeployOk$_store(builder build_0, (int) v) inline {
+    var (v'queryId) = v;
+    build_0 = store_uint(build_0, 2952335191, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    return build_0;
+}
+
+cell $DeployOk$_store_cell((int) v) inline {
+    return $DeployOk$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $DeployOk$_constructor_queryId(int queryId) inline {
+    return (queryId);
+}
+
+;;
+;; Type: ChangeOwner
+;; Header: 0x819dbe99
+;; TLB: change_owner#819dbe99 queryId:uint64 newOwner:address = ChangeOwner
+;;
+
+(slice, ((int, slice))) $ChangeOwner$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2174598809);
+    var v'queryId = sc_0~load_uint(64);
+    var v'newOwner = sc_0~__tact_load_address();
+    return (sc_0, (v'queryId, v'newOwner));
+}
+
+;;
+;; Type: ChangeOwnerOk
+;; Header: 0x327b2b4a
+;; TLB: change_owner_ok#327b2b4a queryId:uint64 newOwner:address = ChangeOwnerOk
+;;
+
+builder $ChangeOwnerOk$_store(builder build_0, (int, slice) v) inline {
+    var (v'queryId, v'newOwner) = v;
+    build_0 = store_uint(build_0, 846932810, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    build_0 = __tact_store_address(build_0, v'newOwner);
+    return build_0;
+}
+
+cell $ChangeOwnerOk$_store_cell((int, slice) v) inline {
+    return $ChangeOwnerOk$_store(begin_cell(), v).end_cell();
+}
+
+((int, slice)) $ChangeOwnerOk$_constructor_queryId_newOwner(int queryId, slice newOwner) inline {
+    return (queryId, newOwner);
+}
+
+;;
+;; Type: LotteryState
+;; TLB: _ status:int257 players:dict<int, address> tickets:dict<int, address> winnerTicket:Maybe int257 = LotteryState
+;;
+
+builder $LotteryState$_store(builder build_0, (int, cell, cell, int) v) inline {
+    var (v'status, v'players, v'tickets, v'winnerTicket) = v;
+    build_0 = build_0.store_int(v'status, 257);
+    build_0 = build_0.store_dict(v'players);
+    build_0 = build_0.store_dict(v'tickets);
+    build_0 = ~ null?(v'winnerTicket) ? build_0.store_int(true, 1).store_int(v'winnerTicket, 257) : build_0.store_int(false, 1);
+    return build_0;
+}
+
+(slice, ((int, cell, cell, int))) $LotteryState$_load(slice sc_0) inline {
+    var v'status = sc_0~load_int(257);
+    var v'players = sc_0~load_dict();
+    var v'tickets = sc_0~load_dict();
+    var v'winnerTicket = sc_0~load_int(1) ? sc_0~load_int(257) : null();
+    return (sc_0, (v'status, v'players, v'tickets, v'winnerTicket));
+}
+
+(int, cell, cell, int) $LotteryState$_to_external(((int, cell, cell, int)) v) inline {
+    var (v'status, v'players, v'tickets, v'winnerTicket) = v; 
+    return (v'status, v'players, v'tickets, v'winnerTicket);
+}
+
+((int, cell, cell, int)) $LotteryState$_constructor_status_players_tickets_winnerTicket(int status, cell players, cell tickets, int winnerTicket) inline {
+    return (status, players, tickets, winnerTicket);
+}
+
+;;
+;; Type: LotteryMeta
+;; TLB: _ ticketPrice:int257 comissionAmount:int257 = LotteryMeta
+;;
+
+builder $LotteryMeta$_store(builder build_0, (int, int) v) inline {
+    var (v'ticketPrice, v'comissionAmount) = v;
+    build_0 = build_0.store_int(v'ticketPrice, 257);
+    build_0 = build_0.store_int(v'comissionAmount, 257);
+    return build_0;
+}
+
+(slice, ((int, int))) $LotteryMeta$_load(slice sc_0) inline {
+    var v'ticketPrice = sc_0~load_int(257);
+    var v'comissionAmount = sc_0~load_int(257);
+    return (sc_0, (v'ticketPrice, v'comissionAmount));
+}
+
+(int, int) $LotteryMeta$_to_external(((int, int)) v) inline {
+    var (v'ticketPrice, v'comissionAmount) = v; 
+    return (v'ticketPrice, v'comissionAmount);
+}
+
+((int, int)) $LotteryMeta$_constructor_ticketPrice_comissionAmount(int ticketPrice, int comissionAmount) inline {
+    return (ticketPrice, comissionAmount);
+}
+
+;;
+;; Type: LotteryGame
+;;
+
+builder $LotteryGame$_store(builder build_0, (int, slice, slice, (int, int), (int, cell, cell, int), int, int) v) inline {
+    var (v'seqno, v'owner, v'comissionAddress, (v'meta'ticketPrice, v'meta'comissionAmount), (v'state'status, v'state'players, v'state'tickets, v'state'winnerTicket), v'playersCount, v'ticketsCount) = v;
+    build_0 = build_0.store_uint(v'seqno, 64);
+    build_0 = __tact_store_address(build_0, v'owner);
+    build_0 = __tact_store_address(build_0, v'comissionAddress);
+    var build_1 = begin_cell();
+    build_1 = $LotteryMeta$_store(build_1, (v'meta'ticketPrice, v'meta'comissionAmount));
+    var build_2 = begin_cell();
+    build_2 = $LotteryState$_store(build_2, (v'state'status, v'state'players, v'state'tickets, v'state'winnerTicket));
+    build_2 = build_2.store_int(v'playersCount, 257);
+    var build_3 = begin_cell();
+    build_3 = build_3.store_int(v'ticketsCount, 257);
+    build_2 = store_ref(build_2, build_3.end_cell());
+    build_1 = store_ref(build_1, build_2.end_cell());
+    build_0 = store_ref(build_0, build_1.end_cell());
+    return build_0;
+}
+
+(slice, ((int, slice, slice, (int, int), (int, cell, cell, int), int, int))) $LotteryGame$_load(slice sc_0) inline {
+    var v'seqno = sc_0~load_uint(64);
+    var v'owner = sc_0~__tact_load_address();
+    var v'comissionAddress = sc_0~__tact_load_address();
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'meta = sc_1~$LotteryMeta$_load();
+    slice sc_2 = sc_1~load_ref().begin_parse();    ;; DEFECT: LackEndParse
+    var v'state = sc_2~$LotteryState$_load();
+    var v'playersCount = sc_2~load_int(257);
+    slice sc_3 = sc_2~load_ref().begin_parse();    ;; DEFECT: LackEndParse
+    var v'ticketsCount = sc_3~load_int(257);    ;; DEFECT: LackEndParse
+    return (sc_0, (v'seqno, v'owner, v'comissionAddress, v'meta, v'state, v'playersCount, v'ticketsCount));
+}
+
+(slice, ((int, slice, int, int))) $LotteryGame$init$_load(slice sc_0) inline {
+    var v'seqno = sc_0~load_int(257);
+    var v'comissionAddress = sc_0~__tact_load_address();
+    var v'ticketPrice = sc_0~load_int(257);
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'comissionAmount = sc_1~load_int(257);    ;; DEFECT: LackEndParse
+    return (sc_0, (v'seqno, v'comissionAddress, v'ticketPrice, v'comissionAmount));
+}
+
+(int, slice, slice, (int, int), (int, cell, cell, int), int, int) $LotteryGame$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$LotteryGame$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (int seqno, slice comissionAddress, int ticketPrice, int comissionAmount) = $sc~$LotteryGame$init$_load();
+        $sc.end_parse();
+        return $LotteryGame$_contract_init(seqno, comissionAddress, ticketPrice, comissionAmount);
+    }
+}
+
+() $LotteryGame$_contract_store((int, slice, slice, (int, int), (int, cell, cell, int), int, int) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $LotteryGame$_store(b, v);
+    set_data(b.end_cell());
+}

@@ -1,0 +1,24 @@
+recv_internal: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBl4s3FjTElK6gNJqEukS0S24DpIP2REq3kDtnvo-c2Gfbt/piggy.fc:56:61: warning: PressionLoss
+          int balance_eleven_percents = (piggy_balance / 100) * 11;
+                                                              ^
+recv_internal: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBl4s3FjTElK6gNJqEukS0S24DpIP2REq3kDtnvo-c2Gfbt/piggy.fc:62:50: warning: PressionLoss
+          int cutted_msg_value = (msg_value / 100) * 90; ;; 10% cut 
+                                                   ^
+recv_internal: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBl4s3FjTElK6gNJqEukS0S24DpIP2REq3kDtnvo-c2Gfbt/piggy.fc:66:50: warning: PressionLoss
+              int winnings_value = balance_percent * (85 - fee_percent); ;; 15% to next round
+                                                   ^
+recv_internal: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBl4s3FjTElK6gNJqEukS0S24DpIP2REq3kDtnvo-c2Gfbt/piggy.fc:71:46: warning: PressionLoss
+                  fees_value = balance_percent * fee_percent;
+                                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBl4s3FjTElK6gNJqEukS0S24DpIP2REq3kDtnvo-c2Gfbt/piggy.fc:48:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBl4s3FjTElK6gNJqEukS0S24DpIP2REq3kDtnvo-c2Gfbt/piggy.fc:9:11: warning: Lack of end_parse.
+          ds~load_uint(8) ;; fee_percent
+            ^

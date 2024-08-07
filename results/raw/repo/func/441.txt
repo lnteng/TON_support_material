@@ -1,0 +1,16 @@
+find_and_replace: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./pugachevdmitry/tsc4/contracts/3.fc:73:43: warning: Lack of end_parse.
+          int last_sz = car(list).end_cell().begin_parse().slice_bits();
+                                            ^
+find_and_replace: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./pugachevdmitry/tsc4/contracts/3.fc:70:28: warning: Lack of end_parse.
+              (_, int e) = sl.get_cnt_bits(fsz);
+                             ^
+find_and_replace: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./pugachevdmitry/tsc4/contracts/3.fc:94:38: warning: Lack of end_parse.
+                  sl = sl.preload_ref().begin_parse();
+                                       ^
+has_cnt_bits: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./pugachevdmitry/tsc4/contracts/3.fc:27:43: warning: Lack of end_parse.
+          return cnt <= (sl.slice_bits() + r.begin_parse().slice_bits());
+                                            ^

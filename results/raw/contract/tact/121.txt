@@ -1,0 +1,34 @@
+$IDO_Main$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDq3br--70FBiKDby4C1mShJiqGLG-oPBcF0pzR26EJbE9Z/output/verifier_IDO_Main.storage.fc:37:19: warning: Lack of end_parse.
+          return $sc~$IDO_Main$_load();
+                    ^
+$Round$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDq3br--70FBiKDby4C1mShJiqGLG-oPBcF0pzR26EJbE9Z/output/verifier_IDO_Main.storage.fc:68:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$IDO_Main$_internal_text_f5dab700cf81461fa90fcee62776ae8cb4a630ba5cce8b46c90eb3ab9f71fad9: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDq3br--70FBiKDby4C1mShJiqGLG-oPBcF0pzR26EJbE9Z/output/verifier_IDO_Main.code.fc:31:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$IDO_Main$_internal_text_f5dab700cf81461fa90fcee62776ae8cb4a630ba5cce8b46c90eb3ab9f71fad9: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDq3br--70FBiKDby4C1mShJiqGLG-oPBcF0pzR26EJbE9Z/output/verifier_IDO_Main.code.fc:31:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$IDO_Main$_internal_text_f5dab700cf81461fa90fcee62776ae8cb4a630ba5cce8b46c90eb3ab9f71fad9: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDq3br--70FBiKDby4C1mShJiqGLG-oPBcF0pzR26EJbE9Z/output/verifier_IDO_Main.code.fc:31:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$IDO_Main$_contract_store & $IDO_Main$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDq3br--70FBiKDby4C1mShJiqGLG-oPBcF0pzR26EJbE9Z/output/verifier_IDO_Main.storage.fc:33:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDq3br--70FBiKDby4C1mShJiqGLG-oPBcF0pzR26EJbE9Z/output/verifier_IDO_Main.storage.fc:48:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$IDO_Main$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDq3br--70FBiKDby4C1mShJiqGLG-oPBcF0pzR26EJbE9Z/output/verifier_IDO_Main.code.fc:64:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDq3br--70FBiKDby4C1mShJiqGLG-oPBcF0pzR26EJbE9Z/output/verifier_IDO_Main.storage.fc:48:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

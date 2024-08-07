@@ -1,0 +1,54 @@
+get_users: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/tsc5/contracts/task2.fc:205:36: warning: Lack of end_parse.
+      return get_data().begin_parse().skip_bits(267).preload_dict();
+                                     ^
+main: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/tsc5/contracts/task2.fc:155:35: warning: Lack of end_parse.
+          slice admin_address = data~load_msg_addr();
+                                    ^
+main: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/tsc5/contracts/task2.fc:152:38: warning: Lack of end_parse.
+          slice sender = full_msg_slice~load_msg_addr();
+                                       ^
+main: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/tsc5/contracts/task2.fc:181:35: warning: Lack of end_parse.
+          slice admin_address = data~load_msg_addr();
+                                    ^
+main: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/tsc5/contracts/task2.fc:178:38: warning: Lack of end_parse.
+          slice sender = full_msg_slice~load_msg_addr();
+                                       ^
+get_user_share: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/tsc5/contracts/task2.fc:209:42: warning: Lack of end_parse.
+      cell users = get_data().begin_parse().skip_bits(267).preload_dict();
+                                           ^
+get_user_share: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/tsc5/contracts/task2.fc:211:32: warning: Local variable 'success' is not used
+      (slice value, int success) = users.dict_get?(256, user_address.skip_bits(3 + 8));
+                                 ^
+sub: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/tsc5/contracts/task2.fc:30:13: warning: Lack of end_parse.
+          data~load_msg_addr();
+              ^
+sub: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/tsc5/contracts/task2.fc:27:46: warning: Lack of end_parse.
+          slice jetton_address = full_msg_slice~load_msg_addr();
+                                               ^
+sub: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/tsc5/contracts/task2.fc:103:9: warning: Lack of end_parse.
+      data~load_msg_addr();
+          ^
+main & get_users: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/tsc5/contracts/task2.fc:205:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().skip_bits(267).preload_dict();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/tsc5/contracts/task2.fc:192:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_slice(admin_address)
+              ^
+main & get_users: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/tsc5/contracts/task2.fc:205:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().skip_bits(267).preload_dict();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/tsc5/contracts/task2.fc:167:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_slice(admin_address)
+              ^

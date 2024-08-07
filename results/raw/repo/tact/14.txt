@@ -1,0 +1,15 @@
+__tact_dict_set_int_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-arrays/output/sample_Arrays.stdlib.fc:40:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+$Arrays$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-arrays/output/sample_Arrays.storage.fc:78:19: warning: Lack of end_parse.
+          return $sc~$Arrays$_load();
+                    ^
+$Arrays$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-arrays/output/sample_Arrays.code.fc:104:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-arrays/output/sample_Arrays.storage.fc:87:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

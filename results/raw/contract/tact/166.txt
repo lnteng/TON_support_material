@@ -1,0 +1,19 @@
+$SampleTactContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB0qXAp23TLfxSkzrnUMfPRAwvdvvvi-r-o4Ds3nOrmYhQe/output/verifier_SampleTactContract.code.fc:15:40: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'counter)) = (null(), null());
+                                         ^
+$SampleTactContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB0qXAp23TLfxSkzrnUMfPRAwvdvvvi-r-o4Ds3nOrmYhQe/output/verifier_SampleTactContract.code.fc:15:40: warning: Local variable '$self'counter' is not used
+      var (($self'owner, $self'counter)) = (null(), null());
+                                         ^
+$SampleTactContract$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB0qXAp23TLfxSkzrnUMfPRAwvdvvvi-r-o4Ds3nOrmYhQe/output/verifier_SampleTactContract.storage.fc:93:19: warning: Lack of end_parse.
+          return $sc~$SampleTactContract$_load();
+                    ^
+$SampleTactContract$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB0qXAp23TLfxSkzrnUMfPRAwvdvvvi-r-o4Ds3nOrmYhQe/output/verifier_SampleTactContract.code.fc:81:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQB0qXAp23TLfxSkzrnUMfPRAwvdvvvi-r-o4Ds3nOrmYhQe/output/verifier_SampleTactContract.storage.fc:104:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

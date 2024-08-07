@@ -1,0 +1,73 @@
+# created     PJ 200907XX jakobi@acm.org
+# copyright:  (c) 2009 jakobi@acm.org, GPL v3 or later
+# archive:    http://jakobi.github.com/script-archive-doc/
+
+export LINES COLUMNS
+export DISPLAY
+typeset +x PROMPT_COMMAND PS1
+
+# see X.example for setting / guessing displays and remote hosts to use,
+# in combination with window titles and snafu
+
+
+
+# interactive only
+if [ "$PS1" != "" ]; then 
+
+   # default prompt for all shells
+   PROMPTCHAR="%";
+   PROMPTPREFIX="#";
+   # % for users, # for system, "## ... ##" for root
+   # q: maybe also color/bold it?
+   [ "$UID" -lt "${MAXSYSTEMUSERUID:-1000}" ] && PROMPTCHAR="#";
+   [ "$UID" = "0" ] && PROMPTCHAR="##" && PROMPTPREFIX="## ";
+   PS1=$PROMPTPREFIX'($?) ${debian_chroot:+($debian_chroot) }`date +%H:%M:%S` $LOGNAME@$HOSTNAME $PWD
+'$PROMPTPREFIX'$SHELL$SHNEST !'$PROMPTCHAR' '
+
+   # PUT CD OVERRIDE FOR INTERACTIVE USE HERE
+
+   if [ -n "$_IS_BASH" ]; then # bash-only
+      # after each command check LINES/COLUMNS
+      if [ "$VIM_ACTIVE" = "" ]; then
+         shopt -s checkwinsize 
+
+         # PS1 tricks: \[ ... \] to embed non-printing chars in the prompt, 
+         #             might fix the length counting problem, but don't put 
+         #             part of the 1st line of a dual line in there...
+         # consider a trick like '[0...0m' to normalize attribs AND 
+         # pad the string to a correct multiple of 8 for using tab on non-printable 
+         # easily confused shells like csh
+
+         # q: $? - maybe also color / beep?
+         PS1="$PROMPTPREFIX(\$?) ${debian_chroot:+($debian_chroot) }\\t \\u@\\h \\w\n$PROMPTPREFIX\\s$SHNEST $PROMPTCHAR "
+
+         # If this is an xterm set the title to user@host:dir
+         _TERM=$TERM
+         [ -n "$STY" -a "$TERM" = "vt100" ] && TERM=screen # for screen, if TERM has been mangled
+         case "$TERM" in
+            xterm*|rxvt*)
+               PROMPT_COMMAND='_P="";_P="${SSH_CONNECTION#* }";_P="${_P%% *}";[ "$PROMPT_COMMAND_TITLE" = "" ] && echo -ne "\033]0;$PROMPT_COMMAND_TITLE_PREFIX${_P:+$_P:}${GPG_TTY##/dev/} -- ${USER}@${HOSTNAME} -- ${PWD/$HOME/~}\007" || [ "$PROMPT_COMMAND_TITLE" = "no" ] || echo -ne "\033]0;$PROMPT_COMMAND_TITLE\007"'
+               ;;
+            screen*)
+               # also have a dynamic screen title parsing the prompt for a command
+               # (use with ^a-: shelltitle '> |bash'). It is also possible to bind
+               # a command with a screen-window title, e.g. ^a-R: bind R screen -t '% |root:' su 
+               # or to set it manually: ^a-A
+               PROMPT_COMMAND='_P="";_P="${SSH_CONNECTION#* }";_P="${_P%% *}";[ "$PROMPT_COMMAND_TITLE" = "" ] && echo -ne "\033]0;$PROMPT_COMMAND_TITLE_PREFIX${_P:+$_P:}${GPG_TTY##/dev/} -- {USER}@${HOSTNAME} -- ${PWD/$HOME/~}\007\033k\033\134" || [ "$PROMPT_COMMAND_TITLE" = "no" ] || echo -ne "\033]0;$PROMPT_COMMAND_TITLE\007"'
+               # \134 is backslash; double \ when used in PS1: \\033k\\033\\134
+               #PS1="#(\$?) ${debian_chroot:+($debian_chroot) }\\t \\u@\\h:\\w\\n#\\s$SHNEST $PROMPTCHAR "
+               ;;
+            *) ;;
+         esac
+         TERM=$_TERM
+      fi
+   fi
+fi
+
+
+function term_title { export PROMPT_COMMAND_TITLE=no; term.title ${1:+"$@"} 2>/dev/null ;}
+alias rs='eval `resize`'
+
+
+
+# vim:filetype=sh

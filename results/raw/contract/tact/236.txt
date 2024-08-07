@@ -1,0 +1,114 @@
+__gen_readopt_Project: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlpvd71xYysA7MPF91iuu_2pE-qBg5PGc2QfuNnR63BATb/quadratic_grant_QuadraticGrantTonContract.code.fc:151:40: warning: Lack of end_parse.
+      return __gen_Project_as_optional(sc~__gen_read_Project());
+                                         ^
+__gen_read_Project: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlpvd71xYysA7MPF91iuu_2pE-qBg5PGc2QfuNnR63BATb/quadratic_grant_QuadraticGrantTonContract.code.fc:137:24: warning: Lack of end_parse.
+      var v'voters = sc_1~load_dict();
+                         ^
+__tact_dict_set_int_cell: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlpvd71xYysA7MPF91iuu_2pE-qBg5PGc2QfuNnR63BATb/quadratic_grant_QuadraticGrantTonContract.code.fc:52:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+__gen_read_QuadraticGrantTonContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlpvd71xYysA7MPF91iuu_2pE-qBg5PGc2QfuNnR63BATb/quadratic_grant_QuadraticGrantTonContract.code.fc:205:26: warning: Lack of end_parse.
+      var v'projects = sc_2~load_dict();
+                           ^
+__gen_read_QuadraticGrantTonContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlpvd71xYysA7MPF91iuu_2pE-qBg5PGc2QfuNnR63BATb/quadratic_grant_QuadraticGrantTonContract.code.fc:202:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+__tact_dict_set_slice_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlpvd71xYysA7MPF91iuu_2pE-qBg5PGc2QfuNnR63BATb/quadratic_grant_QuadraticGrantTonContract.code.fc:70:21: warning: Local variable 'ok' is not used
+          var (r, ok) = __tact_dict_delete(d, kl, k);
+                      ^
+$__gen_QuadraticGrantTonContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlpvd71xYysA7MPF91iuu_2pE-qBg5PGc2QfuNnR63BATb/quadratic_grant_QuadraticGrantTonContract.code.fc:250:189: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'id, $self'contribution, $self'tax_adjustment_multiplier, $self'voting_unit, $self'status, $self'fund, $self'project_number, $self'total_area, $self'projects)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                                                                              ^
+$__gen_QuadraticGrantTonContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlpvd71xYysA7MPF91iuu_2pE-qBg5PGc2QfuNnR63BATb/quadratic_grant_QuadraticGrantTonContract.code.fc:250:189: warning: Local variable '$self'id' is not used
+      var (($self'owner, $self'id, $self'contribution, $self'tax_adjustment_multiplier, $self'voting_unit, $self'status, $self'fund, $self'project_number, $self'total_area, $self'projects)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                                                                              ^
+$__gen_QuadraticGrantTonContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlpvd71xYysA7MPF91iuu_2pE-qBg5PGc2QfuNnR63BATb/quadratic_grant_QuadraticGrantTonContract.code.fc:250:189: warning: Local variable '$self'contribution' is not used
+      var (($self'owner, $self'id, $self'contribution, $self'tax_adjustment_multiplier, $self'voting_unit, $self'status, $self'fund, $self'project_number, $self'total_area, $self'projects)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                                                                              ^
+$__gen_QuadraticGrantTonContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlpvd71xYysA7MPF91iuu_2pE-qBg5PGc2QfuNnR63BATb/quadratic_grant_QuadraticGrantTonContract.code.fc:250:189: warning: Local variable '$self'tax_adjustment_multiplier' is not used
+      var (($self'owner, $self'id, $self'contribution, $self'tax_adjustment_multiplier, $self'voting_unit, $self'status, $self'fund, $self'project_number, $self'total_area, $self'projects)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                                                                              ^
+$__gen_QuadraticGrantTonContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlpvd71xYysA7MPF91iuu_2pE-qBg5PGc2QfuNnR63BATb/quadratic_grant_QuadraticGrantTonContract.code.fc:250:189: warning: Local variable '$self'voting_unit' is not used
+      var (($self'owner, $self'id, $self'contribution, $self'tax_adjustment_multiplier, $self'voting_unit, $self'status, $self'fund, $self'project_number, $self'total_area, $self'projects)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                                                                              ^
+$__gen_QuadraticGrantTonContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlpvd71xYysA7MPF91iuu_2pE-qBg5PGc2QfuNnR63BATb/quadratic_grant_QuadraticGrantTonContract.code.fc:250:189: warning: Local variable '$self'status' is not used
+      var (($self'owner, $self'id, $self'contribution, $self'tax_adjustment_multiplier, $self'voting_unit, $self'status, $self'fund, $self'project_number, $self'total_area, $self'projects)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                                                                              ^
+$__gen_QuadraticGrantTonContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlpvd71xYysA7MPF91iuu_2pE-qBg5PGc2QfuNnR63BATb/quadratic_grant_QuadraticGrantTonContract.code.fc:250:189: warning: Local variable '$self'fund' is not used
+      var (($self'owner, $self'id, $self'contribution, $self'tax_adjustment_multiplier, $self'voting_unit, $self'status, $self'fund, $self'project_number, $self'total_area, $self'projects)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                                                                              ^
+$__gen_QuadraticGrantTonContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlpvd71xYysA7MPF91iuu_2pE-qBg5PGc2QfuNnR63BATb/quadratic_grant_QuadraticGrantTonContract.code.fc:250:189: warning: Local variable '$self'project_number' is not used
+      var (($self'owner, $self'id, $self'contribution, $self'tax_adjustment_multiplier, $self'voting_unit, $self'status, $self'fund, $self'project_number, $self'total_area, $self'projects)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                                                                              ^
+$__gen_QuadraticGrantTonContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlpvd71xYysA7MPF91iuu_2pE-qBg5PGc2QfuNnR63BATb/quadratic_grant_QuadraticGrantTonContract.code.fc:250:189: warning: Local variable '$self'total_area' is not used
+      var (($self'owner, $self'id, $self'contribution, $self'tax_adjustment_multiplier, $self'voting_unit, $self'status, $self'fund, $self'project_number, $self'total_area, $self'projects)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                                                                              ^
+$__gen_QuadraticGrantTonContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlpvd71xYysA7MPF91iuu_2pE-qBg5PGc2QfuNnR63BATb/quadratic_grant_QuadraticGrantTonContract.code.fc:250:189: warning: Local variable '$self'projects' is not used
+      var (($self'owner, $self'id, $self'contribution, $self'tax_adjustment_multiplier, $self'voting_unit, $self'status, $self'fund, $self'project_number, $self'total_area, $self'projects)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                                                                              ^
+__gen_load_QuadraticGrantTonContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlpvd71xYysA7MPF91iuu_2pE-qBg5PGc2QfuNnR63BATb/quadratic_grant_QuadraticGrantTonContract.code.fc:269:19: warning: Lack of end_parse.
+          return $sc~__gen_read_QuadraticGrantTonContract();
+                    ^
+__gen_read_$init$QuadraticGrantTonContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlpvd71xYysA7MPF91iuu_2pE-qBg5PGc2QfuNnR63BATb/quadratic_grant_QuadraticGrantTonContract.code.fc:245:22: warning: Lack of end_parse.
+      var v'fund = sc_1~load_int(257);
+                       ^
+$__gen_QuadraticGrantTonContract_receive_SetFund: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlpvd71xYysA7MPF91iuu_2pE-qBg5PGc2QfuNnR63BATb/quadratic_grant_QuadraticGrantTonContract.code.fc:401:182: warning: Local variable '$self'fund' is not used
+      ($self'owner, $self'id, $self'contribution, $self'tax_adjustment_multiplier, $self'voting_unit, $self'status, $self'fund, $self'project_number, $self'total_area, $self'projects)~$__gen_QuadraticGrantTonContract_requireOwner();
+                                                                                                                                                                                       ^
+$__gen_QuadraticGrantTonContract_receive_Vote: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlpvd71xYysA7MPF91iuu_2pE-qBg5PGc2QfuNnR63BATb/quadratic_grant_QuadraticGrantTonContract.code.fc:441:34: warning: PressionLoss
+      throw_unless(14329, (($votes * 1000000000) == ($amount * $self'voting_unit)));
+                                   ^
+$__gen_QuadraticGrantTonContract_receive_Vote: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlpvd71xYysA7MPF91iuu_2pE-qBg5PGc2QfuNnR63BATb/quadratic_grant_QuadraticGrantTonContract.code.fc:435:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$__gen_QuadraticGrantTonContract_receive_Vote: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlpvd71xYysA7MPF91iuu_2pE-qBg5PGc2QfuNnR63BATb/quadratic_grant_QuadraticGrantTonContract.code.fc:435:59: warning: Local variable '$ctx'sender' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$__gen_QuadraticGrantTonContract_receive_Vote: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlpvd71xYysA7MPF91iuu_2pE-qBg5PGc2QfuNnR63BATb/quadratic_grant_QuadraticGrantTonContract.code.fc:435:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$__gen_QuadraticGrantTonContract_receive_comment_2a02d948cfb1ebbdd8236744f903a7b5d8a0c956cad552f30b9b1d0e96db4b52: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlpvd71xYysA7MPF91iuu_2pE-qBg5PGc2QfuNnR63BATb/quadratic_grant_QuadraticGrantTonContract.code.fc:466:182: warning: Local variable '$self'contribution' is not used
+      ($self'owner, $self'id, $self'contribution, $self'tax_adjustment_multiplier, $self'voting_unit, $self'status, $self'fund, $self'project_number, $self'total_area, $self'projects)~$__gen_QuadraticGrantTonContract_requireOwner();
+                                                                                                                                                                                       ^
+$__gen_QuadraticGrantTonContract_receive_comment_2a02d948cfb1ebbdd8236744f903a7b5d8a0c956cad552f30b9b1d0e96db4b52: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlpvd71xYysA7MPF91iuu_2pE-qBg5PGc2QfuNnR63BATb/quadratic_grant_QuadraticGrantTonContract.code.fc:466:182: warning: Local variable '$self'status' is not used
+      ($self'owner, $self'id, $self'contribution, $self'tax_adjustment_multiplier, $self'voting_unit, $self'status, $self'fund, $self'project_number, $self'total_area, $self'projects)~$__gen_QuadraticGrantTonContract_requireOwner();
+                                                                                                                                                                                       ^
+__gen_store_QuadraticGrantTonContract & __gen_load_QuadraticGrantTonContract: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlpvd71xYysA7MPF91iuu_2pE-qBg5PGc2QfuNnR63BATb/quadratic_grant_QuadraticGrantTonContract.code.fc:265:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlpvd71xYysA7MPF91iuu_2pE-qBg5PGc2QfuNnR63BATb/quadratic_grant_QuadraticGrantTonContract.code.fc:280:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+__gen_store_QuadraticGrantTonContract & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlpvd71xYysA7MPF91iuu_2pE-qBg5PGc2QfuNnR63BATb/quadratic_grant_QuadraticGrantTonContract.code.fc:578:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDlpvd71xYysA7MPF91iuu_2pE-qBg5PGc2QfuNnR63BATb/quadratic_grant_QuadraticGrantTonContract.code.fc:280:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

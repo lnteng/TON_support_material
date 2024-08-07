@@ -1,0 +1,183 @@
+;; #include "imports/stdlib.fc";
+
+() recv_internal(int my_balance, int msg_value, cell in_msg_full, slice in_msg_body) impure {
+
+}
+
+;; 2 <= N <= 31 & 2 <= M <= 31
+;; 
+;;             min (X)       min (Q)   min (L)
+;; sort by: (X to break, ? on the way, length)
+;; dfs with memo: memo[i][j] = (X, Q, L, step back): best result to reach (i, j)
+
+
+;; global cell memo;  ;; {flatten ind: (X, Q, L, sb)} flatten_ind: 20bit; X,Q,L,sb: 10bit each one
+
+int to_flatten(int i, int j, int m) inline {
+    return m * i + j;
+}
+
+(int, int) from_flatten(int x, int m) inline {
+    int r = x / m;
+    return (r, x - r * m);
+}
+
+int to_key(int x, int q, int l) inline {
+    return (x << 20) | (q << 10) | l;
+}
+
+(int, int, int) from_key(int key) inline {
+    int bl = key & ((1 << 10) - 1);
+    key >>= 10;
+    int bq = key & ((1 << 10) - 1);
+    key >>= 10;
+    int bx = key;
+    return (bx, bq, bl);
+}
+
+;; S = 83
+;; X = 88
+;; . = 46
+;; E = 69
+;; ? = 63
+;; ! = 33
+
+;; int equal_slices(slice a, slice b) asm "SDEQ";
+() dump_str (slice str) impure asm "STRDUMP" "DROP";
+
+forall X -> (tuple) to_tuple (X x) asm "NOP";
+forall X -> int is_null?(X x) asm "ISNULL";
+
+;; X    Q    L   maze
+(int, int, int, tuple) solve(int n, int m, tuple maze) method_id {
+    (int si, int sj) = (0, 0);
+    (int ei, int ej) = (0, 0);
+    int i = 0;
+    repeat (n) {
+        int j = 0;
+        repeat (m) {
+            int char = maze.at(i).at(j);
+            if (char == 83) {
+                (si, sj) = (i, j);
+            } elseif (char == 69) {
+                (ei, ej) = (i, j);
+            }
+            j += 1;
+        }
+        i += 1;
+    }
+    tuple d = to_tuple([
+        to_tuple([-1, -1]),
+        to_tuple([-1,  0]),
+        to_tuple([-1,  1]),
+
+        to_tuple([ 0, -1]),
+        to_tuple([ 0,  1]),
+
+        to_tuple([ 1, -1]),
+        to_tuple([ 1,  0]),
+        to_tuple([ 1,  1])
+    ]);
+    ;; d~dump();
+    int key_len = 10;
+    cell memo = new_dict();
+    cell was = new_dict();
+    int f = 0;
+    memo = memo.udict_set_builder(key_len, to_flatten(si, sj, m), begin_cell().store_uint(0, key_len).store_uint(0, key_len).store_uint(0, key_len).store_uint(0, key_len));
+    ;; memo~dump();
+    repeat (n * m) {
+        int nxt_pos = -1;
+        (int X, int Q, int L) = (1000000, 0, 0);
+        int key = -1;
+        do {
+            (key, slice cs, int f) = memo.udict_get_next?(key_len, key);
+            ;; f~dump();
+            if (f) {
+                (_, int ff) = was.udict_get?(key_len, key);
+                ;; ff~dump();
+                if (~ ff) {
+                    (int xX, int qQ, int lL) = (cs~load_uint(key_len), cs~load_uint(key_len), cs~load_uint(key_len));
+                    if ((xX < X) | ((xX == X) & (qQ < Q)) | ((xX == X) & (qQ == Q) & (lL < L))) {
+                        nxt_pos = key;
+                        (X, Q, L) = (xX, qQ, lL);
+                    }
+                }
+            }
+        } until (~ f);
+
+        ;; dump_str("nxt_pos:");
+        ;; nxt_pos~dump();
+        was~udict_set_builder(key_len, nxt_pos, begin_cell().store_uint(1, 1));
+        (int i, int j) = from_flatten(nxt_pos, m);
+        ;; i~dump(); j~dump();
+        (int nX, int nQ, int nL) = (X, Q, L);
+        int dit = 0;
+        repeat (8) {
+            tuple dd = d.at(dit);
+            (int dx, int dy) = (dd.at(0), dd.at(1));
+
+            dx += i;
+            dy += j;
+            if ((dx >= 0) & (dx < n) & (dy >= 0) & (dy < m)) {
+                int char = maze.at(dx).at(dy);
+                (X, Q, L) = (nX, nQ, nL);
+                if (char == 88) { X += 1; } elseif (char == 63) { Q += 1; } L += 1;
+                int flatten_pos = to_flatten(dx, dy, m);
+                (slice cs, int f) = memo.udict_get?(key_len, flatten_pos);
+                if (~ f) {
+                    ;; dump_str("store to memo:"); var dbg = to_tuple([dx, dy, X, Q, L]); dbg~dump();
+                    memo~udict_set_builder(key_len, flatten_pos, begin_cell().store_uint(X, key_len).store_uint(Q, key_len).store_uint(L, key_len).store_uint(nxt_pos, key_len));
+                } else {
+                    (int xX, int qQ, int lL) = (cs~load_uint(key_len), cs~load_uint(key_len), cs~load_uint(key_len));
+                    if ((X < xX) | ((X == xX) & (Q < qQ)) | ((X == xX) & (Q == qQ) & (L < lL))) {
+                        ;; dump_str("store to memo:"); var dbg = to_tuple([dx, dy, X, Q, L]); dbg~dump();
+                        memo~udict_set_builder(key_len, flatten_pos, begin_cell().store_uint(X, key_len).store_uint(Q, key_len).store_uint(L, key_len).store_uint(nxt_pos, key_len));
+                    }
+                }
+
+            }
+            dit += 1;
+        }
+
+    }
+
+    (slice cs, int f) = memo.udict_get?(key_len, to_flatten(ei, ej, m));
+    (int X, int Q, int L, int sb) = (cs~load_uint(key_len), cs~load_uint(key_len), cs~load_uint(key_len), cs~load_uint(key_len));
+
+    cell cells_to_mark = new_dict();
+    repeat (L - 1) {
+        cells_to_mark~udict_set_builder(key_len, sb, begin_cell().store_uint(0, 1));
+        (cs, _) = memo.udict_get?(key_len, sb);
+        cs~skip_bits(key_len * 3);
+        sb = cs~load_uint(key_len);
+    }
+
+    tuple new_maze = empty_tuple();
+    int i = 0;
+    repeat (n) {
+        int j = 0;
+        tuple row = empty_tuple();
+        repeat (m) {
+            (_, int f) = cells_to_mark.udict_get?(key_len, to_flatten(i, j, m));
+            if (f) {
+                row~tpush(33);
+                ;; int x = 33;
+                ;; x~dump();
+            } else {
+                row~tpush(maze.at(i).at(j));
+                ;; int x = maze.at(i).at(j);
+                ;; x~dump();
+            }
+            j += 1;
+        }
+        ;; dump_str("----");
+        new_maze~tpush(row);
+        i += 1;
+    }
+
+    ;; X~dump();
+    ;; Q~dump();
+    ;; L~dump();
+    return (X, Q, L, new_maze);
+    ;; return (-1, 0, 0, null());
+}

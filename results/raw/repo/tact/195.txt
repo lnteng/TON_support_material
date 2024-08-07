@@ -1,0 +1,43 @@
+$__gen_Payouts_receive_CanPayoutResponse: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/payouts_Payouts.code.fc:386:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$__gen_Payouts_receive_CanPayoutResponse: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/payouts_Payouts.code.fc:386:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$__gen_Payouts_receive_comment: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/payouts_Payouts.code.fc:367:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$__gen_Payouts_receive_comment: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/payouts_Payouts.code.fc:367:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+__gen_load_Payouts: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/payouts_Payouts.code.fc:198:19: warning: Lack of end_parse.
+          return $sc~__gen_read_Payouts();
+                    ^
+$__gen_Beacon_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/payouts_Payouts.code.fc:325:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+__tact_string_builder_append: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/payouts_Payouts.code.fc:123:31: warning: Lack of end_parse.
+              sc = sc~load_ref().begin_parse();
+                                ^
+$__gen_Payouts_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/payouts_Payouts.code.fc:187:42: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'publicKey)) = (null(), null());
+                                           ^
+$__gen_Payouts_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/payouts_Payouts.code.fc:187:42: warning: Local variable '$self'publicKey' is not used
+      var (($self'owner, $self'publicKey)) = (null(), null());
+                                           ^
+__gen_store_Payouts & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/payouts_Payouts.code.fc:484:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/examples/output/payouts_Payouts.code.fc:209:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

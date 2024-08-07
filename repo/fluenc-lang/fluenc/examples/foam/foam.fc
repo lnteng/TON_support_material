@@ -1,0 +1,261 @@
+global Normal: 0;
+global MouseOver: 1;
+global Pressed: 2;
+
+struct Color
+{
+    r: 0,
+    g: 0,
+    b: 0
+}
+
+struct ControlTemplate
+{
+    normal,
+    mouseOver,
+    pressed
+};
+
+struct EventState
+{
+    u32 type: 0u32,
+
+    SDL::KeyboardEvent key,
+    SDL::MouseMotionEvent motion,
+    SDL::MouseButtonEvent button
+};
+
+struct ApplicationDefinition
+{
+    state,
+    ui
+};
+
+struct ApplicationState
+{
+    events: nothing,
+    user: nothing,
+    ui: nothing
+};
+
+function createEventState()
+{
+    return EventState
+    {
+        key: SDL::KeyboardEvent {},
+        motion: SDL::MouseMotionEvent {},
+        button: SDL::MouseButtonEvent {}
+    };
+}
+
+function createApplicationState(State state)
+{
+    return ApplicationState
+    {
+        events: SDL::SDL_WaitEventEx(createEventState()),
+        user: state
+    };
+}
+
+function rgb(i32 r, i32 g, i32 b)
+{
+    return Color
+    {
+        r: r,
+        g: g,
+        b: b
+    };
+}
+
+function invoke(without callback, State state)
+{
+    return state;
+}
+
+function invoke(function (State) callback, State state)
+{
+    return callback(state);
+}
+
+function invoke(function (EventState, any) callback, EventState state, any item)
+{
+    return callback(state, item);
+}
+
+function invoke(function () callback)
+{
+    return callback();
+}
+
+// Update stubs
+
+function update(EventState events, any parent, any item)
+{
+    return item;
+}
+
+function update(EventState events, any parent, (any item, ...controls), any nextItem)
+{
+    return item;
+}
+
+function update(EventState events, any parent, any item, (any nextItem, ...nextItems))
+{
+    return item;
+}
+
+// Process stubs
+
+
+function process(ApplicationState state, without item)
+{
+    return state.user;
+}
+
+function boundingRect(Item item)
+{
+    return SDL::Rect
+    {
+        x: item.x,
+        y: item.y,
+        width: item.width,
+        height: item.height
+    };
+}
+
+function boundingRect(Item item, without parent)
+{
+    return SDL::Rect
+    {
+        x: item.x,
+        y: item.y,
+        width: item.width,
+        height: item.height
+    };
+}
+
+function boundingRect(Item item, Item parent)
+{
+    return SDL::Rect
+    {
+        x: item.x + parent.x,
+        y: item.y + parent.y,
+        width: item.width,
+        height: item.height
+    };
+}
+
+function setRenderDrawColor(i64 renderer, Color color)
+{
+    return SDL::SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, 255);
+}
+
+function selectTemplate(ControlTemplate template, Item item)
+{
+    if (item.state == MouseOver)
+    {
+        return template.mouseOver;
+    }
+
+    if (item.state == Pressed)
+    {
+        return template.pressed;
+    }
+
+    return template.normal;
+}
+
+function draw(i64 renderer, any parent, (any item, ...controls))
+{
+    draw(renderer, parent, item);
+
+    return tail draw(renderer, parent, ...controls);
+}
+
+function containsMouse(Item item, SDL::MouseMotionEvent motion)
+{
+    return (motion.x > item.x)
+        && (motion.x < (item.x + item.width))
+        && (motion.y > item.y)
+        && (motion.y < (item.y + item.height));
+}
+
+function isPressed(SDL::MouseButtonEvent button)
+{
+    return button.type == SDL::MOUSEBUTTONDOWN;
+}
+
+function expand((any item, ...items))
+{
+    return expand(item) -> expand(...items);
+}
+
+function expand(any item)
+{
+    return item;
+}
+
+function mainLoop(i64 renderer, ApplicationState state, ApplicationDefinition definition)
+{
+    SDL::SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL::SDL_RenderClear(renderer);
+
+	let viewport = SDL::SDL_RenderGetViewportEx(renderer, SDL::Rect {});
+
+	let window = Item
+	{
+		width: viewport.width,
+		height: viewport.height,
+	};
+
+    let events = SDL::SDL_WaitEventEx(createEventState());
+
+    if (events.type == SDL::SDL_QUIT)
+    {
+        return 0;
+    }
+
+    let ui = update(events, window, ...(state.ui | expand(...invoke(definition.ui, state.user))));
+
+    draw(renderer, nothing, ...ui);
+
+    SDL::SDL_RenderPresent(renderer);
+
+    let user = process(state, ...ui);
+
+    let as = state with
+    {
+        user: user,
+        events: events,
+        ui: ui
+    };
+
+    return tail mainLoop(renderer, as, definition);
+}
+
+namespace Foam
+{
+    function run(ApplicationDefinition definition)
+    {
+        SDL::SDL_Init(SDL::INIT_VIDEO);
+        SDL::Image::IMG_Init(SDL::Image::INIT_PNG);
+        SDL::TTF::TTF_Init();
+
+        let window = SDL::SDL_CreateWindow(@"test", 0, 0, 800, 600, SDL::WINDOW_RESIZABLE);
+        let renderer = SDL::SDL_CreateRenderer(window, 0, 0);
+
+        let user = invoke(definition.state);
+
+        let state = ApplicationState
+        {
+            user: user,
+            ui: expand(...invoke(definition.ui, user)),
+            events: SDL::SDL_WaitEventEx(createEventState()),
+        };
+
+        return mainLoop(renderer
+            , state
+            , definition
+            );
+    }
+}

@@ -1,0 +1,15 @@
+$Interest$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-decimal-point/output/sample_Interest.code.fc:14:94: warning: Local variable '$self'interestPercent' is not used
+      var (($self'interestPercent, $self'depositTime, $self'depositAmount, $self'totalEarned)) = (null(), 0, 0, 0);
+                                                                                               ^
+$Interest$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-decimal-point/output/sample_Interest.storage.fc:104:19: warning: Lack of end_parse.
+          return $sc~$Interest$_load();
+                    ^
+$Interest$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-decimal-point/output/sample_Interest.code.fc:80:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/04-decimal-point/output/sample_Interest.storage.fc:113:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

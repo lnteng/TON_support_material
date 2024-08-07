@@ -1,0 +1,51 @@
+%$Intgers$_internal_empty: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/references/output/sample_Intgers.code.fc:30:12: warning: Local variable '$i' is not used
+      int $i = ($it1 / $it2);
+             ^
+%$Intgers$_internal_empty: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/references/output/sample_Intgers.code.fc:31:8: warning: Local variable '$i' is not used
+      $i = ($it1 % $it2);
+         ^
+%$Intgers$_internal_empty: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/references/output/sample_Intgers.code.fc:32:8: warning: Local variable '$i' is not used
+      $i = ($it1 >> 3);
+         ^
+%$Intgers$_internal_empty: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/references/output/sample_Intgers.code.fc:33:8: warning: Local variable '$i' is not used
+      $i = min($it1, $it2);
+         ^
+%$Intgers$_internal_empty: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/references/output/sample_Intgers.code.fc:34:8: warning: Local variable '$i' is not used
+      $i = abs(((- 1) * $it2));
+         ^
+%$Intgers$_internal_empty: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/references/output/sample_Intgers.code.fc:35:12: warning: Local variable '$b' is not used
+      int $b = ($it1 >= 30);
+             ^
+$Intgers$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/references/output/sample_Intgers.storage.fc:80:19: warning: Lack of end_parse.
+          return $sc~$Intgers$_load();
+                    ^
+$Intgers$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/references/output/sample_Intgers.code.fc:14:52: warning: Local variable '$self'i1' is not used
+      var (($self'i1, $self'i2, $self'i3, $self'i4)) = (null(), null(), null(), null());
+                                                     ^
+$Intgers$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/references/output/sample_Intgers.code.fc:14:52: warning: Local variable '$self'i2' is not used
+      var (($self'i1, $self'i2, $self'i3, $self'i4)) = (null(), null(), null(), null());
+                                                     ^
+$Intgers$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/references/output/sample_Intgers.code.fc:14:52: warning: Local variable '$self'i3' is not used
+      var (($self'i1, $self'i2, $self'i3, $self'i4)) = (null(), null(), null(), null());
+                                                     ^
+$Intgers$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/references/output/sample_Intgers.code.fc:14:52: warning: Local variable '$self'i4' is not used
+      var (($self'i1, $self'i2, $self'i3, $self'i4)) = (null(), null(), null(), null());
+                                                     ^
+$Intgers$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/references/output/sample_Intgers.code.fc:64:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/Nexton/contracts/references/output/sample_Intgers.storage.fc:89:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

@@ -1,0 +1,78 @@
+#include "imports/stdlib.fc";
+#include "imports/op-codes.fc";
+#include "imports/helpers.fc";
+#include "imports/text.fc";
+#include "imports/state-init.fc";
+#include "imports/map.fc";
+
+global slice storage::authority_address;
+global cell storage::content;
+global cell storage::map;
+global cell storage::item_code;
+
+() load_data() impure inline {
+    var ds = get_data().begin_parse();
+    storage::authority_address = ds~load_msg_addr();
+    storage::content = ds~load_ref();
+    storage::map = ds~load_ref();
+    storage::item_code = ds~load_ref();
+}
+
+() save_data() impure inline {
+    builder b = begin_cell()
+            .store_slice(storage::authority_address)
+            .store_ref(storage::content)
+            .store_ref(storage::map)
+            .store_ref(storage::item_code);
+
+    set_data(b.end_cell());
+}
+
+() recv_internal(cell in_msg_full, slice in_msg_body) impure {
+    if (in_msg_body.slice_empty?()) {
+        return ();
+    }
+    slice cs = in_msg_full.begin_parse();
+    int flags = cs~load_uint(4);
+    if (flags & 1) {
+        return ();
+    }
+    slice sender_address = cs~load_msg_addr();
+    int op = in_msg_body~load_uint(32);
+    int query_id = in_msg_body~load_uint(64);
+
+    load_data();
+
+    if (op == op::deploy_version()) {
+        throw_unless(401, equal_slices(sender_address, storage::authority_address));
+
+        save_data();
+        raw_reserve(min_tons_for_storage(), 0);
+        send_message(flag::regular(), storage::authority_address, 0, op::release_version(), query_id, begin_cell().store_slice(my_address()), 128);
+        return ();
+    }
+    throw(0xffff);
+}
+
+;; Get methods
+
+(int, cell, slice) get_collection_data() method_id {
+    load_data();
+    return (0, storage::content, storage::authority_address);
+}
+
+slice get_nft_address_by_index(int index) method_id {
+    load_data();
+    cell state_init = get_item_state_init(storage::item_code, index, storage::authority_address);
+    return calculate_address(state_init);
+}
+
+cell get_nft_content(int index, cell individual_nft_content) method_id {
+    load_data();
+    return get_full_item_content(individual_nft_content, storage::map);
+}
+
+cell get_map() method_id {
+    load_data();
+    return storage::map;
+}

@@ -1,0 +1,82 @@
+get_user_share: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./kosrk/tsc5/contracts/task2.fc:207:7: warning: Lack of end_parse.
+      cs~skip_bits(267);
+        ^
+get_users: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./kosrk/tsc5/contracts/task2.fc:197:7: warning: Lack of end_parse.
+      cs~skip_bits(267);
+        ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./kosrk/tsc5/contracts/task2.fc:16:32: warning: Lack of end_parse.
+          var (owner, dict) = (ds~load_uint(256), ds.preload_dict());
+                                 ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./kosrk/tsc5/contracts/task2.fc:35:11: warning: Lack of end_parse.
+          cs~load_uint(4 + 11); ;; flags + addr std op + wc
+            ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./kosrk/tsc5/contracts/task2.fc:44:70: warning: Lack of end_parse.
+          (cell dict, int total_share, int count) = (ds~load_dict(), ds~load_uint(64), ds.preload_uint(10) + 1);
+                                                                       ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./kosrk/tsc5/contracts/task2.fc:90:43: warning: Lack of end_parse.
+          (int total_share, int count) = (ds~load_uint(64), ds.preload_uint(10));
+                                            ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./kosrk/tsc5/contracts/task2.fc:74:11: warning: Lack of end_parse.
+          cs~load_uint(4 + 11); ;; flags + addr std op + wc
+            ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./kosrk/tsc5/contracts/task2.fc:114:43: warning: Lack of end_parse.
+          (int total_share, int count) = (ds~load_uint(64), ds.preload_uint(10));
+                                            ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./kosrk/tsc5/contracts/task2.fc:147:11: warning: Lack of end_parse.
+          cs~load_uint(4 + 11); ;; flags + addr std op + wc
+            ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./kosrk/tsc5/contracts/task2.fc:150:43: warning: Lack of end_parse.
+          (int total_share, int count) = (ds~load_uint(64), ds.preload_uint(10));
+                                            ^
+recv_internal & get_user_share: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./kosrk/tsc5/contracts/task2.fc:206:24: warning: Cell of get_data and set_data are inconsistent.
+      var cs = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./kosrk/tsc5/contracts/task2.fc:19:25: warning: Cell of get_data and set_data are inconsistent.
+                          .store_uint(1024,11)
+                          ^
+recv_internal & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./kosrk/tsc5/contracts/task2.fc:109:28: warning: Cell of get_data and set_data are inconsistent.
+          var ds = get_data().begin_parse();
+                             ^
+/home/lentg/Movebit/ton-datasets1111/repo/./kosrk/tsc5/contracts/task2.fc:19:25: warning: Cell of get_data and set_data are inconsistent.
+                          .store_uint(1024,11)
+                          ^
+recv_internal & get_user_share: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./kosrk/tsc5/contracts/task2.fc:206:24: warning: Cell of get_data and set_data are inconsistent.
+      var cs = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./kosrk/tsc5/contracts/task2.fc:96:25: warning: Cell of get_data and set_data are inconsistent.
+                          .store_uint(1024,11)
+                          ^
+recv_internal & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./kosrk/tsc5/contracts/task2.fc:109:28: warning: Cell of get_data and set_data are inconsistent.
+          var ds = get_data().begin_parse();
+                             ^
+/home/lentg/Movebit/ton-datasets1111/repo/./kosrk/tsc5/contracts/task2.fc:96:25: warning: Cell of get_data and set_data are inconsistent.
+                          .store_uint(1024,11)
+                          ^
+recv_internal & get_user_share: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./kosrk/tsc5/contracts/task2.fc:206:24: warning: Cell of get_data and set_data are inconsistent.
+      var cs = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./kosrk/tsc5/contracts/task2.fc:59:25: warning: Cell of get_data and set_data are inconsistent.
+                          .store_uint(1024,11)
+                          ^
+recv_internal & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./kosrk/tsc5/contracts/task2.fc:109:28: warning: Cell of get_data and set_data are inconsistent.
+          var ds = get_data().begin_parse();
+                             ^
+/home/lentg/Movebit/ton-datasets1111/repo/./kosrk/tsc5/contracts/task2.fc:59:25: warning: Cell of get_data and set_data are inconsistent.
+                          .store_uint(1024,11)
+                          ^

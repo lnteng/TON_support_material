@@ -1,0 +1,40 @@
+restricted_cooldown: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/validator-controller.fc:142:20: warning: Local variable 'stored_seqno' is not used
+    var stored_seqno = dataSc~load_uint(32);
+                     ^
+restricted_cooldown: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/validator-controller.fc:143:29: warning: Local variable 'stored_restricted_key' is not used
+    var stored_restricted_key = dataSc~load_uint(256);
+                              ^
+restricted_cooldown: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/validator-controller.fc:144:25: warning: Local variable 'stored_master_key' is not used
+    var stored_master_key = dataSc~load_uint(256);
+                          ^
+restricted_cooldown: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/validator-controller.fc:146:56: warning: Local variable 'restricted_address_wc' is not used
+    var (restricted_address_wc, restricted_address_hash) = parse_std_addr(restricted_address);
+                                                         ^
+restricted_cooldown: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/validator-controller.fc:146:56: warning: Local variable 'restricted_address_hash' is not used
+    var (restricted_address_wc, restricted_address_hash) = parse_std_addr(restricted_address);
+                                                         ^
+get_public_key: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/validator-controller.fc:137:34: warning: Lack of end_parse.
+    return get_data().begin_parse().skip_bits(32).preload_uint(256);
+                                   ^
+seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/validator-controller.fc:133:20: warning: Lack of end_parse.
+    return get_data().begin_parse().preload_uint(32);
+                     ^
+recv_external: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/validator-controller.fc:66:20: warning: Lack of end_parse.
+        var op = body~load_uint(32);
+                     ^
+recv_external: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/validator-controller.fc:53:28: warning: Local variable 's_addr' is not used
+        var (s_addr, d_addr) = (cs~load_msg_addr(), cs~load_msg_addr());
+                             ^
+recv_external: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/validator-controller.fc:55:17: warning: Local variable 'grams' is not used
+        var grams = cs~load_grams();
+                  ^

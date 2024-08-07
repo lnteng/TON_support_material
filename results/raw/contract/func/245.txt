@@ -1,0 +1,124 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/treasury.fc:2063:19: warning: Lack of end_parse.
+      slice src = cs~load_msg_addr();
+                    ^
+on_bounce: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/treasury.fc:1851:12: warning: Local variable 'op' is not used
+      int op = s~load_uint(32);
+             ^
+on_bounce: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/treasury.fc:1852:18: warning: Local variable 'query_id' is not used
+      int query_id = s~load_uint(64);
+                   ^
+upgrade_code: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/treasury.fc:1717:20: warning: Lack of end_parse.
+      set_c3(new_code.begin_parse().bless());
+                     ^
+send_message_to_loan: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/treasury.fc:1426:18: warning: Local variable 'query_id' is not used
+      int query_id = s~load_uint(64);
+                   ^
+vset_changed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/treasury.fc:965:18: warning: Local variable 'query_id' is not used
+      int query_id = s~load_uint(64);
+                   ^
+vset_changed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/treasury.fc:984:7: warning: Local variable 'stake_held_until' is not used
+      ) = unpack_participation(ps);
+        ^
+last_bill_burned: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/treasury.fc:1257:18: warning: Local variable 'query_id' is not used
+      int query_id = s~load_uint(64);
+                   ^
+last_bill_burned: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/treasury.fc:1269:26: warning: Local variable 'f?' is not used
+      ( slice ps, int f? ) = participations~udict_delete_get?(32, round_since);
+                           ^
+last_bill_burned: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/treasury.fc:1284:7: warning: Local variable 'state' is not used
+      ) = unpack_participation(ps);
+        ^
+last_bill_burned: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/treasury.fc:1284:7: warning: Local variable 'size' is not used
+      ) = unpack_participation(ps);
+        ^
+last_bill_burned: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/treasury.fc:1284:7: warning: Local variable 'sorted' is not used
+      ) = unpack_participation(ps);
+        ^
+last_bill_burned: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/treasury.fc:1284:7: warning: Local variable 'requests' is not used
+      ) = unpack_participation(ps);
+        ^
+last_bill_burned: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/treasury.fc:1284:7: warning: Local variable 'rejected' is not used
+      ) = unpack_participation(ps);
+        ^
+last_bill_burned: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/treasury.fc:1284:7: warning: Local variable 'accepted' is not used
+      ) = unpack_participation(ps);
+        ^
+last_bill_burned: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/treasury.fc:1284:7: warning: Local variable 'accrued' is not used
+      ) = unpack_participation(ps);
+        ^
+last_bill_burned: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/treasury.fc:1284:7: warning: Local variable 'staked' is not used
+      ) = unpack_participation(ps);
+        ^
+last_bill_burned: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/treasury.fc:1284:7: warning: Local variable 'recovering' is not used
+      ) = unpack_participation(ps);
+        ^
+last_bill_burned: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/treasury.fc:1284:7: warning: Local variable 'current_vset_hash' is not used
+      ) = unpack_participation(ps);
+        ^
+last_bill_burned: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/treasury.fc:1284:7: warning: Local variable 'stake_held_for' is not used
+      ) = unpack_participation(ps);
+        ^
+last_bill_burned: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/treasury.fc:1284:7: warning: Local variable 'stake_held_until' is not used
+      ) = unpack_participation(ps);
+        ^
+get_elector: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/imports/utils.fc:134:64: warning: Lack of end_parse.
+      return ( chain::main, config_param(config::elector_address).begin_parse().preload_uint(256) );
+                                                                 ^
+recover_stake_result: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/treasury.fc:1128:13: warning: Local variable 'ok?' is not used
+      int ok? = s~load_int(1);
+              ^
+get_validators_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/imports/utils.fc:152:52: warning: Lack of end_parse.
+      return ( cs~load_uint(16), cs~load_uint(16), cs~load_uint(16) );
+                                                     ^
+get_election_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/imports/utils.fc:142:70: warning: Lack of end_parse.
+      return ( cs~load_uint(32), cs~load_uint(32), cs~load_uint(32), cs~load_uint(32) );
+                                                                       ^
+get_stake_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/imports/utils.fc:158:67: warning: Lack of end_parse.
+      return ( cs~load_coins(), cs~load_coins(), cs~load_coins(), cs~load_uint(32) );
+                                                                    ^
+max_recommended_punishment_for_validator_misbehaviour: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/imports/utils.fc:351:49: warning: Lack of end_parse.
+          , cs~load_uint(16), cs~load_uint(16), cs~load_uint(16)
+                                                  ^
+max_recommended_punishment_for_validator_misbehaviour: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/imports/utils.fc:347:7: warning: Local variable 'prefix' is not used
+      ) = ( cs~load_uint(8)
+        ^
+max_recommended_punishment_for_validator_misbehaviour: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/imports/utils.fc:347:7: warning: Local variable 'unpunishable_interval' is not used
+      ) = ( cs~load_uint(8)
+        ^
+max_recommended_punishment_for_validator_misbehaviour: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/imports/utils.fc:347:7: warning: Local variable 'long_interval' is not used
+      ) = ( cs~load_uint(8)
+        ^
+get_vset_times: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCLyZHP4Xe8fpchQz76O-_RmUhaVc_9BAoGyJrwJrcbz2eZ/imports/utils.fc:167:34: warning: Lack of end_parse.
+      return ( cs~load_uint(32), cs~load_uint(32) );
+                                   ^

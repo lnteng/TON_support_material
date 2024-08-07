@@ -1,0 +1,36 @@
+get_fees: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBDehZJg-8UuQB6YWAMmnyjYTTHuFqJre0BDlxLqK2IDdjo/nft-auction-v3r3.func:59:30: warning: Lack of end_parse.
+    int royalty_fee_base = fees~load_uint(32);
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBDehZJg-8UuQB6YWAMmnyjYTTHuFqJre0BDlxLqK2IDdjo/nft-auction-v3r3.func:269:25: warning: Lack of end_parse.
+    slice sender_addr = cs~load_msg_addr();
+                          ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBDehZJg-8UuQB6YWAMmnyjYTTHuFqJre0BDlxLqK2IDdjo/nft-auction-v3r3.func:291:25: warning: Lack of end_parse.
+      send_raw_message(msg~load_ref(), mode);
+                          ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBDehZJg-8UuQB6YWAMmnyjYTTHuFqJre0BDlxLqK2IDdjo/nft-auction-v3r3.func:334:5: warning: Local variable 'mp_fee_addr' is not used
+    ) = get_fees();
+      ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBDehZJg-8UuQB6YWAMmnyjYTTHuFqJre0BDlxLqK2IDdjo/nft-auction-v3r3.func:334:5: warning: Local variable 'royalty_fee_addr' is not used
+    ) = get_fees();
+      ^
+init_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBDehZJg-8UuQB6YWAMmnyjYTTHuFqJre0BDlxLqK2IDdjo/nft-auction-v3r3.func:92:26: warning: Lack of end_parse.
+    created_at? = constants~load_uint(32);
+                           ^
+init_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBDehZJg-8UuQB6YWAMmnyjYTTHuFqJre0BDlxLqK2IDdjo/nft-auction-v3r3.func:84:21: warning: Lack of end_parse.
+    constant_cell = ds~load_ref();
+                      ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBDehZJg-8UuQB6YWAMmnyjYTTHuFqJre0BDlxLqK2IDdjo/nft-auction-v3r3.func:208:49: warning: UnHandle bounced message with op: 0x5fcc3d14
+    send_raw_message(nft_transfer.end_cell(), 130); ;; 128 +2 for ignoring errors
+                                                  ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBDehZJg-8UuQB6YWAMmnyjYTTHuFqJre0BDlxLqK2IDdjo/nft-auction-v3r3.func:132:51: warning: UnHandle bounced message with op: 0x5fcc3d14
+    send_raw_message(nft_return_msg.end_cell(), 128);
+                                                    ^

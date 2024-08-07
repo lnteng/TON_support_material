@@ -1,0 +1,62 @@
+$SafeDeployerContract$_internal_text_2d51e7ccd78be57b2c0bfaab585f0f535337c1219afb5421dd1de4b81f300226: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeDeployerContract.code.fc:44:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$SafeDeployerContract$_internal_text_2d51e7ccd78be57b2c0bfaab585f0f535337c1219afb5421dd1de4b81f300226: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeDeployerContract.code.fc:44:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$SafeDeployerContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeDeployerContract.code.fc:14:73: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'devFee, $self'deployValue, $self'counter)) = (null(), null(), null(), null());
+                                                                          ^
+$SafeDeployerContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeDeployerContract.code.fc:14:73: warning: Local variable '$self'devFee' is not used
+      var (($self'owner, $self'devFee, $self'deployValue, $self'counter)) = (null(), null(), null(), null());
+                                                                          ^
+$SafeDeployerContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeDeployerContract.code.fc:14:73: warning: Local variable '$self'deployValue' is not used
+      var (($self'owner, $self'devFee, $self'deployValue, $self'counter)) = (null(), null(), null(), null());
+                                                                          ^
+$SafeDeployerContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeDeployerContract.code.fc:14:73: warning: Local variable '$self'counter' is not used
+      var (($self'owner, $self'devFee, $self'deployValue, $self'counter)) = (null(), null(), null(), null());
+                                                                          ^
+$SafeDeployerContract$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeDeployerContract.storage.fc:187:19: warning: Lack of end_parse.
+          return $sc~$SafeDeployerContract$_load();
+                    ^
+$SafeDeployerContract$_fun_forward: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeDeployerContract.stdlib.fc:143:63: warning: Local variable '$ctx'bounced' is not used
+          var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                                ^
+$SafeDeployerContract$_fun_forward: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeDeployerContract.stdlib.fc:143:63: warning: Local variable '$ctx'sender' is not used
+          var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                                ^
+$SafeDeployerContract$_fun_forward: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeDeployerContract.stdlib.fc:143:63: warning: Local variable '$ctx'raw' is not used
+          var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                                ^
+$SafeContract$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeDeployerContract.storage.fc:216:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$SafeDeployerContract$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeDeployerContract.code.fc:104:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeDeployerContract.storage.fc:196:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$SafeDeployerContract$_contract_store & $SafeDeployerContract$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeDeployerContract.storage.fc:183:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeDeployerContract.storage.fc:196:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$SafeDeployerContract$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/contract-safe/sources/output/safe_SafeDeployerContract.code.fc:50:210: warning: UnHandle bounced message with op: 0x6eb08253
+  ... code, $init'data, $SafeDeployment$_store_cell($SafeDeployment$_constructor_remaining($self'owner))));
+  ...                                                                                                     ^

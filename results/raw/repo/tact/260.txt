@@ -1,0 +1,87 @@
+$CopyTrading$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/copy_trading_CopyTrading.code.fc:14:137: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId)) = (null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                          ^
+$CopyTrading$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/copy_trading_CopyTrading.code.fc:14:137: warning: Local variable '$self'universalRouterAddress' is not used
+      var (($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId)) = (null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                          ^
+$CopyTrading$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/copy_trading_CopyTrading.code.fc:14:137: warning: Local variable '$self'messenger' is not used
+      var (($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId)) = (null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                          ^
+$CopyTrading$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/copy_trading_CopyTrading.code.fc:14:137: warning: Local variable '$self'dex' is not used
+      var (($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId)) = (null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                          ^
+$CopyTrading$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/copy_trading_CopyTrading.code.fc:14:137: warning: Local variable '$self'orderAction' is not used
+      var (($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId)) = (null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                          ^
+$CopyTrading$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/copy_trading_CopyTrading.code.fc:14:137: warning: Local variable '$self'positionSize' is not used
+      var (($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId)) = (null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                          ^
+$CopyTrading$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/copy_trading_CopyTrading.code.fc:14:137: warning: Local variable '$self'eventId' is not used
+      var (($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId)) = (null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                          ^
+$CopyTrading$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/copy_trading_CopyTrading.storage.fc:216:25: warning: Lack of end_parse.
+      var v'eventId = sc_2~load_int(257);
+                          ^
+$CopyTrading$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/copy_trading_CopyTrading.storage.fc:215:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+$CopyTrading$_internal_binary_Trade: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/copy_trading_CopyTrading.code.fc:94:130: warning: Local variable '$self'orderAction' is not used
+      ($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId)~$CopyTrading$_fun_requireOwner();
+                                                                                                                                   ^
+$CopyTrading$_internal_binary_Trade: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/copy_trading_CopyTrading.code.fc:94:130: warning: Local variable '$self'positionSize' is not used
+      ($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId)~$CopyTrading$_fun_requireOwner();
+                                                                                                                                   ^
+$CopyTrading$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/copy_trading_CopyTrading.storage.fc:232:19: warning: Lack of end_parse.
+          return $sc~$CopyTrading$_load();
+                    ^
+$CopyTrading$_internal_binary_SetEventId: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/copy_trading_CopyTrading.code.fc:118:130: warning: Local variable '$self'eventId' is not used
+      ($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId)~$CopyTrading$_fun_requireOwner();
+                                                                                                                                   ^
+$CopyTrading$_internal_binary_EventSignal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/copy_trading_CopyTrading.code.fc:71:25: warning: Lack of end_parse.
+      int $price = $parser~load_int(32);
+                          ^
+$CopyTrading$_internal_binary_EventSignal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/copy_trading_CopyTrading.code.fc:65:59: warning: Local variable '$cxt'bounced' is not used
+      var ($cxt'bounced, $cxt'sender, $cxt'value, $cxt'raw) = __tact_context_get();
+                                                            ^
+$CopyTrading$_internal_binary_EventSignal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/copy_trading_CopyTrading.code.fc:65:59: warning: Local variable '$cxt'value' is not used
+      var ($cxt'bounced, $cxt'sender, $cxt'value, $cxt'raw) = __tact_context_get();
+                                                            ^
+$CopyTrading$_internal_binary_EventSignal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/copy_trading_CopyTrading.code.fc:65:59: warning: Local variable '$cxt'raw' is not used
+      var ($cxt'bounced, $cxt'sender, $cxt'value, $cxt'raw) = __tact_context_get();
+                                                            ^
+$CopyTrading$_internal_binary_SetMessenger: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/copy_trading_CopyTrading.code.fc:85:130: warning: Local variable '$self'messenger' is not used
+      ($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId)~$CopyTrading$_fun_requireOwner();
+                                                                                                                                   ^
+$CopyTrading$_internal_binary_SetMessenger: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/copy_trading_CopyTrading.code.fc:85:130: warning: Local variable '$self'eventId' is not used
+      ($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId)~$CopyTrading$_fun_requireOwner();
+                                                                                                                                   ^
+$CopyTrading$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/copy_trading_CopyTrading.code.fc:160:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/copy_trading_CopyTrading.storage.fc:243:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$CopyTrading$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/copy_trading_CopyTrading.code.fc:74:210: warning: UnHandle bounced message with op: 0x8fc2e2d6
+  ... e$_store_cell($Trade$_constructor_orderAction_positionSize($self'orderAction, $self'positionSize))));
+  ...                                                                                                     ^

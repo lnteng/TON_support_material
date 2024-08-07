@@ -1,0 +1,16 @@
+get_contract_storage_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./yungwine/pyton-lessons/lesson-1/code.func:24:7: warning: Lack of end_parse.
+      ds~load_msg_addr() ;; the most recent sender
+        ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./yungwine/pyton-lessons/lesson-1/code.func:10:27: warning: Lack of end_parse.
+      int counter_value = ds~load_uint(32);                   
+                            ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./yungwine/pyton-lessons/lesson-1/code.func:4:28: warning: Lack of end_parse.
+    slice sender_address = cs~load_msg_addr();
+                             ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./yungwine/pyton-lessons/lesson-1/code.func:3:13: warning: Local variable 'flags' is not used
+    int flags = cs~load_uint(4);
+              ^

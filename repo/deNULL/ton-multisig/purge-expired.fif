@@ -1,0 +1,34 @@
+#!/usr/bin/env fift -s
+"multisig-utils.fif" include
+
+{ ."<wallet> <seqno> <keyname> [-O <output-boc>]" cr
+  ."Creates an empty request to a multisig wallet. It is to be used to purge expired pending request from wallet's storage."
+} : usage()
+
+// == Parsing command-line arguments
+
+{
+  "-O" "--output-file" 1 { =: SaveFile } option-long()
+
+  1 { =: BaseFile } nth-argument()
+  2 { parse-int =: SeqNo } nth-argument()
+  3 { +".pk" load-keypair =: PrimaryPrivateKey =: PrimaryPublicKey } nth-argument()
+  no-more-arguments()
+} scan-args()
+3 < { show-usage() } if // Checks that there's enough arguments
+
+// == End of parsing command-line arguments
+
+BaseFile +"-query" =:? SaveFile
+
+BaseFile +".addr" load-address 2dup 2constant WalletAddr
+."Source wallet address = " 2dup .addr cr 6 .Addr cr
+
+WalletAddr null
+  SeqNo -1 PrimaryPublicKey empty-message() PrimaryPrivateKey sign-message()
+external-message() =: ExtMessage
+
+."GC external message: " ExtMessage <s csr. cr
+ExtMessage 2 boc+>B dup Bx. cr
+SaveFile +".boc" tuck B>file
+."(Saved to file " type .")" cr

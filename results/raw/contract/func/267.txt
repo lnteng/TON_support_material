@@ -1,0 +1,28 @@
+get_collection_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA-YfuGJmdQ5hMGm0dX0bXmPIxNB_46PS15613TqY48Fh5c/sbt_collection.fc:152:37: warning: Lack of end_parse.
+    return (init?, next_item_index, cs~load_ref(), owner_address);
+                                      ^
+get_collection_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA-YfuGJmdQ5hMGm0dX0bXmPIxNB_46PS15613TqY48Fh5c/sbt_collection.fc:150:69: warning: Local variable 'mint_end' is not used
+    var (init?, owner_address, mint_end, next_item_index, content, _) = load_data();
+                                                                      ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA-YfuGJmdQ5hMGm0dX0bXmPIxNB_46PS15613TqY48Fh5c/sbt_collection.fc:92:7: warning: Lack of end_parse.
+      cs~load_coins(); ;; skip ihr_fee
+        ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA-YfuGJmdQ5hMGm0dX0bXmPIxNB_46PS15613TqY48Fh5c/sbt_collection.fc:131:84: warning: Lack of end_parse.
+            deploy_sbt_item(next_item_index, sbt_item_code, itemS~load_coins(), itemS~load_ref());  ;; amount + item message
+                                                                                     ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA-YfuGJmdQ5hMGm0dX0bXmPIxNB_46PS15613TqY48Fh5c/sbt_collection.fc:102:18: warning: Local variable 'query_id' is not used
+      int query_id = in_msg_body~load_uint(64);
+                   ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA-YfuGJmdQ5hMGm0dX0bXmPIxNB_46PS15613TqY48Fh5c/sbt_collection.fc:122:43: warning: Local variable 'item_index' is not used
+          var (item_index, dictElement, f?) = deploy_list~udict::delete_get_min(64);  ;; dictElement = item
+                                            ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA-YfuGJmdQ5hMGm0dX0bXmPIxNB_46PS15613TqY48Fh5c/sbt_collection.fc:16:92: warning: Lack of end_parse.
+        return (-1, ds~load_msg_addr(), ds~load_uint(256),ds~load_uint(64), ds~load_ref(), ds~load_ref());
+                                                                                             ^

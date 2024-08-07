@@ -1,0 +1,26 @@
+$TokenWallet$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCRhEZMht21gBgcfx7bTtneNHSBsHJGiRjog3QOs3R_Tdu1/output/verifier_TokenWallet.storage.fc:256:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$TokenWallet$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCRhEZMht21gBgcfx7bTtneNHSBsHJGiRjog3QOs3R_Tdu1/output/verifier_TokenWallet.storage.fc:236:19: warning: Lack of end_parse.
+          return $sc~$TokenWallet$_load();
+                    ^
+$TokenWallet$_contract_store & $TokenWallet$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCRhEZMht21gBgcfx7bTtneNHSBsHJGiRjog3QOs3R_Tdu1/output/verifier_TokenWallet.storage.fc:232:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCRhEZMht21gBgcfx7bTtneNHSBsHJGiRjog3QOs3R_Tdu1/output/verifier_TokenWallet.storage.fc:247:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$TokenWallet$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCRhEZMht21gBgcfx7bTtneNHSBsHJGiRjog3QOs3R_Tdu1/output/verifier_TokenWallet.code.fc:115:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCRhEZMht21gBgcfx7bTtneNHSBsHJGiRjog3QOs3R_Tdu1/output/verifier_TokenWallet.storage.fc:247:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$TokenWallet$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCRhEZMht21gBgcfx7bTtneNHSBsHJGiRjog3QOs3R_Tdu1/output/verifier_TokenWallet.code.fc:60:174: warning: UnHandle bounced message with op: 0xd53276db
+          $global_send($SendParameters$_constructor_to_value_body($msg'response_destination, $msgValue, $Excesses$_store_cell($Excesses$_constructor_query_id($msg'query_id))));
+                                                                                                                                                                               ^

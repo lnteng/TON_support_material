@@ -1,0 +1,24 @@
+find_and_replace: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./krivochenko/tsc4/contracts/3.fc:78:46: warning: Lack of end_parse.
+            result = result.store_slice(current~load_bits(1));
+                                               ^
+find_and_replace: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./krivochenko/tsc4/contracts/3.fc:81:52: warning: Lack of end_parse.
+            result = begin_cell().store_slice(current~load_bits(1));
+                                                     ^
+find_and_replace: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./krivochenko/tsc4/contracts/3.fc:71:18: warning: Lack of end_parse.
+            current~load_bits(flag_size);
+                   ^
+find_and_replace: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./krivochenko/tsc4/contracts/3.fc:74:18: warning: Lack of end_parse.
+            current~load_bits(current.slice_bits());
+                   ^
+find_and_replace: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./krivochenko/tsc4/contracts/3.fc:73:15: warning: Lack of end_parse.
+            next~load_bits(flag_size - current.slice_bits());
+                ^
+find_and_replace: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./krivochenko/tsc4/contracts/3.fc:41:20: warning: Local variable 'fragment' is not used
+        int fragment = null();
+                     ^

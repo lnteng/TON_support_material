@@ -1,0 +1,107 @@
+$__gen_GateKeeperContract_receive_UpdateTonPriceMsg: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_GateKeeperContract.code.fc:663:444: warning: Local variable '$self'tonPrice' is not used
+  ... stAccumulationTime), $self'totalCollateralAmount, $self'stablecoinsIssued, $self'totalFeesCollected)~$__gen_GateKeeperContract_requireOwner();
+  ...                                                                                                     ^
+$__gen_GateKeeperContract_receive_UpdateTonPriceMsg: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_GateKeeperContract.code.fc:663:444: warning: Local variable '$self'tonPriceWithSafetyMargin' is not used
+  ... stAccumulationTime), $self'totalCollateralAmount, $self'stablecoinsIssued, $self'totalFeesCollected)~$__gen_GateKeeperContract_requireOwner();
+  ...                                                                                                     ^
+$__gen_GateKeeperContract_receive_PoolSettingsMsg: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_GateKeeperContract.code.fc:654:444: warning: Local variable '$self'poolSettings'liquidationRatio' is not used
+  ... stAccumulationTime), $self'totalCollateralAmount, $self'stablecoinsIssued, $self'totalFeesCollected)~$__gen_GateKeeperContract_requireOwner();
+  ...                                                                                                     ^
+$__gen_GateKeeperContract_receive_PoolSettingsMsg: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_GateKeeperContract.code.fc:654:444: warning: Local variable '$self'poolSettings'stabilityFeeRate' is not used
+  ... stAccumulationTime), $self'totalCollateralAmount, $self'stablecoinsIssued, $self'totalFeesCollected)~$__gen_GateKeeperContract_requireOwner();
+  ...                                                                                                     ^
+$__gen_GateKeeperContract_receive_PoolSettingsMsg: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_GateKeeperContract.code.fc:654:444: warning: Local variable '$self'poolSettings'liquidatorIncentiveBps' is not used
+  ... stAccumulationTime), $self'totalCollateralAmount, $self'stablecoinsIssued, $self'totalFeesCollected)~$__gen_GateKeeperContract_requireOwner();
+  ...                                                                                                     ^
+$__gen_GateKeeperContract_receive_SetDeps: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_GateKeeperContract.code.fc:645:444: warning: Local variable '$self'deps'gateKeeperAddress' is not used
+  ... stAccumulationTime), $self'totalCollateralAmount, $self'stablecoinsIssued, $self'totalFeesCollected)~$__gen_GateKeeperContract_requireOwner();
+  ...                                                                                                     ^
+$__gen_GateKeeperContract_receive_SetDeps: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_GateKeeperContract.code.fc:645:444: warning: Local variable '$self'deps'stablecoinMasterAddress' is not used
+  ... stAccumulationTime), $self'totalCollateralAmount, $self'stablecoinsIssued, $self'totalFeesCollected)~$__gen_GateKeeperContract_requireOwner();
+  ...                                                                                                     ^
+__gen_read_GateKeeperContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_GateKeeperContract.code.fc:366:36: warning: Lack of end_parse.
+      var v'totalFeesCollected = sc_4~load_coins();
+                                     ^
+__gen_read_GateKeeperContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_GateKeeperContract.code.fc:360:22: warning: Lack of end_parse.
+      slice sc_3 = sc_2~load_ref().begin_parse();
+                       ^
+__gen_read_GateKeeperContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_GateKeeperContract.code.fc:357:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+__gen_read_GateKeeperContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_GateKeeperContract.code.fc:365:22: warning: Lack of end_parse.
+      slice sc_4 = sc_3~load_ref().begin_parse();
+                       ^
+__tact_string_builder_append: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_GateKeeperContract.code.fc:100:31: warning: Lack of end_parse.
+              sc = sc~load_ref().begin_parse();
+                                ^
+$__gen_GateKeeperContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_GateKeeperContract.code.fc:403:451: warning: Local variable '$self'deps'positionsManagerAddress' is not used
+  ... AccumulationTime), $self'totalCollateralAmount, $self'stablecoinsIssued, $self'totalFeesCollected)) = (null(), null(), null(), null(), null(), null(), 0, 0, 0);
+  ...                                                                                                     ^
+$__gen_GateKeeperContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_GateKeeperContract.code.fc:403:451: warning: Local variable '$self'deps'gateKeeperAddress' is not used
+  ... AccumulationTime), $self'totalCollateralAmount, $self'stablecoinsIssued, $self'totalFeesCollected)) = (null(), null(), null(), null(), null(), null(), 0, 0, 0);
+  ...                                                                                                     ^
+$__gen_GateKeeperContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_GateKeeperContract.code.fc:403:451: warning: Local variable '$self'deps'stablecoinMasterAddress' is not used
+  ... AccumulationTime), $self'totalCollateralAmount, $self'stablecoinsIssued, $self'totalFeesCollected)) = (null(), null(), null(), null(), null(), null(), 0, 0, 0);
+  ...                                                                                                     ^
+$__gen_GateKeeperContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_GateKeeperContract.code.fc:403:451: warning: Local variable '$self'owner' is not used
+  ... AccumulationTime), $self'totalCollateralAmount, $self'stablecoinsIssued, $self'totalFeesCollected)) = (null(), null(), null(), null(), null(), null(), 0, 0, 0);
+  ...                                                                                                     ^
+$__gen_GateKeeperContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_GateKeeperContract.code.fc:403:451: warning: Local variable '$self'poolSettings'liquidationRatio' is not used
+  ... AccumulationTime), $self'totalCollateralAmount, $self'stablecoinsIssued, $self'totalFeesCollected)) = (null(), null(), null(), null(), null(), null(), 0, 0, 0);
+  ...                                                                                                     ^
+$__gen_GateKeeperContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_GateKeeperContract.code.fc:403:451: warning: Local variable '$self'poolSettings'stabilityFeeRate' is not used
+  ... AccumulationTime), $self'totalCollateralAmount, $self'stablecoinsIssued, $self'totalFeesCollected)) = (null(), null(), null(), null(), null(), null(), 0, 0, 0);
+  ...                                                                                                     ^
+$__gen_GateKeeperContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_GateKeeperContract.code.fc:403:451: warning: Local variable '$self'poolSettings'liquidatorIncentiveBps' is not used
+  ... AccumulationTime), $self'totalCollateralAmount, $self'stablecoinsIssued, $self'totalFeesCollected)) = (null(), null(), null(), null(), null(), null(), 0, 0, 0);
+  ...                                                                                                     ^
+$__gen_GateKeeperContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_GateKeeperContract.code.fc:403:451: warning: Local variable '$self'tonPrice' is not used
+  ... AccumulationTime), $self'totalCollateralAmount, $self'stablecoinsIssued, $self'totalFeesCollected)) = (null(), null(), null(), null(), null(), null(), 0, 0, 0);
+  ...                                                                                                     ^
+$__gen_GateKeeperContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_GateKeeperContract.code.fc:403:451: warning: Local variable '$self'tonPriceWithSafetyMargin' is not used
+  ... AccumulationTime), $self'totalCollateralAmount, $self'stablecoinsIssued, $self'totalFeesCollected)) = (null(), null(), null(), null(), null(), null(), 0, 0, 0);
+  ...                                                                                                     ^
+$__gen_GateKeeperContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_GateKeeperContract.code.fc:403:451: warning: Local variable '$self'debtRate'debtAccumulatedRate' is not used
+  ... AccumulationTime), $self'totalCollateralAmount, $self'stablecoinsIssued, $self'totalFeesCollected)) = (null(), null(), null(), null(), null(), null(), 0, 0, 0);
+  ...                                                                                                     ^
+$__gen_GateKeeperContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_GateKeeperContract.code.fc:403:451: warning: Local variable '$self'debtRate'lastAccumulationTime' is not used
+  ... AccumulationTime), $self'totalCollateralAmount, $self'stablecoinsIssued, $self'totalFeesCollected)) = (null(), null(), null(), null(), null(), null(), 0, 0, 0);
+  ...                                                                                                     ^
+__gen_load_GateKeeperContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_GateKeeperContract.code.fc:418:19: warning: Lack of end_parse.
+          return $sc~__gen_read_GateKeeperContract();
+                    ^
+$rpow: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_GateKeeperContract.code.fc:510:27: warning: PressionLoss
+              int $zx = ($z * $x);
+                            ^
+__gen_store_GateKeeperContract & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_GateKeeperContract.code.fc:948:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_GateKeeperContract.code.fc:427:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

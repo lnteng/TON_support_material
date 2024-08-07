@@ -1,0 +1,172 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "verifier_LootBoxContract.headers.fc";
+#include "verifier_LootBoxContract.stdlib.fc";
+#include "verifier_LootBoxContract.constants.fc";
+#include "verifier_LootBoxContract.storage.fc";
+
+;;
+;; Contract LootBoxContract functions
+;;
+
+(slice, int, slice, int, int) $LootBoxContract$_contract_init(slice $owner) impure inline_ref {
+    var (($self'owner, $self'counter, $self'lastWinner, $self'lastMultiplier, $self'lastGameAmount)) = (null(), 0, null(), 0, 0);
+    $self'owner = $owner;
+    return ($self'owner, $self'counter, $self'lastWinner, $self'lastMultiplier, $self'lastGameAmount);
+}
+
+((slice, int, slice, int, int), ()) $LootBoxContract$_fun_requireOwner((slice, int, slice, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'counter, $self'lastWinner, $self'lastMultiplier, $self'lastGameAmount)) = $self;
+    throw_unless(132, ( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) ));
+    return (($self'owner, $self'counter, $self'lastWinner, $self'lastMultiplier, $self'lastGameAmount), ());
+}
+
+((slice, int, slice, int, int), slice) $LootBoxContract$_fun_owner((slice, int, slice, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'counter, $self'lastWinner, $self'lastMultiplier, $self'lastGameAmount)) = $self;
+    return (($self'owner, $self'counter, $self'lastWinner, $self'lastMultiplier, $self'lastGameAmount), $self'owner);
+}
+
+;;
+;; Receivers of a Contract LootBoxContract
+;;
+
+((slice, int, slice, int, int), ()) $LootBoxContract$_internal_text_095190194aee611ce895c5503adf85fd864de7905746142f608d3eb2faad14e4((slice, int, slice, int, int) $self) impure inline {
+    var ($self'owner, $self'counter, $self'lastWinner, $self'lastMultiplier, $self'lastGameAmount) = $self;
+    ($self'owner, $self'counter, $self'lastWinner, $self'lastMultiplier, $self'lastGameAmount)~$LootBoxContract$_fun_requireOwner();
+    $global_send($SendParameters$_constructor_to_value_mode_body($self'owner, __tact_my_balance(), 2, __gen_cell_comment_153e41fe2873886ff8aa5c4ef99354a5996e5bf8a4d44b9bcc19dde912664fe4()));
+    return (($self'owner, $self'counter, $self'lastWinner, $self'lastMultiplier, $self'lastGameAmount), ());
+}
+
+((slice, int, slice, int, int), ()) $LootBoxContract$_internal_text_1e3a46cb5cc3f633146032961a17c344b327be9f09f86cb2980f110fe6d5a55e((slice, int, slice, int, int) $self) impure inline {
+    var ($self'owner, $self'counter, $self'lastWinner, $self'lastMultiplier, $self'lastGameAmount) = $self;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    slice $to = $ctx'sender;
+    int $multiplier = 0;
+    int $randomNumber = $global_random(0, 100);
+    if (($randomNumber >= 99)) {
+        $multiplier = 1000;
+    } elseif (($randomNumber > 90)) {
+        $multiplier = 500;
+    } elseif (($randomNumber > 75)) {
+        $multiplier = 200;
+    } elseif (($randomNumber > 50)) {
+        $multiplier = 100;
+    } elseif (($randomNumber > 25)) {
+        $multiplier = 50;
+    } elseif (($randomNumber > 10)) {
+        $multiplier = 10;
+    } elseif (($randomNumber > 0)) {
+        $multiplier = 1;
+    }
+    int $value = (($ctx'value * $multiplier) / 100);
+    if ((__tact_my_balance() >= $value)) {
+        $global_send($SendParameters$_constructor_to_value_mode_body($to, $value, 2, __gen_cell_comment_04bbb4c5aa1f770ec0472418eb6b4bad30a6a1c1e6f3c6048a313bd02a4c27d0()));
+    } else {
+        $global_send($SendParameters$_constructor_to_value_mode_body($to, 0, 64, __gen_cell_comment_f5623b84af64c66956cb1b5a15bb31115ccf7234b77a3c140788e56971c7a5b1()));
+    }
+    return (($self'owner, $self'counter, $self'lastWinner, $self'lastMultiplier, $self'lastGameAmount), ());
+}
+
+(((slice, int, slice, int, int)), ()) $LootBoxContract$_internal_binary_Deploy((slice, int, slice, int, int) $self, (int) $deploy) impure inline {
+    var ($self'owner, $self'counter, $self'lastWinner, $self'lastMultiplier, $self'lastGameAmount) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'owner, $self'counter, $self'lastWinner, $self'lastMultiplier, $self'lastGameAmount)~$LootBoxContract$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'owner, $self'counter, $self'lastWinner, $self'lastMultiplier, $self'lastGameAmount), ());
+}
+
+;;
+;; Get methods of a Contract LootBoxContract
+;;
+
+_ %owner() method_id(83229) {
+    var self = $LootBoxContract$_contract_load();
+    var res = self~$LootBoxContract$_fun_owner();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128,
+        "org.ton.ownable"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmUXTL7sMzMvV3ujkLC22rtgcMuHdSHdcqq8FrXz3zqGMF";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract LootBoxContract
+;;
+
+((slice, int, slice, int, int), int) $LootBoxContract$_contract_router_internal((slice, int, slice, int, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$LootBoxContract$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "withdraw" message
+        if (text_op == 0x095190194aee611ce895c5503adf85fd864de7905746142f608d3eb2faad14e4) {
+            self~$LootBoxContract$_internal_text_095190194aee611ce895c5503adf85fd864de7905746142f608d3eb2faad14e4();
+            return (self, true);
+        }
+        
+        ;; Receive "play" message
+        if (text_op == 0x1e3a46cb5cc3f633146032961a17c344b327be9f09f86cb2980f110fe6d5a55e) {
+            self~$LootBoxContract$_internal_text_1e3a46cb5cc3f633146032961a17c344b327be9f09f86cb2980f110fe6d5a55e();
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $LootBoxContract$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$LootBoxContract$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $LootBoxContract$_contract_store(self);
+}

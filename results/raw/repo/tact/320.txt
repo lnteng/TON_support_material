@@ -1,0 +1,19 @@
+$External$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/external_External.code.fc:14:40: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'timeout)) = (null(), null());
+                                         ^
+$External$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/external_External.code.fc:14:40: warning: Local variable '$self'timeout' is not used
+      var (($self'owner, $self'timeout)) = (null(), null());
+                                         ^
+$External$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/external_External.storage.fc:93:19: warning: Lack of end_parse.
+          return $sc~$External$_load();
+                    ^
+$External$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/external_External.code.fc:83:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/external_External.storage.fc:104:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

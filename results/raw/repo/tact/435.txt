@@ -1,0 +1,58 @@
+$Task3$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task3.code.fc:14:99: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB)) = (null(), 0, 0, null(), null());
+                                                                                                    ^
+$Task3$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task3.code.fc:14:99: warning: Local variable '$self'jettonAddressA' is not used
+      var (($self'owner, $self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB)) = (null(), 0, 0, null(), null());
+                                                                                                    ^
+$Task3$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task3.code.fc:14:99: warning: Local variable '$self'jettonAddressB' is not used
+      var (($self'owner, $self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB)) = (null(), 0, 0, null(), null());
+                                                                                                    ^
+$Task3$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task3.storage.fc:121:32: warning: Lack of end_parse.
+      var v'jettonAddressB = sc_1~__tact_load_address();
+                                 ^
+$Task3$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task3.storage.fc:137:19: warning: Lack of end_parse.
+          return $sc~$Task3$_load();
+                    ^
+$Task3$_fun_tfa: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task3.code.fc:27:74: warning: PressionLoss
+      int $toUserAmount = (((($self'bAmount * 1000000000) / $self'aAmount) * $amount) / 1000000000);
+                                                                           ^
+$Task3$_fun_tfb: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task3.code.fc:44:74: warning: PressionLoss
+      int $toUserAmount = (((($self'aAmount * 1000000000) / $self'bAmount) * $amount) / 1000000000);
+                                                                           ^
+$Task3$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task3.code.fc:128:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task3.storage.fc:148:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task3$_contract_store & $Task3$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task3.storage.fc:133:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task3.storage.fc:148:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task3$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task3.code.fc:29:298: warning: UnHandle bounced message with op: 0xf8a7ea5
+  ... onseDestination_customPayload_forwardTonAmount(0, $amount, $from, my_address(), null(), 10000000))));
+  ...                                                                                                     ^
+$Task3$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task3.code.fc:31:304: warning: UnHandle bounced message with op: 0xf8a7ea5
+  ... stination_customPayload_forwardTonAmount(0, $toUserAmount, $from, my_address(), null(), 10000000))));
+  ...                                                                                                     ^
+$Task3$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task3.code.fc:46:298: warning: UnHandle bounced message with op: 0xf8a7ea5
+  ... onseDestination_customPayload_forwardTonAmount(0, $amount, $from, my_address(), null(), 10000000))));
+  ...                                                                                                     ^
+$Task3$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task3.code.fc:48:304: warning: UnHandle bounced message with op: 0xf8a7ea5
+  ... stination_customPayload_forwardTonAmount(0, $toUserAmount, $from, my_address(), null(), 10000000))));
+  ...                                                                                                     ^

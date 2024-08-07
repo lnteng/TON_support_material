@@ -1,0 +1,23 @@
+__tact_string_builder_append: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./zjor/hello-tact/00-emulator/src/output/contract_Greeting.stdlib.fc:94:31: warning: Lack of end_parse.
+              sc = sc~load_ref().begin_parse();
+                                ^
+$Greeting$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./zjor/hello-tact/00-emulator/src/output/contract_Greeting.code.fc:15:38: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'seqno)) = (null(), null());
+                                       ^
+$Greeting$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./zjor/hello-tact/00-emulator/src/output/contract_Greeting.code.fc:15:38: warning: Local variable '$self'seqno' is not used
+      var (($self'owner, $self'seqno)) = (null(), null());
+                                       ^
+$Greeting$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./zjor/hello-tact/00-emulator/src/output/contract_Greeting.storage.fc:81:19: warning: Lack of end_parse.
+          return $sc~$Greeting$_load();
+                    ^
+$Greeting$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./zjor/hello-tact/00-emulator/src/output/contract_Greeting.code.fc:65:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./zjor/hello-tact/00-emulator/src/output/contract_Greeting.storage.fc:92:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

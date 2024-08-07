@@ -1,0 +1,55 @@
+{-
+  TASK 2 - Matrix multiplier
+  Write the method that multiplies one matrix by another.
+  The 1st and 2nd parameter of the function will contain
+  a matrix implemented using tuples (eg: [[1,2], [3,4]]).
+  Matrices can be of different sizes, ranging from 4x4
+  up to 32x32.
+  Matrix can be rectangular where matrixA must to be of size n*m & matrixB of size m*p.
+  After calculating the result matrix, the function should return final result (as tuple).
+-}
+
+() recv_internal() {
+}
+
+global int n, m, p;
+global tuple B;
+
+tuple solution(tuple matrixA, tuple matrixB) asm """
+  //  A B
+  OVER TLEN	n SETGLOB
+  OVER 0 INDEX TLEN	m SETGLOB
+  DUP	0 INDEX	TLEN p SETGLOB
+  B SETGLOB
+
+  // A
+  0 PUSHINT
+  n GETGLOB	REPEAT:<{	//  ... A i
+    2DUP INDEXVAR // A i Ai
+    B GETGLOB SWAP // A i B Ai
+
+    0 PUSHINT
+    p GETGLOB REPEAT:<{	//  A i ... B Ai j
+      0 PUSHINT	DUP 
+      m GETGLOB	REPEAT:<{	//  A i ... B Ai j k sum
+        s3 s1 PUSH2	INDEXVAR	//  A i ... B Ai j k sum Aik
+        s5 s2 PUSH2	INDEXVAR	//  A i ... B Ai j k sum Aik Bk
+        s4 PUSH INDEXVAR	//  A i ... B Ai j k sum Aik Bkj
+        MUL	ADD	//  A i ... B Ai j k sum
+        SWAP INC SWAP	
+      }> NIP //  A i ... B Ai j sum
+      3 -ROLL // A i ... sum B Ai j
+      INC	
+    }> // A i ... B Ai j
+    3 BLKDROP p GETGLOB TUPLEVAR // A i Ri
+
+    -ROT INC // ... Ri A i
+  }> 2DROP // ...
+  n GETGLOB TUPLEVAR // res
+""";
+
+;; testable
+(tuple) matrix_multiplier(tuple matrixA, tuple matrixB) method_id {
+  return solution(matrixA, matrixB);
+}
+

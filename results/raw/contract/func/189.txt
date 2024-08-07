@@ -1,0 +1,28 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCRa8VoezF9u6caZdQLRAJcerq9z1F9-_4MRrjMLgGgiht7/rock-paper-scissors.fc:80:26: warning: Lack of end_parse.
+      int hands = msg_slice~load_uint(hands_length);
+                           ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCRa8VoezF9u6caZdQLRAJcerq9z1F9-_4MRrjMLgGgiht7/rock-paper-scissors.fc:104:32: warning: Lack of end_parse.
+        creator_hands = all_hands~load_bits(hands_length);
+                                 ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCRa8VoezF9u6caZdQLRAJcerq9z1F9-_4MRrjMLgGgiht7/rock-paper-scissors.fc:96:26: warning: Local variable 'opponent_hands' is not used
+      slice opponent_hands = null();
+                           ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCRa8VoezF9u6caZdQLRAJcerq9z1F9-_4MRrjMLgGgiht7/rock-paper-scissors.fc:97:25: warning: Local variable 'creator_hands' is not used
+      slice creator_hands = null();
+                          ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCRa8VoezF9u6caZdQLRAJcerq9z1F9-_4MRrjMLgGgiht7/rock-paper-scissors.fc:114:24: warning: Local variable 'creator_hand' is not used
+        int creator_hand = creator_hands~load_uint(move_size);
+                         ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCRa8VoezF9u6caZdQLRAJcerq9z1F9-_4MRrjMLgGgiht7/rock-paper-scissors.fc:115:25: warning: Local variable 'opponent_hand' is not used
+        int opponent_hand = opponent_hands~load_uint(move_size);
+                          ^
+parse_sender_address: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCRa8VoezF9u6caZdQLRAJcerq9z1F9-_4MRrjMLgGgiht7/rock-paper-scissors.fc:28:12: warning: Lack of end_parse.
+    return cs~load_msg_addr();
+             ^

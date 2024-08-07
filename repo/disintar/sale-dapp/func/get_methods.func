@@ -1,0 +1,87 @@
+;; Copyright (c) 2022-2023 Disintar LLP Licensed under the Business Source License 1.1
+
+_ get_version() method_id {
+    return 179;
+}
+
+(int, slice, slice) get_sell_info() method_id {
+    (int mode, slice nft_address, slice deployer_address, _, _, _) = load_data();
+
+    return (mode,
+            nft_address,
+            deployer_address ;; actually he is previus owner also
+    );
+}
+
+(slice, slice, slice, int, int, slice, int, int, slice, slice, int, slice) get_sale_data() method_id {
+    (int mode,
+            slice nft_address,
+            slice deployer_address,
+            slice buyer,
+            cell sell_config,
+            cell price_config) = load_data();
+
+    ;; Try to buy
+    (int marketplace_numerator,
+            int marketplace_denominator,
+            int royalty_numerator,
+            int royalty_denominator,
+            slice royalty_destanation) = parse_sell_config(sell_config);
+
+    (int is_ton,
+            int price,
+            slice limited_address,
+            int end_at,
+            slice my_jetton_address,
+            slice jetton_mater) = parse_price_config(price_config);
+
+    int market_fee = 0;
+    int royalty_fee = 0;
+
+    if ((marketplace_numerator > 0) & (marketplace_denominator > 0)) {
+        market_fee = min(price, muldiv(price, marketplace_numerator, marketplace_denominator));
+    }
+
+    if ((royalty_numerator > 0) & (royalty_denominator > 0) & (price > 0)) {
+        royalty_fee = min(price, muldiv(price, royalty_numerator, royalty_denominator));
+    }
+
+
+    return (marketplace,
+            nft_address,
+            deployer_address,
+            price + market_fee + royalty_fee, ;; full price
+            market_fee,
+            royalty_destanation,
+            royalty_fee,
+
+            ;; end legacy
+            is_ton, ;; is_ton sale
+            my_jetton_address, ;; jetton address
+            limited_address, ;; limited for
+            end_at, ;; limited to
+            jetton_mater ;; jetton master address
+    );
+}
+
+slice get_buyer() method_id {
+    (int mode,
+            slice nft_address,
+            slice deployer_address,
+            slice buyer,
+            cell sell_config,
+            cell price_config) = load_data();
+
+    return buyer;
+}
+
+int get_is_closed() method_id {
+    (int mode,
+            slice nft_address,
+            slice deployer_address,
+            slice buyer,
+            cell sell_config,
+            cell price_config) = load_data();
+
+    return (mode == 3) | (mode == 2);
+}

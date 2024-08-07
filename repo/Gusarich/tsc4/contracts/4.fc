@@ -1,0 +1,145 @@
+{-
+  TASK 4 - Caesar Cipher
+  Implement a Caesar cipher encryption andecryption functions.
+  The input is a string (https://docs.ton.org/develop/smart-contracts/guidelines/internal-messages#simple-message-with-comment)
+  where the text is encryptein a cell (after 32bit 00000000 prefix flag), the algorithm rotates the characters anthe last ASCII
+  character shoulgo to the beginning. Return new text encodein cell.
+-}
+
+() recv_internal() {
+}
+
+global tuple tup;
+
+builder encrypt_fast(slice s) {
+    builder bld = begin_cell();
+    repeat (s.slice_bits() / 64) {
+        int a = s~load_uint(8);
+        int b = s~load_uint(8);
+        int c = s~load_uint(8);
+        int d = s~load_uint(8);
+        int e = s~load_uint(8);
+        int f = s~load_uint(8);
+        int g = s~load_uint(8);
+        int h = s~load_uint(8);
+        bld~store_uint(tup.at(a), 8);
+        bld~store_uint(tup.at(b), 8);
+        bld~store_uint(tup.at(c), 8);
+        bld~store_uint(tup.at(d), 8);
+        bld~store_uint(tup.at(e), 8);
+        bld~store_uint(tup.at(f), 8);
+        bld~store_uint(tup.at(g), 8);
+        bld~store_uint(tup.at(h), 8);
+    }
+    repeat (s.slice_bits() / 8) {
+        int a = s~load_uint(8);
+        bld~store_uint(tup.at(a), 8);
+    }
+    if (s.slice_empty?()) {
+        return bld;
+    }
+    return bld.store_ref(encrypt_fast(s~load_ref().begin_parse()).end_cell());
+}
+
+builder encrypt_slow(slice s) {
+    builder b = begin_cell();
+    repeat (s.slice_bits() / 8) {
+        int a = s~load_uint(8);
+        if (a <= 122) {
+            b~store_uint(tup.at(a), 8);
+        } else {
+            b~store_uint(a, 8);
+        }
+    }
+    if (s.slice_empty?()) {
+        return b;
+    }
+    return b.store_ref(encrypt_slow(s~load_ref().begin_parse()).end_cell());
+}
+
+(tuple) generate_tuple(int) impure asm """
+    dictnew // D
+    0 // D 0
+    {
+        tuck // i D i
+        <b 
+            // i D i b
+            0 // i D i b 0
+            {
+                tuck // i D i j b j
+                8 // i D i j b j 8
+                u, // i D i j b
+                swap // i D i b j
+                1 + // i D i b j+1
+            } 65 times // i D i b 65
+            {
+                tuck // i D i j b j
+                65 - // i D i j b j-65
+                3 pick // i D i j b j-65 i
+                + // i D i j b j-65+i
+                26 mod // i D i j b j-65
+                65 + // i D i j b j
+                8 // i D i j b j 8
+                u, // i D i j b
+                swap // i D i b j
+                1 + // i D i b j+1
+            } 26 times // i D i b 91
+            {
+                tuck // i D i j b j
+                8 // i D i j b j 8
+                u, // i D i j b
+                swap // i D i b j
+                1 + // i D i b j+1
+            } 6 times // i D i b 97
+            {
+                tuck // i D i j b j
+                97 - // i D i j b j-97
+                3 pick // i D i j b j-97 i
+                + // i D i j b j-97+i
+                26 mod // i D i j b j-97
+                97 + // i D i j b j
+                8 // i D i j b j 8
+                u, // i D i j b
+                swap // i D i b j
+                1 + // i D i b j+1
+            } 26 times // i D i b 123
+            drop // i D i b
+        b> <s // i D i v
+        2 exch // i v i D
+        5 // i v i D 5
+        udict! // i D ?
+        drop // i D
+        swap // D i
+        1 + // D i+1
+    } 26 times // D 26
+    drop // D
+    PUSHREF // d D
+    5 PUSHINT // d D 5
+    DICTUGET // s ?
+    DROP // s
+    8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU 8 LDU
+    DROP
+    123 PUSHINT
+    TUPLEVAR
+""";
+
+builder encrypt(int shift, slice text) {
+    tup = generate_tuple(shift);
+    try {
+        return encrypt_fast(text);
+    } catch (e) {
+        return encrypt_slow(text);
+    }
+}
+
+;; testable
+(cell) caesar_cipher_encrypt(int shift, cell text) method_id {
+    builder b = encrypt(shift % 26, text.begin_parse().skip_bits(32));
+    return begin_cell().store_uint(0, 32).store_builder(b).end_cell();
+}
+
+;; testable
+(cell) caesar_cipher_decrypt(int shift, cell text) method_id {
+    builder b = encrypt((26 - shift) % 26, text.begin_parse().skip_bits(32));
+    return begin_cell().store_uint(0, 32).store_builder(b).end_cell();
+}

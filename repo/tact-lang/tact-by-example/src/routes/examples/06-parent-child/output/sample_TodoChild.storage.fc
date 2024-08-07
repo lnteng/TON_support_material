@@ -1,0 +1,42 @@
+;;
+;; Type: TodoChild
+;;
+
+builder $TodoChild$_store(builder build_0, (int) v) inline {
+    var (v'seqno) = v;
+    build_0 = build_0.store_uint(v'seqno, 64);
+    return build_0;
+}
+
+(slice, ((int))) $TodoChild$_load(slice sc_0) inline {
+    var v'seqno = sc_0~load_uint(64);
+    return (sc_0, (v'seqno));
+}
+
+(slice, ((int))) $TodoChild$init$_load(slice sc_0) inline {
+    var v'seqno = sc_0~load_int(257);
+    return (sc_0, (v'seqno));
+}
+
+(int) $TodoChild$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$TodoChild$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (int seqno) = $sc~$TodoChild$init$_load();
+        $sc.end_parse();
+        return $TodoChild$_contract_init(seqno);
+    }
+}
+
+() $TodoChild$_contract_store((int) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $TodoChild$_store(b, v);
+    set_data(b.end_cell());
+}

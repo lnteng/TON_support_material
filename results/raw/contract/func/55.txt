@@ -1,0 +1,440 @@
+get_winner: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:465:7: warning: Lack of end_parse.
+      ds~load_ref();
+        ^
+get_bets_count: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:433:35: warning: Lack of end_parse.
+      slice state = ds.preload_ref().begin_parse();
+                                    ^
+get_bets_count: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:432:7: warning: Lack of end_parse.
+      ds~load_ref();
+        ^
+calc_winner: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:96:27: warning: Lack of end_parse.
+      int count = state_data.begin_parse().preload_uint(16);
+                            ^
+calc_winner: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:93:41: warning: Lack of end_parse.
+      slice collection_address = nft_slice~load_msg_addr();
+                                          ^
+calc_winner: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:93:30: warning: Local variable 'collection_address' is not used
+      slice collection_address = nft_slice~load_msg_addr();
+                               ^
+calc_winner: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:94:20: warning: Local variable 'item_code' is not used
+      cell item_code = nft_slice.preload_ref();
+                     ^
+calc_winner: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:107:47: warning: Local variable 'item_idx' is not used
+          (int item_idx, slice val, int status) = bets_data~udict::delete_get_min(const::bets_key_len());
+                                                ^
+get_commission: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:425:19: warning: Lack of end_parse.
+      return royalty~load_coins();
+                    ^
+get_commission: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:423:26: warning: Lack of end_parse.
+      slice ds = get_data().begin_parse();
+                           ^
+get_state: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:412:7: warning: Lack of end_parse.
+      ds~skip_bits(256 + 32);
+        ^
+get_ts: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:418:7: warning: Lack of end_parse.
+      ds~skip_bits(256 + 32 + 1);
+        ^
+get_seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:406:7: warning: Lack of end_parse.
+      ds~skip_bits(256);
+        ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:134:35: warning: Lack of end_parse.
+      int commission = royalty_slice~load_coins();
+                                    ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:147:25: warning: Lack of end_parse.
+          int state = last~load_uint(1);
+                          ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:153:45: warning: Lack of end_parse.
+          slice collection_address = nft_slice~load_msg_addr();
+                                              ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:162:32: warning: Lack of end_parse.
+          slice item_address = cs~load_msg_addr();
+                                 ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:158:55: warning: Lack of end_parse.
+          slice forward_payload = in_msg_body~load_ref().begin_parse();
+                                                        ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:172:31: warning: Lack of end_parse.
+          int count = state_data.begin_parse().preload_uint(16);
+                                ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:168:35: warning: Lack of end_parse.
+          cell bets_dict = bets_data.begin_parse().preload_dict();
+                                    ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:214:26: warning: Lack of end_parse.
+          slice winner = cs~load_msg_addr();
+                           ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:193:25: warning: Lack of end_parse.
+          int state = last~load_uint(1);
+                          ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:199:45: warning: Lack of end_parse.
+          slice collection_address = nft_slice~load_msg_addr();
+                                              ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:204:35: warning: Lack of end_parse.
+          cell bets_dict = bets_data.begin_parse().preload_dict();
+                                    ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:142:18: warning: Local variable 'query_id' is not used
+      int query_id = in_msg_body~load_uint(64);
+                   ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:219:51: warning: Local variable 'val' is not used
+              (int item_idx, slice val, int status) = bets_dict~udict::delete_get_min(const::bets_key_len());
+                                                    ^
+get_user_bets_count: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:443:24: warning: Lack of end_parse.
+      cell bets_data = ds~load_ref();
+                         ^
+get_user_bets_count: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:444:31: warning: Lack of end_parse.
+      cell bets_dict = bets_data.begin_parse().preload_dict();
+                                ^
+get_user_bets_count: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:449:54: warning: Local variable 'idx' is not used
+          (int idx, slice current_address, int status) = bets_dict~udict::delete_get_min(const::bets_key_len());
+                                                       ^
+recv_external: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:306:22: warning: Lack of end_parse.
+              bets_data.begin_parse().preload_dict(),
+                       ^
+recv_external: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:300:28: warning: Lack of end_parse.
+          cell bets_data = ds~load_ref();
+                             ^
+recv_external: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:341:28: warning: Lack of end_parse.
+          cell bets_data = ds~load_ref();
+                             ^
+recv_external: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:384:28: warning: Lack of end_parse.
+          cell bets_data = ds~load_ref();
+                             ^
+recv_internal & get_winner: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:462:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:180:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_slice(ds)
+              ^
+recv_internal & get_state: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:411:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:180:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_slice(ds)
+              ^
+recv_internal & get_ts: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:417:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:180:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_slice(ds)
+              ^
+recv_internal & get_seqno: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:405:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:180:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_slice(ds)
+              ^
+recv_internal & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:131:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:180:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_slice(ds)
+              ^
+recv_internal & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:131:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:180:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_slice(ds)
+              ^
+recv_internal & recv_external: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:265:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:180:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_slice(ds)
+              ^
+recv_internal & recv_external: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:265:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:180:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_slice(ds)
+              ^
+recv_internal & get_winner: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:462:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:236:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_slice(ds)
+              ^
+recv_internal & get_state: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:411:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:236:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_slice(ds)
+              ^
+recv_internal & get_ts: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:417:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:236:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_slice(ds)
+              ^
+recv_internal & get_seqno: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:405:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:236:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_slice(ds)
+              ^
+recv_internal & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:131:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:236:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_slice(ds)
+              ^
+recv_internal & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:131:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:236:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_slice(ds)
+              ^
+recv_internal & recv_external: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:265:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:236:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_slice(ds)
+              ^
+recv_internal & recv_external: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:265:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:236:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_slice(ds)
+              ^
+recv_external & get_winner: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:462:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:388:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(pk, 256)
+              ^
+recv_external & get_state: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:411:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:388:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(pk, 256)
+              ^
+recv_external & get_ts: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:417:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:388:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(pk, 256)
+              ^
+recv_external & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:131:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:388:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(pk, 256)
+              ^
+recv_external & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:131:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:388:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(pk, 256)
+              ^
+recv_external & recv_external: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:265:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:388:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(pk, 256)
+              ^
+recv_external & recv_external: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:265:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:388:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(pk, 256)
+              ^
+recv_external & get_winner: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:462:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:346:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(pk, 256)
+              ^
+recv_external & get_state: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:411:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:346:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(pk, 256)
+              ^
+recv_external & get_ts: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:417:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:346:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(pk, 256)
+              ^
+recv_external & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:131:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:346:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(pk, 256)
+              ^
+recv_external & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:131:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:346:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(pk, 256)
+              ^
+recv_external & recv_external: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:265:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:346:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(pk, 256)
+              ^
+recv_external & recv_external: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:265:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:346:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(pk, 256)
+              ^
+recv_external & get_winner: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:462:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:319:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(pk, 256)
+              ^
+recv_external & get_state: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:411:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:319:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(pk, 256)
+              ^
+recv_external & get_ts: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:417:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:319:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(pk, 256)
+              ^
+recv_external & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:131:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:319:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(pk, 256)
+              ^
+recv_external & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:131:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:319:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(pk, 256)
+              ^
+recv_external & recv_external: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:265:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:319:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(pk, 256)
+              ^
+recv_external & recv_external: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:265:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:319:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(pk, 256)
+              ^
+recv_external & get_winner: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:462:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:284:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(pk, 256)
+              ^
+recv_external & get_state: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:411:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:284:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(pk, 256)
+              ^
+recv_external & get_ts: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:417:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:284:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(pk, 256)
+              ^
+recv_external & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:131:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:284:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(pk, 256)
+              ^
+recv_external & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:131:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:284:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(pk, 256)
+              ^
+recv_external & recv_external: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:265:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:284:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(pk, 256)
+              ^
+recv_external & recv_external: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:265:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDfCSIMV3A0cAFddv4TCpcjCl2c5RPRLzWYQ2CK0K1snRBR/roulette.func:284:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(pk, 256)
+              ^

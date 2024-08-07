@@ -1,0 +1,27 @@
+$UserDefaultCallback$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/universal_router_UserDefaultCallback.code.fc:14:74: warning: Local variable '$self'master' is not used
+      var (($self'master, $self'owner, $self'parameter, $self'eventCount)) = (null(), null(), null(), null());
+                                                                           ^
+$UserDefaultCallback$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/universal_router_UserDefaultCallback.code.fc:14:74: warning: Local variable '$self'owner' is not used
+      var (($self'master, $self'owner, $self'parameter, $self'eventCount)) = (null(), null(), null(), null());
+                                                                           ^
+$UserDefaultCallback$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/universal_router_UserDefaultCallback.code.fc:14:74: warning: Local variable '$self'parameter' is not used
+      var (($self'master, $self'owner, $self'parameter, $self'eventCount)) = (null(), null(), null(), null());
+                                                                           ^
+$UserDefaultCallback$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/universal_router_UserDefaultCallback.code.fc:14:74: warning: Local variable '$self'eventCount' is not used
+      var (($self'master, $self'owner, $self'parameter, $self'eventCount)) = (null(), null(), null(), null());
+                                                                           ^
+$UserDefaultCallback$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/universal_router_UserDefaultCallback.storage.fc:112:19: warning: Lack of end_parse.
+          return $sc~$UserDefaultCallback$_load();
+                    ^
+$UserDefaultCallback$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/universal_router_UserDefaultCallback.code.fc:92:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/universal_router_UserDefaultCallback.storage.fc:123:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

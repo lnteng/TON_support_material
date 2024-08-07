@@ -1,0 +1,517 @@
+"Asm.fif" include
+// automatically generated from `/home/some_wallet/.config/toncli/func-libs/error_codes.func` `/home/some_wallet/.config/toncli/func-libs/math.func` `/home/some_wallet/.config/toncli/func-libs/stdlib.func` `/home/some_wallet/projects/world2040/func/utils/helpers.func` `/home/some_wallet/projects/world2040/func/utils/params.func` `/home/some_wallet/projects/world2040/func/utils/op-codes.func` `/home/some_wallet/projects/world2040/func/sale-contract.func` incl:`/home/some_wallet/projects/world2040/func/../lib/func/stdlib.fc` 
+PROGRAM{
+  DECLPROC power
+  DECLPROC sqrt
+  DECLPROC avg
+  DECLPROC exp
+  DECLPROC log2
+  DECLPROC force_chain
+  DECLPROC load_data
+  DECLPROC load_prices
+  DECLPROC save_data
+  73294 DECLMETHOD get_available_nft_num
+  DECLPROC recv_internal
+  DECLPROC recv_external
+  power PROCREF:<{
+    //  x exponent
+    OVER	//  x exponent x
+    0 EQINT	//  x exponent _3
+    IFJMP:<{	//  x exponent
+      2DROP	// 
+      0 PUSHINT	//  _4=0
+    }>	//  x exponent
+    DUP	//  x exponent exponent
+    0 EQINT	//  x exponent _6
+    IFJMP:<{	//  x exponent
+      2DROP	// 
+      1 PUSHINT	//  _7=1
+    }>	//  x exponent
+    OVER	//  x counter result
+    WHILE:<{
+      OVER	//  x counter result counter
+      1 GTINT	//  x counter result _11
+    }>DO<{	//  x counter result
+      s2 PUSH	//  x counter result x
+      MUL	//  x counter result
+      SWAP	//  x result counter
+      DEC	//  x result counter
+      SWAP	//  x counter result
+    }>	//  x counter result
+    2 1 BLKDROP2	//  result
+  }>
+  sqrt PROCREF:<{
+    //  x
+    DUP	//  x x
+    0 EQINT	//  x _2
+    IFJMP:<{	//  x
+      DROP	// 
+      0 PUSHINT	//  _3=0
+    }>	//  x
+    DUP	//  x x
+    4 LESSINT	//  x _5
+    IFJMP:<{	//  x
+      DROP	// 
+      1 PUSHINT	//  _6=1
+    }>	//  x
+    DUP	//  x x
+    INC	//  x _9
+    1 RSHIFT#	//  x z
+    OVER	//  x z y
+    WHILE:<{
+      2DUP	//  x z y z y
+      LESS	//  x z y _13
+    }>DO<{	//  x z y
+      DROP	//  x z
+      s0 s1 s0 PUSH3	//  x z y x z
+      DIV	//  x z y _14
+      ROT	//  x y _14 z
+      ADD	//  x y _15
+      1 RSHIFT#	//  x y z
+      SWAP	//  x z y
+    }>	//  x z y
+    2 1 BLKDROP2	//  y
+  }>
+  avg PROCREF:<{
+    //  x y
+    ADD	//  _2
+    1 RSHIFT#	//  _4
+  }>
+  exp PROCREF:<{
+    //  x
+    DUP	//  x x
+    -1 GTINT	//  x _2
+    IF:<{	//  x
+      POW2	//  _3
+    }>ELSE<{	//  x
+      1 PUSHINT	//  x _6=1
+      SWAP	//  _6=1 x
+      NEGATE	//  _6=1 _8
+      RSHIFT	//  _3
+    }>
+  }>
+  log2 PROCREF:<{
+    //  x
+    0 PUSHINT	//  x n=0
+    7 PUSHPOW2	//  x n=0 _3=128
+    exp INLINECALLDICT	//  x n=0 _4
+    s2 s(-1) PUXC	//  x n=0 x _4
+    GEQ	//  x n=0 _5
+    IF:<{	//  x n=0
+      DROP	//  x
+      128 RSHIFT#	//  x
+      7 PUSHPOW2	//  x n
+    }>	//  x n
+    64 PUSHINT	//  x n _10=64
+    exp INLINECALLDICT	//  x n _11
+    s2 s(-1) PUXC	//  x n x _11
+    GEQ	//  x n _12
+    IF:<{	//  x n
+      SWAP	//  n x
+      64 RSHIFT#	//  n x
+      SWAP	//  x n
+      64 ADDCONST	//  x n
+    }>	//  x n
+    32 PUSHINT	//  x n _17=32
+    exp INLINECALLDICT	//  x n _18
+    s2 s(-1) PUXC	//  x n x _18
+    GEQ	//  x n _19
+    IF:<{	//  x n
+      SWAP	//  n x
+      32 RSHIFT#	//  n x
+      SWAP	//  x n
+      32 ADDCONST	//  x n
+    }>	//  x n
+    16 PUSHINT	//  x n _24=16
+    exp INLINECALLDICT	//  x n _25
+    s2 s(-1) PUXC	//  x n x _25
+    GEQ	//  x n _26
+    IF:<{	//  x n
+      SWAP	//  n x
+      16 RSHIFT#	//  n x
+      SWAP	//  x n
+      16 ADDCONST	//  x n
+    }>	//  x n
+    8 PUSHINT	//  x n _31=8
+    exp INLINECALLDICT	//  x n _32
+    s2 s(-1) PUXC	//  x n x _32
+    GEQ	//  x n _33
+    IF:<{	//  x n
+      SWAP	//  n x
+      8 RSHIFT#	//  n x
+      SWAP	//  x n
+      8 ADDCONST	//  x n
+    }>	//  x n
+    4 PUSHINT	//  x n _38=4
+    exp INLINECALLDICT	//  x n _39
+    s2 s(-1) PUXC	//  x n x _39
+    GEQ	//  x n _40
+    IF:<{	//  x n
+      SWAP	//  n x
+      4 RSHIFT#	//  n x
+      SWAP	//  x n
+      4 ADDCONST	//  x n
+    }>	//  x n
+    2 PUSHINT	//  x n _45=2
+    exp INLINECALLDICT	//  x n _46
+    s2 s(-1) PUXC	//  x n x _46
+    GEQ	//  x n _47
+    IF:<{	//  x n
+      SWAP	//  n x
+      2 RSHIFT#	//  n x
+      SWAP	//  x n
+      2 ADDCONST	//  x n
+    }>	//  x n
+    1 PUSHINT	//  x n _52=1
+    exp INLINECALLDICT	//  x n _53
+    s1 s2 XCHG	//  n x _53
+    GEQ	//  n _54
+    IF:<{	//  n
+      INC	//  n
+    }>	//  n
+  }>
+  force_chain PROC:<{
+    //  addr
+    REWRITESTDADDR	//  _8 _9
+    DROP	//  wc
+    0 EQINT	//  _6
+    333 THROWIFNOT
+  }>
+  load_data PROC:<{
+    // 
+    c4 PUSH	//  _1
+    CTOS	//  ds
+    32 LDU	//  _3 ds
+    256 LDU	//  _3 _6 ds
+    LDDICT	//  _3 _6 _9 ds
+    LDDICT	//  _3 _6 _9 _11 ds
+    LDDICT	//  _3 _6 _9 _11 _13 ds
+    LDREF	//  _3 _6 _9 _11 _13 _29 _28
+    DROP	//  _3 _6 _9 _11 _13 _15
+    CTOS	//  _3 _6 _9 _11 _13 _17
+  }>
+  load_prices PROC:<{
+    //  nft_prices
+    64 LDU	//  _1 nft_prices
+    64 LDU	//  _1 _4 nft_prices
+    64 LDU	//  _1 _4 _15 _14
+    DROP	//  _1 _4 _7
+  }>
+  save_data PROC:<{
+    //  stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices
+    s0 s5 XCHG
+    NEWC	//  nft_prices public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict stored_seqno _6
+    32 STU	//  nft_prices public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict _8
+    s1 s4 XCHG	//  nft_prices rare_nft_addr_dict common_nft_addr_dict uncommon_nft_addr_dict public_key _8
+    256 STU	//  nft_prices rare_nft_addr_dict common_nft_addr_dict uncommon_nft_addr_dict _10
+    s1 s2 XCHG	//  nft_prices rare_nft_addr_dict uncommon_nft_addr_dict common_nft_addr_dict _10
+    STDICT	//  nft_prices rare_nft_addr_dict uncommon_nft_addr_dict _11
+    STDICT	//  nft_prices rare_nft_addr_dict _12
+    STDICT	//  nft_prices _13
+    SWAP	//  _13 nft_prices
+    STSLICER	//  _14
+    ENDC	//  _15
+    c4 POP
+  }>
+  get_available_nft_num PROC:<{
+    // 
+    load_data CALLDICT	//  _43 _44 _45 _46 _47 _48
+    DROP
+    s3 POP
+    s3 POP	//  uncommon_nft_addr_dict rare_nft_addr_dict common_nft_addr_dict
+    0 PUSHINT	//  uncommon_nft_addr_dict rare_nft_addr_dict common_nft_addr_dict common_nft_quantity=0
+    UNTIL:<{
+      INC	//  uncommon_nft_addr_dict rare_nft_addr_dict common_nft_addr_dict common_nft_quantity
+      -1 PUSHINT	//  uncommon_nft_addr_dict rare_nft_addr_dict common_nft_addr_dict common_nft_quantity _15=-1
+      s2 PUSH
+      8 PUSHPOW2	//  uncommon_nft_addr_dict rare_nft_addr_dict common_nft_addr_dict common_nft_quantity _15=-1 common_nft_addr_dict _16=256
+      DICTUGETNEXT
+      NULLSWAPIFNOT2	//  uncommon_nft_addr_dict rare_nft_addr_dict common_nft_addr_dict common_nft_quantity _50 _49 _51
+      2 1 BLKDROP2	//  uncommon_nft_addr_dict rare_nft_addr_dict common_nft_addr_dict common_nft_quantity f
+      NOT	//  uncommon_nft_addr_dict rare_nft_addr_dict common_nft_addr_dict common_nft_quantity _18
+    }>	//  uncommon_nft_addr_dict rare_nft_addr_dict common_nft_addr_dict common_nft_quantity
+    NIP	//  uncommon_nft_addr_dict rare_nft_addr_dict common_nft_quantity
+    0 PUSHINT	//  uncommon_nft_addr_dict rare_nft_addr_dict common_nft_quantity uncommon_nft_quantity=0
+    UNTIL:<{
+      INC	//  uncommon_nft_addr_dict rare_nft_addr_dict common_nft_quantity uncommon_nft_quantity
+      -1 PUSHINT	//  uncommon_nft_addr_dict rare_nft_addr_dict common_nft_quantity uncommon_nft_quantity _27=-1
+      s4 PUSH
+      8 PUSHPOW2	//  uncommon_nft_addr_dict rare_nft_addr_dict common_nft_quantity uncommon_nft_quantity _27=-1 uncommon_nft_addr_dict _28=256
+      DICTUGETNEXT
+      NULLSWAPIFNOT2	//  uncommon_nft_addr_dict rare_nft_addr_dict common_nft_quantity uncommon_nft_quantity _53 _52 _54
+      2 1 BLKDROP2	//  uncommon_nft_addr_dict rare_nft_addr_dict common_nft_quantity uncommon_nft_quantity f
+      NOT	//  uncommon_nft_addr_dict rare_nft_addr_dict common_nft_quantity uncommon_nft_quantity _30
+    }>	//  uncommon_nft_addr_dict rare_nft_addr_dict common_nft_quantity uncommon_nft_quantity
+    s3 POP	//  uncommon_nft_quantity rare_nft_addr_dict common_nft_quantity
+    0 PUSHINT	//  uncommon_nft_quantity rare_nft_addr_dict common_nft_quantity rare_nft_quantity=0
+    UNTIL:<{
+      INC	//  uncommon_nft_quantity rare_nft_addr_dict common_nft_quantity rare_nft_quantity
+      -1 PUSHINT	//  uncommon_nft_quantity rare_nft_addr_dict common_nft_quantity rare_nft_quantity _39=-1
+      s3 PUSH
+      8 PUSHPOW2	//  uncommon_nft_quantity rare_nft_addr_dict common_nft_quantity rare_nft_quantity _39=-1 rare_nft_addr_dict _40=256
+      DICTUGETNEXT
+      NULLSWAPIFNOT2	//  uncommon_nft_quantity rare_nft_addr_dict common_nft_quantity rare_nft_quantity _56 _55 _57
+      2 1 BLKDROP2	//  uncommon_nft_quantity rare_nft_addr_dict common_nft_quantity rare_nft_quantity f
+      NOT	//  uncommon_nft_quantity rare_nft_addr_dict common_nft_quantity rare_nft_quantity _42
+    }>	//  uncommon_nft_quantity rare_nft_addr_dict common_nft_quantity rare_nft_quantity
+    s2 POP	//  uncommon_nft_quantity rare_nft_quantity common_nft_quantity
+    -ROT	//  common_nft_quantity uncommon_nft_quantity rare_nft_quantity
+  }>
+  recv_internal PROC:<{
+    //  my_balance msg_value in_msg_full in_msg_body
+    s3 POP	//  in_msg_body msg_value in_msg_full
+    CTOS	//  in_msg_body msg_value cs
+    4 LDU	//  in_msg_body msg_value flags cs
+    SWAP
+    1 PUSHINT	//  in_msg_body msg_value cs flags _10=1
+    AND	//  in_msg_body msg_value cs _11
+    IFJMP:<{	//  in_msg_body msg_value cs
+      3 BLKDROP	// 
+    }>	//  in_msg_body msg_value cs
+    s2 PUSH	//  in_msg_body msg_value cs in_msg_body
+    SEMPTY	//  in_msg_body msg_value cs _12
+    IFJMP:<{	//  in_msg_body msg_value cs
+      3 BLKDROP	// 
+    }>	//  in_msg_body msg_value cs
+    LDMSGADDR	//  in_msg_body msg_value _161 _160
+    DROP	//  in_msg_body msg_value sender_address
+    DUP	//  in_msg_body msg_value sender_address sender_address
+    force_chain CALLDICT
+    s0 s2 XCHG	//  sender_address msg_value in_msg_body
+    64 LDU	//  sender_address msg_value op in_msg_body
+    0x1 PUSHINT	//  sender_address msg_value op in_msg_body _28
+    s1 s2 XCHG	//  sender_address msg_value in_msg_body op _28
+    EQUAL	//  sender_address msg_value in_msg_body _29
+    IFJMP:<{	//  sender_address msg_value in_msg_body
+      32 LDU	//  sender_address msg_value common_purchase_quantity in_msg_body
+      32 LDU	//  sender_address msg_value common_purchase_quantity uncommon_purchase_quantity in_msg_body
+      32 LDU	//  sender_address msg_value common_purchase_quantity uncommon_purchase_quantity _175 _174
+      DROP	//  sender_address msg_value common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity
+      get_available_nft_num CALLDICT	//  sender_address msg_value common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity common_nft_quantity uncommon_nft_quantity rare_nft_quantity
+      s5 s2 PUSH2	//  sender_address msg_value common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity common_nft_quantity uncommon_nft_quantity rare_nft_quantity common_purchase_quantity common_nft_quantity
+      LEQ	//  sender_address msg_value common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity common_nft_quantity uncommon_nft_quantity rare_nft_quantity _46
+      s5 s2 PUSH2	//  sender_address msg_value common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity common_nft_quantity uncommon_nft_quantity rare_nft_quantity _46 uncommon_purchase_quantity uncommon_nft_quantity
+      LEQ	//  sender_address msg_value common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity common_nft_quantity uncommon_nft_quantity rare_nft_quantity _46 _47
+      AND	//  sender_address msg_value common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity common_nft_quantity uncommon_nft_quantity rare_nft_quantity _48
+      s4 s1 PUSH2	//  sender_address msg_value common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity common_nft_quantity uncommon_nft_quantity rare_nft_quantity _48 rare_purchase_quantity rare_nft_quantity
+      LEQ	//  sender_address msg_value common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity common_nft_quantity uncommon_nft_quantity rare_nft_quantity _48 _49
+      AND	//  sender_address msg_value common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity common_nft_quantity uncommon_nft_quantity rare_nft_quantity _50
+      NOT	//  sender_address msg_value common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity common_nft_quantity uncommon_nft_quantity rare_nft_quantity _51
+      IFJMP:<{	//  sender_address msg_value common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity common_nft_quantity uncommon_nft_quantity rare_nft_quantity
+        8 BLKDROP	// 
+      }>	//  sender_address msg_value common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity common_nft_quantity uncommon_nft_quantity rare_nft_quantity
+      load_data CALLDICT	//  sender_address msg_value common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity common_nft_quantity uncommon_nft_quantity rare_nft_quantity stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices
+      DUP	//  sender_address msg_value common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity common_nft_quantity uncommon_nft_quantity rare_nft_quantity stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices nft_prices
+      load_prices CALLDICT	//  sender_address msg_value common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity common_nft_quantity uncommon_nft_quantity rare_nft_quantity stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices common_nft_price uncommon_nft_price rare_nft_price
+      s2 s11 XCHG2	//  sender_address msg_value common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity rare_nft_price uncommon_nft_quantity rare_nft_quantity stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices uncommon_nft_price common_nft_price common_nft_quantity
+      MUL	//  sender_address msg_value common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity rare_nft_price uncommon_nft_quantity rare_nft_quantity stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices uncommon_nft_price _64
+      s0 s9 XCHG	//  sender_address msg_value common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity rare_nft_price _64 rare_nft_quantity stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices uncommon_nft_price uncommon_nft_quantity
+      MUL	//  sender_address msg_value common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity rare_nft_price _64 rare_nft_quantity stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices _65
+      s1 s8 XCHG	//  sender_address msg_value common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity rare_nft_price nft_prices rare_nft_quantity stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict _64 _65
+      ADD	//  sender_address msg_value common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity rare_nft_price nft_prices rare_nft_quantity stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict _66
+      s8 s6 XCHG2	//  sender_address msg_value common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity rare_nft_addr_dict nft_prices _66 stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_price rare_nft_quantity
+      MUL	//  sender_address msg_value common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity rare_nft_addr_dict nft_prices _66 stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict _67
+      s1 s5 XCHG	//  sender_address msg_value common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity rare_nft_addr_dict nft_prices uncommon_nft_addr_dict stored_seqno public_key common_nft_addr_dict _66 _67
+      ADD	//  sender_address msg_value common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity rare_nft_addr_dict nft_prices uncommon_nft_addr_dict stored_seqno public_key common_nft_addr_dict order_price
+      s1 s10 XCHG	//  sender_address common_nft_addr_dict common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity rare_nft_addr_dict nft_prices uncommon_nft_addr_dict stored_seqno public_key msg_value order_price
+      LESS	//  sender_address common_nft_addr_dict common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity rare_nft_addr_dict nft_prices uncommon_nft_addr_dict stored_seqno public_key _69
+      IFJMP:<{	//  sender_address common_nft_addr_dict common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity rare_nft_addr_dict nft_prices uncommon_nft_addr_dict stored_seqno public_key
+        10 BLKDROP	// 
+      }>	//  sender_address common_nft_addr_dict common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity rare_nft_addr_dict nft_prices uncommon_nft_addr_dict stored_seqno public_key
+      NEWDICT	//  sender_address common_nft_addr_dict common_purchase_quantity uncommon_purchase_quantity rare_purchase_quantity rare_nft_addr_dict nft_prices uncommon_nft_addr_dict stored_seqno public_key order_dict
+      s0 s8 XCHG	//  sender_address common_nft_addr_dict order_dict uncommon_purchase_quantity rare_purchase_quantity rare_nft_addr_dict nft_prices uncommon_nft_addr_dict stored_seqno public_key common_purchase_quantity
+      REPEAT:<{	//  sender_address common_nft_addr_dict order_dict uncommon_purchase_quantity rare_purchase_quantity rare_nft_addr_dict nft_prices uncommon_nft_addr_dict stored_seqno public_key
+        s0 s8 XCHG
+        8 PUSHPOW2	//  sender_address public_key order_dict uncommon_purchase_quantity rare_purchase_quantity rare_nft_addr_dict nft_prices uncommon_nft_addr_dict stored_seqno common_nft_addr_dict _76=256
+        DICTUREMMIN
+        NULLSWAPIFNOT2	//  sender_address public_key order_dict uncommon_purchase_quantity rare_purchase_quantity rare_nft_addr_dict nft_prices uncommon_nft_addr_dict stored_seqno common_nft_addr_dict value key flag
+        112 THROWIFNOT
+        s1 s0 s9 XCHG3
+        8 PUSHPOW2	//  sender_address public_key common_nft_addr_dict uncommon_purchase_quantity rare_purchase_quantity rare_nft_addr_dict nft_prices uncommon_nft_addr_dict stored_seqno value key order_dict _81=256
+        DICTUADD	//  sender_address public_key common_nft_addr_dict uncommon_purchase_quantity rare_purchase_quantity rare_nft_addr_dict nft_prices uncommon_nft_addr_dict stored_seqno _195 _196
+        DROP	//  sender_address public_key common_nft_addr_dict uncommon_purchase_quantity rare_purchase_quantity rare_nft_addr_dict nft_prices uncommon_nft_addr_dict stored_seqno order_dict
+        s0 s7 XCHG
+        s0 s8 XCHG	//  sender_address common_nft_addr_dict order_dict uncommon_purchase_quantity rare_purchase_quantity rare_nft_addr_dict nft_prices uncommon_nft_addr_dict stored_seqno public_key
+      }>
+      s0 s6 XCHG	//  sender_address common_nft_addr_dict order_dict public_key rare_purchase_quantity rare_nft_addr_dict nft_prices uncommon_nft_addr_dict stored_seqno uncommon_purchase_quantity
+      REPEAT:<{	//  sender_address common_nft_addr_dict order_dict public_key rare_purchase_quantity rare_nft_addr_dict nft_prices uncommon_nft_addr_dict stored_seqno
+        SWAP
+        8 PUSHPOW2	//  sender_address common_nft_addr_dict order_dict public_key rare_purchase_quantity rare_nft_addr_dict nft_prices stored_seqno uncommon_nft_addr_dict _87=256
+        DICTUREMMIN
+        NULLSWAPIFNOT2	//  sender_address common_nft_addr_dict order_dict public_key rare_purchase_quantity rare_nft_addr_dict nft_prices stored_seqno uncommon_nft_addr_dict value key flag
+        113 THROWIFNOT
+        s1 s0 s8 XCHG3
+        8 PUSHPOW2	//  sender_address common_nft_addr_dict uncommon_nft_addr_dict public_key rare_purchase_quantity rare_nft_addr_dict nft_prices stored_seqno value key order_dict _92=256
+        DICTUADD	//  sender_address common_nft_addr_dict uncommon_nft_addr_dict public_key rare_purchase_quantity rare_nft_addr_dict nft_prices stored_seqno _204 _205
+        DROP	//  sender_address common_nft_addr_dict uncommon_nft_addr_dict public_key rare_purchase_quantity rare_nft_addr_dict nft_prices stored_seqno order_dict
+        s6 s6 XCHG2	//  sender_address common_nft_addr_dict order_dict public_key rare_purchase_quantity rare_nft_addr_dict nft_prices uncommon_nft_addr_dict stored_seqno
+      }>
+      s0 s4 XCHG	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict rare_purchase_quantity
+      REPEAT:<{	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict
+        s0 s2 XCHG
+        8 PUSHPOW2	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno uncommon_nft_addr_dict nft_prices rare_nft_addr_dict _98=256
+        DICTUREMMIN
+        NULLSWAPIFNOT2	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno uncommon_nft_addr_dict nft_prices rare_nft_addr_dict value key flag
+        114 THROWIFNOT
+        s1 s0 s7 XCHG3
+        8 PUSHPOW2	//  sender_address common_nft_addr_dict rare_nft_addr_dict public_key stored_seqno uncommon_nft_addr_dict nft_prices value key order_dict _103=256
+        DICTUADD	//  sender_address common_nft_addr_dict rare_nft_addr_dict public_key stored_seqno uncommon_nft_addr_dict nft_prices _213 _214
+        DROP	//  sender_address common_nft_addr_dict rare_nft_addr_dict public_key stored_seqno uncommon_nft_addr_dict nft_prices order_dict
+        s5 s1 s5 XCHG3	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict
+      }>
+      -1 PUSHINT	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key=-1
+      UNTIL:<{
+        s0 s6 PUSH2
+        8 PUSHPOW2	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key key order_dict _110=256
+        DICTUGETNEXT
+        NULLSWAPIFNOT2	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key _216 _215 _217
+        NIP	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key nft_addr f
+        0 PUSHINT	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key nft_addr f _113=0
+        DUP	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key nft_addr f _113=0 _114=0
+        1607220500 PUSHINT	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key nft_addr f _113=0 _114=0 _115=1607220500
+        NEWC	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key nft_addr f _113=0 _114=0 _115=1607220500 _116
+        32 STU	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key nft_addr f _113=0 _114=0 _118
+        64 STU	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key nft_addr f _113=0 _120
+        s12 PUSH	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key nft_addr f _113=0 _120 sender_address
+        STSLICER	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key nft_addr f _113=0 _121
+        s12 PUSH	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key nft_addr f _113=0 _121 sender_address
+        STSLICER	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key nft_addr f _113=0 _122
+        1 STU	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key nft_addr f _124
+        0 PUSHINT	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key nft_addr f _124 _125=0
+        STVARUINT16	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key nft_addr f _126
+        ENDC	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key nft_addr f nft_transfer_body
+        0 PUSHINT	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key nft_addr f nft_transfer_body _129=0
+        16 PUSHINT	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key nft_addr f nft_transfer_body _129=0 _130=16
+        NEWC	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key nft_addr f nft_transfer_body _129=0 _130=16 _131
+        6 STU	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key nft_addr f nft_transfer_body _129=0 _133
+        s0 s4 XCHG2	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key _129=0 f nft_transfer_body _133 nft_addr
+        STSLICER	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key _129=0 f nft_transfer_body _134
+        50000000 PUSHINT	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key _129=0 f nft_transfer_body _134 _135=50000000
+        STVARUINT16	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key _129=0 f nft_transfer_body _136
+        s1 s3 XCHG	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key nft_transfer_body f _129=0 _136
+        106 STU	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key nft_transfer_body f _148
+        s1 s2 XCHG	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key f nft_transfer_body _148
+        STREF	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key f _149
+        ENDC	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key f msg
+        0 PUSHINT	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key f msg mode=0
+        SENDRAWMSG
+        NOT	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key _154
+      }>	//  sender_address common_nft_addr_dict order_dict public_key stored_seqno rare_nft_addr_dict nft_prices uncommon_nft_addr_dict key
+      DROP
+      s5 POP
+      s6 POP	//  nft_prices common_nft_addr_dict uncommon_nft_addr_dict public_key stored_seqno rare_nft_addr_dict
+      5 1 REVERSE
+      s3 s0 s0 XCHG3	//  stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices
+      save_data CALLDICT
+    }>	//  sender_address msg_value in_msg_body
+    3 BLKDROP	// 
+    111 THROW
+  }>
+  recv_external PROC:<{
+    //  my_balance msg_value in_msg_full in_msg_body
+    3 1 BLKDROP2	//  in_msg_body
+    64 LDU	//  op in_msg_body
+    32 LDU	//  op msg_segno in_msg_body
+    9 PUSHPOW2	//  op msg_segno in_msg_body _14=512
+    LDSLICEX	//  op msg_segno signature in_msg_body
+    load_data CALLDICT	//  op msg_segno signature in_msg_body _115 _116 _117 _118 _119 _120
+    4 BLKDROP	//  op msg_segno signature in_msg_body stored_seqno public_key
+    s4 s4 XCHG2	//  op public_key signature in_msg_body msg_segno stored_seqno
+    EQUAL	//  op public_key signature in_msg_body _24
+    33 THROWIFNOT
+    DUP	//  op public_key signature in_msg_body in_msg_body
+    HASHSU	//  op public_key signature in_msg_body _27
+    s0 s0 s3 XCHG3	//  op in_msg_body _27 signature public_key
+    CHKSIGNU	//  op in_msg_body _28
+    35 THROWIFNOT
+    ACCEPT
+    0x2 PUSHINT	//  op in_msg_body _31
+    s2 s(-1) PUXC	//  op in_msg_body op _31
+    EQUAL	//  op in_msg_body _32
+    IFJMP:<{	//  op in_msg_body
+      NIP	//  in_msg_body
+      64 LDU	//  nft_type in_msg_body
+      256 LDU	//  nft_type key in_msg_body
+      load_data CALLDICT	//  nft_type key in_msg_body stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices
+      0x1 PUSHINT	//  nft_type key in_msg_body stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices _48
+      s9 s(-1) PUXC	//  nft_type key in_msg_body stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices nft_type _48
+      EQUAL	//  nft_type key in_msg_body stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices _49
+      IF:<{	//  nft_type key in_msg_body stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices
+        8 PUSHPOW2	//  nft_type key in_msg_body stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices _51=256
+        s7 PUSH
+        s9 s2 s(-1) PUXC2
+        s1 s6 XCHG	//  nft_type key in_msg_body stored_seqno public_key nft_prices uncommon_nft_addr_dict rare_nft_addr_dict in_msg_body key common_nft_addr_dict _51=256
+        DICTUSET	//  nft_type key in_msg_body stored_seqno public_key nft_prices uncommon_nft_addr_dict rare_nft_addr_dict common_nft_addr_dict
+        s0 s3 XCHG	//  nft_type key in_msg_body stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices
+      }>	//  nft_type key in_msg_body stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices
+      0x2 PUSHINT	//  nft_type key in_msg_body stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices _53
+      s9 s(-1) PUXC	//  nft_type key in_msg_body stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices nft_type _53
+      EQUAL	//  nft_type key in_msg_body stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices _54
+      IF:<{	//  nft_type key in_msg_body stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices
+        8 PUSHPOW2	//  nft_type key in_msg_body stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices _56=256
+        s7 PUSH
+        s9 s2 s(-1) PUXC2
+        s1 s5 XCHG	//  nft_type key in_msg_body stored_seqno public_key common_nft_addr_dict nft_prices rare_nft_addr_dict in_msg_body key uncommon_nft_addr_dict _56=256
+        DICTUSET	//  nft_type key in_msg_body stored_seqno public_key common_nft_addr_dict nft_prices rare_nft_addr_dict uncommon_nft_addr_dict
+        s0 s2 XCHG	//  nft_type key in_msg_body stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices
+      }>	//  nft_type key in_msg_body stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices
+      0x3 PUSHINT	//  nft_type key in_msg_body stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices _58
+      s1 s9 XCHG	//  nft_prices key in_msg_body stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_type _58
+      EQUAL	//  nft_prices key in_msg_body stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict _59
+      IF:<{	//  nft_prices key in_msg_body stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict
+        s5 s6 s0 XCHG3
+        8 PUSHPOW2	//  nft_prices uncommon_nft_addr_dict common_nft_addr_dict stored_seqno public_key in_msg_body key rare_nft_addr_dict _61=256
+        DICTUSET	//  nft_prices uncommon_nft_addr_dict common_nft_addr_dict stored_seqno public_key rare_nft_addr_dict
+        s0 s3 XCHG	//  nft_prices uncommon_nft_addr_dict rare_nft_addr_dict stored_seqno public_key common_nft_addr_dict
+      }>ELSE<{
+        s5 POP
+        s5 POP	//  nft_prices uncommon_nft_addr_dict rare_nft_addr_dict stored_seqno public_key common_nft_addr_dict
+      }>
+      s5 s3 s3 XCHG3
+      s4 s1 s4 XCHG3	//  stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices
+      save_data CALLDICT
+    }>	//  op in_msg_body
+    0x3 PUSHINT	//  op in_msg_body _64
+    s2 s(-1) PUXC	//  op in_msg_body op _64
+    EQUAL	//  op in_msg_body _65
+    IFJMP:<{	//  op in_msg_body
+      NIP	//  in_msg_body
+      64 LDU	//  _132 _131
+      DROP	//  nft_type
+      load_data CALLDICT	//  nft_type stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices
+      0x1 PUSHINT	//  nft_type stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices _81
+      s7 s(-1) PUXC	//  nft_type stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices nft_type _81
+      EQUAL	//  nft_type stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices _82
+      IF:<{	//  nft_type stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices
+      }>	//  nft_type stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices
+      0x2 PUSHINT	//  nft_type stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices _85
+      s7 s(-1) PUXC	//  nft_type stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices nft_type _85
+      EQUAL	//  nft_type stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices _86
+      IF:<{	//  nft_type stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices
+      }>	//  nft_type stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices
+      0x3 PUSHINT	//  nft_type stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices _89
+      s1 s7 XCHG	//  nft_prices stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_type _89
+      EQUAL	//  nft_prices stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict _90
+      IF:<{	//  nft_prices stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict
+      }>	//  nft_prices stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict
+      5 ROLL	//  stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict nft_prices
+      save_data CALLDICT
+    }>	//  op in_msg_body
+    0x4 PUSHINT	//  op in_msg_body _94
+    s1 s2 XCHG	//  in_msg_body op _94
+    EQUAL	//  in_msg_body _95
+    IFJMP:<{	//  in_msg_body
+      load_data CALLDICT	//  in_msg_body _147 _148 _149 _150 _151 _152
+      DROP	//  in_msg_body stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict
+      s0 s5 XCHG
+      0 PUSHINT	//  rare_nft_addr_dict stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict in_msg_body _104=0
+      SDSKIPLAST	//  rare_nft_addr_dict stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict new_nft_prices
+      s4 s5 XCHG
+      s3 s4 XCHG
+      s1 s3 s0 XCHG3	//  stored_seqno public_key common_nft_addr_dict uncommon_nft_addr_dict rare_nft_addr_dict new_nft_prices
+      save_data CALLDICT
+    }>	//  in_msg_body
+    DROP	// 
+    111 THROW
+  }>
+}END>c

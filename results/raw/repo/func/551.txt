@@ -1,0 +1,24 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task3_clean.fc:70:38: warning: Lack of end_parse.
+                  set_c3(migration_code.begin_parse().bless());
+                                       ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task3_clean.fc:58:37: warning: Lack of end_parse.
+      int current_version = get_data().begin_parse().preload_uint(32);
+                                      ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task3_clean.fc:86:24: warning: Lack of end_parse.
+          set_c3(new_code.begin_parse().bless());
+                         ^
+process_message: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task3_clean.fc:32:23: warning: Lack of end_parse.
+      slice cs = storage.begin_parse();
+                        ^
+version: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task3_clean.fc:20:22: warning: Lack of end_parse.
+      return get_data().begin_parse().preload_uint(32);
+                       ^
+get_storage: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./crazyministr/TSC-5/contracts/task3_clean.fc:9:22: warning: Lack of end_parse.
+      return get_data().begin_parse().preload_ref();
+                       ^

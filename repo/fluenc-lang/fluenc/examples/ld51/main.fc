@@ -1,0 +1,141 @@
+use "sdl.fc"
+use "player.fc"
+use "misc.fc"
+use "physics.fc"
+use "input.fc"
+use "draw.fc"
+use "tmx.fc"
+
+import i32 puts(string str);
+import i32 rand();
+
+import void srand(i32 seed);
+import void printnum(i32 num);
+
+global Width: 1280;
+global Height: 720;
+global Length: RoundLength * 3;
+global RoundLength: 3000;
+global CameraOffset: 500;
+
+namespace Stages
+{
+	struct Stage
+	{
+		seed: 0,
+		round: 0
+	};
+
+	struct Water : Stage;
+	struct Fire : Stage;
+	struct Forest : Stage;
+	struct Moon : Stage;
+}
+
+struct State
+{
+	renderer,
+	player,
+// 	map,
+	stage,
+	rounds: 0
+};
+
+function updateStage(State state)
+{
+	let elapsed = (SDL::SDL_GetTicks() - state.rounds * RoundLength);
+
+	if (elapsed >= RoundLength)
+	{
+		return state with
+		{
+			rounds: state.rounds + 1,
+// 			stage: nextStage(state.rounds + 1)
+		};
+	}
+
+	return state;
+}
+
+function mainLoop(State state)
+{
+	SDL::SDL_SetRenderDrawColor(state.renderer, 0, 0, 0, 0);
+	SDL::SDL_RenderClear(state.renderer);
+
+	handleDraw(state);
+
+	SDL::SDL_RenderPresent(state.renderer);
+
+	let withInput = handleInput(state);
+	let withPhysics = handlePhysics(withInput);
+	let withUpdatedStage = updateStage(withPhysics);
+
+	return tail mainLoop(withUpdatedStage);
+}
+
+function nextStage(i32 rounds)
+{
+	let result = rounds % 4;
+
+	if (result == 0)
+	{
+		return Stages::Water
+		{
+			round: rounds,
+			seed: rand()
+		};
+	}
+
+	if (result == 1)
+	{
+		return Stages::Fire
+		{
+			round: rounds,
+			seed: rand()
+		};
+	}
+
+	if (result == 2)
+	{
+		return Stages::Forest
+		{
+			round: rounds,
+			seed: rand()
+		};
+	}
+
+	return Stages::Moon
+	{
+		round: rounds,
+		seed: rand()
+	};
+}
+
+export i32 main()
+{
+	SDL::SDL_Init(SDL::INIT_VIDEO | SDL::INIT_AUDIO);
+
+	let window = SDL::SDL_CreateWindow(@"ld51", 0, 0, Width, Height, SDL::WINDOW_RESIZABLE);
+	let renderer = SDL::SDL_CreateRenderer(window, 0, 0);
+
+	// double jump
+	// dash
+	// dodge up/down
+	// jetpack
+
+// 	tmx::tmxInit(renderer);
+
+	let state = State
+	{
+		renderer: renderer,
+		player: Player {
+			position: Vec2 {
+				y: 500.0
+			}
+		},
+// 		map: tmx::tmx_load(@"map.tmx")
+		stage: Stages::Moon {}
+	};
+
+	return mainLoop(state);
+}

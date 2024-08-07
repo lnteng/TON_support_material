@@ -1,0 +1,241 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_Lottery.headers.fc";
+#include "sample_Lottery.stdlib.fc";
+#include "sample_Lottery.constants.fc";
+#include "sample_Lottery.storage.fc";
+
+;;
+;; Contract Lottery functions
+;;
+
+(int, slice, slice, slice, slice, slice, int, int) $Lottery$_contract_init(int $id, slice $poolAddr, slice $tonVaultAddr, slice $jettonVaultAddr, int $feePercent) impure inline_ref {
+    var (($self'id, $self'tonVaultAddr, $self'poolAddr, $self'jettonVaultAddr, $self'ownerAddr, $self'jettonWalletAddr, $self'feePercent, $self'totalJettonValue)) = (null(), null(), null(), null(), null(), null(), null(), 0);
+    $self'id = $id;
+    $self'poolAddr = $poolAddr;
+    $self'jettonVaultAddr = $jettonVaultAddr;
+    $self'tonVaultAddr = $tonVaultAddr;
+    $self'ownerAddr = __tact_context_get_sender();
+    $self'feePercent = $feePercent;
+    return ($self'id, $self'tonVaultAddr, $self'poolAddr, $self'jettonVaultAddr, $self'ownerAddr, $self'jettonWalletAddr, $self'feePercent, $self'totalJettonValue);
+}
+
+((int, slice, slice, slice, slice, slice, int, int), int) $Lottery$_fun_id((int, slice, slice, slice, slice, slice, int, int) $self) impure inline_ref {
+    var (($self'id, $self'tonVaultAddr, $self'poolAddr, $self'jettonVaultAddr, $self'ownerAddr, $self'jettonWalletAddr, $self'feePercent, $self'totalJettonValue)) = $self;
+    return (($self'id, $self'tonVaultAddr, $self'poolAddr, $self'jettonVaultAddr, $self'ownerAddr, $self'jettonWalletAddr, $self'feePercent, $self'totalJettonValue), $self'id);
+}
+
+((int, slice, slice, slice, slice, slice, int, int), int) $Lottery$_fun_getTotalAmount((int, slice, slice, slice, slice, slice, int, int) $self) impure inline_ref {
+    var (($self'id, $self'tonVaultAddr, $self'poolAddr, $self'jettonVaultAddr, $self'ownerAddr, $self'jettonWalletAddr, $self'feePercent, $self'totalJettonValue)) = $self;
+    return (($self'id, $self'tonVaultAddr, $self'poolAddr, $self'jettonVaultAddr, $self'ownerAddr, $self'jettonWalletAddr, $self'feePercent, $self'totalJettonValue), $self'totalJettonValue);
+}
+
+((int, slice, slice, slice, slice, slice, int, int), int) $Lottery$_fun_getFee((int, slice, slice, slice, slice, slice, int, int) $self) impure inline_ref {
+    var (($self'id, $self'tonVaultAddr, $self'poolAddr, $self'jettonVaultAddr, $self'ownerAddr, $self'jettonWalletAddr, $self'feePercent, $self'totalJettonValue)) = $self;
+    return (($self'id, $self'tonVaultAddr, $self'poolAddr, $self'jettonVaultAddr, $self'ownerAddr, $self'jettonWalletAddr, $self'feePercent, $self'totalJettonValue), $self'feePercent);
+}
+
+;;
+;; Receivers of a Contract Lottery
+;;
+
+(((int, slice, slice, slice, slice, slice, int, int)), ()) $Lottery$_internal_binary_TokenNotification((int, slice, slice, slice, slice, slice, int, int) $self, (int, int, slice, slice) $msg) impure inline {
+    var ($self'id, $self'tonVaultAddr, $self'poolAddr, $self'jettonVaultAddr, $self'ownerAddr, $self'jettonWalletAddr, $self'feePercent, $self'totalJettonValue) = $self;
+    var ($msg'query_id, $msg'amount, $msg'from, $msg'forward_payload) = $msg;
+    throw_unless(38064, ( __tact_slice_eq_bits($self'jettonVaultAddr, $msg'from) ));
+    int $isFirstFeed = ($self'totalJettonValue == 0);
+    $self'totalJettonValue = ($self'totalJettonValue + $msg'amount);
+    if ($isFirstFeed) {
+        $self'jettonWalletAddr = __tact_context_get_sender();
+        return (($self'id, $self'tonVaultAddr, $self'poolAddr, $self'jettonVaultAddr, $self'ownerAddr, $self'jettonWalletAddr, $self'feePercent, $self'totalJettonValue), ());
+    }
+    $msg'forward_payload~load_int(1);
+    cell $cell = $msg'forward_payload~load_ref();
+    slice $slice = begin_parse($cell);
+    slice $senderAddress = $slice~__tact_load_address();
+    int $balance_twelve_percents = (($self'totalJettonValue / 100) * 12);
+    int $cutted_msg_value = ((min($msg'amount, $balance_twelve_percents) / 100) * 80);
+    int $randomValue = ($global_random(0, $self'totalJettonValue) + 1);
+    if (($randomValue <= $cutted_msg_value)) {
+        int $balancePercent = ($self'totalJettonValue / 100);
+        int $winningValue = ($balancePercent * (85 - $self'feePercent));
+        int $feeValue = ($balancePercent * $self'feePercent);
+        if ((~ null?($self'jettonWalletAddr))) {
+            $global_send($SendParameters$_constructor_to_value_mode_bounce_body(__tact_not_null($self'jettonWalletAddr), 50000000, (1 + 2), false, $TokenTransfer$_store_cell($TokenTransfer$_constructor_queryId_amount_destination_response_destination_custom_payload_forward_ton_amount_forward_payload($msg'query_id, $winningValue, $senderAddress, $senderAddress, null(), 0, $Cell$_fun_asSlice(__gen_cell_comment_01181b3b863e1bfa7a0d66f48c1d55e256f6a999996106d311770b14365eb69e())))));
+            $self'totalJettonValue = ($self'totalJettonValue - $winningValue);
+            $global_emit($FeedEvent$_store_cell($FeedEvent$_constructor_feeder_feed_amount_win_amount($senderAddress, $msg'amount, $winningValue)));
+            $global_send($SendParameters$_constructor_to_value_mode_bounce_body(__tact_not_null($self'jettonWalletAddr), ((__tact_my_balance() - $Context$_get_value(__tact_context_get())) - 500000000), (1 + 2), false, $TokenTransfer$_store_cell($TokenTransfer$_constructor_queryId_amount_destination_response_destination_custom_payload_forward_ton_amount_forward_payload($msg'query_id, $feeValue, $self'ownerAddr, $self'ownerAddr, null(), 0, $Cell$_fun_asSlice(__gen_cell_comment_2ccdbda3c1c0e9e41d4801295c61c6ea6bb0d51ea580b5e04318719d3c277645())))));
+            $self'totalJettonValue = ($self'totalJettonValue - $feeValue);
+        }
+    } else {
+        $global_emit($FeedEvent$_store_cell($FeedEvent$_constructor_feeder_feed_amount_win_amount($senderAddress, $msg'amount, 0)));
+    }
+    return (($self'id, $self'tonVaultAddr, $self'poolAddr, $self'jettonVaultAddr, $self'ownerAddr, $self'jettonWalletAddr, $self'feePercent, $self'totalJettonValue), ());
+}
+
+(((int, slice, slice, slice, slice, slice, int, int)), ()) $Lottery$_internal_binary_Feed((int, slice, slice, slice, slice, slice, int, int) $self, (int) $msg) impure inline {
+    var ($self'id, $self'tonVaultAddr, $self'poolAddr, $self'jettonVaultAddr, $self'ownerAddr, $self'jettonWalletAddr, $self'feePercent, $self'totalJettonValue) = $self;
+    var ($msg'query_id) = $msg;
+    int $tradeValue = $Context$_get_value(__tact_context_get());
+    int $balanceAfterTrade = (__tact_my_balance() - $tradeValue);
+    if (($balanceAfterTrade < 500000000)) {
+        $tradeValue = ($tradeValue - (500000000 - $balanceAfterTrade));
+    }
+    $global_send($SendParameters$_constructor_to_value_mode_body($self'tonVaultAddr, $tradeValue, 0, $Swap$_store_cell($Swap$_constructor_query_id_amount_swap_step_swap_params($msg'query_id, ($tradeValue - 200000000), $SwapStep$_constructor_pool_addr_params($self'poolAddr, $SwapStepParams$_constructor_limit(0)), $SwapParams$_store_cell($SwapParams$_constructor_fulfill_payload(end_cell(__tact_store_address(begin_cell(), __tact_context_get_sender()))))))));
+    return (($self'id, $self'tonVaultAddr, $self'poolAddr, $self'jettonVaultAddr, $self'ownerAddr, $self'jettonWalletAddr, $self'feePercent, $self'totalJettonValue), ());
+}
+
+(((int, slice, slice, slice, slice, slice, int, int)), ()) $Lottery$_internal_binary_ChangeFee((int, slice, slice, slice, slice, slice, int, int) $self, (int) $msg) impure inline {
+    var ($self'id, $self'tonVaultAddr, $self'poolAddr, $self'jettonVaultAddr, $self'ownerAddr, $self'jettonWalletAddr, $self'feePercent, $self'totalJettonValue) = $self;
+    var ($msg'feePercent) = $msg;
+    throw_unless(24312, ( __tact_slice_eq_bits($self'ownerAddr, __tact_context_get_sender()) ));
+    $self'feePercent = $msg'feePercent;
+    return (($self'id, $self'tonVaultAddr, $self'poolAddr, $self'jettonVaultAddr, $self'ownerAddr, $self'jettonWalletAddr, $self'feePercent, $self'totalJettonValue), ());
+}
+
+(((int, slice, slice, slice, slice, slice, int, int)), ()) $Lottery$_internal_binary_ChangeOwner((int, slice, slice, slice, slice, slice, int, int) $self, (slice) $msg) impure inline {
+    var ($self'id, $self'tonVaultAddr, $self'poolAddr, $self'jettonVaultAddr, $self'ownerAddr, $self'jettonWalletAddr, $self'feePercent, $self'totalJettonValue) = $self;
+    var ($msg'newOwner) = $msg;
+    throw_unless(36877, ( __tact_slice_eq_bits($self'ownerAddr, __tact_context_get_sender()) ));
+    $self'ownerAddr = $msg'newOwner;
+    return (($self'id, $self'tonVaultAddr, $self'poolAddr, $self'jettonVaultAddr, $self'ownerAddr, $self'jettonWalletAddr, $self'feePercent, $self'totalJettonValue), ());
+}
+
+(((int, slice, slice, slice, slice, slice, int, int)), ()) $Lottery$_internal_binary_TokenExcesses((int, slice, slice, slice, slice, slice, int, int) $self, (int) $msg) impure inline {
+    var ($self'id, $self'tonVaultAddr, $self'poolAddr, $self'jettonVaultAddr, $self'ownerAddr, $self'jettonWalletAddr, $self'feePercent, $self'totalJettonValue) = $self;
+    var ($msg'queryId) = $msg;
+    return (($self'id, $self'tonVaultAddr, $self'poolAddr, $self'jettonVaultAddr, $self'ownerAddr, $self'jettonWalletAddr, $self'feePercent, $self'totalJettonValue), ());
+}
+
+(((int, slice, slice, slice, slice, slice, int, int)), ()) $Lottery$_internal_binary_Deploy((int, slice, slice, slice, slice, slice, int, int) $self, (int) $deploy) impure inline {
+    var ($self'id, $self'tonVaultAddr, $self'poolAddr, $self'jettonVaultAddr, $self'ownerAddr, $self'jettonWalletAddr, $self'feePercent, $self'totalJettonValue) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'id, $self'tonVaultAddr, $self'poolAddr, $self'jettonVaultAddr, $self'ownerAddr, $self'jettonWalletAddr, $self'feePercent, $self'totalJettonValue)~$Lottery$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'id, $self'tonVaultAddr, $self'poolAddr, $self'jettonVaultAddr, $self'ownerAddr, $self'jettonWalletAddr, $self'feePercent, $self'totalJettonValue), ());
+}
+
+;;
+;; Get methods of a Contract Lottery
+;;
+
+_ %id() method_id(105872) {
+    var self = $Lottery$_contract_load();
+    var res = self~$Lottery$_fun_id();
+    return res;
+}
+
+_ %getTotalAmount() method_id(100007) {
+    var self = $Lottery$_contract_load();
+    var res = self~$Lottery$_fun_getTotalAmount();
+    return res;
+}
+
+_ %getFee() method_id(82567) {
+    var self = $Lottery$_contract_load();
+    var res = self~$Lottery$_fun_getFee();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmVVBvL6THoQUjBnomKs9aKyAPjhV1awS5NSBcsGUAdepB";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract Lottery
+;;
+
+((int, slice, slice, slice, slice, slice, int, int), int) $Lottery$_contract_router_internal((int, slice, slice, slice, slice, slice, int, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive TokenNotification message
+    if (op == 1935855772) {
+        var msg = in_msg~$TokenNotification$_load();
+        self~$Lottery$_internal_binary_TokenNotification(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Feed message
+    if (op == 3040223792) {
+        var msg = in_msg~$Feed$_load();
+        self~$Lottery$_internal_binary_Feed(msg);
+        return (self, true);
+    }
+    
+    ;; Receive ChangeFee message
+    if (op == 1904630945) {
+        var msg = in_msg~$ChangeFee$_load();
+        self~$Lottery$_internal_binary_ChangeFee(msg);
+        return (self, true);
+    }
+    
+    ;; Receive ChangeOwner message
+    if (op == 256331011) {
+        var msg = in_msg~$ChangeOwner$_load();
+        self~$Lottery$_internal_binary_ChangeOwner(msg);
+        return (self, true);
+    }
+    
+    ;; Receive TokenExcesses message
+    if (op == 3576854235) {
+        var msg = in_msg~$TokenExcesses$_load();
+        self~$Lottery$_internal_binary_TokenExcesses(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$Lottery$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $Lottery$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$Lottery$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $Lottery$_contract_store(self);
+}

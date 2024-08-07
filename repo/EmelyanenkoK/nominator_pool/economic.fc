@@ -1,0 +1,94 @@
+(cell, (int)) ~collect_matured(cell transfers) inline {
+  (int validators_elected_for, int stake_held_for, int prev_set_utime_since) = stake_lock_durations();
+  int matured = 0;
+  int threshold = prev_set_utime_since + stake_held_for;
+  do {
+    var (transfers', i, transfer, f) = transfers.udict_delete_get_min(32);
+    f = f & (i < threshold);
+    if (f) {
+      matured = matured + transfer~load_grams();
+      transfers = transfers';
+    }
+  } until (~ f);
+  return (transfers, (matured));
+}
+
+(int) calc_nominator_profit_share(int active, int paid_reward_per_gram, int reward_per_gram) inline {
+  return (reward_per_gram - paid_reward_per_gram) * active / 1000000000;
+}
+
+() update_reward_on_stake_return (slice validator,
+                                  int total_active,
+                                  int total_locked,
+                                  int reward_per_gram,
+                                  int undistributed_reward,
+                                  int validator_reward_share,
+                                  int _7,
+                                  cell nominators,
+                                  cell _9,
+                                  cell transfers,
+                                  cell proxies,
+                                  int msg_value,
+                                  slice used_proxy) impure {
+  if(msg_value > 0 ) {
+    int matured = transfers~collect_matured();
+    proxies~release_proxy(used_proxy);
+    if (total_active > 0) {
+      int profit  = msg_value - matured;
+      (int val_wc, int val_hash) = parse_std_addr(validator);
+      ;; Note validator profit is consist of two parts: 
+      ;;  1) validation part proportional to validator_reward_share
+      ;;  2) nomination part proportional to his stake
+      (int val_active, int val_locked, int val_paid_reward_per_gram, int last_val_stake_utime) = 
+         nominators.get_nominator_data(val_wc, val_hash, reward_per_gram);
+      if( profit > 0 ) {
+        int validator_profit = profit * validator_reward_share >> 16;
+        int nominators_profit = profit - validator_profit;
+        ;; distribute validation part profit to validator
+        val_active = val_active + validator_profit;
+        total_active = total_active + validator_profit;
+        ;; Note val_paid_reward_per_gram is not updated here since nomination part is not paid
+        nominators~set_nominator_data(val_wc, val_hash, val_active, val_locked, val_paid_reward_per_gram, last_val_stake_utime);
+        
+        undistributed_reward = undistributed_reward + nominators_profit;
+        reward_per_gram = reward_per_gram + nominators_profit * 1000000000 / total_active;
+      } else {
+        ;; first distribute nomination part profit to validator, than subtract loss from active
+        ;; if not enough subtract loss from locked
+        ;; if not enough distribute residue loss to nominators
+        int validator_nomination_profit = calc_nominator_profit_share(val_active, val_paid_reward_per_gram, reward_per_gram);
+        val_active = val_active + validator_nomination_profit;
+        total_active = total_active + validator_nomination_profit;
+        undistributed_reward = undistributed_reward - validator_nomination_profit;
+        
+        if ( profit + val_active > 0 ) {
+          total_active = total_active + profit;
+          val_active = val_active + profit;
+          profit = 0;
+        } else {
+          total_active = total_active - val_active;
+          val_active = 0;
+          profit = profit + val_active;
+        }
+        if (profit < 0) {
+          if ( profit + val_locked > 0 ) {
+            total_locked = total_locked + profit;
+            val_locked = val_locked + profit;
+            profit = 0;
+          } else {
+            total_locked = total_locked - val_locked;
+            val_locked = 0;
+            profit = profit + val_locked;
+          }
+        }
+        if (profit < 0) {
+          reward_per_gram = reward_per_gram + profit * 1000000000 / total_active;
+          undistributed_reward = undistributed_reward + profit;
+        }
+        nominators~set_nominator_data(val_wc, val_hash, val_active, val_locked, reward_per_gram, last_val_stake_utime);
+      }
+
+    }
+  }
+  save_data(validator, total_active, total_locked, reward_per_gram, undistributed_reward, validator_reward_share, _7, nominators, _9, transfers, proxies);
+}

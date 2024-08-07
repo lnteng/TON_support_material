@@ -1,0 +1,20 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-foundation/token-contract/nft/nft-sale.fc:92:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-foundation/token-contract/nft/nft-sale.fc:107:20: warning: Local variable 'query_id' is not used
+        int query_id = in_msg_body~load_uint(64);
+                     ^
+load_fees: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-foundation/token-contract/nft/nft-sale.fc:21:9: warning: Lack of end_parse.
+        ds~load_coins() ;; royalty_amount
+          ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-foundation/token-contract/nft/nft-sale.fc:12:9: warning: Lack of end_parse.
+        ds~load_ref() ;; fees_cell
+          ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-foundation/token-contract/nft/nft-sale.fc:81:49: warning: UnHandle bounced message with op: 0x5fcc3d14
+    send_raw_message(nft_msg.end_cell(), 128 + 32);
+                                                  ^

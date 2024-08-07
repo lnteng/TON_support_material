@@ -1,0 +1,2461 @@
+PROGRAM{
+  DECLPROC __tact_verify_address
+  DECLPROC __tact_load_address
+  DECLPROC __tact_store_address
+  DECLPROC __tact_my_balance
+  DECLPROC __tact_not_null
+  DECLPROC __tact_context_get
+  DECLPROC __tact_context_get_sender
+  DECLPROC __tact_store_bool
+  DECLPROC __tact_dict_set_int_cell
+  DECLPROC __tact_dict_get_int_cell
+  DECLPROC __tact_dict_set_slice_uint
+  DECLPROC __tact_dict_get_slice_uint
+  DECLPROC __tact_slice_eq_bits
+  DECLPROC $Deploy$_load
+  DECLPROC $DeployOk$_store
+  DECLPROC $DeployOk$_store_cell
+  DECLPROC $ChangeOwner$_load
+  DECLPROC $ChangeOwnerOk$_store
+  DECLPROC $ChangeOwnerOk$_store_cell
+  DECLPROC $TokenTransfer$_store
+  DECLPROC $TokenTransfer$_store_cell
+  DECLPROC $TokenTransfer$_load_bounced
+  DECLPROC $TokenNotification$_load
+  DECLPROC $TokenExcesses$_load
+  DECLPROC $Participate$_load
+  DECLPROC $LauncherConfig$_store
+  DECLPROC $LauncherConfig$_load
+  DECLPROC $SetLauncherConfig$_load
+  DECLPROC $SetClaimStartTime$_load
+  DECLPROC $PoolConfig$_store
+  DECLPROC $PoolConfig$_store_cell
+  DECLPROC $PoolConfig$_load
+  DECLPROC $PoolConfig$_as_optional
+  DECLPROC $PoolConfig$_load_opt
+  DECLPROC $AddDistributionPool$_load
+  DECLPROC $DeleteDistributionPool$_load
+  DECLPROC $ModifyDistributionPool$_load
+  DECLPROC $ManualTransferNotification$_load
+  DECLPROC $ParticipatedEvent$_store
+  DECLPROC $ParticipatedEvent$_store_cell
+  DECLPROC $ClaimedEvent$_store
+  DECLPROC $ClaimedEvent$_store_cell
+  DECLPROC $RefundedEvent$_store
+  DECLPROC $RefundedEvent$_store_cell
+  DECLPROC $LauncherConfigSetEvent$_store
+  DECLPROC $LauncherConfigSetEvent$_store_cell
+  DECLPROC $ClaimStartTimeSetEvent$_store
+  DECLPROC $ClaimStartTimeSetEvent$_store_cell
+  DECLPROC $DistritutionPoolAddedEvent$_store
+  DECLPROC $DistritutionPoolAddedEvent$_store_cell
+  DECLPROC $DistributionPoolModifiedEvent$_store
+  DECLPROC $DistributionPoolModifiedEvent$_store_cell
+  DECLPROC $ConfigValidatedEvent$_store
+  DECLPROC $ConfigValidatedEvent$_store_cell
+  DECLPROC $FinalizedEvent$_store
+  DECLPROC $FinalizedEvent$_store_cell
+  DECLPROC $FinalizationRefundEvent$_store
+  DECLPROC $FinalizationRefundEvent$_store_cell
+  DECLPROC $DistributionEvent$_store
+  DECLPROC $DistributionEvent$_store_cell
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_store
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_load
+  DECLPROC $StateInit$_not_null
+  DECLPROC $Context$_get_value
+  DECLPROC $LauncherConfig$_to_external
+  DECLPROC $PoolConfig$_get_address
+  DECLPROC $PoolConfig$_get_share
+  DECLPROC $PoolConfig$_not_null
+  DECLPROC $PoolConfig$_to_external
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$init$_load
+  DECLPROC $global_emit
+  DECLPROC $LauncherConfigSetEvent$_constructor_config
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_contract_init
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_contract_load
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_contract_store
+  DECLPROC $global_send
+  DECLPROC $SendParameters$_constructor_to_value_mode_bounce
+  DECLPROC $global_refund_gas
+  DECLPROC $SendParameters$_constructor_value_to_bounce_mode_body
+  DECLPROC $global_send_ton
+  DECLPROC $SendParameters$_constructor_value_to_mode_body_bounce
+  DECLPROC $TokenTransfer$_constructor_queryId_amount_destination_response_destination_custom_payload_forward_ton_amount_forward_payload
+  DECLPROC $global_send_jetton
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_fun_config
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_fun_totalTon
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_fun_validated
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_fun_balance
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_fun_participation
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_fun_numberPools
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_fun_poolConfig
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_fun_claimStartTime
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_fun_launchFinalized
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_fun_launchSuccessful
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_fun_tokensAwaitingLaunch
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_fun_metadataName
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_fun_metadataType
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_fun_metadataVersion
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_fun_metadataTicker
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_fun_gasClaim
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_fun_gasRefund
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_fun_gasParticipate
+  DECLPROC $SendParameters$_constructor_bounce_to_value_mode_body_code_data
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_fun_forward
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_fun_reply
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_fun_notify
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_fun_requireOwner
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_fun_owner
+  DECLPROC $ClaimStartTimeSetEvent$_constructor_time
+  DECLPROC $DistritutionPoolAddedEvent$_constructor_index_config
+  DECLPROC $PoolConfig$_constructor_address_share
+  DECLPROC $DistributionPoolModifiedEvent$_constructor_index_config
+  DECLPROC $ConfigValidatedEvent$_constructor_timestamp
+  DECLPROC $FinalizedEvent$_constructor_timestamp_successful
+  DECLPROC $FinalizationRefundEvent$_constructor_amount_address
+  DECLPROC $DistributionEvent$_constructor_amount_address
+  DECLPROC $ParticipatedEvent$_constructor_sender_amount
+  DECLPROC $ClaimedEvent$_constructor_sender_amount
+  DECLPROC $RefundedEvent$_constructor_sender_amount
+  DECLPROC $DeployOk$_constructor_queryId
+  DECLPROC $ChangeOwnerOk$_constructor_queryId_newOwner
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_internal_binary_TokenNotification
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_internal_binary_TokenExcesses
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_internal_text_0a0833328ac509815f762666d0411c0bfd422f48e0d183444ad2902009e6fc53
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_internal_binary_SetLauncherConfig
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_internal_binary_SetClaimStartTime
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_internal_binary_AddDistributionPool
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_internal_binary_DeleteDistributionPool
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_internal_binary_ModifyDistributionPool
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_internal_binary_ManualTransferNotification
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_internal_text_95dbc872c3a0b54b6004c2d3ba6c02e40c2393c83dd9f21b86c4d8231a9544f0
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_internal_text_efdb9e99edc1eb6a18fd98ca5ce6077a72be4f84808a5bf94d1de89d563e131a
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_internal_text_41edba6865897d67a7ab07fd40b6c902bc8e34e507bdf33933dda89117aef4d2
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_internal_text_68e49d60dbcd3c869c5653e7877acc9972c877f11dbba9acd9aa217c899ab3c5
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_internal_binary_Participate
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_internal_text_535d44514554aee036c09a39063fe878ca30a50cb9b5f8f6f1ec24f13e3169e9
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_internal_text_b0ff00cda639475b5e711360e99508a2790d5ee34d0598e7d8066850f3ac6c11
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_receive_binary_bounce_TokenTransfer
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_internal_binary_Deploy
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_internal_binary_ChangeOwner
+  103021 DECLMETHOD %config
+  95408 DECLMETHOD %totalTon
+  110138 DECLMETHOD %validated
+  104128 DECLMETHOD %balance
+  111357 DECLMETHOD %participation
+  77738 DECLMETHOD %numberPools
+  109982 DECLMETHOD %poolConfig
+  102701 DECLMETHOD %claimStartTime
+  91882 DECLMETHOD %launchFinalized
+  89526 DECLMETHOD %launchSuccessful
+  66900 DECLMETHOD %tokensAwaitingLaunch
+  129036 DECLMETHOD %metadataName
+  70893 DECLMETHOD %metadataType
+  91122 DECLMETHOD %metadataVersion
+  120350 DECLMETHOD %metadataTicker
+  99103 DECLMETHOD %gasClaim
+  88045 DECLMETHOD %gasRefund
+  81115 DECLMETHOD %gasParticipate
+  83229 DECLMETHOD %owner
+  113617 DECLMETHOD supported_interfaces
+  121275 DECLMETHOD get_abi_ipfs
+  115390 DECLMETHOD lazy_deployment_completed
+  DECLPROC $TonupLauncherFixedPriceUnrestricted$_contract_router_internal
+  DECLPROC recv_internal
+  DECLGLOBVAR __tact_context
+  DECLGLOBVAR __tact_context_sender
+  DECLGLOBVAR __tact_context_sys
+  DECLGLOBVAR __tact_randomized
+  __tact_verify_address PROCINLINE:<{
+    DUP
+    SBITS
+    267 PUSHINT
+    EQUAL
+    136 THROWIFNOT
+    DUP
+    11 PLDU
+    DUP
+    1279 PUSHINT
+    EQUAL
+    137 THROWIF
+    10 PUSHPOW2
+    EQUAL
+    136 THROWIFNOT
+  }>
+  __tact_load_address PROCINLINE:<{
+    LDMSGADDR
+    SWAP
+    __tact_verify_address INLINECALLDICT
+  }>
+  __tact_store_address PROCINLINE:<{
+    __tact_verify_address INLINECALLDICT
+    STSLICER
+  }>
+  __tact_my_balance PROCINLINE:<{
+    BALANCE
+    FIRST
+  }>
+  __tact_not_null PROCINLINE:<{
+    DUP
+    ISNULL
+    128 THROWIF
+  }>
+  __tact_context_get PROCINLINE:<{
+    __tact_context GETGLOB
+    4 UNTUPLE
+  }>
+  __tact_context_get_sender PROCINLINE:<{
+    __tact_context_sender GETGLOB
+  }>
+  __tact_store_bool PROCINLINE:<{
+    SWAP
+    1 STI
+  }>
+  __tact_dict_set_int_cell PROCINLINE:<{
+    DUP
+    ISNULL
+    IF:<{
+      DROP
+      -ROT
+      DICTIDEL
+      DROP
+    }>ELSE<{
+      s1 s3 s3 XCHG3
+      DICTISETREF
+    }>
+  }>
+  __tact_dict_get_int_cell PROCINLINE:<{
+    -ROT
+    DICTIGETREF
+    NULLSWAPIFNOT
+    IF:<{
+    }>ELSE<{
+      DROP
+      PUSHNULL
+    }>
+  }>
+  __tact_dict_set_slice_uint PROCINLINE:<{
+    OVER
+    ISNULL
+    IF:<{
+      2DROP
+      -ROT
+      DICTDEL
+      DROP
+    }>ELSE<{
+      NEWC
+      SWAP
+      STUX
+      s1 s3 s3 XCHG3
+      DICTSETB
+    }>
+  }>
+  __tact_dict_get_slice_uint PROCINLINE:<{
+    s1 s3 s3 XCHG3
+    DICTGET
+    NULLSWAPIFNOT
+    IF:<{
+      SWAP
+      LDUX
+      DROP
+    }>ELSE<{
+      2DROP
+      PUSHNULL
+    }>
+  }>
+  __tact_slice_eq_bits PROCINLINE:<{
+    SDEQ
+  }>
+  $Deploy$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    2490013878 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    64 LDU
+    SWAP
+  }>
+  $DeployOk$_store PROCINLINE:<{
+    2952335191 PUSHINT
+    ROT
+    32 STU
+    64 STU
+  }>
+  $DeployOk$_store_cell PROCINLINE:<{
+    NEWC
+    SWAP
+    $DeployOk$_store INLINECALLDICT
+    ENDC
+  }>
+  $ChangeOwner$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    2174598809 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    64 LDU
+    __tact_load_address INLINECALLDICT
+    s1 s2 XCHG
+  }>
+  $ChangeOwnerOk$_store PROCINLINE:<{
+    846932810 PUSHINT
+    s0 s3 XCHG2
+    32 STU
+    64 STU
+    SWAP
+    __tact_store_address INLINECALLDICT
+  }>
+  $ChangeOwnerOk$_store_cell PROCINLINE:<{
+    NEWC
+    -ROT
+    $ChangeOwnerOk$_store INLINECALLDICT
+    ENDC
+  }>
+  $TokenTransfer$_store PROCREF:<{
+    260734629 PUSHINT
+    s0 s8 XCHG2
+    32 STU
+    s1 s6 XCHG
+    64 STU
+    s0 s4 XCHG2
+    STGRAMS
+    ROT
+    __tact_store_address INLINECALLDICT
+    SWAP
+    __tact_store_address INLINECALLDICT
+    OVER
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+      SWAP
+      1 STI
+      STREF
+    }>ELSE<{
+      FALSE
+      s2 POP
+      1 STI
+    }>
+    SWAP
+    STGRAMS
+    SWAP
+    STSLICER
+  }>
+  $TokenTransfer$_store_cell PROCINLINE:<{
+    NEWC
+    7 -ROLL
+    $TokenTransfer$_store INLINECALLDICT
+    ENDC
+  }>
+  $TokenTransfer$_load_bounced PROCINLINE:<{
+    32 LDU
+    SWAP
+    260734629 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    64 LDU
+    LDGRAMS
+    -ROT
+  }>
+  $TokenNotification$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    1935855772 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    64 LDU
+    LDGRAMS
+    __tact_load_address INLINECALLDICT
+    s3 s0 s3 XC2PU
+    s2 s3 XCHG
+  }>
+  $TokenExcesses$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    3576854235 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    64 LDU
+    SWAP
+  }>
+  $Participate$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    3806870373 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    LDGRAMS
+    SWAP
+  }>
+  $LauncherConfig$_store PROCREF:<{
+    s9 s8 XCHG2
+    STGRAMS
+    s0 s6 XCHG2
+    STGRAMS
+    s0 s4 XCHG2
+    STGRAMS
+    ROT
+    STGRAMS
+    SWAP
+    STGRAMS
+    SWAP
+    __tact_store_address INLINECALLDICT
+    NEWC
+    ROT
+    __tact_store_address INLINECALLDICT
+    s1 s3 XCHG
+    32 STU
+    32 STU
+    ENDC
+    SWAP
+    STREF
+  }>
+  $LauncherConfig$_load PROCREF:<{
+    LDGRAMS
+    LDGRAMS
+    LDGRAMS
+    LDGRAMS
+    LDGRAMS
+    __tact_load_address INLINECALLDICT
+    SWAP
+    LDREF
+    SWAP
+    CTOS
+    __tact_load_address INLINECALLDICT
+    SWAP
+    32 LDU
+    32 LDU
+    DROP
+    s3 s9 XCHG
+    s3 s8 XCHG
+    s3 s7 XCHG
+    s3 s6 XCHG
+    s3 s5 XCHG
+    s3 s4 XCHG
+  }>
+  $SetLauncherConfig$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    3386179862 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    $LauncherConfig$_load INLINECALLDICT
+  }>
+  $SetClaimStartTime$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    1502674262 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    32 LDU
+    SWAP
+  }>
+  $PoolConfig$_store PROCINLINE:<{
+    -ROT
+    __tact_store_address INLINECALLDICT
+    32 STU
+  }>
+  $PoolConfig$_store_cell PROCINLINE:<{
+    NEWC
+    -ROT
+    $PoolConfig$_store INLINECALLDICT
+    ENDC
+  }>
+  $PoolConfig$_load PROCINLINE:<{
+    __tact_load_address INLINECALLDICT
+    SWAP
+    32 LDU
+    -ROT
+  }>
+  $PoolConfig$_as_optional PROCINLINE:<{
+    2 TUPLE
+  }>
+  $PoolConfig$_load_opt PROCINLINE:<{
+    DUP
+    ISNULL
+    IF:<{
+      DROP
+      PUSHNULL
+    }>ELSE<{
+      CTOS
+      $PoolConfig$_load INLINECALLDICT
+      1 2 BLKDROP2
+      $PoolConfig$_as_optional INLINECALLDICT
+    }>
+  }>
+  $AddDistributionPool$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    1262522374 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    $PoolConfig$_load INLINECALLDICT
+  }>
+  $DeleteDistributionPool$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    4245807583 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    32 LDU
+    SWAP
+  }>
+  $ModifyDistributionPool$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    4028846959 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    32 LDU
+    $PoolConfig$_load INLINECALLDICT
+    s2 s3 XCHG
+  }>
+  $ManualTransferNotification$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    3469646442 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    LDGRAMS
+    SWAP
+  }>
+  $ParticipatedEvent$_store PROCINLINE:<{
+    1386717989 PUSHINT
+    s0 s3 XCHG2
+    32 STU
+    SWAP
+    __tact_store_address INLINECALLDICT
+    SWAP
+    STGRAMS
+  }>
+  $ParticipatedEvent$_store_cell PROCINLINE:<{
+    NEWC
+    -ROT
+    $ParticipatedEvent$_store INLINECALLDICT
+    ENDC
+  }>
+  $ClaimedEvent$_store PROCINLINE:<{
+    466603341 PUSHINT
+    s0 s3 XCHG2
+    32 STU
+    SWAP
+    __tact_store_address INLINECALLDICT
+    SWAP
+    STGRAMS
+  }>
+  $ClaimedEvent$_store_cell PROCINLINE:<{
+    NEWC
+    -ROT
+    $ClaimedEvent$_store INLINECALLDICT
+    ENDC
+  }>
+  $RefundedEvent$_store PROCINLINE:<{
+    1970155960 PUSHINT
+    s0 s3 XCHG2
+    32 STU
+    SWAP
+    __tact_store_address INLINECALLDICT
+    SWAP
+    STGRAMS
+  }>
+  $RefundedEvent$_store_cell PROCINLINE:<{
+    NEWC
+    -ROT
+    $RefundedEvent$_store INLINECALLDICT
+    ENDC
+  }>
+  $LauncherConfigSetEvent$_store PROCINLINE:<{
+    37404373 PUSHINT
+    s0 s10 XCHG2
+    32 STU
+    s0 s9 XCHG
+    $LauncherConfig$_store INLINECALLDICT
+  }>
+  $LauncherConfigSetEvent$_store_cell PROCINLINE:<{
+    NEWC
+    9 -ROLL
+    $LauncherConfigSetEvent$_store INLINECALLDICT
+    ENDC
+  }>
+  $ClaimStartTimeSetEvent$_store PROCINLINE:<{
+    3300766091 PUSHINT
+    ROT
+    32 STU
+    32 STU
+  }>
+  $ClaimStartTimeSetEvent$_store_cell PROCINLINE:<{
+    NEWC
+    SWAP
+    $ClaimStartTimeSetEvent$_store INLINECALLDICT
+    ENDC
+  }>
+  $DistritutionPoolAddedEvent$_store PROCINLINE:<{
+    81245536 PUSHINT
+    s0 s4 XCHG2
+    32 STU
+    s1 s2 XCHG
+    32 STU
+    s0 s2 XCHG
+    $PoolConfig$_store INLINECALLDICT
+  }>
+  $DistritutionPoolAddedEvent$_store_cell PROCINLINE:<{
+    NEWC
+    3 -ROLL
+    $DistritutionPoolAddedEvent$_store INLINECALLDICT
+    ENDC
+  }>
+  $DistributionPoolModifiedEvent$_store PROCINLINE:<{
+    3167341573 PUSHINT
+    s0 s4 XCHG2
+    32 STU
+    s1 s2 XCHG
+    32 STU
+    s0 s2 XCHG
+    $PoolConfig$_store INLINECALLDICT
+  }>
+  $DistributionPoolModifiedEvent$_store_cell PROCINLINE:<{
+    NEWC
+    3 -ROLL
+    $DistributionPoolModifiedEvent$_store INLINECALLDICT
+    ENDC
+  }>
+  $ConfigValidatedEvent$_store PROCINLINE:<{
+    3239401007 PUSHINT
+    ROT
+    32 STU
+    32 STU
+  }>
+  $ConfigValidatedEvent$_store_cell PROCINLINE:<{
+    NEWC
+    SWAP
+    $ConfigValidatedEvent$_store INLINECALLDICT
+    ENDC
+  }>
+  $FinalizedEvent$_store PROCINLINE:<{
+    912737594 PUSHINT
+    s0 s3 XCHG2
+    32 STU
+    32 STU
+    1 STI
+  }>
+  $FinalizedEvent$_store_cell PROCINLINE:<{
+    NEWC
+    -ROT
+    $FinalizedEvent$_store INLINECALLDICT
+    ENDC
+  }>
+  $FinalizationRefundEvent$_store PROCINLINE:<{
+    3445012765 PUSHINT
+    s0 s3 XCHG2
+    32 STU
+    SWAP
+    STGRAMS
+    SWAP
+    __tact_store_address INLINECALLDICT
+  }>
+  $FinalizationRefundEvent$_store_cell PROCINLINE:<{
+    NEWC
+    -ROT
+    $FinalizationRefundEvent$_store INLINECALLDICT
+    ENDC
+  }>
+  $DistributionEvent$_store PROCINLINE:<{
+    1735879359 PUSHINT
+    s0 s3 XCHG2
+    32 STU
+    SWAP
+    STGRAMS
+    SWAP
+    __tact_store_address INLINECALLDICT
+  }>
+  $DistributionEvent$_store_cell PROCINLINE:<{
+    NEWC
+    -ROT
+    $DistributionEvent$_store INLINECALLDICT
+    ENDC
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_store PROCINLINE:<{
+    s1 21 s() XCHG
+    s0 20 s() XCHG
+    __tact_store_address INLINECALLDICT
+    NEWC
+    s0 s9 XCHG
+    s8 19 s() XCHG
+    s7 18 s() XCHG
+    s6 17 s() XCHG
+    s5 16 s() XCHG
+    s4 s15 XCHG
+    s3 s14 XCHG
+    s13 s12 s11 XCHG3
+    $LauncherConfig$_store INLINECALLDICT
+    SWAP
+    STGRAMS
+    NEWC
+    ROT
+    STGRAMS
+    s1 s9 XCHG
+    1 STI
+    s0 s7 XCHG2
+    STGRAMS
+    s1 s5 XCHG
+    32 STU
+    s1 s3 XCHG
+    STDICT
+    32 STU
+    STDICT
+    1 STI
+    s1 s4 XCHG
+    1 STI
+    s1 s2 XCHG
+    1 STI
+    ENDC
+    SWAP
+    STREF
+    ENDC
+    SWAP
+    STREF
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_load PROCINLINE:<{
+    __tact_load_address INLINECALLDICT
+    SWAP
+    LDREF
+    SWAP
+    CTOS
+    $LauncherConfig$_load INLINECALLDICT
+    s0 s9 XCHG
+    LDGRAMS
+    LDREF
+    DROP
+    CTOS
+    LDGRAMS
+    1 LDI
+    LDGRAMS
+    32 LDU
+    LDDICT
+    32 LDU
+    LDDICT
+    1 LDI
+    1 LDI
+    1 LDI
+    DROP
+    20 s() 21 s() XCHG
+    18 s() 19 s() XCHG
+    17 s() 18 s() XCHG
+    16 s() 17 s() XCHG
+    s15 16 s() XCHG
+    s14 s15 XCHG
+    s13 s14 XCHG
+    s12 s13 XCHG
+    s11 s12 XCHG
+  }>
+  $StateInit$_not_null PROCINLINE:<{
+    DUP
+    ISNULL
+    128 THROWIF
+    2 UNTUPLE
+  }>
+  $Context$_get_value PROCINLINE:<{
+    s1 s3 XCHG
+    3 BLKDROP
+  }>
+  $LauncherConfig$_to_external PROCINLINE:<{
+  }>
+  $PoolConfig$_get_address PROCINLINE:<{
+    DROP
+  }>
+  $PoolConfig$_get_share PROCINLINE:<{
+    NIP
+  }>
+  $PoolConfig$_not_null PROCINLINE:<{
+    DUP
+    ISNULL
+    128 THROWIF
+    2 UNTUPLE
+  }>
+  $PoolConfig$_to_external PROCINLINE:<{
+  }>
+  $TonupLauncherFixedPriceUnrestricted$init$_load PROCINLINE:<{
+    __tact_load_address INLINECALLDICT
+    SWAP
+    LDREF
+    SWAP
+    CTOS
+    $LauncherConfig$_load INLINECALLDICT
+    s9 POP
+    s9 s10 XCHG
+    8 ROLL
+  }>
+  $global_emit PROCINLINE:<{
+    NEWC
+    15211807202738752817960438464513 PUSHINT
+    SWAP
+    104 STU
+    STREF
+    ENDC
+    0 PUSHINT
+    SENDRAWMSG
+  }>
+  $LauncherConfigSetEvent$_constructor_config PROCINLINE:<{
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_contract_init PROCREF:<{
+    0 PUSHINT
+    DUP
+    FALSE
+    OVER
+    32 PUSHPOW2DEC
+    PUSHNULL
+    s2 PUSH
+    PUSHNULL
+    FALSE
+    FALSE
+    FALSE
+    19 s() PUSH
+    19 s() PUSH
+    19 s() PUSH
+    19 s() PUSH
+    19 s() PUSH
+    19 s() PUSH
+    19 s() PUSH
+    19 s() PUSH
+    19 s() PUSH
+    s8 28 s() XCHG
+    s7 27 s() XCHG
+    s6 26 s() XCHG
+    s5 25 s() XCHG
+    s4 24 s() XCHG
+    s3 23 s() XCHG
+    s2 22 s() XCHG
+    s1 21 s() XCHG
+    s0 20 s() XCHG
+    $LauncherConfigSetEvent$_constructor_config INLINECALLDICT
+    $LauncherConfigSetEvent$_store_cell INLINECALLDICT
+    $global_emit INLINECALLDICT
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_contract_load PROCREF:<{
+    c4 PUSH
+    CTOS
+    LDREF
+    SWAP
+    __tact_context_sys SETGLOB
+    1 LDI
+    SWAP
+    IFJMP:<{
+      $TonupLauncherFixedPriceUnrestricted$_load INLINECALLDICT
+      21 s() POP
+      19 s() 20 s() XCHG
+      18 s() 19 s() XCHG
+      17 s() 18 s() XCHG
+      16 s() 17 s() XCHG
+      s15 16 s() XCHG
+      15 ROLL
+    }>
+    MYADDR
+    11 PLDU
+    10 PUSHPOW2
+    EQUAL
+    137 THROWIFNOT
+    $TonupLauncherFixedPriceUnrestricted$init$_load INLINECALLDICT
+    s0 s10 XCHG
+    ENDS
+    9 ROLL
+    $TonupLauncherFixedPriceUnrestricted$_contract_init INLINECALLDICT
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_contract_store PROCINLINE:<{
+    NEWC
+    __tact_context_sys GETGLOB
+    SWAP
+    STREF
+    TRUE
+    SWAP
+    1 STI
+    s0 21 s() XCHG
+    s0 20 s() XCHG
+    s0 19 s() XCHG
+    s0 18 s() XCHG
+    s0 17 s() XCHG
+    s0 16 s() XCHG
+    15 -ROLL
+    $TonupLauncherFixedPriceUnrestricted$_store INLINECALLDICT
+    ENDC
+    c4 POP
+  }>
+  $global_send PROCREF:<{
+    NEWC
+    1 PUSHINT
+    SWAP
+    2 STI
+    s0 s7 XCHG2
+    __tact_store_bool INLINECALLDICT
+    0 PUSHINT
+    SWAP
+    3 STI
+    s0 s5 XCHG2
+    __tact_store_address INLINECALLDICT
+    s0 s3 XCHG2
+    STGRAMS
+    0 PUSHINT
+    SWAP
+    105 STI
+    s3 PUSH
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+    }>ELSE<{
+      s4 PUSH
+      ISNULL
+      NOT
+    }>
+    IF:<{
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      NEWC
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      s4 PUSH
+      ISNULL
+      NOT
+      IF:<{
+        TRUE
+        __tact_store_bool INLINECALLDICT
+        s0 s4 XCHG
+        __tact_not_null INLINECALLDICT
+        s0 s4 XCHG2
+        STREF
+      }>ELSE<{
+        s4 POP
+        s0 s3 XCHG
+        FALSE
+        __tact_store_bool INLINECALLDICT
+      }>
+      s4 PUSH
+      ISNULL
+      NOT
+      IF:<{
+        TRUE
+        __tact_store_bool INLINECALLDICT
+        s0 s4 XCHG
+        __tact_not_null INLINECALLDICT
+        s0 s4 XCHG2
+        STREF
+      }>ELSE<{
+        s4 POP
+        s0 s3 XCHG
+        FALSE
+        __tact_store_bool INLINECALLDICT
+      }>
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      s0 s2 XCHG
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      s0 s2 XCHG
+      ENDC
+      ROT
+      STREF
+    }>ELSE<{
+      s3 POP
+      s3 POP
+      SWAP
+      FALSE
+      __tact_store_bool INLINECALLDICT
+    }>
+    OVER
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      SWAP
+      __tact_not_null INLINECALLDICT
+      SWAP
+      STREF
+    }>ELSE<{
+      NIP
+      FALSE
+      __tact_store_bool INLINECALLDICT
+    }>
+    ENDC
+    SWAP
+    SENDRAWMSG
+  }>
+  $SendParameters$_constructor_to_value_mode_bounce PROCINLINE:<{
+    3 -ROLL
+    PUSHNULL
+    PUSHNULL
+    PUSHNULL
+  }>
+  $global_refund_gas PROCINLINE:<{
+    __tact_context_get_sender INLINECALLDICT
+    0 PUSHINT
+    66 PUSHINT
+    FALSE
+    $SendParameters$_constructor_to_value_mode_bounce INLINECALLDICT
+    $global_send INLINECALLDICT
+  }>
+  $SendParameters$_constructor_value_to_bounce_mode_body PROCINLINE:<{
+    s2 s4 XCHG
+    PUSHNULL
+    PUSHNULL
+  }>
+  $global_send_ton PROCINLINE:<{
+    s2 PUSH
+    0 GTINT
+    IF:<{
+      s2 s3 XCHG
+      2 PUSHINT
+      SWAP
+      $SendParameters$_constructor_value_to_bounce_mode_body INLINECALLDICT
+      $global_send INLINECALLDICT
+    }>ELSE<{
+      4 BLKDROP
+    }>
+  }>
+  $SendParameters$_constructor_value_to_mode_body_bounce PROCINLINE:<{
+    s4 s4 s4 XCHG3
+    PUSHNULL
+    PUSHNULL
+  }>
+  $TokenTransfer$_constructor_queryId_amount_destination_response_destination_custom_payload_forward_ton_amount_forward_payload PROCINLINE:<{
+  }>
+  $global_send_jetton PROCINLINE:<{
+    s3 PUSH
+    0 GTINT
+    IF:<{
+      100000000 PUSHINT
+      0 PUSHINT
+      MYADDR
+      PUSHNULL
+      10000000 PUSHINT
+      s0 s5 XCHG
+      6 4 REVERSE
+      s1 s3 s0 XCHG3
+      s1 s8 XCHG
+      $TokenTransfer$_constructor_queryId_amount_destination_response_destination_custom_payload_forward_ton_amount_forward_payload INLINECALLDICT
+      $TokenTransfer$_store_cell INLINECALLDICT
+      s3 s4 XCHG
+      SWAP
+      $SendParameters$_constructor_value_to_mode_body_bounce INLINECALLDICT
+      $global_send INLINECALLDICT
+    }>ELSE<{
+      6 BLKDROP
+    }>
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_fun_config PROCREF:<{
+    19 s() PUSH
+    19 s() PUSH
+    19 s() PUSH
+    19 s() PUSH
+    19 s() PUSH
+    19 s() PUSH
+    19 s() PUSH
+    19 s() PUSH
+    19 s() PUSH
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_fun_totalTon PROCREF:<{
+    s10 PUSH
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_fun_validated PROCREF:<{
+    s8 PUSH
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_fun_balance PROCREF:<{
+    __tact_my_balance INLINECALLDICT
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_fun_participation PROCREF:<{
+    s6 PUSH
+    267 PUSHINT
+    s2 PUSH
+    8 PUSHPOW2
+    __tact_dict_get_slice_uint INLINECALLDICT
+    ISNULL
+    IFJMP:<{
+      DROP
+      0 PUSHINT
+    }>
+    267 PUSHINT
+    s7 PUSH
+    s0 s2 XCHG
+    8 PUSHPOW2
+    __tact_dict_get_slice_uint INLINECALLDICT
+    __tact_not_null INLINECALLDICT
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_fun_numberPools PROCREF:<{
+    s4 PUSH
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_fun_poolConfig PROCREF:<{
+    257 PUSHINT
+    s5 PUSH
+    s0 s2 XCHG
+    __tact_dict_get_int_cell INLINECALLDICT
+    $PoolConfig$_load_opt INLINECALLDICT
+    $PoolConfig$_not_null INLINECALLDICT
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_fun_claimStartTime PROCREF:<{
+    s6 PUSH
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_fun_launchFinalized PROCREF:<{
+    OVER
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_fun_launchSuccessful PROCREF:<{
+    DUP
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_fun_tokensAwaitingLaunch PROCREF:<{
+    s7 PUSH
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_fun_metadataName PROCREF:<{
+    B{b5ee9c7241010101000f00001a54657374204c61756e63686572bac9d147} B>boc <s PUSHSLICE
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_fun_metadataType PROCREF:<{
+    B{b5ee9c7241010101003400006446697273742d636f6d652d66697273742d7365727665642c2046697865642d70726963652c20556e726573747269637465644cc47005} B>boc <s PUSHSLICE
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_fun_metadataVersion PROCREF:<{
+    B{b5ee9c7241010101000700000a322e302e30500179a6} B>boc <s PUSHSLICE
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_fun_metadataTicker PROCREF:<{
+    B{b5ee9c7241010101000600000854455354a7bb3fa8} B>boc <s PUSHSLICE
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_fun_gasClaim PROCREF:<{
+    150000000 PUSHINT
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_fun_gasRefund PROCREF:<{
+    150000000 PUSHINT
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_fun_gasParticipate PROCREF:<{
+    100000000 PUSHINT
+  }>
+  $SendParameters$_constructor_bounce_to_value_mode_body_code_data PROCINLINE:<{
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_fun_forward PROCREF:<{
+    PUSHNULL
+    PUSHNULL
+    s2 PUSH
+    ISNULL
+    NOT
+    IF:<{
+      2DROP
+      $StateInit$_not_null INLINECALLDICT
+      SWAP
+    }>ELSE<{
+      s2 POP
+    }>
+    s2 s4 XCHG
+    0 PUSHINT
+    s0 s3 XCHG
+    s0 s4 XCHG
+    66 PUSHINT
+    s2 s3 XCHG2
+    $SendParameters$_constructor_bounce_to_value_mode_body_code_data INLINECALLDICT
+    $global_send INLINECALLDICT
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_fun_reply PROCINLINE:<{
+    __tact_context_get_sender INLINECALLDICT
+    SWAP
+    TRUE
+    PUSHNULL
+    $TonupLauncherFixedPriceUnrestricted$_fun_forward INLINECALLDICT
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_fun_notify PROCINLINE:<{
+    __tact_context_get_sender INLINECALLDICT
+    SWAP
+    FALSE
+    PUSHNULL
+    $TonupLauncherFixedPriceUnrestricted$_fun_forward INLINECALLDICT
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_fun_requireOwner PROCREF:<{
+    __tact_context_get_sender INLINECALLDICT
+    21 s() PUSH
+    SWAP
+    __tact_slice_eq_bits INLINECALLDICT
+    132 THROWIFNOT
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_fun_owner PROCREF:<{
+    20 s() PUSH
+  }>
+  $ClaimStartTimeSetEvent$_constructor_time PROCINLINE:<{
+  }>
+  $DistritutionPoolAddedEvent$_constructor_index_config PROCINLINE:<{
+  }>
+  $PoolConfig$_constructor_address_share PROCINLINE:<{
+  }>
+  $DistributionPoolModifiedEvent$_constructor_index_config PROCINLINE:<{
+  }>
+  $ConfigValidatedEvent$_constructor_timestamp PROCINLINE:<{
+  }>
+  $FinalizedEvent$_constructor_timestamp_successful PROCINLINE:<{
+  }>
+  $FinalizationRefundEvent$_constructor_amount_address PROCINLINE:<{
+  }>
+  $DistributionEvent$_constructor_amount_address PROCINLINE:<{
+  }>
+  $ParticipatedEvent$_constructor_sender_amount PROCINLINE:<{
+  }>
+  $ClaimedEvent$_constructor_sender_amount PROCINLINE:<{
+  }>
+  $RefundedEvent$_constructor_sender_amount PROCINLINE:<{
+  }>
+  $DeployOk$_constructor_queryId PROCINLINE:<{
+  }>
+  $ChangeOwnerOk$_constructor_queryId_newOwner PROCINLINE:<{
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_internal_binary_TokenNotification PROCINLINE:<{
+    DROP
+    s2 POP
+    16 s() PUSH
+    ROT
+    __tact_slice_eq_bits INLINECALLDICT
+    IF:<{
+      s1 s8 XCHG
+      ADD
+      s0 s7 XCHG
+    }>ELSE<{
+      DROP
+    }>
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_internal_binary_TokenExcesses PROCINLINE:<{
+    DROP
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_internal_text_0a0833328ac509815f762666d0411c0bfd422f48e0d183444ad2902009e6fc53 PROCINLINE:<{
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_internal_binary_SetLauncherConfig PROCINLINE:<{
+    20 s() 29 s() XCHG
+    19 s() 28 s() XCHG
+    18 s() 27 s() XCHG
+    17 s() 26 s() XCHG
+    16 s() 25 s() XCHG
+    s15 24 s() XCHG
+    s14 23 s() XCHG
+    s13 22 s() XCHG
+    s12 21 s() XCHG
+    s11 29 s() XCHG
+    s10 28 s() XCHG
+    s9 27 s() XCHG
+    s8 26 s() XCHG
+    s7 25 s() XCHG
+    s6 24 s() XCHG
+    s5 23 s() XCHG
+    s4 22 s() XCHG
+    s3 21 s() XCHG
+    s2 29 s() XCHG
+    s1 28 s() XCHG
+    s0 27 s() XCHG
+    $TonupLauncherFixedPriceUnrestricted$_fun_requireOwner INLINECALLDICT
+    s11 POP
+    s12 POP
+    s12 POP
+    s12 POP
+    s12 POP
+    s12 POP
+    s12 POP
+    s12 POP
+    48002 PUSHINT
+    OVER
+    NOT
+    IF:<{
+      s5 POP
+      TRUE
+    }>ELSE<{
+      NOW
+      s0 s6 XCHG2
+      LESS
+    }>
+    s1 s5 XCHG
+    THROWANYIFNOT
+    17 s() PUSH
+    17 s() PUSH
+    17 s() PUSH
+    17 s() PUSH
+    17 s() PUSH
+    17 s() PUSH
+    26 s() PUSH
+    26 s() PUSH
+    26 s() PUSH
+    s8 26 s() XCHG
+    s7 25 s() XCHG
+    s6 24 s() XCHG
+    s5 23 s() XCHG
+    s4 22 s() XCHG
+    s3 21 s() XCHG
+    s2 29 s() XCHG
+    s1 28 s() XCHG
+    s0 27 s() XCHG
+    $LauncherConfigSetEvent$_constructor_config INLINECALLDICT
+    $LauncherConfigSetEvent$_store_cell INLINECALLDICT
+    $global_emit INLINECALLDICT
+    $global_refund_gas INLINECALLDICT
+    s11 20 s() XCHG
+    17 s() 19 s() XCHG
+    16 s() 18 s() XCHG
+    s15 17 s() XCHG
+    s14 16 s() XCHG
+    s13 s15 XCHG
+    s12 s14 XCHG
+    s11 s13 XCHG
+    s11 s12 XCHG
+    s10 s9 XCHG2
+    s3 s8 XCHG
+    s0 s6 XCHG
+    s0 s3 XCHG
+    s5 s7 s5 XCHG3
+    s1 s4 XCHG
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_internal_binary_SetClaimStartTime PROCINLINE:<{
+    20 s() 21 s() XCHG
+    19 s() 21 s() XCHG
+    18 s() 21 s() XCHG
+    17 s() 21 s() XCHG
+    16 s() 21 s() XCHG
+    s15 21 s() XCHG
+    s14 21 s() XCHG
+    s13 21 s() XCHG
+    s12 21 s() XCHG
+    s11 21 s() XCHG
+    s10 21 s() XCHG
+    s9 21 s() XCHG
+    s0 21 s() XCHG
+    s0 s8 XCHG
+    s0 s7 XCHG
+    s0 s6 XCHG
+    5 -ROLL
+    $TonupLauncherFixedPriceUnrestricted$_fun_requireOwner INLINECALLDICT
+    s6 POP
+    20 s() PUSH
+    $ClaimStartTimeSetEvent$_constructor_time INLINECALLDICT
+    $ClaimStartTimeSetEvent$_store_cell INLINECALLDICT
+    $global_emit INLINECALLDICT
+    $global_refund_gas INLINECALLDICT
+    19 s() 20 s() XCHG
+    18 s() 19 s() XCHG
+    17 s() 18 s() XCHG
+    16 s() 17 s() XCHG
+    s15 16 s() XCHG
+    s14 s15 XCHG
+    s13 s14 XCHG
+    s12 s13 XCHG
+    s11 s12 XCHG
+    s10 s11 XCHG
+    s9 s10 XCHG
+    s8 s9 XCHG
+    s7 s8 XCHG
+    s6 s7 XCHG
+    5 ROLL
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_internal_binary_AddDistributionPool PROCINLINE:<{
+    20 s() 22 s() XCHG
+    19 s() 21 s() XCHG
+    18 s() 22 s() XCHG
+    17 s() 21 s() XCHG
+    16 s() 22 s() XCHG
+    s15 21 s() XCHG
+    s14 22 s() XCHG
+    s13 21 s() XCHG
+    s12 22 s() XCHG
+    s11 21 s() XCHG
+    s10 22 s() XCHG
+    s9 21 s() XCHG
+    s8 22 s() XCHG
+    s7 21 s() XCHG
+    s6 22 s() XCHG
+    s5 21 s() XCHG
+    s4 22 s() XCHG
+    s3 21 s() XCHG
+    s2 22 s() XCHG
+    s1 21 s() XCHG
+    s0 22 s() XCHG
+    $TonupLauncherFixedPriceUnrestricted$_fun_requireOwner INLINECALLDICT
+    48002 PUSHINT
+    NOW
+    s14 PUSH
+    LESS
+    THROWANYIFNOT
+    35898 PUSHINT
+    s5 PUSH
+    20 LESSINT
+    THROWANYIFNOT
+    257 PUSHINT
+    22 s() PUSH
+    24 s() PUSH
+    $PoolConfig$_store_cell INLINECALLDICT
+    s6 PUSH
+    s3 s6 XCHG
+    SWAP
+    __tact_dict_set_int_cell INLINECALLDICT
+    s0 s4 XCHG
+    INC
+    DUP
+    DEC
+    s0 s2 XCHG
+    s1 22 s() XCHG
+    s0 23 s() XCHG
+    $DistritutionPoolAddedEvent$_constructor_index_config INLINECALLDICT
+    $DistritutionPoolAddedEvent$_store_cell INLINECALLDICT
+    $global_emit INLINECALLDICT
+    $global_refund_gas INLINECALLDICT
+    18 s() 20 s() XCHG
+    17 s() 19 s() XCHG
+    16 s() 18 s() XCHG
+    s15 17 s() XCHG
+    s14 16 s() XCHG
+    s13 s15 XCHG
+    s12 s14 XCHG
+    s11 s13 XCHG
+    s10 s12 XCHG
+    s9 s11 XCHG
+    s8 s10 XCHG
+    s7 s9 XCHG
+    s6 s8 XCHG
+    s5 s7 XCHG
+    s4 s6 XCHG
+    s3 s5 XCHG
+    s3 s4 XCHG
+    s0 s3 s3 XCHG3
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_internal_binary_DeleteDistributionPool PROCINLINE:<{
+    20 s() 21 s() XCHG
+    19 s() 21 s() XCHG
+    18 s() 21 s() XCHG
+    17 s() 21 s() XCHG
+    16 s() 21 s() XCHG
+    s15 21 s() XCHG
+    s14 21 s() XCHG
+    s13 21 s() XCHG
+    s12 21 s() XCHG
+    s11 21 s() XCHG
+    s10 21 s() XCHG
+    s9 21 s() XCHG
+    s0 21 s() XCHG
+    s0 s8 XCHG
+    s0 s7 XCHG
+    s0 s6 XCHG
+    5 -ROLL
+    $TonupLauncherFixedPriceUnrestricted$_fun_requireOwner INLINECALLDICT
+    48002 PUSHINT
+    NOW
+    s14 PUSH
+    LESS
+    THROWANYIFNOT
+    21 s() PUSH
+    s5 PUSH
+    LESS
+    1173 THROWIFNOT
+    257 PUSHINT
+    MYADDR
+    0 PUSHINT
+    $PoolConfig$_constructor_address_share INLINECALLDICT
+    $PoolConfig$_store_cell INLINECALLDICT
+    s2 s5 XCHG
+    23 s() PUSH
+    SWAP
+    __tact_dict_set_int_cell INLINECALLDICT
+    MYADDR
+    0 PUSHINT
+    $PoolConfig$_constructor_address_share INLINECALLDICT
+    s2 23 s() XCHG
+    $DistributionPoolModifiedEvent$_constructor_index_config INLINECALLDICT
+    $DistributionPoolModifiedEvent$_store_cell INLINECALLDICT
+    $global_emit INLINECALLDICT
+    $global_refund_gas INLINECALLDICT
+    19 s() 20 s() XCHG
+    18 s() 19 s() XCHG
+    17 s() 18 s() XCHG
+    16 s() 17 s() XCHG
+    s15 16 s() XCHG
+    s14 s15 XCHG
+    s13 s14 XCHG
+    s12 s13 XCHG
+    s11 s12 XCHG
+    s10 s11 XCHG
+    s9 s10 XCHG
+    s8 s9 XCHG
+    s7 s8 XCHG
+    s6 s7 XCHG
+    s5 s6 XCHG
+    s4 s5 XCHG
+    s3 s4 XCHG
+    ROT
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_internal_binary_ModifyDistributionPool PROCINLINE:<{
+    20 s() 23 s() XCHG
+    19 s() 22 s() XCHG
+    18 s() 21 s() XCHG
+    17 s() 23 s() XCHG
+    16 s() 22 s() XCHG
+    s15 21 s() XCHG
+    s14 23 s() XCHG
+    s13 22 s() XCHG
+    s12 21 s() XCHG
+    s11 23 s() XCHG
+    s10 22 s() XCHG
+    s9 21 s() XCHG
+    s8 23 s() XCHG
+    s7 22 s() XCHG
+    s6 21 s() XCHG
+    s5 23 s() XCHG
+    s4 22 s() XCHG
+    s3 21 s() XCHG
+    s2 23 s() XCHG
+    s1 22 s() XCHG
+    s0 21 s() XCHG
+    $TonupLauncherFixedPriceUnrestricted$_fun_requireOwner INLINECALLDICT
+    48002 PUSHINT
+    NOW
+    s14 PUSH
+    LESS
+    THROWANYIFNOT
+    23 s() PUSH
+    s5 PUSH
+    LESS
+    1173 THROWIFNOT
+    257 PUSHINT
+    23 s() PUSH
+    23 s() PUSH
+    $PoolConfig$_store_cell INLINECALLDICT
+    s2 s5 XCHG
+    25 s() PUSH
+    SWAP
+    __tact_dict_set_int_cell INLINECALLDICT
+    s2 23 s() XCHG
+    s1 22 s() XCHG
+    s0 21 s() XCHG
+    $DistributionPoolModifiedEvent$_constructor_index_config INLINECALLDICT
+    $DistributionPoolModifiedEvent$_store_cell INLINECALLDICT
+    $global_emit INLINECALLDICT
+    $global_refund_gas INLINECALLDICT
+    17 s() 20 s() XCHG
+    16 s() 19 s() XCHG
+    s15 18 s() XCHG
+    s14 17 s() XCHG
+    s13 16 s() XCHG
+    s12 s15 XCHG
+    s11 s14 XCHG
+    s10 s13 XCHG
+    s9 s12 XCHG
+    s8 s11 XCHG
+    s7 s10 XCHG
+    s6 s9 XCHG
+    s5 s8 XCHG
+    s4 s7 XCHG
+    s3 s6 XCHG
+    s5 s4 s0 XCHG3
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_internal_binary_ManualTransferNotification PROCINLINE:<{
+    20 s() 21 s() XCHG
+    19 s() 21 s() XCHG
+    18 s() 21 s() XCHG
+    17 s() 21 s() XCHG
+    16 s() 21 s() XCHG
+    s15 21 s() XCHG
+    s14 21 s() XCHG
+    s13 21 s() XCHG
+    s12 21 s() XCHG
+    s11 21 s() XCHG
+    s10 21 s() XCHG
+    s9 21 s() XCHG
+    s0 21 s() XCHG
+    s0 s8 XCHG
+    s0 s7 XCHG
+    s0 s6 XCHG
+    5 -ROLL
+    $TonupLauncherFixedPriceUnrestricted$_fun_requireOwner INLINECALLDICT
+    48002 PUSHINT
+    NOW
+    s14 PUSH
+    LESS
+    THROWANYIFNOT
+    s0 21 s() XCHG
+    s1 s7 XCHG
+    ADD
+    $global_refund_gas INLINECALLDICT
+    19 s() 20 s() XCHG
+    18 s() 19 s() XCHG
+    17 s() 18 s() XCHG
+    16 s() 17 s() XCHG
+    s15 16 s() XCHG
+    s14 s15 XCHG
+    s13 s14 XCHG
+    s12 s13 XCHG
+    s11 s12 XCHG
+    s10 s11 XCHG
+    s9 s10 XCHG
+    s8 s9 XCHG
+    s0 s7 XCHG
+    s0 s8 XCHG
+    s5 s6 XCHG
+    s4 s5 XCHG
+    s3 s4 XCHG
+    s1 s3 s0 XCHG3
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_internal_text_95dbc872c3a0b54b6004c2d3ba6c02e40c2393c83dd9f21b86c4d8231a9544f0 PROCINLINE:<{
+    $TonupLauncherFixedPriceUnrestricted$_fun_requireOwner INLINECALLDICT
+    s8 POP
+    20619 PUSHINT
+    s4 PUSH
+    0 GTINT
+    THROWANYIFNOT
+    41029 PUSHINT
+    18 s() PUSH
+    16 s() PUSH
+    MUL
+    1000000000 PUSHINT
+    DIV
+    s8 s(-1) PUXC
+    GEQ
+    THROWANYIFNOT
+    TRUE
+    NOW
+    $ConfigValidatedEvent$_constructor_timestamp INLINECALLDICT
+    $ConfigValidatedEvent$_store_cell INLINECALLDICT
+    $global_emit INLINECALLDICT
+    $global_refund_gas INLINECALLDICT
+    s0 s8 XCHG
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_internal_text_efdb9e99edc1eb6a18fd98ca5ce6077a72be4f84808a5bf94d1de89d563e131a PROCINLINE:<{
+    $TonupLauncherFixedPriceUnrestricted$_fun_requireOwner INLINECALLDICT
+    2DROP
+    15304 PUSHINT
+    __tact_context_get INLINECALLDICT
+    $Context$_get_value INLINECALLDICT
+    300000000 PUSHINT
+    GEQ
+    THROWANYIFNOT
+    42340 PUSHINT
+    NOW
+    s11 PUSH
+    GREATER
+    THROWANYIFNOT
+    s8 PUSH
+    18 s() PUSH
+    LESS
+    IF:<{
+      FALSE
+      s6 PUSH
+    }>ELSE<{
+      TRUE
+      s9 s14 PUSH2
+      MUL
+      1000000000 PUSHINT
+      DIV
+      s7 s(-1) PUXC
+      SUB
+    }>
+    TRUE
+    NOW
+    s3 PUSH
+    $FinalizedEvent$_constructor_timestamp_successful INLINECALLDICT
+    $FinalizedEvent$_store_cell INLINECALLDICT
+    $global_emit INLINECALLDICT
+    OVER
+    100000000 PUSHINT
+    GREATER
+    IF:<{
+      0 PUSHINT
+      FALSE
+      B{b5ee9c7241010101000a00001066696e616c697a659a16b2f7} B>boc <s PUSHSLICE
+      18 s() PUSH
+      s0 s3 XCHG
+      18 s() PUSH
+      s3 s6 XCPU
+      s0 s3 XCHG
+      $global_send_jetton INLINECALLDICT
+      s1 s14 XCPU
+      $FinalizationRefundEvent$_constructor_amount_address INLINECALLDICT
+      $FinalizationRefundEvent$_store_cell INLINECALLDICT
+      $global_emit INLINECALLDICT
+    }>ELSE<{
+      NIP
+    }>
+    $global_refund_gas INLINECALLDICT
+    SWAP
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_internal_text_41edba6865897d67a7ab07fd40b6c902bc8e34e507bdf33933dda89117aef4d2 PROCINLINE:<{
+    $TonupLauncherFixedPriceUnrestricted$_fun_requireOwner INLINECALLDICT
+    s2 POP
+    15304 PUSHINT
+    __tact_context_get INLINECALLDICT
+    $Context$_get_value INLINECALLDICT
+    1000000000 PUSHINT
+    GEQ
+    THROWANYIFNOT
+    42340 PUSHINT
+    NOW
+    s12 PUSH
+    GREATER
+    THROWANYIFNOT
+    OVER
+    IF:<{
+      __tact_my_balance INLINECALLDICT
+      __tact_context_get INLINECALLDICT
+      $Context$_get_value INLINECALLDICT
+      SUB
+      200000000 PUSHINT
+      SUB
+      s10 PUSH
+      MIN
+      0 PUSHINT
+      DUP
+      WHILE:<{
+        s0 s6 PUSH2
+        LESS
+      }>DO<{
+        s5 PUSH
+        257 PUSHINT
+        s2 PUSH
+        __tact_dict_get_int_cell INLINECALLDICT
+        $PoolConfig$_load_opt INLINECALLDICT
+        $PoolConfig$_not_null INLINECALLDICT
+        $PoolConfig$_get_share INLINECALLDICT
+        s1 s2 XCHG
+        ADD
+        SWAP
+        INC
+      }>
+      DROP
+      0 PUSHINT
+      WHILE:<{
+        s0 s6 PUSH2
+        LESS
+      }>DO<{
+        s5 PUSH
+        257 PUSHINT
+        s2 PUSH
+        __tact_dict_get_int_cell INLINECALLDICT
+        $PoolConfig$_load_opt INLINECALLDICT
+        $PoolConfig$_not_null INLINECALLDICT
+        $PoolConfig$_get_share INLINECALLDICT
+        s6 PUSH
+        257 PUSHINT
+        s3 PUSH
+        __tact_dict_get_int_cell INLINECALLDICT
+        $PoolConfig$_load_opt INLINECALLDICT
+        $PoolConfig$_not_null INLINECALLDICT
+        $PoolConfig$_get_address INLINECALLDICT
+        s4 s1 PUXC
+        MUL
+        s3 PUSH
+        DIV
+        FALSE
+        B{b5ee9c7241010101001200002000000000446973747269627574696f6e2a645ecf} B>boc PUSHREF
+        s3 PUSH
+        s3 s2 s(-1) PUXC2
+        $global_send_ton INLINECALLDICT
+        s0 s2 XCHG
+        INC
+        -ROT
+        $DistributionEvent$_constructor_amount_address INLINECALLDICT
+        $DistributionEvent$_store_cell INLINECALLDICT
+        $global_emit INLINECALLDICT
+      }>
+      3 BLKDROP
+    }>
+    TRUE
+    $global_refund_gas INLINECALLDICT
+    s0 s2 XCHG
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_internal_text_68e49d60dbcd3c869c5653e7877acc9972c877f11dbba9acd9aa217c899ab3c5 PROCINLINE:<{
+    $TonupLauncherFixedPriceUnrestricted$_fun_requireOwner INLINECALLDICT
+    32513 PUSHINT
+    s3 PUSH
+    THROWANYIFNOT
+    __tact_my_balance INLINECALLDICT
+    200000000 PUSHINT
+    SUB
+    FALSE
+    B{b5ee9c724101010100130000220000000057697468647261772064757374f6139024} B>boc PUSHREF
+    23 s() PUSH
+    3 -ROLL
+    $global_send_ton INLINECALLDICT
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_internal_binary_Participate PROCINLINE:<{
+    17325 PUSHINT
+    __tact_context_get INLINECALLDICT
+    $Context$_get_value INLINECALLDICT
+    s2 PUSH
+    100000000 PUSHINT
+    ADD
+    EQUAL
+    THROWANYIFNOT
+    42340 PUSHINT
+    NOW
+    s15 PUSH
+    GEQ
+    THROWANYIFNOT
+    26949 PUSHINT
+    NOW
+    s14 PUSH
+    LESS
+    THROWANYIFNOT
+    17926 PUSHINT
+    s10 PUSH
+    THROWANYIFNOT
+    10560 PUSHINT
+    s12 s1 PUSH2
+    ADD
+    21 s() PUSH
+    LEQ
+    THROWANYIFNOT
+    47824 PUSHINT
+    OVER
+    20 s() PUSH
+    GEQ
+    THROWANYIFNOT
+    0 PUSHINT
+    267 PUSHINT
+    __tact_context_get_sender INLINECALLDICT
+    s9 PUSH
+    -ROT
+    8 PUSHPOW2
+    __tact_dict_get_slice_uint INLINECALLDICT
+    ISNULL
+    NOT
+    IF:<{
+      DROP
+      267 PUSHINT
+      __tact_context_get_sender INLINECALLDICT
+      s8 PUSH
+      -ROT
+      8 PUSHPOW2
+      __tact_dict_get_slice_uint INLINECALLDICT
+      __tact_not_null INLINECALLDICT
+    }>
+    62424 PUSHINT
+    s1 s2 PUSH2
+    ADD
+    20 s() PUSH
+    LEQ
+    THROWANYIFNOT
+    s12 s1 XCPU
+    ADD
+    267 PUSHINT
+    __tact_context_get_sender INLINECALLDICT
+    s14 s3 XCPU
+    ADD
+    s3 s9 XCHG
+    s1 s14 s0 XCHG3
+    8 PUSHPOW2
+    __tact_dict_set_slice_uint INLINECALLDICT
+    __tact_context_get_sender INLINECALLDICT
+    s0 s7 XCHG2
+    $ParticipatedEvent$_constructor_sender_amount INLINECALLDICT
+    $ParticipatedEvent$_store_cell INLINECALLDICT
+    $global_emit INLINECALLDICT
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_internal_text_535d44514554aee036c09a39063fe878ca30a50cb9b5f8f6f1ec24f13e3169e9 PROCINLINE:<{
+    15304 PUSHINT
+    __tact_context_get INLINECALLDICT
+    $Context$_get_value INLINECALLDICT
+    150000000 PUSHINT
+    GEQ
+    THROWANYIFNOT
+    42340 PUSHINT
+    NOW
+    s8 PUSH
+    GEQ
+    THROWANYIFNOT
+    49317 PUSHINT
+    s2 PUSH
+    THROWANYIFNOT
+    31191 PUSHINT
+    s11 PUSH
+    21 s() PUSH
+    GEQ
+    THROWANYIFNOT
+    44799 PUSHINT
+    267 PUSHINT
+    __tact_context_get_sender INLINECALLDICT
+    s8 PUSH
+    -ROT
+    8 PUSHPOW2
+    __tact_dict_get_slice_uint INLINECALLDICT
+    ISNULL
+    NOT
+    IF:<{
+      267 PUSHINT
+      __tact_context_get_sender INLINECALLDICT
+      s8 PUSH
+      -ROT
+      8 PUSHPOW2
+      __tact_dict_get_slice_uint INLINECALLDICT
+      __tact_not_null INLINECALLDICT
+      0 NEQINT
+    }>ELSE<{
+      FALSE
+    }>
+    THROWANYIFNOT
+    267 PUSHINT
+    __tact_context_get_sender INLINECALLDICT
+    s7 PUSH
+    -ROT
+    8 PUSHPOW2
+    __tact_dict_get_slice_uint INLINECALLDICT
+    __tact_not_null INLINECALLDICT
+    16 s() PUSH
+    MUL
+    1000000000 PUSHINT
+    DIV
+    267 PUSHINT
+    __tact_context_get_sender INLINECALLDICT
+    s2 s8 XCHG
+    0 PUSHINT
+    8 PUSHPOW2
+    __tact_dict_set_slice_uint INLINECALLDICT
+    __tact_context_get_sender INLINECALLDICT
+    0 PUSHINT
+    TRUE
+    B{b5ee9c7241010101000700000a636c61696d8bef2b4b} B>boc <s PUSHSLICE
+    19 s() PUSH
+    s0 s4 XCHG
+    s3 s11 XCPU
+    s1 s3 s3 XCHG3
+    $global_send_jetton INLINECALLDICT
+    __tact_context_get_sender INLINECALLDICT
+    s0 s7 XCHG2
+    $ClaimedEvent$_constructor_sender_amount INLINECALLDICT
+    $ClaimedEvent$_store_cell INLINECALLDICT
+    $global_emit INLINECALLDICT
+    $global_refund_gas INLINECALLDICT
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_internal_text_b0ff00cda639475b5e711360e99508a2790d5ee34d0598e7d8066850f3ac6c11 PROCINLINE:<{
+    15304 PUSHINT
+    __tact_context_get INLINECALLDICT
+    $Context$_get_value INLINECALLDICT
+    150000000 PUSHINT
+    GEQ
+    THROWANYIFNOT
+    42340 PUSHINT
+    NOW
+    s8 PUSH
+    GEQ
+    THROWANYIFNOT
+    49317 PUSHINT
+    s2 PUSH
+    THROWANYIFNOT
+    54891 PUSHINT
+    s11 PUSH
+    21 s() PUSH
+    LESS
+    THROWANYIFNOT
+    44799 PUSHINT
+    267 PUSHINT
+    __tact_context_get_sender INLINECALLDICT
+    s8 PUSH
+    -ROT
+    8 PUSHPOW2
+    __tact_dict_get_slice_uint INLINECALLDICT
+    ISNULL
+    NOT
+    IF:<{
+      267 PUSHINT
+      __tact_context_get_sender INLINECALLDICT
+      s8 PUSH
+      -ROT
+      8 PUSHPOW2
+      __tact_dict_get_slice_uint INLINECALLDICT
+      __tact_not_null INLINECALLDICT
+      0 NEQINT
+    }>ELSE<{
+      FALSE
+    }>
+    THROWANYIFNOT
+    267 PUSHINT
+    __tact_context_get_sender INLINECALLDICT
+    s7 PUSH
+    -ROT
+    8 PUSHPOW2
+    __tact_dict_get_slice_uint INLINECALLDICT
+    __tact_not_null INLINECALLDICT
+    267 PUSHINT
+    __tact_context_get_sender INLINECALLDICT
+    s2 s8 XCHG
+    0 PUSHINT
+    8 PUSHPOW2
+    __tact_dict_set_slice_uint INLINECALLDICT
+    s10 s6 XCPU
+    ADD
+    __tact_context_get_sender INLINECALLDICT
+    FALSE
+    B{b5ee9c7241010101000c00001400000000526566756e64f609bb90} B>boc PUSHREF
+    s9 PUSH
+    -ROT
+    $global_send_ton INLINECALLDICT
+    __tact_context_get_sender INLINECALLDICT
+    s0 s7 XCHG2
+    $RefundedEvent$_constructor_sender_amount INLINECALLDICT
+    $RefundedEvent$_store_cell INLINECALLDICT
+    $global_emit INLINECALLDICT
+    $global_refund_gas INLINECALLDICT
+    s5 s9 XCHG
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_receive_binary_bounce_TokenTransfer PROCINLINE:<{
+    2DROP
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_internal_binary_Deploy PROCINLINE:<{
+    $DeployOk$_constructor_queryId INLINECALLDICT
+    $DeployOk$_store_cell INLINECALLDICT
+    $TonupLauncherFixedPriceUnrestricted$_fun_notify INLINECALLDICT
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_internal_binary_ChangeOwner PROCINLINE:<{
+    20 s() 22 s() XCHG
+    19 s() 21 s() XCHG
+    18 s() 22 s() XCHG
+    17 s() 21 s() XCHG
+    16 s() 22 s() XCHG
+    s15 21 s() XCHG
+    s14 22 s() XCHG
+    s13 21 s() XCHG
+    s12 22 s() XCHG
+    s11 21 s() XCHG
+    s10 22 s() XCHG
+    s9 21 s() XCHG
+    s8 22 s() XCHG
+    s7 21 s() XCHG
+    s6 22 s() XCHG
+    s5 21 s() XCHG
+    s4 22 s() XCHG
+    s3 21 s() XCHG
+    s2 22 s() XCHG
+    s1 21 s() XCHG
+    s0 22 s() XCHG
+    $TonupLauncherFixedPriceUnrestricted$_fun_requireOwner INLINECALLDICT
+    20 s() POP
+    21 s() PUSH
+    s1 21 s() XCHG
+    s0 22 s() XCHG
+    $ChangeOwnerOk$_constructor_queryId_newOwner INLINECALLDICT
+    $ChangeOwnerOk$_store_cell INLINECALLDICT
+    18 s() 20 s() XCHG
+    17 s() 19 s() XCHG
+    16 s() 18 s() XCHG
+    s15 17 s() XCHG
+    s14 16 s() XCHG
+    s13 s15 XCHG
+    s12 s14 XCHG
+    s11 s13 XCHG
+    s10 s12 XCHG
+    s9 s11 XCHG
+    s8 s10 XCHG
+    s7 s9 XCHG
+    s6 s8 XCHG
+    s5 s7 XCHG
+    s4 s6 XCHG
+    s3 s5 XCHG
+    s4 s3 s0 XCHG3
+    $TonupLauncherFixedPriceUnrestricted$_fun_reply INLINECALLDICT
+  }>
+  %config PROC:<{
+    $TonupLauncherFixedPriceUnrestricted$_contract_load INLINECALLDICT
+    $TonupLauncherFixedPriceUnrestricted$_fun_config INLINECALLDICT
+    9 9 BLKDROP2
+    12 9 BLKDROP2
+    $LauncherConfig$_to_external INLINECALLDICT
+  }>
+  %totalTon PROC:<{
+    $TonupLauncherFixedPriceUnrestricted$_contract_load INLINECALLDICT
+    $TonupLauncherFixedPriceUnrestricted$_fun_totalTon INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    5 1 BLKDROP2
+  }>
+  %validated PROC:<{
+    $TonupLauncherFixedPriceUnrestricted$_contract_load INLINECALLDICT
+    $TonupLauncherFixedPriceUnrestricted$_fun_validated INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    5 1 BLKDROP2
+  }>
+  %balance PROC:<{
+    $TonupLauncherFixedPriceUnrestricted$_contract_load INLINECALLDICT
+    $TonupLauncherFixedPriceUnrestricted$_fun_balance INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    5 1 BLKDROP2
+  }>
+  %participation PROC:<{
+    __tact_verify_address INLINECALLDICT
+    $TonupLauncherFixedPriceUnrestricted$_contract_load INLINECALLDICT
+    20 s() 21 s() XCHG
+    19 s() 20 s() XCHG
+    18 s() 19 s() XCHG
+    17 s() 18 s() XCHG
+    16 s() 17 s() XCHG
+    s15 16 s() XCHG
+    15 ROLL
+    $TonupLauncherFixedPriceUnrestricted$_fun_participation INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    5 1 BLKDROP2
+  }>
+  %numberPools PROC:<{
+    $TonupLauncherFixedPriceUnrestricted$_contract_load INLINECALLDICT
+    $TonupLauncherFixedPriceUnrestricted$_fun_numberPools INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    5 1 BLKDROP2
+  }>
+  %poolConfig PROC:<{
+    $TonupLauncherFixedPriceUnrestricted$_contract_load INLINECALLDICT
+    20 s() 21 s() XCHG
+    19 s() 20 s() XCHG
+    18 s() 19 s() XCHG
+    17 s() 18 s() XCHG
+    16 s() 17 s() XCHG
+    s15 16 s() XCHG
+    15 ROLL
+    $TonupLauncherFixedPriceUnrestricted$_fun_poolConfig INLINECALLDICT
+    18 s() POP
+    16 s() POP
+    15 BLKDROP
+    s5 POP
+    s3 POP
+    2DROP
+    $PoolConfig$_to_external INLINECALLDICT
+  }>
+  %claimStartTime PROC:<{
+    $TonupLauncherFixedPriceUnrestricted$_contract_load INLINECALLDICT
+    $TonupLauncherFixedPriceUnrestricted$_fun_claimStartTime INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    5 1 BLKDROP2
+  }>
+  %launchFinalized PROC:<{
+    $TonupLauncherFixedPriceUnrestricted$_contract_load INLINECALLDICT
+    $TonupLauncherFixedPriceUnrestricted$_fun_launchFinalized INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    5 1 BLKDROP2
+  }>
+  %launchSuccessful PROC:<{
+    $TonupLauncherFixedPriceUnrestricted$_contract_load INLINECALLDICT
+    $TonupLauncherFixedPriceUnrestricted$_fun_launchSuccessful INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    5 1 BLKDROP2
+  }>
+  %tokensAwaitingLaunch PROC:<{
+    $TonupLauncherFixedPriceUnrestricted$_contract_load INLINECALLDICT
+    $TonupLauncherFixedPriceUnrestricted$_fun_tokensAwaitingLaunch INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    5 1 BLKDROP2
+  }>
+  %metadataName PROC:<{
+    $TonupLauncherFixedPriceUnrestricted$_contract_load INLINECALLDICT
+    $TonupLauncherFixedPriceUnrestricted$_fun_metadataName INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    5 1 BLKDROP2
+  }>
+  %metadataType PROC:<{
+    $TonupLauncherFixedPriceUnrestricted$_contract_load INLINECALLDICT
+    $TonupLauncherFixedPriceUnrestricted$_fun_metadataType INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    5 1 BLKDROP2
+  }>
+  %metadataVersion PROC:<{
+    $TonupLauncherFixedPriceUnrestricted$_contract_load INLINECALLDICT
+    $TonupLauncherFixedPriceUnrestricted$_fun_metadataVersion INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    5 1 BLKDROP2
+  }>
+  %metadataTicker PROC:<{
+    $TonupLauncherFixedPriceUnrestricted$_contract_load INLINECALLDICT
+    $TonupLauncherFixedPriceUnrestricted$_fun_metadataTicker INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    5 1 BLKDROP2
+  }>
+  %gasClaim PROC:<{
+    $TonupLauncherFixedPriceUnrestricted$_contract_load INLINECALLDICT
+    $TonupLauncherFixedPriceUnrestricted$_fun_gasClaim INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    5 1 BLKDROP2
+  }>
+  %gasRefund PROC:<{
+    $TonupLauncherFixedPriceUnrestricted$_contract_load INLINECALLDICT
+    $TonupLauncherFixedPriceUnrestricted$_fun_gasRefund INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    5 1 BLKDROP2
+  }>
+  %gasParticipate PROC:<{
+    $TonupLauncherFixedPriceUnrestricted$_contract_load INLINECALLDICT
+    $TonupLauncherFixedPriceUnrestricted$_fun_gasParticipate INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    5 1 BLKDROP2
+  }>
+  %owner PROC:<{
+    $TonupLauncherFixedPriceUnrestricted$_contract_load INLINECALLDICT
+    $TonupLauncherFixedPriceUnrestricted$_fun_owner INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    5 1 BLKDROP2
+  }>
+  supported_interfaces PROC:<{
+    123515602279859691144772641439386770278 PUSHINT
+    209801025412363888721030803524359905849 PUSHINT
+    42980537499636128163026532310500881091 PUSHINT
+    209474421377847335869795010607481022628 PUSHINT
+    322875185039650075936310953974817993034 PUSHINT
+    86142586315491086060343270784266291122 PUSHINT
+  }>
+  get_abi_ipfs PROC:<{
+    x{697066733a2f2f516d596233416352516d635a36725835337a66625a6957345678617645364177784e6173674c4e67514d39637169} PUSHSLICE
+  }>
+  lazy_deployment_completed PROC:<{
+    c4 PUSH
+    CTOS
+    1 LDI
+    SWAP
+  }>
+  $TonupLauncherFixedPriceUnrestricted$_contract_router_internal PROCREF:<{
+    c2 SAVE
+    SAMEALTSAVE
+    SWAP
+    IFJMP:<{
+      32 PUSHINT
+      SDSKIPFIRST
+      0 PUSHINT
+      OVER
+      SBITS
+      31 GTINT
+      IF:<{
+        DROP
+        DUP
+        32 PLDU
+      }>
+      260734629 PUSHINT
+      EQUAL
+      IFJMP:<{
+        $TokenTransfer$_load_bounced INLINECALLDICT
+        1 2 BLKDROP2
+        $TonupLauncherFixedPriceUnrestricted$_receive_binary_bounce_TokenTransfer INLINECALLDICT
+        TRUE
+      }>
+      DROP
+      TRUE
+    }>
+    0 PUSHINT
+    OVER
+    SBITS
+    31 GTINT
+    IF:<{
+      DROP
+      DUP
+      32 PLDU
+    }>
+    DUP
+    1935855772 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $TokenNotification$_load INLINECALLDICT
+      1 4 BLKDROP2
+      $TonupLauncherFixedPriceUnrestricted$_internal_binary_TokenNotification INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    3576854235 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $TokenExcesses$_load INLINECALLDICT
+      NIP
+      $TonupLauncherFixedPriceUnrestricted$_internal_binary_TokenExcesses INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    3386179862 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $SetLauncherConfig$_load INLINECALLDICT
+      1 9 BLKDROP2
+      $TonupLauncherFixedPriceUnrestricted$_internal_binary_SetLauncherConfig INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    1502674262 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $SetClaimStartTime$_load INLINECALLDICT
+      NIP
+      $TonupLauncherFixedPriceUnrestricted$_internal_binary_SetClaimStartTime INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    1262522374 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $AddDistributionPool$_load INLINECALLDICT
+      1 2 BLKDROP2
+      $TonupLauncherFixedPriceUnrestricted$_internal_binary_AddDistributionPool INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    4245807583 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $DeleteDistributionPool$_load INLINECALLDICT
+      NIP
+      $TonupLauncherFixedPriceUnrestricted$_internal_binary_DeleteDistributionPool INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    4028846959 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $ModifyDistributionPool$_load INLINECALLDICT
+      1 3 BLKDROP2
+      $TonupLauncherFixedPriceUnrestricted$_internal_binary_ModifyDistributionPool INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    3469646442 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $ManualTransferNotification$_load INLINECALLDICT
+      NIP
+      $TonupLauncherFixedPriceUnrestricted$_internal_binary_ManualTransferNotification INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    3806870373 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $Participate$_load INLINECALLDICT
+      NIP
+      $TonupLauncherFixedPriceUnrestricted$_internal_binary_Participate INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    2490013878 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $Deploy$_load INLINECALLDICT
+      NIP
+      $TonupLauncherFixedPriceUnrestricted$_internal_binary_Deploy INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    2174598809 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $ChangeOwner$_load INLINECALLDICT
+      1 2 BLKDROP2
+      $TonupLauncherFixedPriceUnrestricted$_internal_binary_ChangeOwner INLINECALLDICT
+      TRUE
+    }>
+    0 EQINT
+    IF:<{
+      HASHSU
+      DUP
+      4537616614026063258893249989970717722791502975572740641825761912654041381971 PUSHINT
+      EQUAL
+      IFJMP:<{
+        DROP
+        $TonupLauncherFixedPriceUnrestricted$_internal_text_0a0833328ac509815f762666d0411c0bfd422f48e0d183444ad2902009e6fc53 INLINECALLDICT
+        TRUE
+        RETALT
+      }>
+      DUP
+      67782937389398444590318975411347567549574919038918420906110084763944326874352 PUSHINT
+      EQUAL
+      IFJMP:<{
+        DROP
+        $TonupLauncherFixedPriceUnrestricted$_internal_text_95dbc872c3a0b54b6004c2d3ba6c02e40c2393c83dd9f21b86c4d8231a9544f0 INLINECALLDICT
+        TRUE
+        RETALT
+      }>
+      DUP
+      108490804944420552989294274005378279587037202662902278785832882355752925008666 PUSHINT
+      EQUAL
+      IFJMP:<{
+        DROP
+        $TonupLauncherFixedPriceUnrestricted$_internal_text_efdb9e99edc1eb6a18fd98ca5ce6077a72be4f84808a5bf94d1de89d563e131a INLINECALLDICT
+        TRUE
+        RETALT
+      }>
+      DUP
+      29820364451612850266429061332471237493160552226561016611092079555780690244818 PUSHINT
+      EQUAL
+      IFJMP:<{
+        DROP
+        $TonupLauncherFixedPriceUnrestricted$_internal_text_41edba6865897d67a7ab07fd40b6c902bc8e34e507bdf33933dda89117aef4d2 INLINECALLDICT
+        TRUE
+        RETALT
+      }>
+      DUP
+      47444463568908323428171153238289452180568823728354846234520600794474342953925 PUSHINT
+      EQUAL
+      IFJMP:<{
+        DROP
+        $TonupLauncherFixedPriceUnrestricted$_internal_text_68e49d60dbcd3c869c5653e7877acc9972c877f11dbba9acd9aa217c899ab3c5 INLINECALLDICT
+        TRUE
+        RETALT
+      }>
+      DUP
+      37706754719244146510643725690127855840248500328421169614539617019438610606569 PUSHINT
+      EQUAL
+      IFJMP:<{
+        DROP
+        $TonupLauncherFixedPriceUnrestricted$_internal_text_535d44514554aee036c09a39063fe878ca30a50cb9b5f8f6f1ec24f13e3169e9 INLINECALLDICT
+        TRUE
+        RETALT
+      }>
+      80057612896467842646685375242954389361522595315183558459549264394249520835601 PUSHINT
+      EQUAL
+      IFJMP:<{
+        $TonupLauncherFixedPriceUnrestricted$_internal_text_b0ff00cda639475b5e711360e99508a2790d5ee34d0598e7d8066850f3ac6c11 INLINECALLDICT
+        TRUE
+        RETALT
+      }>
+    }>ELSE<{
+      DROP
+    }>
+    FALSE
+  }>
+  recv_internal PROC:<{
+    SWAP
+    CTOS
+    4 LDU
+    SWAP
+    1 PUSHINT
+    AND
+    NEGATE
+    SWAP
+    LDMSGADDR
+    SWAP
+    __tact_verify_address INLINECALLDICT
+    s0 s4 s2 PUXCPU
+    s0 s3 XCHG
+    4 TUPLE
+    __tact_context SETGLOB
+    s0 s2 XCHG
+    __tact_context_sender SETGLOB
+    $TonupLauncherFixedPriceUnrestricted$_contract_load INLINECALLDICT
+    20 s() 22 s() XCHG
+    19 s() 21 s() XCHG
+    18 s() 20 s() XCHG
+    17 s() 19 s() XCHG
+    16 s() 18 s() XCHG
+    s15 17 s() XCHG
+    s14 16 s() XCHG
+    s13 s15 XCHG
+    2 13 BLKSWAP
+    $TonupLauncherFixedPriceUnrestricted$_contract_router_internal INLINECALLDICT
+    130 THROWIFNOT
+    $TonupLauncherFixedPriceUnrestricted$_contract_store INLINECALLDICT
+  }>
+}END>c

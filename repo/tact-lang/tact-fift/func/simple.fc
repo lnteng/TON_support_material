@@ -1,0 +1,79 @@
+int asm_1() asm "1024 PUSHINTX";
+int asm_2() asm "1023 PUSHINTX";
+int asm_3() asm "-1024 PUSHINTX";
+
+int main(int a, int b) impure {
+    return a + b;
+}
+
+int exported1(int a, int b) method_id {
+    return 10;
+}
+
+int exported2(int a, int b) method_id {
+    return -3;
+}
+
+int exported3(int a, int b) method_id {
+    return 5;
+}
+
+int exported4(int a, int b) method_id {
+    return 50;
+}
+
+int exported5(int a, int b) method_id {
+    return -120;
+}
+
+int exported6(int a, int b) method_id {
+    return 32760;
+}
+
+int exported7(int a, int b) method_id {
+    return -32760;
+}
+
+int exported8(int a, int b) method_id {
+    return -3276012312312312;
+}
+
+int exported9(int a, int b) method_id {
+    return 3276012312312312;
+}
+
+int exported10(int a, int b) method_id {
+    return 256;
+}
+
+int exported11(int a, int b) method_id {
+    return 90596966400;
+}
+
+int exported12(int a, int b) method_id {
+    return asm_1();
+}
+
+int exported13(int a, int b) method_id {
+    return asm_2();
+}
+
+int exported14(int a, int b) method_id {
+    return asm_3();
+}
+
+slice exported15() method_id {
+    return "Hello, World!";
+}
+
+slice exported16() method_id {
+    return "";
+}
+
+slice exported17() method_id {
+    return "123";
+}
+
+slice exported18() method_id {
+    return "123123123123123123123123123123123123123123123";
+}

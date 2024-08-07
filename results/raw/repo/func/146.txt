@@ -1,0 +1,20 @@
+messages::send_log: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./somewallet/ton_nft_dapp/contracts/./imports/messages.fc:62:14: warning: Local variable 'msg' is not used
+      cell msg = begin_cell()
+               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./somewallet/ton_nft_dapp/contracts/order_nft.fc:29:83: warning: Lack of end_parse.
+        return (-1, index, collection_address, ds~load_msg_addr(), ds~load_ref(), ds~load_msg_addr());
+                                                                                    ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./somewallet/ton_nft_dapp/contracts/order_nft.fc:147:28: warning: Lack of end_parse.
+      int fwd_fee = muldiv(cs~load_coins(), 3, 2);
+                             ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./somewallet/ton_nft_dapp/contracts/order_nft.fc:188:31: warning: Lack of end_parse.
+          cell keyvalue_map = cs~load_dict();
+                                ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./somewallet/ton_nft_dapp/contracts/order_nft.fc:138:15: warning: Local variable 'flags' is not used
+      int flags = cs~load_uint(4);
+                ^

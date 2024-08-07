@@ -1,0 +1,103 @@
+;;
+;; Header files for DataSaver
+;; NOTE: declarations are sorted for optimal order
+;;
+
+;; __tact_verify_address
+slice __tact_verify_address(slice address) inline;
+
+;; __tact_context_get
+(int, slice, int, slice) __tact_context_get() inline;
+
+;; __tact_dict_set_int_int
+(cell, ()) __tact_dict_set_int_int(cell d, int kl, int k, int v, int vl) inline;
+
+;; __tact_dict_set_int_cell
+(cell, ()) __tact_dict_set_int_cell(cell d, int kl, int k, cell v) inline;
+
+;; __tact_dict_get_int_cell
+cell __tact_dict_get_int_cell(cell d, int kl, int k) inline;
+
+;; __tact_dict_set_int_slice
+(cell, ()) __tact_dict_set_int_slice(cell d, int kl, int k, slice v) inline;
+
+;; __tact_dict_set_slice_cell
+(cell, ()) __tact_dict_set_slice_cell(cell d, int kl, slice k, cell v) inline;
+
+;; __tact_dict_get_slice_cell
+cell __tact_dict_get_slice_cell(cell d, int kl, slice k) inline;
+
+;; $DataInput$_load
+(slice, ((slice, slice))) $DataInput$_load(slice sc_0) inline;
+
+;; $DataInputTest$_load
+(slice, ((slice, slice))) $DataInputTest$_load(slice sc_0) inline;
+
+;; $Holder$_store
+builder $Holder$_store(builder build_0, (int, cell) v) inline;
+
+;; $Holder$_store_cell
+cell $Holder$_store_cell((int, cell) v) inline;
+
+;; $Holder$_load
+(slice, ((int, cell))) $Holder$_load(slice sc_0) inline;
+
+;; $Holder$_as_optional
+tuple $Holder$_as_optional((int, cell) v) inline;
+
+;; $Holder$_load_opt
+tuple $Holder$_load_opt(cell cl) inline;
+
+;; $Data$_store
+builder $Data$_store(builder build_0, (slice, slice) v) inline;
+
+;; $Data$_store_cell
+cell $Data$_store_cell((slice, slice) v) inline;
+
+;; $Data$_load
+(slice, ((slice, slice))) $Data$_load(slice sc_0) inline;
+
+;; $Data$_as_optional
+tuple $Data$_as_optional((slice, slice) v) inline;
+
+;; $Data$_load_opt
+tuple $Data$_load_opt(cell cl) inline;
+
+;; $DataSaver$_store
+builder $DataSaver$_store(builder build_0, (int, cell, cell, cell) v) inline;
+
+;; $DataSaver$_load
+(slice, ((int, cell, cell, cell))) $DataSaver$_load(slice sc_0) inline;
+
+;; $Holder$_not_null
+((int, cell)) $Holder$_not_null(tuple v) inline;
+
+;; $Holder$_to_external
+(int, cell) $Holder$_to_external(((int, cell)) v) inline;
+
+;; $Data$_not_null
+((slice, slice)) $Data$_not_null(tuple v) inline;
+
+;; $Data$_to_external
+(slice, slice) $Data$_to_external(((slice, slice)) v) inline;
+
+;; $DataSaver$_contract_init
+(int, cell, cell, cell) $DataSaver$_contract_init() impure inline_ref;
+
+;; $DataSaver$_contract_load
+(int, cell, cell, cell) $DataSaver$_contract_load() impure inline_ref;
+
+;; $DataSaver$_contract_store
+() $DataSaver$_contract_store((int, cell, cell, cell) v) impure inline;
+
+;; $DataSaver$_fun_get_data
+((int, cell, cell, cell), (slice, slice)) $DataSaver$_fun_get_data((int, cell, cell, cell) $self, int $index) impure inline_ref;
+
+;; $DataSaver$_fun_get_address
+((int, cell, cell, cell), (int, cell)) $DataSaver$_fun_get_address((int, cell, cell, cell) $self) impure inline_ref;
+
+;; $Holder$_constructor_total_holder
+((int, cell)) $Holder$_constructor_total_holder(int total, cell holder) inline;
+
+;; $Data$_constructor_key_data
+((slice, slice)) $Data$_constructor_key_data(slice key, slice data) inline;

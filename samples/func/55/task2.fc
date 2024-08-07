@@ -1,0 +1,150 @@
+#include "imports/stdlib.fc";
+
+() save_data(int total, cell users, slice admin_address) impure inline {
+    begin_cell()
+        .store_slice(admin_address)
+        .store_dict(users)
+        .store_uint(total, 64)
+        .end_cell()
+        .set_data();
+}
+
+(slice, cell, int) load_data() inline {
+    slice ds = get_data().begin_parse();
+    slice admin_address = ds~load_msg_addr();
+    cell users = ds~load_dict();
+    int total = 0;
+    if ds.slice_bits() {
+        total = ds~load_uint(64);    ;; DEFECT: LackEndParse
+    }
+    return ( admin_address, users, total );
+}
+
+() add_user(slice src, slice s) impure inline {
+    ( slice admin_address, cell users, int total ) = load_data();
+
+    throw_unless(120, equal_slice_bits(src, admin_address));
+
+    s~skip_bits(64 + 11);
+    int addr = s~load_uint(256);
+    int share = s.preload_uint(32);
+
+    total += share;
+    users~udict_set(256, addr, s);
+
+    save_data(total, users, admin_address);
+}
+
+() remove_user(slice src, slice s) impure inline {
+    ( slice admin_address, cell users, int total ) = load_data();
+
+    throw_unless(120, equal_slice_bits(src, admin_address));
+
+    s~skip_bits(64 + 11);
+    int addr = s~load_uint(256);
+
+    ( slice value, int d? ) = users~udict_delete_get?(256, addr);
+    throw_unless(121, d?);
+    total -= value~load_uint(32);
+
+    save_data(total, users, admin_address);
+}
+
+() split(int amount) impure inline {
+    ( _, cell users, int total ) = load_data();
+
+    throw_if(122, users.null?());
+
+    builder b = begin_cell()
+        .store_uint(0x8400, 17); ;; 01000010000000000
+
+    do {
+        ( int addr, slice value, _ ) = users~udict::delete_get_min(256);
+        int share = value~load_uint(32);
+        int x = muldiv(share, amount, total);
+        cell msg = b
+            .store_uint(addr, 256)
+            .store_coins(x)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .end_cell();
+        send_raw_message(msg, 1);
+    } until users.null?();
+}
+
+() notification(slice src, slice s) impure inline {
+    ( _, cell users, int total ) = load_data();
+
+    throw_if(122, users.null?());
+
+    int query_id = s~load_uint(64);
+    int amount = s~load_coins();
+
+    builder b = begin_cell()
+        .store_uint(0x10, 6)
+        .store_slice(src)
+        .store_coins(20000000)
+        .store_uint(1, 1 + 4 + 4 + 64 + 32 + 1 + 1);
+
+    builder bb = begin_cell()
+        .store_uint(0x0f8a7ea5, 32)
+        .store_uint(query_id, 64);
+
+    do {
+        ( int addr, slice value, _ ) = users~udict::delete_get_min(256);
+        int share = value~load_uint(32);
+        int x = muldiv(share, amount, total);
+        cell transfer = bb
+            .store_coins(x)
+            .store_uint(0x400, 11)
+            .store_uint(addr, 256)
+            .store_uint(0x400, 11)
+            .store_uint(addr, 256)
+            .store_uint(0x202, 1 + 4 + 8 + 1) ;; 00001000000010
+            .end_cell();
+        cell msg = b
+            .store_ref(transfer)
+            .end_cell();
+        send_raw_message(msg, 1);
+    } until users.null?();
+}
+
+() recv_internal(int my_balance, int msg_value, cell in_msg_full, slice in_msg_body) impure {
+    ifnot in_msg_body.slice_bits() {
+        return ();
+    }
+
+    slice cs = in_msg_full.begin_parse();
+    cs~skip_bits(4);
+    slice src = cs~load_msg_addr();    ;; DEFECT: LackEndParse
+
+    int op = in_msg_body~load_uint(32);
+
+    if op == 0x368ddef3 {
+        return add_user(src, in_msg_body);
+    }
+
+    if op == 0x278205c8 {
+        return remove_user(src, in_msg_body);
+    }
+
+    if op == 0x7362d09c {
+        return notification(src, in_msg_body);
+    }
+
+    return split(msg_value);
+}
+
+cell get_users() method_id {
+    slice ds = get_data().begin_parse();    ;; DEFECT: LackEndParse
+    if ds.slice_refs() {
+        return ds.preload_ref();
+    }
+    return null();
+}
+
+int get_user_share(slice address) method_id {
+    cell users = get_data().begin_parse().preload_ref();    ;; DEFECT: LackEndParse
+    ( _, int addr ) = parse_std_addr(address);
+    ( slice value, _ ) = users.udict_get?(256, addr);
+    return value~load_uint(32);
+}

@@ -1,0 +1,31 @@
+%$LotteryContract$_internal_empty: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCpSL5fdUrYWYIPoXJIwYatOaAS-5_mvCb5hd7guIm0IOZo/output/verifier_LotteryContract.code.fc:53:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+%$LotteryContract$_internal_empty: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCpSL5fdUrYWYIPoXJIwYatOaAS-5_mvCb5hd7guIm0IOZo/output/verifier_LotteryContract.code.fc:53:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$LotteryContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCpSL5fdUrYWYIPoXJIwYatOaAS-5_mvCb5hd7guIm0IOZo/output/verifier_LotteryContract.code.fc:15:25: warning: Local variable '$self'owner' is not used
+      var (($self'owner)) = (null());
+                          ^
+$LotteryContract$_internal_binary_Withdraw: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCpSL5fdUrYWYIPoXJIwYatOaAS-5_mvCb5hd7guIm0IOZo/output/verifier_LotteryContract.code.fc:67:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$LotteryContract$_internal_binary_Withdraw: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCpSL5fdUrYWYIPoXJIwYatOaAS-5_mvCb5hd7guIm0IOZo/output/verifier_LotteryContract.code.fc:67:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$LotteryContract$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCpSL5fdUrYWYIPoXJIwYatOaAS-5_mvCb5hd7guIm0IOZo/output/verifier_LotteryContract.storage.fc:144:19: warning: Lack of end_parse.
+          return $sc~$LotteryContract$_load();
+                    ^
+$LotteryContract$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCpSL5fdUrYWYIPoXJIwYatOaAS-5_mvCb5hd7guIm0IOZo/output/verifier_LotteryContract.code.fc:135:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCpSL5fdUrYWYIPoXJIwYatOaAS-5_mvCb5hd7guIm0IOZo/output/verifier_LotteryContract.storage.fc:155:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

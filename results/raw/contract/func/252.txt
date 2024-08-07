@@ -1,0 +1,64 @@
+get_offer_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAPCdspv0uVHTa3ItpR49FlBEaaBKFDz5G8m6fmEyqhyY3J/nft-offer-v1r3.fc:419:5: warning: Local variable 'swap_at' is not used
+    ) = load_data();
+      ^
+get_offer_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAPCdspv0uVHTa3ItpR49FlBEaaBKFDz5G8m6fmEyqhyY3J/nft-offer-v1r3.fc:431:5: warning: Local variable 'royalty_amount' is not used
+    ) = calc_profit(full_price, royalty_factor, marketplace_factor, marketplace_base, royalty_base);
+      ^
+get_offer_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAPCdspv0uVHTa3ItpR49FlBEaaBKFDz5G8m6fmEyqhyY3J/nft-offer-v1r3.fc:431:5: warning: Local variable 'marketplace_fee' is not used
+    ) = calc_profit(full_price, royalty_factor, marketplace_factor, marketplace_base, royalty_base);
+      ^
+get_offer_data_v2: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAPCdspv0uVHTa3ItpR49FlBEaaBKFDz5G8m6fmEyqhyY3J/nft-offer-v1r3.fc:472:5: warning: Local variable 'royalty_amount' is not used
+    ) = calc_profit(full_price, royalty_factor, marketplace_factor, marketplace_base, royalty_base);
+      ^
+get_offer_data_v2: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAPCdspv0uVHTa3ItpR49FlBEaaBKFDz5G8m6fmEyqhyY3J/nft-offer-v1r3.fc:472:5: warning: Local variable 'marketplace_fee' is not used
+    ) = calc_profit(full_price, royalty_factor, marketplace_factor, marketplace_base, royalty_base);
+      ^
+recv_external: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAPCdspv0uVHTa3ItpR49FlBEaaBKFDz5G8m6fmEyqhyY3J/nft-offer-v1r3.fc:370:5: warning: Local variable 'can_deploy' is not used
+    ) = load_data();
+      ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAPCdspv0uVHTa3ItpR49FlBEaaBKFDz5G8m6fmEyqhyY3J/nft-offer-v1r3.fc:182:28: warning: Lack of end_parse.
+    slice sender_address = cs~load_msg_addr();
+                             ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAPCdspv0uVHTa3ItpR49FlBEaaBKFDz5G8m6fmEyqhyY3J/nft-offer-v1r3.fc:241:25: warning: Lack of end_parse.
+      send_raw_message(msg~load_ref(), mode);
+                          ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAPCdspv0uVHTa3ItpR49FlBEaaBKFDz5G8m6fmEyqhyY3J/nft-offer-v1r3.fc:203:7: warning: Local variable 'marketplace_fee_address' is not used
+      ) = load_fees(fees_cell);
+        ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAPCdspv0uVHTa3ItpR49FlBEaaBKFDz5G8m6fmEyqhyY3J/nft-offer-v1r3.fc:203:7: warning: Local variable 'royalty_address' is not used
+      ) = load_fees(fees_cell);
+        ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAPCdspv0uVHTa3ItpR49FlBEaaBKFDz5G8m6fmEyqhyY3J/nft-offer-v1r3.fc:206:7: warning: Local variable 'royalty_amount' is not used
+      ) = calc_profit(full_price, royalty_factor, marketplace_factor, marketplace_base, royalty_base);
+        ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAPCdspv0uVHTa3ItpR49FlBEaaBKFDz5G8m6fmEyqhyY3J/nft-offer-v1r3.fc:206:7: warning: Local variable 'marketplace_fee' is not used
+      ) = calc_profit(full_price, royalty_factor, marketplace_factor, marketplace_base, royalty_base);
+        ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAPCdspv0uVHTa3ItpR49FlBEaaBKFDz5G8m6fmEyqhyY3J/nft-offer-v1r3.fc:57:7: warning: Lack of end_parse.
+      ds~load_uint(1)     ;; can_deploy
+        ^
+load_fees: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAPCdspv0uVHTa3ItpR49FlBEaaBKFDz5G8m6fmEyqhyY3J/nft-offer-v1r3.fc:69:7: warning: Lack of end_parse.
+      ds~load_uint(32)    ;; royalty_base,
+        ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAPCdspv0uVHTa3ItpR49FlBEaaBKFDz5G8m6fmEyqhyY3J/nft-offer-v1r3.fc:284:47: warning: UnHandle bounced message with op: 0x5fcc3d14
+        send_raw_message(nft_msg.end_cell(), 64);
+                                                ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAPCdspv0uVHTa3ItpR49FlBEaaBKFDz5G8m6fmEyqhyY3J/nft-offer-v1r3.fc:159:44: warning: UnHandle bounced message with op: 0x5fcc3d14
+    send_raw_message(nft_msg.end_cell(), 128);
+                                             ^

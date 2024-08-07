@@ -1,0 +1,170 @@
+;; #include "imports/stdlib.fc";
+
+() recv_internal(int my_balance, int msg_value, cell in_msg_full, slice in_msg_body) impure {
+
+}
+
+;; 2 <= N <= 31 & 2 <= M <= 31
+;; 
+;; The main idea: dijkstra with priority queue
+;;
+;;             min (X)       min (Q)   min (L)
+;; sort by: (X to break, ? on the way, length)
+;; memo: memo[i][j] = (X, Q, L, step back): best result to reach (i, j)
+
+
+;; int to_flatten(int i, int j, int m) inline {
+;;     ;; return m * i + j;
+;;     return (i << 5) | j;
+;; }
+
+;; (int, int) from_flatten(int x, int m) inline {
+;;     int j = x & ((1 << 5) - 1);
+;;     return (x >> 5, j);
+;;     ;; int r = x / m;
+;;     ;; return (r, x - r * m);
+;; }
+
+;; int to_key(int x, int q, int l, int pos) inline {
+;;     return (x << 30) | (q << 20) | (l << 10) | pos;
+;; }
+
+;; (int, int, int, int) from_key(int key) inline {
+;;     int pos = key & ((1 << 10) - 1);
+;;     key >>= 10; 
+;;     int bl = key & ((1 << 10) - 1);
+;;     key >>= 10;
+;;     int bq = key & ((1 << 10) - 1);
+;;     key >>= 10;
+;;     int bx = key;
+;;     return (bx, bq, bl, pos);
+;; }
+
+;; S = 83
+;; X = 88
+;; . = 46
+;; E = 69
+;; ? = 63
+;; ! = 33
+
+;; () dump_str (slice str) impure asm "STRDUMP" "DROP";
+
+forall X -> (tuple) to_tuple (X x) asm "NOP";
+forall X -> int is_null?(X x) asm "ISNULL";
+(cell, (int, slice, int)) ~udict::delete_get_min::custom(cell dict, int key_len) asm(-> 0 2 1 3) "DICTUREMMIN";
+(slice, int) udict_get?::custom(cell dict, int key_len, int index) asm(index dict key_len) "DICTUGET";
+
+;; X    Q    L   maze
+(int, int, int, tuple) solve(int n, int m, tuple maze) method_id {
+    (int si, int sj) = (0, 0);
+    (int ei, int ej) = (0, 0);
+    int i = 0;
+    repeat (n) {
+        int j = 0;
+        repeat (m) {
+            int char = maze.at(i).at(j);
+            if (char == 83) {
+                (si, sj) = (i, j);
+            } elseif (char == 69) {
+                (ei, ej) = (i, j);
+            }
+            j += 1;
+        }
+        i += 1;
+    }
+    tuple d = to_tuple([
+        to_tuple([-1, -1]),
+        to_tuple([-1,  0]),
+        to_tuple([-1,  1]),
+
+        to_tuple([ 0, -1]),
+        to_tuple([ 0,  1]),
+
+        to_tuple([ 1, -1]),
+        to_tuple([ 1,  0]),
+        to_tuple([ 1,  1])
+    ]);
+
+    int flatten_start = (si << 5) | sj; ;; to_flatten(si, sj, m);
+    builder emptyb = begin_cell();
+    cell memo = new_dict();
+    memo~udict_set_builder(10, flatten_start, begin_cell().store_uint(0, 40));
+
+    cell queue = new_dict();
+    queue~udict_set_builder(40, flatten_start, emptyb);  ;; same as to_key(0, 0, 0, flatten_start)
+    do {
+        ;; (int key, slice cs, int f) = queue~udict::delete_get_min::custom(40);
+        ;; (int X, int Q, int L, int nxt_pos) = from_key(key);
+
+        (int X, slice cs, _) = queue~udict::delete_get_min::custom(40);
+        int nxt_pos = X & ((1 << 10) - 1); X >>= 10; 
+        int L = X & ((1 << 10) - 1); X >>= 10;
+        int Q = X & ((1 << 10) - 1); X >>= 10;
+        ;; int X = key;
+
+        ;; (int i, int j) = from_flatten(nxt_pos, m);
+        int i = nxt_pos >> 5;
+        int j = nxt_pos & ((1 << 5) - 1);
+
+        (int nX, int nQ, int nL) = (X, Q, L);
+        int dit = 0;
+        repeat (8) {
+            tuple dd = d.at(dit);
+            (int dx, int dy) = (dd.at(0), dd.at(1));
+            dx += i; dy += j;
+            if ((dx >= 0) & (dx < n) & (dy >= 0) & (dy < m)) {
+                int char = maze.at(dx).at(dy);
+                (X, Q, L) = (nX, nQ, nL + 1);
+                if (char == 88) { X += 1; } elseif (char == 63) { Q += 1; }
+                int flatten_pos = (dx << 5) | dy;  ;; to_flatten(dx, dy, m);
+
+                int sub_key = (X << 20) | (Q << 10) | L;
+                int new_key = (sub_key << 10) | flatten_pos;  ;; same as to_key(X, Q, L, flatten_pos)
+
+                (slice cs, int f) = memo.udict_get?(10, flatten_pos);
+                if (f) {
+                    int old_key = (cs.preload_uint(30) << 10) | flatten_pos;
+                    if (new_key < old_key) {
+                        memo~udict_set_builder(10, flatten_pos, begin_cell().store_uint(sub_key, 30).store_uint(nxt_pos, 10));
+                        queue~udict_set_builder(40, new_key, emptyb);
+                    }
+                } else {
+                    memo~udict_set_builder(10, flatten_pos, begin_cell().store_uint(sub_key, 30).store_uint(nxt_pos, 10));
+                    queue~udict_set_builder(40, new_key, emptyb);
+                }
+            }
+            dit += 1;
+        }
+    } until (is_null?(queue));
+
+    (slice cs, _) = memo.udict_get?::custom(10, (ei << 5) | ej);
+    (int X, int Q, int L, int sb) = (cs~load_uint(10), cs~load_uint(10), cs~load_uint(10), cs.preload_uint(10));
+
+    cell cells_to_mark = new_dict();
+    repeat (L - 1) {
+        cells_to_mark~udict_set_builder(10, sb, emptyb);
+        (cs, _) = memo.udict_get?::custom(10, sb);
+        cs~skip_bits(30);
+        sb = cs~load_uint(10);
+    }
+
+    tuple new_maze = empty_tuple();
+    int i = 0;
+    repeat (n) {
+        int j = 0;
+        tuple row = empty_tuple();
+        repeat (m) {
+            (_, int f) = cells_to_mark.udict_get?(10, (i << 5) | j);
+            if (f) {
+                row~tpush(33);
+            } else {
+                row~tpush(maze.at(i).at(j));
+            }
+            j += 1;
+        }
+        new_maze~tpush(row);
+        i += 1;
+    }
+
+    return (X, Q, L, new_maze);
+}

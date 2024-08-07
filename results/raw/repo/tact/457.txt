@@ -1,0 +1,32 @@
+__gen_IncrementContract_receive_Increment: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/examples/output/increment_IncrementContract.fc:185:46: warning: Local variable 'ctx'bounced' is not used
+      var (ctx'bounced, ctx'sender, ctx'value) = __tact_context_get();
+                                               ^
+__gen_IncrementContract_receive_Increment: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/examples/output/increment_IncrementContract.fc:185:46: warning: Local variable 'ctx'value' is not used
+      var (ctx'bounced, ctx'sender, ctx'value) = __tact_context_get();
+                                               ^
+__tact_dict_set_slice_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/examples/output/increment_IncrementContract.fc:48:21: warning: Local variable 'ok' is not used
+          var (r, ok) = __tact_dict_delete(d, kl, k);
+                      ^
+__tact_dict_set_int_cell: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/examples/output/increment_IncrementContract.fc:30:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+__tact_dict_set_int_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/examples/output/increment_IncrementContract.fc:12:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+__gen_read_IncrementContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/examples/output/increment_IncrementContract.fc:126:27: warning: Lack of end_parse.
+      var v'counters5 = sc_1~load_dict();
+                            ^
+__gen_load_IncrementContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/examples/output/increment_IncrementContract.fc:138:14: warning: Lack of end_parse.
+      return sc~__gen_read_IncrementContract();
+               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact/src/examples/output/increment_IncrementContract.fc:233:31: warning: Lack of end_parse.
+      slice msg_sender_addr = cs~load_msg_addr();
+                                ^

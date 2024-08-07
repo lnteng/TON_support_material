@@ -1,0 +1,46 @@
+check_validator_set: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/config-code.fc:32:16: warning: Lack of end_parse.
+    int main = cs~load_uint(16);
+                 ^
+register_vote: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/config-code.fc:181:13: warning: Local variable 'entry' is not used
+    var entry = null();
+              ^
+change_elector_code: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/config-code.fc:92:34: warning: Lack of end_parse.
+    var dest_addr = config_param(1).begin_parse().preload_uint(256);
+                                   ^
+seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/config-code.fc:272:20: warning: Lack of end_parse.
+    return get_data().begin_parse().preload_uint(32);
+                     ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/config-code.fc:54:18: warning: Lack of end_parse.
+    var s_addr = cs~load_msg_addr();
+                   ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/config-code.fc:67:70: warning: Lack of end_parse.
+      var elector_addr = cell_null?(elector_param) ? -1 : elector_param.begin_parse().preload_uint(256);
+                                                                       ^
+perform_action: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/config-code.fc:121:20: warning: Lack of end_parse.
+      set_c3(new_code.begin_parse().bless());
+                     ^
+run_ticktock & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/config-code.fc:11:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/config-code.fc:268:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_ref(cfg_dict).store_slice(cs).end_cell());
+                         ^
+set_conf_param & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/config-code.fc:11:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/config-code.fc:7:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_ref(cfg_dict).store_slice(cs).end_cell());
+                         ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/config-code.fc:102:18: warning: UnHandle bounced message with op: 0x4e436f64
+    .end_cell(), 0);
+                   ^

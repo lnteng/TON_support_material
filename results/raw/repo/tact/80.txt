@@ -1,0 +1,54 @@
+$NftCollection$_internal_binary_UpdateCollectionContent: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./getgems-community-tact/nft-template-editable/contracts/output/sample_NftCollection.code.fc:101:169: warning: Local variable '$self'royalty_params'numerator' is not used
+      ($self'next_item_index, $self'owner, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination), $self'collection_content)~$NftCollection$_fun_requireOwner();
+                                                                                                                                                                          ^
+$NftCollection$_internal_binary_UpdateCollectionContent: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./getgems-community-tact/nft-template-editable/contracts/output/sample_NftCollection.code.fc:101:169: warning: Local variable '$self'royalty_params'denominator' is not used
+      ($self'next_item_index, $self'owner, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination), $self'collection_content)~$NftCollection$_fun_requireOwner();
+                                                                                                                                                                          ^
+$NftCollection$_internal_binary_UpdateCollectionContent: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./getgems-community-tact/nft-template-editable/contracts/output/sample_NftCollection.code.fc:101:169: warning: Local variable '$self'royalty_params'destination' is not used
+      ($self'next_item_index, $self'owner, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination), $self'collection_content)~$NftCollection$_fun_requireOwner();
+                                                                                                                                                                          ^
+$NftCollection$_internal_binary_UpdateCollectionContent: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./getgems-community-tact/nft-template-editable/contracts/output/sample_NftCollection.code.fc:101:169: warning: Local variable '$self'collection_content' is not used
+      ($self'next_item_index, $self'owner, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination), $self'collection_content)~$NftCollection$_fun_requireOwner();
+                                                                                                                                                                          ^
+$NftCollection$_internal_binary_ChangeOwner: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./getgems-community-tact/nft-template-editable/contracts/output/sample_NftCollection.code.fc:117:169: warning: Local variable '$self'owner' is not used
+      ($self'next_item_index, $self'owner, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination), $self'collection_content)~$NftCollection$_fun_requireOwner();
+                                                                                                                                                                          ^
+__tact_string_builder_append: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./getgems-community-tact/nft-template-editable/contracts/output/sample_NftCollection.stdlib.fc:125:31: warning: Lack of end_parse.
+              sc = sc~load_ref().begin_parse();
+                                ^
+$NftCollection$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./getgems-community-tact/nft-template-editable/contracts/output/sample_NftCollection.storage.fc:289:19: warning: Lack of end_parse.
+          return $sc~$NftCollection$_load();
+                    ^
+$NftItem$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./getgems-community-tact/nft-template-editable/contracts/output/sample_NftCollection.storage.fc:241:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$NftCollection$_internal_text_247c7bd5f39e2258d80ac36a0419a1ab5779757825a6cc0e915368f00610a18a: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./getgems-community-tact/nft-template-editable/contracts/output/sample_NftCollection.code.fc:82:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$NftCollection$_internal_text_247c7bd5f39e2258d80ac36a0419a1ab5779757825a6cc0e915368f00610a18a: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./getgems-community-tact/nft-template-editable/contracts/output/sample_NftCollection.code.fc:82:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$NftCollection$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./getgems-community-tact/nft-template-editable/contracts/output/sample_NftCollection.code.fc:183:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./getgems-community-tact/nft-template-editable/contracts/output/sample_NftCollection.storage.fc:300:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$NftCollection$_contract_store & $NftCollection$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./getgems-community-tact/nft-template-editable/contracts/output/sample_NftCollection.storage.fc:285:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./getgems-community-tact/nft-template-editable/contracts/output/sample_NftCollection.storage.fc:300:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

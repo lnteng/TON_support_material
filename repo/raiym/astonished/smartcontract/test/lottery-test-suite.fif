@@ -1,0 +1,264 @@
+"TonUtil.fif" include
+"Asm.fif" include
+"../build/lottery-compiled-for-test.fif" include
+
+0 tuple 0x076ef1ea , // magic
+0 , 0 , // actions msg_sents
+1570998536 , // unix_time
+1 , 1 , 3 , // block_lt, trans_lt, rand_seed
+0 tuple 100000000000000 , dictnew , , // remaining balance
+0 , dictnew , // contract_address, global_config
+1 tuple // wrap to another tuple
+constant c7
+
+true constant bounce
+
+0 constant recv_internal // to run recv_internal() 
+-1 constant recv_external // to invoke recv_external()
+
+
+// Test #1. Empty message. 
+
+variable storage 
+<b b> storage ! 
+
+variable message 
+<b b> <s message ! 
+
+message @ 
+recv_external 
+code 
+storage @ 
+c7 
+runvmctx 
+
+variable exit_code 
+
+drop 
+exit_code ! 
+."Exit code " exit_code @ . cr 
+exit_code @ 0 - abort"Test #1 Not passed"
+
+// Test #2. Send wrong sequence number. 
+
+variable owner_private_key
+variable owner_public_key 
+variable orders
+variable owner_wc
+variable owner_account_id
+variable message_to_sign
+variable message_to_send
+variable signature
+
+"./keys/owner.pk" file>B owner_private_key !
+owner_private_key @ priv>pub owner_public_key !
+dictnew orders !
+0 owner_wc !
+0 owner_account_id !
+
+<b 166 32 u, owner_public_key @ B, 0 32 u, 0 32 u, 0 Gram, 0 Gram, owner_wc @ 32 i, owner_account_id @ 256 u,  orders @ dict, b> storage !
+
+<b 165 32 u, b> message_to_sign !
+
+message_to_sign @ hashu owner_private_key @ ed25519_sign_uint signature !
+<b signature @ B, 165 32 u, b> <s message_to_send !  
+
+message_to_send @ 
+recv_external 
+code 
+storage @ 
+c7 
+runvmctx
+
+variable exit_code 
+
+drop 
+exit_code ! 
+."Exit code " exit_code @ . cr 
+
+exit_code @ 33 - abort"Test #2 Not passed"
+
+
+// Test #3. Check owner's signature. Test must send correct seqno and correct signature expect 0.
+
+<b 0 32 u, owner_public_key @ B, 0 32 u, 0 32 u, 0 Gram, 0 Gram, owner_wc @ 32 i, owner_account_id @ 256 u,  orders @ dict, b> storage !
+
+<b 0 32 u, 55 7 u, b> message_to_sign !
+message_to_sign @ hashu owner_private_key @ ed25519_sign_uint signature !
+<b signature @ B, 0 32 u, 55 7 u, b> <s  message_to_send !  
+
+message_to_send @ 
+recv_external 
+code 
+storage @
+c7
+runvmctx
+
+storage ! 
+exit_code ! 
+."Exit code " exit_code @ . cr 
+
+exit_code @ 0 - abort"Test #3 Not passed"
+
+// Test #4. Throw exception when wrong signature provided. 
+
+<b 0 32 u, owner_public_key @ B, 0 32 u, 0 32 u, 0 Gram, 0 Gram, owner_wc @ 32 i, owner_account_id @ 256 u,  orders @ dict, b> storage !
+
+<b 0 32 u, b> message_to_sign !
+
+variable not_owner_private_key
+ 
+"./keys/not-owner.pk" file>B not_owner_private_key !
+
+message_to_sign @ hashu not_owner_private_key @ ed25519_sign_uint signature !
+<b signature @ B, 0 32 u, b> <s  message_to_send !  
+
+message_to_send @ 
+recv_external 
+code 
+storage @
+c7
+runvmctx
+
+storage ! 
+exit_code ! 
+."Exit code " exit_code @ . cr 
+
+exit_code @ 34 - abort"Test #4 not passed"
+
+// Test #5. Change owner address.
+variable new_owner_wc 
+variable new_owner_account_id 
+
+0 owner_wc !
+0 owner_account_id !
+
+-2 new_owner_wc ! 
+111 new_owner_account_id ! 
+
+<b 0 32 u, owner_public_key @ B, 0 32 u, 0 32 u, 0 Gram, 0 Gram, owner_wc @ 32 i, owner_account_id @ 256 u,  orders @ dict, b> storage ! 
+<b 0 32 u, 1 7 u, new_owner_wc @  32 i, new_owner_account_id @ 256 u, b> message_to_sign !
+message_to_sign @ hashu owner_private_key @ ed25519_sign_uint signature !
+
+<b signature @ B, 0 32 u, 1 7 u, new_owner_wc @ 32 i, new_owner_account_id @ 256 u, b> <s  message_to_send !
+
+message_to_send @ 
+recv_external 
+code 
+storage @
+c7
+runvmctx
+
+storage ! 
+exit_code !
+."Exit code " exit_code @ . cr
+35 exit_code @ - 0 = 
+.s
+abort"Message bits mismatch"
+
+// parse storage to check if address changed 
+
+variable stored_slice 
+variable stored_seqno
+variable stored_pubkey 
+variable stored_order_seqno
+variable number_of_wins 
+variable incoming_amount
+variable outgoing_amount 
+variable stored_wc 
+variable stored_account_id 
+
+storage @ <s stored_slice ! 
+stored_slice @ 32 u@+ stored_slice ! 
+stored_seqno !
+stored_slice @ 32 B@+ stored_slice ! 
+stored_pubkey ! 
+stored_slice @ 32 u@+ stored_slice ! 
+stored_order_seqno ! 
+stored_slice @ 32 u@+ stored_slice ! 
+number_of_wins ! 
+stored_slice @ Gram@+ stored_slice ! 
+incoming_amount !
+stored_slice @ Gram@+ stored_slice !
+outgoing_amount ! 
+stored_slice @ 32 i@+ stored_slice ! // read wc 
+stored_wc ! 
+stored_slice @ 256 u@+ stored_slice ! // read account_id 
+stored_account_id ! 
+
+stored_wc @ new_owner_wc @ = 
+variable is_wc_equal 
+is_wc_equal ! 
+is_wc_equal @ 1 +
+abort"Test #5 failed. Reason: stored wc is different from target"
+
+stored_account_id @ new_owner_account_id @ = 
+variable is_account_id_eq
+is_account_id_eq !
+is_account_id_eq @ 1 +
+abort"Test #5 failed. Reason: stored account_id is different from target"
+
+
+// Test #6.1. Try to send to owner more than available balance. 
+
+<b 0 32 u, owner_public_key @ B, 0 32 u, 0 32 u, 0 Gram, 0 Gram, owner_wc @ 32 i, owner_account_id @ 256 u,  orders @ dict, b> storage ! 
+<b 0 32 u, 2 7 u, 100000000000001 Gram, b> message_to_sign !
+message_to_sign @ hashu owner_private_key @ ed25519_sign_uint signature !
+<b signature @ B, 0 32 u, 2 7 u, 100000000000001 Gram, b> <s  message_to_send !
+
+message_to_send @ 
+recv_external 
+code 
+storage @
+c7
+runvmctx
+
+storage ! 
+exit_code !
+."Exit code " exit_code @ . cr
+36 exit_code @ - 0 = 1 +
+.s
+abort"Test #6.1 failed. Reason: not enough balance, but exception 36 is not thrown"
+
+<b 0 32 u, 2 7 u, 10000000000 Gram, b> message_to_sign !
+message_to_sign @ hashu owner_private_key @ ed25519_sign_uint signature !
+<b signature @ B, 0 32 u, 2 7 u, 10000000000 Gram, b> <s  message_to_send !
+
+message_to_send @ 
+recv_external 
+code 
+storage @
+c7
+runvmctx
+
+storage ! 
+exit_code !
+."Exit code " exit_code @ . cr
+
+exit_code @ 0 - abort"Test #6.2 not passed"
+
+// Test #7. Just send some grams. 
+<b 0 32 u, owner_public_key @ B, 0 32 u, 0 32 u, 0 Gram, 0 Gram, owner_wc @ 32 i, owner_account_id @ 256 u,  orders @ dict, b> storage ! 
+
+"./addresses/sender.addr" load-address 
+2dup 2constant wallet_addr
+."Contract address = " 2dup .addr cr 6 .Addr cr
+
+<b b> <s  message_to_send !
+
+
+
+<b b{1000100} s, wallet_addr addr, 0 Gram, b{00} s, b> constant meta 
+
+4999999991 
+meta 
+message_to_send @ 
+recv_internal 
+code 
+storage @
+c7
+runvmctx
+
+storage ! 
+exit_code ! 
+."Exit code " exit_code @ . cr 

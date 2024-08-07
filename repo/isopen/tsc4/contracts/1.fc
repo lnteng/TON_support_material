@@ -1,0 +1,33 @@
+forall X -> int is_null (X x) asm "ISNULL";
+forall X -> (tuple, ()) push_back (tuple tail, X head) asm "CONS";
+forall X -> (tuple, (X)) pop_back (tuple t) asm "UNCONS";
+(slice, cell) load_ref(slice s) asm( -> 1 0) "LDREF";
+
+{-
+  TASK 1 - Find branch of the cell tree
+  Write the method that will find a branch of the tree by comparing its
+  hash with the hash received in the first parameter. When the algorithm finds
+  the subtree (branch) whose hash equals the received hash, the root cell of
+  this branch should be returned. Return empty cell if the branch is not found.
+-}
+
+() recv_internal() {
+}
+
+;; testable
+(cell) find_branch_by_hash(int hash, cell tree) method_id {
+  tuple stack = null();
+  stack~push_back(tree);
+  while (~ stack.is_null()) {
+    cell cs = stack~pop_back();
+    if (hash == cs.cell_hash()) {
+      return cs;
+    }
+    slice s = cs.begin_parse();
+    repeat (s.slice_refs()) {
+      stack~push_back(s~load_ref());
+    }
+  }
+
+  return begin_cell().end_cell();
+}

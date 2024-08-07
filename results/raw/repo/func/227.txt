@@ -1,0 +1,8 @@
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/ton-workshop/contracts/pascal_case.fc:23:16: warning: Local variable 'query_id' is not used
+    int query_id = in_msg_body~load_uint(64);
+                 ^
+storage::load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/ton-workshop/contracts/pascal_case.fc:11:14: warning: Lack of end_parse.
+    return data~load_uint(64);
+               ^

@@ -1,0 +1,130 @@
+;;
+;; Type: Context
+;; TLB: _ bounced:bool sender:address value:int257 raw:^slice = Context
+;;
+
+_ $Context$_get_value((int, slice, int, slice) v) inline {
+    var (v'bounced, v'sender, v'value, v'raw) = v;
+    return v'value;
+}
+
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_bounce_mode(slice to, int value, int bounce, int mode) inline {
+    return (bounce, to, value, mode, null(), null(), null());
+}
+
+;;
+;; Type: MintEvent
+;; Header: 0x55292ab3
+;; TLB: mint_event#55292ab3 sender:address value:uint256 rate:uint256 points:uint256 = MintEvent
+;;
+
+builder $MintEvent$_store(builder build_0, (slice, int, int, int) v) inline {
+    var (v'sender, v'value, v'rate, v'points) = v;
+    build_0 = store_uint(build_0, 1428761267, 32);
+    build_0 = __tact_store_address(build_0, v'sender);
+    build_0 = build_0.store_uint(v'value, 256);
+    build_0 = build_0.store_uint(v'rate, 256);
+    var build_1 = begin_cell();
+    build_1 = build_1.store_uint(v'points, 256);
+    build_0 = store_ref(build_0, build_1.end_cell());
+    return build_0;
+}
+
+cell $MintEvent$_store_cell((slice, int, int, int) v) inline {
+    return $MintEvent$_store(begin_cell(), v).end_cell();
+}
+
+((slice, int, int, int)) $MintEvent$_constructor_sender_value_rate_points(slice sender, int value, int rate, int points) inline {
+    return (sender, value, rate, points);
+}
+
+;;
+;; Type: MintJetton
+;; Header: 0x2a5bdc04
+;; TLB: mint_jetton#2a5bdc04 rate:uint256 = MintJetton
+;;
+
+(slice, ((int))) $MintJetton$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 710663172);
+    var v'rate = sc_0~load_uint(256);
+    return (sc_0, (v'rate));
+}
+
+;;
+;; Type: AccountState
+;; TLB: _ points:uint256 fees:uint256 totalPoints:uint256 totalFees:uint256 = AccountState
+;;
+
+(int, int, int, int) $AccountState$_to_external(((int, int, int, int)) v) inline {
+    var (v'points, v'fees, v'totalPoints, v'totalFees) = v; 
+    return (v'points, v'fees, v'totalPoints, v'totalFees);
+}
+
+((int, int, int, int)) $AccountState$_constructor_points_fees_totalPoints_totalFees(int points, int fees, int totalPoints, int totalFees) inline {
+    return (points, fees, totalPoints, totalFees);
+}
+
+;;
+;; Type: MintWar
+;;
+
+builder $MintWar$_store(builder build_0, (slice, int, int, int, int, cell, cell) v) inline {
+    var (v'admin, v'mintStartAt, v'mintEndAt, v'totalPoints, v'totalFees, v'pointsOf, v'feesOf) = v;
+    build_0 = __tact_store_address(build_0, v'admin);
+    build_0 = build_0.store_int(v'mintStartAt, 257);
+    build_0 = build_0.store_int(v'mintEndAt, 257);
+    var build_1 = begin_cell();
+    build_1 = build_1.store_uint(v'totalPoints, 256);
+    build_1 = build_1.store_uint(v'totalFees, 256);
+    build_1 = build_1.store_dict(v'pointsOf);
+    build_1 = build_1.store_dict(v'feesOf);
+    build_0 = store_ref(build_0, build_1.end_cell());
+    return build_0;
+}
+
+(slice, ((slice, int, int, int, int, cell, cell))) $MintWar$_load(slice sc_0) inline {
+    var v'admin = sc_0~__tact_load_address();
+    var v'mintStartAt = sc_0~load_int(257);
+    var v'mintEndAt = sc_0~load_int(257);
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'totalPoints = sc_1~load_uint(256);
+    var v'totalFees = sc_1~load_uint(256);
+    var v'pointsOf = sc_1~load_dict();
+    var v'feesOf = sc_1~load_dict();
+    return (sc_0, (v'admin, v'mintStartAt, v'mintEndAt, v'totalPoints, v'totalFees, v'pointsOf, v'feesOf));
+}
+
+(slice, ((slice, int, int))) $MintWar$init$_load(slice sc_0) inline {
+    var v'admin = sc_0~__tact_load_address();
+    var v'mintStartAt = sc_0~load_int(257);
+    var v'mintEndAt = sc_0~load_int(257);
+    return (sc_0, (v'admin, v'mintStartAt, v'mintEndAt));
+}
+
+(slice, int, int, int, int, cell, cell) $MintWar$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$MintWar$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (slice admin, int mintStartAt, int mintEndAt) = $sc~$MintWar$init$_load();
+        $sc.end_parse();
+        return $MintWar$_contract_init(admin, mintStartAt, mintEndAt);
+    }
+}
+
+() $MintWar$_contract_store((slice, int, int, int, int, cell, cell) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $MintWar$_store(b, v);
+    set_data(b.end_cell());
+}

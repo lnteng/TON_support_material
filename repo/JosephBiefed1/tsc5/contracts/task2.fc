@@ -1,0 +1,137 @@
+#include "imports/stdlib.fc";
+
+() recv_internal(int my_balance, int msg_value, cell in_msg_full, slice in_msg_body) impure {
+
+}
+
+;; Contract storage structure
+
+;; Contract-specific errors
+const int ERROR_ADMIN_ONLY = 120;
+const int ERROR_USER_NOT_FOUND = 121;
+const int ERROR_NO_USERS = 122;
+
+;; Helper function to throw errors
+(int, cell) throw_error(int code) {
+    return (code, null());
+}
+
+;; Add or update a user in the storage
+(int, cell) add_user(uint64 query_id, MsgAddressInt user_address, uint32 share) {
+    if (msg_pubkey() != user_address) {
+        return throw_error(ERROR_ADMIN_ONLY);
+    }
+
+    storage.users[user_address] = share;
+    return (0, null());
+}
+
+;; Remove a user from the storage
+(int, cell) remove_user(uint64 query_id, MsgAddressInt user_address) {
+    if (msg_pubkey() != user_address) {
+        return throw_error(ERROR_ADMIN_ONLY);
+    }
+
+    if ((storage.users[user_address] == null())) {
+        return throw_error(ERROR_USER_NOT_FOUND);
+    }
+
+    delete storage.users[user_address];
+    return (0, null());
+}
+(slice, int) udict_get?(cell dict, int key_len, int index) asm(index dict key_len) "DICTUGET" "NULLSWAPIFNOT";
+(int, slice, int) udict_get_next?(cell dict, int key_len, int pivot) asm(pivot dict key_len -> 1 0 2) "DICTUGETNEXT" "NULLSWAPIFNOT2";
+
+;; Split TON among users according to their shares
+(int, cell) split_ton(uint64 query_id) {
+    if (map_count(users) == 0) {
+        return throw_error(ERROR_NO_USERS);
+    }
+
+    uint32 total_share = 0;
+    (int a , slice val, int index)users.udict_get_next?(dict,key_len,pivot);
+    do {
+        total_share = total_share + val;
+        (a, val, index)= users.udict_get_next?(dict,key_len,pivot);
+    }
+    until(~val){
+    }
+
+
+    if (total_share == 0) {
+        return throw_error(ERROR_NO_USERS);
+    }
+
+    uint32 remaining_ton = msg_value();
+    
+
+    forall (MsgAddressInt user, uint32 share in users); {
+        var tokens = uint128(share) * uint128(remaining_ton) / uint128(total_share);
+        send_msg(user, 1, tokens, 0, null());
+    }
+
+    return (0, null());
+}
+
+;; Transfer notification (Jetton)
+(int, cell) transfer_notification(uint64 query_id, int coins) {
+    if (map_count(users) == 0) {
+        return throw_error(ERROR_NO_USERS);
+    }
+
+    uint32 total_share = 0;
+    forall (MsgAddressInt user, uint32 share in users); {
+        total_share += share;
+    }
+
+    if (total_share == 0) {
+        return throw_error(ERROR_NO_USERS);
+    }
+
+    int remaining_tokens = coins;
+    var MsgAddressInt; jetton_address = null();  ;; Set the jetton_address to your specific value
+
+    forall (MsgAddressInt user, uint32 share in users) ;{
+        uint128 tokens = uint128(share) * uint128(remaining_tokens) / uint128(total_share);
+        send_msg(jetton_address, 1, tokens, 0, null());
+    }
+
+    return (0, null());
+}
+
+;; GET method: Get all users and their shares
+(int, cell) get_users() method_id {
+    return (users, null());
+}
+
+;; GET method: Get user share for a specific user
+(int, cell) get_user_share(MsgAddressInt user_address) method_id {
+    uint32 user_share = storage.users[user_address];
+    return (user_share, null());
+}
+
+;; Entry point to process external messages
+() recv_external(slice message) impure {
+    int op = message.load_uint(1);
+    cell body = message.load_ref(2);
+
+    if (op == 0x368ddef3) {
+        uint64 query_id = body.load_uint(0);
+        MsgAddressInt user_address = body.load_ref(1);
+        uint32 share = body.load_uint(2);
+        return add_user(query_id, user_address, share);
+    } else {if (op == 0x278205c8) {
+        uint64 query_id = body.load_uint(0);
+        MsgAddressInt user_address = body.load_ref(1);
+        return remove_user(query_id, user_address);
+    } else{ if (op == 0x068530b3) {
+        uint64 query_id = body.load_uint(0);
+        return split_ton(query_id);
+    } else{ if (op == 0x7362d09c) {
+        uint64 query_id = body.load_uint(0);
+        int coins = body.load_uint(1);
+        return transfer_notification(query_id, coins);
+    } else {
+        return throw_error(100);  ;; Unknown operation code
+    }}}}
+}

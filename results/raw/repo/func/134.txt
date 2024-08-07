@@ -1,0 +1,20 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./synswap-labs/ton-contracts/contracts/bridge.fc:153:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./synswap-labs/ton-contracts/contracts/bridge.fc:158:28: warning: Local variable 'query_id' is not used
+      (int op, int query_id) = in_msg_body~load_body_header();
+                             ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./synswap-labs/ton-contracts/contracts/bridge.fc:20:13: warning: Lack of end_parse.
+          data~load_ref()         ;; jetton wallet code
+              ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./synswap-labs/ton-contracts/contracts/bridge.fc:142:29: warning: UnHandle bounced message with op: 0x32
+      send_raw_message(msg, 1);
+                              ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./synswap-labs/ton-contracts/contracts/bridge.fc:106:29: warning: UnHandle bounced message with op: 0x3
+      send_raw_message(msg, 1);
+                              ^

@@ -1,0 +1,16 @@
+get_nft_content: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./StalinFoundation/token-staking/contracts/nft_item.fc:193:31: warning: Lack of end_parse.
+    return (cs~load_uint(64), cs~load_coins(), index);
+                                ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./StalinFoundation/token-staking/contracts/nft_item.fc:122:28: warning: Lack of end_parse.
+      int fwd_fee = muldiv(cs~load_coins(), 3, 2);  ;; we use message fwd_fee for estimation of forward_payload costs
+                             ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./StalinFoundation/token-staking/contracts/nft_item.fc:153:37: warning: Lack of end_parse.
+          int unlock_time = content_cs~load_uint(64);
+                                      ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./StalinFoundation/token-staking/contracts/nft_item.fc:39:70: warning: Lack of end_parse.
+          return (-1, index, collection_address, ds~load_msg_addr(), ds~load_ref());
+                                                                       ^

@@ -1,0 +1,26 @@
+$Counter$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCRnkSNr4fkUDye5NhG6KdBztDJsH827yaylyZnIpLKH21r/output/verifier_Counter.storage.fc:81:19: warning: Lack of end_parse.
+          return $sc~$Counter$_load();
+                    ^
+$Counter$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCRnkSNr4fkUDye5NhG6KdBztDJsH827yaylyZnIpLKH21r/output/verifier_Counter.code.fc:14:36: warning: Local variable '$self'val' is not used
+      var (($self'val, $self'owner)) = (null(), null());
+                                     ^
+$Counter$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCRnkSNr4fkUDye5NhG6KdBztDJsH827yaylyZnIpLKH21r/output/verifier_Counter.code.fc:14:36: warning: Local variable '$self'owner' is not used
+      var (($self'val, $self'owner)) = (null(), null());
+                                     ^
+$Counter$_contract_store & $Counter$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCRnkSNr4fkUDye5NhG6KdBztDJsH827yaylyZnIpLKH21r/output/verifier_Counter.storage.fc:77:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCRnkSNr4fkUDye5NhG6KdBztDJsH827yaylyZnIpLKH21r/output/verifier_Counter.storage.fc:92:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Counter$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCRnkSNr4fkUDye5NhG6KdBztDJsH827yaylyZnIpLKH21r/output/verifier_Counter.code.fc:96:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCRnkSNr4fkUDye5NhG6KdBztDJsH827yaylyZnIpLKH21r/output/verifier_Counter.storage.fc:92:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

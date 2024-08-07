@@ -1,0 +1,34 @@
+$JettonDefaultWallet$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCDSSrQ35dcRRUJKiqf2f5wkTWXCH0MPYdVt7-gElYe_sQ8/output/verifier_JettonDefaultWallet.storage.fc:295:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$JettonDefaultWallet$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCDSSrQ35dcRRUJKiqf2f5wkTWXCH0MPYdVt7-gElYe_sQ8/output/verifier_JettonDefaultWallet.code.fc:14:54: warning: Local variable '$self'balance' is not used
+      var (($self'balance, $self'owner, $self'master)) = (null(), null(), null());
+                                                       ^
+$JettonDefaultWallet$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCDSSrQ35dcRRUJKiqf2f5wkTWXCH0MPYdVt7-gElYe_sQ8/output/verifier_JettonDefaultWallet.code.fc:14:54: warning: Local variable '$self'owner' is not used
+      var (($self'balance, $self'owner, $self'master)) = (null(), null(), null());
+                                                       ^
+$JettonDefaultWallet$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCDSSrQ35dcRRUJKiqf2f5wkTWXCH0MPYdVt7-gElYe_sQ8/output/verifier_JettonDefaultWallet.code.fc:14:54: warning: Local variable '$self'master' is not used
+      var (($self'balance, $self'owner, $self'master)) = (null(), null(), null());
+                                                       ^
+$JettonDefaultWallet$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCDSSrQ35dcRRUJKiqf2f5wkTWXCH0MPYdVt7-gElYe_sQ8/output/verifier_JettonDefaultWallet.storage.fc:275:19: warning: Lack of end_parse.
+          return $sc~$JettonDefaultWallet$_load();
+                    ^
+$JettonDefaultWallet$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCDSSrQ35dcRRUJKiqf2f5wkTWXCH0MPYdVt7-gElYe_sQ8/output/verifier_JettonDefaultWallet.code.fc:142:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCDSSrQ35dcRRUJKiqf2f5wkTWXCH0MPYdVt7-gElYe_sQ8/output/verifier_JettonDefaultWallet.storage.fc:286:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$JettonDefaultWallet$_contract_store & $JettonDefaultWallet$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCDSSrQ35dcRRUJKiqf2f5wkTWXCH0MPYdVt7-gElYe_sQ8/output/verifier_JettonDefaultWallet.storage.fc:271:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCDSSrQ35dcRRUJKiqf2f5wkTWXCH0MPYdVt7-gElYe_sQ8/output/verifier_JettonDefaultWallet.storage.fc:286:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

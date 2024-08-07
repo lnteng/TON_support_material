@@ -1,0 +1,346 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "universal_router_UniversalRouter.headers.fc";
+#include "universal_router_UniversalRouter.stdlib.fc";
+#include "universal_router_UniversalRouter.storage.fc";
+
+;;
+;; Contract UniversalRouter functions
+;;
+
+(slice, int, cell, cell, cell, int) $UniversalRouter$_contract_init(slice $owner) impure inline_ref {
+    var (($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake)) = (null(), null(), null(), null(), null(), null());
+    $self'owner = $owner;
+    $self'eventIdNumber = 0;
+    $self'minimumStake = 0;
+    return ($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake);
+}
+
+((slice, int, cell, cell, cell, int), int) $UniversalRouter$_fun_protocolEventTd((slice, int, cell, cell, cell, int) $self, slice $protocolAddress) impure inline_ref {
+    var (($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake)) = $self;
+    return (($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake), __tact_dict_get_slice_int($self'protocolToEventId, 267, $protocolAddress, 257));
+}
+
+((slice, int, cell, cell, cell, int), (cell, cell)) $UniversalRouter$_fun_getChildRouterInit((slice, int, cell, cell, cell, int) $self, slice $sourceAddress) impure inline_ref {
+    var (($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake)) = $self;
+    return (($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake), $ChildRouter$_init_child(__tact_context_sys, my_address(), $sourceAddress, $self'minimumStake));
+}
+
+((slice, int, cell, cell, cell, int), slice) $UniversalRouter$_fun_childRouterAddress((slice, int, cell, cell, cell, int) $self, slice $sourceAddress) impure inline_ref {
+    var (($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake)) = $self;
+    var ($childInit'code, $childInit'data) = ($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake)~$UniversalRouter$_fun_getChildRouterInit($sourceAddress);
+    return (($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake), $global_contractAddress(($childInit'code, $childInit'data)));
+}
+
+((slice, int, cell, cell, cell, int), int) $UniversalRouter$_fun_eventId((slice, int, cell, cell, cell, int) $self) impure inline_ref {
+    var (($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake)) = $self;
+    return (($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake), $self'eventIdNumber);
+}
+
+((slice, int, cell, cell, cell, int), slice) $UniversalRouter$_fun_getMapChildRouterAddress((slice, int, cell, cell, cell, int) $self, slice $sourceAddress) impure inline_ref {
+    var (($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake)) = $self;
+    return (($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake), __tact_not_null(__tact_dict_get_slice_slice($self'protocolToRouter, 267, $sourceAddress)));
+}
+
+((slice, int, cell, cell, cell, int), cell) $UniversalRouter$_fun_MapChildRouter((slice, int, cell, cell, cell, int) $self) impure inline_ref {
+    var (($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake)) = $self;
+    return (($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake), $self'protocolToRouter);
+}
+
+((slice, int, cell, cell, cell, int), slice) $UniversalRouter$_fun_getProtocolAddress((slice, int, cell, cell, cell, int) $self, int $eventId) impure inline_ref {
+    var (($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake)) = $self;
+    return (($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake), __tact_not_null(__tact_dict_get_int_slice($self'eventIdToProtocol, 257, $eventId)));
+}
+
+((slice, int, cell, cell, cell, int), int) $UniversalRouter$_fun_getBalance((slice, int, cell, cell, cell, int) $self) impure inline_ref {
+    var (($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake)) = $self;
+    return (($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake), __tact_my_balance());
+}
+
+((slice, int, cell, cell, cell, int), slice) $UniversalRouter$_fun_owner((slice, int, cell, cell, cell, int) $self) impure inline_ref {
+    var (($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake)) = $self;
+    return (($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake), $self'owner);
+}
+
+;;
+;; Receivers of a Contract UniversalRouter
+;;
+
+(((slice, int, cell, cell, cell, int)), ()) %$UniversalRouter$_internal_empty((slice, int, cell, cell, cell, int) $self) impure inline {
+    var ($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake) = $self;
+    return (($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake), ());
+}
+
+(((slice, int, cell, cell, cell, int)), ()) $UniversalRouter$_internal_binary_ProtcolRegister((slice, int, cell, cell, cell, int) $self, (slice, cell, int, int, slice) $msg) impure inline {
+    var ($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake) = $self;
+    var ($msg'sourceAddress, $msg'template, $msg'maxUserStakeAmount, $msg'subscribeFeePerTick, $msg'sourceName) = $msg;
+    if ((~ null?(__tact_dict_get_slice_slice($self'protocolToRouter, 267, $msg'sourceAddress)))) {
+        throw(1000);
+    }
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    slice $sourceAddress = $ctx'sender;
+    $self'eventIdToProtocol~__tact_dict_set_int_slice(257, $self'eventIdNumber, $sourceAddress);
+    $self'protocolToEventId~__tact_dict_set_slice_int(267, $sourceAddress, $self'eventIdNumber, 257);
+    slice $childRouterAddress = ($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake)~$UniversalRouter$_fun_childRouterAddress($sourceAddress);
+    $self'protocolToRouter~__tact_dict_set_slice_slice(267, $sourceAddress, $childRouterAddress);
+    var ($init'code, $init'data) = ($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake)~$UniversalRouter$_fun_getChildRouterInit($sourceAddress);
+    $global_send($SendParameters$_constructor_to_value_mode_bounce_body_code_data($childRouterAddress, 0, 64, false, $BuildChildRouter$_store_cell($BuildChildRouter$_constructor_sourceAddress_template_maxUserStakeAmount_subscribeFeePerTick_eventId_sourceName($sourceAddress, $msg'template, $msg'maxUserStakeAmount, $msg'subscribeFeePerTick, $self'eventIdNumber, $msg'sourceName)), $init'code, $init'data));
+    $self'eventIdNumber = ($self'eventIdNumber + 1);
+    return (($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake), ());
+}
+
+(((slice, int, cell, cell, cell, int)), ()) $UniversalRouter$_internal_binary_CreateBody((slice, int, cell, cell, cell, int) $self, (slice, int, int, cell) $msg) impure inline {
+    var ($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake) = $self;
+    var ($msg'walletAddress, $msg'deadline, $msg'eventId, $msg'parameter) = $msg;
+    if (null?(__tact_dict_get_int_slice($self'eventIdToProtocol, 257, $msg'eventId))) {
+        throw(1001);
+    }
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    slice $walletAddress = $ctx'sender;
+    slice $protocolAddress = __tact_not_null(__tact_dict_get_int_slice($self'eventIdToProtocol, 257, $msg'eventId));
+    slice $childRouterAddress = __tact_not_null(__tact_dict_get_slice_slice($self'protocolToRouter, 267, $protocolAddress));
+    $global_send($SendParameters$_constructor_to_value_mode_bounce_body($childRouterAddress, 0, 64, true, $CreateBody$_store_cell($CreateBody$_constructor_walletAddress_deadline_eventId_parameter($walletAddress, $msg'deadline, $msg'eventId, $msg'parameter))));
+    return (($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake), ());
+}
+
+(((slice, int, cell, cell, cell, int)), ()) $UniversalRouter$_internal_binary_SubscribeBody((slice, int, cell, cell, cell, int) $self, (slice, int, int, slice) $msg) impure inline {
+    var ($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake) = $self;
+    var ($msg'walletAddress, $msg'deadline, $msg'eventId, $msg'callbackAddress) = $msg;
+    if (null?(__tact_dict_get_int_slice($self'eventIdToProtocol, 257, $msg'eventId))) {
+        throw(1001);
+    }
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    slice $walletAddress = $ctx'sender;
+    slice $protocolAddress = __tact_not_null(__tact_dict_get_int_slice($self'eventIdToProtocol, 257, $msg'eventId));
+    slice $childRouterAddress = __tact_not_null(__tact_dict_get_slice_slice($self'protocolToRouter, 267, $protocolAddress));
+    $global_send($SendParameters$_constructor_to_value_mode_bounce_body($childRouterAddress, 0, 64, true, $SubscribeBody$_store_cell($SubscribeBody$_constructor_walletAddress_deadline_eventId_callbackAddress($walletAddress, $msg'deadline, $msg'eventId, $msg'callbackAddress))));
+    return (($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake), ());
+}
+
+(((slice, int, cell, cell, cell, int)), ()) $UniversalRouter$_internal_binary_DeleteSubscriber((slice, int, cell, cell, cell, int) $self, (slice, slice, int) $msg) impure inline {
+    var ($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake) = $self;
+    var ($msg'walletAddress, $msg'callbackAddress, $msg'eventId) = $msg;
+    if (null?(__tact_dict_get_int_slice($self'eventIdToProtocol, 257, $msg'eventId))) {
+        throw(1001);
+    }
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    slice $walletAddress = $ctx'sender;
+    slice $protocolAddress = __tact_not_null(__tact_dict_get_int_slice($self'eventIdToProtocol, 257, $msg'eventId));
+    slice $childRouterAddress = __tact_not_null(__tact_dict_get_slice_slice($self'protocolToRouter, 267, $protocolAddress));
+    $global_send($SendParameters$_constructor_to_value_mode_bounce_body($childRouterAddress, 0, 64, true, $DeleteSubscriber$_store_cell($DeleteSubscriber$_constructor_walletAddress_eventId_callbackAddress($walletAddress, $msg'eventId, $msg'callbackAddress))));
+    return (($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake), ());
+}
+
+(((slice, int, cell, cell, cell, int)), ()) $UniversalRouter$_internal_binary_EventSignal((slice, int, cell, cell, cell, int) $self, (int, cell) $msg) impure inline {
+    var ($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake) = $self;
+    var ($msg'eventId, $msg'payload) = $msg;
+    var ($cxt'bounced, $cxt'sender, $cxt'value, $cxt'raw) = __tact_context_get();
+    slice $protocolAddress = $cxt'sender;
+    if (null?(__tact_dict_get_slice_slice($self'protocolToRouter, 267, $protocolAddress))) {
+        throw(1002);
+    }
+    slice $childRouterAddress = __tact_not_null(__tact_dict_get_slice_slice($self'protocolToRouter, 267, $protocolAddress));
+    $global_send($SendParameters$_constructor_to_value_mode_bounce_body($childRouterAddress, 0, 64, false, $EventSignal$_store_cell($EventSignal$_constructor_eventId_payload($msg'eventId, $msg'payload))));
+    return (($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake), ());
+}
+
+(((slice, int, cell, cell, cell, int)), ()) $UniversalRouter$_internal_binary_AddMessenger((slice, int, cell, cell, cell, int) $self, (slice) $msg) impure inline {
+    var ($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake) = $self;
+    var ($msg'protocolAddress) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    slice $protocolAddress = $ctx'sender;
+    if (null?(__tact_dict_get_slice_slice($self'protocolToRouter, 267, $protocolAddress))) {
+        throw(1002);
+    }
+    slice $childRouterAddress = __tact_not_null(__tact_dict_get_slice_slice($self'protocolToRouter, 267, $protocolAddress));
+    $global_send($SendParameters$_constructor_to_value_mode_bounce_body($childRouterAddress, 0, 1, true, $AddMessenger$_store_cell($AddMessenger$_constructor_protocolAddress($msg'protocolAddress))));
+    return (($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake), ());
+}
+
+(((slice, int, cell, cell, cell, int)), ()) $UniversalRouter$_internal_binary_Deploy((slice, int, cell, cell, cell, int) $self, (int) $deploy) impure inline {
+    var ($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake)~$UniversalRouter$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'owner, $self'eventIdNumber, $self'protocolToRouter, $self'eventIdToProtocol, $self'protocolToEventId, $self'minimumStake), ());
+}
+
+;;
+;; Get methods of a Contract UniversalRouter
+;;
+
+_ %protocolEventTd(slice $$protocolAddress) method_id(91330) {
+    slice $protocolAddress = __tact_verify_address($$protocolAddress);
+    var self = $UniversalRouter$_contract_load();
+    var res = self~$UniversalRouter$_fun_protocolEventTd($protocolAddress);
+    return res;
+}
+
+_ %childRouterAddress(slice $$sourceAddress) method_id(67802) {
+    slice $sourceAddress = __tact_verify_address($$sourceAddress);
+    var self = $UniversalRouter$_contract_load();
+    var res = self~$UniversalRouter$_fun_childRouterAddress($sourceAddress);
+    return res;
+}
+
+_ %getChildRouterInit(slice $$sourceAddress) method_id(66945) {
+    slice $sourceAddress = __tact_verify_address($$sourceAddress);
+    var self = $UniversalRouter$_contract_load();
+    var res = self~$UniversalRouter$_fun_getChildRouterInit($sourceAddress);
+    return $StateInit$_to_external(res);
+}
+
+_ %eventId() method_id(89213) {
+    var self = $UniversalRouter$_contract_load();
+    var res = self~$UniversalRouter$_fun_eventId();
+    return res;
+}
+
+_ %getMapChildRouterAddress(slice $$sourceAddress) method_id(107939) {
+    slice $sourceAddress = __tact_verify_address($$sourceAddress);
+    var self = $UniversalRouter$_contract_load();
+    var res = self~$UniversalRouter$_fun_getMapChildRouterAddress($sourceAddress);
+    return res;
+}
+
+_ %MapChildRouter() method_id(118305) {
+    var self = $UniversalRouter$_contract_load();
+    var res = self~$UniversalRouter$_fun_MapChildRouter();
+    return res;
+}
+
+_ %getProtocolAddress(int $$eventId) method_id(89849) {
+    int $eventId = $$eventId;
+    var self = $UniversalRouter$_contract_load();
+    var res = self~$UniversalRouter$_fun_getProtocolAddress($eventId);
+    return res;
+}
+
+_ %getBalance() method_id(106323) {
+    var self = $UniversalRouter$_contract_load();
+    var res = self~$UniversalRouter$_fun_getBalance();
+    return res;
+}
+
+_ %owner() method_id(83229) {
+    var self = $UniversalRouter$_contract_load();
+    var res = self~$UniversalRouter$_fun_owner();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128,
+        "org.ton.ownable"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmS7ZAuirQPfGxd979wX96s3bP7LzwpNzs94553tHGoQoZ";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract UniversalRouter
+;;
+
+((slice, int, cell, cell, cell, int), int) $UniversalRouter$_contract_router_internal((slice, int, cell, cell, cell, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive empty message
+    if ((op == 0) & (slice_bits(in_msg) <= 32)) {
+        self~%$UniversalRouter$_internal_empty();
+        return (self, true);
+    }
+    
+    ;; Receive ProtcolRegister message
+    if (op == 882920319) {
+        var msg = in_msg~$ProtcolRegister$_load();
+        self~$UniversalRouter$_internal_binary_ProtcolRegister(msg);
+        return (self, true);
+    }
+    
+    ;; Receive CreateBody message
+    if (op == 2617235749) {
+        var msg = in_msg~$CreateBody$_load();
+        self~$UniversalRouter$_internal_binary_CreateBody(msg);
+        return (self, true);
+    }
+    
+    ;; Receive SubscribeBody message
+    if (op == 1953340414) {
+        var msg = in_msg~$SubscribeBody$_load();
+        self~$UniversalRouter$_internal_binary_SubscribeBody(msg);
+        return (self, true);
+    }
+    
+    ;; Receive DeleteSubscriber message
+    if (op == 380345681) {
+        var msg = in_msg~$DeleteSubscriber$_load();
+        self~$UniversalRouter$_internal_binary_DeleteSubscriber(msg);
+        return (self, true);
+    }
+    
+    ;; Receive EventSignal message
+    if (op == 306637748) {
+        var msg = in_msg~$EventSignal$_load();
+        self~$UniversalRouter$_internal_binary_EventSignal(msg);
+        return (self, true);
+    }
+    
+    ;; Receive AddMessenger message
+    if (op == 2557114565) {
+        var msg = in_msg~$AddMessenger$_load();
+        self~$UniversalRouter$_internal_binary_AddMessenger(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$UniversalRouter$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $UniversalRouter$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$UniversalRouter$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $UniversalRouter$_contract_store(self);
+}

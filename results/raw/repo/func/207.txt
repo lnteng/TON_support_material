@@ -1,0 +1,12 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./aSpite/shardify/contracts/nft_holder.fc:75:22: warning: Lack of end_parse.
+      slice sender = cs~load_msg_addr();
+                       ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./aSpite/shardify/contracts/nft_holder.fc:127:27: warning: Local variable 'jetton_amount' is not used
+          int jetton_amount = in_msg_body~load_coins();
+                            ^
+unpack_frac_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./aSpite/shardify/contracts/utils.fc:63:186: warning: Lack of end_parse.
+      (int parts_count, cell nft_holder_code, int public_key, slice collection_address, slice creator_address) = (ds~load_coins(), ds~load_ref(), ds~load_uint(256), ds~load_msg_addr(), ds~load_msg_addr());
+                                                                                                                                                                                           ^

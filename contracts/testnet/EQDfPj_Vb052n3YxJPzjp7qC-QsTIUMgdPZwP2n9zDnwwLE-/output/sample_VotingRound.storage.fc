@@ -1,0 +1,312 @@
+;;
+;; Type: StateInit
+;; TLB: _ code:^cell data:^cell = StateInit
+;;
+
+((cell, cell)) $StateInit$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (cell vvv'code, cell vvv'data) = __tact_tuple_destroy_2(v);
+    return (vvv'code, vvv'data);
+}
+
+;;
+;; Type: Context
+;; TLB: _ bounced:bool sender:address value:int257 raw:^slice = Context
+;;
+
+_ $Context$_get_value((int, slice, int, slice) v) inline {
+    var (v'bounced, v'sender, v'value, v'raw) = v;
+    return v'value;
+}
+
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline {
+    return (bounce, to, value, mode, body, code, data);
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_body_value_mode(slice to, cell body, int value, int mode) inline {
+    return (true, to, value, mode, body, null(), null());
+}
+
+;;
+;; Type: Deploy
+;; Header: 0x946a98b6
+;; TLB: deploy#946a98b6 queryId:uint64 = Deploy
+;;
+
+(slice, ((int))) $Deploy$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2490013878);
+    var v'queryId = sc_0~load_uint(64);
+    return (sc_0, (v'queryId));
+}
+
+;;
+;; Type: DeployOk
+;; Header: 0xaff90f57
+;; TLB: deploy_ok#aff90f57 queryId:uint64 = DeployOk
+;;
+
+builder $DeployOk$_store(builder build_0, (int) v) inline {
+    var (v'queryId) = v;
+    build_0 = store_uint(build_0, 2952335191, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    return build_0;
+}
+
+cell $DeployOk$_store_cell((int) v) inline {
+    return $DeployOk$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $DeployOk$_constructor_queryId(int queryId) inline {
+    return (queryId);
+}
+
+;;
+;; Type: PayloadVotes
+;; TLB: _ payload:^string votes:int257 guarded:bool = PayloadVotes
+;;
+
+builder $PayloadVotes$_store(builder build_0, (slice, int, int) v) inline {
+    var (v'payload, v'votes, v'guarded) = v;
+    build_0 = build_0.store_ref(begin_cell().store_slice(v'payload).end_cell());
+    build_0 = build_0.store_int(v'votes, 257);
+    build_0 = build_0.store_int(v'guarded, 1);
+    return build_0;
+}
+
+cell $PayloadVotes$_store_cell((slice, int, int) v) inline {
+    return $PayloadVotes$_store(begin_cell(), v).end_cell();
+}
+
+(slice, ((slice, int, int))) $PayloadVotes$_load(slice sc_0) inline {
+    var v'payload = sc_0~load_ref().begin_parse();
+    var v'votes = sc_0~load_int(257);
+    var v'guarded = sc_0~load_int(1);
+    return (sc_0, (v'payload, v'votes, v'guarded));
+}
+
+tuple $PayloadVotes$_as_optional((slice, int, int) v) inline {
+    var (v'payload, v'votes, v'guarded) = v;
+    return __tact_tuple_create_3(v'payload, v'votes, v'guarded);
+}
+
+tuple $PayloadVotes$_load_opt(cell cl) inline {
+    if (null?(cl)) {
+        return null();
+    }
+    var sc = cl.begin_parse();
+    return $PayloadVotes$_as_optional(sc~$PayloadVotes$_load());
+}
+
+((slice, int, int)) $PayloadVotes$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (slice vvv'payload, int vvv'votes, int vvv'guarded) = __tact_tuple_destroy_3(v);
+    return (vvv'payload, vvv'votes, vvv'guarded);
+}
+
+((slice, int, int)) $PayloadVotes$_constructor_payload_votes_guarded(slice payload, int votes, int guarded) inline {
+    return (payload, votes, guarded);
+}
+
+;;
+;; Type: RoundParticipantInfo
+;; TLB: _ address:address votes:int257 payloadHash:int257 guard:bool = RoundParticipantInfo
+;;
+
+builder $RoundParticipantInfo$_store(builder build_0, (slice, int, int, int) v) inline {
+    var (v'address, v'votes, v'payloadHash, v'guard) = v;
+    build_0 = __tact_store_address(build_0, v'address);
+    build_0 = build_0.store_int(v'votes, 257);
+    build_0 = build_0.store_int(v'payloadHash, 257);
+    build_0 = build_0.store_int(v'guard, 1);
+    return build_0;
+}
+
+cell $RoundParticipantInfo$_store_cell((slice, int, int, int) v) inline {
+    return $RoundParticipantInfo$_store(begin_cell(), v).end_cell();
+}
+
+(slice, ((slice, int, int, int))) $RoundParticipantInfo$_load(slice sc_0) inline {
+    var v'address = sc_0~__tact_load_address();
+    var v'votes = sc_0~load_int(257);
+    var v'payloadHash = sc_0~load_int(257);
+    var v'guard = sc_0~load_int(1);
+    return (sc_0, (v'address, v'votes, v'payloadHash, v'guard));
+}
+
+tuple $RoundParticipantInfo$_as_optional((slice, int, int, int) v) inline {
+    var (v'address, v'votes, v'payloadHash, v'guard) = v;
+    return __tact_tuple_create_4(v'address, v'votes, v'payloadHash, v'guard);
+}
+
+tuple $RoundParticipantInfo$_load_opt(cell cl) inline {
+    if (null?(cl)) {
+        return null();
+    }
+    var sc = cl.begin_parse();
+    return $RoundParticipantInfo$_as_optional(sc~$RoundParticipantInfo$_load());
+}
+
+((slice, int, int, int)) $RoundParticipantInfo$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (slice vvv'address, int vvv'votes, int vvv'payloadHash, int vvv'guard) = __tact_tuple_destroy_4(v);
+    return (vvv'address, vvv'votes, vvv'payloadHash, vvv'guard);
+}
+
+((slice, int, int, int)) $RoundParticipantInfo$_constructor_address_votes_payloadHash_guard(slice address, int votes, int payloadHash, int guard) inline {
+    return (address, votes, payloadHash, guard);
+}
+
+;;
+;; Type: InternalRoundOpened
+;; Header: 0x887e5ca3
+;; TLB: internal_round_opened#887e5ca3 round:int257 = InternalRoundOpened
+;;
+
+builder $InternalRoundOpened$_store(builder build_0, (int) v) inline {
+    var (v'round) = v;
+    build_0 = store_uint(build_0, 2289982627, 32);
+    build_0 = build_0.store_int(v'round, 257);
+    return build_0;
+}
+
+cell $InternalRoundOpened$_store_cell((int) v) inline {
+    return $InternalRoundOpened$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $InternalRoundOpened$_constructor_round(int round) inline {
+    return (round);
+}
+
+;;
+;; Type: InternalVote
+;; Header: 0x77bab779
+;; TLB: internal_vote#77bab779 round:int257 payload:^string participant:address guard:bool votes:coins = InternalVote
+;;
+
+(slice, ((int, slice, slice, int, int))) $InternalVote$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2008725369);
+    var v'round = sc_0~load_int(257);
+    var v'payload = sc_0~load_ref().begin_parse();
+    var v'participant = sc_0~__tact_load_address();
+    var v'guard = sc_0~load_int(1);
+    var v'votes = sc_0~load_coins();
+    return (sc_0, (v'round, v'payload, v'participant, v'guard, v'votes));
+}
+
+;;
+;; Type: InternalFinalize
+;; Header: 0xf5d995b6
+;; TLB: internal_finalize#f5d995b6 minVotes:int257 = InternalFinalize
+;;
+
+(slice, ((int))) $InternalFinalize$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 4124677558);
+    var v'minVotes = sc_0~load_int(257);
+    return (sc_0, (v'minVotes));
+}
+
+;;
+;; Type: InternalFinalized
+;; Header: 0xa6f19e23
+;; TLB: internal_finalized#a6f19e23 round:int257 winnerPayload:Maybe ^string winnerVotes:Maybe int257 winnerGuarded:bool goodParticipants:dict<int, address> goodParticipantsCount:int257 goodParticipantsVotes:dict<address, int> badParticipants:dict<int, address> badParticipantsCount:int257 badParticipantsVotes:dict<address, int> = InternalFinalized
+;;
+
+builder $InternalFinalized$_store(builder build_0, (int, slice, int, int, cell, int, cell, cell, int, cell) v) inline_ref {
+    var (v'round, v'winnerPayload, v'winnerVotes, v'winnerGuarded, v'goodParticipants, v'goodParticipantsCount, v'goodParticipantsVotes, v'badParticipants, v'badParticipantsCount, v'badParticipantsVotes) = v;
+    build_0 = store_uint(build_0, 2800852515, 32);
+    build_0 = build_0.store_int(v'round, 257);
+    build_0 = ~ null?(v'winnerPayload) ? build_0.store_int(true, 1).store_ref(begin_cell().store_slice(v'winnerPayload).end_cell()) : build_0.store_int(false, 1);
+    build_0 = ~ null?(v'winnerVotes) ? build_0.store_int(true, 1).store_int(v'winnerVotes, 257) : build_0.store_int(false, 1);
+    build_0 = build_0.store_int(v'winnerGuarded, 1);
+    build_0 = build_0.store_dict(v'goodParticipants);
+    build_0 = build_0.store_int(v'goodParticipantsCount, 257);
+    build_0 = build_0.store_dict(v'goodParticipantsVotes);
+    var build_1 = begin_cell();
+    build_1 = build_1.store_dict(v'badParticipants);
+    build_1 = build_1.store_int(v'badParticipantsCount, 257);
+    build_1 = build_1.store_dict(v'badParticipantsVotes);
+    build_0 = store_ref(build_0, build_1.end_cell());
+    return build_0;
+}
+
+cell $InternalFinalized$_store_cell((int, slice, int, int, cell, int, cell, cell, int, cell) v) inline {
+    return $InternalFinalized$_store(begin_cell(), v).end_cell();
+}
+
+((int, slice, int, int, cell, int, cell, cell, int, cell)) $InternalFinalized$_constructor_round_winnerPayload_winnerVotes_winnerGuarded_goodParticipants_goodParticipantsCount_goodParticipantsVotes_badParticipants_badParticipantsCount_badParticipantsVotes(int round, slice winnerPayload, int winnerVotes, int winnerGuarded, cell goodParticipants, int goodParticipantsCount, cell goodParticipantsVotes, cell badParticipants, int badParticipantsCount, cell badParticipantsVotes) inline {
+    return (round, winnerPayload, winnerVotes, winnerGuarded, goodParticipants, goodParticipantsCount, goodParticipantsVotes, badParticipants, badParticipantsCount, badParticipantsVotes);
+}
+
+;;
+;; Type: VotingRound
+;;
+
+builder $VotingRound$_store(builder build_0, (slice, int, cell, cell, cell, int, cell, int, int, slice, int, int) v) inline {
+    var (v'parent, v'round, v'payloadsByHash, v'participantsPayload, v'participants, v'participantsCount, v'payloads, v'payloadsCount, v'finalized, v'winnerPayload, v'winnerVotes, v'winnerGuarded) = v;
+    build_0 = __tact_store_address(build_0, v'parent);
+    build_0 = build_0.store_int(v'round, 257);
+    build_0 = build_0.store_dict(v'payloadsByHash);
+    build_0 = build_0.store_dict(v'participantsPayload);
+    var build_1 = begin_cell();
+    build_1 = build_1.store_dict(v'participants);
+    build_1 = build_1.store_int(v'participantsCount, 257);
+    build_1 = build_1.store_dict(v'payloads);
+    build_1 = build_1.store_int(v'payloadsCount, 257);
+    build_1 = build_1.store_int(v'finalized, 1);
+    build_1 = ~ null?(v'winnerPayload) ? build_1.store_int(true, 1).store_ref(begin_cell().store_slice(v'winnerPayload).end_cell()) : build_1.store_int(false, 1);
+    build_1 = ~ null?(v'winnerVotes) ? build_1.store_int(true, 1).store_int(v'winnerVotes, 257) : build_1.store_int(false, 1);
+    build_1 = build_1.store_int(v'winnerGuarded, 1);
+    build_0 = store_ref(build_0, build_1.end_cell());
+    return build_0;
+}
+
+(slice, ((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int))) $VotingRound$_load(slice sc_0) inline {
+    var v'parent = sc_0~__tact_load_address();
+    var v'round = sc_0~load_int(257);
+    var v'payloadsByHash = sc_0~load_dict();
+    var v'participantsPayload = sc_0~load_dict();
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'participants = sc_1~load_dict();
+    var v'participantsCount = sc_1~load_int(257);
+    var v'payloads = sc_1~load_dict();
+    var v'payloadsCount = sc_1~load_int(257);
+    var v'finalized = sc_1~load_int(1);
+    var v'winnerPayload = sc_1~load_int(1) ? sc_1~load_ref().begin_parse() : null();
+    var v'winnerVotes = sc_1~load_int(1) ? sc_1~load_int(257) : null();
+    var v'winnerGuarded = sc_1~load_int(1);
+    return (sc_0, (v'parent, v'round, v'payloadsByHash, v'participantsPayload, v'participants, v'participantsCount, v'payloads, v'payloadsCount, v'finalized, v'winnerPayload, v'winnerVotes, v'winnerGuarded));
+}
+
+(slice, ((slice, int))) $VotingRound$init$_load(slice sc_0) inline {
+    var v'parent = sc_0~__tact_load_address();
+    var v'round = sc_0~load_int(257);
+    return (sc_0, (v'parent, v'round));
+}
+
+(slice, int, cell, cell, cell, int, cell, int, int, slice, int, int) $VotingRound$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$VotingRound$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (slice parent, int round) = $sc~$VotingRound$init$_load();
+        $sc.end_parse();
+        return $VotingRound$_contract_init(parent, round);
+    }
+}
+
+() $VotingRound$_contract_store((slice, int, cell, cell, cell, int, cell, int, int, slice, int, int) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $VotingRound$_store(b, v);
+    set_data(b.end_cell());
+}

@@ -1,0 +1,222 @@
+{-
+  TASK 4 - Caesar Cipher
+  Implement a Caesar cipher encryption and decryption functions.
+  The input is a string (https://docs.ton.org/develop/smart-contracts/guidelines/internal-messages#simple-message-with-comment)
+  where the text is encrypted in a cell (after 32bit 00000000 prefix flag), the algorithm rotates the characters and the last ASCII
+  character should go to the beginning. Return new text encoded in cell.
+-}
+
+() recv_internal() {
+}
+
+;; remember to if the shift = 0 case (or do we?)
+(cell) _caesar_cipher_encrypt(int shift, cell text) asm """
+  // shift, text
+  SWAP
+  26 INT
+  MOD
+
+  DUP
+  IF:<{
+
+  SWAP
+
+  CTOS
+  // shift, ds
+
+  8 PUSHPOW2DEC
+  -ROT
+
+  132 INT
+  REPEAT:<{
+    s2 PUSH
+    DEC
+    -ROT
+  }>
+
+  // 127, 126, 125, 124, 123, shift, ds
+  
+  OVER
+  96 INT
+  ADD
+  // 127, 126, 125, 124, 123, shift, ds, 122 - 26 + shift
+  -ROT
+
+  // 127, 126, 125, 124, 123, 122 - 26 + shift, shift, ds
+  25 INT
+  REPEAT:<{
+    s2 PUSH
+    DEC
+    DUP
+    97 LESSINT
+    IF:<{
+      26 ADDCONST
+    }>
+    -ROT
+  }>
+  // 127, ..., 123, 122-26+shift, ..., 97+shift, shift, ds
+
+  96 INT
+  -ROT
+  95 INT
+  -ROT
+  94 INT
+  -ROT
+  93 INT
+  -ROT
+  92 INT
+  -ROT
+  91 INT
+  -ROT
+  // 127, ..., 123, 122-26+shift, ..., 97+shift, 96, .., 91, shift, ds
+  SWAP
+  64 INT
+  ADD
+  // 127, ..., 123, 122-26+shift, ..., 97+shift, 96, .., 91, ds, 90-26+shift
+  SWAP
+  // 127, ..., 123, 122-26+shift, ..., 97+shift, 96, .., 91, 90-26+shift, ds
+  25 INT
+  REPEAT:<{
+    s1 PUSH
+    DEC
+    DUP
+    65 LESSINT
+    IF:<{
+      26 ADDCONST
+    }>
+    SWAP
+  }>
+  // 127, ..., 123, 122-26+shift, ..., 97+shift, 96, .., 91, 90-26+shift, ..., 65+shift, ds
+
+  64 INT
+  SWAP
+
+  64 INT
+  REPEAT:<{
+    // ... i, ds
+    s1 PUSH
+    DEC
+    // ..., i, ds, i - 1
+    SWAP
+    // ..., i, i - 1, ds
+  }>
+  // ..., 3, 2, 1, 0, ds
+
+  NULL
+  // ..., 3, 2, 1, 0, ds, list
+  NEWC
+
+  // ..., 3, 2, 1, 0, ds, list, builder
+  ROT
+  // ..., 3, 2, 1, 0, list, builder, ds
+  s0 PUSH
+  SDEPTH
+  // ..., 3, 2, 1, 0, list, builder, ds, ds_depth
+  
+  REPEAT:<{
+    127 INT
+    REPEAT:<{
+      8 LDU
+
+      SWAP
+      // ..., 3, 2, 1, 0, list, builder, ds, x_8
+      3 ADDCONST
+      
+      PUSHX
+
+      // ..., 3, 2, 1, 0, list, builder, ds, x_shifted
+      ROT
+      // ..., 3, 2, 1, 0, list, ds, x_shifted, builder
+
+      8 STU
+      // ..., 3, 2, 1, 0, list, ds, builder
+      SWAP
+      // ..., 3, 2, 1, 0, list, builder, ds
+    }>
+    // ..., 3, 2, 1, 0, list, builder, ds
+    -ROT
+    CONS
+    // ..., 3, 2, 1, 0, ds, list
+    NEWC
+    // ..., 3, 2, 1, 0, ds, list, builder
+    ROT
+    // ..., 3, 2, 1, 0, list, builder, ds
+    PLDREF
+    CTOS
+    // ..., 3, 2, 1, 0, list, builder, ds
+  }>
+
+  DUP
+  SBITS
+
+  3 RSHIFT#
+
+
+  REPEAT:<{
+    8 LDU
+    SWAP
+    // ..., 3, 2, 1, 0, list, builder, ds, x_8
+    3 ADDCONST
+    
+    PUSHX
+
+    // ..., 3, 2, 1, 0, list, builder, ds, x_shifted
+    ROT
+    // ..., 3, 2, 1, 0, list, ds, x_shifted, builder
+
+    8 STU
+    // ..., 3, 2, 1, 0, list, ds, builder
+    SWAP
+    // ..., 3, 2, 1, 0, list, builder, ds
+  }>
+
+  DROP
+  // ..., 3, 2, 1, 0, list, builder
+  ENDC
+  // ..., 3, 2, 1, 0, list, result
+  SWAP
+  // ..., 3, 2, 1, 0, result, list
+
+  DUP
+  ISNULL
+
+  IFNOT:<{
+    UNTIL:<{
+
+      // result, list
+      UNCONS
+      // result, list, builder
+
+      s1 s2 XCHG
+
+      // list, result, builder
+
+      STREF
+      // list, builder
+      ENDC
+      // list, result
+      SWAP
+      // result, list
+      DUP
+      ISNULL
+    }>
+  }>
+  DROP
+  // 3, 2, 1, 0, result
+  1 INT
+  ONLYTOPX
+  // result
+  }>ELSE<{
+    DROP
+  }>
+""";
+
+;; testable
+(cell) caesar_cipher_encrypt(int shift, cell text) inline method_id {
+  return _caesar_cipher_encrypt(shift, text);
+}
+
+;; testable
+(cell) caesar_cipher_decrypt(int shift, cell text) inline method_id {
+  return _caesar_cipher_encrypt(26 - (shift % 26), text);
+}

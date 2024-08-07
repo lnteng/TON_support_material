@@ -1,0 +1,24 @@
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./deed-labs/gittips/contracts/contracts/router.fc:24:11: warning: Lack of end_parse.
+          ds~load_ref()       ;; budget_code:^Cell
+            ^
+recv_internal: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/repo/./deed-labs/gittips/contracts/contracts/router.fc:115:46: warning: PressionLoss
+          int fee_amount = payout_amount / 100 * fee_rate;
+                                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./deed-labs/gittips/contracts/contracts/router.fc:65:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();                      ;; sender:MsgAddress
+                               ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./deed-labs/gittips/contracts/contracts/router.fc:99:34: warning: UnHandle bounced message with op: 0x32
+          send_raw_message(msg, 64); 
+                                   ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./deed-labs/gittips/contracts/contracts/router.fc:135:34: warning: UnHandle bounced message with op: 0x32
+          send_raw_message(msg, 64); 
+                                   ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./deed-labs/gittips/contracts/contracts/router.fc:48:29: warning: UnHandle bounced message with op: 0x32
+      send_raw_message(msg, 1); 
+                              ^

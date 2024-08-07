@@ -1,0 +1,31 @@
+deploy_item: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/telemint/contracts/collection.fc:51:109: warning: Local variable 'beneficiary_address' is not used
+      (slice beneficiary_address, int initial_min_bid, int max_bid, int min_bid_step, int min_extend_time, _) = unpack_auction_config(auction_config);
+                                                                                                              ^
+deploy_item: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/telemint/contracts/collection.fc:51:109: warning: Local variable 'max_bid' is not used
+      (slice beneficiary_address, int initial_min_bid, int max_bid, int min_bid_step, int min_extend_time, _) = unpack_auction_config(auction_config);
+                                                                                                              ^
+deploy_item: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/telemint/contracts/collection.fc:51:109: warning: Local variable 'min_bid_step' is not used
+      (slice beneficiary_address, int initial_min_bid, int max_bid, int min_bid_step, int min_extend_time, _) = unpack_auction_config(auction_config);
+                                                                                                              ^
+deploy_item: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/telemint/contracts/collection.fc:51:109: warning: Local variable 'min_extend_time' is not used
+      (slice beneficiary_address, int initial_min_bid, int max_bid, int min_bid_step, int min_extend_time, _) = unpack_auction_config(auction_config);
+                                                                                                              ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/telemint/contracts/collection.fc:90:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+load_text_ref: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/telemint/contracts/common.fc:96:25: warning: Lack of end_parse.
+      slice text = text_cs~load_text();
+                          ^
+save_collection_data & unpack_item_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/telemint/contracts/common.fc:189:24: warning: Cell of get_data and set_data are inconsistent.
+      var cs = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./howardpen9/telemint/contracts/common.fc:314:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_int(touched, 1)
+              ^

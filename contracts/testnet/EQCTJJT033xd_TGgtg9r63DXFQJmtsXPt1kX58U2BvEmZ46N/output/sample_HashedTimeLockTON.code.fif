@@ -1,0 +1,632 @@
+PROGRAM{
+  DECLPROC __tact_verify_address
+  DECLPROC __tact_load_address
+  DECLPROC __tact_store_address
+  DECLPROC __tact_create_address
+  DECLPROC __tact_my_balance
+  DECLPROC __tact_not_null
+  DECLPROC __tact_context_get
+  DECLPROC __tact_context_get_sender
+  DECLPROC __tact_store_bool
+  DECLPROC __tact_dict_get_int_cell
+  DECLPROC $Deploy$_load
+  DECLPROC $DeployOk$_store
+  DECLPROC $DeployOk$_store_cell
+  DECLPROC $HTLC$_load
+  DECLPROC $HTLC$_as_optional
+  DECLPROC $HTLC$_load_opt
+  DECLPROC $TonTransferInitiated$_load
+  DECLPROC $Create$_load
+  DECLPROC $TonTransferClaimed$_load
+  DECLPROC $Redeem$_load
+  DECLPROC $TonTransferRefunded$_load
+  DECLPROC $Refund$_load
+  DECLPROC $HashedTimeLockTON$_store
+  DECLPROC $HashedTimeLockTON$_load
+  DECLPROC $StateInit$_not_null
+  DECLPROC $HTLC$_not_null
+  DECLPROC $HTLC$_to_tuple
+  DECLPROC $HTLC$_to_opt_tuple
+  DECLPROC $HTLC$_to_opt_external
+  DECLPROC $HashedTimeLockTON$_contract_init
+  DECLPROC $HashedTimeLockTON$_contract_load
+  DECLPROC $HashedTimeLockTON$_contract_store
+  DECLPROC $global_send
+  DECLPROC $HashedTimeLockTON$_fun_contractExists
+  DECLPROC $HTLC$_constructor_hashlock_secret_amount_timelock_sender__receiver_redeemed_refunded
+  DECLPROC $HashedTimeLockTON$_fun_getHTLCDetails
+  DECLPROC $SendParameters$_constructor_bounce_to_value_mode_body_code_data
+  DECLPROC $HashedTimeLockTON$_fun_forward
+  DECLPROC $HashedTimeLockTON$_fun_notify
+  DECLPROC $SendParameters$_constructor_to_bounce_value_mode
+  DECLPROC $DeployOk$_constructor_queryId
+  DECLPROC $HashedTimeLockTON$_internal_binary_Create
+  DECLPROC $HashedTimeLockTON$_internal_binary_Redeem
+  DECLPROC $HashedTimeLockTON$_internal_binary_Refund
+  DECLPROC $HashedTimeLockTON$_internal_binary_Deploy
+  114550 DECLMETHOD %getHTLCDetails
+  113617 DECLMETHOD supported_interfaces
+  121275 DECLMETHOD get_abi_ipfs
+  115390 DECLMETHOD lazy_deployment_completed
+  DECLPROC $HashedTimeLockTON$_contract_router_internal
+  DECLPROC recv_internal
+  DECLGLOBVAR __tact_context
+  DECLGLOBVAR __tact_context_sender
+  DECLGLOBVAR __tact_context_sys
+  DECLGLOBVAR __tact_randomized
+  __tact_verify_address PROCINLINE:<{
+    DUP
+    SBITS
+    267 PUSHINT
+    EQUAL
+    136 THROWIFNOT
+    DUP
+    11 PLDU
+    DUP
+    1279 PUSHINT
+    EQUAL
+    137 THROWIF
+    10 PUSHPOW2
+    EQUAL
+    136 THROWIFNOT
+  }>
+  __tact_load_address PROCINLINE:<{
+    LDMSGADDR
+    SWAP
+    __tact_verify_address INLINECALLDICT
+  }>
+  __tact_store_address PROCINLINE:<{
+    __tact_verify_address INLINECALLDICT
+    STSLICER
+  }>
+  __tact_create_address PROCINLINE:<{
+    NEWC
+    2 PUSHINT
+    SWAP
+    2 STU
+    0 PUSHINT
+    SWAP
+    1 STU
+    s1 s2 XCHG
+    8 STI
+    256 STU
+    ENDC
+    CTOS
+    __tact_verify_address INLINECALLDICT
+  }>
+  __tact_my_balance PROCINLINE:<{
+    BALANCE
+    FIRST
+  }>
+  __tact_not_null PROCINLINE:<{
+    DUP
+    ISNULL
+    128 THROWIF
+  }>
+  __tact_context_get PROCINLINE:<{
+    __tact_context GETGLOB
+    4 UNTUPLE
+  }>
+  __tact_context_get_sender PROCINLINE:<{
+    __tact_context_sender GETGLOB
+  }>
+  __tact_store_bool PROCINLINE:<{
+    SWAP
+    1 STI
+  }>
+  __tact_dict_get_int_cell PROCINLINE:<{
+    -ROT
+    DICTIGETREF
+    NULLSWAPIFNOT
+    IF:<{
+    }>ELSE<{
+      DROP
+      PUSHNULL
+    }>
+  }>
+  $Deploy$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    2490013878 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    64 LDU
+    SWAP
+  }>
+  $DeployOk$_store PROCINLINE:<{
+    2952335191 PUSHINT
+    ROT
+    32 STU
+    64 STU
+  }>
+  $DeployOk$_store_cell PROCINLINE:<{
+    NEWC
+    SWAP
+    $DeployOk$_store INLINECALLDICT
+    ENDC
+  }>
+  $HTLC$_load PROCREF:<{
+    256 LDI
+    256 LDI
+    LDGRAMS
+    256 LDU
+    LDREF
+    SWAP
+    CTOS
+    __tact_load_address INLINECALLDICT
+    SWAP
+    __tact_load_address INLINECALLDICT
+    SWAP
+    1 LDI
+    1 LDI
+    DROP
+    s4 s8 XCHG
+    s4 s7 XCHG
+    s4 s6 XCHG
+    s4 s5 XCHG
+  }>
+  $HTLC$_as_optional PROCINLINE:<{
+    8 TUPLE
+  }>
+  $HTLC$_load_opt PROCINLINE:<{
+    DUP
+    ISNULL
+    IF:<{
+      DROP
+      PUSHNULL
+    }>ELSE<{
+      CTOS
+      $HTLC$_load INLINECALLDICT
+      1 8 BLKDROP2
+      $HTLC$_as_optional INLINECALLDICT
+    }>
+  }>
+  $TonTransferInitiated$_load PROCREF:<{
+    256 LDI
+    LDGRAMS
+    256 LDI
+    256 LDI
+    LDREF
+    SWAP
+    CTOS
+    __tact_load_address INLINECALLDICT
+    SWAP
+    __tact_load_address INLINECALLDICT
+    SWAP
+    LDREF
+    DROP
+    CTOS
+    s3 s7 XCHG
+    s3 s6 XCHG
+    s3 s5 XCHG
+    s3 s4 XCHG
+  }>
+  $Create$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    501618384 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    $TonTransferInitiated$_load INLINECALLDICT
+  }>
+  $TonTransferClaimed$_load PROCINLINE:<{
+    256 LDI
+    __tact_load_address INLINECALLDICT
+    SWAP
+    LDGRAMS
+    3 -ROLL
+  }>
+  $Redeem$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    1940771006 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    $TonTransferClaimed$_load INLINECALLDICT
+  }>
+  $TonTransferRefunded$_load PROCINLINE:<{
+    256 LDI
+    __tact_load_address INLINECALLDICT
+    SWAP
+    LDGRAMS
+    3 -ROLL
+  }>
+  $Refund$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    2850019230 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    $TonTransferRefunded$_load INLINECALLDICT
+  }>
+  $HashedTimeLockTON$_store PROCINLINE:<{
+    SWAP
+    STDICT
+  }>
+  $HashedTimeLockTON$_load PROCINLINE:<{
+    LDDICT
+    SWAP
+  }>
+  $StateInit$_not_null PROCINLINE:<{
+    DUP
+    ISNULL
+    128 THROWIF
+    2 UNTUPLE
+  }>
+  $HTLC$_not_null PROCINLINE:<{
+    DUP
+    ISNULL
+    128 THROWIF
+    8 UNTUPLE
+  }>
+  $HTLC$_to_tuple PROCINLINE:<{
+    8 TUPLE
+  }>
+  $HTLC$_to_opt_tuple PROCINLINE:<{
+    DUP
+    ISNULL
+    IF:<{
+      DROP
+      PUSHNULL
+    }>ELSE<{
+      $HTLC$_not_null INLINECALLDICT
+      $HTLC$_to_tuple INLINECALLDICT
+    }>
+  }>
+  $HTLC$_to_opt_external PROCINLINE:<{
+    $HTLC$_to_opt_tuple INLINECALLDICT
+    DUP
+    ISNULL
+    IF:<{
+      DROP
+      PUSHNULL
+    }>ELSE<{
+    }>
+  }>
+  $HashedTimeLockTON$_contract_init PROCREF:<{
+    PUSHNULL
+  }>
+  $HashedTimeLockTON$_contract_load PROCREF:<{
+    c4 PUSH
+    CTOS
+    LDREF
+    SWAP
+    __tact_context_sys SETGLOB
+    1 LDI
+    SWAP
+    IFJMP:<{
+      $HashedTimeLockTON$_load INLINECALLDICT
+      NIP
+    }>
+    DROP
+    MYADDR
+    11 PLDU
+    10 PUSHPOW2
+    EQUAL
+    137 THROWIFNOT
+    $HashedTimeLockTON$_contract_init INLINECALLDICT
+  }>
+  $HashedTimeLockTON$_contract_store PROCINLINE:<{
+    NEWC
+    __tact_context_sys GETGLOB
+    SWAP
+    STREF
+    TRUE
+    SWAP
+    1 STI
+    SWAP
+    $HashedTimeLockTON$_store INLINECALLDICT
+    ENDC
+    c4 POP
+  }>
+  $global_send PROCREF:<{
+    NEWC
+    1 PUSHINT
+    SWAP
+    2 STI
+    s0 s7 XCHG2
+    __tact_store_bool INLINECALLDICT
+    0 PUSHINT
+    SWAP
+    3 STI
+    s0 s5 XCHG2
+    __tact_store_address INLINECALLDICT
+    s0 s3 XCHG2
+    STGRAMS
+    0 PUSHINT
+    SWAP
+    105 STI
+    s3 PUSH
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+    }>ELSE<{
+      s4 PUSH
+      ISNULL
+      NOT
+    }>
+    IF:<{
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      NEWC
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      s4 PUSH
+      ISNULL
+      NOT
+      IF:<{
+        TRUE
+        __tact_store_bool INLINECALLDICT
+        s0 s4 XCHG
+        __tact_not_null INLINECALLDICT
+        s0 s4 XCHG2
+        STREF
+      }>ELSE<{
+        s4 POP
+        s0 s3 XCHG
+        FALSE
+        __tact_store_bool INLINECALLDICT
+      }>
+      s4 PUSH
+      ISNULL
+      NOT
+      IF:<{
+        TRUE
+        __tact_store_bool INLINECALLDICT
+        s0 s4 XCHG
+        __tact_not_null INLINECALLDICT
+        s0 s4 XCHG2
+        STREF
+      }>ELSE<{
+        s4 POP
+        s0 s3 XCHG
+        FALSE
+        __tact_store_bool INLINECALLDICT
+      }>
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      s0 s2 XCHG
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      s0 s2 XCHG
+      ENDC
+      ROT
+      STREF
+    }>ELSE<{
+      s3 POP
+      s3 POP
+      SWAP
+      FALSE
+      __tact_store_bool INLINECALLDICT
+    }>
+    OVER
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      SWAP
+      __tact_not_null INLINECALLDICT
+      SWAP
+      STREF
+    }>ELSE<{
+      NIP
+      FALSE
+      __tact_store_bool INLINECALLDICT
+    }>
+    ENDC
+    SWAP
+    SENDRAWMSG
+  }>
+  $HashedTimeLockTON$_fun_contractExists PROCREF:<{
+    8 PUSHPOW2
+    s2 PUSH
+    s0 s2 XCHG
+    __tact_dict_get_int_cell INLINECALLDICT
+    $HTLC$_load_opt INLINECALLDICT
+    ISNULL
+    NOT
+    IFJMP:<{
+      TRUE
+    }>
+    FALSE
+  }>
+  $HTLC$_constructor_hashlock_secret_amount_timelock_sender__receiver_redeemed_refunded PROCINLINE:<{
+  }>
+  $HashedTimeLockTON$_fun_getHTLCDetails PROCREF:<{
+    TUCK
+    $HashedTimeLockTON$_fun_contractExists INLINECALLDICT
+    IFJMP:<{
+      8 PUSHPOW2
+      s1 s0 s2 PUXC2
+      __tact_dict_get_int_cell INLINECALLDICT
+      $HTLC$_load_opt INLINECALLDICT
+    }>
+    NIP
+    0 PUSHINT
+    s0 s0 s0 PUSH3
+    s0 s0 PUSH2
+    __tact_create_address INLINECALLDICT
+    s1 s1 PUSH2
+    __tact_create_address INLINECALLDICT
+    FALSE
+    FALSE
+    $HTLC$_constructor_hashlock_secret_amount_timelock_sender__receiver_redeemed_refunded INLINECALLDICT
+    $HTLC$_as_optional INLINECALLDICT
+  }>
+  $SendParameters$_constructor_bounce_to_value_mode_body_code_data PROCINLINE:<{
+  }>
+  $HashedTimeLockTON$_fun_forward PROCREF:<{
+    PUSHNULL
+    PUSHNULL
+    s2 PUSH
+    ISNULL
+    NOT
+    IF:<{
+      2DROP
+      $StateInit$_not_null INLINECALLDICT
+      SWAP
+    }>ELSE<{
+      s2 POP
+    }>
+    s2 s4 XCHG
+    0 PUSHINT
+    s0 s3 XCHG
+    s0 s4 XCHG
+    66 PUSHINT
+    s2 s3 XCHG2
+    $SendParameters$_constructor_bounce_to_value_mode_body_code_data INLINECALLDICT
+    $global_send INLINECALLDICT
+  }>
+  $HashedTimeLockTON$_fun_notify PROCINLINE:<{
+    __tact_context_get_sender INLINECALLDICT
+    SWAP
+    FALSE
+    PUSHNULL
+    $HashedTimeLockTON$_fun_forward INLINECALLDICT
+  }>
+  $SendParameters$_constructor_to_bounce_value_mode PROCINLINE:<{
+    s2 s3 XCHG
+    PUSHNULL
+    PUSHNULL
+    PUSHNULL
+  }>
+  $DeployOk$_constructor_queryId PROCINLINE:<{
+  }>
+  $HashedTimeLockTON$_internal_binary_Create PROCINLINE:<{
+    s5 s6 XCHG
+    6 BLKDROP
+    MYADDR
+    TRUE
+    ROT
+    1 PUSHINT
+    $SendParameters$_constructor_to_bounce_value_mode INLINECALLDICT
+    $global_send INLINECALLDICT
+  }>
+  $HashedTimeLockTON$_internal_binary_Redeem PROCINLINE:<{
+    s2 POP
+    TRUE
+    ROT
+    1 PUSHINT
+    $SendParameters$_constructor_to_bounce_value_mode INLINECALLDICT
+    $global_send INLINECALLDICT
+  }>
+  $HashedTimeLockTON$_internal_binary_Refund PROCINLINE:<{
+    s2 POP
+    TRUE
+    ROT
+    1 PUSHINT
+    $SendParameters$_constructor_to_bounce_value_mode INLINECALLDICT
+    $global_send INLINECALLDICT
+  }>
+  $HashedTimeLockTON$_internal_binary_Deploy PROCINLINE:<{
+    $DeployOk$_constructor_queryId INLINECALLDICT
+    $DeployOk$_store_cell INLINECALLDICT
+    $HashedTimeLockTON$_fun_notify INLINECALLDICT
+  }>
+  %getHTLCDetails PROC:<{
+    $HashedTimeLockTON$_contract_load INLINECALLDICT
+    SWAP
+    $HashedTimeLockTON$_fun_getHTLCDetails INLINECALLDICT
+    NIP
+    $HTLC$_to_opt_external INLINECALLDICT
+  }>
+  supported_interfaces PROC:<{
+    123515602279859691144772641439386770278 PUSHINT
+    209801025412363888721030803524359905849 PUSHINT
+    42980537499636128163026532310500881091 PUSHINT
+    209474421377847335869795010607481022628 PUSHINT
+  }>
+  get_abi_ipfs PROC:<{
+    x{697066733a2f2f516d5a50374154757938515a5862446d7068664a3950477178393677473733524d597238766b434a4b456f546358} PUSHSLICE
+  }>
+  lazy_deployment_completed PROC:<{
+    c4 PUSH
+    CTOS
+    1 LDI
+    SWAP
+  }>
+  $HashedTimeLockTON$_contract_router_internal PROCREF:<{
+    SWAP
+    IFJMP:<{
+      DROP
+      TRUE
+    }>
+    0 PUSHINT
+    OVER
+    SBITS
+    31 GTINT
+    IF:<{
+      DROP
+      DUP
+      32 PLDU
+    }>
+    DUP
+    501618384 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $Create$_load INLINECALLDICT
+      1 7 BLKDROP2
+      $HashedTimeLockTON$_internal_binary_Create INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    1940771006 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $Redeem$_load INLINECALLDICT
+      1 3 BLKDROP2
+      $HashedTimeLockTON$_internal_binary_Redeem INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    2850019230 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $Refund$_load INLINECALLDICT
+      1 3 BLKDROP2
+      $HashedTimeLockTON$_internal_binary_Refund INLINECALLDICT
+      TRUE
+    }>
+    2490013878 PUSHINT
+    EQUAL
+    IFJMP:<{
+      $Deploy$_load INLINECALLDICT
+      NIP
+      $HashedTimeLockTON$_internal_binary_Deploy INLINECALLDICT
+      TRUE
+    }>
+    DROP
+    FALSE
+  }>
+  recv_internal PROC:<{
+    SWAP
+    CTOS
+    4 LDU
+    SWAP
+    1 PUSHINT
+    AND
+    NEGATE
+    SWAP
+    LDMSGADDR
+    SWAP
+    __tact_verify_address INLINECALLDICT
+    s0 s4 s2 PUXCPU
+    s0 s3 XCHG
+    4 TUPLE
+    __tact_context SETGLOB
+    s0 s2 XCHG
+    __tact_context_sender SETGLOB
+    $HashedTimeLockTON$_contract_load INLINECALLDICT
+    -ROT
+    $HashedTimeLockTON$_contract_router_internal INLINECALLDICT
+    130 THROWIFNOT
+    $HashedTimeLockTON$_contract_store INLINECALLDICT
+  }>
+}END>c

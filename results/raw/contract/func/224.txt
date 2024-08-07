@@ -1,0 +1,40 @@
+get_jetton_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDAgy1xcNg0aFle548miasSdLCkL1nDeqSLP7Pua4wq-iTo/lockup-jetton-minter.fc:211:44: warning: Local variable 'purchase_price' is not used
+  	 int purchase_price, int purchase_lockup) = load_data();
+  	                                          ^
+get_jetton_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDAgy1xcNg0aFle548miasSdLCkL1nDeqSLP7Pua4wq-iTo/lockup-jetton-minter.fc:211:44: warning: Local variable 'purchase_lockup' is not used
+  	 int purchase_price, int purchase_lockup) = load_data();
+  	                                          ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDAgy1xcNg0aFle548miasSdLCkL1nDeqSLP7Pua4wq-iTo/lockup-jetton-minter.fc:76:27: warning: Lack of end_parse.
+  	slice sender_address = cs~load_msg_addr();
+  	                         ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDAgy1xcNg0aFle548miasSdLCkL1nDeqSLP7Pua4wq-iTo/lockup-jetton-minter.fc:163:36: warning: Lack of end_parse.
+  		int jetton_amount = master_msg_cs~load_grams();
+  		                                 ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDAgy1xcNg0aFle548miasSdLCkL1nDeqSLP7Pua4wq-iTo/lockup-jetton-minter.fc:29:5: warning: Lack of end_parse.
+  		ds~load_uint(lockup_bitlength()) ;; purchase_lockup
+  		  ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDAgy1xcNg0aFle548miasSdLCkL1nDeqSLP7Pua4wq-iTo/lockup-jetton-minter.fc:219:44: warning: Local variable 'total_supply' is not used
+  	 int purchase_price, int purchase_lockup) = load_data();
+  	                                          ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDAgy1xcNg0aFle548miasSdLCkL1nDeqSLP7Pua4wq-iTo/lockup-jetton-minter.fc:219:44: warning: Local variable 'admin_address' is not used
+  	 int purchase_price, int purchase_lockup) = load_data();
+  	                                          ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDAgy1xcNg0aFle548miasSdLCkL1nDeqSLP7Pua4wq-iTo/lockup-jetton-minter.fc:219:44: warning: Local variable 'content' is not used
+  	 int purchase_price, int purchase_lockup) = load_data();
+  	                                          ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDAgy1xcNg0aFle548miasSdLCkL1nDeqSLP7Pua4wq-iTo/lockup-jetton-minter.fc:219:44: warning: Local variable 'purchase_price' is not used
+  	 int purchase_price, int purchase_lockup) = load_data();
+  	                                          ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDAgy1xcNg0aFle548miasSdLCkL1nDeqSLP7Pua4wq-iTo/lockup-jetton-minter.fc:219:44: warning: Local variable 'purchase_lockup' is not used
+  	 int purchase_price, int purchase_lockup) = load_data();
+  	                                          ^

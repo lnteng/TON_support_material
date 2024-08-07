@@ -1,0 +1,39 @@
+$MintWar$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCfs5XV-DPq8m8FJO3ne5DC1m9JurOOc1c_BM_zAdtBb5fB/output/sample_MintWar.storage.fc:114:19: warning: Lack of end_parse.
+          return $sc~$MintWar$_load();
+                    ^
+__tact_dict_set_slice_uint: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCfs5XV-DPq8m8FJO3ne5DC1m9JurOOc1c_BM_zAdtBb5fB/output/sample_MintWar.stdlib.fc:56:21: warning: Local variable 'ok' is not used
+          var (r, ok) = __tact_dict_delete(d, kl, k);
+                      ^
+$MintWar$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCfs5XV-DPq8m8FJO3ne5DC1m9JurOOc1c_BM_zAdtBb5fB/output/sample_MintWar.storage.fc:98:24: warning: Lack of end_parse.
+      var v'feesOf = sc_1~load_dict();
+                         ^
+$MintWar$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCfs5XV-DPq8m8FJO3ne5DC1m9JurOOc1c_BM_zAdtBb5fB/output/sample_MintWar.code.fc:15:127: warning: Local variable '$self'admin' is not used
+      var (($self'admin, $self'mintStartAt, $self'mintEndAt, $self'totalPoints, $self'totalFees, $self'pointsOf, $self'feesOf)) = (null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                ^
+$MintWar$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCfs5XV-DPq8m8FJO3ne5DC1m9JurOOc1c_BM_zAdtBb5fB/output/sample_MintWar.code.fc:15:127: warning: Local variable '$self'mintStartAt' is not used
+      var (($self'admin, $self'mintStartAt, $self'mintEndAt, $self'totalPoints, $self'totalFees, $self'pointsOf, $self'feesOf)) = (null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                ^
+$MintWar$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCfs5XV-DPq8m8FJO3ne5DC1m9JurOOc1c_BM_zAdtBb5fB/output/sample_MintWar.code.fc:15:127: warning: Local variable '$self'mintEndAt' is not used
+      var (($self'admin, $self'mintStartAt, $self'mintEndAt, $self'totalPoints, $self'totalFees, $self'pointsOf, $self'feesOf)) = (null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                ^
+$MintWar$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCfs5XV-DPq8m8FJO3ne5DC1m9JurOOc1c_BM_zAdtBb5fB/output/sample_MintWar.code.fc:15:127: warning: Local variable '$self'totalPoints' is not used
+      var (($self'admin, $self'mintStartAt, $self'mintEndAt, $self'totalPoints, $self'totalFees, $self'pointsOf, $self'feesOf)) = (null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                ^
+$MintWar$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCfs5XV-DPq8m8FJO3ne5DC1m9JurOOc1c_BM_zAdtBb5fB/output/sample_MintWar.code.fc:15:127: warning: Local variable '$self'totalFees' is not used
+      var (($self'admin, $self'mintStartAt, $self'mintEndAt, $self'totalPoints, $self'totalFees, $self'pointsOf, $self'feesOf)) = (null(), null(), null(), null(), null(), null(), null());
+                                                                                                                                ^
+$MintWar$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCfs5XV-DPq8m8FJO3ne5DC1m9JurOOc1c_BM_zAdtBb5fB/output/sample_MintWar.code.fc:170:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCfs5XV-DPq8m8FJO3ne5DC1m9JurOOc1c_BM_zAdtBb5fB/output/sample_MintWar.storage.fc:125:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

@@ -1,0 +1,150 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_MarketplaceAd.headers.fc";
+#include "sample_MarketplaceAd.stdlib.fc";
+#include "sample_MarketplaceAd.constants.fc";
+#include "sample_MarketplaceAd.storage.fc";
+
+;;
+;; Contract MarketplaceAd functions
+;;
+
+(slice, slice, int, slice, slice, slice, int) $MarketplaceAd$_contract_init(slice $master, slice $location, int $idx) impure inline_ref {
+    var (($self'name, $self'description, $self'cost, $self'location, $self'master, $self'owner, $self'idx)) = (__gen_slice_string_96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7(), __gen_slice_string_96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7(), 0, __gen_slice_string_96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7(), null(), null(), null());
+    $self'master = $master;
+    $self'owner = __tact_context_get_sender();
+    $self'location = $location;
+    $self'idx = $idx;
+    return ($self'name, $self'description, $self'cost, $self'location, $self'master, $self'owner, $self'idx);
+}
+
+((slice, slice, int, slice, slice, slice, int), (slice, slice, slice, int, slice)) $MarketplaceAd$_fun_info((slice, slice, int, slice, slice, slice, int) $self) impure inline_ref {
+    var (($self'name, $self'description, $self'cost, $self'location, $self'master, $self'owner, $self'idx)) = $self;
+    return (($self'name, $self'description, $self'cost, $self'location, $self'master, $self'owner, $self'idx), $AdInfo$_constructor_name_description_location_cost_owner($self'name, $self'description, $self'location, $self'cost, $self'owner));
+}
+
+((slice, slice, int, slice, slice, slice, int), ()) $MarketplaceAd$_fun_requireOwner((slice, slice, int, slice, slice, slice, int) $self) impure inline_ref {
+    var (($self'name, $self'description, $self'cost, $self'location, $self'master, $self'owner, $self'idx)) = $self;
+    throw_unless(132, ( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) ));
+    return (($self'name, $self'description, $self'cost, $self'location, $self'master, $self'owner, $self'idx), ());
+}
+
+((slice, slice, int, slice, slice, slice, int), slice) $MarketplaceAd$_fun_owner((slice, slice, int, slice, slice, slice, int) $self) impure inline_ref {
+    var (($self'name, $self'description, $self'cost, $self'location, $self'master, $self'owner, $self'idx)) = $self;
+    return (($self'name, $self'description, $self'cost, $self'location, $self'master, $self'owner, $self'idx), $self'owner);
+}
+
+;;
+;; Receivers of a Contract MarketplaceAd
+;;
+
+(((slice, slice, int, slice, slice, slice, int)), ()) $MarketplaceAd$_internal_binary_AdInfo((slice, slice, int, slice, slice, slice, int) $self, (slice, slice, slice, int, slice) $msg) impure inline {
+    var ($self'name, $self'description, $self'cost, $self'location, $self'master, $self'owner, $self'idx) = $self;
+    var ($msg'name, $msg'description, $msg'location, $msg'cost, $msg'owner) = $msg;
+    ($self'name, $self'description, $self'cost, $self'location, $self'master, $self'owner, $self'idx)~$MarketplaceAd$_fun_requireOwner();
+    $self'name = $msg'name;
+    $self'description = $msg'description;
+    $self'cost = $msg'cost;
+    $self'owner = $msg'owner;
+    return (($self'name, $self'description, $self'cost, $self'location, $self'master, $self'owner, $self'idx), ());
+}
+
+(((slice, slice, int, slice, slice, slice, int)), ()) $MarketplaceAd$_internal_binary_Deploy((slice, slice, int, slice, slice, slice, int) $self, (int) $deploy) impure inline {
+    var ($self'name, $self'description, $self'cost, $self'location, $self'master, $self'owner, $self'idx) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'name, $self'description, $self'cost, $self'location, $self'master, $self'owner, $self'idx)~$MarketplaceAd$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'name, $self'description, $self'cost, $self'location, $self'master, $self'owner, $self'idx), ());
+}
+
+;;
+;; Get methods of a Contract MarketplaceAd
+;;
+
+_ %info() method_id(71178) {
+    var self = $MarketplaceAd$_contract_load();
+    var res = self~$MarketplaceAd$_fun_info();
+    return $AdInfo$_to_external(res);
+}
+
+_ %owner() method_id(83229) {
+    var self = $MarketplaceAd$_contract_load();
+    var res = self~$MarketplaceAd$_fun_owner();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128,
+        "org.ton.ownable"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmatRSbJChQe3NRmT1fqY5Ntw34v3egkpcbU1bekPfhonk";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract MarketplaceAd
+;;
+
+((slice, slice, int, slice, slice, slice, int), int) $MarketplaceAd$_contract_router_internal((slice, slice, int, slice, slice, slice, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive AdInfo message
+    if (op == 3642174165) {
+        var msg = in_msg~$AdInfo$_load();
+        self~$MarketplaceAd$_internal_binary_AdInfo(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$MarketplaceAd$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $MarketplaceAd$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$MarketplaceAd$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $MarketplaceAd$_contract_store(self);
+}

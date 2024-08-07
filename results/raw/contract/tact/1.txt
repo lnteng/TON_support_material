@@ -1,0 +1,15 @@
+$RouteDeployAndInitDao$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC1Mk8fuSBxFdCR4VrENamI5Z4r-u5a88Od1phnSv-2xHd1/output/verifier_Router.storage.fc:73:26: warning: Lack of end_parse.
+      var v'metadata = sc_1~__tact_load_address();
+                           ^
+$Router$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC1Mk8fuSBxFdCR4VrENamI5Z4r-u5a88Od1phnSv-2xHd1/output/verifier_Router.storage.fc:107:22: warning: Lack of end_parse.
+      int $loaded = $sc~load_int(1);
+                       ^
+$Router$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC1Mk8fuSBxFdCR4VrENamI5Z4r-u5a88Od1phnSv-2xHd1/output/verifier_Router.code.fc:56:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC1Mk8fuSBxFdCR4VrENamI5Z4r-u5a88Od1phnSv-2xHd1/output/verifier_Router.storage.fc:118:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

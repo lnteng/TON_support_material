@@ -1,0 +1,601 @@
+config_set_confirmed: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:546:64: warning: Lack of end_parse.
+    int config_addr = config_param(config_params::config_address).begin_parse().preload_uint(256);
+                                                                 ^
+config_set_confirmed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:560:18: warning: Local variable 'elect_close' is not used
+     int finished) = elect.unpack_elect();
+                   ^
+config_set_confirmed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:560:18: warning: Local variable 'min_stake' is not used
+     int finished) = elect.unpack_elect();
+                   ^
+config_set_confirmed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:560:18: warning: Local variable 'total_stake' is not used
+     int finished) = elect.unpack_elect();
+                   ^
+config_set_confirmed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:560:18: warning: Local variable 'members' is not used
+     int finished) = elect.unpack_elect();
+                   ^
+config_set_confirmed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:560:18: warning: Local variable 'failed' is not used
+     int finished) = elect.unpack_elect();
+                   ^
+unfreeze_all: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:535:21: warning: Local variable 'unfreeze_at' is not used
+     cell complaints) = fs.unpack_past_election();
+                      ^
+unfreeze_all: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:535:21: warning: Local variable 'stake_held' is not used
+     cell complaints) = fs.unpack_past_election();
+                      ^
+unfreeze_all: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:535:21: warning: Local variable 'vset_hash' is not used
+     cell complaints) = fs.unpack_past_election();
+                      ^
+unfreeze_all: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:535:21: warning: Local variable 'complaints' is not used
+     cell complaints) = fs.unpack_past_election();
+                      ^
+unfreeze_without_bonuses: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:482:53: warning: Local variable 'weight' is not used
+        (int addr, int weight, int stake, int banned) = (cs~load_uint(256), cs~load_uint(64), cs~load_grams(), cs~load_int(1));
+                                                      ^
+get_validator_descr: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:252:44: warning: Local variable 'vset' is not used
+    (cell vset, int total_weight, cell dict) = get_current_vset();
+                                             ^
+past_election_ids: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1500:94: warning: Local variable 'elect' is not used
+    (cell elect, cell credits, cell past_elections, int grams, int active_id, int active_hash) = load_data();
+                                                                                               ^
+past_election_ids: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1500:94: warning: Local variable 'credits' is not used
+    (cell elect, cell credits, cell past_elections, int grams, int active_id, int active_hash) = load_data();
+                                                                                               ^
+past_election_ids: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1500:94: warning: Local variable 'grams' is not used
+    (cell elect, cell credits, cell past_elections, int grams, int active_id, int active_hash) = load_data();
+                                                                                               ^
+past_election_ids: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1500:94: warning: Local variable 'active_id' is not used
+    (cell elect, cell credits, cell past_elections, int grams, int active_id, int active_hash) = load_data();
+                                                                                               ^
+past_election_ids: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1500:94: warning: Local variable 'active_hash' is not used
+    (cell elect, cell credits, cell past_elections, int grams, int active_id, int active_hash) = load_data();
+                                                                                               ^
+past_election_ids: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1504:27: warning: Local variable 'fs' is not used
+      (id, slice fs, int f) = past_elections.udict_get_prev?(32, id);
+                            ^
+participates_in: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1420:26: warning: Lack of end_parse.
+    cell elect = get_data().begin_parse().preload_dict();
+                           ^
+participates_in: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1430:18: warning: Local variable 'elect_at' is not used
+     int finished) = elect.unpack_elect();
+                   ^
+participates_in: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1430:18: warning: Local variable 'elect_close' is not used
+     int finished) = elect.unpack_elect();
+                   ^
+participates_in: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1430:18: warning: Local variable 'min_stake' is not used
+     int finished) = elect.unpack_elect();
+                   ^
+participates_in: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1430:18: warning: Local variable 'total_stake' is not used
+     int finished) = elect.unpack_elect();
+                   ^
+participates_in: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1430:18: warning: Local variable 'failed' is not used
+     int finished) = elect.unpack_elect();
+                   ^
+participates_in: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1430:18: warning: Local variable 'finished' is not used
+     int finished) = elect.unpack_elect();
+                   ^
+process_new_stake: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:425:18: warning: Local variable 'failed' is not used
+     int finished) = elect.unpack_elect();
+                   ^
+conduct_elections: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1193:86: warning: Lack of end_parse.
+    int main_validators = config_param(config_params::validators_numbers).begin_parse().skip_bits(16).preload_uint(16);
+                                                                                       ^
+conduct_elections: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1203:64: warning: Lack of end_parse.
+    int config_addr = config_param(config_params::config_address).begin_parse().preload_uint(256);
+                                                                 ^
+conduct_elections: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1142:18: warning: Local variable 'min_stake' is not used
+     int finished) = elect.unpack_elect();
+                   ^
+conduct_elections: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1191:81: warning: Local variable 'elect_begin_before' is not used
+    (int elect_for, int elect_begin_before, int elect_end_before, int stake_held) = get_validator_conf();
+                                                                                  ^
+punish: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:784:29: warning: Local variable 'description' is not used
+     int suggested_fine_part) = complaint.begin_parse().unpack_complaint();
+                              ^
+punish: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:784:29: warning: Local variable 'created_at' is not used
+     int suggested_fine_part) = complaint.begin_parse().unpack_complaint();
+                              ^
+punish: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:784:29: warning: Local variable 'severity' is not used
+     int suggested_fine_part) = complaint.begin_parse().unpack_complaint();
+                              ^
+participant_list: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1437:26: warning: Lack of end_parse.
+    cell elect = get_data().begin_parse().preload_dict();
+                           ^
+participant_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1447:18: warning: Local variable 'elect_at' is not used
+     int finished) = elect.unpack_elect();
+                   ^
+participant_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1447:18: warning: Local variable 'elect_close' is not used
+     int finished) = elect.unpack_elect();
+                   ^
+participant_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1447:18: warning: Local variable 'min_stake' is not used
+     int finished) = elect.unpack_elect();
+                   ^
+participant_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1447:18: warning: Local variable 'total_stake' is not used
+     int finished) = elect.unpack_elect();
+                   ^
+participant_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1447:18: warning: Local variable 'failed' is not used
+     int finished) = elect.unpack_elect();
+                   ^
+participant_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1447:18: warning: Local variable 'finished' is not used
+     int finished) = elect.unpack_elect();
+                   ^
+past_elections: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1513:94: warning: Local variable 'elect' is not used
+    (cell elect, cell credits, cell past_elections, int grams, int active_id, int active_hash) = load_data();
+                                                                                               ^
+past_elections: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1513:94: warning: Local variable 'credits' is not used
+    (cell elect, cell credits, cell past_elections, int grams, int active_id, int active_hash) = load_data();
+                                                                                               ^
+past_elections: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1513:94: warning: Local variable 'grams' is not used
+    (cell elect, cell credits, cell past_elections, int grams, int active_id, int active_hash) = load_data();
+                                                                                               ^
+past_elections: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1513:94: warning: Local variable 'active_id' is not used
+    (cell elect, cell credits, cell past_elections, int grams, int active_id, int active_hash) = load_data();
+                                                                                               ^
+past_elections: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1513:94: warning: Local variable 'active_hash' is not used
+    (cell elect, cell credits, cell past_elections, int grams, int active_id, int active_hash) = load_data();
+                                                                                               ^
+upgrade_code: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:671:27: warning: Lack of end_parse.
+    int config_addr = c_addr.begin_parse().preload_uint(256);
+                            ^
+upgrade_code: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:681:16: warning: Lack of end_parse.
+      set_c3(code.begin_parse().bless());
+                 ^
+register_complaint: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:709:94: warning: Local variable 'elect' is not used
+    (cell elect, cell credits, cell past_elections, int grams, int active_id, int active_hash) = load_data();
+                                                                                               ^
+register_complaint: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:709:94: warning: Local variable 'credits' is not used
+    (cell elect, cell credits, cell past_elections, int grams, int active_id, int active_hash) = load_data();
+                                                                                               ^
+register_complaint: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:709:94: warning: Local variable 'grams' is not used
+    (cell elect, cell credits, cell past_elections, int grams, int active_id, int active_hash) = load_data();
+                                                                                               ^
+register_complaint: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:709:94: warning: Local variable 'active_id' is not used
+    (cell elect, cell credits, cell past_elections, int grams, int active_id, int active_hash) = load_data();
+                                                                                               ^
+register_complaint: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:709:94: warning: Local variable 'active_hash' is not used
+    (cell elect, cell credits, cell past_elections, int grams, int active_id, int active_hash) = load_data();
+                                                                                               ^
+register_complaint: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:726:29: warning: Local variable 'created_at' is not used
+     int suggested_fine_part) = unpack_complaint(complaint);
+                              ^
+register_complaint: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:726:29: warning: Local variable 'reward_addr' is not used
+     int suggested_fine_part) = unpack_complaint(complaint);
+                              ^
+register_complaint: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:726:29: warning: Local variable 'paid' is not used
+     int suggested_fine_part) = unpack_complaint(complaint);
+                              ^
+compute_returned_stake: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1493:42: warning: Lack of end_parse.
+    (_, cell credits) = (cs~load_dict(), cs~load_dict());
+                                           ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:894:20: warning: Lack of end_parse.
+    slice s_addr = cs~load_msg_addr();
+                     ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:967:66: warning: Lack of end_parse.
+      int config_addr = config_param(config_params::config_address).begin_parse().preload_uint(256);
+                                                                   ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:963:55: warning: Lack of end_parse.
+      throw_unless(error::validator_params_mismatch, (cs~load_uint(256) == src_addr) & (src_wc == -1));
+                                                        ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:964:38: warning: Local variable 'total_weight' is not used
+      (slice vdescr, int total_weight) = get_validator_descr(idx);
+                                       ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:965:34: warning: Local variable 'weight' is not used
+      (int val_pubkey, int weight) = unpack_validator_descr(vdescr);
+                                   ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:945:38: warning: Local variable 'total_weight' is not used
+      (slice vdescr, int total_weight) = get_validator_descr(idx);
+                                       ^
+get_past_complaints: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1561:94: warning: Local variable 'elect' is not used
+    (cell elect, cell credits, cell past_elections, int grams, int active_id, int active_hash) = load_data();
+                                                                                               ^
+get_past_complaints: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1561:94: warning: Local variable 'credits' is not used
+    (cell elect, cell credits, cell past_elections, int grams, int active_id, int active_hash) = load_data();
+                                                                                               ^
+get_past_complaints: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1561:94: warning: Local variable 'grams' is not used
+    (cell elect, cell credits, cell past_elections, int grams, int active_id, int active_hash) = load_data();
+                                                                                               ^
+get_past_complaints: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1561:94: warning: Local variable 'active_id' is not used
+    (cell elect, cell credits, cell past_elections, int grams, int active_id, int active_hash) = load_data();
+                                                                                               ^
+get_past_complaints: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1561:94: warning: Local variable 'active_hash' is not used
+    (cell elect, cell credits, cell past_elections, int grams, int active_id, int active_hash) = load_data();
+                                                                                               ^
+get_past_complaints: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1572:21: warning: Local variable 'unfreeze_at' is not used
+     cell complaints) = unpack_past_election(fs);
+                      ^
+get_past_complaints: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1572:21: warning: Local variable 'stake_held' is not used
+     cell complaints) = unpack_past_election(fs);
+                      ^
+get_past_complaints: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1572:21: warning: Local variable 'vset_hash' is not used
+     cell complaints) = unpack_past_election(fs);
+                      ^
+get_past_complaints: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1572:21: warning: Local variable 'frozen_dict' is not used
+     cell complaints) = unpack_past_election(fs);
+                      ^
+get_past_complaints: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1572:21: warning: Local variable 'total_stake' is not used
+     cell complaints) = unpack_past_election(fs);
+                      ^
+get_past_complaints: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1572:21: warning: Local variable 'bonuses' is not used
+     cell complaints) = unpack_past_election(fs);
+                      ^
+compute_total_stake: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:998:40: warning: Local variable 'applications_list' is not used
+      (tuple h, tuple applications_list) = uncons(applications_list);
+                                         ^
+update_active_vset_id: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1242:25: warning: Local variable 'unfreeze_time' is not used
+        int unfreeze_time = fs~load_uint(32);
+                          ^
+validator_set_installed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1296:18: warning: Local variable 'elect_close' is not used
+     int finished) = elect.unpack_elect();
+                   ^
+validator_set_installed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1296:18: warning: Local variable 'min_stake' is not used
+     int finished) = elect.unpack_elect();
+                   ^
+validator_set_installed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1296:18: warning: Local variable 'total_stake' is not used
+     int finished) = elect.unpack_elect();
+                   ^
+validator_set_installed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1296:18: warning: Local variable 'members' is not used
+     int finished) = elect.unpack_elect();
+                   ^
+validator_set_installed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1296:18: warning: Local variable 'failed' is not used
+     int finished) = elect.unpack_elect();
+                   ^
+announce_new_elections: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1351:66: warning: Lack of end_parse.
+    int elector_addr = config_param(config_params::elector_address).begin_parse().preload_uint(256);
+                                                                   ^
+announce_new_elections: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1363:16: warning: Lack of end_parse.
+    int tag = cvs~load_uint(8);
+                 ^
+announce_new_elections: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1367:28: warning: Lack of end_parse.
+    int cur_valid_until = cvs.skip_bits(32).preload_uint(32);
+                             ^
+announce_new_elections: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1380:84: warning: Lack of end_parse.
+    (_, int min_stake) = config_param(config_params::validators_stakes).begin_parse().load_grams();
+                                                                                     ^
+announce_new_elections: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1361:81: warning: Local variable 'elect_for' is not used
+    (int elect_for, int elect_begin_before, int elect_end_before, int stake_held) = get_validator_conf();
+                                                                                  ^
+announce_new_elections: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1361:81: warning: Local variable 'stake_held' is not used
+    (int elect_for, int elect_begin_before, int elect_end_before, int stake_held) = get_validator_conf();
+                                                                                  ^
+past_elections_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1526:94: warning: Local variable 'elect' is not used
+    (cell elect, cell credits, cell past_elections, int grams, int active_id, int active_hash) = load_data();
+                                                                                               ^
+past_elections_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1526:94: warning: Local variable 'credits' is not used
+    (cell elect, cell credits, cell past_elections, int grams, int active_id, int active_hash) = load_data();
+                                                                                               ^
+past_elections_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1526:94: warning: Local variable 'grams' is not used
+    (cell elect, cell credits, cell past_elections, int grams, int active_id, int active_hash) = load_data();
+                                                                                               ^
+past_elections_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1526:94: warning: Local variable 'active_id' is not used
+    (cell elect, cell credits, cell past_elections, int grams, int active_id, int active_hash) = load_data();
+                                                                                               ^
+past_elections_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1526:94: warning: Local variable 'active_hash' is not used
+    (cell elect, cell credits, cell past_elections, int grams, int active_id, int active_hash) = load_data();
+                                                                                               ^
+past_elections_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1538:25: warning: Local variable 'frozen_dict' is not used
+         cell complaints) = unpack_past_election(fs);
+                          ^
+past_elections_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1538:25: warning: Local variable 'total_stake' is not used
+         cell complaints) = unpack_past_election(fs);
+                          ^
+past_elections_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1538:25: warning: Local variable 'bonuses' is not used
+         cell complaints) = unpack_past_election(fs);
+                          ^
+past_elections_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1538:25: warning: Local variable 'complaints' is not used
+         cell complaints) = unpack_past_election(fs);
+                          ^
+active_election_id: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1415:35: warning: Lack of end_parse.
+    return elect.null?() ? 0 : elect.begin_parse().preload_uint(32);
+                                    ^
+active_election_id: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1414:26: warning: Lack of end_parse.
+    cell elect = get_data().begin_parse().preload_dict();
+                           ^
+unfreeze_with_bonuses: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:505:53: warning: Local variable 'weight' is not used
+        (int addr, int weight, int stake, int banned) = (cs~load_uint(256), cs~load_uint(64), cs~load_grams(), cs~load_int(1));
+                                                      ^
+participant_list_extended: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1462:26: warning: Lack of end_parse.
+    cell elect = get_data().begin_parse().preload_dict();
+                           ^
+participant_list_extended: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1478:70: warning: Local variable 'time' is not used
+        (int stake, int time, int max_factor, int addr, int adnl_addr) = (cs~load_grams(),
+                                                                       ^
+recover_stake & config_set_confirmed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:547:24: warning: Cell of get_data and set_data are inconsistent.
+    slice ds = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:630:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_dict(elect).store_dict(credits).store_slice(ds).end_cell());
+                         ^
+recover_stake & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:62:24: warning: Cell of get_data and set_data are inconsistent.
+    slice cs = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:630:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_dict(elect).store_dict(credits).store_slice(ds).end_cell());
+                         ^
+recover_stake & participant_list_extended: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1462:26: warning: Cell of get_data and set_data are inconsistent.
+    cell elect = get_data().begin_parse().preload_dict();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:630:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_dict(elect).store_dict(credits).store_slice(ds).end_cell());
+                         ^
+config_set_confirmed & recover_stake: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:620:24: warning: Cell of get_data and set_data are inconsistent.
+    slice ds = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:571:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_int(false, 1)
+        ^
+config_set_confirmed & config_set_confirmed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:547:24: warning: Cell of get_data and set_data are inconsistent.
+    slice ds = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:571:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_int(false, 1)
+        ^
+config_set_confirmed & config_set_confirmed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:547:24: warning: Cell of get_data and set_data are inconsistent.
+    slice ds = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:571:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_int(false, 1)
+        ^
+config_set_confirmed & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:62:24: warning: Cell of get_data and set_data are inconsistent.
+    slice cs = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:571:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_int(false, 1)
+        ^
+config_set_confirmed & participant_list_extended: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1462:26: warning: Cell of get_data and set_data are inconsistent.
+    cell elect = get_data().begin_parse().preload_dict();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:571:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_int(false, 1)
+        ^
+store_data & participant_list_extended: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1462:26: warning: Cell of get_data and set_data are inconsistent.
+    cell elect = get_data().begin_parse().preload_dict();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:81:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_dict(elect)
+      ^
+process_new_stake & recover_stake: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:620:24: warning: Cell of get_data and set_data are inconsistent.
+    slice ds = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:466:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_dict(elect).store_slice(ds).end_cell());
+                         ^
+process_new_stake & config_set_confirmed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:547:24: warning: Cell of get_data and set_data are inconsistent.
+    slice ds = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:466:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_dict(elect).store_slice(ds).end_cell());
+                         ^
+process_new_stake & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:62:24: warning: Cell of get_data and set_data are inconsistent.
+    slice cs = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:466:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_dict(elect).store_slice(ds).end_cell());
+                         ^
+process_new_stake & participant_list_extended: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1462:26: warning: Cell of get_data and set_data are inconsistent.
+    cell elect = get_data().begin_parse().preload_dict();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:466:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_dict(elect).store_slice(ds).end_cell());
+                         ^
+conduct_elections & config_set_confirmed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:547:24: warning: Cell of get_data and set_data are inconsistent.
+    slice ds = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1222:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_dict(elect)
+      ^
+conduct_elections & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:62:24: warning: Cell of get_data and set_data are inconsistent.
+    slice cs = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1222:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_dict(elect)
+      ^
+conduct_elections & participant_list_extended: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1462:26: warning: Cell of get_data and set_data are inconsistent.
+    cell elect = get_data().begin_parse().preload_dict();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1222:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_dict(elect)
+      ^
+conduct_elections & config_set_confirmed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:547:24: warning: Cell of get_data and set_data are inconsistent.
+    slice ds = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1186:26: warning: Cell of get_data and set_data are inconsistent.
+      set_data(begin_cell().store_dict(elect).store_dict(credits).store_slice(storage).end_cell());
+                           ^
+conduct_elections & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:62:24: warning: Cell of get_data and set_data are inconsistent.
+    slice cs = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1186:26: warning: Cell of get_data and set_data are inconsistent.
+      set_data(begin_cell().store_dict(elect).store_dict(credits).store_slice(storage).end_cell());
+                           ^
+conduct_elections & participant_list_extended: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1462:26: warning: Cell of get_data and set_data are inconsistent.
+    cell elect = get_data().begin_parse().preload_dict();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1186:26: warning: Cell of get_data and set_data are inconsistent.
+      set_data(begin_cell().store_dict(elect).store_dict(credits).store_slice(storage).end_cell());
+                           ^
+validator_set_installed & recover_stake: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:620:24: warning: Cell of get_data and set_data are inconsistent.
+    slice ds = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1313:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_int(false, 1)   ;; forget current elections
+        ^
+validator_set_installed & config_set_confirmed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:547:24: warning: Cell of get_data and set_data are inconsistent.
+    slice ds = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1313:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_int(false, 1)   ;; forget current elections
+        ^
+validator_set_installed & config_set_confirmed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:547:24: warning: Cell of get_data and set_data are inconsistent.
+    slice ds = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1313:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_int(false, 1)   ;; forget current elections
+        ^
+validator_set_installed & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:62:24: warning: Cell of get_data and set_data are inconsistent.
+    slice cs = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1313:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_int(false, 1)   ;; forget current elections
+        ^
+validator_set_installed & participant_list_extended: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1462:26: warning: Cell of get_data and set_data are inconsistent.
+    cell elect = get_data().begin_parse().preload_dict();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1313:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_int(false, 1)   ;; forget current elections
+        ^
+announce_new_elections & config_set_confirmed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:547:24: warning: Cell of get_data and set_data are inconsistent.
+    slice ds = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1391:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_dict(elect).store_dict(credits).store_slice(storage).end_cell());
+                         ^
+announce_new_elections & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:62:24: warning: Cell of get_data and set_data are inconsistent.
+    slice cs = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1391:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_dict(elect).store_dict(credits).store_slice(storage).end_cell());
+                         ^
+announce_new_elections & participant_list_extended: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1462:26: warning: Cell of get_data and set_data are inconsistent.
+    cell elect = get_data().begin_parse().preload_dict();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:1391:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_dict(elect).store_dict(credits).store_slice(storage).end_cell());
+                         ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:653:19: warning: UnHandle bounced message with op: 0xf96f7324
+    .end_cell(), 64);
+                    ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:370:38: warning: UnHandle bounced message with op: 0x13245678
+    send_raw_message(msg.end_cell(), 1);
+                                       ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./dariotarantini/governance-contract/elector-code.fc:339:38: warning: UnHandle bounced message with op: 0x4e565354
+    send_raw_message(msg.end_cell(), 1);
+                                       ^

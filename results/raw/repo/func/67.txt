@@ -1,0 +1,28 @@
+get_sale_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/nft-sdk/src/wrappers/getgems/NftFixedPriceV3/nft-fixprice-sale-v3.fc:311:7: warning: Local variable 'can_deploy_by_external' is not used
+      ) = load_data();
+        ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/nft-sdk/src/wrappers/getgems/NftFixedPriceV3/nft-fixprice-sale-v3.fc:142:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/nft-sdk/src/wrappers/getgems/NftFixedPriceV3/nft-fixprice-sale-v3.fc:200:29: warning: Lack of end_parse.
+          send_raw_message(msg~load_ref(), mode);
+                              ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/nft-sdk/src/wrappers/getgems/NftFixedPriceV3/nft-fixprice-sale-v3.fc:153:7: warning: Local variable 'can_deploy_by_external' is not used
+      ) = load_data();
+        ^
+load_fees: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/nft-sdk/src/wrappers/getgems/NftFixedPriceV3/nft-fixprice-sale-v3.fc:29:11: warning: Lack of end_parse.
+          ds~load_coins()     ;; royalty_amount
+            ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/nft-sdk/src/wrappers/getgems/NftFixedPriceV3/nft-fixprice-sale-v3.fc:19:11: warning: Lack of end_parse.
+          ds~load_uint(1)     ;; can_deploy_by_external
+            ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/nft-sdk/src/wrappers/getgems/NftFixedPriceV3/nft-fixprice-sale-v3.fc:120:46: warning: UnHandle bounced message with op: 0x5fcc3d14
+      send_raw_message(nft_msg.end_cell(), 128);
+                                               ^

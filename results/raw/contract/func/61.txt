@@ -1,0 +1,28 @@
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQD-LkpmPTHhPW68cNfc7B83NcfE9JyGegXzAT8LetpQSRSm/jetton-minter.fc:21:15: warning: Lack of end_parse.
+              ds~load_ref() ;; jetton_wallet_code
+                ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQD-LkpmPTHhPW68cNfc7B83NcfE9JyGegXzAT8LetpQSRSm/jetton-minter.fc:77:42: warning: Lack of end_parse.
+          int jetton_amount = master_msg_cs~load_coins();
+                                           ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQD-LkpmPTHhPW68cNfc7B83NcfE9JyGegXzAT8LetpQSRSm/jetton-minter.fc:63:21: warning: Lack of end_parse.
+      int fwd_fee = cs~load_coins(); ;; we use message fwd_fee for estimation of provide_wallet_address cost
+                      ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQD-LkpmPTHhPW68cNfc7B83NcfE9JyGegXzAT8LetpQSRSm/jetton-minter.fc:153:84: warning: Local variable 'total_supply' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code) = load_data();
+                                                                                     ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQD-LkpmPTHhPW68cNfc7B83NcfE9JyGegXzAT8LetpQSRSm/jetton-minter.fc:153:84: warning: Local variable 'admin_address' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code) = load_data();
+                                                                                     ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQD-LkpmPTHhPW68cNfc7B83NcfE9JyGegXzAT8LetpQSRSm/jetton-minter.fc:153:84: warning: Local variable 'content' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code) = load_data();
+                                                                                     ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQD-LkpmPTHhPW68cNfc7B83NcfE9JyGegXzAT8LetpQSRSm/jetton-minter.fc:127:79: warning: UnHandle bounced message with op: 0xd1735400
+          send_raw_message(msg.store_maybe_ref(included_address).end_cell(), 64);
+                                                                                ^

@@ -1,0 +1,73 @@
+;;
+;; Header files for Storage
+;; NOTE: declarations are sorted for optimal order
+;;
+
+;; __tact_verify_address
+slice __tact_verify_address(slice address) inline;
+
+;; __tact_not_null
+forall X -> X __tact_not_null(X x) inline;
+
+;; __tact_context_get
+(int, slice, int, slice) __tact_context_get() inline;
+
+;; __tact_dict_set_int_cell
+(cell, ()) __tact_dict_set_int_cell(cell d, int kl, int k, cell v) inline;
+
+;; __tact_dict_get_int_cell
+cell __tact_dict_get_int_cell(cell d, int kl, int k) inline;
+
+;; __tact_dict_set_int_slice
+(cell, ()) __tact_dict_set_int_slice(cell d, int kl, int k, slice v) inline;
+
+;; __tact_dict_get_int_slice
+slice __tact_dict_get_int_slice(cell d, int kl, int k) inline;
+
+;; __tact_slice_eq_bits
+int __tact_slice_eq_bits(slice a, slice b) inline;
+
+;; $Data$_store
+builder $Data$_store(builder build_0, (slice) v) inline;
+
+;; $Data$_store_cell
+cell $Data$_store_cell((slice) v) inline;
+
+;; $Data$_load
+(slice, ((slice))) $Data$_load(slice sc_0) inline;
+
+;; $Data$_as_optional
+tuple $Data$_as_optional((slice) v) inline;
+
+;; $Data$_load_opt
+tuple $Data$_load_opt(cell cl) inline;
+
+;; $DataInput$_load
+(slice, ((int, slice))) $DataInput$_load(slice sc_0) inline;
+
+;; $Storage$_store
+builder $Storage$_store(builder build_0, (cell, cell) v) inline;
+
+;; $Storage$_load
+(slice, ((cell, cell))) $Storage$_load(slice sc_0) inline;
+
+;; $Data$_get_data
+_ $Data$_get_data((slice) v) inline;
+
+;; $Data$_not_null
+((slice)) $Data$_not_null(tuple v) inline;
+
+;; $Storage$_contract_init
+(cell, cell) $Storage$_contract_init() impure inline_ref;
+
+;; $Storage$_contract_load
+(cell, cell) $Storage$_contract_load() impure inline_ref;
+
+;; $Storage$_contract_store
+() $Storage$_contract_store((cell, cell) v) impure inline;
+
+;; $Storage$_fun_get_data
+((cell, cell), slice) $Storage$_fun_get_data((cell, cell) $self, slice $owner, int $index) impure inline_ref;
+
+;; $Data$_constructor_data
+((slice)) $Data$_constructor_data(slice data) inline;

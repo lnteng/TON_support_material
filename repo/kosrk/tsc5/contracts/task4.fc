@@ -1,0 +1,284 @@
+#include "imports/stdlib.fc";
+
+forall X -> tuple ut(X x) asm "NOP";
+(int) tlen (tuple t) asm "TLEN";
+forall X -> int is_null (X x) asm "ISNULL";
+forall X -> (tuple, ()) push_back (tuple tail, X head) asm "CONS";
+forall X -> (tuple, (X)) pop_back (tuple t) asm "UNCONS";
+forall X -> (tuple, ()) tset(tuple t, int idx, X x) asm(t x idx) "SETINDEXVAR";
+forall X -> (tuple, X) ~tpop(tuple t) asm "TPOP";
+
+const int x = 88; ;; X
+const int d = 46; ;; .
+const int q = 63; ;; ?
+const int s = 83; ;; S
+const int e = 69; ;; E
+const int p = 33; ;; !
+
+const int step_w = 1;
+const int prob_w = 1000;
+const int wall_w = 1000000;
+const int max_w = 1000000000;
+
+global int g_n; ;; 1 GETGLOB
+global int g_m; ;; 2 GETGLOB
+global tuple g_maze;
+global tuple lmap;
+global tuple d_queue;
+global tuple p_queue;
+global tuple w_queue;
+global int end;
+
+() recv_internal(int my_balance, int msg_value, cell in_msg_full, slice in_msg_body) impure {
+    return();
+}
+
+tuple gen_zero_tup() asm
+                                                ;;
+        " 2 GETGLOB "                           ;; m
+        " REPEAT:<{ "                           ;;
+        "   TRUE"                               ;; -1
+        " }>"                                   ;; -1xM
+        " 2 GETGLOB "                           ;; -1xM m
+        " TUPLEVAR "                            ;; mtup
+        " 1 GETGLOB DEC"                        ;; mtup n-1
+        " REPEAT:<{ "                           ;; mtup
+        "   DUP "                               ;; mtup mtup
+        " }> "                                  ;; mtupxN
+        " 1 GETGLOB "                           ;; mtupxN n
+        " TUPLEVAR "                            ;; nmtup
+        ;
+
+tuple push_to_end(tuple item, tuple in_tuple) asm
+        " 255 PUSHINT "                         ;; it tup 255
+        " EXPLODEVAR "                          ;; it [tup[0]..tup[m]] m
+        " INC "                                 ;; it [tup[0]..tup[m]] m+1
+        " TUPLEVAR "                            ;; [it, tup[0]..tup[m]]
+        ;
+
+;; tuple write_at1(tuple tup, int i, int j, int val) asm(tup i val j)
+;;                                                 ;; tup i val j
+;;         " OVER2 "                               ;; tup i val j tup i
+;;         " INDEXVAR "                            ;; tup i val j row
+;;         " ROTREV "                              ;; tup i row val j
+;;         " SETINDEXVAR "                         ;; tup i row_mod
+;;         " SWAP "                                ;; tup row_mod i
+;;         " SETINDEXVAR "                         ;; tup_mod
+;;         ;
+
+tuple write_at(tuple in_tup, int in_i, int in_j, int val) inline {
+    var row = in_tup.at(in_i);
+    row~tset(in_j, val);
+    in_tup~tset(in_i, row);
+    return in_tup;
+}
+
+(int, int, int) get_path(int old_i, int old_j, int i, int j, int old_w) inline {
+    if (i < 0) | (i >= g_n) | (j < 0) | (j >= g_m) {
+        return (old_i, old_j, old_w);
+    }
+    var new_w = lmap.at(i).at(j);
+    if (new_w < old_w) & (new_w != -1)  {
+        return (i, j, new_w);
+    }
+    return (old_i, old_j, old_w);
+}
+
+() check_for(int i, int j, int w) impure inline {
+    if (i < 0) | (i >= g_n) | (j < 0) | (j >= g_m) {
+        return ();
+    }
+    var symb = g_maze.at(i).at(j);
+        if symb == x {
+        if lmap.at(i).at(j) == -1 {
+            w_queue~push_back(ut([i, j, w + wall_w])); ;; dot cells must be extracted first
+            lmap = lmap.write_at(i, j, w + wall_w);
+        }
+        return ();
+    }
+    if symb == d {
+        if lmap.at(i).at(j) == -1 {
+            d_queue~push_back(ut([i, j, w])); ;; dot cells must be extracted first
+            lmap = lmap.write_at(i, j, w);
+        }
+        return ();
+    }
+    if symb == q {
+        if lmap.at(i).at(j) == -1 {
+            p_queue~push_back(ut([i, j, w + prob_w])); ;; dot cells must be extracted first
+            lmap = lmap.write_at(i, j, w + prob_w);
+        }
+        return ();
+    }
+    if symb == e {
+        end = -1;
+        return ();
+    }
+}
+
+(tuple) step_forward(tuple queue, tuple batch) inline {
+
+    var d_queue = null();
+    var p_queue = null();
+    var w_queue = null();
+    end = 0;
+
+    while (~ batch.is_null()) {
+        var cur = batch~pop_back();
+        var cur_i = cur.first();
+        var cur_j = cur.second();
+        var w = lmap.at(cur_i).at(cur_j) + step_w;
+        check_for(cur_i, cur_j - 1, w);
+        check_for(cur_i + 1, cur_j, w);
+        check_for(cur_i, cur_j + 1, w);
+        check_for(cur_i - 1, cur_j, w);
+        check_for(cur_i + 1, cur_j + 1, w);
+        check_for(cur_i + 1, cur_j - 1, w);
+        check_for(cur_i - 1, cur_j + 1, w);
+        check_for(cur_i - 1, cur_j - 1, w);
+    }
+
+    tuple dq = queue.first();
+    tuple pq = queue.second();
+    tuple wq = queue.third();
+
+    if ~ d_queue.is_null() {
+        dq = push_to_end(d_queue, dq);
+    }
+
+    if ~ p_queue.is_null() {
+        pq = push_to_end(p_queue, pq);
+    }
+
+    if ~ w_queue.is_null() {
+        wq = push_to_end(w_queue, wq);
+    }
+
+    return ut([dq, pq, wq]);
+}
+
+tuple forward(tuple queue) impure inline {
+
+    var q1 = queue.first();
+
+    if tlen(q1) > 0 {
+        var batch = q1~tpop();
+        queue~tset(0, q1);
+        queue = step_forward(queue, batch);
+        return queue;
+    }
+
+    var q2 = queue.second();
+    if tlen(q2) > 0 {
+        var batch = q2~tpop();
+        queue~tset(1, q2);
+        queue = step_forward(queue, batch);
+        return queue;
+    }
+
+    var q3 = queue.third();
+    if tlen(q3) > 0 {
+        var batch = q3~tpop();
+        queue~tset(2, q3);
+        queue = step_forward(queue, batch);
+        return queue;
+    }
+
+    end = -1;
+    return queue;
+}
+
+(int, int, int) back(int i, int j) inline {
+
+    var best_w = max_w;
+    var best_i = i;
+    var best_j = j;
+
+    (best_i, best_j, best_w) = get_path(best_i, best_j, i + 1, j + 1, best_w);
+    (best_i, best_j, best_w) = get_path(best_i, best_j, i + 1, j - 1, best_w);
+    (best_i, best_j, best_w) = get_path(best_i, best_j, i - 1, j + 1, best_w);
+    (best_i, best_j, best_w) = get_path(best_i, best_j, i - 1, j - 1, best_w);
+    (best_i, best_j, best_w) = get_path(best_i, best_j, i - 1, j, best_w);
+    (best_i, best_j, best_w) = get_path(best_i, best_j, i, j + 1, best_w);
+    (best_i, best_j, best_w) = get_path(best_i, best_j, i + 1, j, best_w);
+    (best_i, best_j, best_w) = get_path(best_i, best_j, i, j - 1, best_w);
+    return(best_i, best_j, best_w);
+}
+
+(int, int, int, tuple) solve(int n, int m, tuple maze) method_id {
+
+    set_gas_limit(100000000);
+
+    g_n = n;
+    g_m = m;
+    g_maze = maze;
+
+    tuple lmap_init = gen_zero_tup();
+
+    ;; INIT
+    var start_i = 0;
+    var start_j = 0;
+    var end_i = 0;
+    var end_j = 0;
+
+    ;; FILL LMAP, START, END POINTS
+    var i = 0;
+    repeat (n) {
+        var j = 0;
+        repeat (m) {
+            var item = maze.at(i).at(j);
+            if (item == s) | (item == e) {
+                if (item == s) {
+                    start_i = i;
+                    start_j = j;
+                }
+                if item == e {
+                    end_i = i;
+                    end_j = j;
+                }
+            }
+            j += 1;
+        }
+        i += 1;
+    }
+
+    if (abs(start_i - end_i) < 2) & (abs(start_j - end_j) < 2) { ;; check for zero path
+        return (0, 0, 1, maze);
+    }
+
+    lmap_init = lmap_init.write_at(start_i, start_j, 0);
+    lmap_init = lmap_init.write_at(end_i, end_j, max_w);
+
+    lmap = lmap_init;
+
+    tuple init_batch = null();
+    init_batch~push_back(ut([start_i, start_j, 0]));
+
+    tuple queue = ut([
+            ut([init_batch]),              ;; dot queue
+            empty_tuple(),                 ;; prob queue
+            empty_tuple()                  ;; wall queue
+    ]);
+
+    ;; Forward trace
+    end = 0;
+    do {
+        queue = forward(queue);
+    } until (end == -1);
+
+    ;; Back trace
+    (int cur_i, int cur_j, int w) = back(end_i, end_j);
+
+    do {
+        var row = maze.at(cur_i);
+        row~tset(cur_j, p);
+        maze~tset(cur_i, row);
+        (cur_i, cur_j, int cur_w) = back(cur_i, cur_j);
+    } until cur_w == 0;
+
+    var walls = w / wall_w;
+    var prob = (w - walls * wall_w) / prob_w;
+    var path = w - walls * wall_w - prob * prob_w + 1;
+
+    return (walls, prob, path, maze);
+}

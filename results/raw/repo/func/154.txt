@@ -1,0 +1,8 @@
+verify_return_message: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./redstone-finance/redstone-oracles-monorepo/packages/ton-connector/contracts/utils/contract_flow.fc:49:43: warning: Lack of end_parse.
+      slice initial_sender = initial_payload~load_msg_addr();
+                                            ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./redstone-finance/redstone-oracles-monorepo/packages/ton-connector/contracts/sample_consumer.fc:13:28: warning: Lack of end_parse.
+      feed_address_slice = ds~load_msg_addr();
+                             ^

@@ -1,0 +1,124 @@
+(slice, int) asm::remove_prefix(slice, slice) asm "SDBEGINSXQ";
+(slice, int) asm::load_zeroes(slice) asm( -> 1 0) "LDZEROES";
+forall X -> (tuple, X) ~tpop(tuple) impure asm "TPOP";
+int asm::starts_with(slice, slice) asm "SDPFXREV";
+slice asm::skip_zeroes(slice) asm "LDZEROES NIP";
+forall X, Y -> X unsafe::transmute(Y) asm "NOP";
+int asm::remaining_bits(builder) asm "BREMBITS";
+(slice, slice) load_next(slice) asm "LDREFRTOS";
+int asm::is_tuple(tuple) asm "ISTUPLE";
+forall X -> (tuple, ()) ~list_cons(tuple tail, X head) asm(head tail) "CONS";
+forall X -> (tuple, ()) ~inv_list_cons(tuple tail, X head) asm "PAIR";
+forall X -> (tuple, X) ~inv_list_next(tuple) asm "UNPAIR";
+(builder, ()) ~store_slice(builder b, slice s) asm "STSLICER";
+slice btos(builder) asm "ENDC CTOS";
+(builder, ()) ~store_one(builder) asm "STONE";
+builder store_one(builder) asm "STONE";
+
+() recv_internal() { }
+
+{- 
+  TASK 3 - Find and replace binary substring
+  Binary string is represented as a cell linked list: string splitted to chunks,
+  first chunk stored to the root cell, next one to the cell in ref and so on;
+  each cell can have only one ref. 
+  Write the method that find and replaces one flags in the binary string
+  with another value. Flags and values can be can be of any length, but
+  strictly up to 128 bits. The method must replace every flag it finds.
+  Flag and the value to be replaced is guaranteed to be greater than 0.
+  Lets give a simple example. We have the target flag 101110101 and the value
+  to be written 111111111 as inputs, and a linked list of cells, in which the bit
+  value of the first cell ends with ...10100001011, and in the ref we have cell that
+  starts with 10101000111111...
+  The output should be a linked list where the first
+  cell ends with ...10100001111, and the second cell starts with 11111000111111...
+
+-}
+
+(tuple, ()) chain_store_slice(tuple builders, slice v) inline {
+  builder last = builders~inv_list_next();
+  int fits = last.asm::remaining_bits();
+  if (fits < v.slice_bits()) {
+    last~store_slice(v~load_bits(fits));
+    builders~inv_list_cons(last);
+    builders~inv_list_cons(begin_cell().store_slice(v));
+  } else {
+    last~store_slice(v);
+    builders~inv_list_cons(last);
+  }
+  return (builders, ());
+}
+(tuple, ()) chain_store_zeroes(tuple builders, int bits) inline {
+  builder last = builders~inv_list_next();
+  int fits = last.asm::remaining_bits();
+  if (fits < bits) {
+    last~store_uint(0, fits);
+    builders~inv_list_cons(last);
+    builders~inv_list_cons(begin_cell().store_uint(0, bits - fits));
+  } else {
+    last~store_uint(0, bits);
+    builders~inv_list_cons(last);
+  }
+  return (builders, ());
+}
+(tuple, ()) chain_store_one(tuple builders) inline {
+  builder last = builders~inv_list_next();
+  int fits = last.asm::remaining_bits();
+  if (fits) {
+    last~store_one();
+    builders~inv_list_cons(last);
+  } else {
+    builders~inv_list_cons(last);
+    builders~inv_list_cons(begin_cell().store_one());
+  }
+  return (builders, ());
+}
+
+(slice, int) remove_prefix_recursive(slice linked_list, slice flag) inline_ref {
+  if (linked_list~asm::remove_prefix(flag)) {
+    return (linked_list, -1);
+  }
+  if (flag~asm::remove_prefix(linked_list) & linked_list.slice_refs()) {
+    return linked_list~load_next().remove_prefix_recursive(flag);
+  }
+  return (linked_list, 0);
+}
+
+cell replace_all(slice flag, slice value, slice linked_list) inline {
+  tuple data = unsafe::transmute(pair(null(), begin_cell()));
+  
+  while (-1) {
+    data~chain_store_zeroes(linked_list~asm::load_zeroes());
+    
+    (slice new_list, int flag_removed) = linked_list.remove_prefix_recursive(flag);
+    if (flag_removed) {
+      data~chain_store_slice(value);
+      linked_list = new_list;
+    } elseif (linked_list.slice_bits()) {
+      ;; ~strdump("linked_list has bit 1"); linked_list~dump();
+      linked_list~skip_bits(1);
+      data~chain_store_one();
+    } elseif (linked_list.slice_refs()) {
+      (_, linked_list) = linked_list.load_next();
+    } else {
+      cell head = data~inv_list_next().end_cell();
+      while (data.asm::is_tuple()) {
+        head = data~inv_list_next().store_ref(head).end_cell();
+      }
+      return head;
+    }
+  }
+  
+  return null();
+}
+
+cell find_and_replace(int flag, int value, cell linked_list) method_id {
+  if (flag == value) { return linked_list; }
+  if (linked_list.begin_parse().slice_empty?()) { return linked_list; }
+  
+  slice flag = begin_cell().store_uint(flag, 128).btos().asm::skip_zeroes();
+  slice value = begin_cell().store_uint(value, 128).btos().asm::skip_zeroes();
+  
+  return replace_all(flag, value, linked_list.begin_parse());
+}
+

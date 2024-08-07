@@ -1,0 +1,58 @@
+$ContractWithOptionals$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/optionals_ContractWithOptionals.code.fc:16:66: warning: Local variable '$self'a' is not used
+      var (($self'a, $self'b, $self'c, $self'd, $self'e, $self'f)) = (null(), null(), null(), null(), null(), null());
+                                                                   ^
+$ContractWithOptionals$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/optionals_ContractWithOptionals.code.fc:16:66: warning: Local variable '$self'b' is not used
+      var (($self'a, $self'b, $self'c, $self'd, $self'e, $self'f)) = (null(), null(), null(), null(), null(), null());
+                                                                   ^
+$ContractWithOptionals$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/optionals_ContractWithOptionals.code.fc:16:66: warning: Local variable '$self'c' is not used
+      var (($self'a, $self'b, $self'c, $self'd, $self'e, $self'f)) = (null(), null(), null(), null(), null(), null());
+                                                                   ^
+$ContractWithOptionals$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/optionals_ContractWithOptionals.code.fc:16:66: warning: Local variable '$self'd' is not used
+      var (($self'a, $self'b, $self'c, $self'd, $self'e, $self'f)) = (null(), null(), null(), null(), null(), null());
+                                                                   ^
+$ContractWithOptionals$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/optionals_ContractWithOptionals.code.fc:16:66: warning: Local variable '$self'e' is not used
+      var (($self'a, $self'b, $self'c, $self'd, $self'e, $self'f)) = (null(), null(), null(), null(), null(), null());
+                                                                   ^
+$ContractWithOptionals$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/optionals_ContractWithOptionals.code.fc:16:66: warning: Local variable '$self'f' is not used
+      var (($self'a, $self'b, $self'c, $self'd, $self'e, $self'f)) = (null(), null(), null(), null(), null(), null());
+                                                                   ^
+$ContractWithOptionals$init$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/optionals_ContractWithOptionals.storage.fc:186:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+$ContractWithOptionals$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/optionals_ContractWithOptionals.storage.fc:196:19: warning: Lack of end_parse.
+          return $sc~$ContractWithOptionals$_load();
+                    ^
+$Update$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/optionals_ContractWithOptionals.storage.fc:143:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+$SomeGenericStruct$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/optionals_ContractWithOptionals.storage.fc:24:24: warning: Lack of end_parse.
+      var v'value5 = sc_1~load_int(257);
+                         ^
+$ContractWithOptionals$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/optionals_ContractWithOptionals.storage.fc:174:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+$ContractWithOptionals$_contract_store & $ContractWithOptionals$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/optionals_ContractWithOptionals.storage.fc:192:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/optionals_ContractWithOptionals.storage.fc:205:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$ContractWithOptionals$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/optionals_ContractWithOptionals.code.fc:276:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/optionals_ContractWithOptionals.storage.fc:205:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

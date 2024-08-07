@@ -1,0 +1,32 @@
+get_offer_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/nft-sdk/src/wrappers/getgems/NftOffer/nft-offer.fc:375:7: warning: Local variable 'can_deploy' is not used
+      ) = load_data();
+        ^
+recv_external: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/nft-sdk/src/wrappers/getgems/NftOffer/nft-offer.fc:326:7: warning: Local variable 'can_deploy' is not used
+      ) = load_data();
+        ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/nft-sdk/src/wrappers/getgems/NftOffer/nft-offer.fc:163:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/nft-sdk/src/wrappers/getgems/NftOffer/nft-offer.fc:203:29: warning: Lack of end_parse.
+          send_raw_message(msg~load_ref(), mode);
+                              ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/nft-sdk/src/wrappers/getgems/NftOffer/nft-offer.fc:40:15: warning: Lack of end_parse.
+              ds~load_uint(1)     ;; can_deploy
+                ^
+load_fees: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/nft-sdk/src/wrappers/getgems/NftOffer/nft-offer.fc:52:15: warning: Lack of end_parse.
+              ds~load_uint(32)    ;; royalty_base,
+                ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/nft-sdk/src/wrappers/getgems/NftOffer/nft-offer.fc:243:53: warning: UnHandle bounced message with op: 0x5fcc3d14
+              send_raw_message(nft_msg.end_cell(), 64);
+                                                      ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/nft-sdk/src/wrappers/getgems/NftOffer/nft-offer.fc:141:46: warning: UnHandle bounced message with op: 0x5fcc3d14
+      send_raw_message(nft_msg.end_cell(), 128);
+                                               ^

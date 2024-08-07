@@ -1,0 +1,115 @@
+;;
+;; Header files for ClaimChild
+;; NOTE: declarations are sorted for optimal order
+;;
+
+;; __tact_verify_address
+slice __tact_verify_address(slice address) inline;
+
+;; __tact_load_address
+(slice, slice) __tact_load_address(slice cs) inline;
+
+;; __tact_load_address_opt
+(slice, slice) __tact_load_address_opt(slice cs) inline;
+
+;; __tact_store_address
+builder __tact_store_address(builder b, slice address) inline;
+
+;; __tact_store_address_opt
+builder __tact_store_address_opt(builder b, slice address) inline;
+
+;; __tact_not_null
+forall X -> X __tact_not_null(X x) inline;
+
+;; __tact_context_get
+(int, slice, int, slice) __tact_context_get() inline;
+
+;; __tact_context_get_sender
+slice __tact_context_get_sender() inline;
+
+;; __tact_store_bool
+builder __tact_store_bool(builder b, int v) inline;
+
+;; __tact_slice_eq_bits
+int __tact_slice_eq_bits(slice a, slice b) inline;
+
+;; $Claim$_store
+builder $Claim$_store(builder build_0, (int, int, slice, slice) v) inline;
+
+;; $Claim$_store_cell
+cell $Claim$_store_cell((int, int, slice, slice) v) inline;
+
+;; $ReferralCount$_load
+(slice, (tuple)) $ReferralCount$_load(slice sc_0) inline;
+
+;; $Referrer$_load
+(slice, ((slice))) $Referrer$_load(slice sc_0) inline;
+
+;; $Boost$_load
+(slice, ((int))) $Boost$_load(slice sc_0) inline;
+
+;; $ClaimChild$_store
+builder $ClaimChild$_store(builder build_0, (slice, slice, slice, int, int, int, slice, int) v) inline;
+
+;; $ClaimChild$_load
+(slice, ((slice, slice, slice, int, int, int, slice, int))) $ClaimChild$_load(slice sc_0) inline;
+
+;; $ChildState$_to_external
+(int, int, int, int) $ChildState$_to_external(((int, int, int, int)) v) inline;
+
+;; $ClaimChild$init$_load
+(slice, ((slice, slice, slice, int))) $ClaimChild$init$_load(slice sc_0) inline;
+
+;; $ClaimChild$_contract_init
+(slice, slice, slice, int, int, int, slice, int) $ClaimChild$_contract_init(slice $parent, slice $user, slice $master, int $interval) impure inline_ref;
+
+;; $ClaimChild$_contract_load
+(slice, slice, slice, int, int, int, slice, int) $ClaimChild$_contract_load() impure inline_ref;
+
+;; $ClaimChild$_contract_store
+() $ClaimChild$_contract_store((slice, slice, slice, int, int, int, slice, int) v) impure inline;
+
+;; $global_send
+() $global_send((int, slice, int, int, cell, cell, cell) $params) impure inline_ref;
+
+;; $ClaimChild$_fun_lastClaimTime
+((slice, slice, slice, int, int, int, slice, int), int) $ClaimChild$_fun_lastClaimTime((slice, slice, slice, int, int, int, slice, int) $self) impure inline_ref;
+
+;; $ClaimChild$_fun_parent
+((slice, slice, slice, int, int, int, slice, int), slice) $ClaimChild$_fun_parent((slice, slice, slice, int, int, int, slice, int) $self) impure inline_ref;
+
+;; $ClaimChild$_fun_master
+((slice, slice, slice, int, int, int, slice, int), slice) $ClaimChild$_fun_master((slice, slice, slice, int, int, int, slice, int) $self) impure inline_ref;
+
+;; $ClaimChild$_fun_referrer
+((slice, slice, slice, int, int, int, slice, int), slice) $ClaimChild$_fun_referrer((slice, slice, slice, int, int, int, slice, int) $self) impure inline_ref;
+
+;; $ClaimChild$_fun_interval
+((slice, slice, slice, int, int, int, slice, int), int) $ClaimChild$_fun_interval((slice, slice, slice, int, int, int, slice, int) $self) impure inline_ref;
+
+;; $ClaimChild$_fun_referralsCount
+((slice, slice, slice, int, int, int, slice, int), int) $ClaimChild$_fun_referralsCount((slice, slice, slice, int, int, int, slice, int) $self) impure inline_ref;
+
+;; $ChildState$_constructor_interval_lastClaimTime_referralsCount_boost
+((int, int, int, int)) $ChildState$_constructor_interval_lastClaimTime_referralsCount_boost(int interval, int lastClaimTime, int referralsCount, int boost) inline;
+
+;; $ClaimChild$_fun_get_state
+((slice, slice, slice, int, int, int, slice, int), (int, int, int, int)) $ClaimChild$_fun_get_state((slice, slice, slice, int, int, int, slice, int) $self) impure inline_ref;
+
+;; $ClaimChild$_fun_owner
+((slice, slice, slice, int, int, int, slice, int), slice) $ClaimChild$_fun_owner((slice, slice, slice, int, int, int, slice, int) $self) impure inline_ref;
+
+;; $SendParameters$_constructor_to_body_value_mode
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_body_value_mode(slice to, cell body, int value, int mode) inline;
+
+;; $Claim$_constructor_user_referrer_boost_amount
+((int, int, slice, slice)) $Claim$_constructor_user_referrer_boost_amount(slice user, slice referrer, int boost, int amount) inline;
+
+;; $SendParameters$_constructor_to_value_mode
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode(slice to, int value, int mode) inline;
+
+;; $Claim$_constructor_user_referrer_amount_boost
+((int, int, slice, slice)) $Claim$_constructor_user_referrer_amount_boost(slice user, slice referrer, int amount, int boost) inline;
+
+;; $SendParameters$_constructor_to_value_mode_body
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode_body(slice to, int value, int mode, cell body) inline;

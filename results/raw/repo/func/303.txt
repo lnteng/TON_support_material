@@ -1,0 +1,19 @@
+get_public_key: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./pyAndr3w/ton-preprocessed-wallet/func/code.func:54:5: warning: Lack of end_parse.
+    cs~skip_bits(64);
+      ^
+seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./pyAndr3w/ton-preprocessed-wallet/func/code.func:49:20: warning: Lack of end_parse.
+    return get_data().begin_parse().preload_uint(32);
+                     ^
+recv_external: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./pyAndr3w/ton-preprocessed-wallet/func/code.func:33:83: warning: Lack of end_parse.
+    (int stored_seqno, int stored_subwallet, int public_key) = (ds~load_uint(32), ds~load_uint(32), ds.preload_uint(256));
+                                                                                    ^
+recv_external & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./pyAndr3w/ton-preprocessed-wallet/func/code.func:53:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./pyAndr3w/ton-preprocessed-wallet/func/code.func:40:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_uint(stored_seqno + 1, 32)
+      ^

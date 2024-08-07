@@ -1,0 +1,147 @@
+"common-utils.fif" include
+
+// data()
+// (seqno pending_count n k owners pending -- cell)
+//
+// Builds a cell containing wallet's data.
+{
+  <b
+    6 roll 32 u,      // seqno
+    5 roll 16 u,      // pending#
+    4 roll 8 u,       // n
+    3 roll 8 u,       // k
+    rot dict,         // owners
+    swap dict,        // pending
+  b>
+} : data()
+
+// parse-data()
+// (cell -- seqno pending_count n k owners pending)
+//
+// Decodes data stored in the wallet's persistent storage.
+{
+  <s
+    32 u@+
+    16 u@+
+    8 u@+
+    8 u@+
+    dict@+
+    dict@+
+  s>
+} : parse-data()
+
+// order-request()
+// (req_seqno req_valid_until req_mode req_body -- cell)
+//
+// Packs an order into a cell. The actual message body to send is req_body.
+{
+  <b
+    4 roll 32 u,
+    3 roll 32 i,
+    rot 8 u,
+    swap ref,
+  b>
+} : order-request()
+
+// empty-message()
+// (seqno valid_until public_key -- slice)
+//
+// Builds an empty (with no requests) message body, returning it as a Cell.
+{
+  <b
+    3 roll 32 u, // seqno, initially 0
+    rot 32 i,    // valid_until
+    swap B,      // public_key
+  b>
+} : empty-message()
+
+// order-message()
+// (seqno valid_until public_key hash_only? [request or hash] keypairs -- slice)
+//
+// Builds message containing an order for transfer, signing it by specified list of keys.
+// If hash_only is true, stores only the hash of the request (for pending requests).
+{
+  <b
+    // seqno valid_until public_key existing? request keypairs builderO
+    6 roll 32 u,          // seqno, initially 0 
+    5 roll 32 i,          // valid_until
+    4 roll B,             // public_key
+    3 pick 1 i,           // existing?
+    // existing? request keypairs builderO
+    3 roll {
+      rot tuck 
+      // keypairs hash builderO hash
+      <b swap 256 u, b>   // hash(request)
+      ref,
+    } {
+      rot tuck ref,       // request
+      // keypairs request builderO
+      swap hashu swap
+    } cond
+    2 exch
+    // builderO hash keypairs
+    
+    dictnew // -> builderO hash keypairs dict
+      // cycle through keypairs, generate and store signatures
+      { 
+        swap dup null? not
+      } {
+        uncons uncons -rot // -> builderO hash dict keypairs privkey pubkey
+        dup ."  adding signature for key " Bx. cr
+        <b // -> builderO hash dict keypairs privkey pubkey builderI
+          2 pick Blen 64 = {
+            2 roll B, // previously computed signature instead of privkey
+          } {
+            5 pick 3 roll ed25519_sign_uint B, // <- hash privkey
+          } cond
+          // -> builderO hash dict keypairs pubkey builderI
+          swap 256 B>u@
+          // -> builderO hash dict keypairs builderI pubkey
+          3 roll
+          // -> builderO hash dict keypairs builderI pubkey
+          256
+        b>udict! // -> builderO hash keypairs dict ok?
+        0= abort"Unable to store signature of this order" // -> dict
+      } while
+    drop nip 
+    dict,
+  b>
+} : order-message()
+
+// sign-message()
+// (message_body private_key -- slice)
+//
+// Attaches signature to a slice representing message body.
+{
+  over hashu swap ed25519_sign_uint
+  <b 
+    swap B, swap <s s,
+  b>
+} : sign-message()
+
+// parse-order-message()
+// (cell -- sig seqno valid_until last_pubkey hash_only? [request or hash] signatures)
+//
+// Decodes signed request data from a message body.
+{
+  <s
+    64 B@+
+    32 u@+
+    32 i@+
+    256 u@+
+    dup srefs {
+      1 i@+
+      over {
+        ref@+ <s // convert to int
+          256 u@+
+        s>
+      } {
+        ref@+
+      } cond
+      swap dict@+
+    } {
+      null null null
+      3 roll
+    } cond
+  s>
+} : parse-order-message()

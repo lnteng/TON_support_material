@@ -1,0 +1,19 @@
+load_users: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./jaredtrh/tsc5/contracts/task2.fc:126:36: warning: Lack of end_parse.
+      return get_data().begin_parse().skip_bits(267).preload_dict();
+                                     ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./jaredtrh/tsc5/contracts/task2.fc:26:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./jaredtrh/tsc5/contracts/task2.fc:7:15: warning: Lack of end_parse.
+      return (ds~load_msg_addr(), ds.preload_dict());
+                ^
+store_data & load_users: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./jaredtrh/tsc5/contracts/task2.fc:126:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().skip_bits(267).preload_dict();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./jaredtrh/tsc5/contracts/task2.fc:13:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_slice(admin_address)
+              ^

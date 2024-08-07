@@ -1,0 +1,10 @@
+"TonUtil.fif" include
+"Asm.fif" include
+
+"kQCYW5ZEmmV7C1tHT7ZsyicvgVmUnpDI6KOLq4oyEbrkwE7V" parse-smc-addr drop 2=: initiator_nft_addr // parse initiator nft address
+"kQCYW5ZEmmV7C1tHT7ZsyicvgVmUnpDI6KOLq4oyEbrkwE7V" parse-smc-addr drop 2=: contragent_nft_addr // parse contragent nft address
+
+<b
+  initiator_nft_addr Addr, // initiator nft address
+  contragent_nft_addr Addr, // contragent nft address
+b>

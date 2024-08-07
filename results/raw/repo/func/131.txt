@@ -1,0 +1,52 @@
+get_extensions: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonkeeper/w5/contracts/wallet_v5.fc:164:12: warning: Lack of end_parse.
+    return ds~load_dict();
+             ^
+get_public_key: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonkeeper/w5/contracts/wallet_v5.fc:156:36: warning: Lack of end_parse.
+    var cs = get_data().begin_parse().skip_bits(32 + 80);
+                                     ^
+seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonkeeper/w5/contracts/wallet_v5.fc:148:20: warning: Lack of end_parse.
+    return get_data().begin_parse().preload_uint(32);
+                     ^
+get_wallet_id: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonkeeper/w5/contracts/wallet_v5.fc:152:34: warning: Lack of end_parse.
+    return get_data().begin_parse().skip_bits(32).preload_uint(80);
+                                   ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonkeeper/w5/contracts/wallet_v5.fc:129:72: warning: Lack of end_parse.
+      int packed_sender_addr = pack_address(parse_std_addr(full_msg_slice~load_msg_addr()));
+                                                                         ^
+dispatch_request: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonkeeper/w5/contracts/wallet_v5.fc:53:25: warning: Lack of end_parse.
+        cs = cs~load_ref().begin_parse();
+                          ^
+process_signed_request & get_extensions: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tonkeeper/w5/contracts/wallet_v5.fc:163:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse().skip_bits(32 + 80 + 256);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tonkeeper/w5/contracts/wallet_v5.fc:77:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_uint(stored_seqno, 32)
+      ^
+process_signed_request & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tonkeeper/w5/contracts/wallet_v5.fc:156:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse().skip_bits(32 + 80);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tonkeeper/w5/contracts/wallet_v5.fc:77:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_uint(stored_seqno, 32)
+      ^
+dispatch_request & get_extensions: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tonkeeper/w5/contracts/wallet_v5.fc:163:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse().skip_bits(32 + 80 + 256);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tonkeeper/w5/contracts/wallet_v5.fc:44:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(stored_seqno, 32)
+              ^
+dispatch_request & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tonkeeper/w5/contracts/wallet_v5.fc:156:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse().skip_bits(32 + 80);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tonkeeper/w5/contracts/wallet_v5.fc:44:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(stored_seqno, 32)
+              ^

@@ -1,0 +1,34 @@
+$Task4$_internal_binary_NftWithdrawal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task4.code.fc:66:70: warning: Local variable '$locked'nftAddress' is not used
+      var ($locked'nftAddress, $locked'ownerAddress, $locked'tillTime) = $Lock$_not_null($self'lock);
+                                                                       ^
+$Task4$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task4.storage.fc:188:19: warning: Lack of end_parse.
+          return $sc~$Task4$_load();
+                    ^
+$Task4$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task4.code.fc:15:36: warning: Local variable '$self'seed' is not used
+      var (($self'seed, $self'lock)) = (null(), null());
+                                     ^
+$Task4$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task4.code.fc:120:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task4.storage.fc:199:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task4$_contract_store & $Task4$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task4.storage.fc:184:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task4.storage.fc:199:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task4$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task4.code.fc:73:335: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... eryId, __tact_context_get_sender(), __tact_context_get_sender(), null(), 0, $global_emptySlice()))));
+  ...                                                                                                     ^
+$Task4$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./sashasashasasha151/ton-contest/contracts/output/sample_Task4.code.fc:59:321: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... unt_forwardPayload($msg'queryId, $msg'prevOwner, $msg'prevOwner, null(), 0, $global_emptySlice()))));
+  ...                                                                                                     ^

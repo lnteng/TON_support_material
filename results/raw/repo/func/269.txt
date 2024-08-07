@@ -1,0 +1,31 @@
+get_nft_content: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/nft/contracts/nft_collection.fc:198:28: warning: Lack of end_parse.
+    slice common_content = cs~load_ref().begin_parse();
+                             ^
+royalty_params: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/nft/contracts/nft_collection.fc:191:52: warning: Lack of end_parse.
+       return (rs~load_uint(16), rs~load_uint(16), rs~load_msg_addr());
+                                                     ^
+get_collection_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/nft/contracts/nft_collection.fc:179:30: warning: Lack of end_parse.
+    return (next_item_index, cs~load_ref(), owner_address);
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/nft/contracts/nft_collection.fc:88:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/nft/contracts/nft_collection.fc:23:7: warning: Lack of end_parse.
+      ds~load_ref(),  ;; royalty_params
+        ^
+save_data & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/nft/contracts/nft_collection.fc:11:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/nft/contracts/nft_collection.fc:30:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_slice(owner_address)
+      ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/nft/contracts/nft_collection.fc:163:44: warning: UnHandle bounced message with op: 0x32
+        send_raw_message(msg.end_cell(), 128); ;; return all non reserve balance
+                                             ^

@@ -1,0 +1,12 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./button-tech/ton-delegation-pool/contracts/tests/statuses/delegation_pool.fc:134:43: warning: Lack of end_parse.
+      var ( contract_status, deadline ) = ds~update_status(test_current_time);
+                                            ^
+allow_withdrawal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./button-tech/ton-delegation-pool/contracts/tests/statuses/delegation_pool.fc:66:49: warning: Lack of end_parse.
+          var validators = prev_vset.begin_parse().skip_bits(8 + 32 + 32 + 16 + 16 + 64).preload_dict();
+                                                  ^
+allow_withdrawal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./button-tech/ton-delegation-pool/contracts/tests/statuses/delegation_pool.fc:73:44: warning: Lack of end_parse.
+      var validators = cur_vset.begin_parse().skip_bits(8 + 32 + 32 + 16 + 16 + 64).preload_dict();
+                                             ^

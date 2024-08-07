@@ -1,0 +1,32 @@
+get_nft_content: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/compressed-nft-contract/contracts/collection.fc:243:30: warning: Lack of end_parse.
+      slice common_content = cs~load_ref().begin_parse();
+                               ^
+royalty_params: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/compressed-nft-contract/contracts/collection.fc:236:51: warning: Lack of end_parse.
+      return (rs~load_uint(16), rs~load_uint(16), rs~load_msg_addr());
+                                                    ^
+get_nft_api_info: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/compressed-nft-contract/contracts/collection.fc:260:19: warning: Lack of end_parse.
+      cell link = cs~load_ref();
+                    ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/compressed-nft-contract/contracts/collection.fc:202:75: warning: Lack of end_parse.
+          claim(proof_data~load_uint(256), proof_data~load_ref(), proof_data~load_ref());
+                                                                            ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/compressed-nft-contract/contracts/collection.fc:193:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/compressed-nft-contract/contracts/collection.fc:209:79: warning: Lack of end_parse.
+          update(update_data~load_ref(), update_data~load_uint(256), update_data~load_ref());
+                                                                                ^
+parse_nft_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/compressed-nft-contract/contracts/collection.fc:88:35: warning: Lack of end_parse.
+      return (ds~load_msg_addr(), ds~load_ref());
+                                    ^
+get_collection_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/compressed-nft-contract/contracts/collection.fc:224:19: warning: Lack of end_parse.
+      return (-1, cs~load_ref(), storage::owner);
+                    ^

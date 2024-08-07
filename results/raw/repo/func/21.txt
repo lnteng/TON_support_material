@@ -1,0 +1,56 @@
+get_bill_amount: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/payout_nft/nft-item.func:232:30: warning: Local variable 'init?' is not used
+      (int init?, slice owner) = load_volatile_data();
+                               ^
+get_bill_amount: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/payout_nft/nft-item.func:232:30: warning: Local variable 'owner' is not used
+      (int init?, slice owner) = load_volatile_data();
+                               ^
+get_bill_amount: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/payout_nft/nft-item.func:233:50: warning: Local variable '_collection' is not used
+      var (_collection, index, amount, prev, next) = load_static_data();
+                                                   ^
+get_bill_amount: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/payout_nft/nft-item.func:233:50: warning: Local variable 'index' is not used
+      var (_collection, index, amount, prev, next) = load_static_data();
+                                                   ^
+get_bill_amount: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/payout_nft/nft-item.func:233:50: warning: Local variable 'prev' is not used
+      var (_collection, index, amount, prev, next) = load_static_data();
+                                                   ^
+get_bill_amount: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/payout_nft/nft-item.func:233:50: warning: Local variable 'next' is not used
+      var (_collection, index, amount, prev, next) = load_static_data();
+                                                   ^
+get_nft_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/payout_nft/nft-item.func:227:48: warning: Local variable 'prev' is not used
+    var (_collection, index, amount, prev, next) = load_static_data();
+                                                 ^
+get_nft_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/payout_nft/nft-item.func:227:48: warning: Local variable 'next' is not used
+    var (_collection, index, amount, prev, next) = load_static_data();
+                                                 ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/payout_nft/nft-item.func:178:28: warning: Lack of end_parse.
+      int fwd_fee = muldiv(cs~load_coins(), 3, 2); ;; we use message fwd_fee for estimation of forward_payload costs
+                             ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/payout_nft/nft-item.func:210:52: warning: Local variable 'amount' is not used
+        var (_collection, index, amount, prev, next) = load_static_data();
+                                                     ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/payout_nft/nft-item.func:210:52: warning: Local variable 'prev' is not used
+        var (_collection, index, amount, prev, next) = load_static_data();
+                                                     ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/payout_nft/nft-item.func:210:52: warning: Local variable 'next' is not used
+        var (_collection, index, amount, prev, next) = load_static_data();
+                                                     ^
+load_static_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/payout_nft/nft-item.func:58:20: warning: Lack of end_parse.
+      slice next = ds~load_msg_addr();
+                     ^
+load_volatile_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/liquid-staking-contract/contracts/payout_nft/nft-item.func:45:22: warning: Lack of end_parse.
+        collection = ds~load_msg_addr();
+                       ^

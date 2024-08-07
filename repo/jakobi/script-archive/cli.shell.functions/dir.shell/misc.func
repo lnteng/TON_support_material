@@ -1,0 +1,78 @@
+# created     PJ 200907XX jakobi@acm.org
+# copyright:  (c) 2009 jakobi@acm.org, GPL v3 or later
+# archive:    http://jakobi.github.com/script-archive-doc/
+
+alias wget0='wget --retry-connrefused --limit-rate=500k --waitretry=10 --wait=3 --random-wait'
+alias w3mkeys='w3m http://w3m.sourceforge.net/MANUAL' # remember B for back, H for help
+alias smplayer='/usr/bin/smplayer -add-to-playlist'
+alias smplayerclr=': > ~/.config/smplayer/smplayer_files.ini'
+
+# ps aliases
+alias psg0='ps -efww | egrep -i'
+alias psg='ps -ewwo user,pid,ppid,tty,cmd | grep -v grep.-E.-i | grep -E -i'
+alias psgl='ps -ewwo user,pid,ppid,pgid,nice,pri,vsize:7,rssize:7,tty:6,start,pcpu,pmem,time,cmd | grep -v grep.-E.-i | grep -E -i'
+
+# getting from port number to command and pty (e.g. as provided in the remote $SSH_CONNECTION)
+function port2pid { typeset i; i="$1"; [ "${i##*/}" = "$i" ] && i="$i/tcp"; fuser "$i" 2>/dev/null|tail -1|sed 's/ //g;s/$/\n/';} 
+function pid2pty  { ps -p "$1" -o tty|tail -1|sed 's/^\?$//;s/^\(..*\)/\/dev\/\1/';} 
+function port2pty { pid2pty $(port2pid "$1");}
+function port2ps  { ps -wwo user,pid,ppid,pgid,nice,pri,vsize:7,rssize:7,tty:6,start,pcpu,pmem,time,cmd -p $(port2pid "$1");}
+function waitcond_idle      { 
+   : use with -l to loop; 
+   perl -e 'exec qw!waitcond -1 -s 20 -r 60 -cs!, q!WHISTLE 2>/dev/null!, @ARGV[0..$#ARGV-1], q!idle!, $ARGV[$#ARGV];' -- "$@";
+}
+function waitcond_idleport  { 
+   : use with -l to loop; 
+   typeset i; eval 'i=$(port2pty $'$#')'; 
+   # bash is a bit too handicapped in dealing with arbitrary array member changes 
+   perl -e 'exec qw!waitcond -1 -s 20 -r 60 -cs!, q!WHISTLE 2>/dev/null!, @ARGV[0..$#ARGV-2], q!idle!, $ARGV[$#ARGV];' -- "$@" "$i";
+}
+
+if [ -n "_IS_BASH" ]; then
+   # ksh interpretes '.' as marker for discipline functions
+   function ls_size { # user needs to add -d as required
+      ls -1 -al ${1:+"$@"} | sort -nbk5
+   }
+   
+   # history NOTES
+
+   # a) global bash history 
+   # by default: replace history with session's history list ON CLOSE
+   # (for ksh global history may even be the default; consider just $$ 
+   #  or better the pty number as part of the history file to avoid if 
+   #  necessary)
+   # 1. shopt -s histappend # (done on close; however truncated thus still
+   #                          lossy when ending long sessions; to avoid:)
+   # 2. PROMPT_COMMAND='history -a' # (whenever displaying the prompt, 
+   #                          write the previous line to disk:
+   #                          but this may disorient due to mixing history
+   #                          and may be rather interesting in those 
+   #                          to-be-frowned-upon-multi-root situations...) 
+
+   # b) example for readline usage in loops, with retaining 
+   # BOTH the history entry for the loop command (history_self) 
+   # AND the user's readline input in the history list (history -s):
+   # $ history_self; while read -ep ">> "; do history -s "$REPLY"; gr_x $REPLY; done
+   # BUG1: history -r <(...)  # appending works only with plain files!?
+   # BUG2: the first history -s statement in an manually entered shell command
+   #       line kills the line's history entry (may actually be 
+   #       version-depending bug). Further history -s properly append.
+   #       So the next function basically is an idempotent NOP wasting
+   #       the first history -s. Otherwise it's highly annoying to loose
+   #       the loop entry from the history and having to reenter a complex
+   #       command needlessly.
+   function history_self {
+      # "NOP" - avoids loosing the current history line when 
+      #         explicitly appending with history -s 
+      #         history -s "$(history 1|sed -r 's/ *[0-9]+ +//')"; 
+      typeset _last="$(history 1)"
+      history -s "${_last/#*( )+([0-9])+( )/}"
+   }
+
+fi
+
+export EMVSHELL=/bin/bash
+[ "$PERL5LIB" = "" -a "$PERLLIB" = "" ] && export PERL5LIB=~/.perl5lib 
+
+
+# vim:filetype=sh

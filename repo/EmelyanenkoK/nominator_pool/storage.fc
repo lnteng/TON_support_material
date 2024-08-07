@@ -1,0 +1,117 @@
+;; TLB Storage scheme
+;; Note address bits in pseudoaddress is sum of address and workchain,
+;; chances of collision and overflow are negligible. -1:00..000 has no ability to
+;; stake in pool
+;; psevdoAddress#_ address:bits256 = PsevdoAddressInt;
+;; nominator_data#_ active_amount:Grams locked_amount:Grams paid_reward_per_gram:int48 last_stake_utime:uint32 = NominatorData;
+;; nominators_data#_ dict:(HashmapE PsevdoAddressInt NominatorData) = Nominators;
+;;
+;; query_id#_ id:uint64 = QueryId;
+;; recover_stake_request#47657424 time:uint32 response_query_id:uint64 s_addr:MsgAddressInt = RequestBody;
+;; new_stake_request#4e73744b time:uint32 response_query_id:uint64 s_addr:MsgAddressInt amount:Grams = RequestBody;
+;; requests#_ dict:(HashmapE QueryId ^RequestBody) = Requests;
+;;
+;; timestamp#_ time:uint32: Timestamp;
+;; transfers#_ recent_outgoing:(HashmapE Timestamp Grams) = RecentTransfers;
+;;
+;;
+;; proxy#_ addr:MsgAddressInt occupation_time:uint32 = Proxy;
+;; NoProxy#_ = Proxies;
+;; OneProxy#_ first:Proxy = Proxies;
+;; TwoProxies#_ first:Proxy second:Proxy = Proxies;
+;;
+;; storage#_ 
+;;           validator:MsgAddressInt
+;;           total_active:Grams 
+;;           total_locked:Grams
+;;           reward_per_gram:int56       ;; NB! not "Grams" since can be negative
+;;           undistributed_reward:int56
+;;           validator_reward_share:uint16
+;;           validator_cover_ability:uint16
+;;           nominators: Nominators
+;;           requests: Requests;
+;;           transfers: (HashmapE Timestamp Grams);
+;;           proxies: ^Proxies;
+
+(slice, int, int, int, int, int, int, cell, cell, cell, cell) load_data () inline {
+  var ds = get_data().begin_parse();
+  return (
+          ds~load_msg_addr(),
+          ds~load_grams(),
+          ds~load_grams(),
+          ds~load_int(56),
+          ds~load_int(56),
+          ds~load_uint(16),
+          ds~load_uint(16),
+          ds~load_dict(),
+          ds~load_dict(),
+          ds~load_dict(),
+          ds~load_dict()
+          );
+}
+
+() save_data (
+              slice validator,
+              int total_active,
+              int total_locked,
+              int reward_per_gram,
+              int undistributed_reward,
+              int validator_reward_share,
+              int validator_cover_ability,
+              cell nominators,
+              cell requests,
+              cell transfers,
+              cell proxies) impure inline {
+  var st = begin_cell().store_slice(validator)
+                       .store_grams(total_active)
+                       .store_grams(total_locked)
+                       .store_int(reward_per_gram, 56)
+                       .store_int(undistributed_reward, 56)
+                       .store_uint(validator_reward_share, 16)
+                       .store_uint(validator_cover_ability, 16)
+                       .store_dict(nominators)
+                       .store_dict(requests)
+                       .store_dict(transfers)
+                       .store_dict(proxies)
+            .end_cell();
+  set_data(st);
+}
+
+int make_pseudo_address(int wc, int addr_hash) inline {
+  return wc + addr_hash;
+}
+
+(int, int, int, int) get_nominator_data (cell nominators, int workchain, int address_hash, int reward_per_gram) {
+  int key = make_pseudo_address(workchain, address_hash);
+  (slice nominator, int found) = nominators.udict_get?(256, key);
+  if( ~ found) {
+    return (0, 0, reward_per_gram, 0);
+  }
+  return (nominator~load_grams(), nominator~load_grams(), nominator~load_int(48), nominator~load_uint(32));
+}
+
+(cell, ()) ~set_nominator_data (cell nominators,
+                                int workchain, int address_hash,
+                                int active, int locked, int paid_reward_per_gram,
+                                int last_stake_utime) {
+  int key = make_pseudo_address(workchain, address_hash);
+  if (active + locked > 0) {
+    nominators~udict_set_builder(256, key, begin_cell().store_grams(active)
+                                                   .store_grams(locked)
+                                                   .store_int(paid_reward_per_gram, 48)
+                                                   .store_uint(last_stake_utime, 32));
+  } else {
+    nominators~udict_delete?(256,key);
+  }
+  return (nominators, ());
+}
+
+int get_active_balance_by_address_slice(cell nominators, slice addr) {
+  (int wc, int addr_hash) = parse_std_addr(addr);
+  (int active_balance, int _2, int _3, int _4) = nominators.get_nominator_data(wc, addr_hash, 0);
+  return active_balance;
+}
+
+(cell, ()) ~register_request(cell requests, int query_id, cell request_data) {
+  return (requests.udict_set_ref(64, query_id, request_data), ());
+}

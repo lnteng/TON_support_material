@@ -1,0 +1,72 @@
+get_wallet_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/node-wallet.fc:144:100: warning: Local variable 'user_wallet_code' is not used
+      var (public_key, node_host, owner_address, master_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                                                     ^
+get_wallet_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/node-wallet.fc:144:100: warning: Local variable 'node_wallet_code' is not used
+      var (public_key, node_host, owner_address, master_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                                                     ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/node-wallet.fc:102:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+end_call: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/node-wallet.fc:72:100: warning: Local variable 'public_key' is not used
+      var (public_key, node_host, owner_address, master_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                                                     ^
+end_call: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/node-wallet.fc:72:100: warning: Local variable 'node_host' is not used
+      var (public_key, node_host, owner_address, master_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                                                     ^
+end_call: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/node-wallet.fc:72:100: warning: Local variable 'user_wallet_code' is not used
+      var (public_key, node_host, owner_address, master_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                                                     ^
+end_call: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/node-wallet.fc:72:100: warning: Local variable 'node_wallet_code' is not used
+      var (public_key, node_host, owner_address, master_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                                                     ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/node-wallet.fc:16:11: warning: Lack of end_parse.
+          ds~load_ref()        ;; node_wallet_code
+            ^
+init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/node-wallet.fc:27:108: warning: Local variable 'old_node_host' is not used
+      var (old_public_key, old_node_host, owner_address, master_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                                                             ^
+withdraw: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/node-wallet.fc:36:100: warning: Local variable 'public_key' is not used
+      var (public_key, node_host, owner_address, master_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                                                     ^
+withdraw: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/node-wallet.fc:36:100: warning: Local variable 'node_host' is not used
+      var (public_key, node_host, owner_address, master_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                                                     ^
+withdraw: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/node-wallet.fc:36:100: warning: Local variable 'master_address' is not used
+      var (public_key, node_host, owner_address, master_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                                                     ^
+withdraw: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/node-wallet.fc:36:100: warning: Local variable 'user_wallet_code' is not used
+      var (public_key, node_host, owner_address, master_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                                                     ^
+withdraw: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/node-wallet.fc:36:100: warning: Local variable 'node_wallet_code' is not used
+      var (public_key, node_host, owner_address, master_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                                                     ^
+create_call: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/node-wallet.fc:52:100: warning: Local variable 'public_key' is not used
+      var (public_key, node_host, owner_address, master_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                                                     ^
+create_call: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/node-wallet.fc:52:100: warning: Local variable 'node_host' is not used
+      var (public_key, node_host, owner_address, master_address, user_wallet_code, node_wallet_code) = load_data();
+                                                                                                     ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/node-wallet.fc:88:60: warning: UnHandle bounced message with op: 0x271e723
+      send_raw_message(msg.end_cell(), CARRY_REMAINING_VALUE);
+                                                             ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./dTelecom/hack-a-tonx/contracts/contracts/node-wallet.fc:67:60: warning: UnHandle bounced message with op: 0x30c588fa
+      send_raw_message(msg.end_cell(), CARRY_REMAINING_VALUE);
+                                                             ^

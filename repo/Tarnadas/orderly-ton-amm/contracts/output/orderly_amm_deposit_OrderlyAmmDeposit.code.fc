@@ -1,0 +1,243 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "orderly_amm_deposit_OrderlyAmmDeposit.headers.fc";
+#include "orderly_amm_deposit_OrderlyAmmDeposit.stdlib.fc";
+#include "orderly_amm_deposit_OrderlyAmmDeposit.storage.fc";
+
+;;
+;; Contract OrderlyAmmDeposit functions
+;;
+
+(int, slice, slice, slice) $OrderlyAmmDeposit$_contract_init(slice $master, slice $owner, slice $jetton_wallet) impure inline_ref {
+    var (($self'balance, $self'master, $self'owner, $self'jetton_wallet)) = (null(), null(), null(), null());
+    $self'balance = 0;
+    $self'master = $master;
+    $self'owner = $owner;
+    $self'jetton_wallet = $jetton_wallet;
+    return ($self'balance, $self'master, $self'owner, $self'jetton_wallet);
+}
+
+((int, slice, slice, slice), (int, slice, slice, slice, cell)) $OrderlyAmmDeposit$_fun_get_deposit_data((int, slice, slice, slice) $self) impure inline_ref {
+    var (($self'balance, $self'master, $self'owner, $self'jetton_wallet)) = $self;
+    return (($self'balance, $self'master, $self'owner, $self'jetton_wallet), $OrderlyDepositData$_constructor_balance_master_owner_jetton_wallet_walletCode($self'balance, $self'master, $self'owner, $self'jetton_wallet, $StateInit$_get_code($OrderlyAmmDeposit$_init_child(__tact_context_sys, $self'master, $self'owner, $self'jetton_wallet))));
+}
+
+;;
+;; Receivers of a Contract OrderlyAmmDeposit
+;;
+
+(((int, slice, slice, slice)), ()) $OrderlyAmmDeposit$_internal_binary_DepositInternal((int, slice, slice, slice) $self, (int, int, slice) $msg) impure inline {
+    var ($self'balance, $self'master, $self'owner, $self'jetton_wallet) = $self;
+    var ($msg'queryId, $msg'amount, $msg'responseDestination) = $msg;
+    __tact_nop();
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    throw_unless(4429, ( __tact_slice_eq_bits($self'master, $ctx'sender) ));
+    $self'balance = ($self'balance + $msg'amount);
+    throw_unless(62972, ($self'balance >= 0));
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body($msg'responseDestination, 0, false, (64 + 2), $TokenExcesses$_store_cell($TokenExcesses$_constructor_queryId(0))));
+    return (($self'balance, $self'master, $self'owner, $self'jetton_wallet), ());
+}
+
+(((int, slice, slice, slice)), ()) $OrderlyAmmDeposit$_internal_binary_Withdraw((int, slice, slice, slice) $self, (int, int) $msg) impure inline {
+    var ($self'balance, $self'master, $self'owner, $self'jetton_wallet) = $self;
+    var ($msg'queryId, $msg'amount) = $msg;
+    __tact_nop();
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    throw_unless(4429, ( __tact_slice_eq_bits($self'owner, $ctx'sender) ));
+    $self'balance = ($self'balance - $msg'amount);
+    throw_unless(62972, ($self'balance >= 0));
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body($self'master, 0, true, 64, $WithdrawInternal$_store_cell($WithdrawInternal$_constructor_queryId_amount_destination_jetton_wallet_responseDestination($msg'queryId, $msg'amount, $self'owner, $self'jetton_wallet, $ctx'sender))));
+    return (($self'balance, $self'master, $self'owner, $self'jetton_wallet), ());
+}
+
+(((int, slice, slice, slice)), ()) $OrderlyAmmDeposit$_internal_binary_WithdrawAll((int, slice, slice, slice) $self, (int) $msg) impure inline {
+    var ($self'balance, $self'master, $self'owner, $self'jetton_wallet) = $self;
+    var ($msg'queryId) = $msg;
+    __tact_nop();
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    throw_unless(4429, ( __tact_slice_eq_bits($self'owner, $ctx'sender) ));
+    int $amount = $self'balance;
+    throw_unless(5231, ($amount >= 0));
+    $self'balance = 0;
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body($self'master, 0, true, 64, $WithdrawInternal$_store_cell($WithdrawInternal$_constructor_queryId_amount_destination_jetton_wallet_responseDestination($msg'queryId, $amount, $self'owner, $self'jetton_wallet, $ctx'sender))));
+    return (($self'balance, $self'master, $self'owner, $self'jetton_wallet), ());
+}
+
+(((int, slice, slice, slice)), ()) $OrderlyAmmDeposit$_internal_binary_AddLiquidityInternal((int, slice, slice, slice) $self, (int, int, slice, int, slice) $msg) impure inline {
+    var ($self'balance, $self'master, $self'owner, $self'jetton_wallet) = $self;
+    var ($msg'queryId, $msg'amount, $msg'lpAddress, $msg'isBase, $msg'responseDestination) = $msg;
+    __tact_nop();
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    throw_unless(4429, ( __tact_slice_eq_bits($self'master, $ctx'sender) ));
+    $self'balance = ($self'balance - $msg'amount);
+    throw_unless(62972, ($self'balance >= 0));
+    int $queryId = $global_randomInt();
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body($msg'lpAddress, 0, true, 64, $SendLiquidityToLpInternal$_store_cell($SendLiquidityToLpInternal$_constructor_queryId_from_jettonWallet_amount_isBase_responseDestination($msg'queryId, $self'owner, $self'jetton_wallet, $msg'amount, $msg'isBase, $msg'responseDestination))));
+    return (($self'balance, $self'master, $self'owner, $self'jetton_wallet), ());
+}
+
+(((int, slice, slice, slice)), ()) $OrderlyAmmDeposit$_receive_binary_bounce_WithdrawInternal((int, slice, slice, slice) $self, (int, int) $src) impure inline {
+    var ($self'balance, $self'master, $self'owner, $self'jetton_wallet) = $self;
+    var ($src'queryId, $src'amount) = $src;
+    $self'balance = ($self'balance + $src'amount);
+    return (($self'balance, $self'master, $self'owner, $self'jetton_wallet), ());
+}
+
+(((int, slice, slice, slice)), ()) $OrderlyAmmDeposit$_receive_binary_bounce_SendLiquidityToLpInternal((int, slice, slice, slice) $self, (int) $src) impure inline {
+    var ($self'balance, $self'master, $self'owner, $self'jetton_wallet) = $self;
+    var ($src'amount) = $src;
+    $self'balance = ($self'balance + $src'amount);
+    return (($self'balance, $self'master, $self'owner, $self'jetton_wallet), ());
+}
+
+(((int, slice, slice, slice)), ()) $OrderlyAmmDeposit$_receive_binary_bounce_SwapLpInternal((int, slice, slice, slice) $self, (int, int) $src) impure inline {
+    var ($self'balance, $self'master, $self'owner, $self'jetton_wallet) = $self;
+    var ($src'amount, $src'side) = $src;
+    $self'balance = ($self'balance + $src'amount);
+    return (($self'balance, $self'master, $self'owner, $self'jetton_wallet), ());
+}
+
+(((int, slice, slice, slice)), ()) $OrderlyAmmDeposit$_internal_binary_Deploy((int, slice, slice, slice) $self, (int) $deploy) impure inline {
+    var ($self'balance, $self'master, $self'owner, $self'jetton_wallet) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'balance, $self'master, $self'owner, $self'jetton_wallet)~$OrderlyAmmDeposit$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'balance, $self'master, $self'owner, $self'jetton_wallet), ());
+}
+
+;;
+;; Get methods of a Contract OrderlyAmmDeposit
+;;
+
+_ %get_deposit_data() method_id(70330) {
+    var self = $OrderlyAmmDeposit$_contract_load();
+    var res = self~$OrderlyAmmDeposit$_fun_get_deposit_data();
+    return $OrderlyDepositData$_to_external(res);
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://Qmf9ByqkmxnavmKqvrxDyg9Sn5xgMQNWRE1TLLKnVfwHsr";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract OrderlyAmmDeposit
+;;
+
+((int, slice, slice, slice), int) $OrderlyAmmDeposit$_contract_router_internal((int, slice, slice, slice) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        
+        ;; Skip 0xFFFFFFFF
+        in_msg~skip_bits(32);
+        
+        ;; Parse op
+        int op = 0;
+        if (slice_bits(in_msg) >= 32) {
+            op = in_msg.preload_uint(32);
+        }
+        
+        ;; Bounced handler for WithdrawInternal message
+        if (op == 2445898473) {
+            var msg = in_msg~$WithdrawInternal$_load_bounced();
+            self~$OrderlyAmmDeposit$_receive_binary_bounce_WithdrawInternal(msg);
+            return (self, true);
+        }
+        
+        ;; Bounced handler for SendLiquidityToLpInternal message
+        if (op == 4078701601) {
+            var msg = in_msg~$SendLiquidityToLpInternal$_load_bounced();
+            self~$OrderlyAmmDeposit$_receive_binary_bounce_SendLiquidityToLpInternal(msg);
+            return (self, true);
+        }
+        
+        ;; Bounced handler for SwapLpInternal message
+        if (op == 976765715) {
+            var msg = in_msg~$SwapLpInternal$_load_bounced();
+            self~$OrderlyAmmDeposit$_receive_binary_bounce_SwapLpInternal(msg);
+            return (self, true);
+        }
+        
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive DepositInternal message
+    if (op == 305419896) {
+        var msg = in_msg~$DepositInternal$_load();
+        self~$OrderlyAmmDeposit$_internal_binary_DepositInternal(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Withdraw message
+    if (op == 2585211658) {
+        var msg = in_msg~$Withdraw$_load();
+        self~$OrderlyAmmDeposit$_internal_binary_Withdraw(msg);
+        return (self, true);
+    }
+    
+    ;; Receive WithdrawAll message
+    if (op == 1450671399) {
+        var msg = in_msg~$WithdrawAll$_load();
+        self~$OrderlyAmmDeposit$_internal_binary_WithdrawAll(msg);
+        return (self, true);
+    }
+    
+    ;; Receive AddLiquidityInternal message
+    if (op == 4264500838) {
+        var msg = in_msg~$AddLiquidityInternal$_load();
+        self~$OrderlyAmmDeposit$_internal_binary_AddLiquidityInternal(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$OrderlyAmmDeposit$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $OrderlyAmmDeposit$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$OrderlyAmmDeposit$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $OrderlyAmmDeposit$_contract_store(self);
+}

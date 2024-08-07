@@ -1,0 +1,24 @@
+get_nft_content: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAEPiZJa1d7sviL1YySJ0D9nPholnXCP_XWp9CAGcNiluBU/lockup_nft_collection.fc:230:28: warning: Lack of end_parse.
+    slice common_content = cs~load_ref().begin_parse();
+                             ^
+royalty_params: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAEPiZJa1d7sviL1YySJ0D9nPholnXCP_XWp9CAGcNiluBU/lockup_nft_collection.fc:223:52: warning: Lack of end_parse.
+       return (rs~load_uint(16), rs~load_uint(16), rs~load_msg_addr());
+                                                     ^
+get_collection_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAEPiZJa1d7sviL1YySJ0D9nPholnXCP_XWp9CAGcNiluBU/lockup_nft_collection.fc:211:30: warning: Lack of end_parse.
+    return (next_item_index, cs~load_ref(), owner_address);
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAEPiZJa1d7sviL1YySJ0D9nPholnXCP_XWp9CAGcNiluBU/lockup_nft_collection.fc:81:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAEPiZJa1d7sviL1YySJ0D9nPholnXCP_XWp9CAGcNiluBU/lockup_nft_collection.fc:29:8: warning: Lack of end_parse.
+       ds~load_msg_addr() ;; jetton_wallet_address
+         ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAEPiZJa1d7sviL1YySJ0D9nPholnXCP_XWp9CAGcNiluBU/lockup_nft_collection.fc:174:49: warning: UnHandle bounced message with op: 0x5fcc3d14
+              send_raw_message(msg.end_cell(), 64); 
+                                                  ^

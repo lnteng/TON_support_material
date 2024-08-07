@@ -1,0 +1,190 @@
+PROGRAM{
+  DECLPROC __tact_verify_address
+  DECLPROC __gen_write_StdlibTest
+  DECLPROC __gen_read_StdlibTest
+  DECLPROC $__gen_StdlibTest_init
+  DECLPROC __gen_load_StdlibTest
+  DECLPROC __gen_store_StdlibTest
+  DECLPROC $__gen_StdlibTest_sliceEmpty
+  73995 DECLMETHOD $__gen_get_sliceEmpty
+  DECLPROC $__gen_StdlibTest_sliceBits
+  75090 DECLMETHOD $__gen_get_sliceBits
+  DECLPROC $__gen_StdlibTest_sliceRefs
+  77445 DECLMETHOD $__gen_get_sliceRefs
+  DECLPROC $__gen_StdlibTest_receive
+  DECLPROC __gen_router_StdlibTest
+  DECLPROC recv_internal
+  113617 DECLMETHOD supported_interfaces
+  DECLPROC get_abi_ipfs
+  DECLPROC lazy_deployment_completed
+  DECLGLOBVAR __tact_context
+  DECLGLOBVAR __tact_context_sender
+  DECLGLOBVAR __tact_context_sys
+  __tact_verify_address PROCINLINE:<{
+    DUP
+    SBITS
+    267 PUSHINT
+    EQUAL
+    136 THROWIFNOT
+    DUP
+    11 PLDU
+    DUP
+    10 PUSHPOW2
+    EQUAL
+    OVER
+    1279 PUSHINT
+    EQUAL
+    OR
+    136 THROWIFNOT
+    10 PUSHPOW2
+    EQUAL
+    137 THROWIFNOT
+  }>
+  __gen_write_StdlibTest PROCINLINE:<{
+    SWAP
+    257 PUSHINT
+    STIX
+  }>
+  __gen_read_StdlibTest PROCINLINE:<{
+    257 PUSHINT
+    LDIX
+    SWAP
+  }>
+  $__gen_StdlibTest_init PROCREF:<{
+    0 PUSHINT
+  }>
+  __gen_load_StdlibTest PROCINLINE:<{
+    c4 PUSH
+    CTOS
+    LDREF
+    SWAP
+    __tact_context_sys SETGLOB
+    1 LDI
+    SWAP
+    IF:<{
+      __gen_read_StdlibTest INLINECALLDICT
+      NIP
+    }>ELSE<{
+      DROP
+      MYADDR
+      11 PLDU
+      10 PUSHPOW2
+      EQUAL
+      137 THROWIFNOT
+      $__gen_StdlibTest_init INLINECALLDICT
+    }>
+  }>
+  __gen_store_StdlibTest PROCINLINE:<{
+    NEWC
+    __tact_context_sys GETGLOB
+    SWAP
+    STREF
+    TRUE
+    SWAP
+    1 STI
+    SWAP
+    __gen_write_StdlibTest INLINECALLDICT
+    ENDC
+    c4 POP
+  }>
+  $__gen_StdlibTest_sliceEmpty PROCREF:<{
+    NIP
+    SEMPTY
+  }>
+  $__gen_get_sliceEmpty PROC:<{
+    __gen_load_StdlibTest INLINECALLDICT
+    SWAP
+    $__gen_StdlibTest_sliceEmpty INLINECALLDICT
+  }>
+  $__gen_StdlibTest_sliceBits PROCREF:<{
+    NIP
+    SBITS
+  }>
+  $__gen_get_sliceBits PROC:<{
+    __gen_load_StdlibTest INLINECALLDICT
+    SWAP
+    $__gen_StdlibTest_sliceBits INLINECALLDICT
+  }>
+  $__gen_StdlibTest_sliceRefs PROCREF:<{
+    NIP
+    SREFS
+  }>
+  $__gen_get_sliceRefs PROC:<{
+    __gen_load_StdlibTest INLINECALLDICT
+    SWAP
+    $__gen_StdlibTest_sliceRefs INLINECALLDICT
+  }>
+  $__gen_StdlibTest_receive PROCINLINE:<{
+  }>
+  __gen_router_StdlibTest PROCREF:<{
+    0 PUSHINT
+    OVER
+    SBITS
+    31 GTINT
+    IF:<{
+      DROP
+      DUP
+      32 PLDU
+    }>
+    s0 s2 XCHG
+    IFJMP:<{
+      2DROP
+      TRUE
+    }>
+    SWAP
+    0 EQINT
+    SWAP
+    SBITS
+    33 LESSINT
+    AND
+    IFJMP:<{
+      $__gen_StdlibTest_receive INLINECALLDICT
+      TRUE
+    }>
+    FALSE
+  }>
+  recv_internal PROC:<{
+    SWAP
+    CTOS
+    4 LDU
+    SWAP
+    1 PUSHINT
+    AND
+    1 EQINT
+    IF:<{
+      TRUE
+    }>ELSE<{
+      FALSE
+    }>
+    SWAP
+    LDMSGADDR
+    SWAP
+    __tact_verify_address INLINECALLDICT
+    s0 s4 s2 PUXCPU
+    s0 s3 XCHG
+    4 TUPLE
+    __tact_context SETGLOB
+    s0 s2 XCHG
+    __tact_context_sender SETGLOB
+    __gen_load_StdlibTest INLINECALLDICT
+    -ROT
+    __gen_router_StdlibTest INLINECALLDICT
+    DROP
+    __gen_store_StdlibTest INLINECALLDICT
+  }>
+  supported_interfaces PROC:<{
+    123515602279859691144772641439386770278 PUSHINT
+    209801025412363888721030803524359905849 PUSHINT
+    42980537499636128163026532310500881091 PUSHINT
+    209474421377847335869795010607481022628 PUSHINT
+  }>
+  get_abi_ipfs PROC:<{
+    x{697066733a2f2f516d57687074666f38356a66694e794777626a6142385377344b316252397632577169326e617859716570436644} PUSHSLICE
+  }>
+  lazy_deployment_completed PROC:<{
+    c4 PUSH
+    CTOS
+    1 LDI
+    SWAP
+  }>
+}END>c

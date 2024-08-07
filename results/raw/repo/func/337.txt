@@ -1,0 +1,104 @@
+get_amount_selling_ads: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pasosdeJesus/intercambiador/func/func/ads_contract.fc:444:44: warning: Local variable 'address' is not used
+      (slice address, slice sd, int success) = copy_sa~dict::delete_get_min(267);
+                                             ^
+get_amount_selling_ads: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pasosdeJesus/intercambiador/func/func/ads_contract.fc:444:44: warning: Local variable 'sd' is not used
+      (slice address, slice sd, int success) = copy_sa~dict::delete_get_min(267);
+                                             ^
+get_selling_ad_addresses: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pasosdeJesus/intercambiador/func/func/ads_contract.fc:427:44: warning: Local variable 'sd' is not used
+      (slice address, slice sd, int success) = copy_sa~dict::delete_get_min(267);
+                                             ^
+recv_internal: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/repo/./pasosdeJesus/intercambiador/func/func/ads_contract.fc:187:19: warning: PressionLoss
+      forad = forad * 1000000000;
+                    ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./pasosdeJesus/intercambiador/func/func/ads_contract.fc:144:17: warning: Lack of end_parse.
+    int coins = fm~load_coins();
+                  ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./pasosdeJesus/intercambiador/func/func/ads_contract.fc:213:25: warning: Lack of end_parse.
+      int buyercoins = cs2~load_coins();
+                          ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./pasosdeJesus/intercambiador/func/func/ads_contract.fc:225:24: warning: Lack of end_parse.
+      int validuntil = sd~load_uint(64);
+                         ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./pasosdeJesus/intercambiador/func/func/ads_contract.fc:253:24: warning: Lack of end_parse.
+      int validuntil = sd~load_uint(64);
+                         ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./pasosdeJesus/intercambiador/func/func/ads_contract.fc:276:24: warning: Lack of end_parse.
+      int validuntil = sd~load_uint(64);
+                         ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pasosdeJesus/intercambiador/func/func/ads_contract.fc:138:13: warning: Local variable 'flags' is not used
+    var flags = fm~load_uint(4);
+              ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pasosdeJesus/intercambiador/func/func/ads_contract.fc:142:21: warning: Local variable 'rec_address' is not used
+    slice rec_address = fm~load_msg_addr();  ;; 267 bits
+                      ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pasosdeJesus/intercambiador/func/func/ads_contract.fc:316:46: warning: Local variable 'address' is not used
+        (slice address, slice sd, int success) = copy_sa~dict::delete_get_min(267);
+                                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pasosdeJesus/intercambiador/func/func/ads_contract.fc:326:46: warning: Local variable 'address' is not used
+        (slice address, slice sd, int success) = copy_ba~dict::delete_get_min(267);
+                                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pasosdeJesus/intercambiador/func/func/ads_contract.fc:326:46: warning: Local variable 'sd' is not used
+        (slice address, slice sd, int success) = copy_ba~dict::delete_get_min(267);
+                                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pasosdeJesus/intercambiador/func/func/ads_contract.fc:334:46: warning: Local variable 'address' is not used
+        (slice address, slice sd, int success) = copy_pba~dict::delete_get_min(267);
+                                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pasosdeJesus/intercambiador/func/func/ads_contract.fc:336:22: warning: Local variable 'payeer' is not used
+          slice payeer = sd~load_msg_addr();
+                       ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pasosdeJesus/intercambiador/func/func/ads_contract.fc:360:25: warning: Local variable 'valid_until' is not used
+          int valid_until = sd~load_uint(64);
+                          ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pasosdeJesus/intercambiador/func/func/ads_contract.fc:370:46: warning: Local variable 'address' is not used
+        (slice address, slice sd, int success) = payments_buying_ads~dict::delete_get_min(267);
+                                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pasosdeJesus/intercambiador/func/func/ads_contract.fc:374:25: warning: Local variable 'valid_until' is not used
+          int valid_until = cs~load_uint(64);
+                          ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pasosdeJesus/intercambiador/func/func/ads_contract.fc:366:46: warning: Local variable 'address' is not used
+        (slice address, slice sd, int success) = buying_ads~dict::delete_get_min(267);
+                                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pasosdeJesus/intercambiador/func/func/ads_contract.fc:366:46: warning: Local variable 'sd' is not used
+        (slice address, slice sd, int success) = buying_ads~dict::delete_get_min(267);
+                                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pasosdeJesus/intercambiador/func/func/ads_contract.fc:276:20: warning: Local variable 'validuntil' is not used
+      int validuntil = sd~load_uint(64);
+                     ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pasosdeJesus/intercambiador/func/func/ads_contract.fc:253:20: warning: Local variable 'validuntil' is not used
+      int validuntil = sd~load_uint(64);
+                     ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pasosdeJesus/intercambiador/func/func/ads_contract.fc:180:23: warning: Local variable 'sd' is not used
+      var (sd, success) = selling_ads.dict_get?(267, sender_address);
+                        ^
+send_coins: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./pasosdeJesus/intercambiador/func/func/ads_contract.fc:97:21: warning: Lack of end_parse.
+      slice smsg = msg.begin_parse();
+                      ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./pasosdeJesus/intercambiador/func/func/ads_contract.fc:42:27: warning: Lack of end_parse.
+    payments_buying_ads = ds~load_dict();
+                            ^

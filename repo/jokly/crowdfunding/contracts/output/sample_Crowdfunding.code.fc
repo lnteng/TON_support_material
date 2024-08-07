@@ -1,0 +1,193 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_Crowdfunding.headers.fc";
+#include "sample_Crowdfunding.stdlib.fc";
+#include "sample_Crowdfunding.constants.fc";
+#include "sample_Crowdfunding.storage.fc";
+
+;;
+;; Contract Crowdfunding functions
+;;
+
+(slice, int, (slice, slice, int, int, int, slice), cell) $Crowdfunding$_contract_init(slice $factory, int $seqno) impure inline_ref {
+    var (($self'owner, $self'seqno, ($self'params'title, $self'params'description, $self'params'targetContribution, $self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors)) = (null(), null(), null(), null());
+    $self'owner = $factory;
+    $self'seqno = $seqno;
+    ($self'params'title, $self'params'description, $self'params'targetContribution, $self'params'minContribution, $self'params'deadline, $self'params'beneficiary) = $CrowdfundingParams$_constructor_title_description_targetContribution_minContribution_deadline_beneficiary(__gen_slice_string_96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7(), __gen_slice_string_96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7(), 0, 0, 0, __tact_create_address(0, 0));
+    return ($self'owner, $self'seqno, ($self'params'title, $self'params'description, $self'params'targetContribution, $self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors);
+}
+
+((slice, int, (slice, slice, int, int, int, slice), cell), ((slice, slice, int, int, int, slice), int)) $Crowdfunding$_fun_info((slice, int, (slice, slice, int, int, int, slice), cell) $self) impure inline_ref {
+    var (($self'owner, $self'seqno, ($self'params'title, $self'params'description, $self'params'targetContribution, $self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors)) = $self;
+    return (($self'owner, $self'seqno, ($self'params'title, $self'params'description, $self'params'targetContribution, $self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors), $CrowdfundingInfo$_constructor_params_currentContribution(($self'params'title, $self'params'description, $self'params'targetContribution, $self'params'minContribution, $self'params'deadline, $self'params'beneficiary), __tact_my_balance()));
+}
+
+((slice, int, (slice, slice, int, int, int, slice), cell), ()) $Crowdfunding$_fun_requireOwner((slice, int, (slice, slice, int, int, int, slice), cell) $self) impure inline_ref {
+    var (($self'owner, $self'seqno, ($self'params'title, $self'params'description, $self'params'targetContribution, $self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors)) = $self;
+    throw_unless(132, ( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) ));
+    return (($self'owner, $self'seqno, ($self'params'title, $self'params'description, $self'params'targetContribution, $self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors), ());
+}
+
+((slice, int, (slice, slice, int, int, int, slice), cell), slice) $Crowdfunding$_fun_owner((slice, int, (slice, slice, int, int, int, slice), cell) $self) impure inline_ref {
+    var (($self'owner, $self'seqno, ($self'params'title, $self'params'description, $self'params'targetContribution, $self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors)) = $self;
+    return (($self'owner, $self'seqno, ($self'params'title, $self'params'description, $self'params'targetContribution, $self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors), $self'owner);
+}
+
+;;
+;; Receivers of a Contract Crowdfunding
+;;
+
+(((slice, int, (slice, slice, int, int, int, slice), cell)), ()) $Crowdfunding$_internal_binary_StartCrowdfunding((slice, int, (slice, slice, int, int, int, slice), cell) $self, (slice, (slice, slice, int, int, int, slice)) $msg) impure inline {
+    var ($self'owner, $self'seqno, ($self'params'title, $self'params'description, $self'params'targetContribution, $self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors) = $self;
+    var ($msg'creator, ($msg'params'title, $msg'params'description, $msg'params'targetContribution, $msg'params'minContribution, $msg'params'deadline, $msg'params'beneficiary)) = $msg;
+    ($self'owner, $self'seqno, ($self'params'title, $self'params'description, $self'params'targetContribution, $self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors)~$Crowdfunding$_fun_requireOwner();
+    $self'owner = $msg'creator;
+    ($self'params'title, $self'params'description, $self'params'targetContribution, $self'params'minContribution, $self'params'deadline, $self'params'beneficiary) = ($msg'params'title, $msg'params'description, $msg'params'targetContribution, $msg'params'minContribution, $msg'params'deadline, $msg'params'beneficiary);
+    return (($self'owner, $self'seqno, ($self'params'title, $self'params'description, $self'params'targetContribution, $self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors), ());
+}
+
+((slice, int, (slice, slice, int, int, int, slice), cell), ()) $Crowdfunding$_internal_text_9d1f20fd138571b201f1cd0e2c813341ccf7045ff4cd72d87090ee0d56bc420a((slice, int, (slice, slice, int, int, int, slice), cell) $self) impure inline {
+    var ($self'owner, $self'seqno, ($self'params'title, $self'params'description, $self'params'targetContribution, $self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors) = $self;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    throw_unless(24380, ($ctx'value >= $self'params'minContribution));
+    throw_unless(55006, (now() <= $self'params'deadline));
+    slice $sender = __tact_context_get_sender();
+    int $senderContribution = __tact_dict_get_slice_int($self'contributors, 267, $sender, 257);
+    if (null?($senderContribution)) {
+        $self'contributors~__tact_dict_set_slice_int(267, $sender, $ctx'value, 257);
+    } else {
+        int $sc = __tact_not_null($senderContribution);
+        $self'contributors~__tact_dict_set_slice_int(267, $sender, ($sc + $ctx'value), 257);
+    }
+    return (($self'owner, $self'seqno, ($self'params'title, $self'params'description, $self'params'targetContribution, $self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors), ());
+}
+
+((slice, int, (slice, slice, int, int, int, slice), cell), ()) $Crowdfunding$_internal_text_095190194aee611ce895c5503adf85fd864de7905746142f608d3eb2faad14e4((slice, int, (slice, slice, int, int, int, slice), cell) $self) impure inline {
+    var ($self'owner, $self'seqno, ($self'params'title, $self'params'description, $self'params'targetContribution, $self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors) = $self;
+    ($self'owner, $self'seqno, ($self'params'title, $self'params'description, $self'params'targetContribution, $self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors)~$Crowdfunding$_fun_requireOwner();
+    throw_unless(58570, (__tact_my_balance() >= $self'params'targetContribution));
+    $global_send($SendParameters$_constructor_to_value_mode_bounce($self'params'beneficiary, 0, ((2 + 32) + 128), true));
+    return (($self'owner, $self'seqno, ($self'params'title, $self'params'description, $self'params'targetContribution, $self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors), ());
+}
+
+((slice, int, (slice, slice, int, int, int, slice), cell), ()) $Crowdfunding$_internal_text_b0ff00cda639475b5e711360e99508a2790d5ee34d0598e7d8066850f3ac6c11((slice, int, (slice, slice, int, int, int, slice), cell) $self) impure inline {
+    var ($self'owner, $self'seqno, ($self'params'title, $self'params'description, $self'params'targetContribution, $self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors) = $self;
+    throw_unless(30338, (now() > $self'params'deadline));
+    slice $sender = __tact_context_get_sender();
+    int $senderContribution = __tact_dict_get_slice_int($self'contributors, 267, $sender, 257);
+    throw_unless(32630, (~ null?($senderContribution)));
+    int $sc = __tact_not_null($senderContribution);
+    throw_unless(40342, ($sc > 0));
+    $self'contributors~__tact_dict_set_slice_int(267, $sender, 0, 257);
+    $global_send($SendParameters$_constructor_to_value_mode($sender, $sc, 2));
+    return (($self'owner, $self'seqno, ($self'params'title, $self'params'description, $self'params'targetContribution, $self'params'minContribution, $self'params'deadline, $self'params'beneficiary), $self'contributors), ());
+}
+
+;;
+;; Get methods of a Contract Crowdfunding
+;;
+
+_ %info() method_id(71178) {
+    var self = $Crowdfunding$_contract_load();
+    var res = self~$Crowdfunding$_fun_info();
+    return $CrowdfundingInfo$_to_external(res);
+}
+
+_ %owner() method_id(83229) {
+    var self = $Crowdfunding$_contract_load();
+    var res = self~$Crowdfunding$_fun_owner();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128,
+        "org.ton.ownable"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmPBx1rtLbXcDJjae1DMBAgdGMbeQ7BHE2pB6ijt8TmzgG";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract Crowdfunding
+;;
+
+((slice, int, (slice, slice, int, int, int, slice), cell), int) $Crowdfunding$_contract_router_internal((slice, int, (slice, slice, int, int, int, slice), cell) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive StartCrowdfunding message
+    if (op == 1544337204) {
+        var msg = in_msg~$StartCrowdfunding$_load();
+        self~$Crowdfunding$_internal_binary_StartCrowdfunding(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "contribute" message
+        if (text_op == 0x9d1f20fd138571b201f1cd0e2c813341ccf7045ff4cd72d87090ee0d56bc420a) {
+            self~$Crowdfunding$_internal_text_9d1f20fd138571b201f1cd0e2c813341ccf7045ff4cd72d87090ee0d56bc420a();
+            return (self, true);
+        }
+        
+        ;; Receive "withdraw" message
+        if (text_op == 0x095190194aee611ce895c5503adf85fd864de7905746142f608d3eb2faad14e4) {
+            self~$Crowdfunding$_internal_text_095190194aee611ce895c5503adf85fd864de7905746142f608d3eb2faad14e4();
+            return (self, true);
+        }
+        
+        ;; Receive "refund" message
+        if (text_op == 0xb0ff00cda639475b5e711360e99508a2790d5ee34d0598e7d8066850f3ac6c11) {
+            self~$Crowdfunding$_internal_text_b0ff00cda639475b5e711360e99508a2790d5ee34d0598e7d8066850f3ac6c11();
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $Crowdfunding$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$Crowdfunding$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $Crowdfunding$_contract_store(self);
+}

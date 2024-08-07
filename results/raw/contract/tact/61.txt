@@ -1,0 +1,26 @@
+$JettonDefaultWallet$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQD5uPRJPuQwOrLEb9wPop7lQ_iJ6iWGQdhOoyFFbriA0ejg/output/sample_JettonDefaultWallet.storage.fc:246:23: warning: Lack of end_parse.
+      var v'price = sc_1~load_int(257);
+                        ^
+$JettonDefaultWallet$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQD5uPRJPuQwOrLEb9wPop7lQ_iJ6iWGQdhOoyFFbriA0ejg/output/sample_JettonDefaultWallet.storage.fc:290:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$JettonDefaultWallet$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQD5uPRJPuQwOrLEb9wPop7lQ_iJ6iWGQdhOoyFFbriA0ejg/output/sample_JettonDefaultWallet.storage.fc:270:19: warning: Lack of end_parse.
+          return $sc~$JettonDefaultWallet$_load();
+                    ^
+$JettonDefaultWallet$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQD5uPRJPuQwOrLEb9wPop7lQ_iJ6iWGQdhOoyFFbriA0ejg/output/sample_JettonDefaultWallet.code.fc:132:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQD5uPRJPuQwOrLEb9wPop7lQ_iJ6iWGQdhOoyFFbriA0ejg/output/sample_JettonDefaultWallet.storage.fc:281:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$JettonDefaultWallet$_contract_store & $JettonDefaultWallet$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQD5uPRJPuQwOrLEb9wPop7lQ_iJ6iWGQdhOoyFFbriA0ejg/output/sample_JettonDefaultWallet.storage.fc:266:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQD5uPRJPuQwOrLEb9wPop7lQ_iJ6iWGQdhOoyFFbriA0ejg/output/sample_JettonDefaultWallet.storage.fc:281:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

@@ -1,0 +1,363 @@
+use "sdl.fc"
+use "foam.fc"
+use "button.fc"
+use "rectangle.fc"
+use "image.fc"
+use "composite.fc"
+use "column.fc"
+
+import i32 puts(string str);
+
+import void printnum(i32 num);
+
+struct State
+{
+    counter: 0
+};
+
+struct SideBarButton : Item
+{
+	icon
+};
+
+struct SideBar : Item
+{
+	items
+};
+
+struct SideBarItem
+{
+	icon
+};
+
+function expand(SideBarButton item)
+{
+	return Rectangle
+	{
+		x: item.x,
+		y: item.y,
+		width: item.width,
+		height: item.height,
+		color: rgb(210, 51, 81),
+		children: [
+			Image
+			{
+				x: 25,// item.x + ((item.width - 50) / 2),
+				y: item.y + ((item.height - 50) / 2),
+				width: 50,
+				height: 50,
+				source: item.icon
+			}
+		]
+	};
+}
+
+function createSideBarButton(SideBarItem item)
+{
+	return LayoutItem {
+		stretch: 0,
+		minimum: 100,
+		item: SideBarButton
+		{
+			icon: item.icon
+		}
+	};
+}
+
+function itemsFor((SideBarItem item, ...items))
+{
+	return createSideBarButton(item) -> itemsFor(...items);
+}
+
+function itemsFor(SideBarItem item)
+{
+	return createSideBarButton(item);
+}
+
+function expand(SideBar item)
+{
+	return Rectangle {
+		width: item.width,
+		height: item.height,
+		color: rgb(210, 51, 81),
+		children: [
+			Column
+			{
+				children: itemsFor(item.items)
+			}
+		]
+	};
+}
+
+function increaseCounter(State state)
+{
+    return state with
+    {
+        counter: state.counter + 1
+    };
+}
+
+function decreaseCounter(State state)
+{
+    return state with
+    {
+        counter: state.counter - 1
+    };
+}
+
+struct ToolBar : Item
+{
+	items
+};
+
+struct ToolBarItem : Item
+{
+	text,
+	image
+};
+
+struct IconSource
+{
+	name,
+	data: nothing
+}
+
+function icon(string source)
+{
+	return IconSource
+	{
+		name: source
+	};
+}
+
+function itemsFor((ToolBarItem item, ...items), i32 index)
+{
+	return itemsFor(item, index) -> itemsFor(...items, index + 1);
+}
+
+function poo(EventState state, Conditional item)
+{
+	if (containsMouse(item, state.motion))
+	{
+		return 1;
+	}
+
+	return 0;
+}
+
+function isCloaked(EventState state, Cloak item)
+{
+	if (containsMouse(item, state.motion))
+	{
+		return false;
+	}
+
+	return true;
+}
+
+function itemsFor(ToolBarItem item, i32 index)
+{
+	return LayoutItem
+	{
+		item: Row
+		{
+			name: "row",
+			spacing: 0,
+			children: [
+				LayoutItem
+				{
+					minimum: 20,
+					item: Image
+					{
+						source: item.image
+					}
+				},
+				LayoutItem
+				{
+					item: Text
+					{
+						fontName: "/usr/share/fonts/noto/NotoSans-Regular.ttf",
+						fontSize: 12,
+						text: item.text
+					}
+				}
+			]
+		}
+	};
+}
+
+function expand(ToolBar toolBar)
+{
+	return Rectangle
+	{
+		width: toolBar.width,
+		height: toolBar.height,
+		color: window,
+		children: Row
+		{
+			spacing: 0,
+			children: itemsFor(...toolBar.items, 0)
+		}
+	};
+}
+
+struct Editor : Item;
+struct Header : Item;
+
+function expand(Header header)
+{
+	return Row
+	{
+		spacing: 1,
+		children: [
+			LayoutItem
+			{
+				minimum: 100,
+				item: Rectangle
+				{
+					color: light
+				}
+			},
+			LayoutItem
+			{
+				stretch: 1,
+				item: Rectangle
+				{
+					color: light
+				}
+			}
+		]
+	};
+}
+
+function expand(Editor editor)
+{
+	return Column
+	{
+		spacing: 1,
+		children: [
+			LayoutItem
+			{
+				minimum: 35,
+				item: Header {}
+			},
+			LayoutItem
+			{
+				stretch: 1,
+				item: Row
+				{
+					spacing: 1,
+					children: [
+						LayoutItem
+						{
+							minimum: 100,
+							item: Rectangle
+							{
+								color: light
+							}
+						},
+						LayoutItem
+						{
+							stretch: 1,
+							item: Rectangle
+							{
+								color: light
+							}
+						}
+					]
+				}
+			}
+		]
+	};
+}
+
+global window: rgb(224, 224, 224)
+global light: rgb(255, 255, 255)
+
+function application(State state)
+{
+    return Column
+    {
+		children: [
+			LayoutItem
+			{
+				stretch: 1,
+				item: Rectangle
+				{
+					color: window,
+					children: [
+						Column
+						{
+							spacing: 0,
+							children: [
+								LayoutItem
+								{
+									minimum: 30,
+									item: ToolBar
+									{
+										items: [
+											ToolBarItem
+											{
+												text: "Save",
+												image: icon("document-save")
+											},
+											ToolBarItem
+											{
+												text: "Add actor",
+												image: icon("list-add")
+											},
+											ToolBarItem
+											{
+												text: "Create easing",
+												image: icon("join")
+											},
+											ToolBarItem
+											{
+												text: "Load guides",
+												image: icon("show-guides")
+											},
+											ToolBarItem
+											{
+												text: "Settings",
+												image: icon("configure")
+											}
+										]
+									}
+								},
+								// LayoutItem
+								// {
+								// 	stretch: 1,
+								// 	item: Editor {}
+								// },
+								LayoutItem
+								{
+									minimum: 30,
+									item: Rectangle
+									{
+										color: window
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		]
+    }
+}
+
+function initState()
+{
+    return State {};
+}
+
+export i32 main()
+{
+    let definition = ApplicationDefinition
+    {
+        state: initState,
+        ui: application,
+    };
+
+    return Foam::run(definition);
+}

@@ -1,0 +1,23 @@
+$VftMasterContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftMasterContract.code.fc:14:48: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'statementsCount)) = (null(), 0);
+                                                 ^
+$VftMasterContract$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftMasterContract.storage.fc:184:19: warning: Lack of end_parse.
+          return $sc~$VftMasterContract$_load();
+                    ^
+$VftStatementContract$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftMasterContract.storage.fc:216:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$VftMasterContract$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftMasterContract.code.fc:127:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftMasterContract.storage.fc:195:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$VftMasterContract$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftMasterContract.code.fc:47:305: warning: UnHandle bounced message with op: 0x53eae83c
+  ... _context_get_sender(), ($msg'data'statement, $msg'data'url))), 10000000, 2, $init'code, $init'data));
+  ...                                                                                                     ^

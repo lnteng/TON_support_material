@@ -1,0 +1,16 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBqod5B5cskGLT5UZS5hQ0fGgY2G-e-QJ_UgId8CJ-HLS8v/migration_master.fc:69:22: warning: Lack of end_parse.
+      slice sender = cs~load_msg_addr();
+                       ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBqod5B5cskGLT5UZS5hQ0fGgY2G-e-QJ_UgId8CJ-HLS8v/migration_master.fc:17:30: warning: Lack of end_parse.
+      cell new_wallet_code = ds~load_ref();
+                               ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBqod5B5cskGLT5UZS5hQ0fGgY2G-e-QJ_UgId8CJ-HLS8v/migration_master.fc:39:20: warning: UnHandle bounced message with op: 0xf8a7ea5
+      .end_cell(), 1);
+                     ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBqod5B5cskGLT5UZS5hQ0fGgY2G-e-QJ_UgId8CJ-HLS8v/migration_master.fc:55:20: warning: UnHandle bounced message with op: 0x595f07bc
+      .end_cell(), 1);
+                     ^

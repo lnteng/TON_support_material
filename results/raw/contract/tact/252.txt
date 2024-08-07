@@ -1,0 +1,11 @@
+$DmailMail$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCnMYr60vXcUAhM0JslhE28jGYXpT91mAjhhM_I6tTed2QW/output/sample_DmailMail.storage.fc:90:22: warning: Lack of end_parse.
+      int $loaded = $sc~load_int(1);
+                       ^
+$DmailMail$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCnMYr60vXcUAhM0JslhE28jGYXpT91mAjhhM_I6tTed2QW/output/sample_DmailMail.code.fc:54:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCnMYr60vXcUAhM0JslhE28jGYXpT91mAjhhM_I6tTed2QW/output/sample_DmailMail.storage.fc:101:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

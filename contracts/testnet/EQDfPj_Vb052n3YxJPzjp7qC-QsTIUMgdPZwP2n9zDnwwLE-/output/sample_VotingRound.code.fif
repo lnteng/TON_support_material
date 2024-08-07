@@ -1,0 +1,1178 @@
+PROGRAM{
+  DECLPROC __tact_verify_address
+  DECLPROC __tact_load_address
+  DECLPROC __tact_store_address
+  DECLPROC __tact_my_balance
+  DECLPROC __tact_not_null
+  DECLPROC __tact_context_get
+  DECLPROC __tact_context_get_sender
+  DECLPROC __tact_store_bool
+  DECLPROC __tact_dict_set_int_int
+  DECLPROC __tact_dict_get_int_int
+  DECLPROC __tact_dict_set_int_cell
+  DECLPROC __tact_dict_get_int_cell
+  DECLPROC __tact_dict_set_int_slice
+  DECLPROC __tact_dict_set_slice_int
+  DECLPROC __tact_dict_get_slice_int
+  DECLPROC __tact_slice_eq_bits
+  DECLPROC $Deploy$_load
+  DECLPROC $DeployOk$_store
+  DECLPROC $DeployOk$_store_cell
+  DECLPROC $PayloadVotes$_store
+  DECLPROC $PayloadVotes$_store_cell
+  DECLPROC $PayloadVotes$_load
+  DECLPROC $PayloadVotes$_as_optional
+  DECLPROC $PayloadVotes$_load_opt
+  DECLPROC $RoundParticipantInfo$_store
+  DECLPROC $RoundParticipantInfo$_store_cell
+  DECLPROC $RoundParticipantInfo$_load
+  DECLPROC $RoundParticipantInfo$_as_optional
+  DECLPROC $RoundParticipantInfo$_load_opt
+  DECLPROC $InternalRoundOpened$_store
+  DECLPROC $InternalRoundOpened$_store_cell
+  DECLPROC $InternalVote$_load
+  DECLPROC $InternalFinalize$_load
+  DECLPROC $InternalFinalized$_store
+  DECLPROC $InternalFinalized$_store_cell
+  DECLPROC $VotingRound$_store
+  DECLPROC $VotingRound$_load
+  DECLPROC $StateInit$_not_null
+  DECLPROC $Context$_get_value
+  DECLPROC $PayloadVotes$_not_null
+  DECLPROC $RoundParticipantInfo$_not_null
+  DECLPROC $VotingRound$init$_load
+  DECLPROC $VotingRound$_contract_init
+  DECLPROC $VotingRound$_contract_load
+  DECLPROC $VotingRound$_contract_store
+  DECLPROC $global_send
+  DECLPROC $VotingRound$_fun_participantsCount
+  DECLPROC $VotingRound$_fun_winnerPayload
+  DECLPROC $VotingRound$_fun_winnerVotes
+  DECLPROC $VotingRound$_fun_winnerGuarded
+  DECLPROC $SendParameters$_constructor_bounce_to_value_mode_body_code_data
+  DECLPROC $VotingRound$_fun_forward
+  DECLPROC $VotingRound$_fun_reply
+  DECLPROC $VotingRound$_fun_notify
+  DECLPROC $InternalRoundOpened$_constructor_round
+  DECLPROC $RoundParticipantInfo$_constructor_address_votes_payloadHash_guard
+  DECLPROC $PayloadVotes$_constructor_payload_votes_guarded
+  DECLPROC $SendParameters$_constructor_to_body_value_mode
+  DECLPROC $InternalFinalized$_constructor_round_winnerPayload_winnerVotes_winnerGuarded_goodParticipants_goodParticipantsCount_goodParticipantsVotes_badParticipants_badParticipantsCount_badParticipantsVotes
+  DECLPROC $DeployOk$_constructor_queryId
+  DECLPROC $VotingRound$_internal_text_12511bf31bf6bf76e15f462c80fde0373029b30cc9665d2141bd1db5e63d089a
+  DECLPROC $VotingRound$_internal_binary_InternalVote
+  DECLPROC $VotingRound$_internal_binary_InternalFinalize
+  DECLPROC $VotingRound$_internal_binary_Deploy
+  89176 DECLMETHOD %participantsCount
+  102170 DECLMETHOD %winnerPayload
+  101316 DECLMETHOD %winnerVotes
+  81599 DECLMETHOD %winnerGuarded
+  113617 DECLMETHOD supported_interfaces
+  121275 DECLMETHOD get_abi_ipfs
+  115390 DECLMETHOD lazy_deployment_completed
+  DECLPROC $VotingRound$_contract_router_internal
+  DECLPROC recv_internal
+  DECLGLOBVAR __tact_context
+  DECLGLOBVAR __tact_context_sender
+  DECLGLOBVAR __tact_context_sys
+  DECLGLOBVAR __tact_randomized
+  __tact_verify_address PROCINLINE:<{
+    DUP
+    SBITS
+    267 PUSHINT
+    EQUAL
+    136 THROWIFNOT
+    DUP
+    11 PLDU
+    DUP
+    1279 PUSHINT
+    EQUAL
+    137 THROWIF
+    10 PUSHPOW2
+    EQUAL
+    136 THROWIFNOT
+  }>
+  __tact_load_address PROCINLINE:<{
+    LDMSGADDR
+    SWAP
+    __tact_verify_address INLINECALLDICT
+  }>
+  __tact_store_address PROCINLINE:<{
+    __tact_verify_address INLINECALLDICT
+    STSLICER
+  }>
+  __tact_my_balance PROCINLINE:<{
+    BALANCE
+    FIRST
+  }>
+  __tact_not_null PROCINLINE:<{
+    DUP
+    ISNULL
+    128 THROWIF
+  }>
+  __tact_context_get PROCINLINE:<{
+    __tact_context GETGLOB
+    4 UNTUPLE
+  }>
+  __tact_context_get_sender PROCINLINE:<{
+    __tact_context_sender GETGLOB
+  }>
+  __tact_store_bool PROCINLINE:<{
+    SWAP
+    1 STI
+  }>
+  __tact_dict_set_int_int PROCINLINE:<{
+    OVER
+    ISNULL
+    IF:<{
+      2DROP
+      -ROT
+      DICTIDEL
+      DROP
+    }>ELSE<{
+      NEWC
+      SWAP
+      STIX
+      s1 s3 s3 XCHG3
+      DICTISETB
+    }>
+  }>
+  __tact_dict_get_int_int PROCINLINE:<{
+    s1 s3 s3 XCHG3
+    DICTIGET
+    NULLSWAPIFNOT
+    IF:<{
+      SWAP
+      LDIX
+      DROP
+    }>ELSE<{
+      2DROP
+      PUSHNULL
+    }>
+  }>
+  __tact_dict_set_int_cell PROCINLINE:<{
+    DUP
+    ISNULL
+    IF:<{
+      DROP
+      -ROT
+      DICTIDEL
+      DROP
+    }>ELSE<{
+      s1 s3 s3 XCHG3
+      DICTISETREF
+    }>
+  }>
+  __tact_dict_get_int_cell PROCINLINE:<{
+    -ROT
+    DICTIGETREF
+    NULLSWAPIFNOT
+    IF:<{
+    }>ELSE<{
+      DROP
+      PUSHNULL
+    }>
+  }>
+  __tact_dict_set_int_slice PROCINLINE:<{
+    DUP
+    ISNULL
+    IF:<{
+      DROP
+      -ROT
+      DICTIDEL
+      DROP
+    }>ELSE<{
+      s1 s3 s3 XCHG3
+      DICTISET
+    }>
+  }>
+  __tact_dict_set_slice_int PROCINLINE:<{
+    OVER
+    ISNULL
+    IF:<{
+      2DROP
+      -ROT
+      DICTDEL
+      DROP
+    }>ELSE<{
+      NEWC
+      SWAP
+      STIX
+      s1 s3 s3 XCHG3
+      DICTSETB
+    }>
+  }>
+  __tact_dict_get_slice_int PROCINLINE:<{
+    s1 s3 s3 XCHG3
+    DICTGET
+    NULLSWAPIFNOT
+    IF:<{
+      SWAP
+      LDIX
+      DROP
+    }>ELSE<{
+      2DROP
+      PUSHNULL
+    }>
+  }>
+  __tact_slice_eq_bits PROCINLINE:<{
+    SDEQ
+  }>
+  $Deploy$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    2490013878 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    64 LDU
+    SWAP
+  }>
+  $DeployOk$_store PROCINLINE:<{
+    2952335191 PUSHINT
+    ROT
+    32 STU
+    64 STU
+  }>
+  $DeployOk$_store_cell PROCINLINE:<{
+    NEWC
+    SWAP
+    $DeployOk$_store INLINECALLDICT
+    ENDC
+  }>
+  $PayloadVotes$_store PROCINLINE:<{
+    NEWC
+    s0 s3 XCHG2
+    STSLICER
+    ENDC
+    s0 s3 XCHG2
+    STREF
+    s1 s2 XCHG
+    257 PUSHINT
+    STIX
+    1 STI
+  }>
+  $PayloadVotes$_store_cell PROCINLINE:<{
+    NEWC
+    3 -ROLL
+    $PayloadVotes$_store INLINECALLDICT
+    ENDC
+  }>
+  $PayloadVotes$_load PROCINLINE:<{
+    LDREF
+    SWAP
+    CTOS
+    SWAP
+    257 PUSHINT
+    LDIX
+    1 LDI
+    3 -ROLL
+  }>
+  $PayloadVotes$_as_optional PROCINLINE:<{
+    3 TUPLE
+  }>
+  $PayloadVotes$_load_opt PROCINLINE:<{
+    DUP
+    ISNULL
+    IF:<{
+      DROP
+      PUSHNULL
+    }>ELSE<{
+      CTOS
+      $PayloadVotes$_load INLINECALLDICT
+      1 3 BLKDROP2
+      $PayloadVotes$_as_optional INLINECALLDICT
+    }>
+  }>
+  $RoundParticipantInfo$_store PROCINLINE:<{
+    s4 s3 XCHG2
+    __tact_store_address INLINECALLDICT
+    257 PUSHINT
+    STIX
+    s1 s2 XCHG
+    257 PUSHINT
+    STIX
+    1 STI
+  }>
+  $RoundParticipantInfo$_store_cell PROCINLINE:<{
+    NEWC
+    4 -ROLL
+    $RoundParticipantInfo$_store INLINECALLDICT
+    ENDC
+  }>
+  $RoundParticipantInfo$_load PROCINLINE:<{
+    __tact_load_address INLINECALLDICT
+    SWAP
+    257 PUSHINT
+    LDIX
+    257 PUSHINT
+    LDIX
+    1 LDI
+    4 -ROLL
+  }>
+  $RoundParticipantInfo$_as_optional PROCINLINE:<{
+    4 TUPLE
+  }>
+  $RoundParticipantInfo$_load_opt PROCINLINE:<{
+    DUP
+    ISNULL
+    IF:<{
+      DROP
+      PUSHNULL
+    }>ELSE<{
+      CTOS
+      $RoundParticipantInfo$_load INLINECALLDICT
+      1 4 BLKDROP2
+      $RoundParticipantInfo$_as_optional INLINECALLDICT
+    }>
+  }>
+  $InternalRoundOpened$_store PROCINLINE:<{
+    2289982627 PUSHINT
+    ROT
+    32 STU
+    257 PUSHINT
+    STIX
+  }>
+  $InternalRoundOpened$_store_cell PROCINLINE:<{
+    NEWC
+    SWAP
+    $InternalRoundOpened$_store INLINECALLDICT
+    ENDC
+  }>
+  $InternalVote$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    2008725369 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    257 PUSHINT
+    LDIX
+    LDREF
+    SWAP
+    CTOS
+    SWAP
+    __tact_load_address INLINECALLDICT
+    SWAP
+    1 LDI
+    LDGRAMS
+    5 -ROLL
+  }>
+  $InternalFinalize$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    4124677558 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    257 PUSHINT
+    LDIX
+    SWAP
+  }>
+  $InternalFinalized$_store PROCREF:<{
+    2800852515 PUSHINT
+    s0 s11 XCHG2
+    32 STU
+    s1 s9 XCHG
+    257 PUSHINT
+    STIX
+    s7 PUSH
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+      SWAP
+      1 STI
+      NEWC
+      s0 s8 XCHG2
+      STSLICER
+      ENDC
+      s0 s7 XCHG2
+      STREF
+    }>ELSE<{
+      s7 POP
+      FALSE
+      s0 s7 XCHG2
+      1 STI
+    }>
+    s5 PUSH
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+      SWAP
+      1 STI
+      s1 s5 XCHG
+      257 PUSHINT
+      STIX
+    }>ELSE<{
+      s5 POP
+      FALSE
+      s0 s5 XCHG2
+      1 STI
+    }>
+    s1 s3 XCHG
+    1 STI
+    STDICT
+    257 PUSHINT
+    STIX
+    STDICT
+    SWAP
+    NEWC
+    STDICT
+    s1 s2 XCHG
+    257 PUSHINT
+    STIX
+    s1 s2 XCHG
+    STDICT
+    ENDC
+    SWAP
+    STREF
+  }>
+  $InternalFinalized$_store_cell PROCINLINE:<{
+    NEWC
+    10 -ROLL
+    $InternalFinalized$_store INLINECALLDICT
+    ENDC
+  }>
+  $VotingRound$_store PROCINLINE:<{
+    s12 s11 XCHG2
+    __tact_store_address INLINECALLDICT
+    s1 s9 XCHG
+    257 PUSHINT
+    STIX
+    s1 s7 XCHG
+    STDICT
+    s1 s5 XCHG
+    STDICT
+    s0 s3 XCHG
+    NEWC
+    STDICT
+    s1 s2 XCHG
+    257 PUSHINT
+    STIX
+    STDICT
+    s1 s2 XCHG
+    257 PUSHINT
+    STIX
+    s1 s2 XCHG
+    1 STI
+    s2 PUSH
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+      SWAP
+      1 STI
+      NEWC
+      s0 s3 XCHG2
+      STSLICER
+      ENDC
+      ROT
+      STREF
+    }>ELSE<{
+      s2 POP
+      FALSE
+      ROT
+      1 STI
+    }>
+    s3 PUSH
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+      SWAP
+      1 STI
+      s1 s3 XCHG
+      257 PUSHINT
+      STIX
+    }>ELSE<{
+      s3 POP
+      FALSE
+      s0 s3 XCHG2
+      1 STI
+    }>
+    1 STI
+    ENDC
+    SWAP
+    STREF
+  }>
+  $VotingRound$_load PROCINLINE:<{
+    __tact_load_address INLINECALLDICT
+    SWAP
+    257 PUSHINT
+    LDIX
+    LDDICT
+    LDDICT
+    LDREF
+    SWAP
+    CTOS
+    LDDICT
+    257 PUSHINT
+    LDIX
+    LDDICT
+    257 PUSHINT
+    LDIX
+    1 LDI
+    1 LDI
+    SWAP
+    IF:<{
+      LDREF
+      SWAP
+      CTOS
+    }>ELSE<{
+      PUSHNULL
+    }>
+    SWAP
+    1 LDI
+    SWAP
+    IF:<{
+      257 PUSHINT
+      LDIX
+    }>ELSE<{
+      PUSHNULL
+      SWAP
+    }>
+    1 LDI
+    DROP
+    s8 s12 XCHG
+    s8 s11 XCHG
+    s8 s10 XCHG
+    s8 s9 XCHG
+  }>
+  $StateInit$_not_null PROCINLINE:<{
+    DUP
+    ISNULL
+    128 THROWIF
+    2 UNTUPLE
+  }>
+  $Context$_get_value PROCINLINE:<{
+    s1 s3 XCHG
+    3 BLKDROP
+  }>
+  $PayloadVotes$_not_null PROCINLINE:<{
+    DUP
+    ISNULL
+    128 THROWIF
+    3 UNTUPLE
+  }>
+  $RoundParticipantInfo$_not_null PROCINLINE:<{
+    DUP
+    ISNULL
+    128 THROWIF
+    4 UNTUPLE
+  }>
+  $VotingRound$init$_load PROCINLINE:<{
+    __tact_load_address INLINECALLDICT
+    SWAP
+    257 PUSHINT
+    LDIX
+    -ROT
+  }>
+  $VotingRound$_contract_init PROCREF:<{
+    PUSHNULL
+    PUSHNULL
+    PUSHNULL
+    PUSHNULL
+    PUSHNULL
+    0 PUSHINT
+    PUSHNULL
+    OVER
+    s3 s5 XCHG
+    s4 s3 s0 XCHG3
+    FALSE
+    s0 s0 s3 XCHG3
+    FALSE
+  }>
+  $VotingRound$_contract_load PROCREF:<{
+    c4 PUSH
+    CTOS
+    LDREF
+    SWAP
+    __tact_context_sys SETGLOB
+    1 LDI
+    SWAP
+    IFJMP:<{
+      $VotingRound$_load INLINECALLDICT
+      1 12 BLKDROP2
+    }>
+    MYADDR
+    11 PLDU
+    10 PUSHPOW2
+    EQUAL
+    137 THROWIFNOT
+    $VotingRound$init$_load INLINECALLDICT
+    s0 s2 XCHG
+    ENDS
+    SWAP
+    $VotingRound$_contract_init INLINECALLDICT
+  }>
+  $VotingRound$_contract_store PROCINLINE:<{
+    NEWC
+    __tact_context_sys GETGLOB
+    SWAP
+    STREF
+    TRUE
+    SWAP
+    1 STI
+    12 -ROLL
+    $VotingRound$_store INLINECALLDICT
+    ENDC
+    c4 POP
+  }>
+  $global_send PROCREF:<{
+    NEWC
+    1 PUSHINT
+    SWAP
+    2 STI
+    s0 s7 XCHG2
+    __tact_store_bool INLINECALLDICT
+    0 PUSHINT
+    SWAP
+    3 STI
+    s0 s5 XCHG2
+    __tact_store_address INLINECALLDICT
+    s0 s3 XCHG2
+    STGRAMS
+    0 PUSHINT
+    SWAP
+    105 STI
+    s3 PUSH
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+    }>ELSE<{
+      s4 PUSH
+      ISNULL
+      NOT
+    }>
+    IF:<{
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      NEWC
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      s4 PUSH
+      ISNULL
+      NOT
+      IF:<{
+        TRUE
+        __tact_store_bool INLINECALLDICT
+        s0 s4 XCHG
+        __tact_not_null INLINECALLDICT
+        s0 s4 XCHG2
+        STREF
+      }>ELSE<{
+        s4 POP
+        s0 s3 XCHG
+        FALSE
+        __tact_store_bool INLINECALLDICT
+      }>
+      s4 PUSH
+      ISNULL
+      NOT
+      IF:<{
+        TRUE
+        __tact_store_bool INLINECALLDICT
+        s0 s4 XCHG
+        __tact_not_null INLINECALLDICT
+        s0 s4 XCHG2
+        STREF
+      }>ELSE<{
+        s4 POP
+        s0 s3 XCHG
+        FALSE
+        __tact_store_bool INLINECALLDICT
+      }>
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      s0 s2 XCHG
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      s0 s2 XCHG
+      ENDC
+      ROT
+      STREF
+    }>ELSE<{
+      s3 POP
+      s3 POP
+      SWAP
+      FALSE
+      __tact_store_bool INLINECALLDICT
+    }>
+    OVER
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      SWAP
+      __tact_not_null INLINECALLDICT
+      SWAP
+      STREF
+    }>ELSE<{
+      NIP
+      FALSE
+      __tact_store_bool INLINECALLDICT
+    }>
+    ENDC
+    SWAP
+    SENDRAWMSG
+  }>
+  $VotingRound$_fun_participantsCount PROCREF:<{
+    s6 PUSH
+  }>
+  $VotingRound$_fun_winnerPayload PROCREF:<{
+    s2 PUSH
+  }>
+  $VotingRound$_fun_winnerVotes PROCREF:<{
+    OVER
+  }>
+  $VotingRound$_fun_winnerGuarded PROCREF:<{
+    DUP
+  }>
+  $SendParameters$_constructor_bounce_to_value_mode_body_code_data PROCINLINE:<{
+  }>
+  $VotingRound$_fun_forward PROCREF:<{
+    PUSHNULL
+    PUSHNULL
+    s2 PUSH
+    ISNULL
+    NOT
+    IF:<{
+      2DROP
+      $StateInit$_not_null INLINECALLDICT
+      SWAP
+    }>ELSE<{
+      s2 POP
+    }>
+    s2 s4 XCHG
+    0 PUSHINT
+    s0 s3 XCHG
+    s0 s4 XCHG
+    66 PUSHINT
+    s2 s3 XCHG2
+    $SendParameters$_constructor_bounce_to_value_mode_body_code_data INLINECALLDICT
+    $global_send INLINECALLDICT
+  }>
+  $VotingRound$_fun_reply PROCINLINE:<{
+    __tact_context_get_sender INLINECALLDICT
+    SWAP
+    TRUE
+    PUSHNULL
+    $VotingRound$_fun_forward INLINECALLDICT
+  }>
+  $VotingRound$_fun_notify PROCINLINE:<{
+    __tact_context_get_sender INLINECALLDICT
+    SWAP
+    FALSE
+    PUSHNULL
+    $VotingRound$_fun_forward INLINECALLDICT
+  }>
+  $InternalRoundOpened$_constructor_round PROCINLINE:<{
+  }>
+  $RoundParticipantInfo$_constructor_address_votes_payloadHash_guard PROCINLINE:<{
+  }>
+  $PayloadVotes$_constructor_payload_votes_guarded PROCINLINE:<{
+  }>
+  $SendParameters$_constructor_to_body_value_mode PROCINLINE:<{
+    TRUE
+    s0 s4 XCHG
+    s0 s3 XCHG
+    PUSHNULL
+    PUSHNULL
+  }>
+  $InternalFinalized$_constructor_round_winnerPayload_winnerVotes_winnerGuarded_goodParticipants_goodParticipantsCount_goodParticipantsVotes_badParticipants_badParticipantsCount_badParticipantsVotes PROCINLINE:<{
+  }>
+  $DeployOk$_constructor_queryId PROCINLINE:<{
+  }>
+  $VotingRound$_internal_text_12511bf31bf6bf76e15f462c80fde0373029b30cc9665d2141bd1db5e63d089a PROCINLINE:<{
+    s10 PUSH
+    $InternalRoundOpened$_constructor_round INLINECALLDICT
+    $InternalRoundOpened$_store_cell INLINECALLDICT
+    $VotingRound$_fun_reply INLINECALLDICT
+  }>
+  $VotingRound$_internal_binary_InternalVote PROCINLINE:<{
+    20445 PUSHINT
+    __tact_context_get_sender INLINECALLDICT
+    18 s() PUSH
+    SWAP
+    __tact_slice_eq_bits INLINECALLDICT
+    THROWANYIFNOT
+    46604 PUSHINT
+    s9 PUSH
+    NOT
+    THROWANYIFNOT
+    18736 PUSHINT
+    s0 s5 XCHG
+    16 s() PUSH
+    EQUAL
+    s1 s5 XCHG
+    THROWANYIFNOT
+    s12 PUSH
+    267 PUSHINT
+    s3 PUSH
+    257 PUSHINT
+    __tact_dict_get_slice_int INLINECALLDICT
+    23980 PUSHINT
+    SWAP
+    ISNULL
+    THROWANYIFNOT
+    s2 PUSH
+    SHA256U
+    257 PUSHINT
+    s3 s5 s1 PUSH3
+    s5 PUSH
+    $RoundParticipantInfo$_constructor_address_votes_payloadHash_guard INLINECALLDICT
+    $RoundParticipantInfo$_store_cell INLINECALLDICT
+    s13 PUSH
+    s3 s15 XCHG
+    SWAP
+    __tact_dict_set_int_cell INLINECALLDICT
+    s0 s11 XCHG
+    INC
+    s14 PUSH
+    257 PUSHINT
+    s14 PUSH
+    __tact_dict_get_int_cell INLINECALLDICT
+    $PayloadVotes$_load_opt INLINECALLDICT
+    DUP
+    ISNULL
+    IF:<{
+      DROP
+      s3 s4 s4 XCHG3
+      $PayloadVotes$_constructor_payload_votes_guarded INLINECALLDICT
+      -ROT
+      257 PUSHINT
+      s0 s3 XCHG
+      $PayloadVotes$_store_cell INLINECALLDICT
+      s11 PUSH
+      s3 s14 XCHG
+      SWAP
+      __tact_dict_set_int_cell INLINECALLDICT
+      257 PUSHINT
+      s8 s0 s0 XC2PU
+      s8 s11 s(-2) PU2XC
+      __tact_dict_set_int_int INLINECALLDICT
+      s0 s6 XCHG
+      INC
+    }>ELSE<{
+      $PayloadVotes$_not_null INLINECALLDICT
+      1 2 BLKDROP2
+      s0 s6 XCHG
+      ADD
+      s0 s5 XCHG
+      IF:<{
+        NIP
+        TRUE
+      }>ELSE<{
+        SWAP
+      }>
+      s3 s4 XCHG2
+      257 PUSHINT
+      s0 s5 XCHG
+      $PayloadVotes$_constructor_payload_votes_guarded INLINECALLDICT
+      $PayloadVotes$_store_cell INLINECALLDICT
+      s13 s3 s0 XCHG3
+      s11 s(-1) PUXC
+      __tact_dict_set_int_cell INLINECALLDICT
+      s0 s7 XCHG
+      s11 s6 XCHG2
+    }>
+    s2 s10 XCHG
+    267 PUSHINT
+    s0 s12 s10 XCHG3
+    257 PUSHINT
+    __tact_dict_set_slice_int INLINECALLDICT
+    s5 s9 XCHG
+    s0 s8 XCHG
+    s6 s7 XCHG
+    s4 s5 XCHG
+  }>
+  $VotingRound$_internal_binary_InternalFinalize PROCINLINE:<{
+    3 1 BLKDROP2
+    20445 PUSHINT
+    __tact_context_get_sender INLINECALLDICT
+    s11 s(-1) PUXC
+    __tact_slice_eq_bits INLINECALLDICT
+    THROWANYIFNOT
+    57851 PUSHINT
+    s0 s2 XCHG
+    NOT
+    s1 s2 XCHG
+    THROWANYIFNOT
+    48930 PUSHINT
+    OVER
+    0 GTINT
+    THROWANYIFNOT
+    0 PUSHINT
+    PUSHNULL
+    PUSHNULL
+    FALSE
+    WHILE:<{
+      s3 s5 PUSH2
+      LESS
+    }>DO<{
+      257 PUSHINT
+      s7 s(-1) s(-1) PUXCPU
+      s6 s(-1) PUXC
+      __tact_dict_get_int_int INLINECALLDICT
+      34495 PUSHINT
+      OVER
+      ISNULL
+      NOT
+      THROWANYIFNOT
+      __tact_not_null INLINECALLDICT
+      257 PUSHINT
+      s12 PUSH
+      s0 s2 XCHG
+      __tact_dict_get_int_cell INLINECALLDICT
+      $PayloadVotes$_load_opt INLINECALLDICT
+      38183 PUSHINT
+      OVER
+      ISNULL
+      NOT
+      THROWANYIFNOT
+      $PayloadVotes$_not_null INLINECALLDICT
+      s4 PUSH
+      ISNULL
+      IF:<{
+        TRUE
+      }>ELSE<{
+        s4 PUSH
+        __tact_not_null INLINECALLDICT
+        s2 s(-1) PUXC
+        GREATER
+      }>
+      IF:<{
+        3 3 BLKDROP2
+      }>ELSE<{
+        3 BLKDROP
+      }>
+      s0 s3 XCHG
+      INC
+      s0 s3 XCHG
+    }>
+    s3 POP
+    17999 PUSHINT
+    s3 PUSH
+    THROWANYIFNOT
+    37813 PUSHINT
+    OVER
+    ISNULL
+    NOT
+    IF:<{
+      OVER
+      __tact_not_null INLINECALLDICT
+      s0 s5 XCHG2
+      GREATER
+    }>ELSE<{
+      s4 POP
+      FALSE
+    }>
+    s1 s4 XCHG
+    THROWANYIFNOT
+    0 PUSHINT
+    OVER
+    SHA256U
+    PUSHNULL
+    s2 PUSH
+    PUSHNULL
+    PUSHNULL
+    s2 PUSH
+    PUSHNULL
+    WHILE:<{
+      s7 s13 PUSH2
+      LESS
+    }>DO<{
+      s14 PUSH
+      257 PUSHINT
+      s9 PUSH
+      __tact_dict_get_int_cell INLINECALLDICT
+      $RoundParticipantInfo$_load_opt INLINECALLDICT
+      $RoundParticipantInfo$_not_null INLINECALLDICT
+      DROP
+      s9 s(-1) PUXC
+      EQUAL
+      IF:<{
+        s0 s7 XCHG
+        257 PUSHINT
+        s7 s2 PUSH2
+        __tact_dict_set_int_slice INLINECALLDICT
+        s2 s5 XCHG
+        267 PUSHINT
+        s0 s0 s8 XCHG3
+        257 PUSHINT
+        __tact_dict_set_slice_int INLINECALLDICT
+        s0 s4 XCHG
+        INC
+      }>ELSE<{
+        s0 s4 XCHG
+        257 PUSHINT
+        s4 s2 PUSH2
+        __tact_dict_set_int_slice INLINECALLDICT
+        267 PUSHINT
+        s0 s0 s5 XCHG3
+        257 PUSHINT
+        __tact_dict_set_slice_int INLINECALLDICT
+        SWAP
+        INC
+        s0 s3 XCHG2
+        s0 s4 XCHG
+      }>
+      s0 s7 XCHG
+      INC
+      s0 s7 XCHG
+      s0 s4 XCHG
+      s0 s3 XCHG
+    }>
+    s6 POP
+    s6 POP
+    TRUE
+    s7 PUSH
+    __tact_not_null INLINECALLDICT
+    s10 PUSH
+    __tact_not_null INLINECALLDICT
+    18 s() PUSH
+    s7 s6 s8 XCHG3
+    s11 PUSH
+    s0 s6 XCHG
+    s3 s5 XCHG
+    s4 s1 s3 XCHG3
+    s0 s10 s10 XCHG3
+    $InternalFinalized$_constructor_round_winnerPayload_winnerVotes_winnerGuarded_goodParticipants_goodParticipantsCount_goodParticipantsVotes_badParticipants_badParticipantsCount_badParticipantsVotes INLINECALLDICT
+    $InternalFinalized$_store_cell INLINECALLDICT
+    s12 s(-1) PUXC
+    0 PUSHINT
+    66 PUSHINT
+    $SendParameters$_constructor_to_body_value_mode INLINECALLDICT
+    $global_send INLINECALLDICT
+    s1 s3 s3 XCHG3
+  }>
+  $VotingRound$_internal_binary_Deploy PROCINLINE:<{
+    $DeployOk$_constructor_queryId INLINECALLDICT
+    $DeployOk$_store_cell INLINECALLDICT
+    $VotingRound$_fun_notify INLINECALLDICT
+  }>
+  %participantsCount PROC:<{
+    $VotingRound$_contract_load INLINECALLDICT
+    $VotingRound$_fun_participantsCount INLINECALLDICT
+    12 1 BLKDROP2
+  }>
+  %winnerPayload PROC:<{
+    $VotingRound$_contract_load INLINECALLDICT
+    $VotingRound$_fun_winnerPayload INLINECALLDICT
+    12 1 BLKDROP2
+  }>
+  %winnerVotes PROC:<{
+    $VotingRound$_contract_load INLINECALLDICT
+    $VotingRound$_fun_winnerVotes INLINECALLDICT
+    12 1 BLKDROP2
+  }>
+  %winnerGuarded PROC:<{
+    $VotingRound$_contract_load INLINECALLDICT
+    $VotingRound$_fun_winnerGuarded INLINECALLDICT
+    12 1 BLKDROP2
+  }>
+  supported_interfaces PROC:<{
+    123515602279859691144772641439386770278 PUSHINT
+    209801025412363888721030803524359905849 PUSHINT
+    42980537499636128163026532310500881091 PUSHINT
+    209474421377847335869795010607481022628 PUSHINT
+  }>
+  get_abi_ipfs PROC:<{
+    x{697066733a2f2f516d6152716b38537a75727a4864364c426d4d4e36796732486d73545845334c33546e6f50796d415a347974614b} PUSHSLICE
+  }>
+  lazy_deployment_completed PROC:<{
+    c4 PUSH
+    CTOS
+    1 LDI
+    SWAP
+  }>
+  $VotingRound$_contract_router_internal PROCREF:<{
+    c2 SAVE
+    SAMEALTSAVE
+    SWAP
+    IFJMP:<{
+      DROP
+      TRUE
+    }>
+    0 PUSHINT
+    OVER
+    SBITS
+    31 GTINT
+    IF:<{
+      DROP
+      DUP
+      32 PLDU
+    }>
+    DUP
+    2008725369 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $InternalVote$_load INLINECALLDICT
+      1 5 BLKDROP2
+      $VotingRound$_internal_binary_InternalVote INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    4124677558 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $InternalFinalize$_load INLINECALLDICT
+      NIP
+      $VotingRound$_internal_binary_InternalFinalize INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    2490013878 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $Deploy$_load INLINECALLDICT
+      NIP
+      $VotingRound$_internal_binary_Deploy INLINECALLDICT
+      TRUE
+    }>
+    0 EQINT
+    IF:<{
+      HASHSU
+      8284938788109185660960678673226685102400562350892376600116519538038597814426 PUSHINT
+      EQUAL
+      IFJMP:<{
+        $VotingRound$_internal_text_12511bf31bf6bf76e15f462c80fde0373029b30cc9665d2141bd1db5e63d089a INLINECALLDICT
+        TRUE
+        RETALT
+      }>
+    }>ELSE<{
+      DROP
+    }>
+    FALSE
+  }>
+  recv_internal PROC:<{
+    SWAP
+    CTOS
+    4 LDU
+    SWAP
+    1 PUSHINT
+    AND
+    NEGATE
+    SWAP
+    LDMSGADDR
+    SWAP
+    __tact_verify_address INLINECALLDICT
+    s0 s4 s2 PUXCPU
+    s0 s3 XCHG
+    4 TUPLE
+    __tact_context SETGLOB
+    s0 s2 XCHG
+    __tact_context_sender SETGLOB
+    $VotingRound$_contract_load INLINECALLDICT
+    2 12 BLKSWAP
+    $VotingRound$_contract_router_internal INLINECALLDICT
+    130 THROWIFNOT
+    $VotingRound$_contract_store INLINECALLDICT
+  }>
+}END>c

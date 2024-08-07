@@ -1,0 +1,11 @@
+__gen_load_IntrinsicsTester: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/src/test/features/output/intrinsics_IntrinsicsTester.code.fc:64:19: warning: Lack of end_parse.
+          return $sc~__gen_read_IntrinsicsTester();
+                    ^
+__gen_store_IntrinsicsTester & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/src/test/features/output/intrinsics_IntrinsicsTester.code.fc:260:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./logvik/tact/src/test/features/output/intrinsics_IntrinsicsTester.code.fc:73:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

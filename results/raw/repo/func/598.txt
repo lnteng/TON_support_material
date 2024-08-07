@@ -1,0 +1,12 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/src/ct/ctsc.fc:267:19: warning: Lack of end_parse.
+  	slice s_addr = cs~load_msg_addr();
+  	                 ^
+Logic:DoRelease: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/src/ct/ctsc.fc:221:15: warning: Lack of end_parse.
+  				val = next.begin_parse();
+  				          ^
+Logic:DoRelease: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/src/ct/ctsc.fc:220:20: warning: Lack of end_parse.
+  				cell next = val~load_ref();
+  				               ^

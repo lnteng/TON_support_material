@@ -1,0 +1,115 @@
+$__gen_PositionsManagerContract_receive_DepositCollateralMessage: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionsManagerContract.code.fc:661:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$__gen_PositionsManagerContract_receive_DepositCollateralMessage: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionsManagerContract.code.fc:661:59: warning: Local variable '$ctx'sender' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$__gen_PositionsManagerContract_receive_DepositCollateralMessage: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionsManagerContract.code.fc:661:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$__gen_PositionsManagerContract_receive_DepositCollateralMessage: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionsManagerContract.code.fc:661:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$__gen_PositionsManagerContract_receive_SetDeps: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionsManagerContract.code.fc:647:144: warning: Local variable '$self'deps'gateKeeperAddress' is not used
+      (($self'deps'positionsManagerAddress, $self'deps'gateKeeperAddress, $self'deps'stablecoinMasterAddress), $self'owner, $self'lastPositionId)~$__gen_PositionsManagerContract_requireOwner();
+                                                                                                                                                 ^
+$__gen_PositionsManagerContract_receive_SetDeps: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionsManagerContract.code.fc:647:144: warning: Local variable '$self'deps'stablecoinMasterAddress' is not used
+      (($self'deps'positionsManagerAddress, $self'deps'gateKeeperAddress, $self'deps'stablecoinMasterAddress), $self'owner, $self'lastPositionId)~$__gen_PositionsManagerContract_requireOwner();
+                                                                                                                                                 ^
+$__gen_PositionsManagerContract_userPositionAddress: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionsManagerContract.code.fc:576:151: warning: Local variable '$self'deps'gateKeeperAddress' is not used
+      return (($self'deps'positionsManagerAddress, $self'deps'gateKeeperAddress, $self'deps'stablecoinMasterAddress), $self'owner, $self'lastPositionId)~$__gen_PositionsManagerContract__userPositionAddress($user);
+                                                                                                                                                        ^
+$__gen_PositionsManagerContract_userPositionAddress: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionsManagerContract.code.fc:576:151: warning: Local variable '$self'deps'stablecoinMasterAddress' is not used
+      return (($self'deps'positionsManagerAddress, $self'deps'gateKeeperAddress, $self'deps'stablecoinMasterAddress), $self'owner, $self'lastPositionId)~$__gen_PositionsManagerContract__userPositionAddress($user);
+                                                                                                                                                        ^
+$__gen_PositionsManagerContract_userPositionAddress: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionsManagerContract.code.fc:576:151: warning: Local variable '$self'owner' is not used
+      return (($self'deps'positionsManagerAddress, $self'deps'gateKeeperAddress, $self'deps'stablecoinMasterAddress), $self'owner, $self'lastPositionId)~$__gen_PositionsManagerContract__userPositionAddress($user);
+                                                                                                                                                        ^
+$__gen_PositionsManagerContract_userPositionAddress: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionsManagerContract.code.fc:576:151: warning: Local variable '$self'lastPositionId' is not used
+      return (($self'deps'positionsManagerAddress, $self'deps'gateKeeperAddress, $self'deps'stablecoinMasterAddress), $self'owner, $self'lastPositionId)~$__gen_PositionsManagerContract__userPositionAddress($user);
+                                                                                                                                                        ^
+$__gen_UserPositionContract_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionsManagerContract.code.fc:533:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+__gen_read_WithdrawCollateralMessage: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionsManagerContract.code.fc:232:42: warning: Lack of end_parse.
+      var v'tonPriceWithSafetyMargin = sc_2~load_coins();
+                                           ^
+__gen_read_WithdrawCollateralMessage: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionsManagerContract.code.fc:230:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+__gen_read_PositionsManagerContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionsManagerContract.code.fc:410:32: warning: Lack of end_parse.
+      var v'lastPositionId = sc_1~load_uint(32);
+                                 ^
+__tact_string_builder_append: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionsManagerContract.code.fc:117:31: warning: Lack of end_parse.
+              sc = sc~load_ref().begin_parse();
+                                ^
+$__gen_PositionAddressContract_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionsManagerContract.code.fc:588:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+__gen_read_WithdrawStablecoinMessage: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionsManagerContract.code.fc:263:42: warning: Lack of end_parse.
+      var v'tonPriceWithSafetyMargin = sc_2~load_coins();
+                                           ^
+__gen_read_WithdrawStablecoinMessage: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionsManagerContract.code.fc:261:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+__gen_load_PositionsManagerContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionsManagerContract.code.fc:449:19: warning: Lack of end_parse.
+          return $sc~__gen_read_PositionsManagerContract();
+                    ^
+__gen_read_RepayStablecoinMessage: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionsManagerContract.code.fc:294:42: warning: Lack of end_parse.
+      var v'tonPriceWithSafetyMargin = sc_2~load_coins();
+                                           ^
+__gen_read_RepayStablecoinMessage: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionsManagerContract.code.fc:292:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+$__gen_PositionsManagerContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionsManagerContract.code.fc:438:151: warning: Local variable '$self'deps'positionsManagerAddress' is not used
+      var ((($self'deps'positionsManagerAddress, $self'deps'gateKeeperAddress, $self'deps'stablecoinMasterAddress), $self'owner, $self'lastPositionId)) = (null(), null(), 0);
+                                                                                                                                                        ^
+$__gen_PositionsManagerContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionsManagerContract.code.fc:438:151: warning: Local variable '$self'deps'gateKeeperAddress' is not used
+      var ((($self'deps'positionsManagerAddress, $self'deps'gateKeeperAddress, $self'deps'stablecoinMasterAddress), $self'owner, $self'lastPositionId)) = (null(), null(), 0);
+                                                                                                                                                        ^
+$__gen_PositionsManagerContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionsManagerContract.code.fc:438:151: warning: Local variable '$self'deps'stablecoinMasterAddress' is not used
+      var ((($self'deps'positionsManagerAddress, $self'deps'gateKeeperAddress, $self'deps'stablecoinMasterAddress), $self'owner, $self'lastPositionId)) = (null(), null(), 0);
+                                                                                                                                                        ^
+$__gen_PositionsManagerContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionsManagerContract.code.fc:438:151: warning: Local variable '$self'owner' is not used
+      var ((($self'deps'positionsManagerAddress, $self'deps'gateKeeperAddress, $self'deps'stablecoinMasterAddress), $self'owner, $self'lastPositionId)) = (null(), null(), 0);
+                                                                                                                                                        ^
+__gen_read_DepositCollateralMessage: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionsManagerContract.code.fc:201:42: warning: Lack of end_parse.
+      var v'tonPriceWithSafetyMargin = sc_2~load_coins();
+                                           ^
+__gen_read_DepositCollateralMessage: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionsManagerContract.code.fc:199:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+__gen_store_PositionsManagerContract & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionsManagerContract.code.fc:866:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./stableton-dorahack/stablecoin-tact-contracts/sources/output/stableton_PositionsManagerContract.code.fc:458:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

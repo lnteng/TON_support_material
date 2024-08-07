@@ -1,0 +1,433 @@
+;;
+;; Type: StateInit
+;; TLB: _ code:^cell data:^cell = StateInit
+;;
+
+((cell, cell)) $StateInit$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (cell vvv'code, cell vvv'data) = __tact_tuple_destroy_2(v);
+    return (vvv'code, vvv'data);
+}
+
+;;
+;; Type: Context
+;; TLB: _ bounced:bool sender:address value:int257 raw:^slice = Context
+;;
+
+_ $Context$_get_value((int, slice, int, slice) v) inline {
+    var (v'bounced, v'sender, v'value, v'raw) = v;
+    return v'value;
+}
+
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline {
+    return (bounce, to, value, mode, body, code, data);
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode_body(slice to, int value, int mode, cell body) inline {
+    return (true, to, value, mode, body, null(), null());
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_bounce_mode_body(slice to, int value, int bounce, int mode, cell body) inline {
+    return (bounce, to, value, mode, body, null(), null());
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode_code_data_body(slice to, int value, int mode, cell code, cell data, cell body) inline {
+    return (true, to, value, mode, body, code, data);
+}
+
+;;
+;; Type: Deploy
+;; Header: 0x946a98b6
+;; TLB: deploy#946a98b6 queryId:uint64 = Deploy
+;;
+
+(slice, ((int))) $Deploy$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2490013878);
+    var v'queryId = sc_0~load_uint(64);
+    return (sc_0, (v'queryId));
+}
+
+;;
+;; Type: DeployOk
+;; Header: 0xaff90f57
+;; TLB: deploy_ok#aff90f57 queryId:uint64 = DeployOk
+;;
+
+builder $DeployOk$_store(builder build_0, (int) v) inline {
+    var (v'queryId) = v;
+    build_0 = store_uint(build_0, 2952335191, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    return build_0;
+}
+
+cell $DeployOk$_store_cell((int) v) inline {
+    return $DeployOk$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $DeployOk$_constructor_queryId(int queryId) inline {
+    return (queryId);
+}
+
+;;
+;; Type: CreditAgents
+;; TLB: _ borrower:address lender:address = CreditAgents
+;;
+
+builder $CreditAgents$_store(builder build_0, (slice, slice) v) inline {
+    var (v'borrower, v'lender) = v;
+    build_0 = __tact_store_address(build_0, v'borrower);
+    build_0 = __tact_store_address(build_0, v'lender);
+    return build_0;
+}
+
+cell $CreditAgents$_store_cell((slice, slice) v) inline {
+    return $CreditAgents$_store(begin_cell(), v).end_cell();
+}
+
+((slice, slice)) $CreditAgents$_constructor_borrower_lender(slice borrower, slice lender) inline {
+    return (borrower, lender);
+}
+
+;;
+;; Type: CreditService
+;; TLB: _ pawn:address = CreditService
+;;
+
+builder $CreditService$_store(builder build_0, (slice) v) inline {
+    var (v'pawn) = v;
+    build_0 = __tact_store_address(build_0, v'pawn);
+    return build_0;
+}
+
+cell $CreditService$_store_cell((slice) v) inline {
+    return $CreditService$_store(begin_cell(), v).end_cell();
+}
+
+((slice)) $CreditService$_constructor_pawn(slice pawn) inline {
+    return (pawn);
+}
+
+;;
+;; Type: CreditData
+;; TLB: _ size:coins interest:uint16 duration:uint32 addresses:^cell = CreditData
+;;
+
+builder $CreditData$_store(builder build_0, (int, int, int, cell) v) inline {
+    var (v'size, v'interest, v'duration, v'addresses) = v;
+    build_0 = build_0.store_coins(v'size);
+    build_0 = build_0.store_uint(v'interest, 16);
+    build_0 = build_0.store_uint(v'duration, 32);
+    build_0 = build_0.store_ref(v'addresses);
+    return build_0;
+}
+
+(slice, ((int, int, int, cell))) $CreditData$_load(slice sc_0) inline {
+    var v'size = sc_0~load_coins();
+    var v'interest = sc_0~load_uint(16);
+    var v'duration = sc_0~load_uint(32);
+    var v'addresses = sc_0~load_ref();
+    return (sc_0, (v'size, v'interest, v'duration, v'addresses));
+}
+
+(int, int, int, cell) $CreditData$_from_tuple(tuple v) inline {
+    var (int v'size, int v'interest, int v'duration, cell v'addresses) = __tact_tuple_destroy_4(v);
+    return (v'size, v'interest, v'duration, v'addresses);
+}
+
+((int, int, int, cell)) $CreditData$_constructor_size_interest_duration_addresses(int size, int interest, int duration, cell addresses) inline {
+    return (size, interest, duration, addresses);
+}
+
+;;
+;; Type: OwnershipAssignedWithCredit
+;; Header: 0x05138d91
+;; TLB: ownership_assigned_with_credit#05138d91 queryId:uint64 prevOwner:address forwardPayload:CreditData{size:coins,interest:uint16,duration:uint32,addresses:^cell} = OwnershipAssignedWithCredit
+;;
+
+(slice, ((int, slice, (int, int, int, cell)))) $OwnershipAssignedWithCredit$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 85167505);
+    var v'queryId = sc_0~load_uint(64);
+    var v'prevOwner = sc_0~__tact_load_address();
+    var v'forwardPayload = sc_0~$CreditData$_load();
+    return (sc_0, (v'queryId, v'prevOwner, v'forwardPayload));
+}
+
+;;
+;; Type: Transfer
+;; Header: 0x5fcc3d14
+;; TLB: transfer#5fcc3d14 queryId:uint64 newOwner:address responseDestination:address customPayload:Maybe ^cell forwardAmount:coins forwardPayload:remainder<slice> = Transfer
+;;
+
+builder $Transfer$_store(builder build_0, (int, slice, slice, cell, int, slice) v) inline_ref {
+    var (v'queryId, v'newOwner, v'responseDestination, v'customPayload, v'forwardAmount, v'forwardPayload) = v;
+    build_0 = store_uint(build_0, 1607220500, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    build_0 = __tact_store_address(build_0, v'newOwner);
+    build_0 = __tact_store_address(build_0, v'responseDestination);
+    build_0 = ~ null?(v'customPayload) ? build_0.store_int(true, 1).store_ref(v'customPayload) : build_0.store_int(false, 1);
+    build_0 = build_0.store_coins(v'forwardAmount);
+    build_0 = build_0.store_slice(v'forwardPayload);
+    return build_0;
+}
+
+cell $Transfer$_store_cell((int, slice, slice, cell, int, slice) v) inline {
+    return $Transfer$_store(begin_cell(), v).end_cell();
+}
+
+((int, slice, slice, cell, int, slice)) $Transfer$_constructor_queryId_newOwner_responseDestination_customPayload_forwardAmount_forwardPayload(int queryId, slice newOwner, slice responseDestination, cell customPayload, int forwardAmount, slice forwardPayload) inline {
+    return (queryId, newOwner, responseDestination, customPayload, forwardAmount, forwardPayload);
+}
+
+;;
+;; Type: AccountIssue
+;; Header: 0x00000212
+;; TLB: account_issue#00000212 size:coins interest:uint16 duration:uint32 borrower:address pawn:address = AccountIssue
+;;
+
+(slice, ((int, int, int, slice, slice))) $AccountIssue$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 530);
+    var v'size = sc_0~load_coins();
+    var v'interest = sc_0~load_uint(16);
+    var v'duration = sc_0~load_uint(32);
+    var v'borrower = sc_0~__tact_load_address();
+    var v'pawn = sc_0~__tact_load_address();
+    return (sc_0, (v'size, v'interest, v'duration, v'borrower, v'pawn));
+}
+
+;;
+;; Type: AccountProportion
+;; Header: 0x00000214
+;; TLB: account_proportion#00000214 proportion:uint8 = AccountProportion
+;;
+
+builder $AccountProportion$_store(builder build_0, (int) v) inline {
+    var (v'proportion) = v;
+    build_0 = store_uint(build_0, 532, 32);
+    build_0 = build_0.store_uint(v'proportion, 8);
+    return build_0;
+}
+
+cell $AccountProportion$_store_cell((int) v) inline {
+    return $AccountProportion$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $AccountProportion$_constructor_proportion(int proportion) inline {
+    return (proportion);
+}
+
+;;
+;; Type: CreateAccount
+;; Header: 0x00000310
+;; TLB: create_account#00000310  = CreateAccount
+;;
+
+(slice, (tuple)) $CreateAccount$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 784);
+    return (sc_0, null());
+}
+
+;;
+;; Type: BankIssueCredit
+;; Header: 0x00000311
+;; TLB: bank_issue_credit#00000311 size:coins address:address premium:coins = BankIssueCredit
+;;
+
+builder $BankIssueCredit$_store(builder build_0, (int, slice, int) v) inline {
+    var (v'size, v'address, v'premium) = v;
+    build_0 = store_uint(build_0, 785, 32);
+    build_0 = build_0.store_coins(v'size);
+    build_0 = __tact_store_address(build_0, v'address);
+    build_0 = build_0.store_coins(v'premium);
+    return build_0;
+}
+
+cell $BankIssueCredit$_store_cell((int, slice, int) v) inline {
+    return $BankIssueCredit$_store(begin_cell(), v).end_cell();
+}
+
+((int, slice, int)) $BankIssueCredit$_constructor_size_address_premium(int size, slice address, int premium) inline {
+    return (size, address, premium);
+}
+
+;;
+;; Type: GetNft
+;; Header: 0x00000312
+;; TLB: get_nft#00000312 nft:address forward:coins payload:remainder<slice> = GetNft
+;;
+
+(slice, ((slice, int, slice))) $GetNft$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 786);
+    var v'nft = sc_0~__tact_load_address();
+    var v'forward = sc_0~load_coins();
+    var v'payload = sc_0;
+    return (sc_0, (v'nft, v'forward, v'payload));
+}
+
+;;
+;; Type: SetProportion
+;; Header: 0x00000313
+;; TLB: set_proportion#00000313 user:address proportion:uint8 = SetProportion
+;;
+
+(slice, ((slice, int))) $SetProportion$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 787);
+    var v'user = sc_0~__tact_load_address();
+    var v'proportion = sc_0~load_uint(8);
+    return (sc_0, (v'user, v'proportion));
+}
+
+;;
+;; Type: Payout
+;; Header: 0x00000314
+;; TLB: payout#00000314 contract:address = Payout
+;;
+
+(slice, ((slice))) $Payout$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 788);
+    var v'contract = sc_0~__tact_load_address();
+    return (sc_0, (v'contract));
+}
+
+;;
+;; Type: Income
+;; Header: 0x00000315
+;; TLB: income#00000315 queryId:uint8 = Income
+;;
+
+(slice, ((int))) $Income$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 789);
+    var v'queryId = sc_0~load_uint(8);
+    return (sc_0, (v'queryId));
+}
+
+;;
+;; Type: Settings
+;; Header: 0x00000316
+;; TLB: settings#00000316 bot:address premium:uint8 = Settings
+;;
+
+(slice, ((slice, int))) $Settings$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 790);
+    var v'bot = sc_0~__tact_load_address();
+    var v'premium = sc_0~load_uint(8);
+    return (sc_0, (v'bot, v'premium));
+}
+
+;;
+;; Type: Destroy
+;; Header: 0x00000404
+;; TLB: destroy#00000404  = Destroy
+;;
+
+(slice, (tuple)) $Destroy$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 1028);
+    return (sc_0, null());
+}
+
+;;
+;; Type: Account
+;;
+
+builder $Account$init$_store(builder build_0, (slice, slice) v) inline {
+    var (v'owner, v'bank) = v;
+    build_0 = __tact_store_address(build_0, v'owner);
+    build_0 = __tact_store_address(build_0, v'bank);
+    return build_0;
+}
+
+(cell, cell) $Account$_init_child(cell sys', slice $owner, slice $bank) inline_ref {
+    slice sc' = sys'.begin_parse();
+    cell source = sc'~load_dict();    ;; DEFECT: LackEndParse
+    cell contracts = new_dict();
+    
+    ;; Contract Code: Account
+    cell mine = __tact_dict_get_code(source, 43913);
+    contracts = __tact_dict_set_code(contracts, 43913, mine);
+    
+    ;; Build cell
+    builder b = begin_cell();
+    b = b.store_ref(begin_cell().store_dict(contracts).end_cell());
+    b = b.store_int(false, 1);
+    b = $Account$init$_store(b, ($owner, $bank));
+    return (mine, b.end_cell());
+}
+
+;;
+;; Type: Credit
+;;
+
+builder $Credit$init$_store(builder build_0, ((int, int, int, cell)) v) inline {
+    var ((v'data'size, v'data'interest, v'data'duration, v'data'addresses)) = v;
+    build_0 = $CreditData$_store(build_0, (v'data'size, v'data'interest, v'data'duration, v'data'addresses));
+    return build_0;
+}
+
+(cell, cell) $Credit$_init_child(cell sys', (int, int, int, cell) $data) inline_ref {
+    slice sc' = sys'.begin_parse();
+    cell source = sc'~load_dict();    ;; DEFECT: LackEndParse
+    cell contracts = new_dict();
+    
+    ;; Contract Code: Credit
+    cell mine = __tact_dict_get_code(source, 53352);
+    contracts = __tact_dict_set_code(contracts, 53352, mine);
+    
+    ;; Build cell
+    builder b = begin_cell();
+    b = b.store_ref(begin_cell().store_dict(contracts).end_cell());
+    b = b.store_int(false, 1);
+    b = $Credit$init$_store(b, ($data));
+    return (mine, b.end_cell());
+}
+
+;;
+;; Type: Bank
+;;
+
+builder $Bank$_store(builder build_0, (slice, slice, int) v) inline {
+    var (v'admin, v'bot, v'creditPremium) = v;
+    build_0 = __tact_store_address(build_0, v'admin);
+    build_0 = __tact_store_address(build_0, v'bot);
+    build_0 = build_0.store_uint(v'creditPremium, 8);
+    return build_0;
+}
+
+(slice, ((slice, slice, int))) $Bank$_load(slice sc_0) inline {
+    var v'admin = sc_0~__tact_load_address();
+    var v'bot = sc_0~__tact_load_address();
+    var v'creditPremium = sc_0~load_uint(8);
+    return (sc_0, (v'admin, v'bot, v'creditPremium));
+}
+
+(slice, ((slice, slice))) $Bank$init$_load(slice sc_0) inline {
+    var v'admin = sc_0~__tact_load_address();
+    var v'bot = sc_0~__tact_load_address();
+    return (sc_0, (v'admin, v'bot));
+}
+
+(slice, slice, int) $Bank$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$Bank$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (slice admin, slice bot) = $sc~$Bank$init$_load();
+        $sc.end_parse();
+        return $Bank$_contract_init(admin, bot);
+    }
+}
+
+() $Bank$_contract_store((slice, slice, int) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $Bank$_store(b, v);
+    set_data(b.end_cell());
+}

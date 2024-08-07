@@ -1,0 +1,23 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./DAOTON-io/Daoton/contracts/func/vote_on_dao.func:42:20: warning: Lack of end_parse.
+    slice s_addr = cs~load_msg_addr();
+                     ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./DAOTON-io/Daoton/contracts/func/vote_on_dao.func:41:13: warning: Local variable 'flags' is not used
+    var flags = cs~load_uint(4);
+              ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./DAOTON-io/Daoton/contracts/func/vote_on_dao.func:43:38: warning: Local variable 'sender_wc' is not used
+    (int sender_wc, slice sender_addr) = parse_var_addr(s_addr);
+                                       ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./DAOTON-io/Daoton/contracts/func/vote_on_dao.func:10:8: warning: Lack of end_parse.
+       ds~load_uint(64) ;; token_id
+         ^
+save_data & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./DAOTON-io/Daoton/contracts/func/vote_on_dao.func:2:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./DAOTON-io/Daoton/contracts/func/vote_on_dao.func:16:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_uint(positive, 64)
+      ^

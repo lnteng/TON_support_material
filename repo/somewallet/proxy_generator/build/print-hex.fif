@@ -1,0 +1,13 @@
+#!/usr/bin/fift -s
+"TonUtil.fif" include
+"Asm.fif" include
+
+."minter-contract:" cr
+
+"minter-contract.fif" include
+2 boc+>B dup Bx. cr
+
+."proxy-contract:" cr
+
+"proxy-contract.fif" include
+2 boc+>B dup Bx. cr

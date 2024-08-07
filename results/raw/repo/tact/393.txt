@@ -1,0 +1,27 @@
+$Admin$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Admin.code.fc:14:40: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'queryId)) = (null(), null());
+                                         ^
+$Admin$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Admin.code.fc:14:40: warning: Local variable '$self'queryId' is not used
+      var (($self'owner, $self'queryId)) = (null(), null());
+                                         ^
+$Admin$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Admin.storage.fc:124:19: warning: Lack of end_parse.
+          return $sc~$Admin$_load();
+                    ^
+$Admin$_internal_any: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Admin.code.fc:32:17: warning: Local variable '$user' is not used
+      slice $user = $msg~__tact_load_address();
+                  ^
+$Admin$_internal_any: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Admin.code.fc:33:15: warning: Local variable '$ref' is not used
+      cell $ref = $msg~load_ref();
+                ^
+$Admin$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Admin.code.fc:76:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Admin.storage.fc:135:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

@@ -1,0 +1,51 @@
+$Credit$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzl1Y8S1_f59zQIyxnJ8k5QpdWRoyWH9swY5pfW2iOtQQ7/output/verifier_Bank.storage.fc:372:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$Bank$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzl1Y8S1_f59zQIyxnJ8k5QpdWRoyWH9swY5pfW2iOtQQ7/output/verifier_Bank.code.fc:15:57: warning: Local variable '$self'admin' is not used
+      var (($self'admin, $self'bot, $self'creditPremium)) = (null(), null(), null());
+                                                          ^
+$Bank$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzl1Y8S1_f59zQIyxnJ8k5QpdWRoyWH9swY5pfW2iOtQQ7/output/verifier_Bank.code.fc:15:57: warning: Local variable '$self'bot' is not used
+      var (($self'admin, $self'bot, $self'creditPremium)) = (null(), null(), null());
+                                                          ^
+$Bank$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzl1Y8S1_f59zQIyxnJ8k5QpdWRoyWH9swY5pfW2iOtQQ7/output/verifier_Bank.code.fc:15:57: warning: Local variable '$self'creditPremium' is not used
+      var (($self'admin, $self'bot, $self'creditPremium)) = (null(), null(), null());
+                                                          ^
+$Bank$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzl1Y8S1_f59zQIyxnJ8k5QpdWRoyWH9swY5pfW2iOtQQ7/output/verifier_Bank.storage.fc:417:19: warning: Lack of end_parse.
+          return $sc~$Bank$_load();
+                    ^
+$Account$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzl1Y8S1_f59zQIyxnJ8k5QpdWRoyWH9swY5pfW2iOtQQ7/output/verifier_Bank.storage.fc:345:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$Bank$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzl1Y8S1_f59zQIyxnJ8k5QpdWRoyWH9swY5pfW2iOtQQ7/output/verifier_Bank.code.fc:183:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzl1Y8S1_f59zQIyxnJ8k5QpdWRoyWH9swY5pfW2iOtQQ7/output/verifier_Bank.storage.fc:428:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Bank$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzl1Y8S1_f59zQIyxnJ8k5QpdWRoyWH9swY5pfW2iOtQQ7/output/verifier_Bank.code.fc:125:288: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... oad_forwardAmount_forwardPayload(0, $self'admin, $self'admin, null(), $msg'forward, $msg'payload))));
+  ...                                                                                                     ^
+$Bank$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzl1Y8S1_f59zQIyxnJ8k5QpdWRoyWH9swY5pfW2iOtQQ7/output/verifier_Bank.code.fc:97:176: warning: UnHandle bounced message with op: 0x214
+      $global_send($SendParameters$_constructor_to_value_mode_body($address, 0, 64, $AccountProportion$_store_cell($AccountProportion$_constructor_proportion($msg'proportion))));
+                                                                                                                                                                                 ^
+$Bank$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzl1Y8S1_f59zQIyxnJ8k5QpdWRoyWH9swY5pfW2iOtQQ7/output/verifier_Bank.code.fc:87:215: warning: UnHandle bounced message with op: 0x311
+  ... dit$_store_cell($BankIssueCredit$_constructor_size_address_premium($msg'size, $address, $premium))));
+  ...                                                                                                     ^
+$Bank$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzl1Y8S1_f59zQIyxnJ8k5QpdWRoyWH9swY5pfW2iOtQQ7/output/verifier_Bank.code.fc:59:344: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... revOwner, $msg'prevOwner, null(), 0, $Cell$_fun_asSlice(end_cell(store_int(begin_cell(), 0, 1)))))));
+  ...                                                                                                     ^
+$Bank$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzl1Y8S1_f59zQIyxnJ8k5QpdWRoyWH9swY5pfW2iOtQQ7/output/verifier_Bank.code.fc:67:342: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... s, $msg'prevOwner, null(), 50000000, $Cell$_fun_asSlice(end_cell(store_int(begin_cell(), 0, 1)))))));
+  ...                                                                                                     ^

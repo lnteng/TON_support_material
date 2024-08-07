@@ -1,0 +1,72 @@
+get_staking_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAN_NtUIhtKHInwwCB6BDyPEBD2oqOivXh-1Nsc96mePEQK/staking_nft_collection.fc:500:25: warning: Lack of end_parse.
+      int min_deposit = is~load_coins();
+                          ^
+get_staking_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAN_NtUIhtKHInwwCB6BDyPEBD2oqOivXh-1Nsc96mePEQK/staking_nft_collection.fc:495:91: warning: Local variable 'next_index' is not used
+       int withdrawable_jettons, int tvl, int force_unstake_allowed, slice creator_address) = load_data();
+                                                                                            ^
+get_royalty_params: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAN_NtUIhtKHInwwCB6BDyPEBD2oqOivXh-1Nsc96mePEQK/staking_nft_collection.fc:482:34: warning: Lack of end_parse.
+      return load_royalty_params(is~load_ref());
+                                   ^
+recv_internal: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAN_NtUIhtKHInwwCB6BDyPEBD2oqOivXh-1Nsc96mePEQK/staking_nft_collection.fc:288:43: warning: PressionLoss
+          int rewards_gained =  max_rewards * (now_time - start_time) / lock_period;
+                                            ^
+recv_internal: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAN_NtUIhtKHInwwCB6BDyPEBD2oqOivXh-1Nsc96mePEQK/staking_nft_collection.fc:289:78: warning: PressionLoss
+          int tvl_fees_cur = staked_amount * (now_time - start_time) / one_day * tvl_factor / tvl_base;
+                                                                               ^
+recv_internal: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAN_NtUIhtKHInwwCB6BDyPEBD2oqOivXh-1Nsc96mePEQK/staking_nft_collection.fc:290:42: warning: PressionLoss
+          int tvl_fees_left = tvl_fees_cur * (end_time - now_time) / (now_time - start_time);
+                                           ^
+recv_internal: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAN_NtUIhtKHInwwCB6BDyPEBD2oqOivXh-1Nsc96mePEQK/staking_nft_collection.fc:341:48: warning: PressionLoss
+              withdrawable_jettons += jetton_fee * 20 / 100 + tvl_fees_cur;  ;;  increase withdrawable jettons 
+                                                 ^
+recv_internal: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAN_NtUIhtKHInwwCB6BDyPEBD2oqOivXh-1Nsc96mePEQK/staking_nft_collection.fc:342:90: warning: PressionLoss
+              reward_jettons += tvl_fees_left + max_rewards - rewards_claimed + jetton_fee * 80 / 100;  ;;  increase reward jettons 
+                                                                                           ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAN_NtUIhtKHInwwCB6BDyPEBD2oqOivXh-1Nsc96mePEQK/staking_nft_collection.fc:160:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAN_NtUIhtKHInwwCB6BDyPEBD2oqOivXh-1Nsc96mePEQK/staking_nft_collection.fc:282:41: warning: Lack of end_parse.
+          int staking_factor = nft_content~load_uint(32);
+                                          ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAN_NtUIhtKHInwwCB6BDyPEBD2oqOivXh-1Nsc96mePEQK/staking_nft_collection.fc:213:50: warning: Lack of end_parse.
+              int minimum_deposit = additional_info~load_coins();
+                                                   ^
+get_collection_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAN_NtUIhtKHInwwCB6BDyPEBD2oqOivXh-1Nsc96mePEQK/staking_nft_collection.fc:438:30: warning: Lack of end_parse.
+    return (next_item_index, cs~load_ref(), "EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c"a);
+                               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAN_NtUIhtKHInwwCB6BDyPEBD2oqOivXh-1Nsc96mePEQK/staking_nft_collection.fc:37:11: warning: Lack of end_parse.
+          ds~load_msg_addr()  ;; address of the creator of the pool
+            ^
+load_royalty_params: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAN_NtUIhtKHInwwCB6BDyPEBD2oqOivXh-1Nsc96mePEQK/staking_nft_collection.fc:65:87: warning: Lack of end_parse.
+      return (rs~load_uint(32), rs~load_uint(32), rs~load_uint(32), rs~load_uint(32), rs~load_msg_addr());
+                                                                                        ^
+get_nft_content: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAN_NtUIhtKHInwwCB6BDyPEBD2oqOivXh-1Nsc96mePEQK/staking_nft_collection.fc:453:30: warning: Lack of end_parse.
+      slice common_content = cs~load_ref().begin_parse();
+                               ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAN_NtUIhtKHInwwCB6BDyPEBD2oqOivXh-1Nsc96mePEQK/staking_nft_collection.fc:311:46: warning: UnHandle bounced message with op: 0x55521d04
+                  send_raw_message(burn_msg, 0); 
+                                               ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAN_NtUIhtKHInwwCB6BDyPEBD2oqOivXh-1Nsc96mePEQK/staking_nft_collection.fc:336:42: warning: UnHandle bounced message with op: 0x55521d04
+              send_raw_message(burn_msg, 0); 
+                                           ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAN_NtUIhtKHInwwCB6BDyPEBD2oqOivXh-1Nsc96mePEQK/staking_nft_collection.fc:146:51: warning: UnHandle bounced message with op: 0x5fcc3d14
+      send_raw_message(msg.end_cell(), sending_mode); 
+                                                    ^

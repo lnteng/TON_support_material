@@ -1,0 +1,309 @@
+;;
+;; Type: StateInit
+;; TLB: _ code:^cell data:^cell = StateInit
+;;
+
+_ $StateInit$_get_code((cell, cell) v) inline {
+    var (v'code, v'data) = v;
+    return v'code;
+}
+
+((cell, cell)) $StateInit$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (cell vvv'code, cell vvv'data) = __tact_tuple_destroy_2(v);
+    return (vvv'code, vvv'data);
+}
+
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline {
+    return (bounce, to, value, mode, body, code, data);
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_bounce_mode_body(slice to, int value, int bounce, int mode, cell body) inline {
+    return (bounce, to, value, mode, body, null(), null());
+}
+
+;;
+;; Type: Deploy
+;; Header: 0x946a98b6
+;; TLB: deploy#946a98b6 queryId:uint64 = Deploy
+;;
+
+(slice, ((int))) $Deploy$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2490013878);
+    var v'queryId = sc_0~load_uint(64);
+    return (sc_0, (v'queryId));
+}
+
+;;
+;; Type: DeployOk
+;; Header: 0xaff90f57
+;; TLB: deploy_ok#aff90f57 queryId:uint64 = DeployOk
+;;
+
+builder $DeployOk$_store(builder build_0, (int) v) inline {
+    var (v'queryId) = v;
+    build_0 = store_uint(build_0, 2952335191, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    return build_0;
+}
+
+cell $DeployOk$_store_cell((int) v) inline {
+    return $DeployOk$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $DeployOk$_constructor_queryId(int queryId) inline {
+    return (queryId);
+}
+
+;;
+;; Type: TokenExcesses
+;; Header: 0xd53276db
+;; TLB: token_excesses#d53276db queryId:uint64 = TokenExcesses
+;;
+
+builder $TokenExcesses$_store(builder build_0, (int) v) inline {
+    var (v'queryId) = v;
+    build_0 = store_uint(build_0, 3576854235, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    return build_0;
+}
+
+cell $TokenExcesses$_store_cell((int) v) inline {
+    return $TokenExcesses$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $TokenExcesses$_constructor_queryId(int queryId) inline {
+    return (queryId);
+}
+
+;;
+;; Type: OrderlyDepositData
+;; TLB: _ balance:int257 master:address owner:address jetton_wallet:address walletCode:^cell = OrderlyDepositData
+;;
+
+(int, slice, slice, slice, cell) $OrderlyDepositData$_to_external(((int, slice, slice, slice, cell)) v) inline {
+    var (v'balance, v'master, v'owner, v'jetton_wallet, v'walletCode) = v; 
+    return (v'balance, v'master, v'owner, v'jetton_wallet, v'walletCode);
+}
+
+((int, slice, slice, slice, cell)) $OrderlyDepositData$_constructor_balance_master_owner_jetton_wallet_walletCode(int balance, slice master, slice owner, slice jetton_wallet, cell walletCode) inline {
+    return (balance, master, owner, jetton_wallet, walletCode);
+}
+
+;;
+;; Type: DepositInternal
+;; Header: 0x12345678
+;; TLB: deposit_internal#12345678 queryId:uint64 amount:coins responseDestination:address = DepositInternal
+;;
+
+(slice, ((int, int, slice))) $DepositInternal$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 305419896);
+    var v'queryId = sc_0~load_uint(64);
+    var v'amount = sc_0~load_coins();
+    var v'responseDestination = sc_0~__tact_load_address();
+    return (sc_0, (v'queryId, v'amount, v'responseDestination));
+}
+
+;;
+;; Type: Withdraw
+;; Header: 0x9a17330a
+;; TLB: withdraw#9a17330a queryId:uint64 amount:coins = Withdraw
+;;
+
+(slice, ((int, int))) $Withdraw$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2585211658);
+    var v'queryId = sc_0~load_uint(64);
+    var v'amount = sc_0~load_coins();
+    return (sc_0, (v'queryId, v'amount));
+}
+
+;;
+;; Type: WithdrawAll
+;; Header: 0x56777d27
+;; TLB: withdraw_all#56777d27 queryId:uint64 = WithdrawAll
+;;
+
+(slice, ((int))) $WithdrawAll$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 1450671399);
+    var v'queryId = sc_0~load_uint(64);
+    return (sc_0, (v'queryId));
+}
+
+;;
+;; Type: WithdrawInternal
+;; Header: 0x91c972e9
+;; TLB: withdraw_internal#91c972e9 queryId:uint64 amount:coins destination:address jetton_wallet:address responseDestination:address = WithdrawInternal
+;;
+
+builder $WithdrawInternal$_store(builder build_0, (int, int, slice, slice, slice) v) inline {
+    var (v'queryId, v'amount, v'destination, v'jetton_wallet, v'responseDestination) = v;
+    build_0 = store_uint(build_0, 2445898473, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    build_0 = build_0.store_coins(v'amount);
+    build_0 = __tact_store_address(build_0, v'destination);
+    build_0 = __tact_store_address(build_0, v'jetton_wallet);
+    build_0 = __tact_store_address(build_0, v'responseDestination);
+    return build_0;
+}
+
+cell $WithdrawInternal$_store_cell((int, int, slice, slice, slice) v) inline {
+    return $WithdrawInternal$_store(begin_cell(), v).end_cell();
+}
+
+(slice, ((int, int))) $WithdrawInternal$_load_bounced(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2445898473);
+    var v'queryId = sc_0~load_uint(64);
+    var v'amount = sc_0~load_coins();
+    return (sc_0, (v'queryId, v'amount));
+}
+
+((int, int, slice, slice, slice)) $WithdrawInternal$_constructor_queryId_amount_destination_jetton_wallet_responseDestination(int queryId, int amount, slice destination, slice jetton_wallet, slice responseDestination) inline {
+    return (queryId, amount, destination, jetton_wallet, responseDestination);
+}
+
+;;
+;; Type: SwapLpInternal
+;; Header: 0x3a384313
+;; TLB: swap_lp_internal#3a384313 amount:coins side:bool minOut:coins from:address jettonWallet:address = SwapLpInternal
+;;
+
+(slice, ((int, int))) $SwapLpInternal$_load_bounced(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 976765715);
+    var v'amount = sc_0~load_coins();
+    var v'side = sc_0~load_int(1);
+    return (sc_0, (v'amount, v'side));
+}
+
+;;
+;; Type: AddLiquidityInternal
+;; Header: 0xfe2f1e66
+;; TLB: add_liquidity_internal#fe2f1e66 queryId:int257 amount:coins lpAddress:address isBase:bool responseDestination:address = AddLiquidityInternal
+;;
+
+(slice, ((int, int, slice, int, slice))) $AddLiquidityInternal$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 4264500838);
+    var v'queryId = sc_0~load_int(257);
+    var v'amount = sc_0~load_coins();
+    var v'lpAddress = sc_0~__tact_load_address();
+    var v'isBase = sc_0~load_int(1);
+    var v'responseDestination = sc_0~__tact_load_address();
+    return (sc_0, (v'queryId, v'amount, v'lpAddress, v'isBase, v'responseDestination));
+}
+
+;;
+;; Type: SendLiquidityToLpInternal
+;; Header: 0xf31c0c21
+;; TLB: send_liquidity_to_lp_internal#f31c0c21 amount:coins queryId:int257 from:address jettonWallet:address isBase:bool responseDestination:address = SendLiquidityToLpInternal
+;;
+
+builder $SendLiquidityToLpInternal$_store(builder build_0, (int, int, slice, slice, int, slice) v) inline_ref {
+    var (v'amount, v'queryId, v'from, v'jettonWallet, v'isBase, v'responseDestination) = v;
+    build_0 = store_uint(build_0, 4078701601, 32);
+    build_0 = build_0.store_coins(v'amount);
+    build_0 = build_0.store_int(v'queryId, 257);
+    build_0 = __tact_store_address(build_0, v'from);
+    build_0 = __tact_store_address(build_0, v'jettonWallet);
+    build_0 = build_0.store_int(v'isBase, 1);
+    var build_1 = begin_cell();
+    build_1 = __tact_store_address(build_1, v'responseDestination);
+    build_0 = store_ref(build_0, build_1.end_cell());
+    return build_0;
+}
+
+cell $SendLiquidityToLpInternal$_store_cell((int, int, slice, slice, int, slice) v) inline {
+    return $SendLiquidityToLpInternal$_store(begin_cell(), v).end_cell();
+}
+
+(slice, ((int))) $SendLiquidityToLpInternal$_load_bounced(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 4078701601);
+    var v'amount = sc_0~load_coins();
+    return (sc_0, (v'amount));
+}
+
+((int, int, slice, slice, int, slice)) $SendLiquidityToLpInternal$_constructor_queryId_from_jettonWallet_amount_isBase_responseDestination(int queryId, slice from, slice jettonWallet, int amount, int isBase, slice responseDestination) inline {
+    return (amount, queryId, from, jettonWallet, isBase, responseDestination);
+}
+
+;;
+;; Type: OrderlyAmmDeposit
+;;
+
+builder $OrderlyAmmDeposit$_store(builder build_0, (int, slice, slice, slice) v) inline {
+    var (v'balance, v'master, v'owner, v'jetton_wallet) = v;
+    build_0 = build_0.store_int(v'balance, 257);
+    build_0 = __tact_store_address(build_0, v'master);
+    build_0 = __tact_store_address(build_0, v'owner);
+    var build_1 = begin_cell();
+    build_1 = __tact_store_address(build_1, v'jetton_wallet);
+    build_0 = store_ref(build_0, build_1.end_cell());
+    return build_0;
+}
+
+(slice, ((int, slice, slice, slice))) $OrderlyAmmDeposit$_load(slice sc_0) inline {
+    var v'balance = sc_0~load_int(257);
+    var v'master = sc_0~__tact_load_address();
+    var v'owner = sc_0~__tact_load_address();
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'jetton_wallet = sc_1~__tact_load_address();
+    return (sc_0, (v'balance, v'master, v'owner, v'jetton_wallet));
+}
+
+builder $OrderlyAmmDeposit$init$_store(builder build_0, (slice, slice, slice) v) inline {
+    var (v'master, v'owner, v'jetton_wallet) = v;
+    build_0 = __tact_store_address(build_0, v'master);
+    build_0 = __tact_store_address(build_0, v'owner);
+    build_0 = __tact_store_address(build_0, v'jetton_wallet);
+    return build_0;
+}
+
+(slice, ((slice, slice, slice))) $OrderlyAmmDeposit$init$_load(slice sc_0) inline {
+    var v'master = sc_0~__tact_load_address();
+    var v'owner = sc_0~__tact_load_address();
+    var v'jetton_wallet = sc_0~__tact_load_address();
+    return (sc_0, (v'master, v'owner, v'jetton_wallet));
+}
+
+(int, slice, slice, slice) $OrderlyAmmDeposit$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$OrderlyAmmDeposit$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (slice master, slice owner, slice jetton_wallet) = $sc~$OrderlyAmmDeposit$init$_load();
+        $sc.end_parse();
+        return $OrderlyAmmDeposit$_contract_init(master, owner, jetton_wallet);
+    }
+}
+
+() $OrderlyAmmDeposit$_contract_store((int, slice, slice, slice) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $OrderlyAmmDeposit$_store(b, v);
+    set_data(b.end_cell());
+}
+
+(cell, cell) $OrderlyAmmDeposit$_init_child(cell sys', slice $master, slice $owner, slice $jetton_wallet) inline_ref {
+    slice sc' = sys'.begin_parse();
+    cell source = sc'~load_dict();
+    cell contracts = new_dict();
+    
+    ;; Contract Code: OrderlyAmmDeposit
+    cell mine = __tact_dict_get_code(source, 18712);
+    contracts = __tact_dict_set_code(contracts, 18712, mine);
+    
+    ;; Build cell
+    builder b = begin_cell();
+    b = b.store_ref(begin_cell().store_dict(contracts).end_cell());
+    b = b.store_int(false, 1);
+    b = $OrderlyAmmDeposit$init$_store(b, ($master, $owner, $jetton_wallet));
+    return (mine, b.end_cell());
+}

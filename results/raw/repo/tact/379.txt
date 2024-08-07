@@ -1,0 +1,62 @@
+__tact_dict_set_uint_slice: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pugachevdmitry/tact-challenge/contracts/output/sample_Task5.stdlib.fc:52:21: warning: Local variable 'ok' is not used
+          var (r, ok) = udict_delete?(d, kl, k);
+                      ^
+$Task5$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pugachevdmitry/tact-challenge/contracts/output/sample_Task5.code.fc:14:92: warning: Local variable '$self'seed' is not used
+      var (($self'seed, $self'nftCnt, $self'owner, $self'answer, $self'mp, $self'blockSize)) = (null(), null(), null(), null(), null(), null());
+                                                                                             ^
+$Task5$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pugachevdmitry/tact-challenge/contracts/output/sample_Task5.code.fc:14:92: warning: Local variable '$self'nftCnt' is not used
+      var (($self'seed, $self'nftCnt, $self'owner, $self'answer, $self'mp, $self'blockSize)) = (null(), null(), null(), null(), null(), null());
+                                                                                             ^
+$Task5$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pugachevdmitry/tact-challenge/contracts/output/sample_Task5.code.fc:14:92: warning: Local variable '$self'owner' is not used
+      var (($self'seed, $self'nftCnt, $self'owner, $self'answer, $self'mp, $self'blockSize)) = (null(), null(), null(), null(), null(), null());
+                                                                                             ^
+$Task5$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pugachevdmitry/tact-challenge/contracts/output/sample_Task5.code.fc:14:92: warning: Local variable '$self'blockSize' is not used
+      var (($self'seed, $self'nftCnt, $self'owner, $self'answer, $self'mp, $self'blockSize)) = (null(), null(), null(), null(), null(), null());
+                                                                                             ^
+$Task5$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./pugachevdmitry/tact-challenge/contracts/output/sample_Task5.storage.fc:220:19: warning: Lack of end_parse.
+          return $sc~$Task5$_load();
+                    ^
+$Task5$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./pugachevdmitry/tact-challenge/contracts/output/sample_Task5.code.fc:138:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./pugachevdmitry/tact-challenge/contracts/output/sample_Task5.storage.fc:231:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task5$_contract_store & $Task5$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./pugachevdmitry/tact-challenge/contracts/output/sample_Task5.storage.fc:216:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./pugachevdmitry/tact-challenge/contracts/output/sample_Task5.storage.fc:231:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./pugachevdmitry/tact-challenge/contracts/output/sample_Task5.code.fc:76:213: warning: UnHandle bounced message with op: 0xfda48b79
+  ... 00), (2 + 64), $AdminFetchProfit$_store_cell($AdminFetchProfit$_constructor_queryId($msg'queryId))));
+  ...                                                                                                     ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./pugachevdmitry/tact-challenge/contracts/output/sample_Task5.code.fc:91:221: warning: UnHandle bounced message with op: 0x408b8c2e
+  ... cell($TransferNFTs$_constructor_queryId_l_r($msg'queryId, $left, (($left + $self'blockSize) - 1)))));
+  ...                                                                                                     ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./pugachevdmitry/tact-challenge/contracts/output/sample_Task5.code.fc:94:204: warning: UnHandle bounced message with op: 0x408b8c2e
+  ... rNFTs$_store_cell($TransferNFTs$_constructor_queryId_l_r($msg'queryId, $left, ($self'nftCnt - 1)))));
+  ...                                                                                                     ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./pugachevdmitry/tact-challenge/contracts/output/sample_Task5.code.fc:46:312: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... unt_forwardPayload($msg'queryId, $msg'prevOwner, $msg'prevOwner, null(), 0, $global_emptySlice()))));
+  ...                                                                                                     ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./pugachevdmitry/tact-challenge/contracts/output/sample_Task5.code.fc:54:289: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... unt_forwardPayload($msg'queryId, $msg'prevOwner, $msg'prevOwner, null(), 0, $global_emptySlice()))));
+  ...                                                                                                     ^
+$Task5$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./pugachevdmitry/tact-challenge/contracts/output/sample_Task5.code.fc:65:348: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... ardAmount_forwardPayload($msg'queryId, $self'owner, $self'owner, null(), 0, $global_emptySlice()))));
+  ...                                                                                                     ^

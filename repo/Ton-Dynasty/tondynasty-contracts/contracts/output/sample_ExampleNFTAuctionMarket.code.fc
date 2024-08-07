@@ -1,0 +1,335 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_ExampleNFTAuctionMarket.headers.fc";
+#include "sample_ExampleNFTAuctionMarket.stdlib.fc";
+#include "sample_ExampleNFTAuctionMarket.constants.fc";
+#include "sample_ExampleNFTAuctionMarket.storage.fc";
+
+;;
+;; Contract ExampleNFTAuctionMarket functions
+;;
+
+(slice, cell, cell, cell, cell) $ExampleNFTAuctionMarket$_contract_init(slice $owner) impure inline_ref {
+    var (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)) = (null(), null(), null(), null(), null());
+    $self'owner = $owner;
+    return ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck);
+}
+
+((slice, cell, cell, cell, cell), (cell, cell)) $ExampleNFTAuctionMarket$_fun__nft_auction_init((slice, cell, cell, cell, cell) $self, slice $nftAddress, slice $seller) impure inline_ref {
+    var (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)) = $self;
+    return (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck), $ExampleNFTAuction$_init_child(__tact_context_sys, my_address(), $nftAddress, $seller));
+}
+
+((slice, cell, cell, cell, cell), int) $ExampleNFTAuctionMarket$_fun_get_hash_seller_nft_address((slice, cell, cell, cell, cell) $self, slice $seller, slice $nftAddress) impure inline_ref {
+    var (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)) = $self;
+    return (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck), slice_hash($Cell$_fun_asSlice(end_cell(__tact_store_address(__tact_store_address(begin_cell(), $seller), $nftAddress)))));
+}
+
+((slice, cell, cell, cell, cell), (int, int, int, int, int, int, slice, slice, slice, slice, slice)) $ExampleNFTAuctionMarket$_fun__set_up_auction((slice, cell, cell, cell, cell) $self, slice $sellerAddress, slice $nftAddress, int $reservePrice, int $buyNowPrice, int $auctionPeriod, slice $beneficiary) impure inline {
+    var (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)) = $self;
+    int $hashSellerNftAddress = ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun_get_hash_seller_nft_address($sellerAddress, $nftAddress);
+    return (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck), $AuctionInfo$_constructor_bidIncreasePercentage_auctionBidPeriod_auctionPeriod_reservePrice_buyNowPrice_nftHighestBid_nftHighestBidder_nftSeller_whitelistedBuyer_nftRecipient_beneficiary(100, 86400, $auctionPeriod, $reservePrice, $buyNowPrice, 0, $sellerAddress, $sellerAddress, $sellerAddress, $sellerAddress, $beneficiary));
+}
+
+((slice, cell, cell, cell, cell), ()) $ExampleNFTAuctionMarket$_fun__set_price_validate((slice, cell, cell, cell, cell) $self, int $buyNowPrice, int $reservePrice) impure inline {
+    var (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)) = $self;
+    throw_unless(55234, ($buyNowPrice > $reservePrice));
+    return (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck), ());
+}
+
+((slice, cell, cell, cell, cell), slice) $ExampleNFTAuctionMarket$_fun_get_nft_auction_address((slice, cell, cell, cell, cell) $self, slice $nftAddress, slice $seller) impure inline_ref {
+    var (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)) = $self;
+    var ($nftAuctionInit'code, $nftAuctionInit'data) = ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun__nft_auction_init($nftAddress, $seller);
+    return (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck), $global_contractAddress(($nftAuctionInit'code, $nftAuctionInit'data)));
+}
+
+((slice, cell, cell, cell, cell), ()) $ExampleNFTAuctionMarket$_fun__auction_set_validate((slice, cell, cell, cell, cell) $self, slice $nftAuctionAddress) impure inline {
+    var (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)) = $self;
+    throw_unless(58706, null?(__tact_dict_get_slice_slice($self'auctionOverCheck, 267, $nftAuctionAddress)));
+    return (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck), ());
+}
+
+((slice, cell, cell, cell, cell), ()) $ExampleNFTAuctionMarket$_fun__build_auction((slice, cell, cell, cell, cell) $self, slice $nftAuctionAddress, (int, int, int, int, int, int, slice, slice, slice, slice, slice) $auctionInfo, (cell, cell) $nftAuctionInit) impure inline {
+    var (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)) = $self;
+    var (($auctionInfo'bidIncreasePercentage, $auctionInfo'auctionBidPeriod, $auctionInfo'auctionPeriod, $auctionInfo'reservePrice, $auctionInfo'buyNowPrice, $auctionInfo'nftHighestBid, $auctionInfo'nftHighestBidder, $auctionInfo'nftSeller, $auctionInfo'whitelistedBuyer, $auctionInfo'nftRecipient, $auctionInfo'beneficiary)) = $auctionInfo;
+    var (($nftAuctionInit'code, $nftAuctionInit'data)) = $nftAuctionInit;
+    $global_send($SendParameters$_constructor_to_value_mode_bounce_body_code_data($nftAuctionAddress, 0, 64, false, $BuildNftAuction$_store_cell($BuildNftAuction$_constructor_auctionInfo(($auctionInfo'bidIncreasePercentage, $auctionInfo'auctionBidPeriod, $auctionInfo'auctionPeriod, $auctionInfo'reservePrice, $auctionInfo'buyNowPrice, $auctionInfo'nftHighestBid, $auctionInfo'nftHighestBidder, $auctionInfo'nftSeller, $auctionInfo'whitelistedBuyer, $auctionInfo'nftRecipient, $auctionInfo'beneficiary))), $nftAuctionInit'code, $nftAuctionInit'data));
+    return (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck), ());
+}
+
+((slice, cell, cell, cell, cell), ()) $ExampleNFTAuctionMarket$_fun__parse_forward_payload((slice, cell, cell, cell, cell) $self, slice $seller, slice $nftAddress, slice $payload) impure inline {
+    var (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)) = $self;
+    slice $beneficiary = $payload~__tact_load_address();
+    int $reservePrice = $payload~load_coins();
+    int $buyNowPrice = $payload~load_coins();
+    int $auctionPeriod = $payload~load_uint(256);
+    var ($auctionInfo'bidIncreasePercentage, $auctionInfo'auctionBidPeriod, $auctionInfo'auctionPeriod, $auctionInfo'reservePrice, $auctionInfo'buyNowPrice, $auctionInfo'nftHighestBid, $auctionInfo'nftHighestBidder, $auctionInfo'nftSeller, $auctionInfo'whitelistedBuyer, $auctionInfo'nftRecipient, $auctionInfo'beneficiary) = ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun__set_up_auction($seller, $nftAddress, $reservePrice, $buyNowPrice, $auctionPeriod, $beneficiary);
+    ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun__set_price_validate($buyNowPrice, $reservePrice);
+    var ($nftAuctionInit'code, $nftAuctionInit'data) = ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun__nft_auction_init($nftAddress, $seller);
+    slice $nftAuctionAddress = ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun_get_nft_auction_address($nftAddress, $seller);
+    ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun__auction_set_validate($nftAuctionAddress);
+    $self'auctionOverCheck~__tact_dict_set_slice_slice(267, $nftAuctionAddress, $nftAddress);
+    ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun__build_auction($nftAuctionAddress, ($auctionInfo'bidIncreasePercentage, $auctionInfo'auctionBidPeriod, $auctionInfo'auctionPeriod, $auctionInfo'reservePrice, $auctionInfo'buyNowPrice, $auctionInfo'nftHighestBid, $auctionInfo'nftHighestBidder, $auctionInfo'nftSeller, $auctionInfo'whitelistedBuyer, $auctionInfo'nftRecipient, $auctionInfo'beneficiary), ($nftAuctionInit'code, $nftAuctionInit'data));
+    return (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck), ());
+}
+
+((slice, cell, cell, cell, cell), ()) $ExampleNFTAuctionMarket$_fun__auction_not_set_validate((slice, cell, cell, cell, cell) $self, slice $nftAuctionAddress) impure inline {
+    var (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)) = $self;
+    throw_unless(24136, (~ null?(__tact_dict_get_slice_slice($self'auctionOverCheck, 267, $nftAuctionAddress))));
+    return (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck), ());
+}
+
+((slice, cell, cell, cell, cell), int) $ExampleNFTAuctionMarket$_fun_get_is_auction_transfer_check((slice, cell, cell, cell, cell) $self, int $hashSellerNftAddress) impure inline_ref {
+    var (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)) = $self;
+    if (null?(__tact_dict_get_int_int($self'auctionTransferCheck, 257, $hashSellerNftAddress, 257))) {
+        return (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck), 0);
+    } else {
+        return (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck), 1);
+    }
+}
+
+((slice, cell, cell, cell, cell), ()) $ExampleNFTAuctionMarket$_fun__auction_transfer_validate((slice, cell, cell, cell, cell) $self, int $hashSellerNftAddress) impure inline {
+    var (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)) = $self;
+    throw_unless(54143, (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun_get_is_auction_transfer_check($hashSellerNftAddress) == 1));
+    return (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck), ());
+}
+
+;;
+;; Receivers of a Contract ExampleNFTAuctionMarket
+;;
+
+(((slice, cell, cell, cell, cell)), ()) $ExampleNFTAuctionMarket$_internal_binary_Deploy((slice, cell, cell, cell, cell) $self, (int) $deploy) impure inline {
+    var ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck), ());
+}
+
+(((slice, cell, cell, cell, cell)), ()) %$ExampleNFTAuctionMarket$_internal_empty((slice, cell, cell, cell, cell) $self) impure inline {
+    var ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck) = $self;
+    return (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck), ());
+}
+
+(((slice, cell, cell, cell, cell)), ()) $ExampleNFTAuctionMarket$_internal_binary_OwnershipAssigned((slice, cell, cell, cell, cell) $self, (int, slice, slice) $msg) impure inline {
+    var ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck) = $self;
+    var ($msg'query_id, $msg'prev_owner, $msg'forward_payload) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    slice $prev_owner = $msg'prev_owner;
+    slice $nftAddress = $ctx'sender;
+    int $hashSellerNftAddress = ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun_get_hash_seller_nft_address($prev_owner, $nftAddress);
+    $self'auctionTransferCheck~__tact_dict_set_int_int(257, $hashSellerNftAddress, 1, 257);
+    slice $payload = $msg'forward_payload;
+    if ((slice_empty?($payload) == false)) {
+        ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun__parse_forward_payload($prev_owner, $nftAddress, $payload);
+    }
+    return (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck), ());
+}
+
+(((slice, cell, cell, cell, cell)), ()) $ExampleNFTAuctionMarket$_internal_binary_SetUpAuction((slice, cell, cell, cell, cell) $self, (slice, int, int, int, slice) $msg) impure inline {
+    var ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck) = $self;
+    var ($msg'nftAddress, $msg'reservePrice, $msg'buyNowPrice, $msg'auctionPeriod, $msg'beneficiary) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    slice $sellerAddress = $ctx'sender;
+    int $hashSellerNftAddress = ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun_get_hash_seller_nft_address($sellerAddress, $msg'nftAddress);
+    ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun__auction_transfer_validate($hashSellerNftAddress);
+    if (null?($msg'beneficiary)) {
+        $msg'beneficiary = $sellerAddress;
+    }
+    var ($auctionInfo'bidIncreasePercentage, $auctionInfo'auctionBidPeriod, $auctionInfo'auctionPeriod, $auctionInfo'reservePrice, $auctionInfo'buyNowPrice, $auctionInfo'nftHighestBid, $auctionInfo'nftHighestBidder, $auctionInfo'nftSeller, $auctionInfo'whitelistedBuyer, $auctionInfo'nftRecipient, $auctionInfo'beneficiary) = ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun__set_up_auction($sellerAddress, $msg'nftAddress, $msg'reservePrice, $msg'buyNowPrice, $msg'auctionPeriod, __tact_not_null($msg'beneficiary));
+    ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun__set_price_validate($msg'buyNowPrice, $msg'reservePrice);
+    var ($nftAuctionInit'code, $nftAuctionInit'data) = ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun__nft_auction_init($msg'nftAddress, $sellerAddress);
+    slice $nftAuctionAddress = ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun_get_nft_auction_address($msg'nftAddress, $sellerAddress);
+    ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun__auction_set_validate($nftAuctionAddress);
+    $self'auctionOverCheck~__tact_dict_set_slice_slice(267, $nftAuctionAddress, $msg'nftAddress);
+    ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun__build_auction($nftAuctionAddress, ($auctionInfo'bidIncreasePercentage, $auctionInfo'auctionBidPeriod, $auctionInfo'auctionPeriod, $auctionInfo'reservePrice, $auctionInfo'buyNowPrice, $auctionInfo'nftHighestBid, $auctionInfo'nftHighestBidder, $auctionInfo'nftSeller, $auctionInfo'whitelistedBuyer, $auctionInfo'nftRecipient, $auctionInfo'beneficiary), ($nftAuctionInit'code, $nftAuctionInit'data));
+    return (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck), ());
+}
+
+(((slice, cell, cell, cell, cell)), ()) $ExampleNFTAuctionMarket$_internal_binary_TransferNFT((slice, cell, cell, cell, cell) $self, (slice, slice, int, slice, slice, cell, int, slice) $msg) impure inline {
+    var ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck) = $self;
+    var ($msg'nftAddress, $msg'seller, $msg'query_id, $msg'new_owner, $msg'response_destination, $msg'custom_payload, $msg'forward_amount, $msg'forward_payload) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    slice $nftAuctionAddress = $ctx'sender;
+    ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun__auction_not_set_validate($nftAuctionAddress);
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body($msg'nftAddress, 0, false, 64, $Transfer$_store_cell($Transfer$_constructor_query_id_new_owner_response_destination_custom_payload_forward_amount_forward_payload($msg'query_id, $msg'new_owner, $msg'response_destination, $msg'custom_payload, $msg'forward_amount, $msg'forward_payload))));
+    $self'auctionOverCheck~__tact_dict_set_slice_slice(267, $ctx'sender, null());
+    int $hashSellerNftAddress = ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun_get_hash_seller_nft_address($msg'seller, $msg'nftAddress);
+    $self'auctionTransferCheck~__tact_dict_set_int_int(257, $hashSellerNftAddress, null(), 257);
+    return (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck), ());
+}
+
+(((slice, cell, cell, cell, cell)), ()) $ExampleNFTAuctionMarket$_internal_binary_ReviseSetUpAuction((slice, cell, cell, cell, cell) $self, (slice, int, int, int, slice) $msg) impure inline {
+    var ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck) = $self;
+    var ($msg'nftAddress, $msg'reservePrice, $msg'buyNowPrice, $msg'auctionPeriod, $msg'beneficiary) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    slice $sellerAddress = $ctx'sender;
+    int $hashSellerNftAddress = ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun_get_hash_seller_nft_address($sellerAddress, $msg'nftAddress);
+    ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun__auction_transfer_validate($hashSellerNftAddress);
+    slice $nftAuctionAddress = ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun_get_nft_auction_address($msg'nftAddress, $sellerAddress);
+    ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun__auction_not_set_validate($nftAuctionAddress);
+    if (null?($msg'beneficiary)) {
+        $msg'beneficiary = $sellerAddress;
+    }
+    var ($auctionInfo'bidIncreasePercentage, $auctionInfo'auctionBidPeriod, $auctionInfo'auctionPeriod, $auctionInfo'reservePrice, $auctionInfo'buyNowPrice, $auctionInfo'nftHighestBid, $auctionInfo'nftHighestBidder, $auctionInfo'nftSeller, $auctionInfo'whitelistedBuyer, $auctionInfo'nftRecipient, $auctionInfo'beneficiary) = ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun__set_up_auction($sellerAddress, $msg'nftAddress, $msg'reservePrice, $msg'buyNowPrice, $msg'auctionPeriod, __tact_not_null($msg'beneficiary));
+    $self'auctionOverCheck~__tact_dict_set_slice_slice(267, $nftAuctionAddress, $msg'nftAddress);
+    var ($newAuctionInfo'bidIncreasePercentage, $newAuctionInfo'auctionBidPeriod, $newAuctionInfo'auctionPeriod, $newAuctionInfo'reservePrice, $newAuctionInfo'buyNowPrice, $newAuctionInfo'nftHighestBid, $newAuctionInfo'nftHighestBidder, $newAuctionInfo'nftSeller, $newAuctionInfo'whitelistedBuyer, $newAuctionInfo'nftRecipient, $newAuctionInfo'beneficiary) = ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun__set_up_auction($sellerAddress, $msg'nftAddress, $msg'reservePrice, $msg'buyNowPrice, $msg'auctionPeriod, __tact_not_null($msg'beneficiary));
+    $global_send($SendParameters$_constructor_to_value_mode_bounce_body($nftAuctionAddress, 0, 64, false, $ReviseAuction$_store_cell($ReviseAuction$_constructor_reviseAuctionInfo(($newAuctionInfo'bidIncreasePercentage, $newAuctionInfo'auctionBidPeriod, $newAuctionInfo'auctionPeriod, $newAuctionInfo'reservePrice, $newAuctionInfo'buyNowPrice, $newAuctionInfo'nftHighestBid, $newAuctionInfo'nftHighestBidder, $newAuctionInfo'nftSeller, $newAuctionInfo'whitelistedBuyer, $newAuctionInfo'nftRecipient, $newAuctionInfo'beneficiary)))));
+    return (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck), ());
+}
+
+(((slice, cell, cell, cell, cell)), ()) $ExampleNFTAuctionMarket$_internal_binary_EndAuction((slice, cell, cell, cell, cell) $self, (slice) $msg) impure inline {
+    var ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck) = $self;
+    var ($msg'nftAddress) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    slice $sellerAddress = $ctx'sender;
+    int $hashSellerNftAddress = ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun_get_hash_seller_nft_address($sellerAddress, $msg'nftAddress);
+    slice $nftAuctionAddress = ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun_get_nft_auction_address($msg'nftAddress, $sellerAddress);
+    ($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck)~$ExampleNFTAuctionMarket$_fun__auction_not_set_validate($nftAuctionAddress);
+    $global_send($SendParameters$_constructor_to_value_mode_bounce_body($nftAuctionAddress, 0, 64, false, __gen_cell_comment_f197588d96bb7ed9becf4e3b632fca58694ded2d3437a44d065235b8213e4c66()));
+    return (($self'owner, $self'nftContractAuctions, $self'auctionTransferCheck, $self'collectionNftIdToAuction, $self'auctionOverCheck), ());
+}
+
+;;
+;; Get methods of a Contract ExampleNFTAuctionMarket
+;;
+
+_ %_nft_auction_init(slice $$nftAddress, slice $$seller) method_id(82274) {
+    slice $nftAddress = __tact_verify_address($$nftAddress);
+    slice $seller = __tact_verify_address($$seller);
+    var self = $ExampleNFTAuctionMarket$_contract_load();
+    var res = self~$ExampleNFTAuctionMarket$_fun__nft_auction_init($nftAddress, $seller);
+    return $StateInit$_to_external(res);
+}
+
+_ %get_nft_auction_address(slice $$nftAddress, slice $$seller) method_id(79629) {
+    slice $nftAddress = __tact_verify_address($$nftAddress);
+    slice $seller = __tact_verify_address($$seller);
+    var self = $ExampleNFTAuctionMarket$_contract_load();
+    var res = self~$ExampleNFTAuctionMarket$_fun_get_nft_auction_address($nftAddress, $seller);
+    return res;
+}
+
+_ %get_hash_seller_nft_address(slice $$seller, slice $$nftAddress) method_id(102191) {
+    slice $seller = __tact_verify_address($$seller);
+    slice $nftAddress = __tact_verify_address($$nftAddress);
+    var self = $ExampleNFTAuctionMarket$_contract_load();
+    var res = self~$ExampleNFTAuctionMarket$_fun_get_hash_seller_nft_address($seller, $nftAddress);
+    return res;
+}
+
+_ %get_is_auction_transfer_check(int $$hashSellerNftAddress) method_id(66118) {
+    int $hashSellerNftAddress = $$hashSellerNftAddress;
+    var self = $ExampleNFTAuctionMarket$_contract_load();
+    var res = self~$ExampleNFTAuctionMarket$_fun_get_is_auction_transfer_check($hashSellerNftAddress);
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmPnwrevkCMabRx79j4ZiVrHkAKYouC9APkc9ThR8qbwCg";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract ExampleNFTAuctionMarket
+;;
+
+((slice, cell, cell, cell, cell), int) $ExampleNFTAuctionMarket$_contract_router_internal((slice, cell, cell, cell, cell) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$ExampleNFTAuctionMarket$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Receive empty message
+    if ((op == 0) & (slice_bits(in_msg) <= 32)) {
+        self~%$ExampleNFTAuctionMarket$_internal_empty();
+        return (self, true);
+    }
+    
+    ;; Receive OwnershipAssigned message
+    if (op == 85167505) {
+        var msg = in_msg~$OwnershipAssigned$_load();
+        self~$ExampleNFTAuctionMarket$_internal_binary_OwnershipAssigned(msg);
+        return (self, true);
+    }
+    
+    ;; Receive SetUpAuction message
+    if (op == 3922856687) {
+        var msg = in_msg~$SetUpAuction$_load();
+        self~$ExampleNFTAuctionMarket$_internal_binary_SetUpAuction(msg);
+        return (self, true);
+    }
+    
+    ;; Receive TransferNFT message
+    if (op == 2329522910) {
+        var msg = in_msg~$TransferNFT$_load();
+        self~$ExampleNFTAuctionMarket$_internal_binary_TransferNFT(msg);
+        return (self, true);
+    }
+    
+    ;; Receive ReviseSetUpAuction message
+    if (op == 2303509594) {
+        var msg = in_msg~$ReviseSetUpAuction$_load();
+        self~$ExampleNFTAuctionMarket$_internal_binary_ReviseSetUpAuction(msg);
+        return (self, true);
+    }
+    
+    ;; Receive EndAuction message
+    if (op == 1395292461) {
+        var msg = in_msg~$EndAuction$_load();
+        self~$ExampleNFTAuctionMarket$_internal_binary_EndAuction(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $ExampleNFTAuctionMarket$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$ExampleNFTAuctionMarket$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $ExampleNFTAuctionMarket$_contract_store(self);
+}

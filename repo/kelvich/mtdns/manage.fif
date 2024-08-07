@@ -1,0 +1,140 @@
+#!/usr/bin/env fift -s
+"TonUtil.fif" include
+"Asm.fif" include
+
+{ ."Manual TON DNS management script." cr cr
+  ."usage: " $0 type ." <contract-name> action arg1 arg2 ... argN" cr
+  ."  touch <workchain-id>: create new or show existing install" cr
+  ."  upsert <domain> <seqno> <category_id> <address>" cr
+  ."  delete <domain> <seqno> <category_id> <address>" cr
+  ."  upgrade <seqno>" cr
+  ."  transfer <seqno> <new-public-key>" cr
+  1 halt
+} : usage
+
+$# 3 < { usage } if
+
+// (msg -- Msg)
+{
+    dup hashu @' mtdns-privkey ed25519_sign_uint // msg sig
+    <b b{1000100} s, @' addr addr, 0 Gram, b{00} s, swap B, swap ref, b>
+    2 boc+>B "deployments/last-query.boc" tuck B>file
+    ."Saved query to file " type cr
+} : create_ext_msg
+
+// (StateInit msg -- InitMsg)
+{
+    dup hashu @' mtdns-privkey ed25519_sign_uint // StateInit msg sig
+    rot // msg sig StateInit
+    <b b{1000100} s, @' addr addr, b{000010} s, swap <s s, b{0} s, swap B, swap ref, b>
+    2 boc+>B "deployments/last-query.boc" tuck B>file
+    ."Saved query to file " type cr
+} : create_init_msg
+
+// (wc addr -- )
+{
+    ."Contract address = " 2dup .addr cr
+    ."Non-bounceable address (for init): " 2dup 7 .Addr cr
+    ."Bounceable address (for later access): " 6 .Addr cr
+} : print_addr
+
+{
+    @' file-base +".addr" load-address 2=: addr
+    @' file-base +".pk" load-keypair =: mtdns-privkey =: mtdns-pubkey
+} : load_account
+
+"deployments/" $1 $+ =: file-base
+
+$2 "show" $=
+{
+    @' file-base +".addr" load-address print_addr
+    quit
+} if
+
+$2 "touch" $=
+{
+    $3 parse-workchain-id =: wc
+
+    ."Initialising dns contract '" @' file-base type ."' in workchain " @' wc . cr
+
+    @' file-base +".pk" load-generate-keypair =: mtdns-privkey =: mtdns-pubkey
+
+    // create StateInit
+    // "mtdns.fif" include
+    <b 0 32 u, @' mtdns-pubkey B, null dict, b>
+    null
+    <b b{0011} s, 3 roll ref, rot ref, swap dict, b>  // StateInit
+
+    // calculate and save addres
+    dup hashu @' wc swap 2=: addr
+    @' addr 2dup @' file-base +".addr"  save-address print_addr
+
+    <b 0 32 u, 0x0 32 u, b> // StateInit InitMsg
+    create_init_msg
+
+    quit
+} if
+
+$2 "upsert" $=
+{
+    // <domain> <seqno> <category_id> <address>
+    $3 =: domain
+    def? $4 { @' $4 } if parse-int =: seqno
+    def? $5 { @' $5 } if parse-int =: category_id
+    def? $6 { @' $6 } if true parse-load-address drop 2=: dest_addr
+
+    load_account
+
+    @' domain <b swap $, b> // domain name in separete cell
+    <b @' seqno 32 u, 0x2 32 u, @' category_id 16 i, @' dest_addr addr, swap ref, b> // msg
+    create_ext_msg
+
+    quit
+} if
+
+$2 "delete" $=
+{
+    // <domain> <seqno> <cat_id>
+    $3 =: domain
+    def? $4 { @' $4 } if parse-int =: seqno
+    def? $5 { @' $5 } if parse-int =: category_id
+
+    load_account
+
+    @' domain <b swap $, b> // domain name in separete cell
+    <b @' seqno 32 u, 0x3 32 u, @' category_id 16 i, swap ref, b> // msg
+    create_ext_msg
+
+    quit
+} if
+
+$2 "upgrade" $=
+{
+    // <seqno>
+    $3 parse-int =: mtdns-seqno
+
+    load_account
+
+    "mtdns.fif" include
+    <b @' mtdns-seqno 32 u, 0x11 32 u, swap ref, b> // msg
+    create_ext_msg
+
+    quit
+} if
+
+$2 "transfer" $=
+{
+    // <seqno> <pubkey>
+    $3 parse-int =: seqno
+    def? $4 { @' $4 } if =: new_pubkey_path
+
+    load_account
+
+    @' new_pubkey_path file>B
+    <b @' seqno 32 u, 0x10 32 u, swap B, b> // msg
+    create_ext_msg
+
+    quit
+} if
+
+usage

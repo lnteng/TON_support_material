@@ -1,0 +1,80 @@
+blacklist_nft: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./XP-NETWORK/xp-the-open-network/func/bridge.func:381:36: warning: Local variable 'consumed_action' is not used
+      var (consumed_action, existed) = consumed_actions.udict_get?(256, action_id);
+                                     ^
+blacklist_nft: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./XP-NETWORK/xp-the-open-network/func/bridge.func:387:34: warning: Local variable 'dest_wc' is not used
+      var (dest_wc, contract_addr) = parse_std_addr(c_addr);
+                                   ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./XP-NETWORK/xp-the-open-network/func/bridge.func:18:12: warning: Lack of end_parse.
+           ds~load_dict()      ;; consumed actions
+             ^
+withdraw_nft: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./XP-NETWORK/xp-the-open-network/func/bridge.func:148:18: warning: Local variable 'query_id' is not used
+      var query_id = in_msg_body~load_uint(64);
+                   ^
+whitelist_nft: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./XP-NETWORK/xp-the-open-network/func/bridge.func:287:36: warning: Local variable 'consumed_action' is not used
+      var (consumed_action, existed) = consumed_actions.udict_get?(256, action_id);
+                                     ^
+whitelist_nft: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./XP-NETWORK/xp-the-open-network/func/bridge.func:293:34: warning: Local variable 'dest_wc' is not used
+      var (dest_wc, contract_addr) = parse_std_addr(c_addr);
+                                   ^
+transfer_nft: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./XP-NETWORK/xp-the-open-network/func/bridge.func:71:46: warning: Local variable 'dest_wc' is not used
+      var (dest_wc, parsed_collection_address) = parse_std_addr(collection_address);
+                                               ^
+confirm_public_key: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./XP-NETWORK/xp-the-open-network/func/bridge.func:256:36: warning: Local variable 'consumed_action' is not used
+      var (consumed_action, existed) = consumed_actions.udict_get?(256, action_id);
+                                     ^
+freeze_nft: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./XP-NETWORK/xp-the-open-network/func/bridge.func:140:18: warning: Local variable 'query_id' is not used
+      var query_id = in_msg_body~load_uint(64);
+                   ^
+freeze_nft: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./XP-NETWORK/xp-the-open-network/func/bridge.func:141:27: warning: Local variable 'old_owner_address' is not used
+      var old_owner_address = in_msg_body~load_msg_addr();
+                            ^
+unfreeze_nft: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./XP-NETWORK/xp-the-open-network/func/bridge.func:104:16: warning: Local variable 'amount' is not used
+      var amount = msg_slice~load_coins();
+                 ^
+unfreeze_nft: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./XP-NETWORK/xp-the-open-network/func/bridge.func:115:36: warning: Local variable 'consumed_action' is not used
+      var (consumed_action, existed) = consumed_actions.udict_get?(256, action_id);
+                                     ^
+withdraw_fees: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./XP-NETWORK/xp-the-open-network/func/bridge.func:189:21: warning: Lack of end_parse.
+      int fwd_fee = cs~load_coins(); ;; we use message fwd_fee for estimation of forward_payload costs
+                      ^
+withdraw_fees: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./XP-NETWORK/xp-the-open-network/func/bridge.func:175:36: warning: Local variable 'consumed_action' is not used
+      var (consumed_action, existed) = consumed_actions.udict_get?(256, action_id);
+                                     ^
+update_public_key: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./XP-NETWORK/xp-the-open-network/func/bridge.func:203:99: warning: Local variable 'pending_pk' is not used
+      var (public_key, pending_pk, _, stored_action_id, stored_paused, whitelist, consumed_actions) = load_data();
+                                                                                                    ^
+update_public_key: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./XP-NETWORK/xp-the-open-network/func/bridge.func:225:36: warning: Local variable 'consumed_action' is not used
+      var (consumed_action, existed) = consumed_actions.udict_get?(256, action_id);
+                                     ^
+pause: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./XP-NETWORK/xp-the-open-network/func/bridge.func:320:36: warning: Local variable 'consumed_action' is not used
+      var (consumed_action, existed) = consumed_actions.udict_get?(256, action_id);
+                                     ^
+unpause: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./XP-NETWORK/xp-the-open-network/func/bridge.func:350:36: warning: Local variable 'consumed_action' is not used
+      var (consumed_action, existed) = consumed_actions.udict_get?(256, action_id);
+                                     ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./XP-NETWORK/xp-the-open-network/func/bridge.func:87:40: warning: UnHandle bounced message with op: 0x1
+      send_raw_message(msg.end_cell(), 1);
+                                         ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./XP-NETWORK/xp-the-open-network/func/bridge.func:134:44: warning: UnHandle bounced message with op: 0x5fcc3d14
+      send_raw_message(nft_msg.end_cell(), 1);
+                                             ^

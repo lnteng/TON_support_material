@@ -1,0 +1,24 @@
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/test/jetton_minter_b.fc:113:84: warning: Local variable 'total_supply' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code) = load_data();
+                                                                                     ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/test/jetton_minter_b.fc:113:84: warning: Local variable 'admin_address' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code) = load_data();
+                                                                                     ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/test/jetton_minter_b.fc:113:84: warning: Local variable 'content' is not used
+      (int total_supply, slice admin_address, cell content, cell jetton_wallet_code) = load_data();
+                                                                                     ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/test/jetton_minter_b.fc:64:42: warning: Lack of end_parse.
+          int jetton_amount = master_msg_cs~load_coins();
+                                           ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/test/jetton_minter_b.fc:50:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/test/jetton_minter_b.fc:13:9: warning: Lack of end_parse.
+        ds~load_ref()
+          ^

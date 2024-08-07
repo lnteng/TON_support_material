@@ -1,0 +1,577 @@
+participant_list_extended: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1072:25: warning: Lack of end_parse.
+    var elect = get_data().begin_parse().preload_dict();
+                          ^
+participant_list_extended: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1082:54: warning: Local variable 'time' is not used
+        var (stake, time, max_factor, addr, adnl_addr) = (cs~load_grams(), cs~load_uint(32), cs~load_uint(32), cs~load_uint(256), cs~load_uint(256));
+                                                       ^
+active_election_id: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1038:35: warning: Lack of end_parse.
+    return elect.null?() ? 0 : elect.begin_parse().preload_uint(32);
+                                    ^
+active_election_id: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1037:25: warning: Lack of end_parse.
+    var elect = get_data().begin_parse().preload_dict();
+                          ^
+past_elections_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1126:71: warning: Local variable 'elect' is not used
+    var (elect, credits, past_elections, grams, active_id, active_hash) = load_data();
+                                                                        ^
+past_elections_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1126:71: warning: Local variable 'credits' is not used
+    var (elect, credits, past_elections, grams, active_id, active_hash) = load_data();
+                                                                        ^
+past_elections_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1126:71: warning: Local variable 'grams' is not used
+    var (elect, credits, past_elections, grams, active_id, active_hash) = load_data();
+                                                                        ^
+past_elections_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1126:71: warning: Local variable 'active_id' is not used
+    var (elect, credits, past_elections, grams, active_id, active_hash) = load_data();
+                                                                        ^
+past_elections_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1126:71: warning: Local variable 'active_hash' is not used
+    var (elect, credits, past_elections, grams, active_id, active_hash) = load_data();
+                                                                        ^
+past_elections_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1132:95: warning: Local variable 'frozen_dict' is not used
+        var (unfreeze_at, stake_held, vset_hash, frozen_dict, total_stake, bonuses, complaints) = unpack_past_election(fs);
+                                                                                                ^
+past_elections_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1132:95: warning: Local variable 'total_stake' is not used
+        var (unfreeze_at, stake_held, vset_hash, frozen_dict, total_stake, bonuses, complaints) = unpack_past_election(fs);
+                                                                                                ^
+past_elections_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1132:95: warning: Local variable 'bonuses' is not used
+        var (unfreeze_at, stake_held, vset_hash, frozen_dict, total_stake, bonuses, complaints) = unpack_past_election(fs);
+                                                                                                ^
+past_elections_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1132:95: warning: Local variable 'complaints' is not used
+        var (unfreeze_at, stake_held, vset_hash, frozen_dict, total_stake, bonuses, complaints) = unpack_past_election(fs);
+                                                                                                ^
+announce_new_elections: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:984:37: warning: Lack of end_parse.
+    var elector_addr = config_param(1).begin_parse().preload_uint(256);
+                                      ^
+announce_new_elections: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:995:47: warning: Lack of end_parse.
+    var cur_valid_until = cur_vset.begin_parse().skip_bits(8 + 32).preload_uint(32);
+                                                ^
+announce_new_elections: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1008:54: warning: Lack of end_parse.
+    (_, var min_stake) = config_param(17).begin_parse().load_grams();
+                                                       ^
+announce_new_elections: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:994:69: warning: Local variable 'elect_for' is not used
+    var (elect_for, elect_begin_before, elect_end_before, stake_held) = get_validator_conf();
+                                                                      ^
+announce_new_elections: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:994:69: warning: Local variable 'stake_held' is not used
+    var (elect_for, elect_begin_before, elect_end_before, stake_held) = get_validator_conf();
+                                                                      ^
+validator_set_installed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:930:82: warning: Local variable 'elect_close' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+validator_set_installed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:930:82: warning: Local variable 'min_stake' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+validator_set_installed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:930:82: warning: Local variable 'total_stake' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+validator_set_installed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:930:82: warning: Local variable 'members' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+validator_set_installed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:930:82: warning: Local variable 'failed' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+update_active_vset_id: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:883:25: warning: Local variable 'unfreeze_time' is not used
+        var unfreeze_time = fs~load_uint(32);
+                          ^
+get_past_complaints: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1153:71: warning: Local variable 'elect' is not used
+    var (elect, credits, past_elections, grams, active_id, active_hash) = load_data();
+                                                                        ^
+get_past_complaints: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1153:71: warning: Local variable 'credits' is not used
+    var (elect, credits, past_elections, grams, active_id, active_hash) = load_data();
+                                                                        ^
+get_past_complaints: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1153:71: warning: Local variable 'grams' is not used
+    var (elect, credits, past_elections, grams, active_id, active_hash) = load_data();
+                                                                        ^
+get_past_complaints: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1153:71: warning: Local variable 'active_id' is not used
+    var (elect, credits, past_elections, grams, active_id, active_hash) = load_data();
+                                                                        ^
+get_past_complaints: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1153:71: warning: Local variable 'active_hash' is not used
+    var (elect, credits, past_elections, grams, active_id, active_hash) = load_data();
+                                                                        ^
+get_past_complaints: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1158:91: warning: Local variable 'unfreeze_at' is not used
+    var (unfreeze_at, stake_held, vset_hash, frozen_dict, total_stake, bonuses, complaints) = unpack_past_election(fs);
+                                                                                            ^
+get_past_complaints: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1158:91: warning: Local variable 'stake_held' is not used
+    var (unfreeze_at, stake_held, vset_hash, frozen_dict, total_stake, bonuses, complaints) = unpack_past_election(fs);
+                                                                                            ^
+get_past_complaints: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1158:91: warning: Local variable 'vset_hash' is not used
+    var (unfreeze_at, stake_held, vset_hash, frozen_dict, total_stake, bonuses, complaints) = unpack_past_election(fs);
+                                                                                            ^
+get_past_complaints: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1158:91: warning: Local variable 'frozen_dict' is not used
+    var (unfreeze_at, stake_held, vset_hash, frozen_dict, total_stake, bonuses, complaints) = unpack_past_election(fs);
+                                                                                            ^
+get_past_complaints: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1158:91: warning: Local variable 'total_stake' is not used
+    var (unfreeze_at, stake_held, vset_hash, frozen_dict, total_stake, bonuses, complaints) = unpack_past_election(fs);
+                                                                                            ^
+get_past_complaints: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1158:91: warning: Local variable 'bonuses' is not used
+    var (unfreeze_at, stake_held, vset_hash, frozen_dict, total_stake, bonuses, complaints) = unpack_past_election(fs);
+                                                                                            ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:610:18: warning: Lack of end_parse.
+    var s_addr = cs~load_msg_addr();
+                   ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:659:32: warning: Local variable 'total_weight' is not used
+      var (vdescr, total_weight) = get_validator_descr(idx);
+                                 ^
+compute_returned_stake: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1093:41: warning: Lack of end_parse.
+    (_, var credits) = (cs~load_dict(), cs~load_dict());
+                                          ^
+register_complaint: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:467:71: warning: Local variable 'elect' is not used
+    var (elect, credits, past_elections, grams, active_id, active_hash) = load_data();
+                                                                        ^
+register_complaint: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:467:71: warning: Local variable 'credits' is not used
+    var (elect, credits, past_elections, grams, active_id, active_hash) = load_data();
+                                                                        ^
+register_complaint: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:467:71: warning: Local variable 'grams' is not used
+    var (elect, credits, past_elections, grams, active_id, active_hash) = load_data();
+                                                                        ^
+register_complaint: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:467:71: warning: Local variable 'active_id' is not used
+    var (elect, credits, past_elections, grams, active_id, active_hash) = load_data();
+                                                                        ^
+register_complaint: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:467:71: warning: Local variable 'active_hash' is not used
+    var (elect, credits, past_elections, grams, active_id, active_hash) = load_data();
+                                                                        ^
+register_complaint: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:477:117: warning: Local variable 'created_at' is not used
+    var (validator_pubkey, description, created_at, severity, reward_addr, paid, suggested_fine, suggested_fine_part) = unpack_complaint(complaint);
+                                                                                                                      ^
+register_complaint: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:477:117: warning: Local variable 'reward_addr' is not used
+    var (validator_pubkey, description, created_at, severity, reward_addr, paid, suggested_fine, suggested_fine_part) = unpack_complaint(complaint);
+                                                                                                                      ^
+register_complaint: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:477:117: warning: Local variable 'paid' is not used
+    var (validator_pubkey, description, created_at, severity, reward_addr, paid, suggested_fine, suggested_fine_part) = unpack_complaint(complaint);
+                                                                                                                      ^
+upgrade_code: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:442:27: warning: Lack of end_parse.
+    var config_addr = c_addr.begin_parse().preload_uint(256);
+                            ^
+upgrade_code: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:452:16: warning: Lack of end_parse.
+      set_c3(code.begin_parse().bless());
+                 ^
+past_elections: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1113:71: warning: Local variable 'elect' is not used
+    var (elect, credits, past_elections, grams, active_id, active_hash) = load_data();
+                                                                        ^
+past_elections: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1113:71: warning: Local variable 'credits' is not used
+    var (elect, credits, past_elections, grams, active_id, active_hash) = load_data();
+                                                                        ^
+past_elections: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1113:71: warning: Local variable 'grams' is not used
+    var (elect, credits, past_elections, grams, active_id, active_hash) = load_data();
+                                                                        ^
+past_elections: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1113:71: warning: Local variable 'active_id' is not used
+    var (elect, credits, past_elections, grams, active_id, active_hash) = load_data();
+                                                                        ^
+past_elections: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1113:71: warning: Local variable 'active_hash' is not used
+    var (elect, credits, past_elections, grams, active_id, active_hash) = load_data();
+                                                                        ^
+participant_list: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1054:25: warning: Lack of end_parse.
+    var elect = get_data().begin_parse().preload_dict();
+                          ^
+participant_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1058:82: warning: Local variable 'elect_at' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+participant_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1058:82: warning: Local variable 'elect_close' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+participant_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1058:82: warning: Local variable 'min_stake' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+participant_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1058:82: warning: Local variable 'total_stake' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+participant_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1058:82: warning: Local variable 'failed' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+participant_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1058:82: warning: Local variable 'finished' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+punish: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:521:117: warning: Local variable 'description' is not used
+    var (validator_pubkey, description, created_at, severity, reward_addr, paid, suggested_fine, suggested_fine_part) = complaint.begin_parse().unpack_complaint();
+                                                                                                                      ^
+punish: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:521:117: warning: Local variable 'created_at' is not used
+    var (validator_pubkey, description, created_at, severity, reward_addr, paid, suggested_fine, suggested_fine_part) = complaint.begin_parse().unpack_complaint();
+                                                                                                                      ^
+punish: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:521:117: warning: Local variable 'severity' is not used
+    var (validator_pubkey, description, created_at, severity, reward_addr, paid, suggested_fine, suggested_fine_part) = complaint.begin_parse().unpack_complaint();
+                                                                                                                      ^
+participates_in: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1043:25: warning: Lack of end_parse.
+    var elect = get_data().begin_parse().preload_dict();
+                          ^
+participates_in: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1047:82: warning: Local variable 'elect_at' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+participates_in: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1047:82: warning: Local variable 'elect_close' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+participates_in: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1047:82: warning: Local variable 'min_stake' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+participates_in: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1047:82: warning: Local variable 'total_stake' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+participates_in: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1047:82: warning: Local variable 'failed' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+participates_in: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1047:82: warning: Local variable 'finished' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+past_election_ids: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1100:71: warning: Local variable 'elect' is not used
+    var (elect, credits, past_elections, grams, active_id, active_hash) = load_data();
+                                                                        ^
+past_election_ids: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1100:71: warning: Local variable 'credits' is not used
+    var (elect, credits, past_elections, grams, active_id, active_hash) = load_data();
+                                                                        ^
+past_election_ids: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1100:71: warning: Local variable 'grams' is not used
+    var (elect, credits, past_elections, grams, active_id, active_hash) = load_data();
+                                                                        ^
+past_election_ids: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1100:71: warning: Local variable 'active_id' is not used
+    var (elect, credits, past_elections, grams, active_id, active_hash) = load_data();
+                                                                        ^
+past_election_ids: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1100:71: warning: Local variable 'active_hash' is not used
+    var (elect, credits, past_elections, grams, active_id, active_hash) = load_data();
+                                                                        ^
+past_election_ids: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1104:25: warning: Local variable 'fs' is not used
+      (id, var fs, var f) = past_elections.udict_get_prev?(32, id);
+                          ^
+conduct_elections: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:844:55: warning: Lack of end_parse.
+    var main_validators = config_param(16).begin_parse().skip_bits(16).preload_uint(16);
+                                                        ^
+conduct_elections: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:854:36: warning: Lack of end_parse.
+    var config_addr = config_param(0).begin_parse().preload_uint(256);
+                                     ^
+conduct_elections: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:803:82: warning: Local variable 'min_stake' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+conduct_elections: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:842:69: warning: Local variable 'elect_begin_before' is not used
+    var (elect_for, elect_begin_before, elect_end_before, stake_held) = get_validator_conf();
+                                                                      ^
+get_validator_descr: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:139:34: warning: Local variable 'vset' is not used
+    var (vset, total_weight, dict) = get_current_vset();
+                                   ^
+process_new_stake: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:229:82: warning: Local variable 'failed' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+unfreeze_without_bonuses: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:285:41: warning: Local variable 'weight' is not used
+        var (addr, weight, stake, banned) = (cs~load_uint(256), cs~load_uint(64), cs~load_grams(), cs~load_int(1));
+                                          ^
+unfreeze_with_bonuses: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:305:41: warning: Local variable 'weight' is not used
+        var (addr, weight, stake, banned) = (cs~load_uint(256), cs~load_uint(64), cs~load_grams(), cs~load_int(1));
+                                          ^
+get_validator_conf: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:120:47: warning: Lack of end_parse.
+    return (cs~load_int(32), cs~load_int(32), cs~load_int(32), cs.preload_int(32));
+                                                ^
+unfreeze_all: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:340:84: warning: Local variable 'unfreeze_at' is not used
+    var (unfreeze_at, stake_held, vset_hash, fdict, tot_stakes, bonuses, complaints) = fs.unpack_past_election();
+                                                                                     ^
+unfreeze_all: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:340:84: warning: Local variable 'stake_held' is not used
+    var (unfreeze_at, stake_held, vset_hash, fdict, tot_stakes, bonuses, complaints) = fs.unpack_past_election();
+                                                                                     ^
+unfreeze_all: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:340:84: warning: Local variable 'vset_hash' is not used
+    var (unfreeze_at, stake_held, vset_hash, fdict, tot_stakes, bonuses, complaints) = fs.unpack_past_election();
+                                                                                     ^
+unfreeze_all: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:340:84: warning: Local variable 'complaints' is not used
+    var (unfreeze_at, stake_held, vset_hash, fdict, tot_stakes, bonuses, complaints) = fs.unpack_past_election();
+                                                                                     ^
+config_set_confirmed: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:350:36: warning: Lack of end_parse.
+    var config_addr = config_param(0).begin_parse().preload_uint(256);
+                                     ^
+config_set_confirmed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:358:82: warning: Local variable 'elect_close' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+config_set_confirmed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:358:82: warning: Local variable 'min_stake' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+config_set_confirmed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:358:82: warning: Local variable 'total_stake' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+config_set_confirmed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:358:82: warning: Local variable 'members' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+config_set_confirmed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:358:82: warning: Local variable 'failed' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+announce_new_elections & participant_list_extended: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1072:25: warning: Cell of get_data and set_data are inconsistent.
+    var elect = get_data().begin_parse().preload_dict();
+                          ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1014:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_dict(elect).store_dict(credits).store_slice(ds).end_cell());
+                         ^
+announce_new_elections & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:5:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1014:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_dict(elect).store_dict(credits).store_slice(ds).end_cell());
+                         ^
+announce_new_elections & config_set_confirmed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:351:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1014:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_dict(elect).store_dict(credits).store_slice(ds).end_cell());
+                         ^
+validator_set_installed & participant_list_extended: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1072:25: warning: Cell of get_data and set_data are inconsistent.
+    var elect = get_data().begin_parse().preload_dict();
+                          ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:946:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_int(false, 1)   ;; forget current elections
+        ^
+validator_set_installed & compute_returned_stake: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1092:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:946:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_int(false, 1)   ;; forget current elections
+        ^
+validator_set_installed & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:5:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:946:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_int(false, 1)   ;; forget current elections
+        ^
+validator_set_installed & process_new_stake: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:200:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:946:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_int(false, 1)   ;; forget current elections
+        ^
+validator_set_installed & config_set_confirmed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:351:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:946:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_int(false, 1)   ;; forget current elections
+        ^
+store_data & participant_list_extended: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1072:25: warning: Cell of get_data and set_data are inconsistent.
+    var elect = get_data().begin_parse().preload_dict();
+                          ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:14:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_dict(elect)
+      ^
+conduct_elections & participant_list_extended: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1072:25: warning: Cell of get_data and set_data are inconsistent.
+    var elect = get_data().begin_parse().preload_dict();
+                          ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:863:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_dict(elect)
+      ^
+conduct_elections & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:5:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:863:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_dict(elect)
+      ^
+conduct_elections & config_set_confirmed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:351:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:863:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_dict(elect)
+      ^
+conduct_elections & participant_list_extended: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1072:25: warning: Cell of get_data and set_data are inconsistent.
+    var elect = get_data().begin_parse().preload_dict();
+                          ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:837:26: warning: Cell of get_data and set_data are inconsistent.
+      set_data(begin_cell().store_dict(elect).store_dict(credits).store_slice(ds).end_cell());
+                           ^
+conduct_elections & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:5:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:837:26: warning: Cell of get_data and set_data are inconsistent.
+      set_data(begin_cell().store_dict(elect).store_dict(credits).store_slice(ds).end_cell());
+                           ^
+conduct_elections & config_set_confirmed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:351:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:837:26: warning: Cell of get_data and set_data are inconsistent.
+      set_data(begin_cell().store_dict(elect).store_dict(credits).store_slice(ds).end_cell());
+                           ^
+process_new_stake & participant_list_extended: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1072:25: warning: Cell of get_data and set_data are inconsistent.
+    var elect = get_data().begin_parse().preload_dict();
+                          ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:271:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_dict(elect).store_slice(ds).end_cell());
+                         ^
+process_new_stake & compute_returned_stake: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1092:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:271:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_dict(elect).store_slice(ds).end_cell());
+                         ^
+process_new_stake & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:5:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:271:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_dict(elect).store_slice(ds).end_cell());
+                         ^
+process_new_stake & config_set_confirmed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:351:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:271:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_dict(elect).store_slice(ds).end_cell());
+                         ^
+config_set_confirmed & participant_list_extended: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1072:25: warning: Cell of get_data and set_data are inconsistent.
+    var elect = get_data().begin_parse().preload_dict();
+                          ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:369:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_int(false, 1)
+        ^
+config_set_confirmed & compute_returned_stake: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1092:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:369:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_int(false, 1)
+        ^
+config_set_confirmed & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:5:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:369:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_int(false, 1)
+        ^
+config_set_confirmed & process_new_stake: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:200:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:369:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_int(false, 1)
+        ^
+config_set_confirmed & config_set_confirmed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:351:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:369:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_int(false, 1)
+        ^
+recover_stake & participant_list_extended: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:1072:25: warning: Cell of get_data and set_data are inconsistent.
+    var elect = get_data().begin_parse().preload_dict();
+                          ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:419:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_dict(elect).store_dict(credits).store_slice(ds).end_cell());
+                         ^
+recover_stake & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:5:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:419:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_dict(elect).store_dict(credits).store_slice(ds).end_cell());
+                         ^
+recover_stake & config_set_confirmed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:351:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:419:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_dict(elect).store_dict(credits).store_slice(ds).end_cell());
+                         ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:185:38: warning: UnHandle bounced message with op: 0x4e565354
+    send_raw_message(msg.end_cell(), 1);
+                                       ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF/elector-code.fc:428:19: warning: UnHandle bounced message with op: 0xf96f7324
+    .end_cell(), 64);
+                    ^

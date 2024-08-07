@@ -1,0 +1,103 @@
+;;
+;; Header files for MathExample
+;; NOTE: declarations are sorted for optimal order
+;;
+
+;; __tact_verify_address
+slice __tact_verify_address(slice address) inline;
+
+;; __tact_store_address
+builder __tact_store_address(builder b, slice address) inline;
+
+;; __tact_my_balance
+int __tact_my_balance() inline;
+
+;; __tact_not_null
+forall X -> X __tact_not_null(X x) inline;
+
+;; __tact_context_get
+(int, slice, int, slice) __tact_context_get() inline;
+
+;; __tact_context_get_sender
+slice __tact_context_get_sender() inline;
+
+;; __tact_store_bool
+builder __tact_store_bool(builder b, int v) inline;
+
+;; $Deploy$_load
+(slice, ((int))) $Deploy$_load(slice sc_0) inline;
+
+;; $DeployOk$_store
+builder $DeployOk$_store(builder build_0, (int) v) inline;
+
+;; $DeployOk$_store_cell
+cell $DeployOk$_store_cell((int) v) inline;
+
+;; $Arithmetic$_load
+(slice, ((int, int, int))) $Arithmetic$_load(slice sc_0) inline;
+
+;; $MathExample$_store
+builder $MathExample$_store(builder build_0, (int, int, int) v) inline;
+
+;; $MathExample$_load
+(slice, ((int, int, int))) $MathExample$_load(slice sc_0) inline;
+
+;; $StateInit$_not_null
+((cell, cell)) $StateInit$_not_null(tuple v) inline;
+
+;; $MathExample$_contract_init
+(int, int, int) $MathExample$_contract_init() impure inline_ref;
+
+;; $MathExample$_contract_load
+(int, int, int) $MathExample$_contract_load() impure inline_ref;
+
+;; $MathExample$_contract_store
+() $MathExample$_contract_store((int, int, int) v) impure inline;
+
+;; $global_send
+() $global_send((int, slice, int, int, cell, cell, cell) $params) impure inline_ref;
+
+;; $MathExample$_fun_float
+((int, int, int), int) $MathExample$_fun_float((int, int, int) $self, int $value) impure inline_ref;
+
+;; $MathExample$_fun_safeAdd
+((int, int, int), int) $MathExample$_fun_safeAdd((int, int, int) $self) impure inline_ref;
+
+;; $MathExample$_fun_safeSub
+((int, int, int), int) $MathExample$_fun_safeSub((int, int, int) $self) impure inline_ref;
+
+;; $MathExample$_fun_safeMul
+((int, int, int), int) $MathExample$_fun_safeMul((int, int, int) $self) impure inline_ref;
+
+;; $MathExample$_fun_safeDiv
+((int, int, int), int) $MathExample$_fun_safeDiv((int, int, int) $self) impure inline_ref;
+
+;; $MathExample$_fun_Add
+((int, int, int), int) $MathExample$_fun_Add((int, int, int) $self) impure inline_ref;
+
+;; $MathExample$_fun_Sub
+((int, int, int), int) $MathExample$_fun_Sub((int, int, int) $self) impure inline_ref;
+
+;; $MathExample$_fun_Mul
+((int, int, int), int) $MathExample$_fun_Mul((int, int, int) $self) impure inline_ref;
+
+;; $MathExample$_fun_Div
+((int, int, int), int) $MathExample$_fun_Div((int, int, int) $self) impure inline_ref;
+
+;; $MathExample$_fun_DivisionByZero
+((int, int, int), int) $MathExample$_fun_DivisionByZero((int, int, int) $self) impure inline_ref;
+
+;; $MathExample$_fun_Result
+((int, int, int), int) $MathExample$_fun_Result((int, int, int) $self) impure inline_ref;
+
+;; $SendParameters$_constructor_bounce_to_value_mode_body_code_data
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline;
+
+;; $MathExample$_fun_forward
+((int, int, int), ()) $MathExample$_fun_forward((int, int, int) $self, slice $to, cell $body, int $bounce, tuple $init) impure inline_ref;
+
+;; $MathExample$_fun_notify
+((int, int, int), ()) $MathExample$_fun_notify((int, int, int) $self, cell $body) impure inline;
+
+;; $DeployOk$_constructor_queryId
+((int)) $DeployOk$_constructor_queryId(int queryId) inline;

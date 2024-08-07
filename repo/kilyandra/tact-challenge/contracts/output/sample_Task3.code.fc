@@ -1,0 +1,193 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_Task3.headers.fc";
+#include "sample_Task3.stdlib.fc";
+#include "sample_Task3.storage.fc";
+
+;;
+;; Contract Task3 functions
+;;
+
+(int, int, int, int, int) $Task3$_contract_init(slice $admin, slice $newJettonAddressA, slice $newJettonAddressB) impure inline_ref {
+    var (($self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB, $self'owner)) = (null(), null(), null(), null(), null());
+    slice $a = __tact_address_to_slice($admin);
+    $a~load_uint(11);
+    $self'owner = $a~load_uint(256);
+    $a = __tact_address_to_slice($newJettonAddressA);
+    $a~load_uint(11);
+    $self'jettonAddressA = $a~load_uint(256);
+    $a = __tact_address_to_slice($newJettonAddressB);
+    $a~load_uint(11);
+    $self'jettonAddressB = $a~load_uint(256);
+    $self'aAmount = 0;
+    $self'bAmount = 0;
+    return ($self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB, $self'owner);
+}
+
+((int, int, int, int, int), int) $Task3$_fun_price((int, int, int, int, int) $self, slice $jetton) impure inline_ref {
+    var (($self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB, $self'owner)) = $self;
+    slice $a = __tact_address_to_slice($jetton);
+    $a~load_uint(11);
+    if (($a~load_uint(256) == $self'jettonAddressA)) {
+        return (($self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB, $self'owner), (($self'bAmount * 1000000000) / $self'aAmount));
+    }
+    return (($self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB, $self'owner), (($self'aAmount * 1000000000) / $self'bAmount));
+}
+
+((int, int, int, int, int), int) $Task3$_fun_balance((int, int, int, int, int) $self, slice $jetton) impure inline_ref {
+    var (($self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB, $self'owner)) = $self;
+    slice $a = __tact_address_to_slice($jetton);
+    $a~load_uint(11);
+    if (($a~load_uint(256) == $self'jettonAddressA)) {
+        return (($self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB, $self'owner), $self'aAmount);
+    }
+    return (($self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB, $self'owner), $self'bAmount);
+}
+
+;;
+;; Receivers of a Contract Task3
+;;
+
+(((int, int, int, int, int)), ()) $Task3$_internal_binary_TokenNotification((int, int, int, int, int) $self, (int, int, slice, slice) $msg) impure inline {
+    var ($self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB, $self'owner) = $self;
+    var ($msg'queryId, $msg'amount, $msg'from, $msg'forwardPayload) = $msg;
+    slice $a = __tact_address_to_slice(__tact_context_get_sender());
+    $a~load_uint(11);
+    int $b = $a~load_uint(256);
+    throw_unless(135, ( (($b == $self'jettonAddressA)) ? (true) : (($b == $self'jettonAddressB)) ));
+    slice $c = __tact_address_to_slice($msg'from);
+    $c~load_uint(11);
+    int $d = $c~load_uint(256);
+    if (($d == $self'owner)) {
+        if (($b == $self'jettonAddressA)) {
+            $self'aAmount = ($self'aAmount + $msg'amount);
+            return (($self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB, $self'owner), ());
+        }
+        $self'bAmount = ($self'bAmount + $msg'amount);
+        return (($self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB, $self'owner), ());
+    }
+    slice $e = __tact_address_to_slice(my_address());
+    $e~load_uint(11);
+    int $f = $e~load_uint(256);
+    if (($b == $self'jettonAddressA)) {
+        int $amount = (((($self'bAmount * 1000000000) / $self'aAmount) * $msg'amount) / 1000000000);
+        if (($amount <= $self'bAmount)) {
+            send_raw_message(end_cell(store_ref(store_uint(store_uint(store_uint(begin_cell(), 33792, 17), $self'jettonAddressB, 256), 1, 111), end_cell(store_uint(store_uint(store_uint(store_uint(store_uint(store_coins(store_uint(begin_cell(), 4809704972316608594354110464, 96), $amount), 1024, 11), $d, 256), 1024, 11), $f, 256), 60331648, 29)))), 64);
+            $self'aAmount = ($self'aAmount + $msg'amount);
+            $self'bAmount = ($self'bAmount - $amount);
+            return (($self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB, $self'owner), ());
+        }
+        send_raw_message(end_cell(store_ref(store_uint(store_uint(store_uint(begin_cell(), 33792, 17), $b, 256), 1, 111), end_cell(store_uint(store_uint(store_uint(store_uint(store_uint(store_coins(store_uint(begin_cell(), 4809704972316608594354110464, 96), $msg'amount), 1024, 11), $d, 256), 1024, 11), $f, 256), 60331648, 29)))), 64);
+        return (($self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB, $self'owner), ());
+    }
+    int $amount = (((($self'aAmount * 1000000000) / $self'bAmount) * $msg'amount) / 1000000000);
+    if (($amount <= $self'aAmount)) {
+        send_raw_message(end_cell(store_ref(store_uint(store_uint(store_uint(begin_cell(), 33792, 17), $self'jettonAddressA, 256), 1, 111), end_cell(store_uint(store_uint(store_uint(store_uint(store_uint(store_coins(store_uint(begin_cell(), 4809704972316608594354110464, 96), $amount), 1024, 11), $d, 256), 1024, 11), $f, 256), 60331648, 29)))), 64);
+        $self'bAmount = ($self'bAmount + $msg'amount);
+        $self'aAmount = ($self'aAmount - $amount);
+        return (($self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB, $self'owner), ());
+    }
+    send_raw_message(end_cell(store_ref(store_uint(store_uint(store_uint(begin_cell(), 33792, 17), $b, 256), 1, 111), end_cell(store_uint(store_uint(store_uint(store_uint(store_uint(store_coins(store_uint(begin_cell(), 4809704972316608594354110464, 96), $msg'amount), 1024, 11), $d, 256), 1024, 11), $f, 256), 60331648, 29)))), 64);
+    return (($self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB, $self'owner), ());
+}
+
+(((int, int, int, int, int)), ()) $Task3$_internal_binary_Deploy((int, int, int, int, int) $self, (int) $deploy) impure inline {
+    var ($self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB, $self'owner) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB, $self'owner)~$Task3$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'aAmount, $self'bAmount, $self'jettonAddressA, $self'jettonAddressB, $self'owner), ());
+}
+
+;;
+;; Get methods of a Contract Task3
+;;
+
+_ %price(slice $$jetton) method_id(120091) {
+    slice $jetton = __tact_verify_address($$jetton);
+    var self = $Task3$_contract_load();
+    var res = self~$Task3$_fun_price($jetton);
+    return res;
+}
+
+_ %balance(slice $$jetton) method_id(104128) {
+    slice $jetton = __tact_verify_address($$jetton);
+    var self = $Task3$_contract_load();
+    var res = self~$Task3$_fun_balance($jetton);
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://Qmebh6rKeCF3UH5Ge6tkxFFanMVKTDFSFCDXvRt1idcA98";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract Task3
+;;
+
+((int, int, int, int, int), int) $Task3$_contract_router_internal((int, int, int, int, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive TokenNotification message
+    if (op == 1935855772) {
+        var msg = in_msg~$TokenNotification$_load();
+        self~$Task3$_internal_binary_TokenNotification(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$Task3$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $Task3$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$Task3$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $Task3$_contract_store(self);
+}

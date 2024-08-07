@@ -1,0 +1,273 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "verifier_TokenDistributionParent.headers.fc";
+#include "verifier_TokenDistributionParent.stdlib.fc";
+#include "verifier_TokenDistributionParent.storage.fc";
+
+;;
+;; Contract TokenDistributionParent functions
+;;
+
+(slice, slice, int, int, int, int, int) $TokenDistributionParent$_contract_init(slice $owner, int $amount, int $interval, int $seqno) impure inline_ref {
+    var (($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed)) = (null(), null(), null(), null(), null(), null(), null());
+    $self'owner = $owner;
+    $self'claimAmount = $amount;
+    $self'claimInterval = $interval;
+    $self'seqno = $seqno;
+    $self'supply = 0;
+    $self'claimed = 0;
+    $self'tokenAddress = null();
+    return ($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed);
+}
+
+((slice, slice, int, int, int, int, int), ()) $TokenDistributionParent$_fun_deployChildContract((slice, slice, int, int, int, int, int) $self, slice $userAddress) impure inline_ref {
+    var (($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed)) = $self;
+    var ($init'code, $init'data) = $TokenDistributionChild$_init_child(__tact_context_sys, my_address(), $userAddress, $self'claimAmount, $self'claimInterval, $self'seqno);
+    $global_send($SendParameters$_constructor_to_value_mode_code_data($global_contractAddress(($init'code, $init'data)), 100000000, 2, $init'code, $init'data));
+    return (($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed), ());
+}
+
+((slice, slice, int, int, int, int, int), int) $TokenDistributionParent$_fun_claimInterval((slice, slice, int, int, int, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed)) = $self;
+    return (($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed), $self'claimInterval);
+}
+
+((slice, slice, int, int, int, int, int), int) $TokenDistributionParent$_fun_claimAmount((slice, slice, int, int, int, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed)) = $self;
+    return (($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed), $self'claimAmount);
+}
+
+((slice, slice, int, int, int, int, int), int) $TokenDistributionParent$_fun_supply((slice, slice, int, int, int, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed)) = $self;
+    return (($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed), $self'supply);
+}
+
+((slice, slice, int, int, int, int, int), slice) $TokenDistributionParent$_fun_owner((slice, slice, int, int, int, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed)) = $self;
+    return (($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed), $self'owner);
+}
+
+((slice, slice, int, int, int, int, int), int) $TokenDistributionParent$_fun_claimed((slice, slice, int, int, int, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed)) = $self;
+    return (($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed), $self'claimed);
+}
+
+((slice, slice, int, int, int, int, int), slice) $TokenDistributionParent$_fun_tokenAddress((slice, slice, int, int, int, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed)) = $self;
+    return (($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed), $self'tokenAddress);
+}
+
+((slice, slice, int, int, int, int, int), slice) $TokenDistributionParent$_fun_childAddress((slice, slice, int, int, int, int, int) $self, slice $user) impure inline_ref {
+    var (($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed)) = $self;
+    return (($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed), $global_contractAddress($TokenDistributionChild$_init_child(__tact_context_sys, my_address(), $user, $self'claimAmount, $self'claimInterval, $self'seqno)));
+}
+
+;;
+;; Receivers of a Contract TokenDistributionParent
+;;
+
+(((slice, slice, int, int, int, int, int)), ()) %$TokenDistributionParent$_internal_empty((slice, slice, int, int, int, int, int) $self) impure inline {
+    var ($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed) = $self;
+    return (($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed), ());
+}
+
+(((slice, slice, int, int, int, int, int)), ()) $TokenDistributionParent$_internal_binary_TokenNotification((slice, slice, int, int, int, int, int) $self, (int, int, slice, slice) $msg) impure inline {
+    var ($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed) = $self;
+    var ($msg'queryId, $msg'amount, $msg'from, $msg'forwardPayload) = $msg;
+    throw_unless(333, ( __tact_slice_eq_bits($self'owner, $msg'from) ));
+    throw_unless(444, ($msg'amount > 0));
+    throw_unless(555, null?($self'tokenAddress));
+    $self'tokenAddress = __tact_context_get_sender();
+    $self'supply = ($self'supply + $msg'amount);
+    return (($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed), ());
+}
+
+(((slice, slice, int, int, int, int, int)), ()) $TokenDistributionParent$_internal_binary_TokenClaimRequest((slice, slice, int, int, int, int, int) $self, (slice, int) $msg) impure inline {
+    var ($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed) = $self;
+    var ($msg'user, $msg'seqno) = $msg;
+    throw_unless(111, ($self'supply >= $self'claimAmount));
+    slice $expectedAddress = $global_contractAddress($TokenDistributionChild$_init_child(__tact_context_sys, my_address(), $msg'user, $self'claimAmount, $self'claimInterval, $self'seqno));
+    throw_unless(222, ( __tact_slice_eq_bits($expectedAddress, __tact_context_get_sender()) ));
+    $global_send($SendParameters$_constructor_value_to_mode_body(0, __tact_not_null($self'tokenAddress), 64, $TokenTransfer$_store_cell($TokenTransfer$_constructor_queryId_amount_destination_responseDestination_customPayload_forwardTonAmount_forwardPayload(0, $self'claimAmount, $msg'user, my_address(), null(), 100000000, null()))));
+    $self'supply = ($self'supply - $self'claimAmount);
+    $self'claimed = ($self'claimed + $self'claimAmount);
+    return (($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed), ());
+}
+
+((slice, slice, int, int, int, int, int), ()) $TokenDistributionParent$_internal_text_19dc2dd3c636f41b5817cdbef8a2aab765603fb02da929c167a05f8e9126de5f((slice, slice, int, int, int, int, int) $self) impure inline {
+    var ($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed) = $self;
+    ($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed)~$TokenDistributionParent$_fun_deployChildContract(__tact_context_get_sender());
+    return (($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed), ());
+}
+
+(((slice, slice, int, int, int, int, int)), ()) $TokenDistributionParent$_internal_binary_OwnerWithdrawalRequest((slice, slice, int, int, int, int, int) $self, (slice) $msg) impure inline {
+    var ($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed) = $self;
+    var ($msg'to) = $msg;
+    throw_unless(49469, ( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) ));
+    if (($self'supply > 0)) {
+        $global_send($SendParameters$_constructor_value_to_mode_body(100000000, __tact_not_null($self'tokenAddress), 0, $TokenTransfer$_store_cell($TokenTransfer$_constructor_queryId_amount_destination_responseDestination_customPayload_forwardTonAmount_forwardPayload(0, $self'supply, $msg'to, $msg'to, null(), 10000000, $global_emptySlice()))));
+    }
+    $global_send($SendParameters$_constructor_to_value_mode($msg'to, 0, 128));
+    return (($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed), ());
+}
+
+(((slice, slice, int, int, int, int, int)), ()) $TokenDistributionParent$_internal_binary_Deploy((slice, slice, int, int, int, int, int) $self, (int) $deploy) impure inline {
+    var ($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed)~$TokenDistributionParent$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'owner, $self'tokenAddress, $self'supply, $self'claimAmount, $self'claimInterval, $self'seqno, $self'claimed), ());
+}
+
+;;
+;; Get methods of a Contract TokenDistributionParent
+;;
+
+_ %claimInterval() method_id(123921) {
+    var self = $TokenDistributionParent$_contract_load();
+    var res = self~$TokenDistributionParent$_fun_claimInterval();
+    return res;
+}
+
+_ %claimAmount() method_id(72575) {
+    var self = $TokenDistributionParent$_contract_load();
+    var res = self~$TokenDistributionParent$_fun_claimAmount();
+    return res;
+}
+
+_ %supply() method_id(101929) {
+    var self = $TokenDistributionParent$_contract_load();
+    var res = self~$TokenDistributionParent$_fun_supply();
+    return res;
+}
+
+_ %owner() method_id(83229) {
+    var self = $TokenDistributionParent$_contract_load();
+    var res = self~$TokenDistributionParent$_fun_owner();
+    return res;
+}
+
+_ %claimed() method_id(75660) {
+    var self = $TokenDistributionParent$_contract_load();
+    var res = self~$TokenDistributionParent$_fun_claimed();
+    return res;
+}
+
+_ %tokenAddress() method_id(106685) {
+    var self = $TokenDistributionParent$_contract_load();
+    var res = self~$TokenDistributionParent$_fun_tokenAddress();
+    return res;
+}
+
+_ %childAddress(slice $$user) method_id(80689) {
+    slice $user = __tact_verify_address($$user);
+    var self = $TokenDistributionParent$_contract_load();
+    var res = self~$TokenDistributionParent$_fun_childAddress($user);
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmQ8rYpgrBhN4B12p3s846mPZDLPTvQVfSLSSU52waCTNW";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract TokenDistributionParent
+;;
+
+((slice, slice, int, int, int, int, int), int) $TokenDistributionParent$_contract_router_internal((slice, slice, int, int, int, int, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive empty message
+    if ((op == 0) & (slice_bits(in_msg) <= 32)) {
+        self~%$TokenDistributionParent$_internal_empty();
+        return (self, true);
+    }
+    
+    ;; Receive TokenNotification message
+    if (op == 1935855772) {
+        var msg = in_msg~$TokenNotification$_load();
+        self~$TokenDistributionParent$_internal_binary_TokenNotification(msg);
+        return (self, true);
+    }
+    
+    ;; Receive TokenClaimRequest message
+    if (op == 1) {
+        var msg = in_msg~$TokenClaimRequest$_load();
+        self~$TokenDistributionParent$_internal_binary_TokenClaimRequest(msg);
+        return (self, true);
+    }
+    
+    ;; Receive OwnerWithdrawalRequest message
+    if (op == 2) {
+        var msg = in_msg~$OwnerWithdrawalRequest$_load();
+        self~$TokenDistributionParent$_internal_binary_OwnerWithdrawalRequest(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$TokenDistributionParent$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "deploy" message
+        if (text_op == 0x19dc2dd3c636f41b5817cdbef8a2aab765603fb02da929c167a05f8e9126de5f) {
+            self~$TokenDistributionParent$_internal_text_19dc2dd3c636f41b5817cdbef8a2aab765603fb02da929c167a05f8e9126de5f();
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $TokenDistributionParent$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$TokenDistributionParent$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $TokenDistributionParent$_contract_store(self);
+}

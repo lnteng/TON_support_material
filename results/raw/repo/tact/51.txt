@@ -1,0 +1,59 @@
+$NftItem$_internal_binary_GetStaticData: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./AnkitJaiswal1605/ton-nft-challenge/contracts/output/sample_NftItem.code.fc:69:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$NftItem$_internal_binary_GetStaticData: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./AnkitJaiswal1605/ton-nft-challenge/contracts/output/sample_NftItem.code.fc:69:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$NftItem$_internal_binary_GetStaticData: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./AnkitJaiswal1605/ton-nft-challenge/contracts/output/sample_NftItem.code.fc:69:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$NftItem$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./AnkitJaiswal1605/ton-nft-challenge/contracts/output/sample_NftItem.storage.fc:160:19: warning: Lack of end_parse.
+          return $sc~$NftItem$_load();
+                    ^
+__tact_string_builder_append: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./AnkitJaiswal1605/ton-nft-challenge/contracts/output/sample_NftItem.stdlib.fc:88:31: warning: Lack of end_parse.
+              sc = sc~load_ref().begin_parse();
+                                ^
+$NftItem$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./AnkitJaiswal1605/ton-nft-challenge/contracts/output/sample_NftItem.code.fc:15:117: warning: Local variable '$self'collection_address' is not used
+      var (($self'collection_address, $self'item_index, $self'owner, $self'individual_content, $self'is_initialized)) = (null(), null(), null(), null(), null());
+                                                                                                                      ^
+$NftItem$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./AnkitJaiswal1605/ton-nft-challenge/contracts/output/sample_NftItem.code.fc:15:117: warning: Local variable '$self'item_index' is not used
+      var (($self'collection_address, $self'item_index, $self'owner, $self'individual_content, $self'is_initialized)) = (null(), null(), null(), null(), null());
+                                                                                                                      ^
+$NftItem$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./AnkitJaiswal1605/ton-nft-challenge/contracts/output/sample_NftItem.code.fc:15:117: warning: Local variable '$self'owner' is not used
+      var (($self'collection_address, $self'item_index, $self'owner, $self'individual_content, $self'is_initialized)) = (null(), null(), null(), null(), null());
+                                                                                                                      ^
+$NftItem$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./AnkitJaiswal1605/ton-nft-challenge/contracts/output/sample_NftItem.code.fc:15:117: warning: Local variable '$self'individual_content' is not used
+      var (($self'collection_address, $self'item_index, $self'owner, $self'individual_content, $self'is_initialized)) = (null(), null(), null(), null(), null());
+                                                                                                                      ^
+$NftItem$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./AnkitJaiswal1605/ton-nft-challenge/contracts/output/sample_NftItem.code.fc:15:117: warning: Local variable '$self'is_initialized' is not used
+      var (($self'collection_address, $self'item_index, $self'owner, $self'individual_content, $self'is_initialized)) = (null(), null(), null(), null(), null());
+                                                                                                                      ^
+$NftItem$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./AnkitJaiswal1605/ton-nft-challenge/contracts/output/sample_NftItem.code.fc:98:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./AnkitJaiswal1605/ton-nft-challenge/contracts/output/sample_NftItem.storage.fc:171:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$NftItem$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./AnkitJaiswal1605/ton-nft-challenge/contracts/output/sample_NftItem.code.fc:70:237: warning: UnHandle bounced message with op: 0x8b771735
+  ... taticData$_constructor_query_id_index_id_collection($msg'query_id, $self'item_index, $self'owner))));
+  ...                                                                                                     ^
+$NftItem$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./AnkitJaiswal1605/ton-nft-challenge/contracts/output/sample_NftItem.code.fc:52:182: warning: UnHandle bounced message with op: 0xd53276db
+          $global_send($SendParameters$_constructor_to_value_mode_body($msg'response_destination, $msgValue, 2, $Excesses$_store_cell($Excesses$_constructor_query_id($msg'query_id))));
+                                                                                                                                                                                       ^
+$NftItem$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./AnkitJaiswal1605/ton-nft-challenge/contracts/output/sample_NftItem.code.fc:60:210: warning: UnHandle bounced message with op: 0xd53276db
+  ... e - $msg'forward_amount), 1, $Excesses$_store_cell($Excesses$_constructor_query_id($msg'query_id))));
+  ...                                                                                                     ^

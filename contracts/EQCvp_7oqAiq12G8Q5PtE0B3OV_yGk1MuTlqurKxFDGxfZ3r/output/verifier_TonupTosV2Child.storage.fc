@@ -1,0 +1,103 @@
+;;
+;; Type: Context
+;; TLB: _ bounced:bool sender:address value:int257 raw:^slice = Context
+;;
+
+_ $Context$_get_value((int, slice, int, slice) v) inline {
+    var (v'bounced, v'sender, v'value, v'raw) = v;
+    return v'value;
+}
+
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_bounce_mode_body(slice to, int value, int bounce, int mode, cell body) inline {
+    return (bounce, to, value, mode, body, null(), null());
+}
+
+;;
+;; Type: ConsentReply
+;; Header: 0xcbc1a22e
+;; TLB: consent_reply#cbc1a22e addr:address accepted:bool = ConsentReply
+;;
+
+builder $ConsentReply$_store(builder build_0, (slice, int) v) inline {
+    var (v'addr, v'accepted) = v;
+    build_0 = store_uint(build_0, 3418464814, 32);
+    build_0 = __tact_store_address(build_0, v'addr);
+    build_0 = build_0.store_int(v'accepted, 1);
+    return build_0;
+}
+
+cell $ConsentReply$_store_cell((slice, int) v) inline {
+    return $ConsentReply$_store(begin_cell(), v).end_cell();
+}
+
+((slice, int)) $ConsentReply$_constructor_addr_accepted(slice addr, int accepted) inline {
+    return (addr, accepted);
+}
+
+;;
+;; Type: GiveConsent
+;; Header: 0xac400349
+;; TLB: give_consent#ac400349 addr:address referrer:address = GiveConsent
+;;
+
+(slice, ((slice, slice))) $GiveConsent$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2889876297);
+    var v'addr = sc_0~__tact_load_address();
+    var v'referrer = sc_0~__tact_load_address();
+    return (sc_0, (v'addr, v'referrer));
+}
+
+;;
+;; Type: TonupTosV2Child
+;;
+
+builder $TonupTosV2Child$_store(builder build_0, (slice, slice, slice, int) v) inline {
+    var (v'owner, v'master, v'referrer, v'consent_time) = v;
+    build_0 = __tact_store_address(build_0, v'owner);
+    build_0 = __tact_store_address(build_0, v'master);
+    build_0 = __tact_store_address(build_0, v'referrer);
+    build_0 = build_0.store_uint(v'consent_time, 64);
+    return build_0;
+}
+
+(slice, ((slice, slice, slice, int))) $TonupTosV2Child$_load(slice sc_0) inline {
+    var v'owner = sc_0~__tact_load_address();
+    var v'master = sc_0~__tact_load_address();
+    var v'referrer = sc_0~__tact_load_address();
+    var v'consent_time = sc_0~load_uint(64);
+    return (sc_0, (v'owner, v'master, v'referrer, v'consent_time));
+}
+
+(slice, ((slice, slice))) $TonupTosV2Child$init$_load(slice sc_0) inline {
+    var v'master = sc_0~__tact_load_address();
+    var v'owner = sc_0~__tact_load_address();
+    return (sc_0, (v'master, v'owner));
+}
+
+(slice, slice, slice, int) $TonupTosV2Child$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$TonupTosV2Child$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (slice master, slice owner) = $sc~$TonupTosV2Child$init$_load();
+        $sc.end_parse();
+        return $TonupTosV2Child$_contract_init(master, owner);
+    }
+}
+
+() $TonupTosV2Child$_contract_store((slice, slice, slice, int) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $TonupTosV2Child$_store(b, v);
+    set_data(b.end_cell());
+}

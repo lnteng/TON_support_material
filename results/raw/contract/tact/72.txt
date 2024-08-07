@@ -1,0 +1,30 @@
+$WhitelistChildEntry$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDm4PW8r-Eua02VK7-Vjyp-Kmlws66JIgxevGHcJKOkaRnA/output/sample_Whitelist.storage.fc:174:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$Whitelist$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDm4PW8r-Eua02VK7-Vjyp-Kmlws66JIgxevGHcJKOkaRnA/output/sample_Whitelist.code.fc:15:22: warning: Local variable '$self'id' is not used
+      var (($self'id)) = (null());
+                       ^
+$Whitelist$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDm4PW8r-Eua02VK7-Vjyp-Kmlws66JIgxevGHcJKOkaRnA/output/sample_Whitelist.storage.fc:143:19: warning: Lack of end_parse.
+          return $sc~$Whitelist$_load();
+                    ^
+$Whitelist$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDm4PW8r-Eua02VK7-Vjyp-Kmlws66JIgxevGHcJKOkaRnA/output/sample_Whitelist.code.fc:104:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDm4PW8r-Eua02VK7-Vjyp-Kmlws66JIgxevGHcJKOkaRnA/output/sample_Whitelist.storage.fc:154:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Whitelist$_contract_store & $Whitelist$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDm4PW8r-Eua02VK7-Vjyp-Kmlws66JIgxevGHcJKOkaRnA/output/sample_Whitelist.storage.fc:139:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDm4PW8r-Eua02VK7-Vjyp-Kmlws66JIgxevGHcJKOkaRnA/output/sample_Whitelist.storage.fc:154:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Whitelist$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDm4PW8r-Eua02VK7-Vjyp-Kmlws66JIgxevGHcJKOkaRnA/output/sample_Whitelist.code.fc:56:174: warning: UnHandle bounced message with op: 0xf6c150a1
+      $global_send($SendParameters$_constructor_to_body_value_mode(my_address(), $AcceptFee$_store_cell($AcceptFee$_constructor_cashback(__tact_context_get_sender())), 0, 64));
+                                                                                                                                                                               ^

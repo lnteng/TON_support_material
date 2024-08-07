@@ -1,0 +1,397 @@
+compute_returned_stake: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:818:41: warning: Lack of end_parse.
+    (_, var credits) = (cs~load_dict(), cs~load_dict());
+                                          ^
+participant_list_extended: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:797:25: warning: Lack of end_parse.
+    var elect = get_data().begin_parse().preload_dict();
+                          ^
+participant_list_extended: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:807:54: warning: Local variable 'time' is not used
+        var (stake, time, max_factor, addr, adnl_addr) = (cs~load_grams(), cs~load_uint(32), cs~load_uint(32), cs~load_uint(256), cs~load_uint(256));
+                                                       ^
+participant_list: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:779:25: warning: Lack of end_parse.
+    var elect = get_data().begin_parse().preload_dict();
+                          ^
+participant_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:783:82: warning: Local variable 'elect_at' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+participant_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:783:82: warning: Local variable 'elect_close' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+participant_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:783:82: warning: Local variable 'min_stake' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+participant_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:783:82: warning: Local variable 'total_stake' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+participant_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:783:82: warning: Local variable 'failed' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+participant_list: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:783:82: warning: Local variable 'finished' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+active_election_id: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:763:35: warning: Lack of end_parse.
+    return elect.null?() ? 0 : elect.begin_parse().preload_uint(32);
+                                    ^
+active_election_id: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:762:25: warning: Lack of end_parse.
+    var elect = get_data().begin_parse().preload_dict();
+                          ^
+unfreeze_with_bonuses: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:201:41: warning: Local variable 'weight' is not used
+        var (addr, weight, stake, banned) = (cs~load_uint(256), cs~load_uint(64), cs~load_grams(), cs~load_int(1));
+                                          ^
+get_validator_conf: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:46:47: warning: Lack of end_parse.
+    return (cs~load_int(32), cs~load_int(32), cs~load_int(32), cs.preload_int(32));
+                                                ^
+process_new_stake: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:125:82: warning: Local variable 'failed' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+participates_in: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:768:25: warning: Lack of end_parse.
+    var elect = get_data().begin_parse().preload_dict();
+                          ^
+participates_in: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:772:82: warning: Local variable 'elect_at' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+participates_in: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:772:82: warning: Local variable 'elect_close' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+participates_in: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:772:82: warning: Local variable 'min_stake' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+participates_in: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:772:82: warning: Local variable 'total_stake' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+participates_in: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:772:82: warning: Local variable 'failed' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+participates_in: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:772:82: warning: Local variable 'finished' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:357:18: warning: Lack of end_parse.
+    var s_addr = cs~load_msg_addr();
+                   ^
+announce_new_elections: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:709:37: warning: Lack of end_parse.
+    var elector_addr = config_param(1).begin_parse().preload_uint(256);
+                                      ^
+announce_new_elections: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:720:47: warning: Lack of end_parse.
+    var cur_valid_until = cur_vset.begin_parse().skip_bits(8 + 32).preload_uint(32);
+                                                ^
+announce_new_elections: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:733:54: warning: Lack of end_parse.
+    (_, var min_stake) = config_param(17).begin_parse().load_grams();
+                                                       ^
+announce_new_elections: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:719:69: warning: Local variable 'elect_for' is not used
+    var (elect_for, elect_begin_before, elect_end_before, stake_held) = get_validator_conf();
+                                                                      ^
+announce_new_elections: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:719:69: warning: Local variable 'stake_held' is not used
+    var (elect_for, elect_begin_before, elect_end_before, stake_held) = get_validator_conf();
+                                                                      ^
+unfreeze_all: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:223:66: warning: Local variable 'data1' is not used
+    var (data1, vset_hash, fdict, tot_stakes, bonuses, complaints) = (fs~load_uint(64), fs~load_uint(256), fs~load_dict(), fs~load_grams(), fs~load_grams(), fs~load_dict());
+                                                                   ^
+unfreeze_all: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:223:66: warning: Local variable 'vset_hash' is not used
+    var (data1, vset_hash, fdict, tot_stakes, bonuses, complaints) = (fs~load_uint(64), fs~load_uint(256), fs~load_dict(), fs~load_grams(), fs~load_grams(), fs~load_dict());
+                                                                   ^
+unfreeze_all: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:223:66: warning: Local variable 'complaints' is not used
+    var (data1, vset_hash, fdict, tot_stakes, bonuses, complaints) = (fs~load_uint(64), fs~load_uint(256), fs~load_dict(), fs~load_grams(), fs~load_grams(), fs~load_dict());
+                                                                   ^
+config_set_confirmed: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:233:36: warning: Lack of end_parse.
+    var config_addr = config_param(0).begin_parse().preload_uint(256);
+                                     ^
+config_set_confirmed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:241:82: warning: Local variable 'elect_close' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+config_set_confirmed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:241:82: warning: Local variable 'min_stake' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+config_set_confirmed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:241:82: warning: Local variable 'total_stake' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+config_set_confirmed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:241:82: warning: Local variable 'members' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+config_set_confirmed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:241:82: warning: Local variable 'failed' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+conduct_elections: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:574:36: warning: Lack of end_parse.
+    var config_addr = config_param(0).begin_parse().preload_uint(256);
+                                     ^
+conduct_elections: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:564:55: warning: Lack of end_parse.
+    var main_validators = config_param(16).begin_parse().skip_bits(16).preload_uint(16);
+                                                        ^
+conduct_elections: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:523:82: warning: Local variable 'min_stake' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+conduct_elections: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:562:69: warning: Local variable 'elect_begin_before' is not used
+    var (elect_for, elect_begin_before, elect_end_before, stake_held) = get_validator_conf();
+                                                                      ^
+upgrade_code: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:331:27: warning: Lack of end_parse.
+    var config_addr = c_addr.begin_parse().preload_uint(256);
+                            ^
+upgrade_code: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:341:16: warning: Lack of end_parse.
+      set_c3(code.begin_parse().bless());
+                 ^
+validator_set_installed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:655:82: warning: Local variable 'elect_close' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+validator_set_installed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:655:82: warning: Local variable 'min_stake' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+validator_set_installed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:655:82: warning: Local variable 'total_stake' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+validator_set_installed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:655:82: warning: Local variable 'members' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+validator_set_installed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:655:82: warning: Local variable 'failed' is not used
+    var (elect_at, elect_close, min_stake, total_stake, members, failed, finished) = elect.unpack_elect();
+                                                                                   ^
+update_active_vset_id: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:608:25: warning: Local variable 'unfreeze_time' is not used
+        var unfreeze_time = fs~load_uint(32);
+                          ^
+unfreeze_without_bonuses: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:181:41: warning: Local variable 'weight' is not used
+        var (addr, weight, stake, banned) = (cs~load_uint(256), cs~load_uint(64), cs~load_grams(), cs~load_int(1));
+                                          ^
+process_new_stake & compute_returned_stake: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:817:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:167:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_dict(elect).store_slice(ds).end_cell());
+                         ^
+process_new_stake & participant_list_extended: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:797:25: warning: Cell of get_data and set_data are inconsistent.
+    var elect = get_data().begin_parse().preload_dict();
+                          ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:167:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_dict(elect).store_slice(ds).end_cell());
+                         ^
+process_new_stake & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:5:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:167:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_dict(elect).store_slice(ds).end_cell());
+                         ^
+process_new_stake & config_set_confirmed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:234:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:167:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_dict(elect).store_slice(ds).end_cell());
+                         ^
+store_data & participant_list_extended: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:797:25: warning: Cell of get_data and set_data are inconsistent.
+    var elect = get_data().begin_parse().preload_dict();
+                          ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:14:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_dict(elect)
+      ^
+announce_new_elections & participant_list_extended: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:797:25: warning: Cell of get_data and set_data are inconsistent.
+    var elect = get_data().begin_parse().preload_dict();
+                          ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:739:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_dict(elect).store_dict(credits).store_slice(ds).end_cell());
+                         ^
+announce_new_elections & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:5:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:739:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_dict(elect).store_dict(credits).store_slice(ds).end_cell());
+                         ^
+announce_new_elections & config_set_confirmed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:234:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:739:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_dict(elect).store_dict(credits).store_slice(ds).end_cell());
+                         ^
+config_set_confirmed & compute_returned_stake: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:817:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:252:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_int(false, 1)
+        ^
+config_set_confirmed & participant_list_extended: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:797:25: warning: Cell of get_data and set_data are inconsistent.
+    var elect = get_data().begin_parse().preload_dict();
+                          ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:252:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_int(false, 1)
+        ^
+config_set_confirmed & process_new_stake: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:96:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:252:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_int(false, 1)
+        ^
+config_set_confirmed & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:5:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:252:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_int(false, 1)
+        ^
+config_set_confirmed & config_set_confirmed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:234:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:252:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_int(false, 1)
+        ^
+recover_stake & participant_list_extended: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:797:25: warning: Cell of get_data and set_data are inconsistent.
+    var elect = get_data().begin_parse().preload_dict();
+                          ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:308:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_dict(elect).store_dict(credits).store_slice(ds).end_cell());
+                         ^
+recover_stake & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:5:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:308:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_dict(elect).store_dict(credits).store_slice(ds).end_cell());
+                         ^
+recover_stake & config_set_confirmed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:234:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:308:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_dict(elect).store_dict(credits).store_slice(ds).end_cell());
+                         ^
+conduct_elections & participant_list_extended: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:797:25: warning: Cell of get_data and set_data are inconsistent.
+    var elect = get_data().begin_parse().preload_dict();
+                          ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:588:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_dict(elect)
+      ^
+conduct_elections & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:5:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:588:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_dict(elect)
+      ^
+conduct_elections & config_set_confirmed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:234:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:588:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_dict(elect)
+      ^
+conduct_elections & participant_list_extended: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:797:25: warning: Cell of get_data and set_data are inconsistent.
+    var elect = get_data().begin_parse().preload_dict();
+                          ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:557:26: warning: Cell of get_data and set_data are inconsistent.
+      set_data(begin_cell().store_dict(elect).store_dict(credits).store_slice(ds).end_cell());
+                           ^
+conduct_elections & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:5:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:557:26: warning: Cell of get_data and set_data are inconsistent.
+      set_data(begin_cell().store_dict(elect).store_dict(credits).store_slice(ds).end_cell());
+                           ^
+conduct_elections & config_set_confirmed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:234:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:557:26: warning: Cell of get_data and set_data are inconsistent.
+      set_data(begin_cell().store_dict(elect).store_dict(credits).store_slice(ds).end_cell());
+                           ^
+validator_set_installed & compute_returned_stake: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:817:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:671:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_int(false, 1)   ;; forget current elections
+        ^
+validator_set_installed & participant_list_extended: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:797:25: warning: Cell of get_data and set_data are inconsistent.
+    var elect = get_data().begin_parse().preload_dict();
+                          ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:671:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_int(false, 1)   ;; forget current elections
+        ^
+validator_set_installed & process_new_stake: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:96:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:671:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_int(false, 1)   ;; forget current elections
+        ^
+validator_set_installed & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:5:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:671:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_int(false, 1)   ;; forget current elections
+        ^
+validator_set_installed & config_set_confirmed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:234:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:671:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_int(false, 1)   ;; forget current elections
+        ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:317:19: warning: UnHandle bounced message with op: 0xf96f7324
+    .end_cell(), 64);
+                    ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/ton-freestyle/lib/elector-code.fc:81:38: warning: UnHandle bounced message with op: 0x4e565354
+    send_raw_message(msg.end_cell(), 1);
+                                       ^

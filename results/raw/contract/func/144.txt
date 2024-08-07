@@ -1,0 +1,8 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDyuSn6mVPA8H8gJ2uE9UAfsdjN3rXcjZ3vkqOXGTWcy2ij/nft-item.fc:32:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDyuSn6mVPA8H8gJ2uE9UAfsdjN3rXcjZ3vkqOXGTWcy2ij/nft-item.fc:7:68: warning: Lack of end_parse.
+        return (-1, index, collection_address, ds~load_msg_addr(), ds~load_msg_addr());
+                                                                     ^

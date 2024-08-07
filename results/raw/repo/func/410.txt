@@ -1,0 +1,8 @@
+get_total: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-1/func/1.fc:29:23: warning: Lack of end_parse.
+  	slice ds = get_data().begin_parse();
+  	                     ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-1/func/1.fc:22:24: warning: Lack of end_parse.
+  	int total = get_data().begin_parse().preload_uint(64);
+  	                      ^

@@ -1,0 +1,15 @@
+$Task2$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./aeither/tact-challenge/contracts/output/sample_Task2.storage.fc:110:19: warning: Lack of end_parse.
+          return $sc~$Task2$_load();
+                    ^
+$Task2$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./aeither/tact-challenge/contracts/output/sample_Task2.code.fc:14:25: warning: Local variable '$self'admin' is not used
+      var (($self'admin)) = (null());
+                          ^
+$Task2$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./aeither/tact-challenge/contracts/output/sample_Task2.code.fc:62:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./aeither/tact-challenge/contracts/output/sample_Task2.storage.fc:121:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

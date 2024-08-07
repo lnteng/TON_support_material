@@ -1,0 +1,40 @@
+get_nft_content: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA--JhKKuYfb-WAw7vDWEfD4fg2WOt9AuLH6xHPvF0RTUNA/lottery.fc:343:30: warning: Lack of end_parse.
+      slice common_content = cs~load_ref().begin_parse();
+                               ^
+get_collection_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA--JhKKuYfb-WAw7vDWEfD4fg2WOt9AuLH6xHPvF0RTUNA/lottery.fc:336:30: warning: Lack of end_parse.
+      return (total_tickets, cs~load_ref(), operator_address);
+                               ^
+draw_lottery: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA--JhKKuYfb-WAw7vDWEfD4fg2WOt9AuLH6xHPvF0RTUNA/lottery.fc:133:56: warning: Local variable 'success' is not used
+                  (slice prize_nft_address, int success) = udict_get?(prize_nfts, 16, nft_prizes_count);
+                                                         ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA--JhKKuYfb-WAw7vDWEfD4fg2WOt9AuLH6xHPvF0RTUNA/lottery.fc:176:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA--JhKKuYfb-WAw7vDWEfD4fg2WOt9AuLH6xHPvF0RTUNA/lottery.fc:271:33: warning: Lack of end_parse.
+              int prize_value = ps~load_coins();
+                                  ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA--JhKKuYfb-WAw7vDWEfD4fg2WOt9AuLH6xHPvF0RTUNA/lottery.fc:275:41: warning: Lack of end_parse.
+              slice prize_nft_address = ps~load_msg_addr();
+                                          ^
+topup_service_wallets: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA--JhKKuYfb-WAw7vDWEfD4fg2WOt9AuLH6xHPvF0RTUNA/imports/utils.fc:72:57: warning: Lack of end_parse.
+    (slice addr_a, slice addr_b) = (as~load_msg_addr(), as~load_msg_addr());
+                                                          ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA--JhKKuYfb-WAw7vDWEfD4fg2WOt9AuLH6xHPvF0RTUNA/lottery.fc:39:11: warning: Lack of end_parse.
+          ds~load_ref() ;; contents
+            ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA--JhKKuYfb-WAw7vDWEfD4fg2WOt9AuLH6xHPvF0RTUNA/lottery.fc:140:48: warning: UnHandle bounced message with op: 0xb7e10940
+              send_raw_message(msg.end_cell(), 0);
+                                                 ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA--JhKKuYfb-WAw7vDWEfD4fg2WOt9AuLH6xHPvF0RTUNA/lottery.fc:72:40: warning: UnHandle bounced message with op: 0x5fcc3d14
+      send_raw_message(msg.end_cell(), 0);
+                                         ^

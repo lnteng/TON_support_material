@@ -1,0 +1,52 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nft-standard-draft/examples/Conwaylifecollection/nft.fc:127:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nft-standard-draft/examples/Conwaylifecollection/nft.fc:125:14: warning: Local variable 'data' is not used
+      var data = load_data();
+               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nft-standard-draft/examples/Conwaylifecollection/nft.fc:125:14: warning: Local variable 'data' is not used
+      var data = load_data();
+               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nft-standard-draft/examples/Conwaylifecollection/nft.fc:125:14: warning: Local variable 'data' is not used
+      var data = load_data();
+               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nft-standard-draft/examples/Conwaylifecollection/nft.fc:125:14: warning: Local variable 'data' is not used
+      var data = load_data();
+               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nft-standard-draft/examples/Conwaylifecollection/nft.fc:125:14: warning: Local variable 'data' is not used
+      var data = load_data();
+               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nft-standard-draft/examples/Conwaylifecollection/nft.fc:125:14: warning: Local variable 'data' is not used
+      var data = load_data();
+               ^
+get_nft_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nft-standard-draft/examples/Conwaylifecollection/nft.fc:181:33: warning: Lack of end_parse.
+    cell individual_content =   cs~load_ref(); 
+                                  ^
+transfer_ownership: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nft-standard-draft/examples/Conwaylifecollection/nft.fc:68:86: warning: Local variable 'init' is not used
+      (int init, int index, slice collection, slice owner, slice editor, cell content) = load_data();
+                                                                                       ^
+edit: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nft-standard-draft/examples/Conwaylifecollection/nft.fc:103:22: warning: Lack of end_parse.
+        set_c3(new_code.begin_parse().bless());
+                       ^
+edit: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nft-standard-draft/examples/Conwaylifecollection/nft.fc:83:84: warning: Local variable 'init' is not used
+    (int init, int index, slice collection, slice owner, slice editor, cell content) = load_data();
+                                                                                     ^
+get_name: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nft-standard-draft/examples/Conwaylifecollection/nft.fc:165:13: warning: Lack of end_parse.
+  	  return cs~load_ref();
+  	           ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nft-standard-draft/examples/Conwaylifecollection/nft.fc:26:80: warning: Lack of end_parse.
+        return (-1, index, collection, ds~load_msg_addr(), ds~load_msg_addr(), ds~load_ref() );
+                                                                                 ^

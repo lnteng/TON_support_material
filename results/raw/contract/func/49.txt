@@ -1,0 +1,36 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCNvycVDMdWBPM4f-_fPrfJC8rt3770xC8XeaIOKkIbPazO/new_lockup.fc:14:27: warning: Lack of end_parse.
+      slice sender_addr = cs~load_msg_addr();
+                            ^
+handle::withdraw_tokens: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCNvycVDMdWBPM4f-_fPrfJC8rt3770xC8XeaIOKkIbPazO/utils/handles.fc:14:70: warning: Local variable 'available_seconds' is not used
+      (int available_tokens, int available_seconds, int last_received) = math::linear_unlock();
+                                                                       ^
+math::linear_unlock: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCNvycVDMdWBPM4f-_fPrfJC8rt3770xC8XeaIOKkIbPazO/utils/math-utils.fc:24:35: warning: PressionLoss
+          return (available_seconds * tokens_per_second, available_seconds, time_now);
+                                    ^
+math::linear_unlock: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCNvycVDMdWBPM4f-_fPrfJC8rt3770xC8XeaIOKkIbPazO/utils/math-utils.fc:32:31: warning: PressionLoss
+      return (available_seconds * tokens_per_second, available_seconds, time_now);
+                                ^
+self::init: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCNvycVDMdWBPM4f-_fPrfJC8rt3770xC8XeaIOKkIbPazO/utils/storage-utils.fc:34:43: warning: Lack of end_parse.
+      self::tokens_all          = tokens_ref~load_coins(); ;; 124
+                                            ^
+self::init: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCNvycVDMdWBPM4f-_fPrfJC8rt3770xC8XeaIOKkIbPazO/utils/storage-utils.fc:32:26: warning: Lack of end_parse.
+      slice tokens_ref = ds~load_ref().begin_parse();
+                           ^
+self::init: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCNvycVDMdWBPM4f-_fPrfJC8rt3770xC8XeaIOKkIbPazO/utils/storage-utils.fc:30:40: warning: Lack of end_parse.
+      self::last_received      = time_ref~load_uint(32); ;; 32
+                                         ^
+self::init: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCNvycVDMdWBPM4f-_fPrfJC8rt3770xC8XeaIOKkIbPazO/utils/storage-utils.fc:24:41: warning: Lack of end_parse.
+      self::owner               = addr_ref~load_msg_addr(); ;; 267
+                                          ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCNvycVDMdWBPM4f-_fPrfJC8rt3770xC8XeaIOKkIbPazO/utils/handles.fc:34:45: warning: UnHandle bounced message with op: 0xf8a7ea5
+          send_raw_message(msg.end_cell(), 64);
+                                              ^

@@ -1,0 +1,24 @@
+get_job_value: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ProgramCrafter/ratelance/contracts/func/job-contract.fc:38:18: warning: Lack of end_parse.
+    return own_data~load_uint(64);
+                   ^
+get_job_description: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ProgramCrafter/ratelance/contracts/func/job-contract.fc:31:20: warning: Lack of end_parse.
+    return get_data().begin_parse().preload_ref();
+                     ^
+waiting_message_from: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ProgramCrafter/ratelance/contracts/func/job-contract.fc:28:18: warning: Lack of end_parse.
+    return own_data~load_msg_addr();
+                   ^
+get_job_state: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ProgramCrafter/ratelance/contracts/func/job-contract.fc:23:20: warning: Lack of end_parse.
+    return get_data().begin_parse().preload_uint(2);
+                     ^
+get_job_poster: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ProgramCrafter/ratelance/contracts/func/job-contract.fc:44:18: warning: Lack of end_parse.
+    return own_data~load_msg_addr();
+                   ^
+load_bounced_sender: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ProgramCrafter/ratelance/contracts/func/stdlib-ext.fc:21:20: warning: Lack of end_parse.
+    return (b, in_msg~load_msg_addr());
+                     ^

@@ -1,0 +1,24 @@
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCajaUU1XXSAjTD-xOV7pE49fGtg4q8kF3ELCOJtGvQFQ2C/wton-minter.fc:25:9: warning: Lack of end_parse.
+        ds~load_ref()  ;; jetton_wallet_code
+          ^
+check_multi_signatures: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCajaUU1XXSAjTD-xOV7pE49fGtg4q8kF3ELCOJtGvQFQ2C/imports/utils.fc:108:20: warning: Lack of end_parse.
+      signatures = cs~load_dict();
+                     ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCajaUU1XXSAjTD-xOV7pE49fGtg4q8kF3ELCOJtGvQFQ2C/wton-minter.fc:105:19: warning: Lack of end_parse.
+    int fwd_fee = cs~load_coins(); ;; we use message fwd_fee for estimation of provide_wallet_address cost
+                    ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCajaUU1XXSAjTD-xOV7pE49fGtg4q8kF3ELCOJtGvQFQ2C/wton-minter.fc:63:38: warning: UnHandle bounced message with op: 0x178d4519
+    send_raw_message(msg.end_cell(), 1); ;; pay transfer fees separately, revert on errors
+                                       ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCajaUU1XXSAjTD-xOV7pE49fGtg4q8kF3ELCOJtGvQFQ2C/wton-minter.fc:87:38: warning: UnHandle bounced message with op: 0x595f07bc
+    send_raw_message(msg.end_cell(), 1); ;; pay transfer fees separately, revert on errors
+                                       ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCajaUU1XXSAjTD-xOV7pE49fGtg4q8kF3ELCOJtGvQFQ2C/wton-minter.fc:196:75: warning: UnHandle bounced message with op: 0xd1735400
+      send_raw_message(msg.store_maybe_ref(included_address).end_cell(), 64);
+                                                                            ^

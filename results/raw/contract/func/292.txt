@@ -1,0 +1,8 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQC7k0KuuefxKJGApk927-yINPeObW56dy3ooJvLGXmUSSB6/incrementor.fc:39:19: warning: Lack of end_parse.
+      int flags = cs~load_uint(4);
+                    ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQC7k0KuuefxKJGApk927-yINPeObW56dy3ooJvLGXmUSSB6/incrementor.fc:47:18: warning: Local variable 'query_id' is not used
+      int query_id = in_msg_body~load_uint(64); ;; also by convention, the next 64 bits contain the "query id", although this is not always the case
+                   ^

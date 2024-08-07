@@ -1,0 +1,172 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_Arrays.headers.fc";
+#include "sample_Arrays.stdlib.fc";
+#include "sample_Arrays.storage.fc";
+
+;;
+;; Contract Arrays functions
+;;
+
+(cell, int, int) $Arrays$_contract_init() impure inline_ref {
+    var (($self'arr, $self'arrLength, $self'arrStart)) = (null(), 0, 0);
+    return ($self'arr, $self'arrLength, $self'arrStart);
+}
+
+((cell, int, int), ()) $Arrays$_fun_arrPush((cell, int, int) $self, int $item) impure inline_ref {
+    var (($self'arr, $self'arrLength, $self'arrStart)) = $self;
+    if (($self'arrLength < 5)) {
+        $self'arr~__tact_dict_set_int_int(257, $self'arrLength, $item, 257);
+        $self'arrLength = ($self'arrLength + 1);
+    } else {
+        $self'arr~__tact_dict_set_int_int(257, $self'arrStart, $item, 257);
+        $self'arrStart = (($self'arrStart + 1) % 5);
+    }
+    return (($self'arr, $self'arrLength, $self'arrStart), ());
+}
+
+((cell, int, int), ()) $Arrays$_fun_arrPrint((cell, int, int) $self) impure inline_ref {
+    var (($self'arr, $self'arrLength, $self'arrStart)) = $self;
+    int $i = $self'arrStart;
+    repeat ($self'arrLength) {
+        __tact_nop();
+        $i = (($i + 1) % 5);
+    }
+    return (($self'arr, $self'arrLength, $self'arrStart), ());
+}
+
+((cell, int, int), int) $Arrays$_fun_length((cell, int, int) $self) impure inline_ref {
+    var (($self'arr, $self'arrLength, $self'arrStart)) = $self;
+    return (($self'arr, $self'arrLength, $self'arrStart), $self'arrLength);
+}
+
+((cell, int, int), cell) $Arrays$_fun_map((cell, int, int) $self) impure inline_ref {
+    var (($self'arr, $self'arrLength, $self'arrStart)) = $self;
+    return (($self'arr, $self'arrLength, $self'arrStart), $self'arr);
+}
+
+;;
+;; Receivers of a Contract Arrays
+;;
+
+((cell, int, int), ()) $Arrays$_internal_text_ccbe25a97b3864c622d2c5e076f734a548959d481021ffa1ad2763956d2c0e41((cell, int, int) $self) impure inline {
+    var ($self'arr, $self'arrLength, $self'arrStart) = $self;
+    int $timestamp = now();
+    ($self'arr, $self'arrLength, $self'arrStart)~$Arrays$_fun_arrPush($timestamp);
+    return (($self'arr, $self'arrLength, $self'arrStart), ());
+}
+
+((cell, int, int), ()) $Arrays$_internal_text_af0503450b477c232a5eac20c753269430e264ecb464eb70d84cef87754dde15((cell, int, int) $self) impure inline {
+    var ($self'arr, $self'arrLength, $self'arrStart) = $self;
+    ($self'arr, $self'arrLength, $self'arrStart)~$Arrays$_fun_arrPrint();
+    return (($self'arr, $self'arrLength, $self'arrStart), ());
+}
+
+(((cell, int, int)), ()) $Arrays$_internal_binary_Deploy((cell, int, int) $self, (int) $deploy) impure inline {
+    var ($self'arr, $self'arrLength, $self'arrStart) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'arr, $self'arrLength, $self'arrStart)~$Arrays$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'arr, $self'arrLength, $self'arrStart), ());
+}
+
+;;
+;; Get methods of a Contract Arrays
+;;
+
+_ %length() method_id(107056) {
+    var self = $Arrays$_contract_load();
+    var res = self~$Arrays$_fun_length();
+    return res;
+}
+
+_ %map() method_id(106422) {
+    var self = $Arrays$_contract_load();
+    var res = self~$Arrays$_fun_map();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmWP11bWgC4GpDK2DLxDxK4eSuPuBqwG9vtgmSffQA41JG";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract Arrays
+;;
+
+((cell, int, int), int) $Arrays$_contract_router_internal((cell, int, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$Arrays$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "timer" message
+        if (text_op == 0xccbe25a97b3864c622d2c5e076f734a548959d481021ffa1ad2763956d2c0e41) {
+            self~$Arrays$_internal_text_ccbe25a97b3864c622d2c5e076f734a548959d481021ffa1ad2763956d2c0e41();
+            return (self, true);
+        }
+        
+        ;; Receive "dump" message
+        if (text_op == 0xaf0503450b477c232a5eac20c753269430e264ecb464eb70d84cef87754dde15) {
+            self~$Arrays$_internal_text_af0503450b477c232a5eac20c753269430e264ecb464eb70d84cef87754dde15();
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $Arrays$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$Arrays$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $Arrays$_contract_store(self);
+}

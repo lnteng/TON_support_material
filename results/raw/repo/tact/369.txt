@@ -1,0 +1,41 @@
+$Task4$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task4.storage.fc:152:19: warning: Lack of end_parse.
+          return $sc~$Task4$_load();
+                    ^
+$Task4$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task4.code.fc:15:63: warning: Local variable '$self'seed' is not used
+      var (($self'seed, $self'owner, $self'nft, $self'timeEnd)) = (null(), null(), null(), null());
+                                                                ^
+$Task4$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task4.code.fc:15:63: warning: Local variable '$self'timeEnd' is not used
+      var (($self'seed, $self'owner, $self'nft, $self'timeEnd)) = (null(), null(), null(), null());
+                                                                ^
+$Task4$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task4.code.fc:116:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task4.storage.fc:163:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task4$_contract_store & $Task4$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task4.storage.fc:148:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task4.storage.fc:163:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task4$_contract_store & $Task4$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task4.storage.fc:148:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task4.storage.fc:163:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task4$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task4.code.fc:65:340: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... yId, __tact_not_null($self'owner), __tact_not_null($self'owner), null(), 0, $global_emptySlice()))));
+  ...                                                                                                     ^
+$Task4$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./Shvandre/tsc5-3/contracts/output/sample_Task4.code.fc:49:328: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... unt_forwardPayload($msg'queryId, $msg'prevOwner, $msg'prevOwner, null(), 0, $global_emptySlice()))));
+  ...                                                                                                     ^

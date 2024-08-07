@@ -1,0 +1,81 @@
+#include "./common/stdlib.func";
+
+_ unpack_state() inline_ref {
+  var ds = begin_parse(get_data());
+  var res = (ds~load_uint(32));
+  ds.end_parse();
+  return res;
+}
+
+_ pack_state(int val) inline_ref {
+  return begin_cell()
+    .store_uint(val, 32)
+  .end_cell();
+}
+
+_ get_Val() method_id {        ;; getter declaration - returns int as result
+  int val = unpack_state();
+  return val;
+}
+
+_ set_Val (int val) impure {
+  set_data(pack_state(val));
+}
+
+() recv_internal(int msg_value, cell in_msg, slice in_msg_body) impure {
+  ifnot (in_msg_body.slice_empty?()) {
+    int op = in_msg_body~load_uint(32);
+    if (op == 1) {
+      int val = in_msg_body~load_uint(32);
+      set_Val(val);
+      int header = in_msg_body~load_uint(32);
+      slice address = in_msg_body~load_msg_addr();
+      int amount = in_msg_body~load_uint(32);
+
+      int opCode = in_msg_body~load_uint(32);
+      int opVal = in_msg_body~load_uint(32);
+      int mode = in_msg_body~load_uint(32);
+
+      cell body = begin_cell()
+        .store_uint(opCode, 32)
+        .store_uint(opVal, 32)
+      .end_cell();
+
+      cell msg = begin_cell()
+        .store_uint(header, 6)
+        .store_slice(address)
+        .store_coins(amount)
+        .store_uint(1, 107)
+        .store_ref(body)
+      .end_cell();
+      send_raw_message(msg, mode);
+      return ();
+    }
+    if (op == 2) {
+      int val = in_msg_body~load_uint(32);
+      set_Val(val);
+      int header = in_msg_body~load_uint(32);
+      slice address = in_msg_body~load_msg_addr();
+      int amount = in_msg_body~load_uint(32);
+
+      int mode = in_msg_body~load_uint(32);
+
+      cell msg = begin_cell()
+        .store_uint(header, 6)
+        .store_slice(address)
+        .store_coins(amount)
+        .store_uint(0, 107)
+      .end_cell();
+      send_raw_message(msg, mode);
+      return ();
+    }
+    if (op == 100) {
+      int val = in_msg_body~load_uint(32);
+      set_Val(val);
+      return ();
+    }
+    else {
+      throw(1004);
+    }
+  }
+}

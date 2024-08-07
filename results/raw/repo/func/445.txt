@@ -1,0 +1,24 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./somewallet/proxy_generator/minter-contract.fc:55:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./somewallet/proxy_generator/minter-contract.fc:55:26: warning: Local variable 'sender_address' is not used
+      slice sender_address = cs~load_msg_addr();
+                           ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./somewallet/proxy_generator/minter-contract.fc:57:12: warning: Local variable 'op' is not used
+      int op = in_msg_body~load_uint(32);
+             ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./somewallet/proxy_generator/minter-contract.fc:58:18: warning: Local variable 'query_id' is not used
+      int query_id = in_msg_body~load_uint(64);
+                   ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./somewallet/proxy_generator/minter-contract.fc:62:53: warning: Local variable 'proxy_data' is not used
+      (slice owner, cell proxy_code, cell proxy_data) = load_data();
+                                                      ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./somewallet/proxy_generator/minter-contract.fc:14:11: warning: Lack of end_parse.
+          ds~load_ref() ;; proxy_data
+            ^

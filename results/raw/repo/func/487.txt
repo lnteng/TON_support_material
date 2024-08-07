@@ -1,0 +1,58 @@
+get_public_key: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-distrib/crypto/smartcont/restricted-wallet3-code.fc:80:5: warning: Lack of end_parse.
+    ds~load_uint(32 + 32);
+      ^
+wallet_id: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-distrib/crypto/smartcont/restricted-wallet3-code.fc:74:5: warning: Lack of end_parse.
+    ds~load_uint(32);
+      ^
+seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-distrib/crypto/smartcont/restricted-wallet3-code.fc:69:20: warning: Lack of end_parse.
+    return get_data().begin_parse().preload_uint(32);
+                     ^
+seconds_passed: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-distrib/crypto/smartcont/restricted-wallet3-code.fc:11:45: warning: Lack of end_parse.
+      start_at = null?(p) ? 0 : begin_parse(p).preload_uint(32);
+                                              ^
+recv_external & compute_balance_at: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-distrib/crypto/smartcont/restricted-wallet3-code.fc:85:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse().skip_bits(32 + 32 + 256);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-distrib/crypto/smartcont/restricted-wallet3-code.fc:58:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(stored_seqno + 1, 32)
+              ^
+recv_external & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-distrib/crypto/smartcont/restricted-wallet3-code.fc:79:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-distrib/crypto/smartcont/restricted-wallet3-code.fc:58:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(stored_seqno + 1, 32)
+              ^
+recv_external & recv_external: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-distrib/crypto/smartcont/restricted-wallet3-code.fc:21:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-distrib/crypto/smartcont/restricted-wallet3-code.fc:58:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(stored_seqno + 1, 32)
+              ^
+recv_external & compute_balance_at: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-distrib/crypto/smartcont/restricted-wallet3-code.fc:85:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse().skip_bits(32 + 32 + 256);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-distrib/crypto/smartcont/restricted-wallet3-code.fc:34:15: warning: Cell of get_data and set_data are inconsistent.
+                .store_uint(stored_seqno + 1, 32)
+                ^
+recv_external & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-distrib/crypto/smartcont/restricted-wallet3-code.fc:79:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-distrib/crypto/smartcont/restricted-wallet3-code.fc:34:15: warning: Cell of get_data and set_data are inconsistent.
+                .store_uint(stored_seqno + 1, 32)
+                ^
+recv_external & recv_external: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-distrib/crypto/smartcont/restricted-wallet3-code.fc:21:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-distrib/crypto/smartcont/restricted-wallet3-code.fc:34:15: warning: Cell of get_data and set_data are inconsistent.
+                .store_uint(stored_seqno + 1, 32)
+                ^

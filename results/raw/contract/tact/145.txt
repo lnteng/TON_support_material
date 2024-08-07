@@ -1,0 +1,33 @@
+$VftVoteContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftVoteContract.code.fc:14:53: warning: Local variable '$self'statement' is not used
+      var (($self'statement, $self'idx, $self'owner)) = (null(), null(), null());
+                                                      ^
+$VftVoteContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftVoteContract.code.fc:14:53: warning: Local variable '$self'idx' is not used
+      var (($self'statement, $self'idx, $self'owner)) = (null(), null(), null());
+                                                      ^
+$VftVoteContract$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftVoteContract.storage.fc:74:19: warning: Lack of end_parse.
+          return $sc~$VftVoteContract$_load();
+                    ^
+$VftVoteContract$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftVoteContract.code.fc:93:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftVoteContract.storage.fc:85:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$VftVoteContract$_contract_store & $VftVoteContract$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftVoteContract.storage.fc:70:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftVoteContract.storage.fc:85:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$VftVoteContract$_contract_store & $VftVoteContract$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftVoteContract.storage.fc:70:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCZ4YGs5eyWIdeRqnCI-T5kEGpnX6X9yWpV48RDceEkHVmW/output/verifier_VftVoteContract.storage.fc:85:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

@@ -1,0 +1,12 @@
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./deed-labs/gittips/contracts/contracts/budget.fc:18:11: warning: Lack of end_parse.
+          ds~load_msg_addr()  ;; owner_addr:MsgAddress
+            ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./deed-labs/gittips/contracts/contracts/budget.fc:48:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();                      ;; sender:MsgAddress
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./deed-labs/gittips/contracts/contracts/budget.fc:59:28: warning: Local variable 'query_id' is not used
+      (int op, int query_id) = in_msg_body~load_body_header(); ;; body_header:int_msg_info$10 query_id:uint64 op:uint32
+                             ^

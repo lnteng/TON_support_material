@@ -1,0 +1,140 @@
+;;
+;; Type: StateInit
+;; TLB: _ code:^cell data:^cell = StateInit
+;;
+
+((cell, cell)) $StateInit$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (cell vvv'code, cell vvv'data) = __tact_tuple_destroy_2(v);
+    return (vvv'code, vvv'data);
+}
+
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline {
+    return (bounce, to, value, mode, body, code, data);
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode_body(slice to, int value, int mode, cell body) inline {
+    return (true, to, value, mode, body, null(), null());
+}
+
+;;
+;; Type: Deploy
+;; Header: 0x946a98b6
+;; TLB: deploy#946a98b6 queryId:uint64 = Deploy
+;;
+
+(slice, ((int))) $Deploy$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2490013878);
+    var v'queryId = sc_0~load_uint(64);
+    return (sc_0, (v'queryId));
+}
+
+;;
+;; Type: DeployOk
+;; Header: 0xaff90f57
+;; TLB: deploy_ok#aff90f57 queryId:uint64 = DeployOk
+;;
+
+builder $DeployOk$_store(builder build_0, (int) v) inline {
+    var (v'queryId) = v;
+    build_0 = store_uint(build_0, 2952335191, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    return build_0;
+}
+
+cell $DeployOk$_store_cell((int) v) inline {
+    return $DeployOk$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $DeployOk$_constructor_queryId(int queryId) inline {
+    return (queryId);
+}
+
+;;
+;; Type: PriceResponse
+;; Header: 0x0aacba7f
+;; TLB: price_response#0aacba7f queryId:uint256 success:bool decimals:coins price:coins callback:^cell = PriceResponse
+;;
+
+(slice, ((int, int, int, int, cell))) $PriceResponse$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 179092095);
+    var v'queryId = sc_0~load_uint(256);
+    var v'success = sc_0~load_int(1);
+    var v'decimals = sc_0~load_coins();
+    var v'price = sc_0~load_coins();
+    var v'callback = sc_0~load_ref();
+    return (sc_0, (v'queryId, v'success, v'decimals, v'price, v'callback));
+}
+
+;;
+;; Type: GetLatestPrice
+;; Header: 0x80c55a13
+;; TLB: get_latest_price#80c55a13 queryId:uint256 symbol:^string callback:^cell = GetLatestPrice
+;;
+
+builder $GetLatestPrice$_store(builder build_0, (int, slice, cell) v) inline {
+    var (v'queryId, v'symbol, v'callback) = v;
+    build_0 = store_uint(build_0, 2160417299, 32);
+    build_0 = build_0.store_uint(v'queryId, 256);
+    build_0 = build_0.store_ref(begin_cell().store_slice(v'symbol).end_cell());
+    build_0 = build_0.store_ref(v'callback);
+    return build_0;
+}
+
+cell $GetLatestPrice$_store_cell((int, slice, cell) v) inline {
+    return $GetLatestPrice$_store(begin_cell(), v).end_cell();
+}
+
+((int, slice, cell)) $GetLatestPrice$_constructor_queryId_symbol_callback(int queryId, slice symbol, cell callback) inline {
+    return (queryId, symbol, callback);
+}
+
+;;
+;; Type: Caller
+;;
+
+builder $Caller$_store(builder build_0, (slice, int) v) inline {
+    var (v'oracle, v'number) = v;
+    build_0 = __tact_store_address(build_0, v'oracle);
+    build_0 = build_0.store_int(v'number, 257);
+    return build_0;
+}
+
+(slice, ((slice, int))) $Caller$_load(slice sc_0) inline {
+    var v'oracle = sc_0~__tact_load_address();
+    var v'number = sc_0~load_int(257);
+    return (sc_0, (v'oracle, v'number));
+}
+
+(slice, ((slice))) $Caller$init$_load(slice sc_0) inline {
+    var v'_oracle = sc_0~__tact_load_address();
+    return (sc_0, (v'_oracle));
+}
+
+(slice, int) $Caller$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$Caller$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (slice _oracle) = $sc~$Caller$init$_load();
+        $sc.end_parse();
+        return $Caller$_contract_init(_oracle);
+    }
+}
+
+() $Caller$_contract_store((slice, int) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $Caller$_store(b, v);
+    set_data(b.end_cell());
+}

@@ -1,0 +1,125 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "verifier_TicketSeller.headers.fc";
+#include "verifier_TicketSeller.stdlib.fc";
+#include "verifier_TicketSeller.storage.fc";
+
+;;
+;; Contract TicketSeller functions
+;;
+
+(slice, int) $TicketSeller$_contract_init(slice $owner) impure inline_ref {
+    var (($self'owner, $self'total)) = (null(), 0);
+    $self'owner = $owner;
+    return ($self'owner, $self'total);
+}
+
+((slice, int), int) $TicketSeller$_fun_value((slice, int) $self) impure inline_ref {
+    var (($self'owner, $self'total)) = $self;
+    return (($self'owner, $self'total), $self'total);
+}
+
+;;
+;; Receivers of a Contract TicketSeller
+;;
+
+((slice, int), ()) $TicketSeller$_internal_any_text((slice, int) $self, slice $str) impure inline {
+    var ($self'owner, $self'total) = $self;
+    $self'total = ($self'total + 1);
+    $global_send($SendParameters$_constructor_to_value_mode_body($self'owner, 0, 64, $String$_fun_asComment(__tact_int_to_string($self'total))));
+    return (($self'owner, $self'total), ());
+}
+
+(((slice, int)), ()) $TicketSeller$_internal_binary_Deploy((slice, int) $self, (int) $deploy) impure inline {
+    var ($self'owner, $self'total) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'owner, $self'total)~$TicketSeller$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'owner, $self'total), ());
+}
+
+;;
+;; Get methods of a Contract TicketSeller
+;;
+
+_ %value() method_id(121536) {
+    var self = $TicketSeller$_contract_load();
+    var res = self~$TicketSeller$_fun_value();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmWtXNmEBbJhPFrfqxHUQa3wFS9doynmNwwRQwzKc4tWux";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract TicketSeller
+;;
+
+((slice, int), int) $TicketSeller$_contract_router_internal((slice, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$TicketSeller$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        if (slice_bits(in_msg) >= 32) {
+            self~$TicketSeller$_internal_any_text(in_msg.skip_bits(32));
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $TicketSeller$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$TicketSeller$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $TicketSeller$_contract_store(self);
+}

@@ -1,0 +1,16 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef9NXAIQs12t2qIZ-sRZ26D977H65Ol6DQeXc5_gUNaUys5r/bridge_code.fc:138:20: warning: Lack of end_parse.
+    slice s_addr = cs~load_msg_addr();
+                     ^
+~load_text_hex_number: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef9NXAIQs12t2qIZ-sRZ26D977H65Ol6DQeXc5_gUNaUys5r/text_utils.fc:29:24: warning: Lack of end_parse.
+          comment = _cont.begin_parse();
+                         ^
+get_bridge_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef9NXAIQs12t2qIZ-sRZ26D977H65Ol6DQeXc5_gUNaUys5r/bridge-config.fc:11:20: warning: Lack of end_parse.
+    cell oracles = ds~load_dict();
+                     ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef9NXAIQs12t2qIZ-sRZ26D977H65Ol6DQeXc5_gUNaUys5r/bridge_code.fc:14:67: warning: Lack of end_parse.
+    return (ds~load_uint(8), ds~load_grams(), ds~load_msg_addr(), ds~load_fees());
+                                                                    ^

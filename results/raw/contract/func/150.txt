@@ -1,0 +1,20 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBkwbp8e8zV0T24BR5hnoQX8xGVTqltb_TTnFNg7MAwZUPZ/ticket.fc:74:28: warning: Lack of end_parse.
+      int fwd_fee = muldiv(cs~load_coins(), 3, 2); ;; we use message fwd_fee for estimation of forward_payload costs
+                             ^
+topup_service_wallets: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBkwbp8e8zV0T24BR5hnoQX8xGVTqltb_TTnFNg7MAwZUPZ/imports/utils.fc:72:57: warning: Lack of end_parse.
+    (slice addr_a, slice addr_b) = (as~load_msg_addr(), as~load_msg_addr());
+                                                          ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBkwbp8e8zV0T24BR5hnoQX8xGVTqltb_TTnFNg7MAwZUPZ/ticket.fc:25:68: warning: Lack of end_parse.
+        return (-1, index, collection_address, ds~load_msg_addr(), ds~load_uint(32));
+                                                                     ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBkwbp8e8zV0T24BR5hnoQX8xGVTqltb_TTnFNg7MAwZUPZ/ticket.fc:111:38: warning: UnHandle bounced message with op: 0x289bb238
+              send_raw_message(msg, 64);
+                                       ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBkwbp8e8zV0T24BR5hnoQX8xGVTqltb_TTnFNg7MAwZUPZ/ticket.fc:131:29: warning: UnHandle bounced message with op: 0xd53276db
+      send_raw_message(msg, 1);
+                              ^

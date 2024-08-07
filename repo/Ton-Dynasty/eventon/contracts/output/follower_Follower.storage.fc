@@ -1,0 +1,166 @@
+;;
+;; Type: StateInit
+;; TLB: _ code:^cell data:^cell = StateInit
+;;
+
+((cell, cell)) $StateInit$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (cell vvv'code, cell vvv'data) = __tact_tuple_destroy_2(v);
+    return (vvv'code, vvv'data);
+}
+
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline {
+    return (bounce, to, value, mode, body, code, data);
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode_bounce_body(slice to, int value, int mode, int bounce, cell body) inline {
+    return (bounce, to, value, mode, body, null(), null());
+}
+
+;;
+;; Type: Deploy
+;; Header: 0x946a98b6
+;; TLB: deploy#946a98b6 queryId:uint64 = Deploy
+;;
+
+(slice, ((int))) $Deploy$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2490013878);
+    var v'queryId = sc_0~load_uint(64);
+    return (sc_0, (v'queryId));
+}
+
+;;
+;; Type: DeployOk
+;; Header: 0xaff90f57
+;; TLB: deploy_ok#aff90f57 queryId:uint64 = DeployOk
+;;
+
+builder $DeployOk$_store(builder build_0, (int) v) inline {
+    var (v'queryId) = v;
+    build_0 = store_uint(build_0, 2952335191, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    return build_0;
+}
+
+cell $DeployOk$_store_cell((int) v) inline {
+    return $DeployOk$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $DeployOk$_constructor_queryId(int queryId) inline {
+    return (queryId);
+}
+
+;;
+;; Type: EventSignal
+;; Header: 0x1246ebb4
+;; TLB: event_signal#1246ebb4 eventId:int257 payload:^cell = EventSignal
+;;
+
+(slice, ((int, cell))) $EventSignal$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 306637748);
+    var v'eventId = sc_0~load_int(257);
+    var v'payload = sc_0~load_ref();
+    return (sc_0, (v'eventId, v'payload));
+}
+
+;;
+;; Type: SetMessenger
+;; Header: 0x32e50109
+;; TLB: set_messenger#32e50109 messenger:address eventId:int257 = SetMessenger
+;;
+
+(slice, ((slice, int))) $SetMessenger$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 853868809);
+    var v'messenger = sc_0~__tact_load_address();
+    var v'eventId = sc_0~load_int(257);
+    return (sc_0, (v'messenger, v'eventId));
+}
+
+;;
+;; Type: Trade
+;; Header: 0x8fc2e2d6
+;; TLB: trade#8fc2e2d6 orderAction:int257 positionSize:int257 = Trade
+;;
+
+builder $Trade$_store(builder build_0, (int, int) v) inline {
+    var (v'orderAction, v'positionSize) = v;
+    build_0 = store_uint(build_0, 2411913942, 32);
+    build_0 = build_0.store_int(v'orderAction, 257);
+    build_0 = build_0.store_int(v'positionSize, 257);
+    return build_0;
+}
+
+cell $Trade$_store_cell((int, int) v) inline {
+    return $Trade$_store(begin_cell(), v).end_cell();
+}
+
+(slice, ((int, int))) $Trade$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2411913942);
+    var v'orderAction = sc_0~load_int(257);
+    var v'positionSize = sc_0~load_int(257);
+    return (sc_0, (v'orderAction, v'positionSize));
+}
+
+((int, int)) $Trade$_constructor_orderAction_positionSize(int orderAction, int positionSize) inline {
+    return (orderAction, positionSize);
+}
+
+;;
+;; Type: Follower
+;;
+
+builder $Follower$_store(builder build_0, (slice, slice, slice, int, int) v) inline {
+    var (v'owner, v'messenger, v'dex, v'positionSize, v'eventId) = v;
+    build_0 = __tact_store_address(build_0, v'owner);
+    build_0 = __tact_store_address(build_0, v'messenger);
+    build_0 = __tact_store_address(build_0, v'dex);
+    var build_1 = begin_cell();
+    build_1 = build_1.store_int(v'positionSize, 257);
+    build_1 = build_1.store_int(v'eventId, 257);
+    build_0 = store_ref(build_0, build_1.end_cell());
+    return build_0;
+}
+
+(slice, ((slice, slice, slice, int, int))) $Follower$_load(slice sc_0) inline {
+    var v'owner = sc_0~__tact_load_address();
+    var v'messenger = sc_0~__tact_load_address();
+    var v'dex = sc_0~__tact_load_address();
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'positionSize = sc_1~load_int(257);
+    var v'eventId = sc_1~load_int(257);
+    return (sc_0, (v'owner, v'messenger, v'dex, v'positionSize, v'eventId));
+}
+
+(slice, ((slice, slice))) $Follower$init$_load(slice sc_0) inline {
+    var v'owner = sc_0~__tact_load_address();
+    var v'dex = sc_0~__tact_load_address();
+    return (sc_0, (v'owner, v'dex));
+}
+
+(slice, slice, slice, int, int) $Follower$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$Follower$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (slice owner, slice dex) = $sc~$Follower$init$_load();
+        $sc.end_parse();
+        return $Follower$_contract_init(owner, dex);
+    }
+}
+
+() $Follower$_contract_store((slice, slice, slice, int, int) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $Follower$_store(b, v);
+    set_data(b.end_cell());
+}

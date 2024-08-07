@@ -1,0 +1,18 @@
+$Variables$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/02-variables/output/sample_Variables.storage.fc:81:19: warning: Lack of end_parse.
+          return $sc~$Variables$_load();
+                    ^
+$Variables$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/02-variables/output/sample_Variables.code.fc:71:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/02-variables/output/sample_Variables.storage.fc:92:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Variables$_contract_store & $Variables$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/02-variables/output/sample_Variables.storage.fc:77:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/02-variables/output/sample_Variables.storage.fc:92:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

@@ -1,0 +1,20 @@
+royalty_params: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/TDB-template/contracts/admin_collection.fc:190:52: warning: Lack of end_parse.
+       return (rs~load_uint(16), rs~load_uint(16), rs~load_msg_addr());
+                                                     ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/TDB-template/contracts/admin_collection.fc:90:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+get_collection_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/TDB-template/contracts/admin_collection.fc:178:30: warning: Lack of end_parse.
+    return (next_item_index, cs~load_ref(), owner_address);
+                               ^
+messages::send_log: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/TDB-template/contracts/imports/messages.fc:62:14: warning: Local variable 'msg' is not used
+      cell msg = begin_cell()
+               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/TDB-template/contracts/admin_collection.fc:25:7: warning: Lack of end_parse.
+      ds~load_ref()  ;; royalty_params
+        ^

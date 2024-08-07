@@ -1,0 +1,31 @@
+$MarketplaceProfile$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./aestheticw3/ton-marketplace/contracts/output/sample_MarketplaceLocal.storage.fc:106:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$MarketplaceLocal$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./aestheticw3/ton-marketplace/contracts/output/sample_MarketplaceLocal.storage.fc:188:19: warning: Lack of end_parse.
+          return $sc~$MarketplaceLocal$_load();
+                    ^
+$MarketplaceAd$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./aestheticw3/ton-marketplace/contracts/output/sample_MarketplaceLocal.storage.fc:143:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$MarketplaceLocal$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./aestheticw3/ton-marketplace/contracts/output/sample_MarketplaceLocal.code.fc:14:53: warning: Local variable '$self'location' is not used
+      var (($self'location, $self'master, $self'idx)) = (null(), null(), 0);
+                                                      ^
+$MarketplaceLocal$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./aestheticw3/ton-marketplace/contracts/output/sample_MarketplaceLocal.code.fc:14:53: warning: Local variable '$self'master' is not used
+      var (($self'location, $self'master, $self'idx)) = (null(), null(), 0);
+                                                      ^
+__tact_dict_set_int_slice: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./aestheticw3/ton-marketplace/contracts/output/sample_MarketplaceLocal.stdlib.fc:66:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+$MarketplaceLocal$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./aestheticw3/ton-marketplace/contracts/output/sample_MarketplaceLocal.code.fc:79:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./aestheticw3/ton-marketplace/contracts/output/sample_MarketplaceLocal.storage.fc:199:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

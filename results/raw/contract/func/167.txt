@@ -1,0 +1,29 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBK_mRzJ4QXWshxH8uGSW_MIpZjVxU1iKOSMP-MyDV5l7na/nft.fc:67:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBK_mRzJ4QXWshxH8uGSW_MIpZjVxU1iKOSMP-MyDV5l7na/nft.fc:95:61: warning: Lack of end_parse.
+              .store_uint(ds~load_uint(8), 256).store_slice(ds~load_msg_addr())
+                                                              ^
+recv_internal & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBK_mRzJ4QXWshxH8uGSW_MIpZjVxU1iKOSMP-MyDV5l7na/nft.fc:93:30: warning: Cell of get_data and set_data are inconsistent.
+          slice ds = get_data().begin_parse(); ds~load_int(1);
+                               ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBK_mRzJ4QXWshxH8uGSW_MIpZjVxU1iKOSMP-MyDV5l7na/nft.fc:76:21: warning: Cell of get_data and set_data are inconsistent.
+          begin_cell().store_uint(1, 1).store_slice(ds').end_cell().set_data();
+                      ^
+recv_internal & get_nft_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBK_mRzJ4QXWshxH8uGSW_MIpZjVxU1iKOSMP-MyDV5l7na/nft.fc:105:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBK_mRzJ4QXWshxH8uGSW_MIpZjVxU1iKOSMP-MyDV5l7na/nft.fc:76:21: warning: Cell of get_data and set_data are inconsistent.
+          begin_cell().store_uint(1, 1).store_slice(ds').end_cell().set_data();
+                      ^
+store_data & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBK_mRzJ4QXWshxH8uGSW_MIpZjVxU1iKOSMP-MyDV5l7na/nft.fc:71:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBK_mRzJ4QXWshxH8uGSW_MIpZjVxU1iKOSMP-MyDV5l7na/nft.fc:29:9: warning: Cell of get_data and set_data are inconsistent.
+          .store_int(approved, 1).store_uint(index, 8).store_slice(coll).store_slice(owner)
+          ^

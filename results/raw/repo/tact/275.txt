@@ -1,0 +1,11 @@
+$MathExample$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_MathExample.storage.fc:92:19: warning: Lack of end_parse.
+          return $sc~$MathExample$_load();
+                    ^
+$MathExample$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_MathExample.code.fc:214:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/tondynasty-contracts/contracts/output/sample_MathExample.storage.fc:101:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

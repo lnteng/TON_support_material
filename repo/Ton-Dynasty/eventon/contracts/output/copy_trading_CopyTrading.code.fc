@@ -1,0 +1,252 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "copy_trading_CopyTrading.headers.fc";
+#include "copy_trading_CopyTrading.stdlib.fc";
+#include "copy_trading_CopyTrading.storage.fc";
+
+;;
+;; Contract CopyTrading functions
+;;
+
+(slice, slice, slice, slice, int, int, int) $CopyTrading$_contract_init(slice $owner, slice $universalRouterAddress, slice $dex) impure inline_ref {
+    var (($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId)) = (null(), null(), null(), null(), null(), null(), null());
+    $self'owner = $owner;
+    $self'universalRouterAddress = $universalRouterAddress;
+    $self'dex = $dex;
+    $self'messenger = $owner;
+    $self'orderAction = 1;
+    $self'positionSize = 50;
+    $self'eventId = 1;
+    return ($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId);
+}
+
+((slice, slice, slice, slice, int, int, int), slice) $CopyTrading$_fun_getMessenger((slice, slice, slice, slice, int, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId)) = $self;
+    return (($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId), $self'messenger);
+}
+
+((slice, slice, slice, slice, int, int, int), ()) $CopyTrading$_fun_sendAlert((slice, slice, slice, slice, int, int, int) $self, (int, cell) $msg) impure inline_ref {
+    var (($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId)) = $self;
+    var (($msg'eventId, $msg'payload)) = $msg;
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body($self'universalRouterAddress, 0, false, 64, $EventSignal$_store_cell($EventSignal$_constructor_eventId_payload($msg'eventId, $msg'payload))));
+    return (($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId), ());
+}
+
+((slice, slice, slice, slice, int, int, int), int) $CopyTrading$_fun_getEventId((slice, slice, slice, slice, int, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId)) = $self;
+    return (($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId), $self'eventId);
+}
+
+((slice, slice, slice, slice, int, int, int), ()) $CopyTrading$_fun_requireOwner((slice, slice, slice, slice, int, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId)) = $self;
+    throw_unless(132, ( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) ));
+    return (($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId), ());
+}
+
+((slice, slice, slice, slice, int, int, int), slice) $CopyTrading$_fun_owner((slice, slice, slice, slice, int, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId)) = $self;
+    return (($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId), $self'owner);
+}
+
+;;
+;; Receivers of a Contract CopyTrading
+;;
+
+(((slice, slice, slice, slice, int, int, int)), ()) %$CopyTrading$_internal_empty((slice, slice, slice, slice, int, int, int) $self) impure inline {
+    var ($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId) = $self;
+    return (($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId), ());
+}
+
+(((slice, slice, slice, slice, int, int, int)), ()) $CopyTrading$_internal_binary_EventSignal((slice, slice, slice, slice, int, int, int) $self, (int, cell) $msg) impure inline {
+    var ($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId) = $self;
+    var ($msg'eventId, $msg'payload) = $msg;
+    var ($cxt'bounced, $cxt'sender, $cxt'value, $cxt'raw) = __tact_context_get();
+    if (( ~ __tact_slice_eq_bits($self'messenger, $cxt'sender) )) {
+        throw(1006);
+    }
+    cell $payload = $msg'payload;
+    slice $parser = begin_parse($payload);
+    int $price = $parser~load_int(32);
+    if (($price < 1600)) {
+        int $value = 100000000;
+        $global_send($SendParameters$_constructor_to_value_mode_bounce_body($self'dex, $value, 1, true, $Trade$_store_cell($Trade$_constructor_orderAction_positionSize($self'orderAction, $self'positionSize))));
+        cell $sendPayload = end_cell(store_int(store_int(begin_cell(), $self'orderAction, 32), $self'positionSize, 32));
+        var ($eventSignal'eventId, $eventSignal'payload) = $EventSignal$_constructor_eventId_payload($self'eventId, $sendPayload);
+        ($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId)~$CopyTrading$_fun_sendAlert($EventSignal$_tensor_cast(($eventSignal'eventId, $eventSignal'payload)));
+    }
+    return (($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId), ());
+}
+
+(((slice, slice, slice, slice, int, int, int)), ()) $CopyTrading$_internal_binary_SetMessenger((slice, slice, slice, slice, int, int, int) $self, (slice, int) $msg) impure inline {
+    var ($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId) = $self;
+    var ($msg'messenger, $msg'eventId) = $msg;
+    ($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId)~$CopyTrading$_fun_requireOwner();
+    $self'messenger = $msg'messenger;
+    $self'eventId = $msg'eventId;
+    return (($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId), ());
+}
+
+(((slice, slice, slice, slice, int, int, int)), ()) $CopyTrading$_internal_binary_Trade((slice, slice, slice, slice, int, int, int) $self, (int, int) $msg) impure inline {
+    var ($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId) = $self;
+    var ($msg'orderAction, $msg'positionSize) = $msg;
+    ($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId)~$CopyTrading$_fun_requireOwner();
+    $self'orderAction = $msg'orderAction;
+    $self'positionSize = $msg'positionSize;
+    return (($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId), ());
+}
+
+(((slice, slice, slice, slice, int, int, int)), ()) $CopyTrading$_internal_binary_Deploy((slice, slice, slice, slice, int, int, int) $self, (int) $deploy) impure inline {
+    var ($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId)~$CopyTrading$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId), ());
+}
+
+(((slice, slice, slice, slice, int, int, int)), ()) $CopyTrading$_internal_binary_EventSourceRegister((slice, slice, slice, slice, int, int, int) $self, (cell, int, int, slice) $msg) impure inline {
+    var ($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId) = $self;
+    var ($msg'template, $msg'maxUserStakeAmount, $msg'subscribeFeePerTick, $msg'sourceName) = $msg;
+    ($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId)~$CopyTrading$_fun_requireOwner();
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body($self'universalRouterAddress, 0, false, 64, $ProtcolRegister$_store_cell($ProtcolRegister$_constructor_sourceAddress_template_maxUserStakeAmount_subscribeFeePerTick_sourceName(my_address(), $msg'template, $msg'maxUserStakeAmount, $msg'subscribeFeePerTick, $msg'sourceName))));
+    return (($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId), ());
+}
+
+(((slice, slice, slice, slice, int, int, int)), ()) $CopyTrading$_internal_binary_SetEventId((slice, slice, slice, slice, int, int, int) $self, (int) $msg) impure inline {
+    var ($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId) = $self;
+    var ($msg'eventId) = $msg;
+    ($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId)~$CopyTrading$_fun_requireOwner();
+    $self'eventId = $msg'eventId;
+    return (($self'owner, $self'universalRouterAddress, $self'messenger, $self'dex, $self'orderAction, $self'positionSize, $self'eventId), ());
+}
+
+;;
+;; Get methods of a Contract CopyTrading
+;;
+
+_ %getMessenger() method_id(116799) {
+    var self = $CopyTrading$_contract_load();
+    var res = self~$CopyTrading$_fun_getMessenger();
+    return res;
+}
+
+_ %getEventId() method_id(87534) {
+    var self = $CopyTrading$_contract_load();
+    var res = self~$CopyTrading$_fun_getEventId();
+    return res;
+}
+
+_ %owner() method_id(83229) {
+    var self = $CopyTrading$_contract_load();
+    var res = self~$CopyTrading$_fun_owner();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128,
+        "org.ton.ownable"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://Qmb2JZudfgxzY9gvzNGLCoURGwmxDfwo2J9XUbxRapd4Dz";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract CopyTrading
+;;
+
+((slice, slice, slice, slice, int, int, int), int) $CopyTrading$_contract_router_internal((slice, slice, slice, slice, int, int, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive empty message
+    if ((op == 0) & (slice_bits(in_msg) <= 32)) {
+        self~%$CopyTrading$_internal_empty();
+        return (self, true);
+    }
+    
+    ;; Receive EventSignal message
+    if (op == 306637748) {
+        var msg = in_msg~$EventSignal$_load();
+        self~$CopyTrading$_internal_binary_EventSignal(msg);
+        return (self, true);
+    }
+    
+    ;; Receive SetMessenger message
+    if (op == 853868809) {
+        var msg = in_msg~$SetMessenger$_load();
+        self~$CopyTrading$_internal_binary_SetMessenger(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Trade message
+    if (op == 2411913942) {
+        var msg = in_msg~$Trade$_load();
+        self~$CopyTrading$_internal_binary_Trade(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$CopyTrading$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Receive EventSourceRegister message
+    if (op == 3902166577) {
+        var msg = in_msg~$EventSourceRegister$_load();
+        self~$CopyTrading$_internal_binary_EventSourceRegister(msg);
+        return (self, true);
+    }
+    
+    ;; Receive SetEventId message
+    if (op == 1872535788) {
+        var msg = in_msg~$SetEventId$_load();
+        self~$CopyTrading$_internal_binary_SetEventId(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $CopyTrading$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$CopyTrading$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $CopyTrading$_contract_store(self);
+}

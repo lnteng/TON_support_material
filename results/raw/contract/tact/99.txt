@@ -1,0 +1,62 @@
+$CTonLock$_internal_binary_TokenWithdraw: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCBIjDFEm_Zl5dFWF_DJ8XMDjqdstF7ybel4mmZF0ON9-cQ/output/sample_CTonLock.code.fc:70:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$CTonLock$_internal_binary_TokenWithdraw: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCBIjDFEm_Zl5dFWF_DJ8XMDjqdstF7ybel4mmZF0ON9-cQ/output/sample_CTonLock.code.fc:70:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$CTonLock$_internal_binary_TokenWithdraw: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCBIjDFEm_Zl5dFWF_DJ8XMDjqdstF7ybel4mmZF0ON9-cQ/output/sample_CTonLock.code.fc:70:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$CTonLock$_internal_binary_SetLocker: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCBIjDFEm_Zl5dFWF_DJ8XMDjqdstF7ybel4mmZF0ON9-cQ/output/sample_CTonLock.code.fc:50:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$CTonLock$_internal_binary_SetLocker: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCBIjDFEm_Zl5dFWF_DJ8XMDjqdstF7ybel4mmZF0ON9-cQ/output/sample_CTonLock.code.fc:50:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$CTonLock$_internal_binary_SetLocker: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCBIjDFEm_Zl5dFWF_DJ8XMDjqdstF7ybel4mmZF0ON9-cQ/output/sample_CTonLock.code.fc:50:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$CTonLock$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCBIjDFEm_Zl5dFWF_DJ8XMDjqdstF7ybel4mmZF0ON9-cQ/output/sample_CTonLock.storage.fc:170:19: warning: Lack of end_parse.
+          return $sc~$CTonLock$_load();
+                    ^
+__tact_dict_set_int_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCBIjDFEm_Zl5dFWF_DJ8XMDjqdstF7ybel4mmZF0ON9-cQ/output/sample_CTonLock.stdlib.fc:54:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+$CTonLock$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCBIjDFEm_Zl5dFWF_DJ8XMDjqdstF7ybel4mmZF0ON9-cQ/output/sample_CTonLock.storage.fc:155:27: warning: Lack of end_parse.
+      var v'lockerMap = sc_1~load_dict();
+                            ^
+$CTonLock$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCBIjDFEm_Zl5dFWF_DJ8XMDjqdstF7ybel4mmZF0ON9-cQ/output/sample_CTonLock.code.fc:14:134: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'totalAmountLocked, $self'totalAmountBalance, $self'lockerLength, $self'lockerTimeMap, $self'lockerMap)) = (null(), 0, 0, 0, null(), null());
+                                                                                                                                       ^
+$CTonLock$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCBIjDFEm_Zl5dFWF_DJ8XMDjqdstF7ybel4mmZF0ON9-cQ/output/sample_CTonLock.code.fc:14:134: warning: Local variable '$self'totalAmountBalance' is not used
+      var (($self'owner, $self'totalAmountLocked, $self'totalAmountBalance, $self'lockerLength, $self'lockerTimeMap, $self'lockerMap)) = (null(), 0, 0, 0, null(), null());
+                                                                                                                                       ^
+$CTonLock$_contract_store & $CTonLock$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCBIjDFEm_Zl5dFWF_DJ8XMDjqdstF7ybel4mmZF0ON9-cQ/output/sample_CTonLock.storage.fc:166:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCBIjDFEm_Zl5dFWF_DJ8XMDjqdstF7ybel4mmZF0ON9-cQ/output/sample_CTonLock.storage.fc:181:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$CTonLock$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCBIjDFEm_Zl5dFWF_DJ8XMDjqdstF7ybel4mmZF0ON9-cQ/output/sample_CTonLock.code.fc:118:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCBIjDFEm_Zl5dFWF_DJ8XMDjqdstF7ybel4mmZF0ON9-cQ/output/sample_CTonLock.storage.fc:181:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$CTonLock$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQCBIjDFEm_Zl5dFWF_DJ8XMDjqdstF7ybel4mmZF0ON9-cQ/output/sample_CTonLock.code.fc:76:400: warning: UnHandle bounced message with op: 0xf8a7ea5
+  ... ss(), null(), 0, $Cell$_fun_asSlice(end_cell(store_uint(store_uint(begin_cell(), 0, 1), 0, 32)))))));
+  ...                                                                                                     ^

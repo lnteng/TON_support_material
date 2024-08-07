@@ -1,0 +1,24 @@
+get_nft_content: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/TAP/contracts/nft_collection.fc:171:28: warning: Lack of end_parse.
+    slice common_content = cs~load_ref().begin_parse();
+                             ^
+royalty_params: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/TAP/contracts/nft_collection.fc:164:52: warning: Lack of end_parse.
+       return (rs~load_uint(16), rs~load_uint(16), rs~load_msg_addr());
+                                                     ^
+get_collection_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/TAP/contracts/nft_collection.fc:152:30: warning: Lack of end_parse.
+    return (next_item_index, cs~load_ref(), owner_address, mint_end);
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/TAP/contracts/nft_collection.fc:94:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/TAP/contracts/nft_collection.fc:109:19: warning: Local variable 'is_last' is not used
+        var is_last = item_index == next_item_index;
+                    ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/TAP/contracts/nft_collection.fc:23:8: warning: Lack of end_parse.
+       ds~load_ref()  ;; royalty_params
+         ^

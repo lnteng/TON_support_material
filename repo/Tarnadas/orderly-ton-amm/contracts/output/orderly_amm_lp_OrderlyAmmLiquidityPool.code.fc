@@ -1,0 +1,199 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "orderly_amm_lp_OrderlyAmmLiquidityPool.headers.fc";
+#include "orderly_amm_lp_OrderlyAmmLiquidityPool.stdlib.fc";
+#include "orderly_amm_lp_OrderlyAmmLiquidityPool.storage.fc";
+
+;;
+;; Contract OrderlyAmmLiquidityPool functions
+;;
+
+(slice, slice, int, slice, int, int, cell, int) $OrderlyAmmLiquidityPool$_contract_init(slice $master, slice $base, slice $quote) impure inline_ref {
+    var (($self'master, $self'base, $self'baseAmount, $self'quote, $self'quoteAmount, $self'pricePerShare, $self'pendingQueries, $self'registered)) = (null(), null(), 0, null(), 0, null(), null(), false);
+    $self'master = $master;
+    $self'base = $base;
+    $self'quote = $quote;
+    return ($self'master, $self'base, $self'baseAmount, $self'quote, $self'quoteAmount, $self'pricePerShare, $self'pendingQueries, $self'registered);
+}
+
+((slice, slice, int, slice, int, int, cell, int), slice) $OrderlyAmmLiquidityPool$_fun_get_shares_address((slice, slice, int, slice, int, int, cell, int) $self) impure inline_ref {
+    var (($self'master, $self'base, $self'baseAmount, $self'quote, $self'quoteAmount, $self'pricePerShare, $self'pendingQueries, $self'registered)) = $self;
+    var ($stateInit'code, $stateInit'data) = $JettonMaster$_init_child(__tact_context_sys, my_address(), $global_emptyCell());
+    return (($self'master, $self'base, $self'baseAmount, $self'quote, $self'quoteAmount, $self'pricePerShare, $self'pendingQueries, $self'registered), $global_contractAddress(($stateInit'code, $stateInit'data)));
+}
+
+;;
+;; Receivers of a Contract OrderlyAmmLiquidityPool
+;;
+
+(((slice, slice, int, slice, int, int, cell, int)), ()) $OrderlyAmmLiquidityPool$_internal_binary_CreateLpInternal((slice, slice, int, slice, int, int, cell, int) $self, (slice) $msg) impure inline {
+    var ($self'master, $self'base, $self'baseAmount, $self'quote, $self'quoteAmount, $self'pricePerShare, $self'pendingQueries, $self'registered) = $self;
+    var ($msg'responseDestination) = $msg;
+    __tact_nop();
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    throw_unless(4429, ( __tact_slice_eq_bits($self'master, $ctx'sender) ));
+    throw_unless(60382, (~ $self'registered));
+    int $value = min((__tact_my_balance() - 10000000), ((($ctx'value - $Context$_fun_readForwardFee(($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw))) - 10000000) - 10000000));
+    throw_unless(23951, ($value >= 50000000));
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body($Context$_get_sender(__tact_context_get()), $value, false, 2, $CreateLpSuccessInternal$_store_cell($CreateLpSuccessInternal$_constructor_base_quote_responseDestination($self'base, $self'quote, $msg'responseDestination))));
+    $self'registered = true;
+    return (($self'master, $self'base, $self'baseAmount, $self'quote, $self'quoteAmount, $self'pricePerShare, $self'pendingQueries, $self'registered), ());
+}
+
+(((slice, slice, int, slice, int, int, cell, int)), ()) $OrderlyAmmLiquidityPool$_internal_binary_SendLiquidityToLpInternal((slice, slice, int, slice, int, int, cell, int) $self, (int, int, slice, slice, int, slice) $msg) impure inline {
+    var ($self'master, $self'base, $self'baseAmount, $self'quote, $self'quoteAmount, $self'pricePerShare, $self'pendingQueries, $self'registered) = $self;
+    var ($msg'amount, $msg'queryId, $msg'from, $msg'jettonWallet, $msg'isBase, $msg'responseDestination) = $msg;
+    __tact_nop();
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    var ($stateInit'code, $stateInit'data) = $OrderlyAmmDeposit$_init_child(__tact_context_sys, $self'master, $msg'from, $msg'jettonWallet);
+    throw_unless(4429, ( __tact_slice_eq_bits($global_contractAddress(($stateInit'code, $stateInit'data)), $ctx'sender) ));
+    tuple $query = $PendingQuery$_load_opt(__tact_dict_get_int_cell($self'pendingQueries, 257, $msg'queryId));
+    if (null?($query)) {
+        $self'pendingQueries~__tact_dict_set_int_cell(257, $msg'queryId, $PendingQuery$_store_cell($PendingQuery$_constructor_amount_isBase($msg'amount, $msg'isBase)));
+    } else {
+        int $amount = 0;
+        var ($queryNonNull'amount, $queryNonNull'isBase) = $PendingQuery$_not_null($query);
+        $self'pendingQueries~__tact_dict_set_int_cell(257, $msg'queryId, $PendingQuery$_store_opt(null()));
+        if (null?($self'pricePerShare)) {
+            if ($msg'isBase) {
+                $self'pricePerShare = ($queryNonNull'amount * 2);
+            } else {
+                $self'pricePerShare = ($msg'amount * 2);
+            }
+            $amount = 1000000000;
+        } else {
+            int $pricePerShare = __tact_not_null($self'pricePerShare);
+            if ($msg'isBase) {
+                $amount = ((($queryNonNull'amount + (($msg'amount * $self'quoteAmount) / $self'baseAmount)) * 1000000000) / $pricePerShare);
+            } else {
+                $amount = ((($msg'amount + (($queryNonNull'amount * $self'quoteAmount) / $self'baseAmount)) * 1000000000) / $pricePerShare);
+            }
+        }
+        if ($msg'isBase) {
+            $self'baseAmount = ($self'baseAmount + $msg'amount);
+            $self'quoteAmount = ($self'quoteAmount + $queryNonNull'amount);
+        } else {
+            $self'baseAmount = ($self'baseAmount + $queryNonNull'amount);
+            $self'quoteAmount = ($self'quoteAmount + $msg'amount);
+        }
+        var ($sharesInit'code, $sharesInit'data) = $JettonMaster$_init_child(__tact_context_sys, my_address(), $global_emptyCell());
+        $global_send($SendParameters$_constructor_to_value_bounce_mode_body_code_data($global_contractAddress(($sharesInit'code, $sharesInit'data)), 0, false, (64 + 2), $Mint$_store_cell($Mint$_constructor_amount_receiver_responseDestination($amount, $msg'from, $msg'responseDestination)), $sharesInit'code, $sharesInit'data));
+    }
+    return (($self'master, $self'base, $self'baseAmount, $self'quote, $self'quoteAmount, $self'pricePerShare, $self'pendingQueries, $self'registered), ());
+}
+
+(((slice, slice, int, slice, int, int, cell, int)), ()) $OrderlyAmmLiquidityPool$_internal_binary_SwapInternal((slice, slice, int, slice, int, int, cell, int) $self, (int, slice, int, int) $msg) impure inline {
+    var ($self'master, $self'base, $self'baseAmount, $self'quote, $self'quoteAmount, $self'pricePerShare, $self'pendingQueries, $self'registered) = $self;
+    var ($msg'amount, $msg'lpAddress, $msg'side, $msg'minOut) = $msg;
+    __tact_nop();
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    throw_unless(4429, ( __tact_slice_eq_bits($self'master, $ctx'sender) ));
+    return (($self'master, $self'base, $self'baseAmount, $self'quote, $self'quoteAmount, $self'pricePerShare, $self'pendingQueries, $self'registered), ());
+}
+
+(((slice, slice, int, slice, int, int, cell, int)), ()) $OrderlyAmmLiquidityPool$_internal_binary_Deploy((slice, slice, int, slice, int, int, cell, int) $self, (int) $deploy) impure inline {
+    var ($self'master, $self'base, $self'baseAmount, $self'quote, $self'quoteAmount, $self'pricePerShare, $self'pendingQueries, $self'registered) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'master, $self'base, $self'baseAmount, $self'quote, $self'quoteAmount, $self'pricePerShare, $self'pendingQueries, $self'registered)~$OrderlyAmmLiquidityPool$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'master, $self'base, $self'baseAmount, $self'quote, $self'quoteAmount, $self'pricePerShare, $self'pendingQueries, $self'registered), ());
+}
+
+;;
+;; Get methods of a Contract OrderlyAmmLiquidityPool
+;;
+
+_ %get_shares_address() method_id(98816) {
+    var self = $OrderlyAmmLiquidityPool$_contract_load();
+    var res = self~$OrderlyAmmLiquidityPool$_fun_get_shares_address();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmdZU1yeAMRGA3ccW2rvoTwrUvPzwerWFSmrGGst4RTJGC";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract OrderlyAmmLiquidityPool
+;;
+
+((slice, slice, int, slice, int, int, cell, int), int) $OrderlyAmmLiquidityPool$_contract_router_internal((slice, slice, int, slice, int, int, cell, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive CreateLpInternal message
+    if (op == 4022361044) {
+        var msg = in_msg~$CreateLpInternal$_load();
+        self~$OrderlyAmmLiquidityPool$_internal_binary_CreateLpInternal(msg);
+        return (self, true);
+    }
+    
+    ;; Receive SendLiquidityToLpInternal message
+    if (op == 4078701601) {
+        var msg = in_msg~$SendLiquidityToLpInternal$_load();
+        self~$OrderlyAmmLiquidityPool$_internal_binary_SendLiquidityToLpInternal(msg);
+        return (self, true);
+    }
+    
+    ;; Receive SwapInternal message
+    if (op == 3712832002) {
+        var msg = in_msg~$SwapInternal$_load();
+        self~$OrderlyAmmLiquidityPool$_internal_binary_SwapInternal(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$OrderlyAmmLiquidityPool$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $OrderlyAmmLiquidityPool$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$OrderlyAmmLiquidityPool$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $OrderlyAmmLiquidityPool$_contract_store(self);
+}

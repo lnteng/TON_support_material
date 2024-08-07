@@ -1,0 +1,81 @@
+"Asm.fif" include
+// automatically generated from `contracts/2.fc` 
+PROGRAM{
+  DECLPROC recv_internal
+  90041 DECLMETHOD matrix_multiplier
+  recv_internal PROC:<{
+    // 
+  }>
+  matrix_multiplier PROC:<{
+    //  matrixA matrixB
+    OVER	//  matrixA matrixB matrixA
+    TLEN	//  matrixA matrixB n
+    OVER	//  matrixA matrixB n matrixB
+    TLEN	//  matrixA matrixB n m
+    s2 PUSH	//  matrixA matrixB n m matrixB
+    FIRST	//  matrixA matrixB n m _7
+    TLEN	//  matrixA matrixB n m p
+    NIL	//  matrixA matrixB n m p matrixBT
+    0 PUSHINT	//  matrixA matrixB n m p matrixBT x=0
+    s2 PUSH	//  matrixA matrixB n m p matrixBT x=0 p
+    REPEAT:<{	//  matrixA matrixB n m p matrixBT x
+      NIL	//  matrixA matrixB n m p matrixBT x row
+      0 PUSHINT	//  matrixA matrixB n m p matrixBT x row y=0
+      s5 PUSH	//  matrixA matrixB n m p matrixBT x row y=0 m
+      REPEAT:<{	//  matrixA matrixB n m p matrixBT x row y
+        s7 s0 PUSH2	//  matrixA matrixB n m p matrixBT x row y matrixB y
+        INDEXVAR	//  matrixA matrixB n m p matrixBT x row y _18
+        s3 PUSH	//  matrixA matrixB n m p matrixBT x row y _18 x
+        INDEXVAR	//  matrixA matrixB n m p matrixBT x row y _19
+        s1 s2 XCHG	//  matrixA matrixB n m p matrixBT x y row _19
+        TPUSH	//  matrixA matrixB n m p matrixBT x y row
+        SWAP	//  matrixA matrixB n m p matrixBT x row y
+        INC	//  matrixA matrixB n m p matrixBT x row y
+      }>
+      DROP	//  matrixA matrixB n m p matrixBT x row
+      s1 s2 XCHG	//  matrixA matrixB n m p x matrixBT row
+      TPUSH	//  matrixA matrixB n m p x matrixBT
+      SWAP	//  matrixA matrixB n m p matrixBT x
+      INC	//  matrixA matrixB n m p matrixBT x
+    }>
+    DROP
+    s4 POP	//  matrixA matrixBT n m p
+    NIL	//  matrixA matrixBT n m p C
+    0 PUSHINT	//  matrixA matrixBT n m p C i=0
+    s0 s4 XCHG	//  matrixA matrixBT i=0 m p C n
+    REPEAT:<{	//  matrixA matrixBT i m p C
+      NIL	//  matrixA matrixBT i m p C C_row
+      0 PUSHINT	//  matrixA matrixBT i m p C C_row j=0
+      s3 PUSH	//  matrixA matrixBT i m p C C_row j=0 p
+      REPEAT:<{	//  matrixA matrixBT i m p C C_row j
+        s7 s5 PUSH2	//  matrixA matrixBT i m p C C_row j matrixA i
+        INDEXVAR	//  matrixA matrixBT i m p C C_row j A_row
+        s7 s1 PUSH2	//  matrixA matrixBT i m p C C_row j A_row matrixBT j
+        INDEXVAR	//  matrixA matrixBT i m p C C_row j A_row B_row
+        0 PUSHINT	//  matrixA matrixBT i m p C C_row j A_row B_row value=0
+        s7 PUSH	//  matrixA matrixBT i m p C C_row j A_row B_row value=0 m
+        REPEAT:<{	//  matrixA matrixBT i m p C C_row j A_row B_row value
+          s0 s2 XCHG	//  matrixA matrixBT i m p C C_row j value B_row A_row
+          TPOP	//  matrixA matrixBT i m p C C_row j value B_row A_row a
+          s0 s2 XCHG	//  matrixA matrixBT i m p C C_row j value a A_row B_row
+          TPOP	//  matrixA matrixBT i m p C C_row j value a A_row B_row b
+          s1 s3 XCHG	//  matrixA matrixBT i m p C C_row j value B_row A_row a b
+          MUL	//  matrixA matrixBT i m p C C_row j value B_row A_row _45
+          s1 s3 XCHG	//  matrixA matrixBT i m p C C_row j A_row B_row value _45
+          ADD	//  matrixA matrixBT i m p C C_row j A_row B_row value
+        }>
+        2 1 BLKDROP2	//  matrixA matrixBT i m p C C_row j value
+        s1 s2 XCHG	//  matrixA matrixBT i m p C j C_row value
+        TPUSH	//  matrixA matrixBT i m p C j C_row
+        SWAP	//  matrixA matrixBT i m p C C_row j
+        INC	//  matrixA matrixBT i m p C C_row j
+      }>
+      DROP	//  matrixA matrixBT i m p C C_row
+      TPUSH	//  matrixA matrixBT i m p C
+      s0 s3 XCHG	//  matrixA matrixBT C m p i
+      INC	//  matrixA matrixBT C m p i
+      s0 s3 XCHG	//  matrixA matrixBT i m p C
+    }>
+    5 1 BLKDROP2	//  C
+  }>
+}END>c

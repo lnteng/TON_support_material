@@ -1,0 +1,273 @@
+;;
+;; Type: StateInit
+;; TLB: _ code:^cell data:^cell = StateInit
+;;
+
+((cell, cell)) $StateInit$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (cell vvv'code, cell vvv'data) = __tact_tuple_destroy_2(v);
+    return (vvv'code, vvv'data);
+}
+
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline {
+    return (bounce, to, value, mode, body, code, data);
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode_bounce_body(slice to, int value, int mode, int bounce, cell body) inline {
+    return (bounce, to, value, mode, body, null(), null());
+}
+
+;;
+;; Type: Deploy
+;; Header: 0x946a98b6
+;; TLB: deploy#946a98b6 queryId:uint64 = Deploy
+;;
+
+(slice, ((int))) $Deploy$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2490013878);
+    var v'queryId = sc_0~load_uint(64);
+    return (sc_0, (v'queryId));
+}
+
+;;
+;; Type: DeployOk
+;; Header: 0xaff90f57
+;; TLB: deploy_ok#aff90f57 queryId:uint64 = DeployOk
+;;
+
+builder $DeployOk$_store(builder build_0, (int) v) inline {
+    var (v'queryId) = v;
+    build_0 = store_uint(build_0, 2952335191, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    return build_0;
+}
+
+cell $DeployOk$_store_cell((int) v) inline {
+    return $DeployOk$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $DeployOk$_constructor_queryId(int queryId) inline {
+    return (queryId);
+}
+
+;;
+;; Type: Player
+;; TLB: _ address:address bet:coins ticket_start:uint64 ticket_end:uint64 = Player
+;;
+
+builder $Player$_store(builder build_0, (slice, int, int, int) v) inline {
+    var (v'address, v'bet, v'ticket_start, v'ticket_end) = v;
+    build_0 = __tact_store_address(build_0, v'address);
+    build_0 = build_0.store_coins(v'bet);
+    build_0 = build_0.store_uint(v'ticket_start, 64);
+    build_0 = build_0.store_uint(v'ticket_end, 64);
+    return build_0;
+}
+
+cell $Player$_store_cell((slice, int, int, int) v) inline {
+    return $Player$_store(begin_cell(), v).end_cell();
+}
+
+(slice, ((slice, int, int, int))) $Player$_load(slice sc_0) inline {
+    var v'address = sc_0~__tact_load_address();
+    var v'bet = sc_0~load_coins();
+    var v'ticket_start = sc_0~load_uint(64);
+    var v'ticket_end = sc_0~load_uint(64);
+    return (sc_0, (v'address, v'bet, v'ticket_start, v'ticket_end));
+}
+
+tuple $Player$_as_optional((slice, int, int, int) v) inline {
+    var (v'address, v'bet, v'ticket_start, v'ticket_end) = v;
+    return __tact_tuple_create_4(v'address, v'bet, v'ticket_start, v'ticket_end);
+}
+
+tuple $Player$_load_opt(cell cl) inline {
+    if (null?(cl)) {
+        return null();
+    }
+    var sc = cl.begin_parse();
+    return $Player$_as_optional(sc~$Player$_load());
+}
+
+_ $Player$_get_address((slice, int, int, int) v) inline {
+    var (v'address, v'bet, v'ticket_start, v'ticket_end) = v;
+    return v'address;
+}
+
+_ $Player$_get_bet((slice, int, int, int) v) inline {
+    var (v'address, v'bet, v'ticket_start, v'ticket_end) = v;
+    return v'bet;
+}
+
+_ $Player$_get_ticket_start((slice, int, int, int) v) inline {
+    var (v'address, v'bet, v'ticket_start, v'ticket_end) = v;
+    return v'ticket_start;
+}
+
+_ $Player$_get_ticket_end((slice, int, int, int) v) inline {
+    var (v'address, v'bet, v'ticket_start, v'ticket_end) = v;
+    return v'ticket_end;
+}
+
+((slice, int, int, int)) $Player$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (slice vvv'address, int vvv'bet, int vvv'ticket_start, int vvv'ticket_end) = __tact_tuple_destroy_4(v);
+    return (vvv'address, vvv'bet, vvv'ticket_start, vvv'ticket_end);
+}
+
+((slice, int, int, int)) $Player$_constructor_address_bet_ticket_start_ticket_end(slice address, int bet, int ticket_start, int ticket_end) inline {
+    return (address, bet, ticket_start, ticket_end);
+}
+
+;;
+;; Type: Winner
+;; TLB: _ address:address ticket:uint64 = Winner
+;;
+
+((slice, int)) $Winner$_constructor_address_ticket(slice address, int ticket) inline {
+    return (address, ticket);
+}
+
+;;
+;; Type: OwnerCashout
+;; Header: 0x5c02703c
+;; TLB: owner_cashout#5c02703c value:coins = OwnerCashout
+;;
+
+(slice, ((int))) $OwnerCashout$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 1543663676);
+    var v'value = sc_0~load_coins();
+    return (sc_0, (v'value));
+}
+
+;;
+;; Type: SetPlayersMax
+;; Header: 0x40386669
+;; TLB: set_players_max#40386669 new_players_max:uint8 = SetPlayersMax
+;;
+
+(slice, ((int))) $SetPlayersMax$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 1077438057);
+    var v'new_players_max = sc_0~load_uint(8);
+    return (sc_0, (v'new_players_max));
+}
+
+;;
+;; Type: SetBetMin
+;; Header: 0x7f8edeea
+;; TLB: set_bet_min#7f8edeea new_bet_min:coins = SetBetMin
+;;
+
+(slice, ((int))) $SetBetMin$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2140069610);
+    var v'new_bet_min = sc_0~load_coins();
+    return (sc_0, (v'new_bet_min));
+}
+
+;;
+;; Type: SetFeePercent
+;; Header: 0x11030c8e
+;; TLB: set_fee_percent#11030c8e fee_percent:uint8 = SetFeePercent
+;;
+
+(slice, ((int))) $SetFeePercent$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 285412494);
+    var v'fee_percent = sc_0~load_uint(8);
+    return (sc_0, (v'fee_percent));
+}
+
+;;
+;; Type: DictPair
+;; TLB: _ key:int257 value:address = DictPair
+;;
+
+_ $DictPair$_get_key((int, slice) v) inline {
+    var (v'key, v'value) = v;
+    return v'key;
+}
+
+_ $DictPair$_get_value((int, slice) v) inline {
+    var (v'key, v'value) = v;
+    return v'value;
+}
+
+((int, slice)) $DictPair$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (int vvv'key, slice vvv'value) = __tact_tuple_destroy_2(v);
+    return (vvv'key, vvv'value);
+}
+
+tuple $DictPair$_as_optional((int, slice) v) inline {
+    var (v'key, v'value) = v;
+    return __tact_tuple_create_2(v'key, v'value);
+}
+
+((int, slice)) $DictPair$_constructor_key_value(int key, slice value) inline {
+    return (key, value);
+}
+
+;;
+;; Type: Jackpot
+;;
+
+builder $Jackpot$_store(builder build_0, (slice, int, int, int, int, cell, cell, int, int) v) inline {
+    var (v'owner, v'fee_percent, v'bet_min, v'players_max, v'players_current, v'players_list, v'players_nav_list, v'locked_balance, v'winner_ticket) = v;
+    build_0 = __tact_store_address(build_0, v'owner);
+    build_0 = build_0.store_uint(v'fee_percent, 8);
+    build_0 = build_0.store_coins(v'bet_min);
+    build_0 = build_0.store_uint(v'players_max, 8);
+    build_0 = build_0.store_uint(v'players_current, 8);
+    build_0 = build_0.store_dict(v'players_list);
+    build_0 = build_0.store_dict(v'players_nav_list);
+    build_0 = build_0.store_coins(v'locked_balance);
+    build_0 = build_0.store_uint(v'winner_ticket, 64);
+    return build_0;
+}
+
+(slice, ((slice, int, int, int, int, cell, cell, int, int))) $Jackpot$_load(slice sc_0) inline {
+    var v'owner = sc_0~__tact_load_address();
+    var v'fee_percent = sc_0~load_uint(8);
+    var v'bet_min = sc_0~load_coins();
+    var v'players_max = sc_0~load_uint(8);
+    var v'players_current = sc_0~load_uint(8);
+    var v'players_list = sc_0~load_dict();
+    var v'players_nav_list = sc_0~load_dict();
+    var v'locked_balance = sc_0~load_coins();
+    var v'winner_ticket = sc_0~load_uint(64);
+    return (sc_0, (v'owner, v'fee_percent, v'bet_min, v'players_max, v'players_current, v'players_list, v'players_nav_list, v'locked_balance, v'winner_ticket));
+}
+
+(slice, ((slice, int, int))) $Jackpot$init$_load(slice sc_0) inline {
+    var v'owner = sc_0~__tact_load_address();
+    var v'bet_min = sc_0~load_int(257);
+    var v'players_max = sc_0~load_int(257);
+    return (sc_0, (v'owner, v'bet_min, v'players_max));
+}
+
+(slice, int, int, int, int, cell, cell, int, int) $Jackpot$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$Jackpot$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (slice owner, int bet_min, int players_max) = $sc~$Jackpot$init$_load();
+        $sc.end_parse();
+        return $Jackpot$_contract_init(owner, bet_min, players_max);
+    }
+}
+
+() $Jackpot$_contract_store((slice, int, int, int, int, cell, cell, int, int) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $Jackpot$_store(b, v);
+    set_data(b.end_cell());
+}

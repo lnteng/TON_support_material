@@ -1,0 +1,23 @@
+$TonupTosRegistryV2$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCvp_7oqAiq12G8Q5PtE0B3OV_yGk1MuTlqurKxFDGxfZ3r/output/verifier_TonupTosRegistryV2.code.fc:16:45: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'number_users)) = (null(), 0);
+                                              ^
+$TonupTosV2Child$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCvp_7oqAiq12G8Q5PtE0B3OV_yGk1MuTlqurKxFDGxfZ3r/output/verifier_TonupTosRegistryV2.storage.fc:210:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$TonupTosRegistryV2$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCvp_7oqAiq12G8Q5PtE0B3OV_yGk1MuTlqurKxFDGxfZ3r/output/verifier_TonupTosRegistryV2.storage.fc:179:19: warning: Lack of end_parse.
+          return $sc~$TonupTosRegistryV2$_load();
+                    ^
+$TonupTosRegistryV2$_fun_userChildAddress: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCvp_7oqAiq12G8Q5PtE0B3OV_yGk1MuTlqurKxFDGxfZ3r/output/verifier_TonupTosRegistryV2.code.fc:84:81: warning: Local variable '$self'number_users' is not used
+      return (($self'owner, $self'number_users), ($self'owner, $self'number_users)~$TonupTosRegistryV2$_fun_user_child_address($user));
+                                                                                  ^
+$TonupTosRegistryV2$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCvp_7oqAiq12G8Q5PtE0B3OV_yGk1MuTlqurKxFDGxfZ3r/output/verifier_TonupTosRegistryV2.code.fc:244:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCvp_7oqAiq12G8Q5PtE0B3OV_yGk1MuTlqurKxFDGxfZ3r/output/verifier_TonupTosRegistryV2.storage.fc:190:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

@@ -1,0 +1,43 @@
+$Payouts$_internal_binary_CanPayoutResponse: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/payouts_Payouts.code.fc:57:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Payouts$_internal_binary_CanPayoutResponse: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/payouts_Payouts.code.fc:57:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Beacon$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/payouts_Payouts.storage.fc:108:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$Payouts$_internal_any_text: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/payouts_Payouts.code.fc:38:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Payouts$_internal_any_text: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/payouts_Payouts.code.fc:38:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Payouts$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/payouts_Payouts.code.fc:15:42: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'publicKey)) = (null(), null());
+                                           ^
+$Payouts$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/payouts_Payouts.code.fc:15:42: warning: Local variable '$self'publicKey' is not used
+      var (($self'owner, $self'publicKey)) = (null(), null());
+                                           ^
+$Payouts$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/payouts_Payouts.storage.fc:151:19: warning: Lack of end_parse.
+          return $sc~$Payouts$_load();
+                    ^
+$Payouts$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/payouts_Payouts.code.fc:105:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/payouts_Payouts.storage.fc:162:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Payouts$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/payouts_Payouts.code.fc:50:167: warning: UnHandle bounced message with op: 0xc41949df
+      $global_send($SendParameters$_constructor_to_value_mode_bounce_body($address, 0, (64 + 2), true, $CanPayout$_store_cell($CanPayout$_constructor_amount($amount))));
+                                                                                                                                                                        ^

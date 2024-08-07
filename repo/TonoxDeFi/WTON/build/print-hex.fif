@@ -1,0 +1,13 @@
+#!/usr/bin/fift -s
+"TonUtil.fif" include
+"Asm.fif" include
+
+."minter:" cr
+
+"minter.fif" include
+2 boc+>B dup Bx. cr
+
+."wallet:" cr
+
+"wallet.fif" include
+2 boc+>B dup Bx. cr

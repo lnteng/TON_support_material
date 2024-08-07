@@ -1,0 +1,225 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_Task5.headers.fc";
+#include "sample_Task5.stdlib.fc";
+#include "sample_Task5.storage.fc";
+
+;;
+;; Contract Task5 functions
+;;
+
+(int, int, cell) $Task5$_contract_init(int $seed, slice $owner) impure inline_ref {
+    var (($self'owner, $self'seed, $self'nfts)) = (null(), null(), null());
+    slice $addr = __tact_address_to_slice($owner);
+    $addr~skip_bits(11);
+    $self'owner = preload_uint($addr, 256);
+    $self'seed = 0;
+    return ($self'owner, $self'seed, $self'nfts);
+}
+
+((int, int, cell), int) $Task5$_fun_profit((int, int, cell) $self) impure inline_ref {
+    var (($self'owner, $self'seed, $self'nfts)) = $self;
+    return (($self'owner, $self'seed, $self'nfts), (__tact_my_balance() - 100000000));
+}
+
+((int, int, cell), cell) $Task5$_fun_nfts((int, int, cell) $self) impure inline_ref {
+    var (($self'owner, $self'seed, $self'nfts)) = $self;
+    return (($self'owner, $self'seed, $self'nfts), $self'nfts);
+}
+
+;;
+;; Receivers of a Contract Task5
+;;
+
+(((int, int, cell)), ()) $Task5$_internal_binary_OwnershipAssigned((int, int, cell) $self, (int, slice, slice) $msg) impure inline {
+    var ($self'owner, $self'seed, $self'nfts) = $self;
+    var ($msg'queryId, $msg'prevOwner, $msg'forwardPayload) = $msg;
+    slice $addr = __tact_address_to_slice($msg'prevOwner);
+    $addr~skip_bits(11);
+    if ((preload_uint($addr, 256) == $self'owner)) {
+        $self'nfts~__tact_dict_set_uint_slice(16, $self'seed, __tact_context_get_sender());
+        $self'seed = ($self'seed + 1);
+        return (($self'owner, $self'seed, $self'nfts), ());
+    }
+    if (($Context$_get_value(__tact_context_get()) >= 2100000000)) {
+        raw_reserve(2000000000, 4);
+        randomize_lt();
+        int $x = rand(($self'seed + 1));
+        if (($x == ($self'seed + 1))) {
+            send_raw_message(end_cell(store_uint(store_slice(store_slice(store_uint(store_uint(store_slice(store_uint(begin_cell(), 16, 6), __tact_address_to_slice(__tact_context_get_sender())), 1607220500, 143), $msg'queryId, 64), __tact_address_to_slice($msg'prevOwner)), __tact_address_to_slice($msg'prevOwner)), 0, 5)), 128);
+            commit();
+            throw(0);
+        }
+        slice $nft = __tact_not_null(__tact_dict_get_uint_slice($self'nfts, 16, $x));
+        send_raw_message(end_cell(store_uint(store_slice(store_slice(store_uint(store_uint(store_slice(store_uint(begin_cell(), 16, 6), __tact_address_to_slice($nft)), 1607220500, 143), $msg'queryId, 64), __tact_address_to_slice($msg'prevOwner)), __tact_address_to_slice($msg'prevOwner)), 0, 5)), 128);
+        $self'nfts~__tact_dict_set_uint_slice(16, $x, __tact_context_get_sender());
+        return (($self'owner, $self'seed, $self'nfts), ());
+    }
+    send_raw_message(end_cell(store_uint(store_slice(store_slice(store_uint(store_uint(store_slice(store_uint(begin_cell(), 16, 6), __tact_address_to_slice(__tact_context_get_sender())), 1607220500, 143), $msg'queryId, 64), __tact_address_to_slice($msg'prevOwner)), __tact_address_to_slice($msg'prevOwner)), 0, 5)), 64);
+    commit();
+    throw(0);
+    return (($self'owner, $self'seed, $self'nfts), ());
+}
+
+(((int, int, cell)), ()) $Task5$_internal_binary_AdminWithdrawalProfit((int, int, cell) $self, (int) $msg) impure inline {
+    var ($self'owner, $self'seed, $self'nfts) = $self;
+    var ($msg'queryId) = $msg;
+    slice $addr = __tact_address_to_slice(__tact_context_get_sender());
+    $addr~skip_bits(11);
+    int $bits = preload_uint($addr, 256);
+    throw_unless(41, ($bits == $self'owner));
+    raw_reserve(100000000, 0);
+    send_raw_message(end_cell(store_uint(store_uint(store_uint(store_uint(begin_cell(), 33792, 17), $bits, 256), 4255419257, 143), $msg'queryId, 64)), 128);
+    commit();
+    throw(0);
+    return (($self'owner, $self'seed, $self'nfts), ());
+}
+
+(((int, int, cell)), ()) $Task5$_internal_binary_AdminWithdrawalAllNFTs((int, int, cell) $self, (int) $msg) impure inline {
+    var ($self'owner, $self'seed, $self'nfts) = $self;
+    var ($msg'queryId) = $msg;
+    throw_unless(42, (($self'seed * 80000000) <= $Context$_get_value(__tact_context_get())));
+    slice $addr = __tact_address_to_slice(__tact_context_get_sender());
+    $addr~skip_bits(11);
+    throw_unless(43, (preload_uint($addr, 256) == $self'owner));
+    cell $body = end_cell(store_uint(store_uint(store_uint(store_uint(store_uint(store_uint(store_uint(begin_cell(), 1607220500, 32), $msg'queryId, 64), 1024, 11), $self'owner, 256), 1024, 11), $self'owner, 256), 0, 5));
+    repeat (min(250, $self'seed)) {
+        $self'seed = ($self'seed - 1);
+        send_raw_message(end_cell(store_ref(store_uint(store_slice(store_uint(begin_cell(), 16, 6), __tact_address_to_slice(__tact_not_null(__tact_dict_get_uint_slice($self'nfts, 16, $self'seed)))), 2797328706426080694495459464698332868247553, 143), $body)), 0);
+    }
+    if (($self'seed > 0)) {
+        send_raw_message(end_cell(store_slice(store_uint(store_slice(store_uint(begin_cell(), 16, 6), __tact_address_to_slice(my_address())), 0, 111), begin_parse($body))), 128);
+    }
+    return (($self'owner, $self'seed, $self'nfts), ());
+}
+
+((int, int, cell), ()) $Task5$_internal_any((int, int, cell) $self, slice $msg) impure inline {
+    var ($self'owner, $self'seed, $self'nfts) = $self;
+    throw_unless(44, ( __tact_slice_eq_bits(__tact_context_get_sender(), my_address()) ));
+    cell $body = $Slice$_fun_asCell($msg);
+    repeat (min(100, $self'seed)) {
+        $self'seed = ($self'seed - 1);
+        send_raw_message(end_cell(store_ref(store_uint(store_slice(store_uint(begin_cell(), 16, 6), __tact_address_to_slice(__tact_not_null(__tact_dict_get_uint_slice($self'nfts, 16, $self'seed)))), 2797328706426080694495459464698332868247553, 143), $body)), 0);
+    }
+    if (($self'seed > 0)) {
+        send_raw_message(end_cell(store_slice(store_uint(store_slice(store_uint(begin_cell(), 16, 6), __tact_address_to_slice(my_address())), 2797328706426080694495459464698332868247552, 143), $msg)), 128);
+    } else {
+        $self'nfts = null();
+    }
+    return (($self'owner, $self'seed, $self'nfts), ());
+}
+
+(((int, int, cell)), ()) $Task5$_internal_binary_Deploy((int, int, cell) $self, (int) $deploy) impure inline {
+    var ($self'owner, $self'seed, $self'nfts) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'owner, $self'seed, $self'nfts)~$Task5$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'owner, $self'seed, $self'nfts), ());
+}
+
+;;
+;; Get methods of a Contract Task5
+;;
+
+_ %profit() method_id(79823) {
+    var self = $Task5$_contract_load();
+    var res = self~$Task5$_fun_profit();
+    return res;
+}
+
+_ %nfts() method_id(88106) {
+    var self = $Task5$_contract_load();
+    var res = self~$Task5$_fun_nfts();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmYuawQ1fEACSRPfRvCUWAL9evKKGnbwwKa63BocuxDzmK";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract Task5
+;;
+
+((int, int, cell), int) $Task5$_contract_router_internal((int, int, cell) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive OwnershipAssigned message
+    if (op == 85167505) {
+        var msg = in_msg~$OwnershipAssigned$_load();
+        self~$Task5$_internal_binary_OwnershipAssigned(msg);
+        return (self, true);
+    }
+    
+    ;; Receive AdminWithdrawalProfit message
+    if (op == 2957643261) {
+        var msg = in_msg~$AdminWithdrawalProfit$_load();
+        self~$Task5$_internal_binary_AdminWithdrawalProfit(msg);
+        return (self, true);
+    }
+    
+    ;; Receive AdminWithdrawalAllNFTs message
+    if (op == 1664696863) {
+        var msg = in_msg~$AdminWithdrawalAllNFTs$_load();
+        self~$Task5$_internal_binary_AdminWithdrawalAllNFTs(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$Task5$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Receiver fallback
+    self~$Task5$_internal_any(in_msg);
+    return (self, true);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $Task5$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$Task5$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $Task5$_contract_store(self);
+}

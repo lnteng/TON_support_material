@@ -1,0 +1,48 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./polus-dev/native-ton-pair/func/main.func:24:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+init_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./polus-dev/native-ton-pair/func/utils/storage.func:62:28: warning: Lack of end_parse.
+      jetton_wallet_code = ds~load_ref();
+                             ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./polus-dev/native-ton-pair/func/utils/handles.func:57:41: warning: UnHandle bounced message with op: 0xf8a7ea5
+      send_raw_message(msg.end_cell(), 64);
+                                          ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./polus-dev/native-ton-pair/func/utils/handles.func:22:41: warning: UnHandle bounced message with op: 0xf8a7ea5
+      send_raw_message(msg.end_cell(), 64);
+                                          ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./polus-dev/native-ton-pair/func/utils/user-methods.func:159:40: warning: UnHandle bounced message with op: 0xf8a7ea5
+      send_raw_message(msg.end_cell(), 0);
+                                         ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./polus-dev/native-ton-pair/func/utils/user-methods.func:54:40: warning: UnHandle bounced message with op: 0xf8a7ea5
+      send_raw_message(msg.end_cell(), 2);
+                                         ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./polus-dev/native-ton-pair/func/utils/lp.func:144:49: warning: UnHandle bounced message with op: 0xf8a7ea5
+      send_raw_message(transfer_msg.end_cell(), 0);
+                                                  ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./polus-dev/native-ton-pair/func/utils/lp.func:159:45: warning: UnHandle bounced message with op: 0x595f07bc
+      send_raw_message(burn_msg.end_cell(), 0);
+                                              ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./polus-dev/native-ton-pair/func/utils/lp.func:67:51: warning: UnHandle bounced message with op: 0xf8a7ea5
+          send_raw_message(refund_msg.end_cell(), 0);
+                                                    ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./polus-dev/native-ton-pair/func/utils/lp.func:97:45: warning: UnHandle bounced message with op: 0x21
+      send_raw_message(mint_msg.end_cell(), 0);
+                                              ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./polus-dev/native-ton-pair/func/utils/admin-methods.func:58:40: warning: UnHandle bounced message with op: 0xf8a7ea5
+      send_raw_message(msg.end_cell(), 0);
+                                         ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./polus-dev/native-ton-pair/func/utils/lp.func:21:47: warning: UnHandle bounced message with op: 0xf8a7ea5
+      send_raw_message(refund_msg.end_cell(), 0);
+                                                ^

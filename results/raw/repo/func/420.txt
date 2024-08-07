@@ -1,0 +1,24 @@
+sorter_to_participant_tuple: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-3/func/5.fc:110:28: warning: Lack of end_parse.
+  				slice address = list_cs~load_msg_addr();
+  				                       ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-3/func/5.fc:235:26: warning: Lack of end_parse.
+  	slice sender = header_cs~load_msg_addr();
+  	                        ^
+get_stake_table: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-3/func/5.fc:326:59: warning: Local variable 'opt_effective_total' is not used
+  	(_, cell sorter, int opt_count, int opt_effective_total) = load_data();
+  	                                                         ^
+get_stake_table: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-3/func/5.fc:328:30: warning: Local variable 'total_stake' is not used
+  	(tuple ps, int total_stake) = sorter_to_participant_tuple(sorter);
+  	                            ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-3/func/5.fc:69:30: warning: Lack of end_parse.
+  	int opt_effective_total = cs~load_grams();
+  	                            ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-3/func/5.fc:302:28: warning: UnHandle bounced message with op: 0xeefa5ea4
+  		send_raw_message(msg, 64);
+  		                         ^

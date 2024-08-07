@@ -1,0 +1,20 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./DAOTON-io/Daoton/contracts/func/staking.func:29:20: warning: Lack of end_parse.
+    slice s_addr = cs~load_msg_addr();
+                     ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./DAOTON-io/Daoton/contracts/func/staking.func:26:78: warning: Local variable 'token_id' is not used
+    var (token_id, total_balance, stake_amount_request, already_staked_amount) = load_data();
+                                                                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./DAOTON-io/Daoton/contracts/func/staking.func:30:38: warning: Local variable 'sender_wc' is not used
+    (int sender_wc, slice sender_addr) = parse_var_addr(s_addr);
+                                       ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./DAOTON-io/Daoton/contracts/func/staking.func:31:14: warning: Local variable 'member' is not used
+    int member = sender_addr~load_uint(256);
+               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./DAOTON-io/Daoton/contracts/func/staking.func:7:8: warning: Lack of end_parse.
+       ds~load_uint(64) ;; already_staked_amount
+         ^

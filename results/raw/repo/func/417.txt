@@ -1,0 +1,16 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-1/solutions/3_basic.fc:82:28: warning: Lack of end_parse.
+  		slice source_address = cs~load_msg_addr();
+  		                         ^
+parse_sender_address: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-1/solutions/3_basic.fc:69:27: warning: Lack of end_parse.
+  	slice sender_address = cs~load_msg_addr();
+  	                         ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-1/solutions/3_basic.fc:53:32: warning: Lack of end_parse.
+  	return (ds~load_msg_addr(), ds~load_msg_addr());
+  	                              ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./nns2009/TON-FunC-contest-1/solutions/3_basic.fc:101:28: warning: UnHandle bounced message with op: 0x3
+  		send_raw_message(msg, 64);
+  		                         ^

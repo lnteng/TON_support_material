@@ -1,0 +1,12 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./TonoxDeFi/capped-fungible-token/src/jetton-minter.fc:54:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./TonoxDeFi/capped-fungible-token/src/jetton-minter.fc:76:46: warning: Lack of end_parse.
+              int jetton_amount = master_msg_cs~load_coins();
+                                               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./TonoxDeFi/capped-fungible-token/src/jetton-minter.fc:17:9: warning: Lack of end_parse.
+        ds~load_ref()  ;; jetton_wallet_code
+          ^

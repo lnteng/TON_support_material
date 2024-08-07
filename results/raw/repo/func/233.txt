@@ -1,0 +1,12 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Gusarich/fundraiser/contracts/helper.fc:36:66: warning: Lack of end_parse.
+      (_, context::sender) = in_msg_full.begin_parse().skip_bits(4).load_msg_addr();
+                                                                   ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Gusarich/fundraiser/contracts/helper.fc:16:23: warning: Lack of end_parse.
+      data::current = ds~load_dict();
+                        ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./Gusarich/fundraiser/contracts/helper.fc:67:26: warning: UnHandle bounced message with op: 0x69c6ff38
+          .end_cell(), 128);
+                           ^

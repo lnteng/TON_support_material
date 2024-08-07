@@ -1,0 +1,30 @@
+$Wallet$_internal_text_9ca0f1855174e32e8fd378df56a6e4f6c40e4dfcb6090e49812f7b1e26214bf9: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/wallet_Wallet.code.fc:81:46: warning: Local variable '$walletInit'code' is not used
+      var ($walletInit'code, $walletInit'data) = $Wallet$_init_child(__tact_context_sys, $self'key, ($self'walletId + 1));
+                                               ^
+$Wallet$_internal_text_9ca0f1855174e32e8fd378df56a6e4f6c40e4dfcb6090e49812f7b1e26214bf9: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/wallet_Wallet.code.fc:81:46: warning: Local variable '$walletInit'data' is not used
+      var ($walletInit'code, $walletInit'data) = $Wallet$_init_child(__tact_context_sys, $self'key, ($self'walletId + 1));
+                                               ^
+$Wallet$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/wallet_Wallet.storage.fc:88:19: warning: Lack of end_parse.
+          return $sc~$Wallet$_load();
+                    ^
+$Wallet$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/wallet_Wallet.storage.fc:108:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$Wallet$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/wallet_Wallet.code.fc:126:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/wallet_Wallet.storage.fc:99:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Wallet$_contract_store & $Wallet$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/wallet_Wallet.storage.fc:84:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/wallet_Wallet.storage.fc:99:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

@@ -1,0 +1,40 @@
+get_sale_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA-85RqdHAR3G5VE9lvBHHePM9LAXeM4B4E5-f-RIFA6_IV/nft-fixprice-sale-v3r3.fc:349:5: warning: Local variable 'sold_at' is not used
+    ) = load_data();
+      ^
+get_sale_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA-85RqdHAR3G5VE9lvBHHePM9LAXeM4B4E5-f-RIFA6_IV/nft-fixprice-sale-v3r3.fc:349:5: warning: Local variable 'query_id' is not used
+    ) = load_data();
+      ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA-85RqdHAR3G5VE9lvBHHePM9LAXeM4B4E5-f-RIFA6_IV/nft-fixprice-sale-v3r3.fc:152:28: warning: Lack of end_parse.
+    slice sender_address = cs~load_msg_addr();
+                             ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA-85RqdHAR3G5VE9lvBHHePM9LAXeM4B4E5-f-RIFA6_IV/nft-fixprice-sale-v3r3.fc:201:25: warning: Lack of end_parse.
+      send_raw_message(msg~load_ref(), mode);
+                          ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA-85RqdHAR3G5VE9lvBHHePM9LAXeM4B4E5-f-RIFA6_IV/nft-fixprice-sale-v3r3.fc:164:5: warning: Local variable 'query_id' is not used
+    ) = load_data();
+      ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA-85RqdHAR3G5VE9lvBHHePM9LAXeM4B4E5-f-RIFA6_IV/nft-fixprice-sale-v3r3.fc:218:7: warning: Local variable 'marketplace_fee' is not used
+      ) = load_fees(fees_cell);
+        ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA-85RqdHAR3G5VE9lvBHHePM9LAXeM4B4E5-f-RIFA6_IV/nft-fixprice-sale-v3r3.fc:218:7: warning: Local variable 'royalty_amount' is not used
+      ) = load_fees(fees_cell);
+        ^
+load_fees: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA-85RqdHAR3G5VE9lvBHHePM9LAXeM4B4E5-f-RIFA6_IV/nft-fixprice-sale-v3r3.fc:33:7: warning: Lack of end_parse.
+      ds~load_coins()     ;; royalty_amount
+        ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA-85RqdHAR3G5VE9lvBHHePM9LAXeM4B4E5-f-RIFA6_IV/nft-fixprice-sale-v3r3.fc:23:7: warning: Lack of end_parse.
+      ds~load_uint(64)    ;; query_id
+        ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA-85RqdHAR3G5VE9lvBHHePM9LAXeM4B4E5-f-RIFA6_IV/nft-fixprice-sale-v3r3.fc:127:44: warning: UnHandle bounced message with op: 0x5fcc3d14
+    send_raw_message(nft_msg.end_cell(), 128);
+                                             ^

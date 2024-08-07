@@ -1,0 +1,27 @@
+$TokenParent$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-unbounded-maps/output/sample_TokenParent.code.fc:22:45: warning: Local variable '$self'symbol' is not used
+      var (($self'symbol, $self'totalSupply)) = (null(), null());
+                                              ^
+$TokenParent$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-unbounded-maps/output/sample_TokenParent.code.fc:22:45: warning: Local variable '$self'totalSupply' is not used
+      var (($self'symbol, $self'totalSupply)) = (null(), null());
+                                              ^
+$TokenChild$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-unbounded-maps/output/sample_TokenParent.storage.fc:145:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$TokenParent$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-unbounded-maps/output/sample_TokenParent.storage.fc:116:19: warning: Lack of end_parse.
+          return $sc~$TokenParent$_load();
+                    ^
+$TokenParent$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-unbounded-maps/output/sample_TokenParent.code.fc:81:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-unbounded-maps/output/sample_TokenParent.storage.fc:125:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$TokenParent$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-unbounded-maps/output/sample_TokenParent.code.fc:17:266: warning: UnHandle bounced message with op: 0xf813c89b
+  ... lAddTokens$_constructor_amount_origin($amount, my_address())), 30000000, 2, $init'code, $init'data));
+  ...                                                                                                     ^

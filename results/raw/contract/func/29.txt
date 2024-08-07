@@ -1,0 +1,28 @@
+get_nft_content: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCmgI_eRwh6djWRNoGrKxU6br11OM_234Y8bTYqm8PpNLOP/marketon-collection-minter-v1.func:372:28: warning: Lack of end_parse.
+    slice common_content = cs~load_ref().begin_parse();
+                             ^
+royalty_params: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCmgI_eRwh6djWRNoGrKxU6br11OM_234Y8bTYqm8PpNLOP/marketon-collection-minter-v1.func:365:52: warning: Lack of end_parse.
+       return (rs~load_uint(16), rs~load_uint(16), rs~load_msg_addr());
+                                                     ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCmgI_eRwh6djWRNoGrKxU6br11OM_234Y8bTYqm8PpNLOP/marketon-collection-minter-v1.func:234:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCmgI_eRwh6djWRNoGrKxU6br11OM_234Y8bTYqm8PpNLOP/marketon-collection-minter-v1.func:45:8: warning: Lack of end_parse.
+       ds~load_ref()  ;; royalty_params
+         ^
+load_marketplace_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCmgI_eRwh6djWRNoGrKxU6br11OM_234Y8bTYqm8PpNLOP/marketon-collection-minter-v1.func:60:7: warning: Lack of end_parse.
+      ds~load_ref()
+        ^
+get_collection_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCmgI_eRwh6djWRNoGrKxU6br11OM_234Y8bTYqm8PpNLOP/marketon-collection-minter-v1.func:359:30: warning: Lack of end_parse.
+    return (next_item_index, cs~load_ref(), owner_address);
+                               ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCmgI_eRwh6djWRNoGrKxU6br11OM_234Y8bTYqm8PpNLOP/marketon-collection-minter-v1.func:186:42: warning: UnHandle bounced message with op: 0x5fcc3d14
+      send_raw_message(msg.end_cell(), 128);
+                                           ^

@@ -1,0 +1,12 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/ton-contest-3/contracts/submit/3.fc:119:28: warning: Lack of end_parse.
+    slice sender_address = cs~load_msg_addr();
+                             ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/ton-contest-3/contracts/submit/3.fc:148:31: warning: Lack of end_parse.
+                ch = in_msg_body~load_uint(8);
+                                ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/ton-contest-3/contracts/submit/3.fc:190:26: warning: Lack of end_parse.
+          in_msg_body = ref.begin_parse();
+                           ^

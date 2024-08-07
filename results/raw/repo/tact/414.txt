@@ -1,0 +1,26 @@
+$Task4$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge-contracts/output/sample_Task4.storage.fc:110:19: warning: Lack of end_parse.
+          return $sc~$Task4$_load();
+                    ^
+$Task4$_fun_owner: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge-contracts/output/sample_Task4.code.fc:42:56: warning: Lack of end_parse.
+      return (($self'owner, $self'seed, $self'nft), $addr~__tact_load_address());
+                                                         ^
+$Task4$_fun_nft: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge-contracts/output/sample_Task4.code.fc:33:56: warning: Lack of end_parse.
+      return (($self'owner, $self'seed, $self'nft), $addr~__tact_load_address());
+                                                         ^
+$Task4$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge-contracts/output/sample_Task4.code.fc:127:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge-contracts/output/sample_Task4.storage.fc:121:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task4$_contract_store & $Task4$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge-contracts/output/sample_Task4.storage.fc:106:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./pizza-777/tact-challenge-contracts/output/sample_Task4.storage.fc:121:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

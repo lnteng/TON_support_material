@@ -1,0 +1,131 @@
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode_bounce(slice to, int value, int mode, int bounce) inline {
+    return (bounce, to, value, mode, null(), null(), null());
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode(slice to, int value, int mode) inline {
+    return (true, to, value, mode, null(), null(), null());
+}
+
+;;
+;; Type: CrowdfundingParams
+;; Header: 0xde9d0081
+;; TLB: crowdfunding_params#de9d0081 title:^string description:^string targetContribution:int257 minContribution:int257 deadline:uint32 beneficiary:address = CrowdfundingParams
+;;
+
+builder $CrowdfundingParams$_store(builder build_0, (slice, slice, int, int, int, slice) v) inline_ref {
+    var (v'title, v'description, v'targetContribution, v'minContribution, v'deadline, v'beneficiary) = v;
+    build_0 = store_uint(build_0, 3734831233, 32);
+    build_0 = build_0.store_ref(begin_cell().store_slice(v'title).end_cell());
+    build_0 = build_0.store_ref(begin_cell().store_slice(v'description).end_cell());
+    build_0 = build_0.store_int(v'targetContribution, 257);
+    build_0 = build_0.store_int(v'minContribution, 257);
+    build_0 = build_0.store_uint(v'deadline, 32);
+    build_0 = __tact_store_address(build_0, v'beneficiary);
+    return build_0;
+}
+
+(slice, ((slice, slice, int, int, int, slice))) $CrowdfundingParams$_load(slice sc_0) inline_ref {
+    throw_unless(129, sc_0~load_uint(32) == 3734831233);
+    var v'title = sc_0~load_ref().begin_parse();
+    var v'description = sc_0~load_ref().begin_parse();
+    var v'targetContribution = sc_0~load_int(257);
+    var v'minContribution = sc_0~load_int(257);
+    var v'deadline = sc_0~load_uint(32);
+    var v'beneficiary = sc_0~__tact_load_address();
+    return (sc_0, (v'title, v'description, v'targetContribution, v'minContribution, v'deadline, v'beneficiary));
+}
+
+tuple $CrowdfundingParams$_to_tuple(((slice, slice, int, int, int, slice)) v) inline {
+    var (v'title, v'description, v'targetContribution, v'minContribution, v'deadline, v'beneficiary) = v;
+    return __tact_tuple_create_6(v'title, v'description, v'targetContribution, v'minContribution, v'deadline, v'beneficiary);
+}
+
+((slice, slice, int, int, int, slice)) $CrowdfundingParams$_constructor_title_description_targetContribution_minContribution_deadline_beneficiary(slice title, slice description, int targetContribution, int minContribution, int deadline, slice beneficiary) inline {
+    return (title, description, targetContribution, minContribution, deadline, beneficiary);
+}
+
+;;
+;; Type: StartCrowdfunding
+;; Header: 0x5c0cb734
+;; TLB: start_crowdfunding#5c0cb734 creator:address params:CrowdfundingParams{title:^string,description:^string,targetContribution:int257,minContribution:int257,deadline:uint32,beneficiary:address} = StartCrowdfunding
+;;
+
+(slice, ((slice, (slice, slice, int, int, int, slice)))) $StartCrowdfunding$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 1544337204);
+    var v'creator = sc_0~__tact_load_address();
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'params = sc_1~$CrowdfundingParams$_load();
+    return (sc_0, (v'creator, v'params));
+}
+
+;;
+;; Type: CrowdfundingInfo
+;; TLB: _ params:CrowdfundingParams{title:^string,description:^string,targetContribution:int257,minContribution:int257,deadline:uint32,beneficiary:address} currentContribution:int257 = CrowdfundingInfo
+;;
+
+(tuple, int) $CrowdfundingInfo$_to_external((((slice, slice, int, int, int, slice), int)) v) inline {
+    var (v'params, v'currentContribution) = v; 
+    return ($CrowdfundingParams$_to_tuple(v'params), v'currentContribution);
+}
+
+(((slice, slice, int, int, int, slice), int)) $CrowdfundingInfo$_constructor_params_currentContribution((slice, slice, int, int, int, slice) params, int currentContribution) inline {
+    return (params, currentContribution);
+}
+
+;;
+;; Type: Crowdfunding
+;;
+
+builder $Crowdfunding$_store(builder build_0, (slice, int, (slice, slice, int, int, int, slice), cell) v) inline {
+    var (v'owner, v'seqno, (v'params'title, v'params'description, v'params'targetContribution, v'params'minContribution, v'params'deadline, v'params'beneficiary), v'contributors) = v;
+    build_0 = __tact_store_address(build_0, v'owner);
+    build_0 = build_0.store_uint(v'seqno, 256);
+    var build_1 = begin_cell();
+    build_1 = $CrowdfundingParams$_store(build_1, (v'params'title, v'params'description, v'params'targetContribution, v'params'minContribution, v'params'deadline, v'params'beneficiary));
+    build_1 = build_1.store_dict(v'contributors);
+    build_0 = store_ref(build_0, build_1.end_cell());
+    return build_0;
+}
+
+(slice, ((slice, int, (slice, slice, int, int, int, slice), cell))) $Crowdfunding$_load(slice sc_0) inline {
+    var v'owner = sc_0~__tact_load_address();
+    var v'seqno = sc_0~load_uint(256);
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'params = sc_1~$CrowdfundingParams$_load();
+    var v'contributors = sc_1~load_dict();
+    return (sc_0, (v'owner, v'seqno, v'params, v'contributors));
+}
+
+(slice, ((slice, int))) $Crowdfunding$init$_load(slice sc_0) inline {
+    var v'factory = sc_0~__tact_load_address();
+    var v'seqno = sc_0~load_int(257);
+    return (sc_0, (v'factory, v'seqno));
+}
+
+(slice, int, (slice, slice, int, int, int, slice), cell) $Crowdfunding$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$Crowdfunding$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (slice factory, int seqno) = $sc~$Crowdfunding$init$_load();
+        $sc.end_parse();
+        return $Crowdfunding$_contract_init(factory, seqno);
+    }
+}
+
+() $Crowdfunding$_contract_store((slice, int, (slice, slice, int, int, int, slice), cell) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $Crowdfunding$_store(b, v);
+    set_data(b.end_cell());
+}

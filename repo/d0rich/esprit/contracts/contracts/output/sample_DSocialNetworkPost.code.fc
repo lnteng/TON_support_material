@@ -1,0 +1,324 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_DSocialNetworkPost.headers.fc";
+#include "sample_DSocialNetworkPost.stdlib.fc";
+#include "sample_DSocialNetworkPost.constants.fc";
+#include "sample_DSocialNetworkPost.storage.fc";
+
+;;
+;; Contract DSocialNetworkPost functions
+;;
+
+(slice, int, slice, int, (slice, slice, slice)) $DSocialNetworkPost$_contract_init(slice $collection_address, int $item_index, slice $owner) impure inline_ref {
+    var (($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image))) = (null(), null(), null(), null(), null());
+    $self'collection_address = $collection_address;
+    $self'item_index = $item_index;
+    $self'owner = $collection_address;
+    ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image) = $NftMetadata$_constructor_name_description_image(__gen_slice_string_96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7(), __gen_slice_string_96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7(), __gen_slice_string_96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7());
+    $self'is_initialized = false;
+    return ($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image));
+}
+
+cell $global_beginTep64Dict() impure inline_ref {
+    return new_dict();
+}
+
+cell $global_storeTep64SnakeString(cell $tep64Dict, slice $key, slice $value) impure inline_ref {
+    tuple $sb = __tact_string_builder_start_tail_string();
+    $sb~__tact_string_builder_append($value);
+    return udict_set_ref($tep64Dict, 256, string_hash($key), __tact_string_builder_end($sb));
+}
+
+cell $global_buildTep64OnchainContent(cell $tep64Dict) impure inline_ref {
+    builder $b = store_uint(begin_cell(), 0, 8);
+    return end_cell(store_dict($b, $tep64Dict));
+}
+
+((slice, int, slice, int, (slice, slice, slice)), (slice, int, slice, (slice, slice, slice))) $DSocialNetworkPost$_fun_get_post_info((slice, int, slice, int, (slice, slice, slice)) $self) impure inline_ref {
+    var (($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image))) = $self;
+    return (($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image)), $PostInfo$_constructor_blog_id_owner_nft_content($self'collection_address, $self'item_index, $self'owner, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image)));
+}
+
+((slice, int, slice, int, (slice, slice, slice)), cell) $DSocialNetworkPost$_fun_serializeIndividualContent((slice, int, slice, int, (slice, slice, slice)) $self) impure inline_ref {
+    var (($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image))) = $self;
+    cell $tep64Dict = $global_beginTep64Dict();
+    $tep64Dict = $global_storeTep64SnakeString($tep64Dict, __gen_slice_string_b763e9a22724252b067539c4f99440aaba4e9dfbe5787ab390139cc36cae7006(), $self'individual_content'name);
+    $tep64Dict = $global_storeTep64SnakeString($tep64Dict, __gen_slice_string_140bdd99e205d5912ca97650fb28f063726b262214aacff74252f2bcee780c53(), $self'individual_content'description);
+    $tep64Dict = $global_storeTep64SnakeString($tep64Dict, __gen_slice_string_065ffc464dbcf26d2a434c9731f3527f540b3dc367e29d99244e3e81ea1b5365(), $self'individual_content'image);
+    return (($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image)), $global_buildTep64OnchainContent(__tact_not_null($tep64Dict)));
+}
+
+((slice, int, slice, int, (slice, slice, slice)), (int, int, slice, slice, cell)) $DSocialNetworkPost$_fun_get_nft_data((slice, int, slice, int, (slice, slice, slice)) $self) impure inline_ref {
+    var (($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image))) = $self;
+    return (($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image)), $GetNftData$_constructor_is_initialized_index_collection_address_owner_address_individual_content($self'is_initialized, $self'item_index, $self'collection_address, $self'owner, ($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image))~$DSocialNetworkPost$_fun_serializeIndividualContent()));
+}
+
+((slice, int, slice, int, (slice, slice, slice)), ()) $DSocialNetworkPost$_fun_requireOwner((slice, int, slice, int, (slice, slice, slice)) $self) impure inline_ref {
+    var (($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image))) = $self;
+    throw_unless(132, ( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) ));
+    return (($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image)), ());
+}
+
+((slice, int, slice, int, (slice, slice, slice)), slice) $DSocialNetworkPost$_fun_owner((slice, int, slice, int, (slice, slice, slice)) $self) impure inline_ref {
+    var (($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image))) = $self;
+    return (($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image)), $self'owner);
+}
+
+((slice, int, slice, int, (slice, slice, slice)), int) $DSocialNetworkPost$_fun_getGasConsumption((slice, int, slice, int, (slice, slice, slice)) $self) impure inline_ref {
+    var (($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image))) = $self;
+    return (($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image)), 30000000);
+}
+
+((slice, int, slice, int, (slice, slice, slice)), int) $DSocialNetworkPost$_fun_getTonRecieved((slice, int, slice, int, (slice, slice, slice)) $self) impure inline_ref {
+    var (($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image))) = $self;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    return (($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image)), $ctx'value);
+}
+
+((slice, int, slice, int, (slice, slice, slice)), int) $DSocialNetworkPost$_fun_calculateMinOperationFee((slice, int, slice, int, (slice, slice, slice)) $self) impure inline_ref {
+    var (($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image))) = $self;
+    int $tonBalanceBeforeMsg = (__tact_my_balance() - ($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image))~$DSocialNetworkPost$_fun_getTonRecieved());
+    int $storageFee = (30000000 - min($tonBalanceBeforeMsg, 30000000));
+    return (($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image)), ($storageFee + ($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image))~$DSocialNetworkPost$_fun_getGasConsumption()));
+}
+
+((slice, int, slice, int, (slice, slice, slice)), int) $DSocialNetworkPost$_fun_calculateSendAmountToHoldEnoughTonForStorage((slice, int, slice, int, (slice, slice, slice)) $self) impure inline_ref {
+    var (($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image))) = $self;
+    return (($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image)), (__tact_my_balance() - ($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image))~$DSocialNetworkPost$_fun_calculateMinOperationFee()));
+}
+
+((slice, int, slice, int, (slice, slice, slice)), ()) $DSocialNetworkPost$_fun_sendExcessesTo((slice, int, slice, int, (slice, slice, slice)) $self, int $amount, slice $to, int $query_id) impure inline_ref {
+    var (($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image))) = $self;
+    int $sendQueryId = 0;
+    if ((~ null?($query_id))) {
+        $sendQueryId = __tact_not_null($query_id);
+    }
+    $global_send($SendParameters$_constructor_to_value_mode_body($to, $amount, 2, $Excesses$_store_cell($Excesses$_constructor_query_id($sendQueryId))));
+    return (($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image)), ());
+}
+
+;;
+;; Receivers of a Contract DSocialNetworkPost
+;;
+
+(((slice, int, slice, int, (slice, slice, slice))), ()) $DSocialNetworkPost$_internal_binary_EditBlogPost((slice, int, slice, int, (slice, slice, slice)) $self, (int, (slice, slice, slice)) $msg) impure inline {
+    var ($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image)) = $self;
+    var ($msg'query_id, ($msg'new_metadata'name, $msg'new_metadata'description, $msg'new_metadata'image)) = $msg;
+    throw_unless(47778, $self'is_initialized);
+    ($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image))~$DSocialNetworkPost$_fun_requireOwner();
+    ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image) = ($msg'new_metadata'name, $msg'new_metadata'description, $msg'new_metadata'image);
+    ($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image))~$DSocialNetworkPost$_fun_sendExcessesTo(($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image))~$DSocialNetworkPost$_fun_calculateSendAmountToHoldEnoughTonForStorage(), $self'owner, $msg'query_id);
+    return (($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image)), ());
+}
+
+(((slice, int, slice, int, (slice, slice, slice))), ()) $DSocialNetworkPost$_internal_binary_InitializeNft((slice, int, slice, int, (slice, slice, slice)) $self, (int, slice, (slice, slice, slice)) $msg) impure inline {
+    var ($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image)) = $self;
+    var ($msg'query_id, $msg'owner, ($msg'individual_content'name, $msg'individual_content'description, $msg'individual_content'image)) = $msg;
+    ($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image))~$DSocialNetworkPost$_fun_requireOwner();
+    throw_unless(26042, ($self'is_initialized == false));
+    $self'is_initialized = true;
+    $self'owner = $msg'owner;
+    ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image) = ($msg'individual_content'name, $msg'individual_content'description, $msg'individual_content'image);
+    $global_send($SendParameters$_constructor_to_value_mode_body($self'owner, ($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image))~$DSocialNetworkPost$_fun_calculateSendAmountToHoldEnoughTonForStorage(), 2, $Excesses$_store_cell($Excesses$_constructor_query_id($msg'query_id))));
+    return (($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image)), ());
+}
+
+(((slice, int, slice, int, (slice, slice, slice))), ()) $DSocialNetworkPost$_internal_binary_Transfer((slice, int, slice, int, (slice, slice, slice)) $self, (int, slice, slice, cell, int, slice) $msg) impure inline {
+    var ($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image)) = $self;
+    var ($msg'query_id, $msg'new_owner, $msg'response_destination, $msg'custom_payload, $msg'forward_amount, $msg'forward_payload) = $msg;
+    ($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image))~$DSocialNetworkPost$_fun_requireOwner();
+    throw_unless(62326, ($self'is_initialized == true));
+    int $msgValue = ($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image))~$DSocialNetworkPost$_fun_calculateSendAmountToHoldEnoughTonForStorage();
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    $self'owner = $msg'new_owner;
+    if (($msg'forward_amount > 0)) {
+        $global_send($SendParameters$_constructor_to_value_mode_bounce_body($msg'new_owner, $msg'forward_amount, 2, false, $OwnershipAssigned$_store_cell($OwnershipAssigned$_constructor_query_id_prev_owner_forward_payload($msg'query_id, $ctx'sender, $msg'forward_payload))));
+    }
+    $msgValue = ($msgValue - $Context$_fun_readForwardFee(($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw)));
+    if ((~ null?($msg'response_destination))) {
+        $global_send($SendParameters$_constructor_to_value_mode_body($msg'response_destination, ($msgValue - $msg'forward_amount), 1, $Excesses$_store_cell($Excesses$_constructor_query_id($msg'query_id))));
+    }
+    return (($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image)), ());
+}
+
+(((slice, int, slice, int, (slice, slice, slice))), ()) $DSocialNetworkPost$_internal_binary_GetStaticData((slice, int, slice, int, (slice, slice, slice)) $self, (int) $msg) impure inline {
+    var ($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image)) = $self;
+    var ($msg'query_id) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    $global_send($SendParameters$_constructor_to_value_mode_bounce_body($ctx'sender, 0, 64, true, $ReportStaticData$_store_cell($ReportStaticData$_constructor_query_id_index_id_collection($msg'query_id, $self'item_index, $self'collection_address))));
+    return (($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image)), ());
+}
+
+(((slice, int, slice, int, (slice, slice, slice))), ()) $DSocialNetworkPost$_internal_binary_Deploy((slice, int, slice, int, (slice, slice, slice)) $self, (int) $deploy) impure inline {
+    var ($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image)) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image))~$DSocialNetworkPost$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image)), ());
+}
+
+(((slice, int, slice, int, (slice, slice, slice))), ()) $DSocialNetworkPost$_internal_binary_TopUp((slice, int, slice, int, (slice, slice, slice)) $self, (int) $msg) impure inline {
+    var ($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image)) = $self;
+    var ($msg'query_id) = $msg;
+    return (($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image)), ());
+}
+
+(((slice, int, slice, int, (slice, slice, slice))), ()) $DSocialNetworkPost$_internal_binary_Withdraw((slice, int, slice, int, (slice, slice, slice)) $self, (int, int) $msg) impure inline {
+    var ($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image)) = $self;
+    var ($msg'query_id, $msg'amount) = $msg;
+    ($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image))~$DSocialNetworkPost$_fun_requireOwner();
+    $global_send($SendParameters$_constructor_to_value_mode_body($self'owner, min($msg'amount, ($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image))~$DSocialNetworkPost$_fun_calculateSendAmountToHoldEnoughTonForStorage()), 2, __gen_cell_comment_250b76e2b9576fc6b4c45129483006b0003a0c39b6f7ae413d177f4e3479dbca()));
+    return (($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image)), ());
+}
+
+(((slice, int, slice, int, (slice, slice, slice))), ()) $DSocialNetworkPost$_internal_binary_WithdrawAll((slice, int, slice, int, (slice, slice, slice)) $self, (int, int) $msg) impure inline {
+    var ($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image)) = $self;
+    var ($msg'query_id, $msg'destroy) = $msg;
+    ($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image))~$DSocialNetworkPost$_fun_requireOwner();
+    int $additionalMode = 0;
+    if (__tact_int_eq_nullable_one($msg'destroy, true)) {
+        $additionalMode = ($additionalMode + 32);
+    }
+    $global_send($SendParameters$_constructor_to_value_mode_body($self'owner, 0, ((128 + 2) + $additionalMode), __gen_cell_comment_5e517df1dfc75b2f2c174e93a5239b502cc03ae6c39bb2a6cf811060b104ffa0()));
+    return (($self'collection_address, $self'item_index, $self'owner, $self'is_initialized, ($self'individual_content'name, $self'individual_content'description, $self'individual_content'image)), ());
+}
+
+;;
+;; Get methods of a Contract DSocialNetworkPost
+;;
+
+_ %get_post_info() method_id(122023) {
+    var self = $DSocialNetworkPost$_contract_load();
+    var res = self~$DSocialNetworkPost$_fun_get_post_info();
+    return $PostInfo$_to_external(res);
+}
+
+_ %get_nft_data() method_id(102351) {
+    var self = $DSocialNetworkPost$_contract_load();
+    var res = self~$DSocialNetworkPost$_fun_get_nft_data();
+    return $GetNftData$_to_external(res);
+}
+
+_ %owner() method_id(83229) {
+    var self = $DSocialNetworkPost$_contract_load();
+    var res = self~$DSocialNetworkPost$_fun_owner();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128,
+        "org.ton.ownable"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmaYbVy8Bjm76o2ZvWBvzt2JHVt5r5UXVXyqPFgGmzktck";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract DSocialNetworkPost
+;;
+
+((slice, int, slice, int, (slice, slice, slice)), int) $DSocialNetworkPost$_contract_router_internal((slice, int, slice, int, (slice, slice, slice)) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive EditBlogPost message
+    if (op == 1400738796) {
+        var msg = in_msg~$EditBlogPost$_load();
+        self~$DSocialNetworkPost$_internal_binary_EditBlogPost(msg);
+        return (self, true);
+    }
+    
+    ;; Receive InitializeNft message
+    if (op == 2897083576) {
+        var msg = in_msg~$InitializeNft$_load();
+        self~$DSocialNetworkPost$_internal_binary_InitializeNft(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Transfer message
+    if (op == 1607220500) {
+        var msg = in_msg~$Transfer$_load();
+        self~$DSocialNetworkPost$_internal_binary_Transfer(msg);
+        return (self, true);
+    }
+    
+    ;; Receive GetStaticData message
+    if (op == 801842850) {
+        var msg = in_msg~$GetStaticData$_load();
+        self~$DSocialNetworkPost$_internal_binary_GetStaticData(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$DSocialNetworkPost$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Receive TopUp message
+    if (op == 128710311) {
+        var msg = in_msg~$TopUp$_load();
+        self~$DSocialNetworkPost$_internal_binary_TopUp(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Withdraw message
+    if (op == 3478132799) {
+        var msg = in_msg~$Withdraw$_load();
+        self~$DSocialNetworkPost$_internal_binary_Withdraw(msg);
+        return (self, true);
+    }
+    
+    ;; Receive WithdrawAll message
+    if (op == 4090352184) {
+        var msg = in_msg~$WithdrawAll$_load();
+        self~$DSocialNetworkPost$_internal_binary_WithdrawAll(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $DSocialNetworkPost$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$DSocialNetworkPost$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $DSocialNetworkPost$_contract_store(self);
+}

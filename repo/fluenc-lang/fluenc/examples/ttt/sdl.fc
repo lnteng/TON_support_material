@@ -1,0 +1,65 @@
+namespace SDL
+{
+    import i32 SDL_Init(u32 flags);
+
+    import i32 SDL_SetRenderDrawColor(i64 renderer, i32 r, i32 g, i32 b, i32 a);
+    import i32 SDL_RenderClear(i64 renderer);
+    import i32 SDL_RenderFillRect(i64 renderer, SDL::Rect rect);
+
+    import i64 SDL_CreateRenderer(i64 window, i32 index, i32 flags);
+    import i64 SDL_CreateWindow(string title, i32 x, i32 y, i32 w, i32 h, i32 flags);
+
+    import void SDL_RenderPresent(i64 renderer);
+
+    import EventState SDL_WaitEventEx(EventState events);
+
+    struct Rect
+    {
+        i32 x: 0,
+        i32 y: 0,
+        i32 width: 0,
+        i32 height: 0
+    };
+
+    struct KeyboardEvent
+    {
+        i32 type: 0,
+        i32 timestamp: 0,
+        i32 windowID: 0,
+        i32 padding: 0,
+        i32 scancode: 0,
+        i32 sym: 0,
+        i64 padding: 0i64
+    };
+
+    struct MouseMotionEvent
+    {
+        i32 type: 0,
+        i32 timestamp: 0,
+        i32 windowID: 0,
+        i32 which: 0,
+        i32 state: 0,
+        i32 x: 0,
+        i32 y: 0,
+        i32 xrel: 0,
+        i32 yrel: 0
+    };
+
+    struct MouseButtonEvent
+    {
+        u32 type: 0u32,
+        i32 timestamp: 0,
+        i32 windowId: 0,
+        i32 which: 0,
+        u8 button: 0u8,
+        u8 state: 0u8,
+        u8 clicks: 0u8,
+        u8 padding: 0u8,
+        i32 x: 0,
+        i32 y: 0
+    };
+
+    global INIT_VIDEO: 0x00000020u32;
+    global WINDOWPOS_UNDEFINED: 0x1FFF0000u32;
+    global MOUSEBUTTONDOWN: 0x401u32;
+}

@@ -1,0 +1,60 @@
+op_controller_accept_stakes: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBYtJtQzU3M-AI23gFM91tW6kYlblVtjej59gS8P3uJ_ePN/op-controller.fc:288:33: warning: Local variable 'cs' is not used
+          (member, var cs, var f) = members.udict_get_next?(256, member);
+                                  ^
+op_elector_stake_response_fail: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBYtJtQzU3M-AI23gFM91tW6kYlblVtjej59gS8P3uJ_ePN/op-controller.fc:101:16: warning: Local variable 'reason' is not used
+      var reason = in_msg~load_uint(32);
+                 ^
+get_members: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBYtJtQzU3M-AI23gFM91tW6kYlblVtjej59gS8P3uJ_ePN/get.fc:97:29: warning: Local variable 'cs' is not used
+          (id, var cs, var f) = ctx_nominators.udict_get_next?(256, id);
+                              ^
+get_previous_cycle: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBYtJtQzU3M-AI23gFM91tW6kYlblVtjej59gS8P3uJ_ePN/utils-config.fc:13:23: warning: Lack of end_parse.
+      int timeUntil = cs~load_uint(32);
+                        ^
+load_validator_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBYtJtQzU3M-AI23gFM91tW6kYlblVtjej59gS8P3uJ_ePN/store-validator.fc:23:40: warning: Lack of end_parse.
+              proxy_stake_lock_final = cs~load_int(1);
+                                         ^
+is_valid_stake_at: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBYtJtQzU3M-AI23gFM91tW6kYlblVtjej59gS8P3uJ_ePN/utils-config.fc:27:32: warning: Local variable 'timeSince' is not used
+      var (timeSince, timeUntil) = get_current_cycle();
+                                 ^
+get_stake_parameters: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBYtJtQzU3M-AI23gFM91tW6kYlblVtjej59gS8P3uJ_ePN/utils-config.fc:5:26: warning: Lack of end_parse.
+      int stakeHeldFor = cs~load_uint(32);
+                           ^
+get_current_cycle: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBYtJtQzU3M-AI23gFM91tW6kYlblVtjej59gS8P3uJ_ePN/utils-config.fc:21:23: warning: Lack of end_parse.
+      int timeUntil = cs~load_uint(32);
+                        ^
+op_controller_stake_send: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBYtJtQzU3M-AI23gFM91tW6kYlblVtjej59gS8P3uJ_ePN/op-controller.fc:14:48: warning: Lack of end_parse.
+      var signature = signature_ref.begin_parse().preload_bits(512);
+                                                 ^
+op_controller_stake_send: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBYtJtQzU3M-AI23gFM91tW6kYlblVtjej59gS8P3uJ_ePN/op-controller.fc:14:19: warning: Local variable 'signature' is not used
+      var signature = signature_ref.begin_parse().preload_bits(512);
+                    ^
+op_controller_accept_withdraws: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBYtJtQzU3M-AI23gFM91tW6kYlblVtjej59gS8P3uJ_ePN/op-controller.fc:316:33: warning: Local variable 'cs' is not used
+          (member, var cs, var f) = members.udict_get_next?(256, member);
+                                  ^
+op_controller_force_kick: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBYtJtQzU3M-AI23gFM91tW6kYlblVtjej59gS8P3uJ_ePN/op-controller.fc:344:33: warning: Local variable 'cs' is not used
+          (member, var cs, var f) = members.udict_get_next?(256, member);
+                                  ^
+distribute_profit: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBYtJtQzU3M-AI23gFM91tW6kYlblVtjej59gS8P3uJ_ePN/model.fc:230:51: warning: PressionLoss
+          var nominators_profit = (nominators_stake * cycleProfitPerCoin) / params::ppc_precision();
+                                                    ^
+distribute_profit: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBYtJtQzU3M-AI23gFM91tW6kYlblVtjej59gS8P3uJ_ePN/model.fc:207:51: warning: PressionLoss
+          var nominators_profit = (nominators_stake * cycleProfitPerCoin) / params::ppc_precision();
+                                                    ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBYtJtQzU3M-AI23gFM91tW6kYlblVtjej59gS8P3uJ_ePN/nominators.fc:6:22: warning: Lack of end_parse.
+      slice s_addr = cs~load_msg_addr();
+                       ^

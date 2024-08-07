@@ -1,0 +1,67 @@
+get_locked_amount: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8Ncr8J__tHwcoeqQSniNh_uWVsalBBmkki074vOyGLVJMO/./vesting/vesting-lockup-wallet.fc:127:38: warning: PressionLoss
+          (total_amount - total_amount * ((now_time - start_time) / unlock_period) / (total_duration / unlock_period));
+                                       ^
+get_locked_amount: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8Ncr8J__tHwcoeqQSniNh_uWVsalBBmkki074vOyGLVJMO/./vesting/vesting-lockup-wallet.fc:123:39: warning: Local variable 'stored_seqno' is not used
+           total_amount, allow_elector) = load_storage();
+                                        ^
+get_locked_amount: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8Ncr8J__tHwcoeqQSniNh_uWVsalBBmkki074vOyGLVJMO/./vesting/vesting-lockup-wallet.fc:123:39: warning: Local variable 'stored_subwallet' is not used
+           total_amount, allow_elector) = load_storage();
+                                        ^
+get_locked_amount: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8Ncr8J__tHwcoeqQSniNh_uWVsalBBmkki074vOyGLVJMO/./vesting/vesting-lockup-wallet.fc:123:39: warning: Local variable 'public_key' is not used
+           total_amount, allow_elector) = load_storage();
+                                        ^
+get_locked_amount: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8Ncr8J__tHwcoeqQSniNh_uWVsalBBmkki074vOyGLVJMO/./vesting/vesting-lockup-wallet.fc:123:39: warning: Local variable 'allow_elector' is not used
+           total_amount, allow_elector) = load_storage();
+                                        ^
+get_public_key: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8Ncr8J__tHwcoeqQSniNh_uWVsalBBmkki074vOyGLVJMO/./vesting/vesting-lockup-wallet.fc:116:7: warning: Lack of end_parse.
+      cs~load_uint(64);
+        ^
+seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8Ncr8J__tHwcoeqQSniNh_uWVsalBBmkki074vOyGLVJMO/./vesting/vesting-lockup-wallet.fc:111:22: warning: Lack of end_parse.
+      return get_data().begin_parse().preload_uint(32);
+                       ^
+recv_external: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8Ncr8J__tHwcoeqQSniNh_uWVsalBBmkki074vOyGLVJMO/./vesting/vesting-lockup-wallet.fc:79:42: warning: PressionLoss
+              (total_amount - total_amount * ((now_time - start_time) / unlock_period) / (total_duration / unlock_period));
+                                           ^
+recv_external: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8Ncr8J__tHwcoeqQSniNh_uWVsalBBmkki074vOyGLVJMO/./vesting/vesting-lockup-wallet.fc:71:43: warning: Lack of end_parse.
+          slice destination_address = msg_cs~load_msg_addr();
+                                            ^
+recv_external: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8Ncr8J__tHwcoeqQSniNh_uWVsalBBmkki074vOyGLVJMO/./vesting/vesting-lockup-wallet.fc:69:19: warning: Local variable 'flags' is not used
+          int flags = msg_cs~load_uint(4); ;; skip
+                    ^
+recv_external: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8Ncr8J__tHwcoeqQSniNh_uWVsalBBmkki074vOyGLVJMO/./vesting/vesting-lockup-wallet.fc:70:30: warning: Local variable 'sender_address' is not used
+          slice sender_address = msg_cs~load_msg_addr(); ;; skip
+                               ^
+get_lockup_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8Ncr8J__tHwcoeqQSniNh_uWVsalBBmkki074vOyGLVJMO/./vesting/vesting-lockup-wallet.fc:137:39: warning: Local variable 'stored_seqno' is not used
+           total_amount, allow_elector) = load_storage();
+                                        ^
+get_lockup_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8Ncr8J__tHwcoeqQSniNh_uWVsalBBmkki074vOyGLVJMO/./vesting/vesting-lockup-wallet.fc:137:39: warning: Local variable 'stored_subwallet' is not used
+           total_amount, allow_elector) = load_storage();
+                                        ^
+get_lockup_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8Ncr8J__tHwcoeqQSniNh_uWVsalBBmkki074vOyGLVJMO/./vesting/vesting-lockup-wallet.fc:137:39: warning: Local variable 'public_key' is not used
+           total_amount, allow_elector) = load_storage();
+                                        ^
+match_address_from_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8Ncr8J__tHwcoeqQSniNh_uWVsalBBmkki074vOyGLVJMO/./vesting/vesting-lockup-wallet.fc:10:37: warning: Lack of end_parse.
+      slice config_slice = config_cell.begin_parse();
+                                      ^
+recv_external & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8Ncr8J__tHwcoeqQSniNh_uWVsalBBmkki074vOyGLVJMO/./vesting/vesting-lockup-wallet.fc:115:24: warning: Cell of get_data and set_data are inconsistent.
+      var cs = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef8Ncr8J__tHwcoeqQSniNh_uWVsalBBmkki074vOyGLVJMO/./vesting/vesting-lockup-wallet.fc:96:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_uint(stored_seqno + 1, 32)
+              ^

@@ -1,0 +1,16 @@
+get_amount: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./kosrk/tsc5/code_for_test/v2_code.fc:38:23: warning: Lack of end_parse.
+      slice cs = storage.begin_parse();
+                        ^
+process_message: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./kosrk/tsc5/code_for_test/v2_code.fc:27:23: warning: Lack of end_parse.
+      slice cs = storage.begin_parse();
+                        ^
+version: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./kosrk/tsc5/code_for_test/v2_code.fc:58:26: warning: Lack of end_parse.
+          return get_data().begin_parse().preload_uint(32);
+                           ^
+get_storage: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./kosrk/tsc5/code_for_test/v2_code.fc:7:22: warning: Lack of end_parse.
+      cell storage = cs~load_ref();
+                       ^

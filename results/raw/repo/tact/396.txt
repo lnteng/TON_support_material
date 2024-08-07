@@ -1,0 +1,29 @@
+$Task4$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task4.storage.fc:144:19: warning: Lack of end_parse.
+          return $sc~$Task4$_load();
+                    ^
+$Task4$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task4.code.fc:111:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task4.storage.fc:155:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task4$_contract_store & $Task4$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task4.storage.fc:140:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task4.storage.fc:155:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task4$_contract_store & $Task4$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task4.storage.fc:140:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task4.storage.fc:155:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Task4$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/tact-chanllenge/contracts/output/sample_Task4.code.fc:61:324: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... dPayload($msg'queryId, __tact_not_null($self'nftOwner), $sender, null(), 0, $global_emptySlice()))));
+  ...                                                                                                     ^

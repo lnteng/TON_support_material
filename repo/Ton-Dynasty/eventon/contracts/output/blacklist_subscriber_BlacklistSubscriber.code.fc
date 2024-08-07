@@ -1,0 +1,211 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "blacklist_subscriber_BlacklistSubscriber.headers.fc";
+#include "blacklist_subscriber_BlacklistSubscriber.stdlib.fc";
+#include "blacklist_subscriber_BlacklistSubscriber.storage.fc";
+
+;;
+;; Contract BlacklistSubscriber functions
+;;
+
+(slice, slice, int, cell) $BlacklistSubscriber$_contract_init(slice $owner) impure inline_ref {
+    var (($self'owner, $self'messenger, $self'eventId, $self'blacklist)) = (null(), null(), null(), null());
+    $self'owner = $owner;
+    $self'messenger = $owner;
+    $self'eventId = (- 1);
+    return ($self'owner, $self'messenger, $self'eventId, $self'blacklist);
+}
+
+((slice, slice, int, cell), ()) $BlacklistSubscriber$_fun_requireMessenger((slice, slice, int, cell) $self) impure inline_ref {
+    var (($self'owner, $self'messenger, $self'eventId, $self'blacklist)) = $self;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    throw_unless(1256, ( __tact_slice_eq_bits($ctx'sender, $self'messenger) ));
+    return (($self'owner, $self'messenger, $self'eventId, $self'blacklist), ());
+}
+
+((slice, slice, int, cell), ()) $BlacklistSubscriber$_fun_requireNotInBlacklist((slice, slice, int, cell) $self) impure inline_ref {
+    var (($self'owner, $self'messenger, $self'eventId, $self'blacklist)) = $self;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    if ((~ null?(__tact_dict_get_slice_int($self'blacklist, 267, $ctx'sender, 257)))) {
+        int $isExist = __tact_not_null(__tact_dict_get_slice_int($self'blacklist, 267, $ctx'sender, 257));
+        throw_unless(42953, ($isExist != 1));
+    }
+    return (($self'owner, $self'messenger, $self'eventId, $self'blacklist), ());
+}
+
+((slice, slice, int, cell), slice) $BlacklistSubscriber$_fun_getMessenger((slice, slice, int, cell) $self) impure inline_ref {
+    var (($self'owner, $self'messenger, $self'eventId, $self'blacklist)) = $self;
+    return (($self'owner, $self'messenger, $self'eventId, $self'blacklist), $self'messenger);
+}
+
+((slice, slice, int, cell), ()) $BlacklistSubscriber$_fun_requireOwner((slice, slice, int, cell) $self) impure inline_ref {
+    var (($self'owner, $self'messenger, $self'eventId, $self'blacklist)) = $self;
+    throw_unless(132, ( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) ));
+    return (($self'owner, $self'messenger, $self'eventId, $self'blacklist), ());
+}
+
+((slice, slice, int, cell), slice) $BlacklistSubscriber$_fun_owner((slice, slice, int, cell) $self) impure inline_ref {
+    var (($self'owner, $self'messenger, $self'eventId, $self'blacklist)) = $self;
+    return (($self'owner, $self'messenger, $self'eventId, $self'blacklist), $self'owner);
+}
+
+;;
+;; Receivers of a Contract BlacklistSubscriber
+;;
+
+(((slice, slice, int, cell)), ()) %$BlacklistSubscriber$_internal_empty((slice, slice, int, cell) $self) impure inline {
+    var ($self'owner, $self'messenger, $self'eventId, $self'blacklist) = $self;
+    ($self'owner, $self'messenger, $self'eventId, $self'blacklist)~$BlacklistSubscriber$_fun_requireNotInBlacklist();
+    return (($self'owner, $self'messenger, $self'eventId, $self'blacklist), ());
+}
+
+(((slice, slice, int, cell)), ()) $BlacklistSubscriber$_internal_binary_SetMessenger((slice, slice, int, cell) $self, (slice, int) $msg) impure inline {
+    var ($self'owner, $self'messenger, $self'eventId, $self'blacklist) = $self;
+    var ($msg'messenger, $msg'eventId) = $msg;
+    ($self'owner, $self'messenger, $self'eventId, $self'blacklist)~$BlacklistSubscriber$_fun_requireOwner();
+    $self'messenger = $msg'messenger;
+    $self'eventId = $msg'eventId;
+    return (($self'owner, $self'messenger, $self'eventId, $self'blacklist), ());
+}
+
+(((slice, slice, int, cell)), ()) $BlacklistSubscriber$_internal_binary_EventSignal((slice, slice, int, cell) $self, (int, cell) $msg) impure inline {
+    var ($self'owner, $self'messenger, $self'eventId, $self'blacklist) = $self;
+    var ($msg'eventId, $msg'payload) = $msg;
+    ($self'owner, $self'messenger, $self'eventId, $self'blacklist)~$BlacklistSubscriber$_fun_requireMessenger();
+    cell $payload = $msg'payload;
+    slice $parser = begin_parse($payload);
+    slice $blackAddress = $parser~__tact_load_address();
+    $self'blacklist~__tact_dict_set_slice_int(267, $blackAddress, 1, 257);
+    return (($self'owner, $self'messenger, $self'eventId, $self'blacklist), ());
+}
+
+(((slice, slice, int, cell)), ()) $BlacklistSubscriber$_internal_binary_Transfer((slice, slice, int, cell) $self, (slice, int) $msg) impure inline {
+    var ($self'owner, $self'messenger, $self'eventId, $self'blacklist) = $self;
+    var ($msg'to, $msg'value) = $msg;
+    ($self'owner, $self'messenger, $self'eventId, $self'blacklist)~$BlacklistSubscriber$_fun_requireOwner();
+    ($self'owner, $self'messenger, $self'eventId, $self'blacklist)~$BlacklistSubscriber$_fun_requireNotInBlacklist();
+    slice $to = $msg'to;
+    int $value = $msg'value;
+    $global_send($SendParameters$_constructor_to_value_mode_bounce($to, $value, 1, false));
+    return (($self'owner, $self'messenger, $self'eventId, $self'blacklist), ());
+}
+
+(((slice, slice, int, cell)), ()) $BlacklistSubscriber$_internal_binary_Deploy((slice, slice, int, cell) $self, (int) $deploy) impure inline {
+    var ($self'owner, $self'messenger, $self'eventId, $self'blacklist) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'owner, $self'messenger, $self'eventId, $self'blacklist)~$BlacklistSubscriber$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'owner, $self'messenger, $self'eventId, $self'blacklist), ());
+}
+
+;;
+;; Get methods of a Contract BlacklistSubscriber
+;;
+
+_ %getMessenger() method_id(116799) {
+    var self = $BlacklistSubscriber$_contract_load();
+    var res = self~$BlacklistSubscriber$_fun_getMessenger();
+    return res;
+}
+
+_ %owner() method_id(83229) {
+    var self = $BlacklistSubscriber$_contract_load();
+    var res = self~$BlacklistSubscriber$_fun_owner();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128,
+        "org.ton.ownable"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmectCJiCSreL2J19S2rLSuc1ApX8N8n7YsmPPmgxu7xuE";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract BlacklistSubscriber
+;;
+
+((slice, slice, int, cell), int) $BlacklistSubscriber$_contract_router_internal((slice, slice, int, cell) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive empty message
+    if ((op == 0) & (slice_bits(in_msg) <= 32)) {
+        self~%$BlacklistSubscriber$_internal_empty();
+        return (self, true);
+    }
+    
+    ;; Receive SetMessenger message
+    if (op == 853868809) {
+        var msg = in_msg~$SetMessenger$_load();
+        self~$BlacklistSubscriber$_internal_binary_SetMessenger(msg);
+        return (self, true);
+    }
+    
+    ;; Receive EventSignal message
+    if (op == 306637748) {
+        var msg = in_msg~$EventSignal$_load();
+        self~$BlacklistSubscriber$_internal_binary_EventSignal(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Transfer message
+    if (op == 3125994780) {
+        var msg = in_msg~$Transfer$_load();
+        self~$BlacklistSubscriber$_internal_binary_Transfer(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$BlacklistSubscriber$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $BlacklistSubscriber$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$BlacklistSubscriber$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $BlacklistSubscriber$_contract_store(self);
+}

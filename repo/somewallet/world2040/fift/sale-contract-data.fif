@@ -1,0 +1,23 @@
+"TonUtil.fif" include
+"Asm.fif" include
+
+"build/contract.pk" load-generate-keypair // generate key pair
+constant private_key  // save private to constant
+constant public_key // save public to constant
+
+dictnew constant common_nft_addr_dict
+dictnew constant uncommon_nft_addr_dict
+dictnew constant rare_nft_addr_dict
+
+<b
+    0 32 u, // seqno
+    public_key B, // add bin public key to cell
+    common_nft_addr_dict ref,
+    uncommon_nft_addr_dict ref,
+    rare_nft_addr_dict ref,
+    <b
+        1 64 u, // common price
+        2 64 u, // uncommon price
+        3 64 u, // rare price
+    b> ref,
+b>

@@ -1,0 +1,825 @@
+PROGRAM{
+  DECLPROC __tact_verify_address
+  DECLPROC __tact_load_address
+  DECLPROC __tact_load_address_opt
+  DECLPROC __tact_store_address
+  DECLPROC __tact_store_address_opt
+  DECLPROC __tact_my_balance
+  DECLPROC __tact_not_null
+  DECLPROC __tact_context_get
+  DECLPROC __tact_context_get_sender
+  DECLPROC __tact_store_bool
+  DECLPROC __tact_dict_set_uint_cell
+  DECLPROC __tact_dict_get_uint_cell
+  DECLPROC __tact_slice_eq_bits
+  DECLPROC $Deploy$_load
+  DECLPROC $DeployOk$_store
+  DECLPROC $DeployOk$_store_cell
+  DECLPROC $FileInfo$_store
+  DECLPROC $FileInfo$_store_cell
+  DECLPROC $FileInfo$_load
+  DECLPROC $FileInfo$_as_optional
+  DECLPROC $FileInfo$_load_opt
+  DECLPROC $Create$_load
+  DECLPROC $CloseItem$_load
+  DECLPROC $TonDriveUserCollection$_store
+  DECLPROC $TonDriveUserCollection$_load
+  DECLPROC $StateInit$_not_null
+  DECLPROC $Context$_get_value
+  DECLPROC $FileInfo$_get_storageContractAddress
+  DECLPROC $FileInfo$_get_fileSize
+  DECLPROC $FileInfo$_get_name
+  DECLPROC $FileInfo$_get_created
+  DECLPROC $FileInfo$_not_null
+  DECLPROC $TonDriveUserCollection$init$_load
+  DECLPROC $TonDriveUserCollection$_contract_init
+  DECLPROC $TonDriveUserCollection$_contract_load
+  DECLPROC $TonDriveUserCollection$_contract_store
+  DECLPROC $global_send
+  DECLPROC $TonDriveUserCollection$_fun_allItems
+  DECLPROC $SendParameters$_constructor_bounce_to_value_mode_body_code_data
+  DECLPROC $TonDriveUserCollection$_fun_forward
+  DECLPROC $TonDriveUserCollection$_fun_notify
+  DECLPROC $TonDriveUserCollection$_fun_requireOwner
+  DECLPROC $TonDriveUserCollection$_fun_owner
+  DECLPROC $SendParameters$_constructor_value_to_mode_body
+  DECLPROC $FileInfo$_constructor_storageContractAddress_fileSize_name_closed_created
+  DECLPROC $SendParameters$_constructor_to_body_value_mode
+  DECLPROC $SendParameters$_constructor_to_value_mode_body
+  DECLPROC $DeployOk$_constructor_queryId
+  DECLPROC $TonDriveUserCollection$_internal_binary_Create
+  DECLPROC $TonDriveUserCollection$_internal_binary_CloseItem
+  DECLPROC $TonDriveUserCollection$_internal_text_4aa819017482b78775f1b4569b803d72549361352d92504f49bdd5665f55cde2
+  DECLPROC $TonDriveUserCollection$_internal_text_7cd04acd8fcc66cb4ccf305ef78247231df393eb9d90289e470ce02b2cb40306
+  DECLPROC $TonDriveUserCollection$_internal_any
+  DECLPROC $TonDriveUserCollection$_internal_binary_Deploy
+  68968 DECLMETHOD %allItems
+  83229 DECLMETHOD %owner
+  113617 DECLMETHOD supported_interfaces
+  121275 DECLMETHOD get_abi_ipfs
+  115390 DECLMETHOD lazy_deployment_completed
+  DECLPROC $TonDriveUserCollection$_contract_router_internal
+  DECLPROC recv_internal
+  DECLGLOBVAR __tact_context
+  DECLGLOBVAR __tact_context_sender
+  DECLGLOBVAR __tact_context_sys
+  DECLGLOBVAR __tact_randomized
+  __tact_verify_address PROCINLINE:<{
+    DUP
+    SBITS
+    267 PUSHINT
+    EQUAL
+    136 THROWIFNOT
+    DUP
+    11 PLDU
+    DUP
+    1279 PUSHINT
+    EQUAL
+    137 THROWIF
+    10 PUSHPOW2
+    EQUAL
+    136 THROWIFNOT
+  }>
+  __tact_load_address PROCINLINE:<{
+    LDMSGADDR
+    SWAP
+    __tact_verify_address INLINECALLDICT
+  }>
+  __tact_load_address_opt PROCINLINE:<{
+    LDMSGADDR
+    OVER
+    2 PLDU
+    0 NEQINT
+    IF:<{
+      SWAP
+      __tact_verify_address INLINECALLDICT
+    }>ELSE<{
+      NIP
+      PUSHNULL
+    }>
+  }>
+  __tact_store_address PROCINLINE:<{
+    __tact_verify_address INLINECALLDICT
+    STSLICER
+  }>
+  __tact_store_address_opt PROCINLINE:<{
+    DUP
+    ISNULL
+    IF:<{
+      DROP
+      0 PUSHINT
+      SWAP
+      2 STU
+    }>ELSE<{
+      __tact_store_address INLINECALLDICT
+    }>
+  }>
+  __tact_my_balance PROCINLINE:<{
+    BALANCE
+    FIRST
+  }>
+  __tact_not_null PROCINLINE:<{
+    DUP
+    ISNULL
+    128 THROWIF
+  }>
+  __tact_context_get PROCINLINE:<{
+    __tact_context GETGLOB
+    4 UNTUPLE
+  }>
+  __tact_context_get_sender PROCINLINE:<{
+    __tact_context_sender GETGLOB
+  }>
+  __tact_store_bool PROCINLINE:<{
+    SWAP
+    1 STI
+  }>
+  __tact_dict_set_uint_cell PROCINLINE:<{
+    DUP
+    ISNULL
+    IF:<{
+      DROP
+      -ROT
+      DICTUDEL
+      DROP
+    }>ELSE<{
+      s1 s3 s3 XCHG3
+      DICTUSETREF
+    }>
+  }>
+  __tact_dict_get_uint_cell PROCINLINE:<{
+    -ROT
+    DICTUGETREF
+    NULLSWAPIFNOT
+    IF:<{
+    }>ELSE<{
+      DROP
+      PUSHNULL
+    }>
+  }>
+  __tact_slice_eq_bits PROCINLINE:<{
+    SDEQ
+  }>
+  $Deploy$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    2490013878 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    64 LDU
+    SWAP
+  }>
+  $DeployOk$_store PROCINLINE:<{
+    2952335191 PUSHINT
+    ROT
+    32 STU
+    64 STU
+  }>
+  $DeployOk$_store_cell PROCINLINE:<{
+    NEWC
+    SWAP
+    $DeployOk$_store INLINECALLDICT
+    ENDC
+  }>
+  $FileInfo$_store PROCINLINE:<{
+    s5 s4 XCHG2
+    __tact_store_address_opt INLINECALLDICT
+    s1 s2 XCHG
+    1 STI
+    257 PUSHINT
+    STIX
+    NEWC
+    s0 s3 XCHG2
+    STSLICER
+    ENDC
+    ROT
+    STREF
+    257 PUSHINT
+    STIX
+  }>
+  $FileInfo$_store_cell PROCINLINE:<{
+    NEWC
+    5 -ROLL
+    $FileInfo$_store INLINECALLDICT
+    ENDC
+  }>
+  $FileInfo$_load PROCINLINE:<{
+    __tact_load_address_opt INLINECALLDICT
+    SWAP
+    1 LDI
+    257 PUSHINT
+    LDIX
+    LDREF
+    SWAP
+    CTOS
+    SWAP
+    257 PUSHINT
+    LDIX
+    5 -ROLL
+  }>
+  $FileInfo$_as_optional PROCINLINE:<{
+    5 TUPLE
+  }>
+  $FileInfo$_load_opt PROCINLINE:<{
+    DUP
+    ISNULL
+    IF:<{
+      DROP
+      PUSHNULL
+    }>ELSE<{
+      CTOS
+      $FileInfo$_load INLINECALLDICT
+      1 5 BLKDROP2
+      $FileInfo$_as_optional INLINECALLDICT
+    }>
+  }>
+  $Create$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    1563101277 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    LDREF
+    __tact_load_address_opt INLINECALLDICT
+    SWAP
+    LDREF
+    SWAP
+    CTOS
+    s3 s3 s0 XCHG3
+  }>
+  $CloseItem$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    515883932 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    257 PUSHINT
+    LDIX
+    SWAP
+  }>
+  $TonDriveUserCollection$_store PROCINLINE:<{
+    -ROT
+    __tact_store_address INLINECALLDICT
+    STDICT
+  }>
+  $TonDriveUserCollection$_load PROCINLINE:<{
+    __tact_load_address INLINECALLDICT
+    SWAP
+    LDDICT
+    -ROT
+  }>
+  $StateInit$_not_null PROCINLINE:<{
+    DUP
+    ISNULL
+    128 THROWIF
+    2 UNTUPLE
+  }>
+  $Context$_get_value PROCINLINE:<{
+    s1 s3 XCHG
+    3 BLKDROP
+  }>
+  $FileInfo$_get_storageContractAddress PROCINLINE:<{
+    4 BLKDROP
+  }>
+  $FileInfo$_get_fileSize PROCINLINE:<{
+    s2 s4 XCHG
+    4 BLKDROP
+  }>
+  $FileInfo$_get_name PROCINLINE:<{
+    s1 s4 XCHG
+    4 BLKDROP
+  }>
+  $FileInfo$_get_created PROCINLINE:<{
+    4 1 BLKDROP2
+  }>
+  $FileInfo$_not_null PROCINLINE:<{
+    DUP
+    ISNULL
+    128 THROWIF
+    5 UNTUPLE
+  }>
+  $TonDriveUserCollection$init$_load PROCINLINE:<{
+    __tact_load_address INLINECALLDICT
+  }>
+  $TonDriveUserCollection$_contract_init PROCREF:<{
+    PUSHNULL
+  }>
+  $TonDriveUserCollection$_contract_load PROCREF:<{
+    c4 PUSH
+    CTOS
+    LDREF
+    SWAP
+    __tact_context_sys SETGLOB
+    1 LDI
+    SWAP
+    IFJMP:<{
+      $TonDriveUserCollection$_load INLINECALLDICT
+      1 2 BLKDROP2
+    }>
+    MYADDR
+    11 PLDU
+    10 PUSHPOW2
+    EQUAL
+    137 THROWIFNOT
+    $TonDriveUserCollection$init$_load INLINECALLDICT
+    SWAP
+    ENDS
+    $TonDriveUserCollection$_contract_init INLINECALLDICT
+  }>
+  $TonDriveUserCollection$_contract_store PROCINLINE:<{
+    NEWC
+    __tact_context_sys GETGLOB
+    SWAP
+    STREF
+    TRUE
+    SWAP
+    1 STI
+    -ROT
+    $TonDriveUserCollection$_store INLINECALLDICT
+    ENDC
+    c4 POP
+  }>
+  $global_send PROCREF:<{
+    NEWC
+    1 PUSHINT
+    SWAP
+    2 STI
+    s0 s7 XCHG2
+    __tact_store_bool INLINECALLDICT
+    0 PUSHINT
+    SWAP
+    3 STI
+    s0 s5 XCHG2
+    __tact_store_address INLINECALLDICT
+    s0 s3 XCHG2
+    STGRAMS
+    0 PUSHINT
+    SWAP
+    105 STI
+    s3 PUSH
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+    }>ELSE<{
+      s4 PUSH
+      ISNULL
+      NOT
+    }>
+    IF:<{
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      NEWC
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      s4 PUSH
+      ISNULL
+      NOT
+      IF:<{
+        TRUE
+        __tact_store_bool INLINECALLDICT
+        s0 s4 XCHG
+        __tact_not_null INLINECALLDICT
+        s0 s4 XCHG2
+        STREF
+      }>ELSE<{
+        s4 POP
+        s0 s3 XCHG
+        FALSE
+        __tact_store_bool INLINECALLDICT
+      }>
+      s4 PUSH
+      ISNULL
+      NOT
+      IF:<{
+        TRUE
+        __tact_store_bool INLINECALLDICT
+        s0 s4 XCHG
+        __tact_not_null INLINECALLDICT
+        s0 s4 XCHG2
+        STREF
+      }>ELSE<{
+        s4 POP
+        s0 s3 XCHG
+        FALSE
+        __tact_store_bool INLINECALLDICT
+      }>
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      s0 s2 XCHG
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      s0 s2 XCHG
+      ENDC
+      ROT
+      STREF
+    }>ELSE<{
+      s3 POP
+      s3 POP
+      SWAP
+      FALSE
+      __tact_store_bool INLINECALLDICT
+    }>
+    OVER
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      SWAP
+      __tact_not_null INLINECALLDICT
+      SWAP
+      STREF
+    }>ELSE<{
+      NIP
+      FALSE
+      __tact_store_bool INLINECALLDICT
+    }>
+    ENDC
+    SWAP
+    SENDRAWMSG
+  }>
+  $TonDriveUserCollection$_fun_allItems PROCREF:<{
+    DUP
+  }>
+  $SendParameters$_constructor_bounce_to_value_mode_body_code_data PROCINLINE:<{
+  }>
+  $TonDriveUserCollection$_fun_forward PROCREF:<{
+    PUSHNULL
+    PUSHNULL
+    s2 PUSH
+    ISNULL
+    NOT
+    IF:<{
+      2DROP
+      $StateInit$_not_null INLINECALLDICT
+      SWAP
+    }>ELSE<{
+      s2 POP
+    }>
+    s2 s4 XCHG
+    0 PUSHINT
+    s0 s3 XCHG
+    s0 s4 XCHG
+    66 PUSHINT
+    s2 s3 XCHG2
+    $SendParameters$_constructor_bounce_to_value_mode_body_code_data INLINECALLDICT
+    $global_send INLINECALLDICT
+  }>
+  $TonDriveUserCollection$_fun_notify PROCINLINE:<{
+    __tact_context_get_sender INLINECALLDICT
+    SWAP
+    FALSE
+    PUSHNULL
+    $TonDriveUserCollection$_fun_forward INLINECALLDICT
+  }>
+  $TonDriveUserCollection$_fun_requireOwner PROCREF:<{
+    __tact_context_get_sender INLINECALLDICT
+    s2 s(-1) PUXC
+    __tact_slice_eq_bits INLINECALLDICT
+    132 THROWIFNOT
+  }>
+  $TonDriveUserCollection$_fun_owner PROCREF:<{
+    OVER
+  }>
+  $SendParameters$_constructor_value_to_mode_body PROCINLINE:<{
+    TRUE
+    s4 s4 s4 XCHG3
+    PUSHNULL
+    PUSHNULL
+  }>
+  $FileInfo$_constructor_storageContractAddress_fileSize_name_closed_created PROCINLINE:<{
+    s3 s3 s0 XCHG3
+  }>
+  $SendParameters$_constructor_to_body_value_mode PROCINLINE:<{
+    TRUE
+    s0 s4 XCHG
+    s0 s3 XCHG
+    PUSHNULL
+    PUSHNULL
+  }>
+  $SendParameters$_constructor_to_value_mode_body PROCINLINE:<{
+    TRUE
+    4 -ROLL
+    PUSHNULL
+    PUSHNULL
+  }>
+  $DeployOk$_constructor_queryId PROCINLINE:<{
+  }>
+  $TonDriveUserCollection$_internal_binary_Create PROCINLINE:<{
+    s4 s3 XCHG2
+    $TonDriveUserCollection$_fun_requireOwner INLINECALLDICT
+    __tact_context_get INLINECALLDICT
+    $Context$_get_value INLINECALLDICT
+    __tact_my_balance INLINECALLDICT
+    OVER
+    SUB
+    100000000 PUSHINT
+    TUCK
+    MIN
+    SUB
+    30000000 PUSHINT
+    ADD
+    SUB
+    s5 PUSH
+    ISNULL
+    NOT
+    IF:<{
+      s0 s5 XCHG
+      __tact_not_null INLINECALLDICT
+      s1 s5 XCHG
+      2 PUSHINT
+      s4 PUSH
+      $SendParameters$_constructor_value_to_mode_body INLINECALLDICT
+      $global_send INLINECALLDICT
+    }>ELSE<{
+      DROP
+      s4 POP
+    }>
+    SWAP
+    CTOS
+    96 LDSLICE
+    NIP
+    LDREF
+    DROP
+    DUP
+    HASHCU
+    SWAP
+    CTOS
+    32 LDSLICE
+    NIP
+    64 LDU
+    DROP
+    8 PUSHPOW2
+    PUSHNULL
+    s0 s0 s5 XCHG3
+    FALSE
+    NOW
+    $FileInfo$_constructor_storageContractAddress_fileSize_name_closed_created INLINECALLDICT
+    $FileInfo$_store_cell INLINECALLDICT
+    s3 s4 XCHG
+    s2 s4 XCHG
+    __tact_dict_set_uint_cell INLINECALLDICT
+  }>
+  $TonDriveUserCollection$_internal_binary_CloseItem PROCINLINE:<{
+    -ROT
+    $TonDriveUserCollection$_fun_requireOwner INLINECALLDICT
+    8 PUSHPOW2
+    s1 s0 s3 PUXC2
+    __tact_dict_get_uint_cell INLINECALLDICT
+    $FileInfo$_load_opt INLINECALLDICT
+    DUP
+    ISNULL
+    IF:<{
+      DROP
+      1101 THROW
+    }>ELSE<{
+      $FileInfo$_not_null INLINECALLDICT
+      $FileInfo$_get_storageContractAddress INLINECALLDICT
+      __tact_not_null INLINECALLDICT
+      NEWC
+      2046375914 PUSHINT
+      SWAP
+      32 STU
+      0 PUSHINT
+      SWAP
+      64 STU
+      ENDC
+      0 PUSHINT
+      64 PUSHINT
+      $SendParameters$_constructor_to_body_value_mode INLINECALLDICT
+      $global_send INLINECALLDICT
+    }>
+    SWAP
+  }>
+  $TonDriveUserCollection$_internal_text_4aa819017482b78775f1b4569b803d72549361352d92504f49bdd5665f55cde2 PROCINLINE:<{
+  }>
+  $TonDriveUserCollection$_internal_text_7cd04acd8fcc66cb4ccf305ef78247231df393eb9d90289e470ce02b2cb40306 PROCINLINE:<{
+    $TonDriveUserCollection$_fun_requireOwner INLINECALLDICT
+    0 PUSHINT
+    130 PUSHINT
+    B{b5ee9c7241010101001700002a00000000436f6c6c656374696f6e20636c6f73656468d5a767} B>boc PUSHREF
+    s4 PUSH
+    3 -ROLL
+    $SendParameters$_constructor_to_value_mode_body INLINECALLDICT
+    $global_send INLINECALLDICT
+  }>
+  $TonDriveUserCollection$_internal_any PROCINLINE:<{
+    32 LDU
+    OVER
+    3212562625 PUSHINT
+    EQUAL
+    IF:<{
+      NIP
+      64 LDU
+      NIP
+      256 LDU
+      DROP
+      OVER
+      8 PUSHPOW2
+      s2 PUSH
+      __tact_dict_get_uint_cell INLINECALLDICT
+      $FileInfo$_load_opt INLINECALLDICT
+      DUP
+      ISNULL
+      NOT
+      IF:<{
+        8 PUSHPOW2
+        __tact_context_get_sender INLINECALLDICT
+        s2 PUSH
+        $FileInfo$_not_null INLINECALLDICT
+        $FileInfo$_get_fileSize INLINECALLDICT
+        s3 PUSH
+        $FileInfo$_not_null INLINECALLDICT
+        $FileInfo$_get_name INLINECALLDICT
+        FALSE
+        s0 s5 XCHG
+        $FileInfo$_not_null INLINECALLDICT
+        $FileInfo$_get_created INLINECALLDICT
+        s3 s4 XCHG
+        s1 s3 s0 XCHG3
+        s1 s5 XCHG
+        $FileInfo$_constructor_storageContractAddress_fileSize_name_closed_created INLINECALLDICT
+        $FileInfo$_store_cell INLINECALLDICT
+        s1 s2 XCHG
+        __tact_dict_set_uint_cell INLINECALLDICT
+      }>ELSE<{
+        2DROP
+      }>
+    }>ELSE<{
+      SWAP
+      3055775075 PUSHINT
+      EQUAL
+      IF:<{
+        64 LDU
+        NIP
+        256 LDU
+        DROP
+        OVER
+        8 PUSHPOW2
+        s2 PUSH
+        __tact_dict_get_uint_cell INLINECALLDICT
+        $FileInfo$_load_opt INLINECALLDICT
+        DUP
+        ISNULL
+        NOT
+        IF:<{
+          8 PUSHPOW2
+          OVER
+          $FileInfo$_not_null INLINECALLDICT
+          $FileInfo$_get_storageContractAddress INLINECALLDICT
+          s2 PUSH
+          $FileInfo$_not_null INLINECALLDICT
+          $FileInfo$_get_fileSize INLINECALLDICT
+          s3 PUSH
+          $FileInfo$_not_null INLINECALLDICT
+          $FileInfo$_get_name INLINECALLDICT
+          TRUE
+          s0 s5 XCHG
+          $FileInfo$_not_null INLINECALLDICT
+          $FileInfo$_get_created INLINECALLDICT
+          s3 s4 XCHG
+          s1 s3 s0 XCHG3
+          s1 s5 XCHG
+          $FileInfo$_constructor_storageContractAddress_fileSize_name_closed_created INLINECALLDICT
+          $FileInfo$_store_cell INLINECALLDICT
+          s1 s2 XCHG
+          __tact_dict_set_uint_cell INLINECALLDICT
+        }>ELSE<{
+          2DROP
+        }>
+      }>ELSE<{
+        DROP
+      }>
+    }>
+  }>
+  $TonDriveUserCollection$_internal_binary_Deploy PROCINLINE:<{
+    $DeployOk$_constructor_queryId INLINECALLDICT
+    $DeployOk$_store_cell INLINECALLDICT
+    $TonDriveUserCollection$_fun_notify INLINECALLDICT
+  }>
+  %allItems PROC:<{
+    $TonDriveUserCollection$_contract_load INLINECALLDICT
+    $TonDriveUserCollection$_fun_allItems INLINECALLDICT
+    2 1 BLKDROP2
+  }>
+  %owner PROC:<{
+    $TonDriveUserCollection$_contract_load INLINECALLDICT
+    $TonDriveUserCollection$_fun_owner INLINECALLDICT
+    2 1 BLKDROP2
+  }>
+  supported_interfaces PROC:<{
+    123515602279859691144772641439386770278 PUSHINT
+    209801025412363888721030803524359905849 PUSHINT
+    42980537499636128163026532310500881091 PUSHINT
+    209474421377847335869795010607481022628 PUSHINT
+    86142586315491086060343270784266291122 PUSHINT
+  }>
+  get_abi_ipfs PROC:<{
+    x{697066733a2f2f516d58554572465439386542736f6b32534e77704b3958677756476f72797747726d354c44337261536d646a7938} PUSHSLICE
+  }>
+  lazy_deployment_completed PROC:<{
+    c4 PUSH
+    CTOS
+    1 LDI
+    SWAP
+  }>
+  $TonDriveUserCollection$_contract_router_internal PROCREF:<{
+    c2 SAVE
+    SAMEALTSAVE
+    SWAP
+    IFJMP:<{
+      DROP
+      TRUE
+    }>
+    0 PUSHINT
+    OVER
+    SBITS
+    31 GTINT
+    IF:<{
+      DROP
+      DUP
+      32 PLDU
+    }>
+    DUP
+    1563101277 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $Create$_load INLINECALLDICT
+      1 3 BLKDROP2
+      $TonDriveUserCollection$_internal_binary_Create INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    515883932 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $CloseItem$_load INLINECALLDICT
+      NIP
+      $TonDriveUserCollection$_internal_binary_CloseItem INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    2490013878 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $Deploy$_load INLINECALLDICT
+      NIP
+      $TonDriveUserCollection$_internal_binary_Deploy INLINECALLDICT
+      TRUE
+    }>
+    0 EQINT
+    IF:<{
+      DUP
+      HASHSU
+      DUP
+      33768153684933097389869696362670664523641297926150443012818712079670556610018 PUSHINT
+      EQUAL
+      IFJMP:<{
+        2DROP
+        $TonDriveUserCollection$_internal_text_4aa819017482b78775f1b4569b803d72549361352d92504f49bdd5665f55cde2 INLINECALLDICT
+        TRUE
+        RETALT
+      }>
+      56454813684961408991289535065345288216801491336350638057049638805858208187142 PUSHINT
+      EQUAL
+      IFJMP:<{
+        DROP
+        $TonDriveUserCollection$_internal_text_7cd04acd8fcc66cb4ccf305ef78247231df393eb9d90289e470ce02b2cb40306 INLINECALLDICT
+        TRUE
+        RETALT
+      }>
+    }>
+    $TonDriveUserCollection$_internal_any INLINECALLDICT
+    TRUE
+  }>
+  recv_internal PROC:<{
+    SWAP
+    CTOS
+    4 LDU
+    SWAP
+    1 PUSHINT
+    AND
+    NEGATE
+    SWAP
+    LDMSGADDR
+    SWAP
+    __tact_verify_address INLINECALLDICT
+    s0 s4 s2 PUXCPU
+    s0 s3 XCHG
+    4 TUPLE
+    __tact_context SETGLOB
+    s0 s2 XCHG
+    __tact_context_sender SETGLOB
+    $TonDriveUserCollection$_contract_load INLINECALLDICT
+    2SWAP
+    $TonDriveUserCollection$_contract_router_internal INLINECALLDICT
+    130 THROWIFNOT
+    $TonDriveUserCollection$_contract_store INLINECALLDICT
+  }>
+}END>c

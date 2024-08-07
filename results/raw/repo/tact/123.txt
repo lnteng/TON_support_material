@@ -1,0 +1,15 @@
+$TonDriveMaster$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/BigFiles/ton-drive-contracts/contracts/output/sample_TonDriveMaster.storage.fc:92:22: warning: Lack of end_parse.
+      int $loaded = $sc~load_int(1);
+                       ^
+$TonDriveUserCollection$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/BigFiles/ton-drive-contracts/contracts/output/sample_TonDriveMaster.storage.fc:70:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$TonDriveMaster$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/BigFiles/ton-drive-contracts/contracts/output/sample_TonDriveMaster.code.fc:72:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/BigFiles/ton-drive-contracts/contracts/output/sample_TonDriveMaster.storage.fc:103:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

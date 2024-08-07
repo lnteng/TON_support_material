@@ -1,0 +1,20 @@
+$__gen_Wallet_receive_comment_9ca0f1855174e32e8fd378df56a6e4f6c40e4dfcb6090e49812f7b1e26214bf9: ImproperFunctionModifier
+/home/lentg/Movebit/ton-datasets1111/repo/./dvlkv/tact/examples/output/wallet_Wallet.code.fc:254:125: warning: Call the function that have no impure modifier but change state actually.
+      var ($walletInit'code, $walletInit'data) = $__gen_Wallet_init_child(__tact_context_sys, $self'key, ($self'walletId + 1));
+                                                                                                                              ^
+$__gen_Wallet_receive_comment_9ca0f1855174e32e8fd378df56a6e4f6c40e4dfcb6090e49812f7b1e26214bf9: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dvlkv/tact/examples/output/wallet_Wallet.code.fc:254:46: warning: Local variable '$walletInit'code' is not used
+      var ($walletInit'code, $walletInit'data) = $__gen_Wallet_init_child(__tact_context_sys, $self'key, ($self'walletId + 1));
+                                               ^
+$__gen_Wallet_receive_comment_9ca0f1855174e32e8fd378df56a6e4f6c40e4dfcb6090e49812f7b1e26214bf9: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./dvlkv/tact/examples/output/wallet_Wallet.code.fc:254:46: warning: Local variable '$walletInit'data' is not used
+      var ($walletInit'code, $walletInit'data) = $__gen_Wallet_init_child(__tact_context_sys, $self'key, ($self'walletId + 1));
+                                               ^
+$__gen_Wallet_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dvlkv/tact/examples/output/wallet_Wallet.code.fc:161:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+__gen_load_Wallet: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./dvlkv/tact/examples/output/wallet_Wallet.code.fc:96:14: warning: Lack of end_parse.
+      return sc~__gen_read_Wallet();
+               ^

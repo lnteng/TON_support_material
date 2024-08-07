@@ -1,0 +1,8 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/freelance-exchange-tdb/contracts/admin_nft.fc:34:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/freelance-exchange-tdb/contracts/admin_nft.fc:88:26: warning: Local variable 'with_content' is not used
+          int with_content = in_msg_body~load_uint(1);
+                           ^

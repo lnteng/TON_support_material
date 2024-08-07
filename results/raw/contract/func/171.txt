@@ -1,0 +1,16 @@
+recv_internal: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDTK6cPsVDhITX4BafFlPeY0iRog1cyEZ5bDVFnpDg2j734/my_contract.fc:76:43: warning: PressionLoss
+              int jetton_amount = msg_value * (price / 1000000000);
+                                            ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDTK6cPsVDhITX4BafFlPeY0iRog1cyEZ5bDVFnpDg2j734/my_contract.fc:66:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDTK6cPsVDhITX4BafFlPeY0iRog1cyEZ5bDVFnpDg2j734/my_contract.fc:96:18: warning: Local variable 'query_id' is not used
+      int query_id = in_msg_body~load_uint(64);
+                   ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDTK6cPsVDhITX4BafFlPeY0iRog1cyEZ5bDVFnpDg2j734/my_contract.fc:56:29: warning: UnHandle bounced message with op: 0xf8a7ea5
+      send_raw_message(msg, 1);
+                              ^

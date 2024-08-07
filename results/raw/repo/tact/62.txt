@@ -1,0 +1,16 @@
+$reply: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact/src/test/features/output/random_RandomContract.code.fc:126:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$reply: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact/src/test/features/output/random_RandomContract.code.fc:126:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$reply: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact/src/test/features/output/random_RandomContract.code.fc:126:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+__gen_load_RandomContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/tact/src/test/features/output/random_RandomContract.code.fc:62:14: warning: Lack of end_parse.
+      return sc~__gen_read_RandomContract();
+               ^

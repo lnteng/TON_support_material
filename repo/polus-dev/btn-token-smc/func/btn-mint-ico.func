@@ -1,0 +1,300 @@
+;;
+;;  btn-token-smc – smart contracts collection for Biton token
+;;
+;;  Copyright (C) 2022 BITON <https://github.com/BITONdev>
+;;
+;;  This file is part of btn-token-smc.
+;;
+;;  btn-token-smc is free software: you can redistribute it and/or modify
+;;  it under the terms of the GNU General Public License as published by
+;;  the Free Software Foundation, either version 3 of the License, or
+;;  (at your option) any later version.
+;;
+;;  btn-token-smc is distributed in the hope that it will be useful,
+;;  but WITHOUT ANY WARRANTY; without even the implied warranty of
+;;  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;;  GNU General Public License for more details.
+;;
+;;  You should have received a copy of the GNU General Public License
+;;  along with btn-token-smc.  If not, see <https://www.gnu.org/licenses/>.
+;;
+
+global slice    db::owner;
+global int      db::simple_minted;
+global int      db::allow_to_mint;
+global int      db::simple_burned;
+
+global int      db::ico_price;
+global int      db::ico_start_time;
+global int      db::ico_tstop_time;
+global int      db::toico_minted;
+global int      db::allow_to_ico;
+
+global cell     db::wall_code;
+global cell     db::content;
+
+() load_data() impure inline_ref {
+    slice ds = get_data().begin_parse();
+
+    slice main_data     = ds~load_ref().begin_parse();
+    db::owner           = main_data~load_msg_addr();
+    db::simple_minted   = main_data~load_grams();
+    db::allow_to_mint   = main_data~load_grams();
+    db::simple_burned   = main_data~load_grams();
+
+    slice ico_data      = ds~load_ref().begin_parse();
+    db::ico_price       = ico_data~load_grams();
+    db::ico_start_time  = ico_data~load_uint(32);
+    db::ico_tstop_time  = ico_data~load_uint(32);
+    db::toico_minted    = ico_data~load_grams();
+    db::allow_to_ico    = ico_data~load_grams();
+
+    slice sys_data      = ds~load_ref().begin_parse();
+    db::wall_code       = sys_data~load_ref();
+    db::content         = sys_data~load_ref();
+
+    ds.end_parse();
+}
+
+() save_data() impure inline_ref {
+    builder main_data = begin_cell()
+        .store_slice(db::owner)
+        .store_grams(db::simple_minted)
+        .store_grams(db::allow_to_mint)
+        .store_grams(db::simple_burned);
+
+    builder ico_data = begin_cell()
+        .store_grams(db::ico_price)
+        .store_uint(db::ico_start_time, 32)
+        .store_uint(db::ico_tstop_time, 32)
+        .store_grams(db::toico_minted)
+        .store_grams(db::allow_to_ico);
+
+    builder sys_data = begin_cell()
+        .store_ref(db::wall_code)
+        .store_ref(db::content);
+
+    builder storage = begin_cell()
+        .store_ref(main_data.end_cell())
+        .store_ref(ico_data.end_cell())
+        .store_ref(sys_data.end_cell());
+
+    set_data(storage.end_cell());
+}
+
+() zero_and_save() impure inline { save_data(); throw(0); }
+
+() auth_by_owner(slice sender_addr) impure inline {
+    throw_unless(
+        ext_code::err_auth(),
+        extlib::slice_data_equal?(sender_addr, db::owner)
+    );
+}
+
+() mint_tokens(slice to_address, int amount, cell master_msg, int jamount) impure inline {
+    cell state_init = jwall_state_init(
+        to_address,     ;; mint to
+        my_address(),   ;; minter-ico address (self)
+        db::wall_code   ;; code cell of jetton wallet
+    );
+
+    builder msg = begin_cell()
+        .store_uint(0x18, 6)
+        .store_slice(jwall_state_addr(state_init))
+        .store_grams(amount)
+        .store_uint(4 + 2 + 1, 1 + 4 + 4 + 64 + 32 + 1 + 1 + 1)
+        .store_ref(state_init)
+        .store_ref(master_msg);
+
+    send_raw_message(msg.end_cell(), 1);
+}
+
+() handle::mint(slice msg_body, slice sender_addr) impure inline_ref {
+    auth_by_owner(sender_addr);
+
+    slice   to_address      = msg_body~load_msg_addr();
+    int     amount          = msg_body~load_grams();
+    cell    master_msg      = msg_body~load_ref();
+    slice   msc             = master_msg.begin_parse().skip_bits(32 + 64);
+    int     jamount         = msc~load_grams();
+
+    throw_if(
+        ext_code::max_supply_limit(), 
+        (db::simple_minted + jamount) > db::allow_to_mint
+    );
+
+    mint_tokens(to_address, amount, master_msg, jamount);
+    db::simple_minted += jamount;
+
+    zero_and_save();
+}
+
+() handle::buy_tokens(int msg_value, slice sender_addr) impure inline_ref {
+    int mint_amount = 1 << 27;  ;; ~ 0.1342 TON
+    int buy_amount = msg_value - mint_amount;
+    int jamount = muldiv(buy_amount, extlib::1ton(), db::ico_price);
+
+    int now_ts = now();
+
+    throw_if(ext_code::max_ico_mint(), (db::toico_minted + jamount) > db::allow_to_ico);
+    throw_if(ext_code::err_buy_amount(), buy_amount < (extlib::1ton() - mint_amount));
+    throw_if(ext_code::err_buy_amount(), buy_amount < db::ico_price);
+    throw_if(ext_code::ico_not_start(), now_ts < db::ico_start_time);
+    throw_if(ext_code::ico_end(), now_ts > db::ico_tstop_time);
+
+    cell master_msg = begin_cell()
+        .store_uint(op::internal_transfer(), 32)    ;; op internal_transfer
+        .store_uint(cur_lt(), 64)       ;; query_id
+        .store_grams(jamount)           ;; amount
+        .store_slice(my_address())      ;; from
+        .store_slice(sender_addr)       ;; response_address
+        .store_grams(0)                 ;; forward_ton_amount
+        .store_int(0, 1)                ;; forward_payload [Either Cell ^Cell] bit
+        .end_cell();
+
+    mint_tokens(sender_addr, mint_amount, master_msg, jamount);
+    db::toico_minted += jamount;
+
+    zero_and_save();
+}
+
+() handle::burn_tokens(slice in_msg_body, slice sender_addr) impure inline_ref {
+    int jamount = in_msg_body~load_grams();
+    slice from_addr = in_msg_body~load_msg_addr();
+
+    throw_unless(ext_code::invalid_jwall_addr(), extlib::slice_data_equal?(
+        jwall_addr_by_owner(from_addr, my_address(), db::wall_code),
+        sender_addr
+    ));
+
+    slice response_address = in_msg_body~load_msg_addr();
+    if (response_address.preload_uint(2) != 0) {
+        builder msg = begin_cell()
+            .store_uint(0x10, 6) ;; nobounce - int_msg_info$0 ihr_disabled:Bool bounce:Bool bounced:Bool src:MsgAddress -> 011000
+            .store_slice(response_address)
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_uint(op::excesses(), 32)
+            .store_uint(cur_lt(), 64);
+
+        send_raw_message(msg.end_cell(), 2 + 64);
+    }
+
+    db::simple_burned += jamount;
+    zero_and_save();
+}
+
+() handle::withdraw(int balance, slice sender_addr) impure inline {
+    auth_by_owner(sender_addr);
+    throw_if(ext_code::err_not_enough_balance(), balance < extlib::1ton());
+
+    builder msg = begin_cell()
+        .store_uint(0x18, 6)
+        .store_slice(db::owner)
+        .store_grams(balance - extlib::1ton())
+        .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+        .store_uint(0, 32)
+        .store_slice(text::ico_profit_withdraw());
+
+    send_raw_message(msg.end_cell(), 0);
+    zero_and_save();
+}
+
+(int, slice, slice) handle::start(cell msg, slice msg_body) impure inline_ref {
+    slice cs = msg.begin_parse();
+    throw_if(ext_code::zero(), cs~load_uint(4) & 1);  ;; return on bounce
+
+    slice sender_addr = cs~load_msg_addr();
+
+    throw_unless(  ;; thow error if address isn't MsgAddrSmpl
+        ext_code::err_addr_format(),
+        extlib::is_addrsmpl(sender_addr)
+    );
+
+    int op = -1;
+    if (slice_empty?(msg_body)){
+        op = op::buy_tokens();
+    } else {
+        op = msg_body~load_uint(32);
+
+        ;; if there is a comment and it is from owner, we do op withdraw,
+        ;; so owner can both buy and withdraw coins
+        if (op == 0) { 
+            op = extlib::slice_data_equal?(sender_addr, db::owner) 
+                ? op::withdraw() 
+                : op::buy_tokens(); 
+        } 
+    }
+
+    return (op, sender_addr, msg_body);
+}
+
+() recv_internal(int my_balance, int msg_value, cell msg, slice op_msg_body) impure {
+    load_data();
+
+    (int op, slice sender_addr, slice msg_body) = handle::start(msg, op_msg_body);
+
+    if (op == op::mint()) { handle::mint(msg_body, sender_addr); }
+    if (op == op::buy_tokens()) { handle::buy_tokens(msg_value, sender_addr); }
+    if (op == op::burn_notification()) { handle::burn_tokens(msg_body, sender_addr); }
+    if (op == op::withdraw()) { handle::withdraw(my_balance, sender_addr); }
+    
+    throw(0xffff);
+}
+
+(int, int, slice, cell, cell) get_jetton_data() method_id {
+    load_data();
+    int supply = (db::simple_minted + db::toico_minted) - db::simple_burned;
+
+    return (
+        supply, -1, db::owner, 
+        db::content, db::wall_code
+    );
+}
+
+([int, int], [int, int], [int, int], int) get_supply_info_extended() method_id {
+    load_data();
+
+    int supply = (db::simple_minted + db::toico_minted) - db::simple_burned;
+    int max_supply = db::allow_to_mint + db::allow_to_ico;
+
+    return (
+        [ supply, max_supply ],
+        [ db::simple_minted, db::toico_minted ],
+        [ db::allow_to_mint, db::allow_to_ico ],
+        db::simple_burned
+    );
+}
+
+(int, int, int, int, int) get_ico_data() method_id {
+    load_data();
+
+    return (
+        db::ico_price,
+        db::ico_start_time,
+        db::ico_tstop_time,
+        db::toico_minted,
+        db::allow_to_ico
+    );
+}
+
+slice get_wallet_address(slice owner_addr) method_id {
+    load_data();
+    return jwall_addr_by_owner(owner_addr, my_address(), db::wall_code);
+}
+
+(int) get_wallet_address_int(int owner_addr) method_id { ;; use only if workchain = 0
+    load_data();
+
+    slice owner = begin_cell()
+        .store_slice(extlib::addrsmpl_start())  ;; addr_std$10 anycast:(## 1) {anycast = 0}
+        .store_int(0, 8)                        ;; workchain_id:int8 {workchain_id = 0}
+        .store_uint(owner_addr, 256)            ;; address:bits256
+        .end_cell().begin_parse();
+
+    slice owner_jwall = jwall_addr_by_owner(owner, my_address(), db::wall_code);
+
+    owner_jwall~skip_bits(2 + 1 + 8);  ;; skip constructor, anycast, workchain_id
+
+    return owner_jwall.preload_uint(256); ;; int address
+}

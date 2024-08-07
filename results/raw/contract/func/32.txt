@@ -1,0 +1,15 @@
+get_public_key: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBSXD33ezTpFxVVIB7SA5vuagUa2E8LO9ujIEGnpbyMXYHT/highload-wallet-code.fc:45:5: warning: Lack of end_parse.
+    cs~load_uint(64);
+      ^
+seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBSXD33ezTpFxVVIB7SA5vuagUa2E8LO9ujIEGnpbyMXYHT/highload-wallet-code.fc:40:20: warning: Lack of end_parse.
+    return get_data().begin_parse().preload_uint(32);
+                     ^
+recv_external & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBSXD33ezTpFxVVIB7SA5vuagUa2E8LO9ujIEGnpbyMXYHT/highload-wallet-code.fc:44:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBSXD33ezTpFxVVIB7SA5vuagUa2E8LO9ujIEGnpbyMXYHT/highload-wallet-code.fc:31:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_uint(stored_seqno + 1, 32)
+      ^

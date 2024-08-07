@@ -1,0 +1,20 @@
+royalty_params: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/freelance-exchange-tdb/contracts/order_collection.fc:64:49: warning: Lack of end_parse.
+    return (rs~load_uint(16), rs~load_uint(16), rs~load_msg_addr());
+                                                  ^
+get_collection_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/freelance-exchange-tdb/contracts/order_collection.fc:52:39: warning: Lack of end_parse.
+    return (storage::next_item_index, cs~load_ref(), storage::owner_address);
+                                        ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/freelance-exchange-tdb/contracts/order_collection.fc:19:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+messages::send_log: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/freelance-exchange-tdb/contracts/imports/messages.fc:60:14: warning: Local variable 'msg' is not used
+      cell msg = begin_cell()
+               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/freelance-exchange-tdb/contracts/order/collection-storage.fc:14:33: warning: Lack of end_parse.
+      storage::royalty_params = ds~load_ref();
+                                  ^

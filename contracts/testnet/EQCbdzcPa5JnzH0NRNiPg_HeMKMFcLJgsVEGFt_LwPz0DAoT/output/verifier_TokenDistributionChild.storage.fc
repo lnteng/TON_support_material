@@ -1,0 +1,91 @@
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_body_value_mode(slice to, cell body, int value, int mode) inline {
+    return (true, to, value, mode, body, null(), null());
+}
+
+;;
+;; Type: TokenClaimRequest
+;; Header: 0x00000001
+;; TLB: token_claim_request#00000001 user:address seqno:uint64 = TokenClaimRequest
+;;
+
+builder $TokenClaimRequest$_store(builder build_0, (slice, int) v) inline {
+    var (v'user, v'seqno) = v;
+    build_0 = store_uint(build_0, 1, 32);
+    build_0 = __tact_store_address(build_0, v'user);
+    build_0 = build_0.store_uint(v'seqno, 64);
+    return build_0;
+}
+
+cell $TokenClaimRequest$_store_cell((slice, int) v) inline {
+    return $TokenClaimRequest$_store(begin_cell(), v).end_cell();
+}
+
+((slice, int)) $TokenClaimRequest$_constructor_user_seqno(slice user, int seqno) inline {
+    return (user, seqno);
+}
+
+;;
+;; Type: TokenDistributionChild
+;;
+
+builder $TokenDistributionChild$_store(builder build_0, (slice, slice, int, int, int, int) v) inline {
+    var (v'owner, v'parentContract, v'claimAmount, v'claimInterval, v'lastClaimTime, v'seqno) = v;
+    build_0 = __tact_store_address(build_0, v'owner);
+    build_0 = __tact_store_address(build_0, v'parentContract);
+    build_0 = build_0.store_coins(v'claimAmount);
+    build_0 = build_0.store_int(v'claimInterval, 257);
+    var build_1 = begin_cell();
+    build_1 = build_1.store_int(v'lastClaimTime, 257);
+    build_1 = build_1.store_uint(v'seqno, 64);
+    build_0 = store_ref(build_0, build_1.end_cell());
+    return build_0;
+}
+
+(slice, ((slice, slice, int, int, int, int))) $TokenDistributionChild$_load(slice sc_0) inline {
+    var v'owner = sc_0~__tact_load_address();
+    var v'parentContract = sc_0~__tact_load_address();
+    var v'claimAmount = sc_0~load_coins();
+    var v'claimInterval = sc_0~load_int(257);
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'lastClaimTime = sc_1~load_int(257);
+    var v'seqno = sc_1~load_uint(64);
+    return (sc_0, (v'owner, v'parentContract, v'claimAmount, v'claimInterval, v'lastClaimTime, v'seqno));
+}
+
+(slice, ((slice, slice, int, int, int))) $TokenDistributionChild$init$_load(slice sc_0) inline {
+    var v'parentAddress = sc_0~__tact_load_address();
+    var v'owner = sc_0~__tact_load_address();
+    var v'amount = sc_0~load_int(257);
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'interval = sc_1~load_int(257);
+    var v'seqno = sc_1~load_int(257);
+    return (sc_0, (v'parentAddress, v'owner, v'amount, v'interval, v'seqno));
+}
+
+(slice, slice, int, int, int, int) $TokenDistributionChild$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$TokenDistributionChild$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (slice parentAddress, slice owner, int amount, int interval, int seqno) = $sc~$TokenDistributionChild$init$_load();
+        $sc.end_parse();
+        return $TokenDistributionChild$_contract_init(parentAddress, owner, amount, interval, seqno);
+    }
+}
+
+() $TokenDistributionChild$_contract_store((slice, slice, int, int, int, int) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $TokenDistributionChild$_store(b, v);
+    set_data(b.end_cell());
+}

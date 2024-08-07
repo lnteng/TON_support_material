@@ -1,0 +1,12 @@
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC-QTihJV_B4f8M2nynateMLynaRT_uwNYnnuyy87kam-G7/main.fc:15:7: warning: Lack of end_parse.
+      ds~load_uint(64)    ;; counter
+        ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC-QTihJV_B4f8M2nynateMLynaRT_uwNYnnuyy87kam-G7/main.fc:36:28: warning: Lack of end_parse.
+    slice sender_address = cs~load_msg_addr();
+                             ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC-QTihJV_B4f8M2nynateMLynaRT_uwNYnnuyy87kam-G7/main.fc:48:16: warning: Local variable 'query_id' is not used
+    int query_id = in_msg_body~load_uint(64);
+                 ^

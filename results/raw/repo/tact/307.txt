@@ -1,0 +1,18 @@
+$Wallet$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/wallet-opt_Wallet.storage.fc:44:19: warning: Lack of end_parse.
+          return $sc~$Wallet$_load();
+                    ^
+$Wallet$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/wallet-opt_Wallet.code.fc:90:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/wallet-opt_Wallet.storage.fc:55:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Wallet$_contract_store & $Wallet$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/wallet-opt_Wallet.storage.fc:40:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/wallet-opt_Wallet.storage.fc:55:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

@@ -1,0 +1,181 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_FloatTest.headers.fc";
+#include "sample_FloatTest.stdlib.fc";
+#include "sample_FloatTest.native.fc";
+#include "sample_FloatTest.storage.fc";
+
+;;
+;; Contract FloatTest functions
+;;
+
+(int) $FloatTest$_contract_init() impure inline_ref {
+    var (($self'counter)) = (null());
+    $self'counter = 1;
+    return ($self'counter);
+}
+
+((int), int) $FloatTest$_fun_getCounter((int) $self) impure inline_ref {
+    var (($self'counter)) = $self;
+    return (($self'counter), $self'counter);
+}
+
+;;
+;; Receivers of a Contract FloatTest
+;;
+
+(((int)), ()) $FloatTest$_internal_binary_Mul((int) $self, (int) $msg) impure inline {
+    var ($self'counter) = $self;
+    var ($msg'amount) = $msg;
+    $self'counter = safe_mul($self'counter, $msg'amount, 1000000000);
+    return (($self'counter), ());
+}
+
+(((int)), ()) $FloatTest$_internal_binary_Div((int) $self, (int) $msg) impure inline {
+    var ($self'counter) = $self;
+    var ($msg'amount) = $msg;
+    $self'counter = safe_div($self'counter, 1000000000, $msg'amount);
+    return (($self'counter), ());
+}
+
+(((int)), ()) $FloatTest$_internal_binary_Add((int) $self, (int) $msg) impure inline {
+    var ($self'counter) = $self;
+    var ($msg'amount) = $msg;
+    $self'counter = add($self'counter, $msg'amount);
+    return (($self'counter), ());
+}
+
+(((int)), ()) $FloatTest$_internal_binary_Sub((int) $self, (int) $msg) impure inline {
+    var ($self'counter) = $self;
+    var ($msg'amount) = $msg;
+    $self'counter = sub($self'counter, $msg'amount);
+    return (($self'counter), ());
+}
+
+(((int)), ()) $FloatTest$_internal_binary_Set((int) $self, (int) $msg) impure inline {
+    var ($self'counter) = $self;
+    var ($msg'amount) = $msg;
+    $self'counter = $msg'amount;
+    return (($self'counter), ());
+}
+
+(((int)), ()) $FloatTest$_internal_binary_Deploy((int) $self, (int) $deploy) impure inline {
+    var ($self'counter) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'counter)~$FloatTest$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'counter), ());
+}
+
+;;
+;; Get methods of a Contract FloatTest
+;;
+
+_ %getCounter() method_id(103307) {
+    var self = $FloatTest$_contract_load();
+    var res = self~$FloatTest$_fun_getCounter();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmacSbT7j1h1MHRZi8dWVzfXwoQa6JFJsfAVe2UHek2dB4";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);    ;; DEFECT: InconsistentData
+}
+
+;;
+;; Routing of a Contract FloatTest
+;;
+
+((int), int) $FloatTest$_contract_router_internal((int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive Mul message
+    if (op == 2258723621) {
+        var msg = in_msg~$Mul$_load();
+        self~$FloatTest$_internal_binary_Mul(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Div message
+    if (op == 847333063) {
+        var msg = in_msg~$Div$_load();
+        self~$FloatTest$_internal_binary_Div(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Add message
+    if (op == 108996078) {
+        var msg = in_msg~$Add$_load();
+        self~$FloatTest$_internal_binary_Add(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Sub message
+    if (op == 3585811651) {
+        var msg = in_msg~$Sub$_load();
+        self~$FloatTest$_internal_binary_Sub(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Set message
+    if (op == 991218242) {
+        var msg = in_msg~$Set$_load();
+        self~$FloatTest$_internal_binary_Set(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$FloatTest$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $FloatTest$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$FloatTest$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $FloatTest$_contract_store(self);
+}

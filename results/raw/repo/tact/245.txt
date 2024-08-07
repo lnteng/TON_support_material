@@ -1,0 +1,19 @@
+$Fund$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_Fund.storage.fc:140:19: warning: Lack of end_parse.
+          return $sc~$Fund$_load();
+                    ^
+$Fund$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_Fund.code.fc:14:50: warning: Local variable '$self'balance' is not used
+      var (($self'balance, ($self'errors'common))) = (null(), null());
+                                                   ^
+$Fund$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_Fund.code.fc:14:50: warning: Local variable '$self'errors'common' is not used
+      var (($self'balance, ($self'errors'common))) = (null(), null());
+                                                   ^
+$Fund$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_Fund.code.fc:89:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./scrobot/ton-playground/contracts/output/sample_Fund.storage.fc:149:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

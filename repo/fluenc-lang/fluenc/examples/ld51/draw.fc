@@ -1,0 +1,211 @@
+use "player.fc"
+use "sdl.fc"
+use "main.fc"
+use "fire.fc"
+use "moon.fc"
+use "water.fc"
+
+function drawPlayer(i64 renderer, Player player)
+{
+	SDL::SDL_SetRenderDrawColor(renderer, 255, 0, 0, 0);
+	SDL::SDL_RenderFillRect(renderer, applyCamera(rect(player)));
+
+	return nothing;
+}
+
+function drawLayer(i64 renderer, i64 map, (tmx::tmx_layer layer, ...layers))
+{
+	drawLayer(renderer, map, layer);
+
+	return tail drawLayer(renderer, map, ...layers);
+}
+
+function drawTile(i64 renderer, (any tile, ...tiles))
+{
+	drawTile(renderer, tile);
+
+	return tail drawTile(renderer, ...tiles);
+}
+
+function drawTile(i64 renderer, without tile)
+{
+	return nothing;
+}
+
+function drawTile(i64 renderer, tmx::Tile tile)
+{
+	let target = SDL::Rect
+	{
+		x: x(tile.position) * 16,
+		y: y(tile.position) * 16,
+		width: 16,
+		height: 16
+	};
+
+	let source = SDL::Rect
+	{
+		x: x(tile.uv),
+		y: y(tile.uv),
+		width: 16,
+		height: 16
+	};
+
+	SDL::SDL_RenderCopy(renderer, tile.image, source, target);
+
+	return nothing;
+}
+
+function drawLayer(i64 renderer, i64 map, tmx::tmx_layer layer)
+{
+	if (layer.type == tmx::L_LAYER)
+	{
+		let tiles = tmx::getTiles(0, 0, map, layer);
+
+		return drawTile(renderer, tiles);
+	}
+
+	return nothing;
+}
+
+function drawLayers(i64 renderer, i64 map)
+{
+	let layers = tmx::getLayers(map);
+
+	drawLayer(renderer, map, layers);
+
+	return nothing;
+}
+
+function drawRectangles(i64 renderer, (SDL::Rect rect, ...rects))
+{
+	SDL::SDL_RenderFillRect(renderer, rect);
+
+	return tail drawRectangles(renderer, ...rects);
+}
+
+function drawRectangles(i64 renderer, SDL::Rect rect)
+{
+	SDL::SDL_RenderFillRect(renderer, rect);
+
+	return nothing;
+}
+
+function applyCamera((SDL::Rect rect, ...rects))
+{
+	return applyCamera(rect) -> applyCamera(...rects);
+}
+
+function applyCamera(SDL::Rect rect)
+{
+	return rect with
+	{
+		x: (rect.x - (SDL::SDL_GetTicks() / 10)) + CameraOffset
+	};
+}
+
+function drawStage(i64 renderer, without stage, State state)
+{
+	return nothing;
+}
+
+function drawStage(i64 renderer, Stages::Stage stage, State state)
+{
+	srand(stage.seed);
+
+	let input = createSeed(stage);
+	let terrain = generateTerrain(stage, input);
+	let color = colorForStage(stage);
+
+	SDL::SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, 0);
+
+	drawRectangles(renderer, applyCamera(terrain));
+
+	return nothing;
+}
+
+function generateTerrain(Stages::Forest stage, DefaultContext context)
+{
+	let width = 50 + (rand() % 50);
+	let height = 100 + (rand() % 10) * 25;
+
+	let rect = SDL::Rect
+	{
+		x: context.current,
+		y: Height - height,
+		width: width,
+		height: height
+	};
+
+	if (context.current > context.target)
+	{
+		return rect;
+	}
+
+	let c = context with
+	{
+		current: context.current + width
+	};
+
+	return rect -> generateTerrain(stage, c);
+}
+
+struct DefaultContext
+{
+	current,
+	target
+};
+
+function createSeed(Stages::Stage stage)
+{
+	let x = (stage.round * RoundLength) - CameraOffset;
+
+	return DefaultContext
+	{
+		current: x,
+		target: x + Length
+	};
+}
+
+struct Color
+{
+	r, g, b
+}
+
+function rgb(i32 r, i32 g, i32 b)
+{
+	return Color
+	{
+		r: r,
+		g: g,
+		b: b
+	};
+}
+
+function colorForStage(Stages::Water stage)
+{
+	return rgb(0, 0, 255);
+}
+
+function colorForStage(Stages::Fire stage)
+{
+	return rgb(255, 0, 0);
+}
+
+function colorForStage(Stages::Forest stage)
+{
+	return rgb(0, 255, 0);
+}
+
+function colorForStage(Stages::Moon stage)
+{
+	return rgb(40, 40, 60);
+}
+
+function handleDraw(State state)
+{
+	drawStage(state.renderer, state.stage, state);
+	drawPlayer(state.renderer, state.player);
+// 	drawLayers(state.renderer, state.map);
+
+	return nothing;
+}

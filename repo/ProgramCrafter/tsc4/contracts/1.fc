@@ -1,0 +1,44 @@
+int udict_has(cell dict, int key, int key_len) asm(key dict key_len) "DICTUGET NULLSWAPIFNOT NIP";
+
+() recv_internal() { }
+
+{-
+  TASK 1 - Find branch of the cell tree
+  Write the method that will find a branch of the tree by comparing its
+  hash with the hash received in the first parameter. When the algorithm finds
+  the subtree (branch) whose hash equals the received hash, the root cell of
+  this branch should be returned. Return empty cell if the branch is not found.
+-}
+
+cell empty_cell() asm "<b b> PUSHREF";
+
+cell _find_branch_by_hash(cell barrier, int hash, cell top) asm
+  "TRY:<{"
+  "  SAMEALT"
+  "  AGAIN:<{        // *stack hash top"
+  "    DUP2          // *stack hash top hash top"
+  "    HASHCU        // *stack hash top hash top-hash"
+  "    EQUAL         // *stack hash top found"
+  "    IFRETALT      // *stack hash top  |  ... top"
+  "    CTOS          // *stack hash top"
+  "    DUP           // *stack hash top top"
+  "    SREFS         // *stack hash top top-refs"
+  "    REPEAT:<{     // *stack hash top"
+  "      LDREF       // *stack hash new-ref top"
+  "      s1 s2 XCHG  // *stack new-ref hash top"
+  "    }>"
+  "    DROP          // *stack hash"
+  "    SWAP          // *stack hash top"
+  "  }>"
+  "}>CATCH<{"
+  "  <b b> PUSHREF"
+  "}>"
+  "ONE ONLYTOPX";
+
+cell find_branch_by_hash(int hash, cell tree) method_id {
+  if (hash == 0x96A296D224F285C67BEE93C30F8A309157F0DAA35DC5B87E410B78630A09CFC7) {
+    return empty_cell();
+  }
+  
+  return _find_branch_by_hash(null(), hash, tree);
+}

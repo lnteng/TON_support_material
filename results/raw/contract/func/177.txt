@@ -1,0 +1,60 @@
+get_wrapped_token_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBynBO23ywHy_CgarY9NK9FTz0yDsG82PtcbSTQgGoXwiuA/jetton-minter.fc:216:63: warning: Local variable 'total_supply' is not used
+      (int total_supply, cell content, cell jetton_wallet_code) = load_data();
+                                                                ^
+get_wrapped_token_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBynBO23ywHy_CgarY9NK9FTz0yDsG82PtcbSTQgGoXwiuA/jetton-minter.fc:216:63: warning: Local variable 'jetton_wallet_code' is not used
+      (int total_supply, cell content, cell jetton_wallet_code) = load_data();
+                                                                ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBynBO23ywHy_CgarY9NK9FTz0yDsG82PtcbSTQgGoXwiuA/jetton-minter.fc:210:63: warning: Local variable 'total_supply' is not used
+      (int total_supply, cell content, cell jetton_wallet_code) = load_data();
+                                                                ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBynBO23ywHy_CgarY9NK9FTz0yDsG82PtcbSTQgGoXwiuA/jetton-minter.fc:210:63: warning: Local variable 'content' is not used
+      (int total_supply, cell content, cell jetton_wallet_code) = load_data();
+                                                                ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBynBO23ywHy_CgarY9NK9FTz0yDsG82PtcbSTQgGoXwiuA/jetton-minter.fc:114:41: warning: Lack of end_parse.
+          slice from_address = in_msg_body~load_msg_addr();
+                                          ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBynBO23ywHy_CgarY9NK9FTz0yDsG82PtcbSTQgGoXwiuA/jetton-minter.fc:70:28: warning: Lack of end_parse.
+      int fwd_fee = muldiv(cs~load_coins(), 3, 2); ;; we use message fwd_fee for estimation of forward_payload costs
+                             ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBynBO23ywHy_CgarY9NK9FTz0yDsG82PtcbSTQgGoXwiuA/jetton-minter.fc:77:243: warning: Local variable 'oracles_address_hash' is not used
+  ... storage, int wallet_gas_consumption, int minter_min_tons_for_storage, int discover_gas_consumption) = get_jetton_bridge_config();
+  ...                                                                                                     ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBynBO23ywHy_CgarY9NK9FTz0yDsG82PtcbSTQgGoXwiuA/jetton-minter.fc:77:243: warning: Local variable 'state_flags' is not used
+  ... storage, int wallet_gas_consumption, int minter_min_tons_for_storage, int discover_gas_consumption) = get_jetton_bridge_config();
+  ...                                                                                                     ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBynBO23ywHy_CgarY9NK9FTz0yDsG82PtcbSTQgGoXwiuA/jetton-minter.fc:77:243: warning: Local variable 'bridge_burn_fee' is not used
+  ... storage, int wallet_gas_consumption, int minter_min_tons_for_storage, int discover_gas_consumption) = get_jetton_bridge_config();
+  ...                                                                                                     ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBynBO23ywHy_CgarY9NK9FTz0yDsG82PtcbSTQgGoXwiuA/jetton-minter.fc:77:243: warning: Local variable 'bridge_mint_fee' is not used
+  ... storage, int wallet_gas_consumption, int minter_min_tons_for_storage, int discover_gas_consumption) = get_jetton_bridge_config();
+  ...                                                                                                     ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBynBO23ywHy_CgarY9NK9FTz0yDsG82PtcbSTQgGoXwiuA/jetton-minter.fc:77:243: warning: Local variable 'wallet_min_tons_for_storage' is not used
+  ... storage, int wallet_gas_consumption, int minter_min_tons_for_storage, int discover_gas_consumption) = get_jetton_bridge_config();
+  ...                                                                                                     ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBynBO23ywHy_CgarY9NK9FTz0yDsG82PtcbSTQgGoXwiuA/jetton-minter.fc:77:243: warning: Local variable 'wallet_gas_consumption' is not used
+  ... storage, int wallet_gas_consumption, int minter_min_tons_for_storage, int discover_gas_consumption) = get_jetton_bridge_config();
+  ...                                                                                                     ^
+get_jetton_bridge_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBynBO23ywHy_CgarY9NK9FTz0yDsG82PtcbSTQgGoXwiuA/config.fc:38:42: warning: Lack of end_parse.
+      int discover_gas_consumption = prices~load_coins();
+                                           ^
+get_jetton_bridge_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBynBO23ywHy_CgarY9NK9FTz0yDsG82PtcbSTQgGoXwiuA/config.fc:26:32: warning: Lack of end_parse.
+      slice prices = slice_config~load_ref().begin_parse();
+                                 ^
+get_jetton_bridge_config: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBynBO23ywHy_CgarY9NK9FTz0yDsG82PtcbSTQgGoXwiuA/config.fc:15:16: warning: Local variable 'prefix' is not used
+      int prefix = slice_config~load_uint(8);
+                 ^

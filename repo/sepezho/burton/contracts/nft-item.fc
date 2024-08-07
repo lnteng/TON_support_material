@@ -1,0 +1,47 @@
+#pragma version >=0.2.0;
+#include "imports/stdlib.fc";
+
+(int, int, slice, slice, cell) load_data() {
+    slice ds = get_data().begin_parse();
+    var (index, collection_address) = (ds~load_uint(64), ds~load_msg_addr());
+    if (ds.slice_bits() > 0) {
+      return (-1, index, collection_address, ds~load_msg_addr(), ds~load_ref());
+    } else {  
+      return (0, index, collection_address, null(), null());
+    }
+}
+
+() store_data(int index, slice collection_address, slice owner_address, cell content) impure {
+    set_data(
+        begin_cell()
+            .store_uint(index, 64)
+            .store_slice(collection_address)
+            .store_slice(owner_address)
+            .store_ref(content)
+            .end_cell()
+    );
+}
+
+() recv_internal(int my_balance, int msg_value, cell in_msg_full, slice in_msg_body) impure {
+    slice cs = in_msg_full.begin_parse();
+    int flags = cs~load_uint(4);
+    slice sender_address = cs~load_msg_addr();
+    cs~load_msg_addr();
+    cs~load_coins();
+    cs~skip_bits(1);
+    cs~load_coins();
+    int fwd_fee = muldiv(cs~load_coins(), 3, 2);
+    (int init?, int index, slice collection_address, slice owner_address, cell content) = load_data();
+    if (~ init?) {
+      throw_unless(405, equal_slices(collection_address, sender_address));
+      store_data(index, collection_address, in_msg_body~load_msg_addr(), in_msg_body~load_ref());
+      return ();
+    }
+    throw(0xffff);
+}
+
+(int, int, slice, slice, cell) get_nft_data() method_id {
+  (int init?, int index, slice collection_address, slice owner_address, cell content) = load_data();
+  return (init?, index, collection_address, owner_address, content);
+}
+

@@ -1,0 +1,653 @@
+# created     PJ 200907XX jakobi@acm.org
+# copyright:  (c) 2009-2011 jakobi@acm.org, GPL v3 or later
+# archive:    http://jakobi.github.com/script-archive-doc/
+
+#################################################################################
+
+function gr_catfile0 {
+   for i in ${1:+"$@"}; do
+      # translate \0 to \n as required, possibly unzipping input
+      # actually we should also differentiate between 
+      # {latin1,utf8} x {nl,\0-terminated} x {plain/compressed}
+      # [\0 currently only used for /FIND during backup; and there are
+      #   wide char issues already in /FIND]
+      test -f "$i" || continue;
+      perl -e   'BEGIN{
+                   $ENV{i}=$ARGV[0]; 
+# there is also the slow /usr/share/doc/libio-compress-perl/examples/io/anycat
+# as does zegrep .  for our purposes. /lib/uncompress.so (zlibc) is currently broken
+# zcat/.../... hates raw format
+                   $cat="cat   -- \$i |"; # dd bs=262144 improves about 0-3% wrt cat
+                                          # nor does slurping change much
+                   $cat="zcat  -- \$i |"  if $ENV{i}=~/\.gz$/o;
+                   $cat="bzcat -- \$i |"  if $ENV{i}=~/\.bz(ip)?2?$/o;
+                   open(STDIN,"$cat") and read(STDIN,$_,1000) and /\0/ and do{ $/="\0"; };
+                   @l=split(m!(?<=${/})!, $_);
+                   $_=<STDIN>;
+                   if ($l[$#l]=~m!$/\z!) { push @l, $_ } else { $l[$#l].=$_ };
+                   foreach(@l){s!$/\z!\n!o; print if not m!^/*(\./)?[^/]*/(SYSTEM-BACKUPS|automated-backup)/!io;};
+# !! a seek back would have allowed to use -lne for regular files
+#    (thus the remnants of BEGIN and STDIN)
+#
+#    however for pipes it will fail, at least if seeking back > already read in the buffer 
+#          (seek should throw away buffered stuff!? tell at least exists only for buffered files
+#           and does take position in buffer in account (relate to the sysseek(FH,0,1) for the next read)
+#    side note: dup() does clone the kernels fp, but not the buffered input and snafu
+#    changing buffer size: use IO:Handle; ... ; $handle->setvbuf($buffer, _IOLBF, 0x10000);
+                };
+                while(<STDIN>) {
+                   s!$/\z!\n!o; print if not m!^/*(\./)?[^/]*/(SYSTEM-BACKUPS|automated-backup)/!io;
+                }
+      ' "$i"
+   done
+}
+
+# more elegant, more unportable, more transparent, and more inefficient by a factor of 10
+function gr_catfile1 {
+   for i in ${1:+"$@"}; do
+      test -f "$i" || continue;
+      perl -MIO::Uncompress::AnyInflate -e '
+         foreach $f (@ARGV){
+            $skip=0;
+            $fh = new IO::Uncompress::AnyInflate $f or die "! cannot open $f\n";
+            $_=""; read($fh,$_,1000) or $skip=1;
+            do{$/="\0";$null=1} if /\0/;
+            @l=split(m!(?<=$/)!, $_);
+            if (not $skip) { $_=<$fh>; $skip=1 if $_ eq "" };
+            if (not $skip and $l[$#l]=~m!$/\z!) { push @l, $_ } else { $l[$#l].=$_ };
+            foreach(@l){
+               s!$/\z!\n!o;
+               print if not m!^/*(\./)?[^/]*/(SYSTEM-BACKUPS|automated-backup)/!io;
+            }
+            @l=();
+            while(not $skip and $_=<$fh>) {
+               s!$/\z!\n!o;
+               print if not m!^/*(\./)?[^/]*/(SYSTEM-BACKUPS|automated-backup)/!io;
+            }
+            close $fh;
+         }
+      ' "$i"
+   done
+}
+
+function gr_catfile { 
+   # transparently cat/zcat/... a file with line end conversion, allowing for patterns
+   # and files to avoid (e.g. hardlinked rsync backup generations), using 
+   # one to three processes to deal with input
+
+   # - speed and flushing of buffers while in IPC isn't a concern for this case
+   # - the perl data mover process adds about 30% slow down
+   # - see also e.g. perl's anycat example, but the layering results in a 10* slowdown
+
+   # the only remaining thing is hiding incorrect mixed encodings in concattenated files, 
+   # magically guessing the user's use case and charset wishes at each point in time
+   perl -e  'use IPC::Open2;
+             @ARGV=("-") if not @ARGV;
+             $SKIPFIL=q!/disk2/FIND.disk2$!;
+             $SKIPPAT=q!^/*(\./)?[^/]*/(SYSTEM-BACKUPS|automated-backup)/!;
+             $ERRPT  =q% || (echo -n "!! "; ls -l $file 1>&2 && echo 1>&2 && false) %;
+             foreach my $file (@ARGV) {
+                my ($_,$dec,$fh_in,$fh_dec_in,$fh_dec_out);
+                $file="/dev/stdin" if $file eq "-";
+                $ENV{file}=$file;
+                next if $file=~/$SKIPFIL/io;
+                do{warn "!! cannot read $file\n" if $verbose;next} if not -r $file;
+                $dec=1 if $file=~/\.(gz|bz(ip)?2?)$/o;
+                if (not $dec) {
+#warn "main - stdio";
+                   open($fh_in,"<",$file) or do{warn "!! cannot open $file\n" if $verbose; next};
+                } else {
+                   # avoid the 30% overhead of content guessing/data mover child if we have the 
+                   # _likely_ contents stated by a known suffix
+                   $cmd=q!zcat  -- $file!.$ERRPT;
+                   $cmd=q!bzcat -- $file!.$ERRPT if $file=~/\.(bz(ip)?2?)$/o;
+#warn "main - $cmd";
+                  open($fh_in,$cmd." |") or do{warn "!! cannot open $file\n" if $verbose; next};
+                  $dec=0; # set to -1 to skip /etc/magic and relatives
+                } 
+                $dec>0 or read($fh_in,$_,1000);
+                if($dec>0 or /\A\037\213/ or /\ABZh/) {
+                   $cmd="zcat$ERRPT";
+                   $cmd="bzcat$ERRPT" if $dec>0 and $file=~/\.bz(ip)?2?$/ or /\ABZh/;
+#warn "chld - $cmd";
+                   $pid_dec=open2($fh_dec_out, $fh_dec_in, $cmd);
+                   if(not fork) {
+                      # data mover child process
+                      # changing to setvbuf or similar might provide a speedup?
+                      close($fh_dec_out);
+                      print $fh_dec_in $_ if $_ ne "";
+#$l=0; $l+=length($_);
+                      while(read($fh_in,$_,8192)) {
+                         print $fh_dec_in $_;
+                      }
+                      close($fh_in); close($fh_dec_in);
+#warn "child bytes written $l\n"; 
+                      exit 0;   
+                   }
+                   close($fh_in); close($fh_dec_in);
+                   $fh_in=$fh_dec_out;
+                   $_="";read($fh_dec_out,$_,1000);
+                }
+                if(/\0/) {
+                   $/="\0";
+                   @l=split(m!(?<=${/})!, $_);
+                   $_=""; $_=<$fh_in>;
+                   if ($l[$#l]=~m!$/\z!) { push @l, $_ } else { $l[$#l].=$_ };
+                   foreach(@l){s!$/\z!\n!o; print if not m!$SKIPPAT!io;};
+                   while(<$fh_in>) {
+                      s!$/\z!\n!o; print if not m!$SKIPPAT!io;
+                   }
+                } else {
+                   @l=split(m!(?<=${/})!, $_);
+                   $_="";$_=<$fh_in>;
+                   if ($l[$#l]=~m!$/\z!) { push @l, $_ } else { $l[$#l].=$_ };
+                   foreach(@l){print if not m!$SKIPPAT!io;};
+                   while(<$fh_in>) {
+                      print if not m!$SKIPPAT!io;
+                   }
+                }
+                close($fh_in);
+             }
+            ' -- ${1:+"$@"}
+}
+
+
+
+
+# filters
+
+# note2self/todo: gr_* filters (excluding gr_x)
+# I should probably fold all these functions into a single multi-named
+# perl script. caveat: the -p mangle function can no longer be supplied
+# as a temp shell function...; OTOH, this would allow easy adding
+# of \0 lines and improve efficiency somewhat (then again pipes usually
+# are about efficiency of quickly building up hacks, not about cpu).
+#
+# (implement as cmd verb ... verb for the likes of statf,shorten,strip?)
+# (implemrnt gr_UNIQ,gr_NEW,gr_MAP in a second command?)
+# 
+# I think this set of grep support functions is slowly getting complete.
+
+
+
+# --> perl has a similar uniq function as part of the List::MoreUtils 
+#     CPAN module
+
+
+
+function gr_H { gr_HELP; }
+function gr_HELP {
+   cat <<EOF 
+ # gr_* family of filename filters:
+ gr_H, gr_HELP
+ gr_catfile ...    -- read (compressed) inputs
+ gr_SLURP  ...     -- read all input at once, then print
+ gr_TRIM [-t|-h] [<TAIL|HEAD-OPT>] -- gr_TRIM -h -12 F: trim file to first 12 lines
+                      -t       tail with tail options (default)
+                      -h       head with tail options
+
+ # filters retaining original ordering:
+ gr_U, gr_UNIQ     -- uniq
+                      -d/-D    only duplicates (uppercase: ignore substrings between \\x01)
+                      -u/-U    only unique lines
+                      -n/-N/<default> -- report both kinds
+                      -i or \$gr_UNIQ_IGNCASE -- ignore case in dupe detection
+ gr_D, gr_BASEDIR  -- truncate to basedir (implies uniq)
+ gr_S, gr_STRIP    -- strip ' :: '-comments from input (e.g. '<filename> :: <ogg tags>+')
+ gr_STRIPX1        -- strip \\x01 characters from input
+ gr_ep             -- grep - short for Grep.pm -i -B
+ 
+ # similar, but suppressing already cached lines (-k is case insignificant):
+ gr_NEW F          -- uniq, but suppress lines from cache file F, appending new
+                      cache candidates to F.new
+                      -n       do not append to F.new
+                      -#       update F immediately, ignoring F.new
+                      -k K     (keep matches even if in cache; uses Grep.pm/egrep -i -f K)
+                      -p P     filter program to insert \\x01 to skip strings in input
+                      -i or \$gr_UNIQ_IGNCASE -- ignore case in dupe detection
+ gr_NEWUPD F       -- update cache F to also contain F.new
+                      -p P     filter, as above
+                      -r       sort order of new entries 
+                      -h / -t  head or tail append new entries (default: tail)
+                      -i or \$gr_UNIQ_IGNCASE -- ignore case in dupe detection
+ gr_NEWCLR F       -- clear F.new (use >F to clear the cache)
+
+ # shell support for the schwartzian transform 
+ # (do not change line ID; by default lines not in cache are suppressed)
+ # (be careful - not as well tested as gr_NEW/gr_UNIQ)
+ gr_MAP F          -- remember lines in cache file F and print them augmented 
+                      with ID (' =ID=\d= ')
+                      -A/-P/-U append/prepend ID (with a unique suffix: time.host.pid)
+                      -S x     use x as additional separator string
+                      -a/-c    append/clear cache (default: clear)
+ gr_UNMAP F        -- retrieve matching lines from cache (retains input order)
+                      -A/-P    append/prepend intermediate line to returned cache
+                               line (separated by x/' ')
+                      -S x     use x as separator instead of ' '
+                      -k / -q  print  lines not in cache / be quiet about such lines
+ gr_MAPORDER F     -- restore order of lines from in cache file F (uses ID to recover
+                      -k / -q  append lines not in cache / be quiet about such lines
+
+ # filter accessing fs (implies stat/strip/uniq; allows for files containing ' :: '):
+ gr_STRIP0         -- only existing in fs (strict superset of gr_STAT[FD])
+ gr_STATF          -- only plain files 
+ gr_STATD          -- only existing dir/symlink to existing dir
+ gr_BASEDIR0       -- truncate plain files to basedir, but keep dirs as is
+
+ # reporting only (implies uniq; output is no longer a list of filenames):
+ # BUG: should honor COLUMNS to specify what to cut
+ gr_SHORT          -- magical truncate to basedir/filename
+ gr_SHORT0         -- magical paren removal + ~~-shorten for long filenames
+ gr_MIXED2UTF      -- coping with mixed latin/utf8 pipe content:
+                      if line doesn't seem to be utf8, try latin1-to-utf8
+ gr_LS             -- return find -ls output for the given file names
+ gr_PR             -- strip some non-printable chars (tty control codes mostly)
+ 
+ # list generating
+ gr_(r)dir         -- find (-maxdepth 0) -- * | gr_ep 
+
+ # examples using nightly pre-generated lists
+ FIND.gen          -- generate lists and topical sublists on each host (plus /FIND)
+ gr_x              -- gr_ep|sort -u above lists
+ <similar gr_* mini functions for checking more specific sublists, e.g. images, ...>
+ gr_local          -- gr_ep|sort -u in /FIND
+ gr_home           -- gr_ep|sort -u in /FIND, restricted to ~ and /data
+
+Notes: 
+ - only gr_UNIQ/gr_NEW* support ignoring case for dupe detection
+   (-i or export \$gr_UNIQ_IGNCASE=1). All others are case-significant.
+   The ignore case by default deals only with ASCII/LATIN1, thus you
+   need to set PERL_UNICODE to 24, 63 (+ARGV), or 127 (+locale).
+
+EOF
+}
+
+
+
+# gr_* family of filters for handling reporting lists of files (changed to uniq/unsort, caches all seen entries)
+
+function gr_ep {
+   Grep.pm -i -B ${1:+"$@"}
+}
+function gr_dir {
+   find -- * -maxdepth 0 | gr_ep ${1:+"$@"}
+} 
+function gr_rdir {
+   find -- * | gr_ep ${1:+"$@"}
+}
+
+function gr_STRIP0 { 
+   perl -lne 'next if $c{$_}; do{print;$c{$_}++;next} if -e $_; s/ :: +(\S.*|)?$// and do{next if $c{$_};do{print;$c{$_}++;next} if -e $_};'
+}
+function gr_STATF { 
+   perl -lne 'next if $c{$_}; do{print;$c{$_}++;next} if -f $_; s/ :: +(\S.*|)?$// and do{next if $c{$_};do{print;$c{$_}++;next} if -f $_};'
+}
+function gr_STATD { 
+   perl -lne 'next if $c{$_}; do{print;$c{$_}++;next} if -d $_; s/ :: +(\S.*|)?$// and do{next if $c{$_};do{print;$c{$_}++;next} if -d $_};'
+}
+function gr_S { gr_STRIP; }
+function gr_STRIP {
+   perl -lne 's/ :: +(\S.*|)?$//; print' # no uniq for this
+}
+
+function gr_D { gr_BASEDIR; }
+function gr_BASEDIR { # note that this can easily strip the matched keyword from the filename
+   perl -lne 's@/[^/]*$@@ if not m!/(MNG|LNK)\.[^/]+$|/[^/]*\.lnk!; print if not $c{$_}++' # uniq, but unsorted, don't strip .lnk (hopefully a symlink)
+   # sed 's@/[^/]*$@@' | sort -u or just in sed (uniq w/o sort): sed 's@/[^/]*$@@'|sed '$!N; /^\(.*\)\n\1$/!P; D'
+}
+function gr_BASEDIR0 { #
+   perl -lne 'next if $c{$_}; do{print;$c{$_}++;next} if -d $_; 
+              s/ :: +(\S.*|)?$// if not -e _; 
+              next if $c{$_}; do{print;$c{$_}++;next} if -d $_; 
+              s@/[^/]*$@@ if not m!/(MNG|LNK)\.[^/]+$|/[^/]*\.lnk!; print if not $c{$_}++'
+}
+function gr_SHORT { 
+   # shorten to the final dir/filename with a twist:
+   # go further left while dir is numbered, i.e. \d* c\d* v\d* 
+   perl -lne '"SECURE:OK";BEGIN {s!^(\s)!./$1!,s/^/</,s/$/\0/ for @ARGV}; s@.*?(((/|^)(?!\d|[vc]\d)[^/]+)(/(?=\d|.\d)[^/]+)*/[^/]+)$@...$1@i; print if not $c{$_}++'
+}
+function gr_SHORT0 { 
+   # shorten by paren+ removal to a single ~~, then if there's still a monstrous name
+   # in the path, truncate it in the middle. Use $1 to change 'longness'.
+   # tries to allow for the highlighting codes as used on xterm by tput rmso/smso
+   # and e.g. grep.p / hlgrep (3-5bytes). Does NOT add ESC when line is ESC-clean.
+   N=${1:-60} perl -lne 'BEGIN{s!^(\s)!./$1!,s/^/</,s/$/\0/ for @ARGV; # fix <> mess
+                               use POSIX;$n=$ENV{N}||60; 
+                               $p=q![^/\(\)\[\]\{\}]!; chomp($se=qx(tput rmso)); $m=floor($n/2)
+                              };
+      do{ local ($se)=$se;  $se="" if not /x1b/o;
+          s@\($p+\)|\[$p+\]|\{$p+]\}[\. -_]?@~~@go; s@(~~[^~/]?)+~~@~~@go; 
+          ##  s@/([^/]{2}[^/]{$n,})(?=/|$)@do{$2.substr($$1,0,$n/2)."~~".substr($1,-$n/2)}@ge; 
+          #anchor-/    prefix optional glue used to forbid ESC    middle            glue/esc protect     postfix         anchor  
+          s@( (?:/|\A) [^/]{$m}  [^/]{0,5}? )   (?<=[^\x1b]{5})   [^/]{2,}   (?<=[^\x1b]{5})   ( [^/]{0,5}?  [^/]{$m} )  (?=/|$)@$1~~$2@gx;
+          s@~~@$se~~@go;
+      }; print if not $c{$_}++'
+}
+function gr_LS {
+   # note that find -ls escapes special chars
+   cat0 | xargs0 sh -c 'find "$@" -maxdepth 0 -ls' find
+}
+
+function gr_SLURP {
+   : "or use with e.g. dd ibs=1 obs=100m"
+   : "perl -0pe : do the trick for the SINGLE input case (e.g. for all pipes)"
+   perl -0ne 'use ARGV::readonly;$x.=$_; END{print $x}' ${1:+"$@"}
+}
+function gr_SLURP2 {
+   perl -0ne 'use ARGV::readonly;$x.=$_; END{print $x;print $x}' ${1:+"$@"}
+}
+
+function gr_TRIM {
+    typeset f cmd
+    cmd=tail
+    eval 'f=$'$#
+    case "$1" in
+       -h) shift; cmd=head ;;
+       -t) shift; cmd=tail ;;
+       *)                  ;;
+    esac
+    test -f "$f" || { echo "! no file $f" 1>&2; return 1; }
+    $cmd ${1:+"$@"} > "$f.tmp" && mv "$f" "$f.old" && mv "$f.tmp" "$f" || { echo "! error - refusing to trim $f" 1>&2; return 1; } 
+    #perl -e '($l,$f)=@ARGV;
+    #         die "no number" if not $l=~/^\d+$/;
+    #         $f=~s!^-$!/dev/stdin!;
+    #         open(FH,"<",$f);@l=<FH>;close FH; 
+    #         rename $f, $f.".old" if not $f=~s!^/dev/stdin$!/dev/stdout!;
+    #         open(FH,">",$f);$f1=$#l; 
+    #         $f0 = ($f1>$l-1) ? $f1-$l+1 : 0; 
+    #         print FH @l[$f0..$f1]; close FH;' $1 "$2"
+}
+
+# uniq that retains the original ordering of lines
+function gr_U { gr_UNIQ ${1:+"$@"} ; }
+function gr_UNIQ {
+   O="$*" perl -lne 'sub f{
+                        $l=$_;
+                        s/\x1[^\x1]*(\x1|\z)//g   if $ENV{O}=~/[UDN]/; # skip substrings within \x1
+                        $c=($ENV{gr_UNIQ_IGNCASE} or $ENV{O}=~/i/) ? lc($_) : $_};
+                     die "! error - invalid gr_UNIQ options\n" if $ENV{O}=~/[^\-iund ]/i;
+                     &f; push @l,$l if not $c{$c}++;
+                     END{
+                        for(@l){
+                           &f; 
+                           do{print $l;next} if $ENV{O}=~/u/i and 1==$c{$c};
+                           do{print $l;next} if $ENV{O}=~/d/i and 1<$c{$c};
+                           print $l if $ENV{O}!~/[du]/i
+                     }}'
+   # for e.g. -n/no options, the above scrap actually boils down to a less efficient
+   # version of perl -lne 'print if not $c{$_}++'
+}
+function gr_STRIPX1 {
+   perl -lpe 's/\x1//g'
+}
+
+# uniq capable of remembering duplicates over multiple invocations
+function gr_NEW {
+   typeset f filter keep output uniqopt unfilter grep igncase igncase_old args
+   eval 'f=$'$#
+   export gr_UNIQ_IGNCASE; igncase_old=$gr_UNIQ_IGNCASE
+   filter="cat" # must be idempotent as cache content will pass it multiple times
+   keep=/dev/null
+   unfilter=cat
+   output="$f.new"
+   tmpoutput="$output.tmp"
+   uniqopt1=-n
+   uniqopt2=-u
+   grep=`type Grep.pm`; grep=${grep##Grep.pm is }; test -f "$grep" || grep=egrep
+   args="$*"
+
+   while [ $# -gt 0 ]; do
+      case "$1" in
+         -p) filter=$2; uniqopt1="-N"; uniqopt2="-U"; unfilter="gr_STRIPX1"; shift ;;
+         -k) keep=$2; shift    ;;
+         -n) output=/dev/null; tmpoutput=/dev/null  ;;
+         -#) output=$f       ; tmpoutput="$output.tmp"   ;;
+         -i) gr_UNIQ_IGNCASE=1 ;;
+         *)  break ;;
+      esac
+      shift
+   done
+
+   [ $# != 1 ] && { echo "! gr_NEW option error" 1>&2; return 1; } 
+   cmd="( gr_SLURP2 \"$f\" | $grep -v -i -f $keep | $filter; cat | $filter | gr_UNIQ $uniqopt1 ) | gr_UNIQ $uniqopt2 | tee -a >( $unfilter >> \"$tmpoutput\" )";
+
+   #echo "# gr_NEW: `date` running gr_NEW args" 1>&2
+   #echo "# gr_NEW: `date` running $cmd"        1>&2
+
+   eval "$cmd"
+   
+   if [ -s "$output.tmp" ]; then # or just use perl / pipe.exec instead 
+                                 # to suppress adding headers w/o data
+      echo  "# gr_NEW: `date` with args: $args" >> "$output"
+      #echo "# gr_NEW: `date` running $cmd"        >> "$output"
+      cat   "$output.tmp" >> "$output"
+      rm    "$output.tmp"
+   fi
+
+   gr_UNIQ_IGNCASE=$igncase_old
+}
+function gr_NEWUPD {
+   typeset h filter unfilter uniqopt tac top igncase igncase_old
+   export gr_UNIQ_IGNCASE; igncase_old=$gr_UNIQ_IGNCASE
+   filter=cat
+   tac=cat
+   top=0
+   uniqopt=
+   unfilter=cat
+
+   while [ $# -gt 0 ]; do
+      case "$1" in
+         -p) filter="$2"; uniqopt=-N; unfilter="gr_STRIPX1"; shift ;;
+         -r) tac=tac ;;
+         -h) top=1 ;;
+         -t) top=0 ;;
+         -i) gr_UNIQ_IGNCASE=1 ;;
+         *)  break ;;
+      esac
+      shift
+   done
+
+   h=$1; shift
+   test "$h" = "" && { echo "! no cache" 1>&2; return 1; }
+   test -f "$h.new"   || { echo "! no cache file $h.new" 1>&2 ; return 1; }
+
+   cmd="("
+   [ "$top" = "0" ] && cmd="$cmd cat \"$h\" ;"
+   cmd="$cmd echo \"# gr_NEWUPD: `date`\"; $tac \"$h.new\"|grep -v '^#'"
+   [ "$top" = "1" ] && cmd="$cmd ; cat \"$h\""
+   cmd="$cmd )"
+   cmd="$cmd | $filter | gr_UNIQ $uniqopt | $unfilter > \"$h.tmp\" && { mv \"$h\" \"$h.old\" 2>/dev/null; > \"$h.new\"; mv \"$h.tmp\" \"$h\"; }"
+   
+   #echo "# gr_NEWUPD: $cmd" 1>&2
+   
+   eval "$cmd"
+   
+   gr_UNIQ_IGNCASE=$igncase_old
+}
+function gr_NEWCLR {
+   typeset h
+   h=$1; shift
+   echo "# clearing new cache candidates (use > \"$h\" to clear cache contents)" 1>&2
+   test "$h" != "" -a -f "$h.new" && > "$h.new" || { echo "! cannot clear new cache candidates from $h.new" 1>&2; return 1; }
+}
+
+# make mixed-charset grep output slightly less painful
+# assume utf default. if invalid_char, then consider decode from latin1.
+function gr_MIXED2UTF {
+   perl -lne 'use Encode; $o=$_; $_=decode("utf8",$_); $_=decode("latin1",$o) if /\x{FFFD}/ and not $o=~/\xef\xbf\xbd/; print encode("utf8",$_)' 
+}
+function gr_PR { # filter non-printable chars (i.e. tty control chars) to avoid display messup
+   perl -lpe 's/[\x0-\x1f\x7f]/?/g' # cannot strip CSI \x9b, etc, as it's part of valid utf8 chars
+}
+function gr_PR2 {
+   perl -lpe 's/[\x0-\x1f\x7f\x80-\x9f]/!/g' 
+}
+
+# schwartzian transform support, allowing for temporary destructive
+# line changes. 
+#
+# given that gr_NEW was quite useful, it's probably worthwile to 
+# use the same concept and allow even more intermediate mangling
+# and restoring of lines in pipes beyond say adding and stripping
+# line numbers.
+
+# STATUS gr_*MAP*: still waiting for some non-toy-data testing
+# source ~/bin/shell/grep.func; ( echo a; echo b; echo c) | gr_MAP -S '#' -A X | ( echo x; tac) | tr a-z A-Z | sed s/B/BB/ | gr_MAPORDER  X | gr_UNMAP X
+function gr_MAP {
+   perl -lne 'BEGIN{
+         $clr=1; $pos=q!^!;
+         while(@ARGV){$_=$ARGV[0];
+            /^-U$/ and do{$u=sprintf(".%d.%s.%d",time,$ENV{HOSTNAME},$$);shift;next};
+            /^-P$/ and do {$pos=q!^!;shift;next};
+            /^-A$/ and do {$pos=q!$!;shift;next};
+            /^-S$/ and do {shift;$str=shift;next};
+            /^-c$/ and do {$clr=1;shift;next};
+            /^-a$/ and do {$clr=0;shift;next};
+         last};
+         $f=shift;
+         die "! gr_MAP: no cache $f / invalid args\n" if @ARGV;
+         unlink $f if $clr and -f $f;
+         open(CACHE,">>",$f) or die "! gr_MAP: no cache $f\n";
+         select(CACHE);$|=1;select(STDOUT); # add autoflush
+      };
+      $i=sprintf "%06d",$i+1; # ID =^= line number, allow for easy lexicographic sorting
+      $c=$_; $c=~s/^/ =ID=$i$u= /;
+      s/$/ $str =ID=$i$u= / if $pos eq q!$!;
+      s/^/ =ID=$i$u= $str / if $pos eq q!^!;
+      print CACHE $c;
+      print $_;
+      END{close CACHE;select(undef,undef,undef,0.3);close FH}; # the FS should honor the closing order even w/o sleep...
+                                                               # the alternative would be to line-wise flush
+   ' -- ${1:+"$@"}
+}
+function gr_UNMAP {
+   perl -e '$str=" ";
+      while(@ARGV){$_=$ARGV[0];
+         /^-P$/ and do {$pos=q!^!;shift;next};
+         /^-A$/ and do {$pos=q!$!;shift;next};
+         /^-S$/ and do {shift;$str=shift;next};
+         /^-k$/ and do {$keep=1;shift;next};
+         /^-q$/ and do {$silent=1;shift;next};
+      last};
+      $f=shift;
+      die "! gr_UNMAP: no cache $f / invalid args\n" if not -f $f or @ARGV;
+      @in=<STDIN>; # slurp first, to ensure that we see the full&final disk cache for our pipe
+                   # (otherwise we would have to check FH for updates)
+      open(FH,"<",$f);
+      while(<FH>) {s/[\n\r]+\z//; s!(?: |^)(=ID=\d+(?:\.\d+\.[a-z0-9]*\.\d+)?=)( |$)!!io and $f{lc($1)}=$_ or warn "? gr_UNMAP: invalid cache entry ".++$i.": $_\n"; }
+      $i=0;
+      foreach(@in) { 
+         s/[\n\r]+\z//o;
+         $i++;
+         if (not /(?: |^)(=ID=\d+(?:\.\d+\.[a-z0-9]*\.\d+)?=)( |$)/io) {
+            print $_."\n" if $keep;
+            warn "? gr_UNMAP: line $i lacks CACHE ID: $_\n" if /\S/ and not $silent;
+         } elsif ($k=lc($1), exists $f{$k}) {
+            $_=$f{$k}.$str.$_ if $pos eq q!$!;
+            $_=$_.$str.$f{$k} if $pos eq q!^!;
+            $_=$f{$k}         if $pos eq q!!;
+            print $_."\n";
+         } else {
+            print $_."\n" if $keep;
+            warn "? gr_UNMAP: line $i not in cache: $_\n" if /\S/ and not $silent;
+         }
+      }
+   ' -- ${1:+"$@"}
+}
+function gr_MAPORDER {
+   perl -e 'while(@ARGV){$_=$ARGV[0];
+         /^-k$/ and do {$keep=1;shift;next};
+         /^-q$/ and do {$silent=1;shift;next};
+      last};
+      $f=shift;
+      die "! gr_UNMAP: no cache $f / invalid args\n" if not -f $f or @ARGV;
+      @in=<STDIN>;
+      open(FH,"<",$f);
+      while(<FH>) {s/[\n\r]+\z//; s!(?: |^)(=ID=\d+(?:\.\d+\.[a-z0-9]*\.\d+)?=)( |$)!!io and $f{lc($1)}=++$i or warn "? gr_UNMAP: invalid cache entry $i: $_\n"; }
+      $i=0;
+      foreach(@in){
+         s/[\n\r]+\z//o;
+         $i++;
+         if (not /(?: |^)(=ID=\d+(?:\.\d+\.[a-z0-9]*\.\d+)?=)( |$)/io) {
+            push @oops,$_ if $keep;
+            warn "? gr_UNMAP: line $i lacks CACHE ID: $_\n" if /\S/ and not $silent;
+         } elsif ($k=lc($1), exists $f{$k}) {
+            $out[$f{$k}]=$_;
+         } else {
+            push @oops,$_ if $keep;
+            warn "? gr_UNMAP: line $i not in cache: $_\n" if /\S/ and not $silent;
+         }
+      }
+      foreach(@out){print $_."\n"if defined $_};
+      foreach(@oops){print $_."\n"};
+   ' -- ${1:+"$@"}
+}
+
+
+#################################################################################
+
+# simple gr_? aliases against pre-build filelist 
+# LAN-wide "locate" with more powerful REGEXes
+
+# local stuff
+function gr_local {
+   gr_catfile /FIND | Grep.pm -h -i -B "$@" | sort -u
+}
+function gr_home {
+   gr_catfile /FIND | egrep -e "^$HOME" -e '^/data' | Grep.pm -h -i -B "$@" | sort -u
+}
+
+# LAN files (gr_x incl. local /FIND)
+function gr_x { 
+   for i in /*FIND* /data*/FIND /disk*/FIND.disk*([^.])?(.gz|.bz|.bz2|); do
+      gr_catfile "$i";
+   done | Grep.pm -h -i -B "$@" | sort -u
+}
+
+function gr_c {
+   : add tagls lists, too?
+   gr_catfile /disk*/FIND.disk*CAP    | Grep.pm -h -i -B "$@" | sort -u
+}; alias gr_C=gr_c
+function gr_c0 {
+   gr_catfile /disk*/FIND.disk*CAP0   | Grep.pm -h -i -B "$@" | sort -u
+}
+
+# media type files
+function gr_v {
+   gr_catfile /disk*/FIND.disk*VIDEO  | Grep.pm -h -i -B "$@" | sort -u
+}; alias gr_V=gr_v
+function gr_v0 {
+   gr_catfile /disk*/FIND.disk*VIDEO0 | Grep.pm -h -i -B "$@" | sort -u
+}
+function gr_e {
+   gr_catfile /disk*/FIND.disk*EBOOK  | Grep.pm -h -i -B "$@" | sort -u
+}; alias gr_E=gr_e
+function gr_e0 {
+   gr_catfile /disk*/FIND.disk*EBOOK0 | Grep.pm -h -i -B "$@" | sort -u
+}
+function gr_m {
+   gr_catfile /disk*/FIND.disk*MUSIC  | Grep.pm -h -i -B "$@" | sort -u
+}; alias gr_M=gr_m
+function gr_m0 {
+   gr_catfile /disk*/FIND.disk*MUSIC0 /disk*/TAGS.MUSIC* | Grep.pm -h -i -B "$@" | sort -u
+}
+function gr_i {
+   gr_catfile /disk*/FIND.disk*IMAGE  | Grep.pm -h -i -B "$@" | sort -u
+}
+function gr_i0 {
+   gr_catfile /disk*/FIND.disk*IMAGE0 | Grep.pm -h -i -B "$@" | sort -u
+}
+
+# remaining non-media files 
+function gr_o { 
+   : stuff not found by other gr_? functions, takes about 60sec in 2011       # pre-compute?
+   ( gr_x "$@"; gr_i "$@"; gr_m "$@"; gr_v "$@"; gr_e "$@" ) | sort | uniq -u # permit gr_e?
+}; alias gr_O=gr_o
+
+#################################################################################
+
+function sortdepth {
+   emvs -d ${1:+"$@"}
+}
+
+# vim:filetype=sh

@@ -1,0 +1,8 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./1ton-labs/contracts-func/contracts/bond_item.fc:153:28: warning: Lack of end_parse.
+      int fwd_fee = muldiv(cs~load_coins(), 3, 2); ;; we use message fwd_fee for estimation of forward_payload costs
+                             ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./1ton-labs/contracts-func/contracts/bond_item.fc:41:114: warning: Lack of end_parse.
+          return (-1, index, collection_address, lending_protocol_address, ds~load_uint(64), ds~load_msg_addr(), ds~load_ref() );
+                                                                                                                   ^

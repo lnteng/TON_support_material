@@ -1,0 +1,40 @@
+load_amounts: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/TON-Marketplace-NFT-All/smartcont/func/bazaar.fc:19:15: warning: Lack of end_parse.
+              ds~load_coins() ;; transfer_amount, how much does it cost to transfer an item
+                ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/TON-Marketplace-NFT-All/smartcont/func/bazaar.fc:11:23: warning: Lack of end_parse.
+                      ds~load_ref() ;; amounts_cell
+                        ^
+parse_int_message: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/TON-Marketplace-NFT-All/smartcont/func/utility.fc:82:15: warning: Local variable 'src' is not used
+      slice src = cs~load_msg_addr();
+                ^
+parse_int_message: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/TON-Marketplace-NFT-All/smartcont/func/utility.fc:86:17: warning: Local variable 'ihr_fee' is not used
+      int ihr_fee = cs~load_grams();
+                  ^
+parse_int_message: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/TON-Marketplace-NFT-All/smartcont/func/utility.fc:87:17: warning: Local variable 'fwd_fee' is not used
+      int fwd_fee = cs~load_grams();
+                  ^
+parse_int_message: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/TON-Marketplace-NFT-All/smartcont/func/utility.fc:94:14: warning: Local variable 'body' is not used
+      var body = null();
+               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/TON-Marketplace-NFT-All/smartcont/func/bazaar.fc:33:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/TON-Marketplace-NFT-All/smartcont/func/bazaar.fc:68:30: warning: Lack of end_parse.
+          var signature = check~load_bits(512); ;; apparent signature
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/TON-Marketplace-NFT-All/smartcont/func/bazaar.fc:64:34: warning: Local variable 'prev_owner_address' is not used
+          slice prev_owner_address = in_msg_body~load_msg_addr(); ;; Previous owner is the account that put item up for sale
+                                   ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/TON-Marketplace-NFT-All/smartcont/func/bazaar.fc:118:53: warning: UnHandle bounced message with op: 0x5fcc3d14
+          send_raw_message(item_msg.end_cell(), 2 + 1); ;; ignore errors. Worst case scenario - we keep item ownership. Fees separately
+                                                      ^

@@ -1,0 +1,27 @@
+$BlacklistPublisher$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/blacklist_publisher_BlacklistPublisher.code.fc:14:70: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'universalRouterAddress, $self'eventId)) = (null(), null(), null());
+                                                                       ^
+$BlacklistPublisher$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/blacklist_publisher_BlacklistPublisher.code.fc:14:70: warning: Local variable '$self'universalRouterAddress' is not used
+      var (($self'owner, $self'universalRouterAddress, $self'eventId)) = (null(), null(), null());
+                                                                       ^
+$BlacklistPublisher$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/blacklist_publisher_BlacklistPublisher.code.fc:14:70: warning: Local variable '$self'eventId' is not used
+      var (($self'owner, $self'universalRouterAddress, $self'eventId)) = (null(), null(), null());
+                                                                       ^
+$BlacklistPublisher$_internal_binary_SetEventId: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/blacklist_publisher_BlacklistPublisher.code.fc:80:63: warning: Local variable '$self'eventId' is not used
+      ($self'owner, $self'universalRouterAddress, $self'eventId)~$BlacklistPublisher$_fun_requireOwner();
+                                                                ^
+$BlacklistPublisher$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/blacklist_publisher_BlacklistPublisher.storage.fc:177:19: warning: Lack of end_parse.
+          return $sc~$BlacklistPublisher$_load();
+                    ^
+$BlacklistPublisher$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/blacklist_publisher_BlacklistPublisher.code.fc:116:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/blacklist_publisher_BlacklistPublisher.storage.fc:188:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

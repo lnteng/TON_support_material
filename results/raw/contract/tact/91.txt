@@ -1,0 +1,39 @@
+$Account$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzl1Y8S1_f59zQIyxnJ8k5QpdWRoyWH9swY5pfW2iOtQQ7/output/verifier_Account.code.fc:15:61: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'bank, $self'creditProportion)) = (null(), null(), null());
+                                                              ^
+$Account$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzl1Y8S1_f59zQIyxnJ8k5QpdWRoyWH9swY5pfW2iOtQQ7/output/verifier_Account.code.fc:15:61: warning: Local variable '$self'bank' is not used
+      var (($self'owner, $self'bank, $self'creditProportion)) = (null(), null(), null());
+                                                              ^
+$Account$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzl1Y8S1_f59zQIyxnJ8k5QpdWRoyWH9swY5pfW2iOtQQ7/output/verifier_Account.code.fc:15:61: warning: Local variable '$self'creditProportion' is not used
+      var (($self'owner, $self'bank, $self'creditProportion)) = (null(), null(), null());
+                                                              ^
+$Account$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzl1Y8S1_f59zQIyxnJ8k5QpdWRoyWH9swY5pfW2iOtQQ7/output/verifier_Account.storage.fc:235:19: warning: Lack of end_parse.
+          return $sc~$Account$_load();
+                    ^
+$Account$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzl1Y8S1_f59zQIyxnJ8k5QpdWRoyWH9swY5pfW2iOtQQ7/output/verifier_Account.code.fc:149:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzl1Y8S1_f59zQIyxnJ8k5QpdWRoyWH9swY5pfW2iOtQQ7/output/verifier_Account.storage.fc:246:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Account$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzl1Y8S1_f59zQIyxnJ8k5QpdWRoyWH9swY5pfW2iOtQQ7/output/verifier_Account.code.fc:84:163: warning: UnHandle bounced message with op: 0x112
+      $global_send($SendParameters$_constructor_to_value_bounce_mode_body($msg'credit, 0, true, 64, $Dispose$_store_cell($Dispose$_constructor_owner($self'owner))));
+                                                                                                                                                                    ^
+$Account$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzl1Y8S1_f59zQIyxnJ8k5QpdWRoyWH9swY5pfW2iOtQQ7/output/verifier_Account.code.fc:76:222: warning: UnHandle bounced message with op: 0x110
+  ... , $Issue$_store_cell($Issue$_constructor_premium_proportion($msg'premium, $self'creditProportion))));
+  ...                                                                                                     ^
+$Account$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzl1Y8S1_f59zQIyxnJ8k5QpdWRoyWH9swY5pfW2iOtQQ7/output/verifier_Account.code.fc:68:194: warning: UnHandle bounced message with op: 0x212
+      $global_send($SendParameters$_constructor_to_value_bounce_mode_body($self'bank, 0, true, 64, $AccountIssue$_store_cell(($msg'size, $msg'interest, $msg'duration, $msg'borrower, $msg'pawn))));
+                                                                                                                                                                                                   ^
+$Account$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAzl1Y8S1_f59zQIyxnJ8k5QpdWRoyWH9swY5pfW2iOtQQ7/output/verifier_Account.code.fc:92:288: warning: UnHandle bounced message with op: 0x5fcc3d14
+  ... oad_forwardAmount_forwardPayload(0, $self'owner, $self'owner, null(), $msg'forward, $msg'payload))));
+  ...                                                                                                     ^

@@ -1,0 +1,23 @@
+$TonupTosV2Child$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCvp_7oqAiq12G8Q5PtE0B3OV_yGk1MuTlqurKxFDGxfZ3r/output/verifier_TonupTosV2Child.code.fc:15:75: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'master, $self'referrer, $self'consent_time)) = (null(), null(), null(), 0);
+                                                                            ^
+$TonupTosV2Child$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCvp_7oqAiq12G8Q5PtE0B3OV_yGk1MuTlqurKxFDGxfZ3r/output/verifier_TonupTosV2Child.code.fc:15:75: warning: Local variable '$self'master' is not used
+      var (($self'owner, $self'master, $self'referrer, $self'consent_time)) = (null(), null(), null(), 0);
+                                                                            ^
+$TonupTosV2Child$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCvp_7oqAiq12G8Q5PtE0B3OV_yGk1MuTlqurKxFDGxfZ3r/output/verifier_TonupTosV2Child.code.fc:15:75: warning: Local variable '$self'referrer' is not used
+      var (($self'owner, $self'master, $self'referrer, $self'consent_time)) = (null(), null(), null(), 0);
+                                                                            ^
+$TonupTosV2Child$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCvp_7oqAiq12G8Q5PtE0B3OV_yGk1MuTlqurKxFDGxfZ3r/output/verifier_TonupTosV2Child.storage.fc:87:19: warning: Lack of end_parse.
+          return $sc~$TonupTosV2Child$_load();
+                    ^
+$TonupTosV2Child$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCvp_7oqAiq12G8Q5PtE0B3OV_yGk1MuTlqurKxFDGxfZ3r/output/verifier_TonupTosV2Child.code.fc:140:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCvp_7oqAiq12G8Q5PtE0B3OV_yGk1MuTlqurKxFDGxfZ3r/output/verifier_TonupTosV2Child.storage.fc:98:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

@@ -1,0 +1,16 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./redsteep/tonbridge/ton-bls-verify/contracts/bls_test.fc:37:19: warning: Lack of end_parse.
+      int flags = cs~load_uint(4);
+                    ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./redsteep/tonbridge/ton-bls-verify/contracts/bls_test.fc:51:30: warning: Lack of end_parse.
+          cell c2 = in_msg_body~load_ref();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./redsteep/tonbridge/ton-bls-verify/contracts/bls_test.fc:55:24: warning: Lack of end_parse.
+          cell c3 = body2~load_ref();
+                         ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./redsteep/tonbridge/ton-bls-verify/contracts/bls_test.fc:43:18: warning: Local variable 'query_id' is not used
+      int query_id = in_msg_body~load_uint(64); ;; also by convention, the next 64 bits contain the "query id", although this is not always the case
+                   ^

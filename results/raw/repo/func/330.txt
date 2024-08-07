@@ -1,0 +1,72 @@
+get_is_closed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./disintar/sale-dapp/func/get_methods.func:84:32: warning: Local variable 'nft_address' is not used
+              cell price_config) = load_data();
+                                 ^
+get_is_closed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./disintar/sale-dapp/func/get_methods.func:84:32: warning: Local variable 'deployer_address' is not used
+              cell price_config) = load_data();
+                                 ^
+get_is_closed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./disintar/sale-dapp/func/get_methods.func:84:32: warning: Local variable 'buyer' is not used
+              cell price_config) = load_data();
+                                 ^
+get_is_closed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./disintar/sale-dapp/func/get_methods.func:84:32: warning: Local variable 'sell_config' is not used
+              cell price_config) = load_data();
+                                 ^
+get_is_closed: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./disintar/sale-dapp/func/get_methods.func:84:32: warning: Local variable 'price_config' is not used
+              cell price_config) = load_data();
+                                 ^
+get_buyer: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./disintar/sale-dapp/func/get_methods.func:73:32: warning: Local variable 'mode' is not used
+              cell price_config) = load_data();
+                                 ^
+get_buyer: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./disintar/sale-dapp/func/get_methods.func:73:32: warning: Local variable 'nft_address' is not used
+              cell price_config) = load_data();
+                                 ^
+get_buyer: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./disintar/sale-dapp/func/get_methods.func:73:32: warning: Local variable 'deployer_address' is not used
+              cell price_config) = load_data();
+                                 ^
+get_buyer: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./disintar/sale-dapp/func/get_methods.func:73:32: warning: Local variable 'sell_config' is not used
+              cell price_config) = load_data();
+                                 ^
+get_buyer: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./disintar/sale-dapp/func/get_methods.func:73:32: warning: Local variable 'price_config' is not used
+              cell price_config) = load_data();
+                                 ^
+get_sale_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./disintar/sale-dapp/func/get_methods.func:22:32: warning: Local variable 'mode' is not used
+              cell price_config) = load_data();
+                                 ^
+get_sale_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./disintar/sale-dapp/func/get_methods.func:22:32: warning: Local variable 'buyer' is not used
+              cell price_config) = load_data();
+                                 ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./disintar/sale-dapp/func/contract.func:100:22: warning: Local variable 'query_id' is not used
+          int query_id = in_msg_body~load_uint(64);
+                       ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./disintar/sale-dapp/func/contract.func:222:50: warning: Local variable 'jetton_master' is not used
+                              slice jetton_master) = parse_price_config(price_config);
+                                                   ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./disintar/sale-dapp/func/contract.func:358:46: warning: Local variable 'query_id' is not used
+                                  int query_id = in_msg_body~load_uint(64);
+                                               ^
+send_money_or_jettons_back_op: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./disintar/sale-dapp/func/messages.func:121:22: warning: Local variable 'query_id' is not used
+          int query_id = in_msg_body~load_uint(32);
+                       ^
+parse_in_msg: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./disintar/sale-dapp/func/contract.func:30:21: warning: Lack of end_parse.
+      int fwd_fee = cs~load_coins(); ;; we use message fwd_fee for estimation of forward_payload costs
+                      ^
+parse_in_msg: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./disintar/sale-dapp/func/contract.func:22:15: warning: Local variable 'flags' is not used
+      int flags = cs~load_uint(4);
+                ^

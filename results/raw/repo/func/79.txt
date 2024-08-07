@@ -1,0 +1,12 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/contract-verifier-contracts/contracts/sources-registry-only-set-code.fc:21:28: warning: Lack of end_parse.
+    slice sender_address = cs~load_msg_addr();
+                             ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/contract-verifier-contracts/contracts/sources-registry-only-set-code.fc:21:24: warning: Local variable 'sender_address' is not used
+    slice sender_address = cs~load_msg_addr();
+                         ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/contract-verifier-contracts/contracts/sources-registry-only-set-code.fc:24:16: warning: Local variable 'query_id' is not used
+    int query_id = in_msg_body~load_uint(64);
+                 ^

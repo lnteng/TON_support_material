@@ -1,0 +1,132 @@
+#include "imports/stdlib.fc";
+
+forall X -> tuple set_at(tuple t, X value, int index) asm "SETINDEXVAR";
+forall X -> (tuple, ()) ~set_at(tuple t, X value, int index) asm "SETINDEXVAR";
+(cell, (slice, int, int)) udict_rem_min(cell dict, int key_len) asm "DICTUREMMIN";
+
+() recv_internal() impure {
+    
+}
+
+(cell, tuple) push(int x, cell unvis, tuple info, int i, int j, int key, int ni, int nj) inline {
+    if (x == "X"u) {
+        key += 28629151;
+    } elseif (x == "?"u) {
+        key += 923521;
+    }
+    int oldkey = info.at(ni).at(nj).at(0);
+    if (key < oldkey) {
+        unvis~udict_delete?(30, oldkey);
+        unvis~udict_set_builder(30, key, begin_cell());
+        info~set_at(info.at(ni).set_at(triple(key, i, j), nj), ni);
+    }
+    return (unvis, info);
+}
+
+forall X -> tuple init_tuple(X x, int n) asm """
+    DUP DEC REPEAT:<{ s1 PUSH SWAP }>
+    TUPLEVAR
+""";
+
+(int, int, int, tuple) solve(int n, int m, tuple maze) method_id {
+    ;;set_gas_limit(10000000000);
+    tuple info = init_tuple(init_tuple(single(887503681), m), n);
+    cell unvis = new_dict();
+    int si = 0;
+    int sj = 0;
+    int i = n - 1;
+    while (i >= 0) {
+        tuple maze_row = maze.at(i);
+        int j = m - 1;
+        while (j >= 0) {
+            int x = maze_row.at(j);
+            if (x == "E"u) {
+                si = i;
+                sj = j;
+                unvis~udict_set_builder(30, i * 31 + j, begin_cell());
+                info~set_at(info.at(i).set_at(single(0), j), i);
+                i = -1;
+                j = -1;
+            }
+            j -= 1;
+        }
+        i -= 1;
+    }
+    
+    n -= 1;
+    m -= 1;
+    int i = 0;
+    int j = 0;
+    do {
+        (_, int key, _) = unvis~udict_rem_min(30);
+        (i, j) = divmod(key, 31);
+        i %= 31;
+        key += 961;
+
+        int j-1 = j - 1;
+        int j+1 = j + 1;
+        int j>0 = j > 0;
+        int j<m = j < m;
+
+        tuple maze_row = maze.at(i);
+        if (j>0) {
+            (unvis, info) = push(maze_row.at(j-1), unvis, info, i, j, key - 1, i, j-1);
+            if (j<m) {
+                (unvis, info) = push(maze_row.at(j+1), unvis, info, i, j, key + 1, i, j+1);
+            }
+        } else {
+            (unvis, info) = push(maze_row.at(j+1), unvis, info, i, j, key + 1, i, j+1);
+        }
+        if (i > 0) {
+            int ni = i - 1;
+            int nkey = key - 31;
+            tuple maze_row = maze.at(ni);
+            (unvis, info) = push(maze_row.at(j), unvis, info, i, j, nkey, ni, j);
+            if (j>0) {
+                (unvis, info) = push(maze_row.at(j-1), unvis, info, i, j, nkey - 1, ni, j-1);
+                if (j<m) {
+                    (unvis, info) = push(maze_row.at(j+1), unvis, info, i, j, nkey + 1, ni, j+1);
+                }
+            } else {
+                (unvis, info) = push(maze_row.at(j+1), unvis, info, i, j, nkey + 1, ni, j+1);
+            }
+            if (i < n) {
+                int ni = i + 1;
+                int nkey = key + 31;
+                tuple maze_row = maze.at(ni);
+                (unvis, info) = push(maze_row.at(j), unvis, info, i, j, nkey, ni, j);
+                if (j>0) {
+                    (unvis, info) = push(maze_row.at(j-1), unvis, info, i, j, nkey - 1, ni, j-1);
+                    if (j<m) {
+                        (unvis, info) = push(maze_row.at(j+1), unvis, info, i, j, nkey + 1, ni, j+1);
+                    }
+                } else {
+                    (unvis, info) = push(maze_row.at(j+1), unvis, info, i, j, nkey + 1, ni, j+1);
+                }
+            }
+        } else {
+            int ni = i + 1;
+            int nkey = key + 31;
+            tuple maze_row = maze.at(ni);
+            (unvis, info) = push(maze_row.at(j), unvis, info, i, j, nkey, ni, j);
+            if (j>0) {
+                (unvis, info) = push(maze_row.at(j-1), unvis, info, i, j, nkey - 1, ni, j-1);
+                if (j<m) {
+                    (unvis, info) = push(maze_row.at(j+1), unvis, info, i, j, nkey + 1, ni, j+1);
+                }
+            } else {
+                (unvis, info) = push(maze_row.at(j+1), unvis, info, i, j, nkey + 1, ni, j+1);
+            }
+        }
+    } until (maze.at(i).at(j) == "S"u);
+
+    (int key, i, j) = info.at(i).at(j).untriple();
+    key /= 961;
+    
+    while (maze.at(i).at(j) != "E"u) {
+        maze~set_at(maze.at(i).set_at("!"u, j), i);
+        (_, i, j) = info.at(i).at(j).untriple();
+    };
+
+    return (key / 29791, key / 961 % 31, key % 961, maze);
+}

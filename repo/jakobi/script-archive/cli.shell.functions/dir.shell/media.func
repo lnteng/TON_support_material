@@ -1,0 +1,47 @@
+# created     PJ 200907XX jakobi@acm.org
+# copyright:  (c) 2009 jakobi@acm.org, GPL v3 or later
+# archive:    http://jakobi.github.com/script-archive-doc/
+
+export AUDIODEVICE XV MUSICHOME
+
+AUDIODEVICE=pulse
+
+function say {
+   if [ "$1" != "" -a "$1" != "-" -a "$1" != "--" ]; then
+      echo "$@" | festival --tts
+   else
+      festival --tts "$@"
+   fi
+}
+
+# XV - its about time to avoid this proggy...
+# N:   on save reduced image, consider removing the 
+#      save-normal-size-flag set in Xdefaults
+#XV=${XV:--geometry 1000x1000 -fixed}# max size, but always scales
+XV=${XV:--expand .5}                 # just half the size for now
+function xv {
+   if [ "$1" == "test" ]; then
+      # monitor test image
+      /usr/local/bin/xv            ~/images/l46a1024.bmp
+      /usr/local/bin/xv -rotate 90 ~/images/l46a1024.bmp
+   else
+      /usr/local/bin/xv $XV "${1:+$@}";
+   fi
+}
+
+function gwenview {
+   # KDE4 gwenview is still a bit crippled wrt KDE3, plus I've crashes
+   # (at least repeatable within a few to several dozen pic views
+   #  when used from Gnome)
+   # set pwd as default param AND avoid an aborted gwenview killing the tty
+   
+   #nohup \gwenview "${@:-$PWD}" </dev/null >/dev/null 2>&1 &
+
+   # to test: 
+   nohup \gthumb "${@:-$PWD}"    </dev/null >/dev/null 2>&1 &
+   #nohup \gqview                </dev/null >/dev/null 2>&1 &
+   echo to test: gqview, gthumb
+}
+
+
+# vim:filetype=sh

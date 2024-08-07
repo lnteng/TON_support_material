@@ -1,0 +1,32 @@
+initialize_globals: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/DEX-TON-contracts/contracts/func/exchange/globals.func:48:29: warning: Lack of end_parse.
+    block_timestamp_last = ds2~load_int(40);
+                              ^
+initialize_globals: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/DEX-TON-contracts/contracts/func/exchange/globals.func:43:20: warning: Lack of end_parse.
+    lp_meta_data = ds~load_ref();
+                     ^
+get_gas_limits_prices: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/DEX-TON-contracts/contracts/func/exchange/fee-calculation.func:56:26: warning: Lack of end_parse.
+    return gas_price_config~load_gas_limits_prices();
+                           ^
+accumulate_price: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/DEX-TON-contracts/contracts/func/exchange/utils.func:61:74: warning: PressionLoss
+      price0_cumulative_last += (ton_reserve * 1000000000 / jetton_reserve * time_elapsed);
+                                                                           ^
+accumulate_price: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/DEX-TON-contracts/contracts/func/exchange/utils.func:62:74: warning: PressionLoss
+      price1_cumulative_last += (jetton_reserve * 1000000000 / ton_reserve * time_elapsed);
+                                                                           ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/DEX-TON-contracts/contracts/func/exchange/main.func:17:19: warning: Lack of end_parse.
+    int fwd_fee = cs~load_coins();
+                    ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/DEX-TON-contracts/contracts/func/exchange/main.func:37:44: warning: Lack of end_parse.
+        slice payload = payload.preload_ref().begin_parse();
+                                             ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/DEX-TON-contracts/contracts/func/exchange/main.func:37:21: warning: Local variable 'payload' is not used
+        slice payload = payload.preload_ref().begin_parse();
+                      ^

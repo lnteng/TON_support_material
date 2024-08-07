@@ -1,0 +1,20 @@
+"Asm.fif" include
+// automatically generated from `./contracts/3.fc` 
+PROGRAM{
+  DECLPROC recv_internal
+  124428 DECLMETHOD find_and_replace
+  recv_internal PROC:<{
+    // 
+  }>
+  find_and_replace PROCINLINE:<{
+    //  flag value linked_list
+    2 1 BLKDROP2	//  linked_list
+    CTOS	//  _5
+    LDREF	//  cc ss
+    SWAP	//  ss cc
+    HASHCU	//  ss _7
+    0 EQINT	//  ss _9
+    IF:<{	//  ss
+    }>	//  ss
+  }>
+}END>c

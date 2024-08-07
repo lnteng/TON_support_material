@@ -1,0 +1,28 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/dao/source/dao.fc:6:22: warning: Lack of end_parse.
+      slice s_addr = cs~load_msg_addr();
+                       ^
+register_vote: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/dao/source/modules/model.fc:70:22: warning: Local variable 'vs' is not used
+      var (vs, vfound) = ctx_proposal_votes.udict_get?(256, member);
+                       ^
+execute_proposal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/dao/source/modules/proposals-execute.fc:79:27: warning: Lack of end_parse.
+              set_c3(newCode.begin_parse().bless());
+                            ^
+load_proposal_cost: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/dao/source/modules/storage-params.fc:47:14: warning: Lack of end_parse.
+      return cs~load_coins();
+               ^
+load_metadata: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/dao/source/modules/storage-params.fc:93:18: warning: Lack of end_parse.
+          return cs~load_ref();
+                   ^
+load_total_shares_number: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/dao/source/modules/storage-params.fc:57:23: warning: Lack of end_parse.
+      var allocated = cs~load_coins(); ;; Check allocated
+                        ^
+load_voting_params: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-community/dao/source/modules/storage-params.fc:76:21: warning: Lack of end_parse.
+      var failure = cs~load_coins();
+                      ^

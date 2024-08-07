@@ -1,0 +1,56 @@
+get_nft_content: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/nft-collection.fc:249:30: warning: Lack of end_parse.
+      slice common_content = cs~load_ref().begin_parse();
+                               ^
+royalty_params: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/nft-collection.fc:242:51: warning: Lack of end_parse.
+      return (rs~load_uint(16), rs~load_uint(16), rs~load_msg_addr());
+                                                    ^
+user_counter: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/nft-collection.fc:228:35: warning: Lack of end_parse.
+      cell mint_history = data_tuple~load_dict();
+                                    ^
+user_counter: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/nft-collection.fc:229:34: warning: Local variable 'payload' is not used
+      (slice payload, int success) = mint_history.udict_get?(256, slice_hash(sender_address));
+                                   ^
+get_type_limit: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/nft-collection.fc:216:38: warning: Lack of end_parse.
+      (slice payload, int success) = cs~load_dict().udict_get?(64, index);
+                                       ^
+get_collection_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/nft-collection.fc:209:32: warning: Lack of end_parse.
+      return (next_item_index, cs~load_ref(), owner_address);
+                                 ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/nft-collection.fc:26:23: warning: Lack of end_parse.
+                      ds~load_msg_addr() ;; ERA Address
+                        ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/nft-collection.fc:125:35: warning: Lack of end_parse.
+      cell mint_history = data_tuple~load_dict();
+                                    ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/nft-collection.fc:115:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/nft-collection.fc:138:34: warning: Local variable 'sender_origin_wallet' is not used
+          var sender_origin_wallet = in_msg_body~load_msg_addr(); ;; whose wallet transferred
+                                   ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/nft-collection.fc:144:40: warning: Local variable 'item_index' is not used
+              var (item_index, item, f?) = deploy_list~udict::delete_get_min(64);
+                                         ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/nft-collection.fc:162:38: warning: Local variable 'payload' is not used
+          (slice payload, int success) = mint_history.udict_get?(256, slice_hash(sender_address));
+                                       ^
+deploy_nft_item: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/nft-collection.fc:81:61: warning: Lack of end_parse.
+                              .store_slice(address_owner_slice~load_msg_addr())
+                                                              ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./oxydev/histopia-ton-contracts/contracts/nft-collection.fc:198:44: warning: UnHandle bounced message with op: 0xf8a7ea5
+          send_raw_message(msg.end_cell(), 1); ;; paying fees, revert on errors
+                                             ^

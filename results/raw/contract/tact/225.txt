@@ -1,0 +1,47 @@
+$MeetTon$_internal_text_bcfaf776907c719cc8d379d8f194aaaa27e8ca2871cd591781721f215a454501: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDsJ8MzeIJFWVYcJZr4BGrXM06k2ngJQNj2_6oPrJtAn6dE/output/verifier_MeetTon.code.fc:151:66: warning: Local variable '$self'stopped' is not used
+      ($self'owner, $self'stopped, $self'payments, $self'arrLength)~$MeetTon$_fun_requireNotStopped();
+                                                                   ^
+$MeetTon$_internal_text_6c8f44f45fedb4cdfed4de8db14aa5b13ad55d430f759d0669210b74c48fe3df: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDsJ8MzeIJFWVYcJZr4BGrXM06k2ngJQNj2_6oPrJtAn6dE/output/verifier_MeetTon.code.fc:142:66: warning: Local variable '$self'stopped' is not used
+      ($self'owner, $self'stopped, $self'payments, $self'arrLength)~$MeetTon$_fun_requireStopped();
+                                                                   ^
+$MeetTon$_internal_text_0c1cd7659460b0f81b94237cd5ffc13a4fb58ea689b2815de74dd3770646a4ea: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDsJ8MzeIJFWVYcJZr4BGrXM06k2ngJQNj2_6oPrJtAn6dE/output/verifier_MeetTon.code.fc:117:66: warning: Local variable '$self'payments' is not used
+      ($self'owner, $self'stopped, $self'payments, $self'arrLength)~$MeetTon$_fun_requireOwner();
+                                                                   ^
+$MeetTon$_internal_text_0c1cd7659460b0f81b94237cd5ffc13a4fb58ea689b2815de74dd3770646a4ea: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDsJ8MzeIJFWVYcJZr4BGrXM06k2ngJQNj2_6oPrJtAn6dE/output/verifier_MeetTon.code.fc:117:66: warning: Local variable '$self'arrLength' is not used
+      ($self'owner, $self'stopped, $self'payments, $self'arrLength)~$MeetTon$_fun_requireOwner();
+                                                                   ^
+$Payment$_load_opt: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDsJ8MzeIJFWVYcJZr4BGrXM06k2ngJQNj2_6oPrJtAn6dE/output/verifier_MeetTon.storage.fc:169:36: warning: Lack of end_parse.
+      return $Payment$_as_optional(sc~$Payment$_load());
+                                     ^
+__tact_dict_set_int_cell: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDsJ8MzeIJFWVYcJZr4BGrXM06k2ngJQNj2_6oPrJtAn6dE/output/verifier_MeetTon.stdlib.fc:45:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+$MeetTon$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDsJ8MzeIJFWVYcJZr4BGrXM06k2ngJQNj2_6oPrJtAn6dE/output/verifier_MeetTon.code.fc:15:73: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'stopped, $self'payments, $self'arrLength)) = (null(), null(), null(), 0);
+                                                                          ^
+$MeetTon$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDsJ8MzeIJFWVYcJZr4BGrXM06k2ngJQNj2_6oPrJtAn6dE/output/verifier_MeetTon.code.fc:15:73: warning: Local variable '$self'stopped' is not used
+      var (($self'owner, $self'stopped, $self'payments, $self'arrLength)) = (null(), null(), null(), 0);
+                                                                          ^
+$MeetTon$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDsJ8MzeIJFWVYcJZr4BGrXM06k2ngJQNj2_6oPrJtAn6dE/output/verifier_MeetTon.storage.fc:239:19: warning: Lack of end_parse.
+          return $sc~$MeetTon$_load();
+                    ^
+$MeetTon$_internal_binary_Clear: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDsJ8MzeIJFWVYcJZr4BGrXM06k2ngJQNj2_6oPrJtAn6dE/output/verifier_MeetTon.code.fc:108:66: warning: Local variable '$self'payments' is not used
+      ($self'owner, $self'stopped, $self'payments, $self'arrLength)~$MeetTon$_fun_requireOwner();
+                                                                   ^
+$MeetTon$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDsJ8MzeIJFWVYcJZr4BGrXM06k2ngJQNj2_6oPrJtAn6dE/output/verifier_MeetTon.code.fc:222:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDsJ8MzeIJFWVYcJZr4BGrXM06k2ngJQNj2_6oPrJtAn6dE/output/verifier_MeetTon.storage.fc:248:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

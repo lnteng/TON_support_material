@@ -1,0 +1,35 @@
+$HashedTimeLockTON$_internal_binary_Create: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQASOgImO9tNRardxHOK0tQh8MzbNnKL8UveGcl1yPNP-_3M/output/sample_HashedTimeLockTON.code.fc:41:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$HashedTimeLockTON$_internal_binary_Create: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQASOgImO9tNRardxHOK0tQh8MzbNnKL8UveGcl1yPNP-_3M/output/sample_HashedTimeLockTON.code.fc:41:59: warning: Local variable '$ctx'sender' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$HashedTimeLockTON$_internal_binary_Create: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQASOgImO9tNRardxHOK0tQh8MzbNnKL8UveGcl1yPNP-_3M/output/sample_HashedTimeLockTON.code.fc:41:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$HashedTimeLockTON$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQASOgImO9tNRardxHOK0tQh8MzbNnKL8UveGcl1yPNP-_3M/output/sample_HashedTimeLockTON.storage.fc:215:19: warning: Lack of end_parse.
+          return $sc~$HashedTimeLockTON$_load();
+                    ^
+$HTLC$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQASOgImO9tNRardxHOK0tQh8MzbNnKL8UveGcl1yPNP-_3M/output/sample_HashedTimeLockTON.storage.fc:72:26: warning: Lack of end_parse.
+      var v'refunded = sc_1~load_int(1);
+                           ^
+$HTLC$_load_opt: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQASOgImO9tNRardxHOK0tQh8MzbNnKL8UveGcl1yPNP-_3M/output/sample_HashedTimeLockTON.storage.fc:86:33: warning: Lack of end_parse.
+      return $HTLC$_as_optional(sc~$HTLC$_load());
+                                  ^
+$TonTransferInitiated$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQASOgImO9tNRardxHOK0tQh8MzbNnKL8UveGcl1yPNP-_3M/output/sample_HashedTimeLockTON.storage.fc:131:49: warning: Lack of end_parse.
+      var v'__targetCurrencyReceiverAddress = sc_1~load_ref().begin_parse();
+                                                  ^
+$HashedTimeLockTON$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQASOgImO9tNRardxHOK0tQh8MzbNnKL8UveGcl1yPNP-_3M/output/sample_HashedTimeLockTON.code.fc:92:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQASOgImO9tNRardxHOK0tQh8MzbNnKL8UveGcl1yPNP-_3M/output/sample_HashedTimeLockTON.storage.fc:224:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

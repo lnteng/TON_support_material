@@ -1,0 +1,12 @@
+recv_external: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./adoriasoft/ton_payment_mixer/src/laundromat.fc:151:149: warning: Local variable 'is_successful' is not used
+      (int number_of_participants, int payment_amount, int inited, int money_available, int is_successful, cell pubkey_array, cell approve_addresses) = load_data();
+                                                                                                                                                      ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./adoriasoft/ton_payment_mixer/src/laundromat.fc:98:20: warning: Lack of end_parse.
+      slice addr = cs~load_msg_addr();
+                     ^
+gcd: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/repo/./adoriasoft/ton_payment_mixer/src/RSA.fc:21:25: warning: PressionLoss
+      return (y - (b / a) * x, x);
+                          ^

@@ -1,0 +1,199 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_SendCoins.headers.fc";
+#include "sample_SendCoins.stdlib.fc";
+#include "sample_SendCoins.constants.fc";
+#include "sample_SendCoins.storage.fc";
+
+;;
+;; Contract SendCoins functions
+;;
+
+(slice, int) $SendCoins$_contract_init() impure inline_ref {
+    var (($self'deployer, $self'val)) = (null(), null());
+    $self'val = 0;
+    $self'deployer = __tact_context_get_sender();
+    return ($self'deployer, $self'val);
+}
+
+((slice, int), slice) $SendCoins$_fun_balance((slice, int) $self) impure inline_ref {
+    var (($self'deployer, $self'val)) = $self;
+    return (($self'deployer, $self'val), $Int$_fun_toCoinsString(__tact_my_balance()));
+}
+
+;;
+;; Receivers of a Contract SendCoins
+;;
+
+(((slice, int)), ()) %$SendCoins$_internal_empty((slice, int) $self) impure inline {
+    var ($self'deployer, $self'val) = $self;
+    __tact_nop();
+    return (($self'deployer, $self'val), ());
+}
+
+((slice, int), ()) $SendCoins$_internal_text_c4f8d72312edfdef5b7bec7833bdbb162d1511bd78a912aed0f2637af65572ae((slice, int) $self) impure inline {
+    var ($self'deployer, $self'val) = $self;
+    __tact_nop();
+    $self'val = ($self'val + 1);
+    return (($self'deployer, $self'val), ());
+}
+
+((slice, int), ()) $SendCoins$_internal_text_fae3d18f63a30445aa23adf6a0384682eabd8c42d9ec05c9d7152e6a56752f18((slice, int) $self) impure inline {
+    var ($self'deployer, $self'val) = $self;
+    __tact_nop();
+    $self'val = ($self'val + 1);
+    ($self'deployer, $self'val)~$SendCoins$_fun_reply(__gen_cell_comment_7e196d99e1c915d9d659f2fe0802abc2a7fe38f8eb427644ac86838264432458());
+    return (($self'deployer, $self'val), ());
+}
+
+((slice, int), ()) $SendCoins$_internal_text_5092b5dce0715a57dd969f5fb5a6f93025a0b02eab329470ca2b365ca0d7e93a((slice, int) $self) impure inline {
+    var ($self'deployer, $self'val) = $self;
+    throw_unless(15509, ( __tact_slice_eq_bits($self'deployer, __tact_context_get_sender()) ));
+    $global_send($SendParameters$_constructor_to_bounce_value_mode(__tact_context_get_sender(), true, 0, (128 + 2)));
+    return (($self'deployer, $self'val), ());
+}
+
+((slice, int), ()) $SendCoins$_internal_text_beb2935a82089b154d32f99c4377aa960aa115366cc2c602755e36b97f505cec((slice, int) $self) impure inline {
+    var ($self'deployer, $self'val) = $self;
+    throw_unless(15509, ( __tact_slice_eq_bits($self'deployer, __tact_context_get_sender()) ));
+    $global_send($SendParameters$_constructor_to_bounce_value_mode(__tact_context_get_sender(), true, ((__tact_my_balance() - $Context$_get_value(__tact_context_get())) - 10000000), (64 + 2)));
+    return (($self'deployer, $self'val), ());
+}
+
+(((slice, int)), ()) $SendCoins$_internal_binary_Withdraw((slice, int) $self, (int) $msg) impure inline {
+    var ($self'deployer, $self'val) = $self;
+    var ($msg'amount) = $msg;
+    throw_unless(15509, ( __tact_slice_eq_bits($self'deployer, __tact_context_get_sender()) ));
+    int $amount = min($msg'amount, ((__tact_my_balance() - $Context$_get_value(__tact_context_get())) - 10000000));
+    throw_unless(54615, ($amount > 0));
+    $global_send($SendParameters$_constructor_to_bounce_value_mode(__tact_context_get_sender(), true, $amount, (64 + 2)));
+    return (($self'deployer, $self'val), ());
+}
+
+(((slice, int)), ()) $SendCoins$_internal_binary_Deploy((slice, int) $self, (int) $deploy) impure inline {
+    var ($self'deployer, $self'val) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'deployer, $self'val)~$SendCoins$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'deployer, $self'val), ());
+}
+
+;;
+;; Get methods of a Contract SendCoins
+;;
+
+_ %balance() method_id(104128) {
+    var self = $SendCoins$_contract_load();
+    var res = self~$SendCoins$_fun_balance();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmPA3shH1i5A7wfBguniZD6ZZBj2Ly5EEZDsZ8zE4ZKqNG";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract SendCoins
+;;
+
+((slice, int), int) $SendCoins$_contract_router_internal((slice, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive empty message
+    if ((op == 0) & (slice_bits(in_msg) <= 32)) {
+        self~%$SendCoins$_internal_empty();
+        return (self, true);
+    }
+    
+    ;; Receive Withdraw message
+    if (op == 195467089) {
+        var msg = in_msg~$Withdraw$_load();
+        self~$SendCoins$_internal_binary_Withdraw(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$SendCoins$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "increment" message
+        if (text_op == 0xc4f8d72312edfdef5b7bec7833bdbb162d1511bd78a912aed0f2637af65572ae) {
+            self~$SendCoins$_internal_text_c4f8d72312edfdef5b7bec7833bdbb162d1511bd78a912aed0f2637af65572ae();
+            return (self, true);
+        }
+        
+        ;; Receive "refunding increment" message
+        if (text_op == 0xfae3d18f63a30445aa23adf6a0384682eabd8c42d9ec05c9d7152e6a56752f18) {
+            self~$SendCoins$_internal_text_fae3d18f63a30445aa23adf6a0384682eabd8c42d9ec05c9d7152e6a56752f18();
+            return (self, true);
+        }
+        
+        ;; Receive "withdraw all" message
+        if (text_op == 0x5092b5dce0715a57dd969f5fb5a6f93025a0b02eab329470ca2b365ca0d7e93a) {
+            self~$SendCoins$_internal_text_5092b5dce0715a57dd969f5fb5a6f93025a0b02eab329470ca2b365ca0d7e93a();
+            return (self, true);
+        }
+        
+        ;; Receive "withdraw safe" message
+        if (text_op == 0xbeb2935a82089b154d32f99c4377aa960aa115366cc2c602755e36b97f505cec) {
+            self~$SendCoins$_internal_text_beb2935a82089b154d32f99c4377aa960aa115366cc2c602755e36b97f505cec();
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $SendCoins$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$SendCoins$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $SendCoins$_contract_store(self);
+}

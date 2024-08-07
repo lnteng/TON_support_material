@@ -1,0 +1,27 @@
+$NftItem$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/Tact-NFT-Contract/contracts/output/nft_item_NftItem.storage.fc:115:19: warning: Lack of end_parse.
+          return $sc~$NftItem$_load();
+                    ^
+$NftItem$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/Tact-NFT-Contract/contracts/output/nft_item_NftItem.code.fc:14:95: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'collection_address, $self'item_index, $self'individual_content)) = (null(), null(), null(), null());
+                                                                                                ^
+$NftItem$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/Tact-NFT-Contract/contracts/output/nft_item_NftItem.code.fc:14:95: warning: Local variable '$self'collection_address' is not used
+      var (($self'owner, $self'collection_address, $self'item_index, $self'individual_content)) = (null(), null(), null(), null());
+                                                                                                ^
+$NftItem$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/Tact-NFT-Contract/contracts/output/nft_item_NftItem.code.fc:14:95: warning: Local variable '$self'item_index' is not used
+      var (($self'owner, $self'collection_address, $self'item_index, $self'individual_content)) = (null(), null(), null(), null());
+                                                                                                ^
+$NftItem$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/Tact-NFT-Contract/contracts/output/nft_item_NftItem.code.fc:14:95: warning: Local variable '$self'individual_content' is not used
+      var (($self'owner, $self'collection_address, $self'item_index, $self'individual_content)) = (null(), null(), null(), null());
+                                                                                                ^
+$NftItem$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/Tact-NFT-Contract/contracts/output/nft_item_NftItem.code.fc:88:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/Tact-NFT-Contract/contracts/output/nft_item_NftItem.storage.fc:126:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

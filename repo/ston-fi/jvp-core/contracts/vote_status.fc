@@ -1,0 +1,99 @@
+#pragma version >=0.2.0;
+
+#include "common/stdlib.fc";
+#include "common/stdlib-pp.fc";
+#include "common/messages.fc";
+#include "common/reserves.fc"; 
+#include "common/utils.fc";
+#include "common/errors.fc";
+#include "common/params.fc";
+#include "common/op.fc";
+
+#include "vote_status/globals.fc";
+#include "vote_status/storage.fc";
+#include "vote_status/get.fc";
+
+
+() recv_internal(int my_balance, int msg_value, cell in_msg_full, slice in_msg_body) impure {
+    if in_msg_body.slice_empty?() { ;; ignore empty messages
+        return ();
+    }
+    slice cs = in_msg_full.begin_parse();
+    int flags = cs~load_uint(4);
+
+    if flags & 1 {
+        return ();
+    }
+
+    load_storage();
+
+    ctx::sender_address = cs~load_msg_addr();
+
+    ;; gas is checked on register
+
+    (int op, int query_id) = (in_msg_body~load_uint(32), in_msg_body~load_uint(64));
+
+    if (op == op::reset_gas) {
+        throw_unless(error::invalid_caller, equal_slices(ctx::sender_address, storage::voter_address));
+        raw_reserve(MIN_TON_VOTE_STATUS, RESERVE_EXACTLY);
+        send_empty_message(0, ctx::sender_address, CARRY_ALL_BALANCE | IGNORE_ERRORS);
+        return ();
+    }
+
+    if (op == op::verify_vote) {
+        ;; check if caller is vote storage
+        throw_unless(error::invalid_caller, equal_slices(ctx::sender_address, storage::vote_storage_address));
+
+        int positive_vote = in_msg_body~load_uint(1);
+        int negative_vote = in_msg_body~load_uint(1);
+        
+        ;; cannot call with the same vote already on storage
+        ;; send gas back to user
+        if ((positive_vote == storage::positive_vote) & (negative_vote == storage::negative_vote)) {
+            send_empty_message(0, storage::voter_address, CARRY_REMAINING_GAS | IGNORE_ERRORS);
+            return ();
+        }
+
+        ;; can be -1, 0 or 1
+        ;; -1 is used for vote change
+        int positive_add = 0;
+        int negative_add = 0;
+
+        ;; vote change
+        if (storage::positive_vote) {
+            ;; change vote from positive to negative or reset
+            positive_add = -1;
+            negative_add = negative_vote;
+            storage::positive_vote = 0;
+            storage::negative_vote = negative_vote;
+        } elseif (storage::negative_vote) {
+            ;; change vote from negative to positive or reset
+            positive_add = positive_vote;
+            negative_add = -1;
+            storage::positive_vote = positive_vote;
+            storage::negative_vote = 0;
+        } elseif ((~ storage::positive_vote) & (~ storage::negative_vote)) {
+            ;; if both vote values on storage are 0
+            positive_add = positive_vote;
+            negative_add = negative_vote;
+            storage::positive_vote = positive_vote;
+            storage::negative_vote = negative_vote;
+        }
+
+        cell msg_body = begin_cell()
+            .store_uint(op::add_vote, 32)
+            .store_uint(query_id, 64)
+            .store_slice(storage::voter_address)
+            .store_int(positive_add, 2)
+            .store_int(negative_add, 2)
+        .end_cell();
+
+        raw_reserve(max(my_balance - msg_value, MIN_TON_VOTE_STATUS), RESERVE_EXACTLY);
+        send_simple_message(0, storage::vote_storage_address, msg_body, CARRY_ALL_BALANCE);
+
+        save_storage();
+        return ();
+    }
+
+    throw(error::wrong_op);
+}

@@ -1,0 +1,12 @@
+recv_external: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./yungwine/tondevstudy-pyton-first/lesson_1/counter.fc:55:18: warning: Local variable 'query_id' is not used
+      int query_id = in_msg_body~load_uint(64);
+                   ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./yungwine/tondevstudy-pyton-first/lesson_1/counter.fc:33:19: warning: Lack of end_parse.
+      int flags = cs~load_uint(4);
+                    ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./yungwine/tondevstudy-pyton-first/lesson_1/counter.fc:41:18: warning: Local variable 'query_id' is not used
+      int query_id = in_msg_body~load_uint(64);
+                   ^

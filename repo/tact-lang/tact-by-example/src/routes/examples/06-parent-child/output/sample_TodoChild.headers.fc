@@ -1,0 +1,25 @@
+;;
+;; Header files for TodoChild
+;; NOTE: declarations are sorted for optimal order
+;;
+
+;; __tact_verify_address
+slice __tact_verify_address(slice address) inline;
+
+;; $TodoChild$_store
+builder $TodoChild$_store(builder build_0, (int) v) inline;
+
+;; $TodoChild$_load
+(slice, ((int))) $TodoChild$_load(slice sc_0) inline;
+
+;; $TodoChild$init$_load
+(slice, ((int))) $TodoChild$init$_load(slice sc_0) inline;
+
+;; $TodoChild$_contract_init
+(int) $TodoChild$_contract_init(int $seqno) impure inline_ref;
+
+;; $TodoChild$_contract_load
+(int) $TodoChild$_contract_load() impure inline_ref;
+
+;; $TodoChild$_contract_store
+() $TodoChild$_contract_store((int) v) impure inline;

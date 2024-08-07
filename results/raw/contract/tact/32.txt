@@ -1,0 +1,95 @@
+$WitnessConsensus$_internal_text_bcfaf776907c719cc8d379d8f194aaaa27e8ca2871cd591781721f215a454501: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_WitnessConsensus.code.fc:318:286: warning: Local variable '$self'stopped' is not used
+  ... lf'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)~$WitnessConsensus$_fun_requireNotStopped();
+  ...                                                                                                     ^
+$WitnessConsensus$_internal_binary_SetRoundReward: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_WitnessConsensus.code.fc:110:286: warning: Local variable '$self'roundReward' is not used
+  ... lf'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)~$WitnessConsensus$_fun_requireOwner();
+  ...                                                                                                     ^
+$WitnessConsensus$_internal_text_6c8f44f45fedb4cdfed4de8db14aa5b13ad55d430f759d0669210b74c48fe3df: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_WitnessConsensus.code.fc:309:286: warning: Local variable '$self'stopped' is not used
+  ... lf'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)~$WitnessConsensus$_fun_requireStopped();
+  ...                                                                                                     ^
+$WitnessConsensus$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_WitnessConsensus.storage.fc:387:25: warning: Lack of end_parse.
+      var v'version = sc_2~load_int(257);
+                          ^
+$WitnessConsensus$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_WitnessConsensus.storage.fc:382:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+$VotingRound$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_WitnessConsensus.storage.fc:327:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+__tact_dict_set_slice_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_WitnessConsensus.stdlib.fc:79:21: warning: Local variable 'ok' is not used
+          var (r, ok) = __tact_dict_delete(d, kl, k);
+                      ^
+$WitnessConsensus$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_WitnessConsensus.storage.fc:401:19: warning: Lack of end_parse.
+          return $sc~$WitnessConsensus$_load();
+                    ^
+$InternalFinalized$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_WitnessConsensus.storage.fc:274:38: warning: Lack of end_parse.
+      var v'badParticipantsVotes = sc_1~load_dict();
+                                       ^
+$WitnessConsensus$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_WitnessConsensus.code.fc:15:293: warning: Local variable '$self'owner' is not used
+  ... 'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$WitnessConsensus$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_WitnessConsensus.code.fc:15:293: warning: Local variable '$self'stopped' is not used
+  ... 'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$WitnessConsensus$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_WitnessConsensus.code.fc:15:293: warning: Local variable '$self'genesisTimestamp' is not used
+  ... 'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$WitnessConsensus$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_WitnessConsensus.code.fc:15:293: warning: Local variable '$self'roundPeriod' is not used
+  ... 'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$WitnessConsensus$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_WitnessConsensus.code.fc:15:293: warning: Local variable '$self'minStake' is not used
+  ... 'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$WitnessConsensus$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_WitnessConsensus.code.fc:15:293: warning: Local variable '$self'stakeFreezeTime' is not used
+  ... 'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$WitnessConsensus$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_WitnessConsensus.code.fc:15:293: warning: Local variable '$self'minVotesForQuorum' is not used
+  ... 'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$WitnessConsensus$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_WitnessConsensus.code.fc:15:293: warning: Local variable '$self'openedRound' is not used
+  ... 'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$WitnessConsensus$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_WitnessConsensus.code.fc:15:293: warning: Local variable '$self'rewardsBudget' is not used
+  ... 'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$WitnessConsensus$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_WitnessConsensus.code.fc:15:293: warning: Local variable '$self'roundReward' is not used
+  ... 'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$WitnessConsensus$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_WitnessConsensus.code.fc:15:293: warning: Local variable '$self'version' is not used
+  ... 'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+  ...                                                                                                     ^
+$WitnessConsensus$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_WitnessConsensus.code.fc:399:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_WitnessConsensus.storage.fc:412:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$WitnessConsensus$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_WitnessConsensus.code.fc:285:276: warning: UnHandle bounced message with op: 0x77bab779
+  ... alVote'payload, $internalVote'participant, $internalVote'guard, $internalVote'votes)), 0, (64 + 2)));
+  ...                                                                                                     ^
+$WitnessConsensus$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAi6IHEUQNaERlZAFp1b2A0X7E8mb9NwPb5ASfRBrBw6ZLV/output/sample_WitnessConsensus.code.fc:199:234: warning: UnHandle bounced message with op: 0xf5d995b6
+  ... $_store_cell($InternalFinalize$_constructor_minVotes($self'minVotesForQuorum)), $rewards, (64 + 2)));
+  ...                                                                                                     ^

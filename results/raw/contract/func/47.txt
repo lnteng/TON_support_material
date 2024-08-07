@@ -1,0 +1,28 @@
+processed?: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC3Z3WPkGDOLau772abzVhSVVpNMX7ZrWfZsHLt9OBxFund/multisig-wallet.fc:259:28: warning: Local variable 'cs' is not used
+      (slice cs, var found?) = storage::pending_queries.udict_get?(64, query_id);
+                             ^
+recv_external: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC3Z3WPkGDOLau772abzVhSVVpNMX7ZrWfZsHLt9OBxFund/multisig-wallet.fc:229:31: warning: Local variable 'messages' is not used
+                  cell messages = query~load_ref();
+                                ^
+run_proposal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC3Z3WPkGDOLau772abzVhSVVpNMX7ZrWfZsHLt9OBxFund/multisig-wallet.fc:130:42: warning: Lack of end_parse.
+                  send_raw_message(messages~load_ref(), mode | 2);
+                                           ^
+run_proposal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC3Z3WPkGDOLau772abzVhSVVpNMX7ZrWfZsHLt9OBxFund/multisig-wallet.fc:118:50: warning: Lack of end_parse.
+                      storage::threshold = messages~load_coins();
+                                                   ^
+run_proposal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC3Z3WPkGDOLau772abzVhSVVpNMX7ZrWfZsHLt9OBxFund/multisig-wallet.fc:122:45: warning: Lack of end_parse.
+                      cell new_data = messages~load_ref();
+                                              ^
+_available?: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC3Z3WPkGDOLau772abzVhSVVpNMX7ZrWfZsHLt9OBxFund/multisig-wallet.fc:76:54: warning: Local variable 'index' is not used
+          (owners, int index, slice owner, int found?) = owners.udict_delete_get_min(256);
+                                                       ^
+calculate_score: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQC3Z3WPkGDOLau772abzVhSVVpNMX7ZrWfZsHLt9OBxFund/multisig-wallet.fc:58:39: warning: Local variable 'found?' is not used
+              (slice owner, int found?) = storage::owners.udict_get?(256, public_key);
+                                        ^

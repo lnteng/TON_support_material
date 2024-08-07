@@ -1,0 +1,19 @@
+__tact_string_builder_append: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/03-getters/output/sample_Getters.stdlib.fc:89:31: warning: Lack of end_parse.
+              sc = sc~load_ref().begin_parse();
+                                ^
+$Getters$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/03-getters/output/sample_Getters.code.fc:15:25: warning: Local variable '$self'count' is not used
+      var (($self'count)) = (null());
+                          ^
+$Getters$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/03-getters/output/sample_Getters.storage.fc:74:19: warning: Lack of end_parse.
+          return $sc~$Getters$_load();
+                    ^
+$Getters$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/03-getters/output/sample_Getters.code.fc:123:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/03-getters/output/sample_Getters.storage.fc:83:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

@@ -1,0 +1,26 @@
+$Counter$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson4/build/Counter/tact_Counter.storage.fc:102:19: warning: Lack of end_parse.
+          return $sc~$Counter$_load();
+                    ^
+$Counter$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson4/build/Counter/tact_Counter.code.fc:14:37: warning: Local variable '$self'id' is not used
+      var (($self'id, $self'counter)) = (null(), null());
+                                      ^
+$Counter$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson4/build/Counter/tact_Counter.code.fc:14:37: warning: Local variable '$self'counter' is not used
+      var (($self'id, $self'counter)) = (null(), null());
+                                      ^
+$Counter$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson4/build/Counter/tact_Counter.code.fc:84:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson4/build/Counter/tact_Counter.storage.fc:113:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Counter$_contract_store & $Counter$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson4/build/Counter/tact_Counter.storage.fc:98:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson4/build/Counter/tact_Counter.storage.fc:113:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

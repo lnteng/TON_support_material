@@ -1,0 +1,57 @@
+PROGRAM{
+  DECLPROC force_chain
+  DECLPROC __tact_verify_address
+  DECLPROC __tact_store_address
+  DECLPROC __gen_write_NftManager
+  DECLPROC $__gen_NftManager_init
+  107886 DECLMETHOD init
+  DECLPROC main
+  force_chain PROC:<{
+    REWRITESTDADDR
+    DROP
+    0 PUSHINT
+    EQUAL
+    333 THROWIFNOT
+  }>
+  __tact_verify_address PROCINLINE:<{
+    SBITS
+    267 PUSHINT
+    NEQ
+    136 THROWIFNOT
+  }>
+  __tact_store_address PROCINLINE:<{
+    STSLICER
+  }>
+  __gen_write_NftManager PROCINLINE:<{
+    s8 s7 XCHG2
+    __tact_store_address INLINECALLDICT
+    s1 s5 XCHG
+    STREF
+    s0 s3 XCHG2
+    __tact_store_address INLINECALLDICT
+    SWAP
+    STGRAMS
+    32 STU
+    32 STU
+    s1 s2 XCHG
+    32 STU
+    SWAP
+    __tact_store_address INLINECALLDICT
+  }>
+  $__gen_NftManager_init PROC:<{
+    s6 PUSH
+    s0 s8 XCHG
+    NEWC
+    STREF
+    s0 s8 XCHG
+    s0 s7 XCHG
+    5 2 BLKSWAP
+    __gen_write_NftManager INLINECALLDICT
+    ENDC
+  }>
+  init PROC:<{
+    $__gen_NftManager_init CALLDICT
+  }>
+  main PROC:<{
+  }>
+}END>c

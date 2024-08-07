@@ -1,0 +1,114 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_Main.headers.fc";
+#include "sample_Main.stdlib.fc";
+#include "sample_Main.storage.fc";
+
+;;
+;; Contract Main functions
+;;
+
+tuple $Main$_contract_init() impure inline_ref {
+    tuple $self = null();
+    return $self;
+}
+
+(tuple, slice) $Main$_fun_getInitAddress(tuple $self, slice $owner, slice $key) impure inline_ref {
+    var ($self) = $self;
+    var ($winit'code, $winit'data) = $Saver$_init_child(__tact_context_sys, my_address(), $owner, $key);
+    return ($self, $global_contractAddress(($winit'code, $winit'data)));
+}
+
+;;
+;; Receivers of a Contract Main
+;;
+
+((tuple), ()) $Main$_internal_binary_DataInput(tuple $self, (slice, slice) $msg) impure inline {
+    var $self = $self;
+    var ($msg'key, $msg'data) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    var ($winit'code, $winit'data) = $Saver$_init_child(__tact_context_sys, my_address(), $ctx'sender, $msg'key);
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body_code_data($global_contractAddress(($winit'code, $winit'data)), 0, false, 64, $Data$_store_cell($Data$_constructor_data($msg'data)), $winit'code, $winit'data));
+    return ($self, ());
+}
+
+;;
+;; Get methods of a Contract Main
+;;
+
+_ %getInitAddress(slice $$owner, slice $$key) method_id(119195) {
+    slice $owner = __tact_verify_address($$owner);
+    slice $key = $$key;
+    var self = $Main$_contract_load();
+    var res = self~$Main$_fun_getInitAddress($owner, $key);
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://Qmd1wUDC5no4Gc2i1qb5KT2bknWpsAwLHok2FvWTG8UM1V";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract Main
+;;
+
+(tuple, int) $Main$_contract_router_internal(tuple self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive DataInput message
+    if (op == 3684417297) {
+        var msg = in_msg~$DataInput$_load();
+        self~$Main$_internal_binary_DataInput(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $Main$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$Main$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $Main$_contract_store(self);
+}

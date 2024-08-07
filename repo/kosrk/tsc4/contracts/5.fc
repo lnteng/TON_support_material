@@ -1,0 +1,63 @@
+{-
+  TASK 5 - Fibonacci sequence
+  Implement a function that generates the Fibonacci
+  sequence from N to N+K terms (0<=N<=370; 0<=N+K<=371; 0<=K<=255).
+  The first two terms of the Fibonacci sequence are F_0 = 0 and F_1 = 1,
+  and the rest are defined as F_n = F_(n-1) + F_(n-2).
+  The resulting Fibonacci sequence should be stored in a tuple.
+  For example, a request with N = 1 and K = 3 should return a tuple [1, 1, 2],
+  and a request with N = 201 and K = 4 should return a tuple
+  [453973694165307953197296969697410619233826,
+  734544867157818093234908902110449296423351,
+  1188518561323126046432205871807859915657177,
+  1923063428480944139667114773918309212080528]
+-}
+
+;; Problem #5:
+;;         Compiled: true
+;;         Passed Tests: true
+;;         GasValue: 450439
+;;         Points: 5.8015506343899155
+
+() recv_internal() {
+}
+
+forall X -> (tuple) to_tuple (X x) asm "NOP";
+
+tuple solveshort(int k, int f0, int f1, int n) inline asm
+        ;; k 0 1 nl
+        " REPEAT:<{ "                    ;; k 0 1
+        " DUP2 "                         ;; k 0 1 0 1
+        " ADD "                          ;; k 0 1 0+1
+        " }> "                           ;; k 0 1 0+1
+        " DEPTH DEC PICK"                ;; 0 1 0+1 k
+        " TUPLEVAR "                     ;; 0 t
+        " 1 RETARGS "                    ;; t
+        ;
+
+tuple solve(int f0, int f1, int k, int n) inline asm
+        " 0 INT SWAP"                    ;; 0 1 k 0 nl
+        " REPEAT:<{ "                    ;; 0 1 k 0
+        " OVER2 "                        ;; 0 1 k 0 0 1
+        " ADD "                          ;; 0 1 k 0 0+1
+        " -ROT "                         ;; 0 1 0+1 k 0
+        " }> "                           ;; 0 1 0+1 k 0
+        " DROP "                         ;; 0 1 0+1 k
+        " TUPLEVAR "                     ;; 0 t
+        " 1 RETARGS "                    ;; t
+        ;
+
+;; testable
+(tuple) fibonacci_sequence (int n, int k) method_id {
+
+  if k == 0 {
+    return empty_tuple();
+  }
+
+  if n + k <= 255 {
+    return solveshort(k, 0, 1, n + k - 2);
+  }
+
+  return solve(0, 1, k, n + k - 2);
+
+}

@@ -1,0 +1,28 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDapqw6EnsabFZO46A4nIUXXtT4IIcnjPuabomeT4m3paST/jetton-wallet.fc:229:26: warning: Lack of end_parse.
+    int fwd_fee = muldiv(cs~load_coins(), 3, 2); ;; we use message fwd_fee for estimation of forward_payload costs
+                           ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDapqw6EnsabFZO46A4nIUXXtT4IIcnjPuabomeT4m3paST/jetton-wallet.fc:233:139: warning: Local variable 'bridge_mint_fee' is not used
+    (_, _, _, int state_flags, int bridge_burn_fee, int bridge_mint_fee, int wallet_min_tons_for_storage, int wallet_gas_consumption, _, _) = get_jetton_bridge_config();
+                                                                                                                                            ^
+get_jetton_bridge_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDapqw6EnsabFZO46A4nIUXXtT4IIcnjPuabomeT4m3paST/config.fc:38:42: warning: Lack of end_parse.
+      int discover_gas_consumption = prices~load_coins();
+                                           ^
+get_jetton_bridge_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDapqw6EnsabFZO46A4nIUXXtT4IIcnjPuabomeT4m3paST/config.fc:26:32: warning: Lack of end_parse.
+      slice prices = slice_config~load_ref().begin_parse();
+                                 ^
+get_jetton_bridge_config: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDapqw6EnsabFZO46A4nIUXXtT4IIcnjPuabomeT4m3paST/config.fc:15:16: warning: Local variable 'prefix' is not used
+      int prefix = slice_config~load_uint(8);
+                 ^
+send_tokens: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDapqw6EnsabFZO46A4nIUXXtT4IIcnjPuabomeT4m3paST/jetton-wallet.fc:68:23: warning: Local variable 'custom_payload' is not used
+    cell custom_payload = in_msg_body~load_dict();
+                        ^
+on_bounce: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDapqw6EnsabFZO46A4nIUXXtT4IIcnjPuabomeT4m3paST/jetton-wallet.fc:207:16: warning: Local variable 'query_id' is not used
+    int query_id = in_msg_body~load_query_id();
+                 ^

@@ -1,0 +1,153 @@
+;;
+;; Type: StateInit
+;; TLB: _ code:^cell data:^cell = StateInit
+;;
+
+((cell, cell)) $StateInit$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (cell vvv'code, cell vvv'data) = __tact_tuple_destroy_2(v);
+    return (vvv'code, vvv'data);
+}
+
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline {
+    return (bounce, to, value, mode, body, code, data);
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode_bounce_body(slice to, int value, int mode, int bounce, cell body) inline {
+    return (bounce, to, value, mode, body, null(), null());
+}
+
+;;
+;; Type: Deploy
+;; Header: 0x946a98b6
+;; TLB: deploy#946a98b6 queryId:uint64 = Deploy
+;;
+
+(slice, ((int))) $Deploy$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2490013878);
+    var v'queryId = sc_0~load_uint(64);
+    return (sc_0, (v'queryId));
+}
+
+;;
+;; Type: DeployOk
+;; Header: 0xaff90f57
+;; TLB: deploy_ok#aff90f57 queryId:uint64 = DeployOk
+;;
+
+builder $DeployOk$_store(builder build_0, (int) v) inline {
+    var (v'queryId) = v;
+    build_0 = store_uint(build_0, 2952335191, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    return build_0;
+}
+
+cell $DeployOk$_store_cell((int) v) inline {
+    return $DeployOk$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $DeployOk$_constructor_queryId(int queryId) inline {
+    return (queryId);
+}
+
+;;
+;; Type: SetAddress
+;; Header: 0x00000001
+;; TLB: set_address#00000001 query_id:int257 address:address = SetAddress
+;;
+
+(slice, ((int, slice))) $SetAddress$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 1);
+    var v'query_id = sc_0~load_int(257);
+    var v'address = sc_0~__tact_load_address();
+    return (sc_0, (v'query_id, v'address));
+}
+
+;;
+;; Type: RequestInfo
+;; Header: 0x00000002
+;; TLB: request_info#00000002 query_id:int257 = RequestInfo
+;;
+
+(slice, ((int))) $RequestInfo$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2);
+    var v'query_id = sc_0~load_int(257);
+    return (sc_0, (v'query_id));
+}
+
+;;
+;; Type: ResponseInfo
+;; Header: 0x00000003
+;; TLB: response_info#00000003 op:int257 query_id:int257 owner:address address:address = ResponseInfo
+;;
+
+builder $ResponseInfo$_store(builder build_0, (int, int, slice, slice) v) inline {
+    var (v'op, v'query_id, v'owner, v'address) = v;
+    build_0 = store_uint(build_0, 3, 32);
+    build_0 = build_0.store_int(v'op, 257);
+    build_0 = build_0.store_int(v'query_id, 257);
+    build_0 = __tact_store_address(build_0, v'owner);
+    var build_1 = begin_cell();
+    build_1 = __tact_store_address(build_1, v'address);
+    build_0 = store_ref(build_0, build_1.end_cell());
+    return build_0;
+}
+
+cell $ResponseInfo$_store_cell((int, int, slice, slice) v) inline {
+    return $ResponseInfo$_store(begin_cell(), v).end_cell();
+}
+
+((int, int, slice, slice)) $ResponseInfo$_constructor_op_query_id_owner_address(int op, int query_id, slice owner, slice address) inline {
+    return (op, query_id, owner, address);
+}
+
+;;
+;; Type: StorageContract
+;;
+
+builder $StorageContract$_store(builder build_0, (slice, slice) v) inline {
+    var (v'owner, v'address) = v;
+    build_0 = __tact_store_address(build_0, v'owner);
+    build_0 = __tact_store_address(build_0, v'address);
+    return build_0;
+}
+
+(slice, ((slice, slice))) $StorageContract$_load(slice sc_0) inline {
+    var v'owner = sc_0~__tact_load_address();
+    var v'address = sc_0~__tact_load_address();
+    return (sc_0, (v'owner, v'address));
+}
+
+(slice, ((slice, slice))) $StorageContract$init$_load(slice sc_0) inline {
+    var v'owner = sc_0~__tact_load_address();
+    var v'addr_none = sc_0~__tact_load_address();
+    return (sc_0, (v'owner, v'addr_none));
+}
+
+(slice, slice) $StorageContract$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$StorageContract$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (slice owner, slice addr_none) = $sc~$StorageContract$init$_load();
+        $sc.end_parse();
+        return $StorageContract$_contract_init(owner, addr_none);
+    }
+}
+
+() $StorageContract$_contract_store((slice, slice) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $StorageContract$_store(b, v);
+    set_data(b.end_cell());
+}

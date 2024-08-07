@@ -1,0 +1,12 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAifY7jqjoPfMulQ9xpHtU2rGgjRkGB5TicAMjjSa8axSw8/deployer/deployer.fc:21:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAifY7jqjoPfMulQ9xpHtU2rGgjRkGB5TicAMjjSa8axSw8/deployer/deployer.fc:91:27: warning: Lack of end_parse.
+        send_raw_message(msg~load_ref(), mode);
+                            ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAifY7jqjoPfMulQ9xpHtU2rGgjRkGB5TicAMjjSa8axSw8/deployer/deployer.fc:85:29: warning: Lack of end_parse.
+        var owner_address = ds~load_msg_addr();
+                              ^

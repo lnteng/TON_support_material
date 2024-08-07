@@ -1,0 +1,15 @@
+$OverflowTest2$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/Tact-Overflow-Test/contracts/output/sample_OverflowTest2.storage.fc:86:19: warning: Lack of end_parse.
+          return $sc~$OverflowTest2$_load();
+                    ^
+$OverflowTest2$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/Tact-Overflow-Test/contracts/output/sample_OverflowTest2.code.fc:15:27: warning: Local variable '$self'counter' is not used
+      var (($self'counter)) = (null());
+                            ^
+$OverflowTest2$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/Tact-Overflow-Test/contracts/output/sample_OverflowTest2.code.fc:68:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./ipromise2324/Tact-Overflow-Test/contracts/output/sample_OverflowTest2.storage.fc:95:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

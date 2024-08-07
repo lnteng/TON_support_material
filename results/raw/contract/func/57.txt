@@ -1,0 +1,12 @@
+get_nft_content: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCR0gaJcWpsxEDu4pgaiRvTMr71URXrBKPNXIQt-GhTCB_V/nft_item.fc:202:13: warning: Lack of end_parse.
+            cs~load_uint(32), index, owner_address, collection_address);  ;; staking_factor, index, owner_address, collection_address
+              ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCR0gaJcWpsxEDu4pgaiRvTMr71URXrBKPNXIQt-GhTCB_V/nft_item.fc:140:28: warning: Lack of end_parse.
+      int fwd_fee = muldiv(cs~load_coins(), 3, 1);  ;; we use message fwd_fee for estimation of forward_payload costs
+                             ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCR0gaJcWpsxEDu4pgaiRvTMr71URXrBKPNXIQt-GhTCB_V/nft_item.fc:37:70: warning: Lack of end_parse.
+          return (-1, index, collection_address, ds~load_msg_addr(), ds~load_ref());
+                                                                       ^

@@ -1,0 +1,55 @@
+$JettonWallet$_internal_binary_TokenTransfer: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAHEdYrdILAVEClcLmS-YTKMsVBmQC1hHS1SnJPVtCLgB5Q/output/sample_JettonWallet.code.fc:54:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$JettonWallet$_internal_binary_TokenTransfer: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAHEdYrdILAVEClcLmS-YTKMsVBmQC1hHS1SnJPVtCLgB5Q/output/sample_JettonWallet.code.fc:54:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$JettonWallet$_internal_binary_TokenTransfer: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAHEdYrdILAVEClcLmS-YTKMsVBmQC1hHS1SnJPVtCLgB5Q/output/sample_JettonWallet.code.fc:54:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$JettonWallet$_internal_binary_TokenBurn: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAHEdYrdILAVEClcLmS-YTKMsVBmQC1hHS1SnJPVtCLgB5Q/output/sample_JettonWallet.code.fc:43:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$JettonWallet$_internal_binary_TokenBurn: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAHEdYrdILAVEClcLmS-YTKMsVBmQC1hHS1SnJPVtCLgB5Q/output/sample_JettonWallet.code.fc:43:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$JettonWallet$_internal_binary_TokenBurn: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAHEdYrdILAVEClcLmS-YTKMsVBmQC1hHS1SnJPVtCLgB5Q/output/sample_JettonWallet.code.fc:43:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$JettonWallet$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAHEdYrdILAVEClcLmS-YTKMsVBmQC1hHS1SnJPVtCLgB5Q/output/sample_JettonWallet.code.fc:14:54: warning: Local variable '$self'master' is not used
+      var (($self'master, $self'owner, $self'balance)) = (null(), null(), null());
+                                                       ^
+$JettonWallet$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAHEdYrdILAVEClcLmS-YTKMsVBmQC1hHS1SnJPVtCLgB5Q/output/sample_JettonWallet.code.fc:14:54: warning: Local variable '$self'owner' is not used
+      var (($self'master, $self'owner, $self'balance)) = (null(), null(), null());
+                                                       ^
+$JettonWallet$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAHEdYrdILAVEClcLmS-YTKMsVBmQC1hHS1SnJPVtCLgB5Q/output/sample_JettonWallet.code.fc:14:54: warning: Local variable '$self'balance' is not used
+      var (($self'master, $self'owner, $self'balance)) = (null(), null(), null());
+                                                       ^
+$JettonWallet$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAHEdYrdILAVEClcLmS-YTKMsVBmQC1hHS1SnJPVtCLgB5Q/output/sample_JettonWallet.storage.fc:222:19: warning: Lack of end_parse.
+          return $sc~$JettonWallet$_load();
+                    ^
+$JettonWallet$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAHEdYrdILAVEClcLmS-YTKMsVBmQC1hHS1SnJPVtCLgB5Q/output/sample_JettonWallet.storage.fc:242:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$JettonWallet$_fun_get_wallet_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAHEdYrdILAVEClcLmS-YTKMsVBmQC1hHS1SnJPVtCLgB5Q/output/sample_JettonWallet.code.fc:32:36: warning: Local variable '$winit'data' is not used
+      var ($winit'code, $winit'data) = $JettonWallet$_init_child(__tact_context_sys, $self'master, $self'owner);
+                                     ^
+$JettonWallet$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAHEdYrdILAVEClcLmS-YTKMsVBmQC1hHS1SnJPVtCLgB5Q/output/sample_JettonWallet.code.fc:131:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQAHEdYrdILAVEClcLmS-YTKMsVBmQC1hHS1SnJPVtCLgB5Q/output/sample_JettonWallet.storage.fc:233:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

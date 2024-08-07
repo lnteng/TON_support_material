@@ -1,0 +1,28 @@
+get_nft_content: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBPa7td5VDwGltzeSzsp32MkzqzlqHjAOsKtaX0mkMJhq_B/collection-minter.func:229:28: warning: Lack of end_parse.
+    slice common_content = cs~load_ref().begin_parse();
+                             ^
+royalty_params: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBPa7td5VDwGltzeSzsp32MkzqzlqHjAOsKtaX0mkMJhq_B/collection-minter.func:222:52: warning: Lack of end_parse.
+       return (rs~load_uint(16), rs~load_uint(16), rs~load_msg_addr());
+                                                     ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBPa7td5VDwGltzeSzsp32MkzqzlqHjAOsKtaX0mkMJhq_B/collection-minter.func:33:8: warning: Lack of end_parse.
+       ds~load_ref()  ;; royalty_params
+         ^
+recv_internal: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBPa7td5VDwGltzeSzsp32MkzqzlqHjAOsKtaX0mkMJhq_B/collection-minter.func:180:84: warning: PressionLoss
+        send_empty_message(royalty_address, max(0, msg_value - coins_for_nft_storage * nfts_number), 128);
+                                                                                     ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBPa7td5VDwGltzeSzsp32MkzqzlqHjAOsKtaX0mkMJhq_B/collection-minter.func:140:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBPa7td5VDwGltzeSzsp32MkzqzlqHjAOsKtaX0mkMJhq_B/collection-minter.func:179:51: warning: Lack of end_parse.
+        slice royalty_address = royalty_params_slice~load_msg_addr();
+                                                    ^
+get_collection_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBPa7td5VDwGltzeSzsp32MkzqzlqHjAOsKtaX0mkMJhq_B/collection-minter.func:210:30: warning: Lack of end_parse.
+    return (next_item_index, cs~load_ref(), owner_address);
+                               ^

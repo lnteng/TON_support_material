@@ -1,0 +1,30 @@
+$Item3$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson5/build/Item/tact_Item3.storage.fc:136:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$Item3$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson5/build/Item/tact_Item3.code.fc:14:22: warning: Local variable '$self'id' is not used
+      var (($self'id)) = (null());
+                       ^
+$Item3$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson5/build/Item/tact_Item3.storage.fc:116:19: warning: Lack of end_parse.
+          return $sc~$Item3$_load();
+                    ^
+$Item3$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson5/build/Item/tact_Item3.code.fc:92:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson5/build/Item/tact_Item3.storage.fc:127:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Item3$_contract_store & $Item3$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson5/build/Item/tact_Item3.storage.fc:112:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson5/build/Item/tact_Item3.storage.fc:127:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Item3$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson5/build/Item/tact_Item3.code.fc:44:190: warning: UnHandle bounced message with op: 0x946a98b6
+      $global_send($SendParameters$_constructor_to_value_mode_bounce_code_data_body($address, 0, (64 + 2), true, $init'code, $init'data, $Deploy$_store_cell($Deploy$_constructor_queryId(0))));
+                                                                                                                                                                                               ^

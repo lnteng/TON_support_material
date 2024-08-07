@@ -1,0 +1,128 @@
+#pragma version >=0.4.1;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+global (int, slice, int, slice) __tact_context;
+global cell __tact_context_sys;
+
+builder __gen_write_Source(builder build_0, (int, int) v) inline {
+    var (v'a, v'b) = v;
+    build_0 = build_0.store_int(v'a, 257);
+    build_0 = build_0.store_int(v'b, 257);
+    return build_0;
+}
+
+(slice, ((int, int))) __gen_read_Source(slice sc_0) inline {
+    var v'a = sc_0~load_int(257);
+    var v'b = sc_0~load_int(257);
+    return (sc_0, (v'a, v'b));
+}
+
+builder __gen_write_SampleContract(builder build_0, (int, int, (int, int), cell) v) inline {
+    var (v'a, v'b, (v'c'a, v'c'b), v'd) = v;
+    build_0 = build_0.store_int(v'a, 257);
+    build_0 = build_0.store_int(v'b, 257);
+    var build_1 = begin_cell();
+    build_1 = __gen_write_Source(build_1, (v'c'a, v'c'b));
+    build_1 = build_1.store_dict(v'd);
+    build_0 = store_ref(build_0, build_1.end_cell());
+    return build_0;
+}
+
+(slice, ((int, int, (int, int), cell))) __gen_read_SampleContract(slice sc_0) inline {
+    var v'a = sc_0~load_int(257);
+    var v'b = sc_0~load_int(257);
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'c = sc_1~__gen_read_Source();
+    var v'd = sc_1~load_dict();
+    return (sc_0, (v'a, v'b, v'c, v'd));
+}
+
+(int, int, (int, int), cell) $__gen_SampleContract_init() impure inline_ref {
+    var (($self'a, $self'b, ($self'c'a, $self'c'b), $self'd)) = (null(), null(), null(), null());
+    return ($self'a, $self'b, ($self'c'a, $self'c'b), $self'd);
+}
+
+(int, int, (int, int), cell) __gen_load_SampleContract() impure inline {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~__gen_read_SampleContract();
+    } else {
+        return $__gen_SampleContract_init();
+    }
+}
+
+() __gen_store_SampleContract((int, int, (int, int), cell) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = __gen_write_SampleContract(b, v);
+    set_data(b.end_cell());
+}
+
+int $__gen_SampleContract_stake((int, int, (int, int), cell) $self) impure inline_ref {
+    var (($self'a, $self'b, ($self'c'a, $self'c'b), $self'd)) = $self;
+    return $self'a;
+}
+
+_ $__gen_get_stake() method_id(80984) {
+    var self = __gen_load_SampleContract();
+    var res = $__gen_SampleContract_stake(self);
+    return res;
+}
+
+((int, int, (int, int), cell), int) __gen_router_SampleContract((int, int, (int, int), cell) self, int msg_bounced, slice in_msg) impure inline_ref {
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = ((msg_flags & 1) == 1 ? true : false);
+    slice msg_sender_addr = cs~load_msg_addr();
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    
+    ;; Load contract data
+    var self = __gen_load_SampleContract();
+    
+    ;; Handle operation
+    int handled = self~__gen_router_SampleContract(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(handled, 130);
+    
+    ;; Persist state
+    __gen_store_SampleContract(self);
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() {
+    return "ipfs://QmUJamsv9JwWkrLqdjLFJYgw1x1odBMn4FafXvNVceWaBF";
+}
+
+_ lazy_deployment_completed() {
+    return get_data().begin_parse().load_int(1);
+}

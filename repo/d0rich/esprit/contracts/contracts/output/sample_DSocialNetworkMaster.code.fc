@@ -1,0 +1,281 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_DSocialNetworkMaster.headers.fc";
+#include "sample_DSocialNetworkMaster.stdlib.fc";
+#include "sample_DSocialNetworkMaster.constants.fc";
+#include "sample_DSocialNetworkMaster.storage.fc";
+
+;;
+;; Contract DSocialNetworkMaster functions
+;;
+
+(slice, slice, slice, int) $DSocialNetworkMaster$_contract_init() impure inline_ref {
+    var (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)) = (__gen_slice_string_0fd4153e7a328e1ce5dee013798f8c9b134a93a5f6812ba7b2bdd51653ce0486(), null(), null(), 0);
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    $self'owner = $ctx'sender;
+    $self'personal_fees_destination = $ctx'sender;
+    return ($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index);
+}
+
+((slice, slice, slice, int), slice) $DSocialNetworkMaster$_fun_get_version((slice, slice, slice, int) $self) impure inline_ref {
+    var (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)) = $self;
+    return (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index), $self'version);
+}
+
+((slice, slice, slice, int), int) $DSocialNetworkMaster$_fun_get_blogs_count((slice, slice, slice, int) $self) impure inline_ref {
+    var (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)) = $self;
+    return (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index), $self'next_blog_index);
+}
+
+((slice, slice, slice, int), (cell, cell)) $DSocialNetworkMaster$_fun_getBlogInit((slice, slice, slice, int) $self, int $account_id) impure inline_ref {
+    var (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)) = $self;
+    return (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index), $DSocialNetworkBlog$_init_child(__tact_context_sys, $account_id, my_address(), $self'personal_fees_destination));
+}
+
+((slice, slice, slice, int), slice) $DSocialNetworkMaster$_fun_get_blog_address_by_index((slice, slice, slice, int) $self, int $item_index) impure inline_ref {
+    var (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)) = $self;
+    var ($initCode'code, $initCode'data) = ($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)~$DSocialNetworkMaster$_fun_getBlogInit($item_index);
+    return (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index), $global_contractAddress(($initCode'code, $initCode'data)));
+}
+
+((slice, slice, slice, int), ()) $DSocialNetworkMaster$_fun_requireOwner((slice, slice, slice, int) $self) impure inline_ref {
+    var (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)) = $self;
+    throw_unless(132, ( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) ));
+    return (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index), ());
+}
+
+((slice, slice, slice, int), slice) $DSocialNetworkMaster$_fun_owner((slice, slice, slice, int) $self) impure inline_ref {
+    var (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)) = $self;
+    return (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index), $self'owner);
+}
+
+((slice, slice, slice, int), int) $DSocialNetworkMaster$_fun_getGasConsumption((slice, slice, slice, int) $self) impure inline_ref {
+    var (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)) = $self;
+    return (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index), 30000000);
+}
+
+((slice, slice, slice, int), int) $DSocialNetworkMaster$_fun_getTonRecieved((slice, slice, slice, int) $self) impure inline_ref {
+    var (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)) = $self;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    return (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index), $ctx'value);
+}
+
+((slice, slice, slice, int), int) $DSocialNetworkMaster$_fun_calculateMinOperationFee((slice, slice, slice, int) $self) impure inline_ref {
+    var (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)) = $self;
+    int $tonBalanceBeforeMsg = (__tact_my_balance() - ($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)~$DSocialNetworkMaster$_fun_getTonRecieved());
+    int $storageFee = (30000000 - min($tonBalanceBeforeMsg, 30000000));
+    return (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index), ($storageFee + ($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)~$DSocialNetworkMaster$_fun_getGasConsumption()));
+}
+
+((slice, slice, slice, int), int) $DSocialNetworkMaster$_fun_calculateSendAmountToHoldEnoughTonForStorage((slice, slice, slice, int) $self) impure inline_ref {
+    var (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)) = $self;
+    return (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index), (__tact_my_balance() - ($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)~$DSocialNetworkMaster$_fun_calculateMinOperationFee()));
+}
+
+((slice, slice, slice, int), int) $DSocialNetworkMaster$_fun_calculateSendAmountToHoldFeeFromRecieved((slice, slice, slice, int) $self, int $personalFee) impure inline_ref {
+    var (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)) = $self;
+    return (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index), (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)~$DSocialNetworkMaster$_fun_calculateSendAmountToHoldEnoughTonForStorage() - $personalFee));
+}
+
+((slice, slice, slice, int), ()) $DSocialNetworkMaster$_fun_sendRemainingValueAsPersonalFee((slice, slice, slice, int) $self, slice $comment) impure inline_ref {
+    var (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)) = $self;
+    $global_send($SendParameters$_constructor_to_value_mode_body($self'personal_fees_destination, 0, (2 + 64), $String$_fun_asComment($comment)));
+    return (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index), ());
+}
+
+;;
+;; Receivers of a Contract DSocialNetworkMaster
+;;
+
+(((slice, slice, slice, int)), ()) $DSocialNetworkMaster$_internal_binary_CreateBlog((slice, slice, slice, int) $self, (int, (slice, slice, slice)) $msg) impure inline {
+    var ($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index) = $self;
+    var ($msg'query_id, ($msg'blog_metadata'image, $msg'blog_metadata'name, $msg'blog_metadata'description)) = $msg;
+    throw_unless(50377, ($self'next_blog_index >= 0));
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    throw_unless(16032, (($ctx'value + 50000000) >= 500000000));
+    var ($blog_init'code, $blog_init'data) = ($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)~$DSocialNetworkMaster$_fun_getBlogInit($self'next_blog_index);
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body_code_data($global_contractAddress(($blog_init'code, $blog_init'data)), ($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)~$DSocialNetworkMaster$_fun_calculateSendAmountToHoldFeeFromRecieved(500000000), false, 2, $InitializeBlog$_store_cell($InitializeBlog$_constructor_query_id_owner_collection_content(0, $ctx'sender, ($msg'blog_metadata'image, $msg'blog_metadata'name, $msg'blog_metadata'description))), $blog_init'code, $blog_init'data));
+    $self'next_blog_index = ($self'next_blog_index + 1);
+    tuple $sb = __tact_string_builder_start_string();
+    $sb~__tact_string_builder_append(__gen_slice_string_58cb17098e601008b263a9a2678ce35cc948c93369ae682908405149d74545ef());
+    $sb~__tact_string_builder_append($msg'blog_metadata'name);
+    ($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)~$DSocialNetworkMaster$_fun_sendRemainingValueAsPersonalFee(__tact_string_builder_end_slice($sb));
+    return (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index), ());
+}
+
+(((slice, slice, slice, int)), ()) $DSocialNetworkMaster$_internal_binary_Deploy((slice, slice, slice, int) $self, (int) $deploy) impure inline {
+    var ($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)~$DSocialNetworkMaster$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index), ());
+}
+
+(((slice, slice, slice, int)), ()) $DSocialNetworkMaster$_internal_binary_ChangeOwner((slice, slice, slice, int) $self, (int, slice) $msg) impure inline {
+    var ($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index) = $self;
+    var ($msg'queryId, $msg'newOwner) = $msg;
+    ($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)~$DSocialNetworkMaster$_fun_requireOwner();
+    $self'owner = $msg'newOwner;
+    ($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)~$DSocialNetworkMaster$_fun_reply($ChangeOwnerOk$_store_cell($ChangeOwnerOk$_constructor_queryId_newOwner($msg'queryId, $msg'newOwner)));
+    return (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index), ());
+}
+
+(((slice, slice, slice, int)), ()) $DSocialNetworkMaster$_internal_binary_TopUp((slice, slice, slice, int) $self, (int) $msg) impure inline {
+    var ($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index) = $self;
+    var ($msg'query_id) = $msg;
+    return (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index), ());
+}
+
+(((slice, slice, slice, int)), ()) $DSocialNetworkMaster$_internal_binary_Withdraw((slice, slice, slice, int) $self, (int, int) $msg) impure inline {
+    var ($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index) = $self;
+    var ($msg'query_id, $msg'amount) = $msg;
+    ($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)~$DSocialNetworkMaster$_fun_requireOwner();
+    $global_send($SendParameters$_constructor_to_value_mode_body($self'owner, min($msg'amount, ($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)~$DSocialNetworkMaster$_fun_calculateSendAmountToHoldEnoughTonForStorage()), 2, __gen_cell_comment_250b76e2b9576fc6b4c45129483006b0003a0c39b6f7ae413d177f4e3479dbca()));
+    return (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index), ());
+}
+
+(((slice, slice, slice, int)), ()) $DSocialNetworkMaster$_internal_binary_WithdrawAll((slice, slice, slice, int) $self, (int, int) $msg) impure inline {
+    var ($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index) = $self;
+    var ($msg'query_id, $msg'destroy) = $msg;
+    ($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index)~$DSocialNetworkMaster$_fun_requireOwner();
+    int $additionalMode = 0;
+    if (__tact_int_eq_nullable_one($msg'destroy, true)) {
+        $additionalMode = ($additionalMode + 32);
+    }
+    $global_send($SendParameters$_constructor_to_value_mode_body($self'owner, 0, ((128 + 2) + $additionalMode), __gen_cell_comment_5e517df1dfc75b2f2c174e93a5239b502cc03ae6c39bb2a6cf811060b104ffa0()));
+    return (($self'version, $self'owner, $self'personal_fees_destination, $self'next_blog_index), ());
+}
+
+;;
+;; Get methods of a Contract DSocialNetworkMaster
+;;
+
+_ %get_version() method_id(82320) {
+    var self = $DSocialNetworkMaster$_contract_load();
+    var res = self~$DSocialNetworkMaster$_fun_get_version();
+    return res;
+}
+
+_ %get_blogs_count() method_id(72768) {
+    var self = $DSocialNetworkMaster$_contract_load();
+    var res = self~$DSocialNetworkMaster$_fun_get_blogs_count();
+    return res;
+}
+
+_ %get_blog_address_by_index(int $$item_index) method_id(92044) {
+    int $item_index = $$item_index;
+    var self = $DSocialNetworkMaster$_contract_load();
+    var res = self~$DSocialNetworkMaster$_fun_get_blog_address_by_index($item_index);
+    return res;
+}
+
+_ %owner() method_id(83229) {
+    var self = $DSocialNetworkMaster$_contract_load();
+    var res = self~$DSocialNetworkMaster$_fun_owner();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128,
+        "org.ton.ownable.transferable.v2"H >> 128,
+        "org.ton.ownable"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmQf5epTcquXhmpPwMY15WBJT61FgMMS8tV78qGKMPeS6e";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract DSocialNetworkMaster
+;;
+
+((slice, slice, slice, int), int) $DSocialNetworkMaster$_contract_router_internal((slice, slice, slice, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive CreateBlog message
+    if (op == 4028506300) {
+        var msg = in_msg~$CreateBlog$_load();
+        self~$DSocialNetworkMaster$_internal_binary_CreateBlog(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$DSocialNetworkMaster$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Receive ChangeOwner message
+    if (op == 2174598809) {
+        var msg = in_msg~$ChangeOwner$_load();
+        self~$DSocialNetworkMaster$_internal_binary_ChangeOwner(msg);
+        return (self, true);
+    }
+    
+    ;; Receive TopUp message
+    if (op == 128710311) {
+        var msg = in_msg~$TopUp$_load();
+        self~$DSocialNetworkMaster$_internal_binary_TopUp(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Withdraw message
+    if (op == 3478132799) {
+        var msg = in_msg~$Withdraw$_load();
+        self~$DSocialNetworkMaster$_internal_binary_Withdraw(msg);
+        return (self, true);
+    }
+    
+    ;; Receive WithdrawAll message
+    if (op == 4090352184) {
+        var msg = in_msg~$WithdrawAll$_load();
+        self~$DSocialNetworkMaster$_internal_binary_WithdrawAll(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $DSocialNetworkMaster$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$DSocialNetworkMaster$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $DSocialNetworkMaster$_contract_store(self);
+}

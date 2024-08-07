@@ -1,0 +1,123 @@
+get_extensions: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:318:12: warning: Lack of end_parse.
+    return ds~load_dict();
+             ^
+get_public_key: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:310:36: warning: Lack of end_parse.
+    var cs = get_data().begin_parse().skip_bits(size::stored_seqno + size::stored_subwallet);
+                                     ^
+seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:302:24: warning: Lack of end_parse.
+    return abs(get_data().begin_parse().preload_int(size::stored_seqno));
+                         ^
+get_wallet_id: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:306:34: warning: Lack of end_parse.
+    return get_data().begin_parse().skip_bits(size::stored_seqno).preload_uint(size::stored_subwallet);
+                                   ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:277:24: warning: Lack of end_parse.
+      var extensions = ds.skip_bits(size::stored_seqno + size::stored_subwallet + size::public_key).preload_dict();
+                         ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:273:72: warning: Lack of end_parse.
+      int packed_sender_addr = pack_address(parse_std_addr(full_msg_slice~load_msg_addr())); ;; no PLDMSGADDR exists
+                                                                         ^
+get_is_signature_auth_allowed: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:322:20: warning: Lack of end_parse.
+    return get_data().begin_parse().preload_int(size::stored_seqno) >= 0;
+                     ^
+dispatch_complex_request: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:135:26: warning: Lack of end_parse.
+      cs = cs.preload_ref().begin_parse();
+                           ^
+process_signed_request_from_internal_message & get_extensions: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:317:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse().skip_bits(size::stored_seqno + size::stored_subwallet + size::public_key);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:225:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_int(stored_seqno, size::stored_seqno)
+      ^
+process_signed_request_from_internal_message & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:310:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse().skip_bits(size::stored_seqno + size::stored_subwallet);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:225:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_int(stored_seqno, size::stored_seqno)
+      ^
+process_signed_request_from_internal_message & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:275:24: warning: Cell of get_data and set_data are inconsistent.
+      var ds = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:225:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_int(stored_seqno, size::stored_seqno)
+      ^
+process_signed_request & get_extensions: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:317:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse().skip_bits(size::stored_seqno + size::stored_subwallet + size::public_key);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:181:11: warning: Cell of get_data and set_data are inconsistent.
+            .store_int(stored_seqno, size::stored_seqno)
+            ^
+process_signed_request & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:310:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse().skip_bits(size::stored_seqno + size::stored_subwallet);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:181:11: warning: Cell of get_data and set_data are inconsistent.
+            .store_int(stored_seqno, size::stored_seqno)
+            ^
+process_signed_request & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:275:24: warning: Cell of get_data and set_data are inconsistent.
+      var ds = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:181:11: warning: Cell of get_data and set_data are inconsistent.
+            .store_int(stored_seqno, size::stored_seqno)
+            ^
+dispatch_complex_request & get_extensions: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:317:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse().skip_bits(size::stored_seqno + size::stored_subwallet + size::public_key);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:123:9: warning: Cell of get_data and set_data are inconsistent.
+          .store_int(stored_seqno, size::stored_seqno)
+          ^
+dispatch_complex_request & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:310:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse().skip_bits(size::stored_seqno + size::stored_subwallet);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:123:9: warning: Cell of get_data and set_data are inconsistent.
+          .store_int(stored_seqno, size::stored_seqno)
+          ^
+dispatch_complex_request & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:275:24: warning: Cell of get_data and set_data are inconsistent.
+      var ds = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:123:9: warning: Cell of get_data and set_data are inconsistent.
+          .store_int(stored_seqno, size::stored_seqno)
+          ^
+dispatch_complex_request & get_extensions: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:317:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse().skip_bits(size::stored_seqno + size::stored_subwallet + size::public_key);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:93:15: warning: Cell of get_data and set_data are inconsistent.
+                .store_slice(data_bits)
+                ^
+dispatch_complex_request & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:310:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse().skip_bits(size::stored_seqno + size::stored_subwallet);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:93:15: warning: Cell of get_data and set_data are inconsistent.
+                .store_slice(data_bits)
+                ^
+dispatch_complex_request & get_wallet_id: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:306:20: warning: Cell of get_data and set_data are inconsistent.
+    return get_data().begin_parse().skip_bits(size::stored_seqno).preload_uint(size::stored_subwallet);
+                     ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:93:15: warning: Cell of get_data and set_data are inconsistent.
+                .store_slice(data_bits)
+                ^
+dispatch_complex_request & recv_internal: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:275:24: warning: Cell of get_data and set_data are inconsistent.
+      var ds = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Skydev0h/w5/contracts/wallet_v5.fc:93:15: warning: Cell of get_data and set_data are inconsistent.
+                .store_slice(data_bits)
+                ^

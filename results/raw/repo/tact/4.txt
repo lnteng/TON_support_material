@@ -1,0 +1,50 @@
+$MarketplaceAd$_internal_binary_AdInfo: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./aestheticw3/ton-marketplace/contracts/output/sample_MarketplaceAd.code.fc:46:102: warning: Local variable '$self'description' is not used
+      ($self'name, $self'description, $self'cost, $self'location, $self'master, $self'owner, $self'idx)~$MarketplaceAd$_fun_requireOwner();
+                                                                                                       ^
+$MarketplaceAd$_internal_binary_AdInfo: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./aestheticw3/ton-marketplace/contracts/output/sample_MarketplaceAd.code.fc:46:102: warning: Local variable '$self'cost' is not used
+      ($self'name, $self'description, $self'cost, $self'location, $self'master, $self'owner, $self'idx)~$MarketplaceAd$_fun_requireOwner();
+                                                                                                       ^
+$MarketplaceAd$_internal_binary_AdInfo: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./aestheticw3/ton-marketplace/contracts/output/sample_MarketplaceAd.code.fc:46:102: warning: Local variable '$self'owner' is not used
+      ($self'name, $self'description, $self'cost, $self'location, $self'master, $self'owner, $self'idx)~$MarketplaceAd$_fun_requireOwner();
+                                                                                                       ^
+$MarketplaceAd$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./aestheticw3/ton-marketplace/contracts/output/sample_MarketplaceAd.code.fc:15:109: warning: Local variable '$self'location' is not used
+      var (($self'name, $self'description, $self'cost, $self'location, $self'master, $self'owner, $self'idx)) = (__gen_slice_string_96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7(), __gen_slic ...
+                                                                                                              ^
+$MarketplaceAd$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./aestheticw3/ton-marketplace/contracts/output/sample_MarketplaceAd.code.fc:15:109: warning: Local variable '$self'master' is not used
+      var (($self'name, $self'description, $self'cost, $self'location, $self'master, $self'owner, $self'idx)) = (__gen_slice_string_96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7(), __gen_slic ...
+                                                                                                              ^
+$MarketplaceAd$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./aestheticw3/ton-marketplace/contracts/output/sample_MarketplaceAd.code.fc:15:109: warning: Local variable '$self'owner' is not used
+      var (($self'name, $self'description, $self'cost, $self'location, $self'master, $self'owner, $self'idx)) = (__gen_slice_string_96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7(), __gen_slic ...
+                                                                                                              ^
+$MarketplaceAd$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./aestheticw3/ton-marketplace/contracts/output/sample_MarketplaceAd.code.fc:15:109: warning: Local variable '$self'idx' is not used
+      var (($self'name, $self'description, $self'cost, $self'location, $self'master, $self'owner, $self'idx)) = (__gen_slice_string_96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7(), __gen_slic ...
+                                                                                                              ^
+$MarketplaceAd$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./aestheticw3/ton-marketplace/contracts/output/sample_MarketplaceAd.storage.fc:105:21: warning: Lack of end_parse.
+      var v'idx = sc_1~load_int(257);
+                      ^
+$MarketplaceAd$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./aestheticw3/ton-marketplace/contracts/output/sample_MarketplaceAd.storage.fc:121:19: warning: Lack of end_parse.
+          return $sc~$MarketplaceAd$_load();
+                    ^
+$MarketplaceAd$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./aestheticw3/ton-marketplace/contracts/output/sample_MarketplaceAd.code.fc:92:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./aestheticw3/ton-marketplace/contracts/output/sample_MarketplaceAd.storage.fc:132:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$MarketplaceAd$_contract_store & $MarketplaceAd$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./aestheticw3/ton-marketplace/contracts/output/sample_MarketplaceAd.storage.fc:117:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./aestheticw3/ton-marketplace/contracts/output/sample_MarketplaceAd.storage.fc:132:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

@@ -1,0 +1,75 @@
+$__gen_QuadraticGrantTonContract_receive_WeightedBatchVote: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQC6i4brR-rz7TnldxVPjbhAazLUx1Tu8h8p8HiiVOftvLtR/output/verifier_QuadraticGrantTonContract.code.fc:596:38: warning: PressionLoss
+          throw_unless(14329, (($votes * 1000000000) == ($amount * $round'voting_unit)));
+                                       ^
+$__gen_QuadraticGrantTonContract_receive_WeightedBatchVote: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQC6i4brR-rz7TnldxVPjbhAazLUx1Tu8h8p8HiiVOftvLtR/output/verifier_QuadraticGrantTonContract.code.fc:585:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$__gen_QuadraticGrantTonContract_receive_WeightedBatchVote: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQC6i4brR-rz7TnldxVPjbhAazLUx1Tu8h8p8HiiVOftvLtR/output/verifier_QuadraticGrantTonContract.code.fc:585:59: warning: Local variable '$ctx'sender' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$__gen_QuadraticGrantTonContract_receive_WeightedBatchVote: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQC6i4brR-rz7TnldxVPjbhAazLUx1Tu8h8p8HiiVOftvLtR/output/verifier_QuadraticGrantTonContract.code.fc:585:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$__gen_QuadraticGrantTonContract_receive_SetFund: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQC6i4brR-rz7TnldxVPjbhAazLUx1Tu8h8p8HiiVOftvLtR/output/verifier_QuadraticGrantTonContract.code.fc:552:162: warning: Local variable '$round'fund' is not used
+      var ($round'id, $round'tax_adjustment_multiplier, $round'voting_unit, $round'status, $round'fund, $round'project_number, $round'total_area, $round'projects) = __gen_Round_not_null(__gen_readopt_Round(__tact_dict_get_int_cell($self'rounds, 257, $msg'round_id)));
+                                                                                                                                                                   ^
+__gen_read_Round: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQC6i4brR-rz7TnldxVPjbhAazLUx1Tu8h8p8HiiVOftvLtR/output/verifier_QuadraticGrantTonContract.code.fc:211:26: warning: Lack of end_parse.
+      var v'projects = sc_2~load_dict();
+                           ^
+__gen_read_Round: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQC6i4brR-rz7TnldxVPjbhAazLUx1Tu8h8p8HiiVOftvLtR/output/verifier_QuadraticGrantTonContract.code.fc:209:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+__gen_readopt_Round: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQC6i4brR-rz7TnldxVPjbhAazLUx1Tu8h8p8HiiVOftvLtR/output/verifier_QuadraticGrantTonContract.code.fc:225:38: warning: Lack of end_parse.
+      return __gen_Round_as_optional(sc~__gen_read_Round());
+                                       ^
+__gen_readopt_Votes: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQC6i4brR-rz7TnldxVPjbhAazLUx1Tu8h8p8HiiVOftvLtR/output/verifier_QuadraticGrantTonContract.code.fc:285:38: warning: Lack of end_parse.
+      return __gen_Votes_as_optional(sc~__gen_read_Votes());
+                                       ^
+__gen_read_Project: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQC6i4brR-rz7TnldxVPjbhAazLUx1Tu8h8p8HiiVOftvLtR/output/verifier_QuadraticGrantTonContract.code.fc:252:24: warning: Lack of end_parse.
+      var v'voters = sc_1~load_dict();
+                         ^
+__tact_string_builder_append: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQC6i4brR-rz7TnldxVPjbhAazLUx1Tu8h8p8HiiVOftvLtR/output/verifier_QuadraticGrantTonContract.code.fc:151:31: warning: Lack of end_parse.
+              sc = sc~load_ref().begin_parse();
+                                ^
+__tact_dict_set_slice_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQC6i4brR-rz7TnldxVPjbhAazLUx1Tu8h8p8HiiVOftvLtR/output/verifier_QuadraticGrantTonContract.code.fc:74:21: warning: Local variable 'ok' is not used
+          var (r, ok) = __tact_dict_delete(d, kl, k);
+                      ^
+__gen_readopt_Project: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQC6i4brR-rz7TnldxVPjbhAazLUx1Tu8h8p8HiiVOftvLtR/output/verifier_QuadraticGrantTonContract.code.fc:266:40: warning: Lack of end_parse.
+      return __gen_Project_as_optional(sc~__gen_read_Project());
+                                         ^
+__tact_dict_set_int_cell: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQC6i4brR-rz7TnldxVPjbhAazLUx1Tu8h8p8HiiVOftvLtR/output/verifier_QuadraticGrantTonContract.code.fc:56:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+$__gen_QuadraticGrantTonContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQC6i4brR-rz7TnldxVPjbhAazLUx1Tu8h8p8HiiVOftvLtR/output/verifier_QuadraticGrantTonContract.code.fc:383:59: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'currentRound, $self'rounds)) = (null(), null(), null());
+                                                            ^
+$__gen_QuadraticGrantTonContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQC6i4brR-rz7TnldxVPjbhAazLUx1Tu8h8p8HiiVOftvLtR/output/verifier_QuadraticGrantTonContract.code.fc:383:59: warning: Local variable '$self'currentRound' is not used
+      var (($self'owner, $self'currentRound, $self'rounds)) = (null(), null(), null());
+                                                            ^
+__gen_load_QuadraticGrantTonContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQC6i4brR-rz7TnldxVPjbhAazLUx1Tu8h8p8HiiVOftvLtR/output/verifier_QuadraticGrantTonContract.code.fc:394:19: warning: Lack of end_parse.
+          return $sc~__gen_read_QuadraticGrantTonContract();
+                    ^
+__gen_store_QuadraticGrantTonContract & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQC6i4brR-rz7TnldxVPjbhAazLUx1Tu8h8p8HiiVOftvLtR/output/verifier_QuadraticGrantTonContract.code.fc:746:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQC6i4brR-rz7TnldxVPjbhAazLUx1Tu8h8p8HiiVOftvLtR/output/verifier_QuadraticGrantTonContract.code.fc:405:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

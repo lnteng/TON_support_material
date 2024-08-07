@@ -1,0 +1,71 @@
+$SerializationTester$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/serialization_SerializationTester.code.fc:14:93: warning: Local variable '$self'a' is not used
+      var (($self'a, $self'b, $self'c, $self'd, $self'e, $self'f, $self'g, $self'h, $self'i)) = (null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                              ^
+$SerializationTester$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/serialization_SerializationTester.code.fc:14:93: warning: Local variable '$self'b' is not used
+      var (($self'a, $self'b, $self'c, $self'd, $self'e, $self'f, $self'g, $self'h, $self'i)) = (null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                              ^
+$SerializationTester$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/serialization_SerializationTester.code.fc:14:93: warning: Local variable '$self'c' is not used
+      var (($self'a, $self'b, $self'c, $self'd, $self'e, $self'f, $self'g, $self'h, $self'i)) = (null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                              ^
+$SerializationTester$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/serialization_SerializationTester.code.fc:14:93: warning: Local variable '$self'd' is not used
+      var (($self'a, $self'b, $self'c, $self'd, $self'e, $self'f, $self'g, $self'h, $self'i)) = (null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                              ^
+$SerializationTester$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/serialization_SerializationTester.code.fc:14:93: warning: Local variable '$self'e' is not used
+      var (($self'a, $self'b, $self'c, $self'd, $self'e, $self'f, $self'g, $self'h, $self'i)) = (null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                              ^
+$SerializationTester$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/serialization_SerializationTester.code.fc:14:93: warning: Local variable '$self'f' is not used
+      var (($self'a, $self'b, $self'c, $self'd, $self'e, $self'f, $self'g, $self'h, $self'i)) = (null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                              ^
+$SerializationTester$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/serialization_SerializationTester.code.fc:14:93: warning: Local variable '$self'g' is not used
+      var (($self'a, $self'b, $self'c, $self'd, $self'e, $self'f, $self'g, $self'h, $self'i)) = (null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                              ^
+$SerializationTester$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/serialization_SerializationTester.code.fc:14:93: warning: Local variable '$self'h' is not used
+      var (($self'a, $self'b, $self'c, $self'd, $self'e, $self'f, $self'g, $self'h, $self'i)) = (null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                              ^
+$SerializationTester$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/serialization_SerializationTester.code.fc:14:93: warning: Local variable '$self'i' is not used
+      var (($self'a, $self'b, $self'c, $self'd, $self'e, $self'f, $self'g, $self'h, $self'i)) = (null(), null(), null(), null(), null(), null(), null(), null(), null());
+                                                                                              ^
+$SerializationTester$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/serialization_SerializationTester.storage.fc:56:19: warning: Lack of end_parse.
+      var v'i = sc_2~load_int(257);
+                    ^
+$SerializationTester$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/serialization_SerializationTester.storage.fc:53:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+$SerializationTester$init$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/serialization_SerializationTester.storage.fc:71:19: warning: Lack of end_parse.
+      var v'i = sc_2~load_int(257);
+                    ^
+$SerializationTester$init$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/serialization_SerializationTester.storage.fc:68:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+$SerializationTester$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/serialization_SerializationTester.storage.fc:80:19: warning: Lack of end_parse.
+          return $sc~$SerializationTester$_load();
+                    ^
+$Update$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/serialization_SerializationTester.storage.fc:19:19: warning: Lack of end_parse.
+      var v'i = sc_2~load_int(257);
+                    ^
+$Update$_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/serialization_SerializationTester.storage.fc:16:22: warning: Lack of end_parse.
+      slice sc_2 = sc_1~load_ref().begin_parse();
+                       ^
+$SerializationTester$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/serialization_SerializationTester.code.fc:168:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/src/test/features/output/serialization_SerializationTester.storage.fc:91:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

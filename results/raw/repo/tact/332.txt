@@ -1,0 +1,38 @@
+$ReentrantCounter$_internal_text_10afebcfc3fc2db72c41c6d873a6960471b5941d6ed47dffc695eace74dd6f67: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/ton-reentrancy-test/contracts/output/sample_ReentrantCounter.code.fc:42:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$ReentrantCounter$_internal_text_10afebcfc3fc2db72c41c6d873a6960471b5941d6ed47dffc695eace74dd6f67: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/ton-reentrancy-test/contracts/output/sample_ReentrantCounter.code.fc:42:59: warning: Local variable '$ctx'sender' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$ReentrantCounter$_internal_text_10afebcfc3fc2db72c41c6d873a6960471b5941d6ed47dffc695eace74dd6f67: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/ton-reentrancy-test/contracts/output/sample_ReentrantCounter.code.fc:42:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$ReentrantCounter$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/ton-reentrancy-test/contracts/output/sample_ReentrantCounter.storage.fc:102:19: warning: Lack of end_parse.
+          return $sc~$ReentrantCounter$_load();
+                    ^
+$ReentrantCounter$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/ton-reentrancy-test/contracts/output/sample_ReentrantCounter.code.fc:15:37: warning: Local variable '$self'id' is not used
+      var (($self'id, $self'counter)) = (null(), null());
+                                      ^
+$ReentrantCounter$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/ton-reentrancy-test/contracts/output/sample_ReentrantCounter.code.fc:15:37: warning: Local variable '$self'counter' is not used
+      var (($self'id, $self'counter)) = (null(), null());
+                                      ^
+$ReentrantCounter$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/ton-reentrancy-test/contracts/output/sample_ReentrantCounter.code.fc:102:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/ton-reentrancy-test/contracts/output/sample_ReentrantCounter.storage.fc:113:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$ReentrantCounter$_contract_store & $ReentrantCounter$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/ton-reentrancy-test/contracts/output/sample_ReentrantCounter.storage.fc:98:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/ton-reentrancy-test/contracts/output/sample_ReentrantCounter.storage.fc:113:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

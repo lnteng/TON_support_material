@@ -1,0 +1,15 @@
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    var cs = in_msg_cell.begin_parse();
+    var flags = cs~load_uint(4);  
+    var s_addr = cs~load_msg_addr();
+
+    if (msg_value >= 1000 * 1000 * 1000) {
+        ;; free money!
+        var msg = begin_cell()
+            .store_uint(0x18, 6)
+            .store_slice(s_addr)
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1);
+        send_raw_message(msg.end_cell(), 128);
+    }
+}

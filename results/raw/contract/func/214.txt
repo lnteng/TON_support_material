@@ -1,0 +1,15 @@
+get_public_key: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBV5cqatzFmkmC8b-cDVHb7SLPkRT0CorRgckJesZClxUb8/highload-wallet-internal.fc:77:5: warning: Lack of end_parse.
+    cs~load_uint(32 + 64);
+      ^
+process_message: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBV5cqatzFmkmC8b-cDVHb7SLPkRT0CorRgckJesZClxUb8/highload-wallet-internal.fc:32:15: warning: Local variable 'queries' is not used
+    var queries = old_queries;
+                ^
+process_message & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBV5cqatzFmkmC8b-cDVHb7SLPkRT0CorRgckJesZClxUb8/highload-wallet-internal.fc:76:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQBV5cqatzFmkmC8b-cDVHb7SLPkRT0CorRgckJesZClxUb8/highload-wallet-internal.fc:45:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_uint(stored_subwallet, 32)
+      ^

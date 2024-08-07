@@ -1,0 +1,554 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_WitnessConsensus.headers.fc";
+#include "sample_WitnessConsensus.stdlib.fc";
+#include "sample_WitnessConsensus.constants.fc";
+#include "sample_WitnessConsensus.storage.fc";
+
+;;
+;; Contract WitnessConsensus functions
+;;
+
+(slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int) $WitnessConsensus$_contract_init(slice $owner) impure inline_ref {
+    var (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null());
+    $self'version = 1;
+    $self'owner = $owner;
+    $self'stopped = false;
+    $self'minStake = 100000000;
+    $self'minVotesForQuorum = 300000000;
+    $self'stakeFreezeTime = (((1 * 60) * 60) * 1000);
+    $self'genesisTimestamp = 1522108800;
+    $self'roundPeriod = ((6 * 60) * 60);
+    $self'openedRound = 0;
+    $self'rewardsBudget = 0;
+    $self'roundReward = 100000;
+    return ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version);
+}
+
+((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int), int) $WitnessConsensus$_fun_openedRound((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)) = $self;
+    return (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version), $self'openedRound);
+}
+
+((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int), int) $WitnessConsensus$_fun_isParticipant((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int) $self, slice $participant) impure inline_ref {
+    var (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)) = $self;
+    int $stake = __tact_dict_get_slice_int($self'participants, 267, $participant, 257);
+    return (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version), (~ null?($stake)));
+}
+
+((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int), int) $WitnessConsensus$_fun_participantStake((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int) $self, slice $participant) impure inline_ref {
+    var (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)) = $self;
+    int $stake = __tact_dict_get_slice_int($self'participants, 267, $participant, 257);
+    if (null?($stake)) {
+        return (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version), 0);
+    } else {
+        return (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version), __tact_not_null($stake));
+    }
+}
+
+((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int), int) $WitnessConsensus$_fun_pendingReward((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int) $self, slice $participant) impure inline_ref {
+    var (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)) = $self;
+    return (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version), __tact_dict_get_slice_int($self'pendingRewards, 267, $participant, 257));
+}
+
+((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int), int) $WitnessConsensus$_fun_checkGuardAddress((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int) $self, slice $address) impure inline_ref {
+    var (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)) = $self;
+    return (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version), __tact_int_eq_nullable_one(__tact_dict_get_slice_int($self'guards, 267, $address, 1), true));
+}
+
+((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int), slice) $WitnessConsensus$_fun_votingRoundAddress((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int) $self, int $round) impure inline_ref {
+    var (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)) = $self;
+    return (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version), $global_contractAddress($VotingRound$_init_child(__tact_context_sys, my_address(), $round)));
+}
+
+((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int), ()) $WitnessConsensus$_fun_requireOwner((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)) = $self;
+    throw_unless(132, ( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) ));
+    return (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version), ());
+}
+
+((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int), slice) $WitnessConsensus$_fun_owner((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)) = $self;
+    return (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version), $self'owner);
+}
+
+((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int), ()) $WitnessConsensus$_fun_requireNotStopped((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)) = $self;
+    throw_unless(40368, (~ $self'stopped));
+    return (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version), ());
+}
+
+((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int), ()) $WitnessConsensus$_fun_requireStopped((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)) = $self;
+    throw_unless(53296, $self'stopped);
+    return (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version), ());
+}
+
+((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int), int) $WitnessConsensus$_fun_stopped((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int) $self) impure inline_ref {
+    var (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)) = $self;
+    return (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version), $self'stopped);
+}
+
+;;
+;; Receivers of a Contract WitnessConsensus
+;;
+
+((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int), ()) $WitnessConsensus$_internal_text_7724dba3de8ee30dc834ca327ac39f9b52cc2c246197c19a914cb24f6569c54d((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int) $self) impure inline {
+    var ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version) = $self;
+    ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)~$WitnessConsensus$_fun_requireNotStopped();
+    int $tons = $Context$_get_value(__tact_context_get());
+    __tact_nop();
+    $self'rewardsBudget = ($self'rewardsBudget + $tons);
+    return (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version), ());
+}
+
+(((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int)), ()) $WitnessConsensus$_internal_binary_SetRoundReward((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int) $self, (int) $msg) impure inline {
+    var ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version) = $self;
+    var ($msg'amount) = $msg;
+    ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)~$WitnessConsensus$_fun_requireOwner();
+    throw_unless(39981, ($msg'amount < 1000000000));
+    $self'roundReward = $msg'amount;
+    return (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version), ());
+}
+
+((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int), ()) $WitnessConsensus$_internal_text_a78373eb671ee2c5f59fc43ad59f7f85375492b432c231047694d8fbcfc41212((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int) $self) impure inline {
+    var ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version) = $self;
+    ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)~$WitnessConsensus$_fun_requireNotStopped();
+    int $tons = $Context$_get_value(__tact_context_get());
+    __tact_nop();
+    int $currentStake = __tact_dict_get_slice_int($self'participants, 267, __tact_context_get_sender(), 257);
+    int $updatedStake = 0;
+    if (null?($currentStake)) {
+        throw_unless(42431, ($tons >= $self'minStake));
+        $updatedStake = $tons;
+    } else {
+        $updatedStake = ($tons + __tact_not_null($currentStake));
+    }
+    $self'participants~__tact_dict_set_slice_int(267, __tact_context_get_sender(), $updatedStake, 257);
+    __tact_nop();
+    int $unfreezeTime = (now() + $self'stakeFreezeTime);
+    $self'unfreeze~__tact_dict_set_slice_int(267, __tact_context_get_sender(), $unfreezeTime, 257);
+    __tact_nop();
+    $global_emit($NewParticipantEvent$_store_cell($NewParticipantEvent$_constructor_address_votes_unfreezeTime(__tact_context_get_sender(), $tons, $unfreezeTime)));
+    return (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version), ());
+}
+
+((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int), ()) $WitnessConsensus$_internal_text_a18011ae40853f484befda029823966dfd2ef8f7c7e1abb989b7d9a21250deb7((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int) $self) impure inline {
+    var ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version) = $self;
+    ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)~$WitnessConsensus$_fun_requireNotStopped();
+    int $pendingReward = __tact_dict_get_slice_int($self'pendingRewards, 267, __tact_context_get_sender(), 257);
+    throw_unless(57037, ( ((~ null?($pendingReward))) ? ((__tact_not_null($pendingReward) > 0)) : (false) ));
+    $self'pendingRewards~__tact_dict_set_slice_int(267, __tact_context_get_sender(), null(), 257);
+    $global_send($SendParameters$_constructor_to_value_mode(__tact_context_get_sender(), __tact_not_null($pendingReward), 2));
+    return (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version), ());
+}
+
+(((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int)), ()) $WitnessConsensus$_internal_binary_PromoteToGuard((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int) $self, (slice) $msg) impure inline {
+    var ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version) = $self;
+    var ($msg'address) = $msg;
+    ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)~$WitnessConsensus$_fun_requireOwner();
+    ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)~$WitnessConsensus$_fun_requireNotStopped();
+    int $currentStake = __tact_dict_get_slice_int($self'participants, 267, $msg'address, 257);
+    throw_unless(48360, (~ null?($currentStake)));
+    throw_unless(42431, (__tact_not_null($currentStake) >= $self'minStake));
+    $self'guards~__tact_dict_set_slice_int(267, $msg'address, true, 1);
+    return (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version), ());
+}
+
+(((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int)), ()) $WitnessConsensus$_internal_binary_RevokeGuard((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int) $self, (slice) $msg) impure inline {
+    var ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version) = $self;
+    var ($msg'address) = $msg;
+    ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)~$WitnessConsensus$_fun_requireOwner();
+    ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)~$WitnessConsensus$_fun_requireNotStopped();
+    int $guard = __tact_dict_get_slice_int($self'guards, 267, $msg'address, 1);
+    throw_unless(5681, __tact_int_eq_nullable_one($guard, true));
+    $self'guards~__tact_dict_set_slice_int(267, $msg'address, null(), 1);
+    return (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version), ());
+}
+
+((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int), ()) $WitnessConsensus$_internal_text_afa8eff8cdbcd5ce0b7f33eb1c2f5b96e85364d38a6d1d030a5a43fd0b408726((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int) $self) impure inline {
+    var ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version) = $self;
+    ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)~$WitnessConsensus$_fun_requireNotStopped();
+    int $stakeAmount = __tact_dict_get_slice_int($self'participants, 267, __tact_context_get_sender(), 257);
+    throw_unless(48360, (~ null?($stakeAmount)));
+    int $stakeAmountSafe = __tact_not_null($stakeAmount);
+    int $unfreezeTime = __tact_dict_get_slice_int($self'unfreeze, 267, __tact_context_get_sender(), 257);
+    throw_unless(36401, (~ null?($unfreezeTime)));
+    int $unfreezeTimeSafe = __tact_not_null($unfreezeTime);
+    throw_unless(25476, ($unfreezeTimeSafe > now()));
+    $self'participants~__tact_dict_set_slice_int(267, __tact_context_get_sender(), null(), 257);
+    $self'unfreeze~__tact_dict_set_slice_int(267, __tact_context_get_sender(), null(), 257);
+    $global_send($SendParameters$_constructor_to_bounce_value(__tact_context_get_sender(), true, $stakeAmountSafe));
+    $global_emit($ParticipantQuitEvent$_store_cell($ParticipantQuitEvent$_constructor_address_votes_unfreezeTime(__tact_context_get_sender(), $stakeAmountSafe, $unfreezeTimeSafe)));
+    return (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version), ());
+}
+
+(((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int)), ()) $WitnessConsensus$_internal_binary_FinalizeRound((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int) $self, (int) $msg) impure inline {
+    var ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version) = $self;
+    var ($msg'round) = $msg;
+    throw_unless(2768, ($self'openedRound >= $msg'round));
+    int $currentRound = ((now() - $self'genesisTimestamp) / $self'roundPeriod);
+    throw_unless(5655, ($msg'round <= $currentRound));
+    var ($init'code, $init'data) = $VotingRound$_init_child(__tact_context_sys, my_address(), $msg'round);
+    int $rewards = 0;
+    if (($self'rewardsBudget >= $self'roundReward)) {
+        $rewards = $self'roundReward;
+    }
+    $global_send($SendParameters$_constructor_to_body_value_mode($global_contractAddress(($init'code, $init'data)), $InternalFinalize$_store_cell($InternalFinalize$_constructor_minVotes($self'minVotesForQuorum)), $rewards, (64 + 2)));
+    return (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version), ());
+}
+
+(((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int)), ()) $WitnessConsensus$_internal_binary_InternalFinalized((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int) $self, (int, slice, int, int, cell, int, cell, cell, int, cell) $msg) impure inline {
+    var ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version) = $self;
+    var ($msg'round, $msg'winnerPayload, $msg'winnerVotes, $msg'winnerGuarded, $msg'goodParticipants, $msg'goodParticipantsCount, $msg'goodParticipantsVotes, $msg'badParticipants, $msg'badParticipantsCount, $msg'badParticipantsVotes) = $msg;
+    ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)~$WitnessConsensus$_fun_requireNotStopped();
+    var ($init'code, $init'data) = $VotingRound$_init_child(__tact_context_sys, my_address(), $msg'round);
+    throw_unless(47963, ( __tact_slice_eq_bits($global_contractAddress(($init'code, $init'data)), __tact_context_get_sender()) ));
+    throw_unless(2768, ($self'openedRound >= $msg'round));
+    int $currentRound = ((now() - $self'genesisTimestamp) / $self'roundPeriod);
+    throw_unless(5655, ($msg'round < $currentRound));
+    if (($self'rewardsBudget > $self'roundReward)) {
+        int $i = 0;
+        while (($i < $msg'goodParticipantsCount)) {
+            slice $receiver = __tact_not_null(__tact_dict_get_int_slice($msg'goodParticipants, 257, $i));
+            int $votes = __tact_not_null(__tact_dict_get_slice_int($msg'goodParticipantsVotes, 267, $receiver, 257));
+            int $reward = (($self'roundReward * $votes) / __tact_not_null($msg'winnerVotes));
+            __tact_nop();
+            __tact_nop();
+            __tact_nop();
+            int $pendingReward = __tact_dict_get_slice_int($self'pendingRewards, 267, $receiver, 257);
+            int $pendingRewardSafe = 0;
+            if ((~ null?($pendingReward))) {
+                $pendingRewardSafe = __tact_not_null($pendingReward);
+            }
+            int $updatedReward = ($pendingRewardSafe + $reward);
+            $self'pendingRewards~__tact_dict_set_slice_int(267, $receiver, $updatedReward, 257);
+            $i = ($i + 1);
+        }
+    }
+    int $j = 0;
+    while (($j < $msg'badParticipantsCount)) {
+        slice $badParticipant = __tact_not_null(__tact_dict_get_int_slice($msg'badParticipants, 257, $j));
+        int $currentStake = __tact_not_null(__tact_dict_get_slice_int($self'participants, 267, $badParticipant, 257));
+        int $reducedAmount = (($currentStake * 5) / 1000);
+        $self'rewardsBudget = ($self'rewardsBudget + $reducedAmount);
+        int $reducedStake = ($currentStake - $reducedAmount);
+        $self'participants~__tact_dict_set_slice_int(267, $badParticipant, $reducedStake, 257);
+        $j = ($j + 1);
+    }
+    return (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version), ());
+}
+
+(((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int)), ()) $WitnessConsensus$_internal_binary_OpenRound((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int) $self, (int) $msg) impure inline {
+    var ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version) = $self;
+    var ($msg'round) = $msg;
+    ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)~$WitnessConsensus$_fun_requireNotStopped();
+    throw_unless(56100, ($msg'round > $self'openedRound));
+    int $currentRound = ((now() - $self'genesisTimestamp) / $self'roundPeriod);
+    __tact_nop();
+    __tact_nop();
+    throw_unless(29552, ($msg'round == $currentRound));
+    var ($init'code, $init'data) = $VotingRound$_init_child(__tact_context_sys, my_address(), $msg'round);
+    $global_send($SendParameters$_constructor_to_value_mode_code_data_body($global_contractAddress(($init'code, $init'data)), 0, (64 + 2), $init'code, $init'data, __gen_cell_comment_12511bf31bf6bf76e15f462c80fde0373029b30cc9665d2141bd1db5e63d089a()));
+    return (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version), ());
+}
+
+(((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int)), ()) $WitnessConsensus$_internal_binary_InternalRoundOpened((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int) $self, (int) $msg) impure inline {
+    var ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version) = $self;
+    var ($msg'round) = $msg;
+    ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)~$WitnessConsensus$_fun_requireNotStopped();
+    throw_unless(56100, ($msg'round > $self'openedRound));
+    var ($init'code, $init'data) = $VotingRound$_init_child(__tact_context_sys, my_address(), $msg'round);
+    throw_unless(47963, ( __tact_slice_eq_bits($global_contractAddress(($init'code, $init'data)), __tact_context_get_sender()) ));
+    $self'openedRound = $msg'round;
+    return (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version), ());
+}
+
+(((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int)), ()) $WitnessConsensus$_internal_binary_Vote((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int) $self, (int, slice) $msg) impure inline {
+    var ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version) = $self;
+    var ($msg'round, $msg'payload) = $msg;
+    ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)~$WitnessConsensus$_fun_requireNotStopped();
+    int $stakeAmount = __tact_dict_get_slice_int($self'participants, 267, __tact_context_get_sender(), 257);
+    throw_unless(48360, (~ null?($stakeAmount)));
+    int $stakeAmountSafe = __tact_not_null($stakeAmount);
+    int $unfreezeTime = __tact_dict_get_slice_int($self'unfreeze, 267, __tact_context_get_sender(), 257);
+    throw_unless(36401, (~ null?($unfreezeTime)));
+    int $unfreezeTimeSafe = __tact_not_null($unfreezeTime);
+    throw_unless(53872, ($unfreezeTimeSafe > now()));
+    int $currentRound = ((now() - $self'genesisTimestamp) / $self'roundPeriod);
+    throw_unless(29552, ($msg'round == $currentRound));
+    var ($internalVote'round, $internalVote'payload, $internalVote'participant, $internalVote'guard, $internalVote'votes) = $InternalVote$_constructor_round_payload_participant_guard_votes($currentRound, $msg'payload, __tact_context_get_sender(), __tact_int_eq_nullable_one(__tact_dict_get_slice_int($self'guards, 267, __tact_context_get_sender(), 1), true), $stakeAmountSafe);
+    var ($init'code, $init'data) = $VotingRound$_init_child(__tact_context_sys, my_address(), $currentRound);
+    if (($self'openedRound == $currentRound)) {
+        $global_send($SendParameters$_constructor_to_body_value_mode($global_contractAddress(($init'code, $init'data)), $InternalVote$_store_cell(($internalVote'round, $internalVote'payload, $internalVote'participant, $internalVote'guard, $internalVote'votes)), 0, (64 + 2)));
+    }
+    return (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version), ());
+}
+
+(((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int)), ()) $WitnessConsensus$_internal_binary_Deploy((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int) $self, (int) $deploy) impure inline {
+    var ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)~$WitnessConsensus$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version), ());
+}
+
+(((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int)), ()) $WitnessConsensus$_internal_binary_ChangeOwner((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int) $self, (int, slice) $msg) impure inline {
+    var ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version) = $self;
+    var ($msg'queryId, $msg'newOwner) = $msg;
+    ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)~$WitnessConsensus$_fun_requireOwner();
+    $self'owner = $msg'newOwner;
+    ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)~$WitnessConsensus$_fun_reply($ChangeOwnerOk$_store_cell($ChangeOwnerOk$_constructor_queryId_newOwner($msg'queryId, $msg'newOwner)));
+    return (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version), ());
+}
+
+((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int), ()) $WitnessConsensus$_internal_text_6c8f44f45fedb4cdfed4de8db14aa5b13ad55d430f759d0669210b74c48fe3df((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int) $self) impure inline {
+    var ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version) = $self;
+    ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)~$WitnessConsensus$_fun_requireOwner();
+    ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)~$WitnessConsensus$_fun_requireStopped();
+    $self'stopped = false;
+    ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)~$WitnessConsensus$_fun_reply(__gen_cell_comment_514f593ead485926515219a03034c6b162f1c29390f83f2f1bd70b8b77731ec3());
+    return (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version), ());
+}
+
+((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int), ()) $WitnessConsensus$_internal_text_bcfaf776907c719cc8d379d8f194aaaa27e8ca2871cd591781721f215a454501((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int) $self) impure inline {
+    var ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version) = $self;
+    ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)~$WitnessConsensus$_fun_requireOwner();
+    ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)~$WitnessConsensus$_fun_requireNotStopped();
+    $self'stopped = true;
+    ($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version)~$WitnessConsensus$_fun_reply(__gen_cell_comment_8f4b6a166554b4f282855d0333c627d5b58d281ea4ba11e4def91a1053193b2d());
+    return (($self'owner, $self'stopped, $self'genesisTimestamp, $self'roundPeriod, $self'minStake, $self'stakeFreezeTime, $self'minVotesForQuorum, $self'participants, $self'pendingRewards, $self'guards, $self'unfreeze, $self'openedRound, $self'rewardsBudget, $self'roundReward, $self'version), ());
+}
+
+;;
+;; Get methods of a Contract WitnessConsensus
+;;
+
+_ %openedRound() method_id(89643) {
+    var self = $WitnessConsensus$_contract_load();
+    var res = self~$WitnessConsensus$_fun_openedRound();
+    return res;
+}
+
+_ %isParticipant(slice $$participant) method_id(73567) {
+    slice $participant = __tact_verify_address($$participant);
+    var self = $WitnessConsensus$_contract_load();
+    var res = self~$WitnessConsensus$_fun_isParticipant($participant);
+    return res;
+}
+
+_ %participantStake(slice $$participant) method_id(120497) {
+    slice $participant = __tact_verify_address($$participant);
+    var self = $WitnessConsensus$_contract_load();
+    var res = self~$WitnessConsensus$_fun_participantStake($participant);
+    return res;
+}
+
+_ %pendingReward(slice $$participant) method_id(80113) {
+    slice $participant = __tact_verify_address($$participant);
+    var self = $WitnessConsensus$_contract_load();
+    var res = self~$WitnessConsensus$_fun_pendingReward($participant);
+    return res;
+}
+
+_ %checkGuardAddress(slice $$address) method_id(125028) {
+    slice $address = __tact_verify_address($$address);
+    var self = $WitnessConsensus$_contract_load();
+    var res = self~$WitnessConsensus$_fun_checkGuardAddress($address);
+    return res;
+}
+
+_ %votingRoundAddress(int $$round) method_id(68841) {
+    int $round = $$round;
+    var self = $WitnessConsensus$_contract_load();
+    var res = self~$WitnessConsensus$_fun_votingRoundAddress($round);
+    return res;
+}
+
+_ %owner() method_id(83229) {
+    var self = $WitnessConsensus$_contract_load();
+    var res = self~$WitnessConsensus$_fun_owner();
+    return res;
+}
+
+_ %stopped() method_id(74107) {
+    var self = $WitnessConsensus$_contract_load();
+    var res = self~$WitnessConsensus$_fun_stopped();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128,
+        "org.ton.ownable.transferable.v2"H >> 128,
+        "org.ton.ownable"H >> 128,
+        "org.ton.resumable"H >> 128,
+        "org.ton.stoppable"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmexCdSJyhNuHGeFpWr2vN2uVByz4rDQEenrNgzTSmhnfi";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract WitnessConsensus
+;;
+
+((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int), int) $WitnessConsensus$_contract_router_internal((slice, int, int, int, int, int, int, cell, cell, cell, cell, int, int, int, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive SetRoundReward message
+    if (op == 1359229940) {
+        var msg = in_msg~$SetRoundReward$_load();
+        self~$WitnessConsensus$_internal_binary_SetRoundReward(msg);
+        return (self, true);
+    }
+    
+    ;; Receive PromoteToGuard message
+    if (op == 1194924511) {
+        var msg = in_msg~$PromoteToGuard$_load();
+        self~$WitnessConsensus$_internal_binary_PromoteToGuard(msg);
+        return (self, true);
+    }
+    
+    ;; Receive RevokeGuard message
+    if (op == 2479156566) {
+        var msg = in_msg~$RevokeGuard$_load();
+        self~$WitnessConsensus$_internal_binary_RevokeGuard(msg);
+        return (self, true);
+    }
+    
+    ;; Receive FinalizeRound message
+    if (op == 2302895222) {
+        var msg = in_msg~$FinalizeRound$_load();
+        self~$WitnessConsensus$_internal_binary_FinalizeRound(msg);
+        return (self, true);
+    }
+    
+    ;; Receive InternalFinalized message
+    if (op == 2800852515) {
+        var msg = in_msg~$InternalFinalized$_load();
+        self~$WitnessConsensus$_internal_binary_InternalFinalized(msg);
+        return (self, true);
+    }
+    
+    ;; Receive OpenRound message
+    if (op == 746268676) {
+        var msg = in_msg~$OpenRound$_load();
+        self~$WitnessConsensus$_internal_binary_OpenRound(msg);
+        return (self, true);
+    }
+    
+    ;; Receive InternalRoundOpened message
+    if (op == 2289982627) {
+        var msg = in_msg~$InternalRoundOpened$_load();
+        self~$WitnessConsensus$_internal_binary_InternalRoundOpened(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Vote message
+    if (op == 3335902498) {
+        var msg = in_msg~$Vote$_load();
+        self~$WitnessConsensus$_internal_binary_Vote(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$WitnessConsensus$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Receive ChangeOwner message
+    if (op == 2174598809) {
+        var msg = in_msg~$ChangeOwner$_load();
+        self~$WitnessConsensus$_internal_binary_ChangeOwner(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "top up rewards" message
+        if (text_op == 0x7724dba3de8ee30dc834ca327ac39f9b52cc2c246197c19a914cb24f6569c54d) {
+            self~$WitnessConsensus$_internal_text_7724dba3de8ee30dc834ca327ac39f9b52cc2c246197c19a914cb24f6569c54d();
+            return (self, true);
+        }
+        
+        ;; Receive "participate" message
+        if (text_op == 0xa78373eb671ee2c5f59fc43ad59f7f85375492b432c231047694d8fbcfc41212) {
+            self~$WitnessConsensus$_internal_text_a78373eb671ee2c5f59fc43ad59f7f85375492b432c231047694d8fbcfc41212();
+            return (self, true);
+        }
+        
+        ;; Receive "claim reward" message
+        if (text_op == 0xa18011ae40853f484befda029823966dfd2ef8f7c7e1abb989b7d9a21250deb7) {
+            self~$WitnessConsensus$_internal_text_a18011ae40853f484befda029823966dfd2ef8f7c7e1abb989b7d9a21250deb7();
+            return (self, true);
+        }
+        
+        ;; Receive "quit" message
+        if (text_op == 0xafa8eff8cdbcd5ce0b7f33eb1c2f5b96e85364d38a6d1d030a5a43fd0b408726) {
+            self~$WitnessConsensus$_internal_text_afa8eff8cdbcd5ce0b7f33eb1c2f5b96e85364d38a6d1d030a5a43fd0b408726();
+            return (self, true);
+        }
+        
+        ;; Receive "Resume" message
+        if (text_op == 0x6c8f44f45fedb4cdfed4de8db14aa5b13ad55d430f759d0669210b74c48fe3df) {
+            self~$WitnessConsensus$_internal_text_6c8f44f45fedb4cdfed4de8db14aa5b13ad55d430f759d0669210b74c48fe3df();
+            return (self, true);
+        }
+        
+        ;; Receive "Stop" message
+        if (text_op == 0xbcfaf776907c719cc8d379d8f194aaaa27e8ca2871cd591781721f215a454501) {
+            self~$WitnessConsensus$_internal_text_bcfaf776907c719cc8d379d8f194aaaa27e8ca2871cd591781721f215a454501();
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $WitnessConsensus$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$WitnessConsensus$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $WitnessConsensus$_contract_store(self);
+}

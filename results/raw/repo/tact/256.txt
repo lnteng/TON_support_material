@@ -1,0 +1,63 @@
+$BlacklistSubscriber$_internal_binary_SetMessenger: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/blacklist_subscriber_BlacklistSubscriber.code.fc:67:67: warning: Local variable '$self'messenger' is not used
+      ($self'owner, $self'messenger, $self'eventId, $self'blacklist)~$BlacklistSubscriber$_fun_requireOwner();
+                                                                    ^
+$BlacklistSubscriber$_internal_binary_SetMessenger: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/blacklist_subscriber_BlacklistSubscriber.code.fc:67:67: warning: Local variable '$self'eventId' is not used
+      ($self'owner, $self'messenger, $self'eventId, $self'blacklist)~$BlacklistSubscriber$_fun_requireOwner();
+                                                                    ^
+$BlacklistSubscriber$_internal_binary_EventSignal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/blacklist_subscriber_BlacklistSubscriber.code.fc:79:34: warning: Lack of end_parse.
+      slice $blackAddress = $parser~__tact_load_address();
+                                   ^
+__tact_dict_set_slice_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/blacklist_subscriber_BlacklistSubscriber.stdlib.fc:49:21: warning: Local variable 'ok' is not used
+          var (r, ok) = __tact_dict_delete(d, kl, k);
+                      ^
+$BlacklistSubscriber$_fun_requireMessenger: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/blacklist_subscriber_BlacklistSubscriber.code.fc:23:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$BlacklistSubscriber$_fun_requireMessenger: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/blacklist_subscriber_BlacklistSubscriber.code.fc:23:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$BlacklistSubscriber$_fun_requireMessenger: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/blacklist_subscriber_BlacklistSubscriber.code.fc:23:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$BlacklistSubscriber$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/blacklist_subscriber_BlacklistSubscriber.code.fc:14:74: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'messenger, $self'eventId, $self'blacklist)) = (null(), null(), null(), null());
+                                                                           ^
+$BlacklistSubscriber$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/blacklist_subscriber_BlacklistSubscriber.code.fc:14:74: warning: Local variable '$self'messenger' is not used
+      var (($self'owner, $self'messenger, $self'eventId, $self'blacklist)) = (null(), null(), null(), null());
+                                                                           ^
+$BlacklistSubscriber$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/blacklist_subscriber_BlacklistSubscriber.code.fc:14:74: warning: Local variable '$self'eventId' is not used
+      var (($self'owner, $self'messenger, $self'eventId, $self'blacklist)) = (null(), null(), null(), null());
+                                                                           ^
+$BlacklistSubscriber$_fun_requireNotInBlacklist: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/blacklist_subscriber_BlacklistSubscriber.code.fc:30:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$BlacklistSubscriber$_fun_requireNotInBlacklist: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/blacklist_subscriber_BlacklistSubscriber.code.fc:30:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$BlacklistSubscriber$_fun_requireNotInBlacklist: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/blacklist_subscriber_BlacklistSubscriber.code.fc:30:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$BlacklistSubscriber$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/blacklist_subscriber_BlacklistSubscriber.storage.fc:128:19: warning: Lack of end_parse.
+          return $sc~$BlacklistSubscriber$_load();
+                    ^
+$BlacklistSubscriber$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/blacklist_subscriber_BlacklistSubscriber.code.fc:133:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Ton-Dynasty/eventon/contracts/output/blacklist_subscriber_BlacklistSubscriber.storage.fc:139:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

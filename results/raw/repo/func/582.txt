@@ -1,0 +1,51 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./akifoq/nominator-pool-contract/func/main.fc:180:18: warning: Lack of end_parse.
+    var s_addr = cs~load_msg_addr();
+                   ^
+get_user_coins: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./akifoq/nominator-pool-contract/func/get_methods.fc:129:16: warning: Lack of end_parse.
+      .end_cell().begin_parse();
+                 ^
+get_user_coins: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./akifoq/nominator-pool-contract/func/get_methods.fc:125:12: warning: Local variable 'id' is not used
+    slice id = begin_cell()
+             ^
+can_begin_elections?: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./akifoq/nominator-pool-contract/func/get_methods.fc:28:49: warning: Local variable '_1' is not used
+    var (_1, state, settings, balances, pendings) = load_data();
+                                                  ^
+current_round: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./akifoq/nominator-pool-contract/func/config.fc:21:31: warning: Lack of end_parse.
+    return (cs~load_uint(32), cs~load_uint(32));
+                                ^
+unpack_balances: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./akifoq/nominator-pool-contract/func/storage.fc:108:7: warning: Lack of end_parse.
+      cs~load_grams()   ;; total_sent
+        ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./akifoq/nominator-pool-contract/func/storage.fc:144:7: warning: Lack of end_parse.
+      ds~load_pendings()
+        ^
+elect_timings: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./akifoq/nominator-pool-contract/func/config.fc:11:31: warning: Lack of end_parse.
+            cs~load_uint(32), cs~load_uint(32));
+                                ^
+get_controller: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./akifoq/nominator-pool-contract/func/get_methods.fc:71:22: warning: Lack of end_parse.
+    var controller = ds~load_msg_addr();
+                       ^
+recv_internal & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./akifoq/nominator-pool-contract/func/storage.fc:138:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./akifoq/nominator-pool-contract/func/main.fc:241:9: warning: Cell of get_data and set_data are inconsistent.
+          .store_slice(addr)
+          ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./akifoq/nominator-pool-contract/func/msg_utils.fc:25:41: warning: UnHandle bounced message with op: 0x4e73744b
+    send_raw_message(msg.end_cell(), mode);
+                                          ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./akifoq/nominator-pool-contract/func/request_stake.fc:14:38: warning: UnHandle bounced message with op: 0x47657424
+    send_raw_message(msg.end_cell(), 1);
+                                       ^

@@ -1,0 +1,43 @@
+$Player$_load_opt: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDWi8OFJ811fFOV-shGvigzCoU3OYCQ96wofkErctIRlX-7/output/verifier_TheLottery.storage.fc:111:35: warning: Lack of end_parse.
+      return $Player$_as_optional(sc~$Player$_load());
+                                    ^
+$Game$_load_opt: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDWi8OFJ811fFOV-shGvigzCoU3OYCQ96wofkErctIRlX-7/output/verifier_TheLottery.storage.fc:167:33: warning: Lack of end_parse.
+      return $Game$_as_optional(sc~$Game$_load());
+                                  ^
+__tact_dict_set_int_cell: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDWi8OFJ811fFOV-shGvigzCoU3OYCQ96wofkErctIRlX-7/output/verifier_TheLottery.stdlib.fc:52:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+$TheLottery$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDWi8OFJ811fFOV-shGvigzCoU3OYCQ96wofkErctIRlX-7/output/verifier_TheLottery.code.fc:15:98: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue)) = (null(), null(), null(), 0, 0);
+                                                                                                   ^
+$TheLottery$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDWi8OFJ811fFOV-shGvigzCoU3OYCQ96wofkErctIRlX-7/output/verifier_TheLottery.code.fc:15:98: warning: Local variable '$self'games' is not used
+      var (($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue)) = (null(), null(), null(), 0, 0);
+                                                                                                   ^
+$TheLottery$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDWi8OFJ811fFOV-shGvigzCoU3OYCQ96wofkErctIRlX-7/output/verifier_TheLottery.code.fc:15:98: warning: Local variable '$self'currGameIdx' is not used
+      var (($self'owner, $self'games, $self'currGameIdx, $self'lockedBalance, $self'totalRevenue)) = (null(), null(), null(), 0, 0);
+                                                                                                   ^
+$TheLottery$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDWi8OFJ811fFOV-shGvigzCoU3OYCQ96wofkErctIRlX-7/output/verifier_TheLottery.storage.fc:213:19: warning: Lack of end_parse.
+          return $sc~$TheLottery$_load();
+                    ^
+%$TheLottery$_internal_empty: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDWi8OFJ811fFOV-shGvigzCoU3OYCQ96wofkErctIRlX-7/output/verifier_TheLottery.code.fc:84:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+%$TheLottery$_internal_empty: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDWi8OFJ811fFOV-shGvigzCoU3OYCQ96wofkErctIRlX-7/output/verifier_TheLottery.code.fc:84:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$TheLottery$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDWi8OFJ811fFOV-shGvigzCoU3OYCQ96wofkErctIRlX-7/output/verifier_TheLottery.code.fc:160:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./testnet/EQDWi8OFJ811fFOV-shGvigzCoU3OYCQ96wofkErctIRlX-7/output/verifier_TheLottery.storage.fc:224:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

@@ -1,0 +1,230 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_LuckyBank.headers.fc";
+#include "sample_LuckyBank.stdlib.fc";
+#include "sample_LuckyBank.storage.fc";
+
+;;
+;; Contract LuckyBank functions
+;;
+
+(slice, cell, cell, (int, int, slice)) $LuckyBank$_contract_init(slice $owner_address, cell $collection_content, cell $collection_base, (int, int, slice) $royalty_params) impure inline_ref {
+    var (($royalty_params'numerator, $royalty_params'denominator, $royalty_params'destination)) = $royalty_params;
+    var (($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination))) = (null(), null(), null(), null());
+    $self'owner_address = $owner_address;
+    $self'collection_content = $collection_content;
+    $self'collection_base = $collection_base;
+    ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination) = ($royalty_params'numerator, $royalty_params'denominator, $royalty_params'destination);
+    return ($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination));
+}
+
+((slice, cell, cell, (int, int, slice)), (cell, cell)) $LuckyBank$_fun_getNftItemInit((slice, cell, cell, (int, int, slice)) $self, int $item_index) impure inline_ref {
+    var (($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination))) = $self;
+    return (($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination)), $LuckyWallet$_init_child(__tact_context_sys, my_address(), $item_index));
+}
+
+((slice, cell, cell, (int, int, slice)), ()) $LuckyBank$_fun_mint((slice, cell, cell, (int, int, slice)) $self, slice $sender, int $msgValue, int $itemIndex) impure inline_ref {
+    var (($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination))) = $self;
+    var ($nft_init'code, $nft_init'data) = ($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination))~$LuckyBank$_fun_getNftItemInit($itemIndex);
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body_code_data($global_contractAddress(($nft_init'code, $nft_init'data)), $msgValue, false, 2, $Transfer$_store_cell($Transfer$_constructor_query_id_new_owner_response_destination_custom_payload_forward_amount_forward_payload(0, $sender, $self'owner_address, null(), 0, $Cell$_fun_asSlice(end_cell(store_int(begin_cell(), 0, 1))))), $nft_init'code, $nft_init'data));
+    return (($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination)), ());
+}
+
+((slice, cell, cell, (int, int, slice)), (int, cell, slice)) $LuckyBank$_fun_get_collection_data((slice, cell, cell, (int, int, slice)) $self) impure inline_ref {
+    var (($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination))) = $self;
+    return (($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination)), $CollectionData$_constructor_next_item_index_collection_content_owner_address((- 1), $self'collection_content, $self'owner_address));
+}
+
+((slice, cell, cell, (int, int, slice)), slice) $LuckyBank$_fun_get_nft_address_by_index((slice, cell, cell, (int, int, slice)) $self, int $item_index) impure inline_ref {
+    var (($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination))) = $self;
+    var ($initCode'code, $initCode'data) = ($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination))~$LuckyBank$_fun_getNftItemInit($item_index);
+    return (($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination)), $global_contractAddress(($initCode'code, $initCode'data)));
+}
+
+((slice, cell, cell, (int, int, slice)), cell) $LuckyBank$_fun_get_nft_content((slice, cell, cell, (int, int, slice)) $self, int $index, cell $individual_content) impure inline_ref {
+    var (($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination))) = $self;
+    return (($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination)), end_cell(store_ref(store_slice(store_uint(begin_cell(), 1, 8), begin_parse($self'collection_base)), $individual_content)));
+}
+
+((slice, cell, cell, (int, int, slice)), (int, int, slice)) $LuckyBank$_fun_royalty_params((slice, cell, cell, (int, int, slice)) $self) impure inline_ref {
+    var (($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination))) = $self;
+    return (($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination)), ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination));
+}
+
+;;
+;; Receivers of a Contract LuckyBank
+;;
+
+(((slice, cell, cell, (int, int, slice))), ()) %$LuckyBank$_internal_empty((slice, cell, cell, (int, int, slice)) $self) impure inline {
+    var ($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination)) = $self;
+    throw(0);
+    return (($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination)), ());
+}
+
+(((slice, cell, cell, (int, int, slice))), ()) $LuckyBank$_internal_binary_LuckyMint((slice, cell, cell, (int, int, slice)) $self, (int) $msg) impure inline {
+    var ($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination)) = $self;
+    var ($msg'index) = $msg;
+    throw_unless(36287, ( __tact_slice_eq_bits($self'owner_address, __tact_context_get_sender()) ));
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    int $msgValue = $ctx'value;
+    int $tonBalanceBeforeMsg = (__tact_my_balance() - $msgValue);
+    int $storageFee = (20000000 - min($tonBalanceBeforeMsg, 20000000));
+    $msgValue = ($msgValue - ($storageFee + 20000000));
+    ($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination))~$LuckyBank$_fun_mint($ctx'sender, $msgValue, $msg'index);
+    return (($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination)), ());
+}
+
+(((slice, cell, cell, (int, int, slice))), ()) $LuckyBank$_internal_binary_EditContent((slice, cell, cell, (int, int, slice)) $self, (int, cell, cell) $msg) impure inline {
+    var ($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination)) = $self;
+    var ($msg'query_id, $msg'content, $msg'royalty) = $msg;
+    throw_unless(36287, ( __tact_slice_eq_bits($self'owner_address, __tact_context_get_sender()) ));
+    slice $content = begin_parse($msg'content);
+    $self'collection_content = $content~load_ref();
+    $self'collection_base = $content~load_ref();
+    slice $royalty = begin_parse($msg'royalty);
+    ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination) = $RoyaltyParams$_constructor_numerator_denominator_destination($royalty~load_uint(16), $royalty~load_uint(16), $royalty~__tact_load_address());
+    return (($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination)), ());
+}
+
+(((slice, cell, cell, (int, int, slice))), ()) $LuckyBank$_internal_binary_ChangeOwner((slice, cell, cell, (int, int, slice)) $self, (int, slice) $msg) impure inline {
+    var ($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination)) = $self;
+    var ($msg'query_id, $msg'new_owner) = $msg;
+    throw_unless(36287, ( __tact_slice_eq_bits($self'owner_address, __tact_context_get_sender()) ));
+    $self'owner_address = $msg'new_owner;
+    return (($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination)), ());
+}
+
+(((slice, cell, cell, (int, int, slice))), ()) $LuckyBank$_internal_binary_GetRoyaltyParams((slice, cell, cell, (int, int, slice)) $self, (int) $msg) impure inline {
+    var ($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination)) = $self;
+    var ($msg'query_id) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    $global_send($SendParameters$_constructor_to_value_mode_bounce_body($ctx'sender, 0, 64, false, $ReportRoyaltyParams$_store_cell($ReportRoyaltyParams$_constructor_query_id_numerator_denominator_destination($msg'query_id, $self'royalty_params'numerator, $self'royalty_params'denominator, $self'owner_address))));
+    return (($self'owner_address, $self'collection_content, $self'collection_base, ($self'royalty_params'numerator, $self'royalty_params'denominator, $self'royalty_params'destination)), ());
+}
+
+;;
+;; Get methods of a Contract LuckyBank
+;;
+
+_ %get_collection_data() method_id(102491) {
+    var self = $LuckyBank$_contract_load();
+    var res = self~$LuckyBank$_fun_get_collection_data();
+    return $CollectionData$_to_external(res);
+}
+
+_ %get_nft_address_by_index(int $$item_index) method_id(92067) {
+    int $item_index = $$item_index;
+    var self = $LuckyBank$_contract_load();
+    var res = self~$LuckyBank$_fun_get_nft_address_by_index($item_index);
+    return res;
+}
+
+_ %get_nft_content(int $$index, cell $$individual_content) method_id(68445) {
+    int $index = $$index;
+    cell $individual_content = $$individual_content;
+    var self = $LuckyBank$_contract_load();
+    var res = self~$LuckyBank$_fun_get_nft_content($index, $individual_content);
+    return res;
+}
+
+_ %royalty_params() method_id(85719) {
+    var self = $LuckyBank$_contract_load();
+    var res = self~$LuckyBank$_fun_royalty_params();
+    return $RoyaltyParams$_to_external(res);
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmPZ3rnpuA6sLw7AMLJwQPxzucmdZMgzdpatruWoLXv9Rp";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract LuckyBank
+;;
+
+((slice, cell, cell, (int, int, slice)), int) $LuckyBank$_contract_router_internal((slice, cell, cell, (int, int, slice)) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive empty message
+    if ((op == 0) & (slice_bits(in_msg) <= 32)) {
+        self~%$LuckyBank$_internal_empty();
+        return (self, true);
+    }
+    
+    ;; Receive LuckyMint message
+    if (op == 1092) {
+        var msg = in_msg~$LuckyMint$_load();
+        self~$LuckyBank$_internal_binary_LuckyMint(msg);
+        return (self, true);
+    }
+    
+    ;; Receive EditContent message
+    if (op == 4) {
+        var msg = in_msg~$EditContent$_load();
+        self~$LuckyBank$_internal_binary_EditContent(msg);
+        return (self, true);
+    }
+    
+    ;; Receive ChangeOwner message
+    if (op == 3) {
+        var msg = in_msg~$ChangeOwner$_load();
+        self~$LuckyBank$_internal_binary_ChangeOwner(msg);
+        return (self, true);
+    }
+    
+    ;; Receive GetRoyaltyParams message
+    if (op == 1765620048) {
+        var msg = in_msg~$GetRoyaltyParams$_load();
+        self~$LuckyBank$_internal_binary_GetRoyaltyParams(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $LuckyBank$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$LuckyBank$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $LuckyBank$_contract_store(self);
+}

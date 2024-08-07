@@ -1,0 +1,318 @@
+#pragma version >=0.4.2;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+slice __tact_verify_address(slice address) inline {
+    throw_unless(136, address.slice_bits() == 267);
+    var h = address.preload_uint(11);
+    throw_unless(136, (h == 1024) | (h == 1279));
+    throw_unless(137, h == 1024);
+    return address;
+}
+
+(slice, slice) __tact_load_address(slice cs) inline {
+    slice raw = cs~load_msg_addr();
+    return (cs, __tact_verify_address(raw));
+}
+
+builder __tact_store_address(builder b, slice address) inline {
+    return b.store_slice(__tact_verify_address(address));
+}
+
+forall X -> X __tact_not_null(X x) inline { throw_if(128, null?(x)); return x; }
+
+(cell, int) __tact_dict_delete(cell dict, int key_len, slice index) asm(index dict key_len) "DICTDEL";
+
+(slice, int) __tact_dict_get(cell dict, int key_len, slice index) asm(index dict key_len) "DICTGET" "NULLSWAPIFNOT";
+
+global (int, slice, int, slice) __tact_context;
+global slice __tact_context_sender;
+global cell __tact_context_sys;
+
+slice __tact_context_get_sender() inline { return __tact_context_sender; }
+
+builder __tact_store_bool(builder b, int v) inline {
+    b = b.store_int(v, 1);
+    return b;
+}
+
+(cell, ()) __tact_dict_set_slice_int(cell d, int kl, slice k, int v, int vl) {
+    if (null?(v)) {
+        var (r, ok) = __tact_dict_delete(d, kl, k);
+        return (r, ());
+    } else {
+        return (dict_set_builder(d, kl, k, begin_cell().store_int(v, vl)), ());
+    }
+}
+
+int __tact_dict_get_slice_int(cell d, int kl, slice k, int vl) inline {
+    var (r, ok) = __tact_dict_get(d, kl, k);
+    if (ok) {
+        return r~load_int(vl);
+    } else {
+        return null();
+    }
+}
+
+builder __gen_write_Request(builder build_0, (slice, slice, int, int, int, int, cell) v) inline_ref {
+    var (v'requested, v'to, v'value, v'timeout, v'bounce, v'mode, v'body) = v;
+    build_0 = store_uint(build_0, 4266760323, 32);
+    build_0 = __tact_store_address(build_0, v'requested);
+    build_0 = __tact_store_address(build_0, v'to);
+    build_0 = build_0.store_coins(v'value);
+    build_0 = build_0.store_uint(v'timeout, 32);
+    build_0 = build_0.store_int(v'bounce, 1);
+    build_0 = build_0.store_uint(v'mode, 8);
+    build_0 = ~ null?(v'body) ? build_0.store_int(true, 1).store_ref(v'body) : build_0.store_int(false, 1);
+    return build_0;
+}
+
+(slice, ((slice, slice, int, int, int, int, cell))) __gen_read_Request(slice sc_0) inline_ref {
+    throw_unless(129, sc_0~load_uint(32) == 4266760323);
+    var v'requested = sc_0~__tact_load_address();
+    var v'to = sc_0~__tact_load_address();
+    var v'value = sc_0~load_coins();
+    var v'timeout = sc_0~load_uint(32);
+    var v'bounce = sc_0~load_int(1);
+    var v'mode = sc_0~load_uint(8);
+    var v'body = sc_0~load_int(1) ? sc_0~load_ref() : null();
+    return (sc_0, (v'requested, v'to, v'value, v'timeout, v'bounce, v'mode, v'body));
+}
+
+builder __gen_write_Signed(builder build_0, ((slice, slice, int, int, int, int, cell)) v) inline {
+    var ((v'request'requested, v'request'to, v'request'value, v'request'timeout, v'request'bounce, v'request'mode, v'request'body)) = v;
+    build_0 = store_uint(build_0, 2213172633, 32);
+    build_0 = __gen_write_Request(build_0, (v'request'requested, v'request'to, v'request'value, v'request'timeout, v'request'bounce, v'request'mode, v'request'body));
+    return build_0;
+}
+
+cell __gen_writecell_Signed(((slice, slice, int, int, int, int, cell)) v) inline {
+    return __gen_write_Signed(begin_cell(), v).end_cell();
+}
+
+builder __gen_write_MultisigSigner(builder build_0, (slice, cell, int, int, int, (slice, slice, int, int, int, int, cell)) v) inline {
+    var (v'master, v'members, v'weight, v'requiredWeight, v'completed, (v'request'requested, v'request'to, v'request'value, v'request'timeout, v'request'bounce, v'request'mode, v'request'body)) = v;
+    build_0 = __tact_store_address(build_0, v'master);
+    build_0 = build_0.store_dict(v'members);
+    build_0 = build_0.store_int(v'weight, 257);
+    build_0 = build_0.store_int(v'requiredWeight, 257);
+    build_0 = build_0.store_int(v'completed, 1);
+    var build_1 = begin_cell();
+    build_1 = __gen_write_Request(build_1, (v'request'requested, v'request'to, v'request'value, v'request'timeout, v'request'bounce, v'request'mode, v'request'body));
+    build_0 = store_ref(build_0, build_1.end_cell());
+    return build_0;
+}
+
+(slice, ((slice, cell, int, int, int, (slice, slice, int, int, int, int, cell)))) __gen_read_MultisigSigner(slice sc_0) inline {
+    var v'master = sc_0~__tact_load_address();
+    var v'members = sc_0~load_dict();
+    var v'weight = sc_0~load_int(257);
+    var v'requiredWeight = sc_0~load_int(257);
+    var v'completed = sc_0~load_int(1);
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'request = sc_1~__gen_read_Request();
+    return (sc_0, (v'master, v'members, v'weight, v'requiredWeight, v'completed, v'request));
+}
+
+(slice, slice, int, int, int, int, cell) __gen_Request_to_external(((slice, slice, int, int, int, int, cell)) v) inline {
+    var (v'requested, v'to, v'value, v'timeout, v'bounce, v'mode, v'body) = v; 
+    return (v'requested, v'to, v'value, v'timeout, v'bounce, v'mode, v'body);
+}
+
+(slice, ((slice, cell, int, (slice, slice, int, int, int, int, cell)))) __gen_read_$init$MultisigSigner(slice sc_0) inline {
+    var v'master = sc_0~__tact_load_address();
+    var v'members = sc_0~load_dict();
+    var v'requiredWeight = sc_0~load_int(257);
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'request = sc_1~__gen_read_Request();
+    return (sc_0, (v'master, v'members, v'requiredWeight, v'request));
+}
+
+(slice, cell, int, int, int, (slice, slice, int, int, int, int, cell)) $__gen_MultisigSigner_init(slice $master, cell $members, int $requiredWeight, (slice, slice, int, int, int, int, cell) $request) impure inline_ref {
+    var (($request'requested, $request'to, $request'value, $request'timeout, $request'bounce, $request'mode, $request'body)) = $request;
+    var (($self'master, $self'members, $self'weight, $self'requiredWeight, $self'completed, ($self'request'requested, $self'request'to, $self'request'value, $self'request'timeout, $self'request'bounce, $self'request'mode, $self'request'body))) = (null(), null(), 0, null(), null(), null());
+    $self'master = $master;
+    $self'members = $members;
+    $self'requiredWeight = $requiredWeight;
+    $self'completed = false;
+    ($self'request'requested, $self'request'to, $self'request'value, $self'request'timeout, $self'request'bounce, $self'request'mode, $self'request'body) = ($request'requested, $request'to, $request'value, $request'timeout, $request'bounce, $request'mode, $request'body);
+    return ($self'master, $self'members, $self'weight, $self'requiredWeight, $self'completed, ($self'request'requested, $self'request'to, $self'request'value, $self'request'timeout, $self'request'bounce, $self'request'mode, $self'request'body));
+}
+
+(slice, cell, int, int, int, (slice, slice, int, int, int, int, cell)) __gen_load_MultisigSigner() impure inline {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~__gen_read_MultisigSigner();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (slice master, cell members, int requiredWeight, (slice, slice, int, int, int, int, cell) request) = $sc~__gen_read_$init$MultisigSigner();
+        $sc.end_parse();
+        return $__gen_MultisigSigner_init(master, members, requiredWeight, request);
+    }
+}
+
+() __gen_store_MultisigSigner((slice, cell, int, int, int, (slice, slice, int, int, int, int, cell)) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = __gen_write_MultisigSigner(b, v);
+    set_data(b.end_cell());
+}
+
+() $send((int, slice, int, int, cell, cell, cell) $params) impure inline_ref {
+    var (($params'bounce, $params'to, $params'value, $params'mode, $params'body, $params'code, $params'data)) = $params;
+    builder $b = begin_cell();
+    $b = store_int($b, 1, 2);
+    $b = __tact_store_bool($b, $params'bounce);
+    $b = store_int($b, 0, 3);
+    $b = __tact_store_address($b, $params'to);
+    $b = store_coins($b, $params'value);
+    $b = store_int($b, 0, ((((1 + 4) + 4) + 64) + 32));
+    if (((~ null?($params'code)) | (~ null?($params'data)))) {
+        $b = __tact_store_bool($b, true);
+        builder $bc = begin_cell();
+        $bc = __tact_store_bool($bc, false);
+        $bc = __tact_store_bool($bc, false);
+        if ((~ null?($params'code))) {
+            $bc = __tact_store_bool($bc, true);
+            $bc = store_ref($bc, __tact_not_null($params'code));
+        } else {
+            $bc = __tact_store_bool($bc, false);
+        }
+        if ((~ null?($params'data))) {
+            $bc = __tact_store_bool($bc, true);
+            $bc = store_ref($bc, __tact_not_null($params'data));
+        } else {
+            $bc = __tact_store_bool($bc, false);
+        }
+        $bc = __tact_store_bool($bc, false);
+        $b = __tact_store_bool($b, true);
+        $b = store_ref($b, end_cell($bc));
+    } else {
+        $b = __tact_store_bool($b, false);
+    }
+    cell $body = $params'body;
+    if ((~ null?($body))) {
+        $b = __tact_store_bool($b, true);
+        $b = store_ref($b, __tact_not_null($body));
+    } else {
+        $b = __tact_store_bool($b, false);
+    }
+    cell $c = end_cell($b);
+    send_raw_message($c, $params'mode);
+}
+
+(slice, slice, int, int, int, int, cell) $__gen_MultisigSigner_request((slice, cell, int, int, int, (slice, slice, int, int, int, int, cell)) $self) impure inline_ref {
+    var (($self'master, $self'members, $self'weight, $self'requiredWeight, $self'completed, ($self'request'requested, $self'request'to, $self'request'value, $self'request'timeout, $self'request'bounce, $self'request'mode, $self'request'body))) = $self;
+    return ($self'request'requested, $self'request'to, $self'request'value, $self'request'timeout, $self'request'bounce, $self'request'mode, $self'request'body);
+}
+
+_ $__gen_get_request() method_id(107262) {
+    var self = __gen_load_MultisigSigner();
+    var res = $__gen_MultisigSigner_request(self);
+    return __gen_Request_to_external(res);
+}
+
+(((slice, cell, int, int, int, (slice, slice, int, int, int, int, cell))), ()) $__gen_MultisigSigner_receive((slice, cell, int, int, int, (slice, slice, int, int, int, int, cell)) $self) impure inline {
+    var ($self'master, $self'members, $self'weight, $self'requiredWeight, $self'completed, ($self'request'requested, $self'request'to, $self'request'value, $self'request'timeout, $self'request'bounce, $self'request'mode, $self'request'body)) = $self;
+    return (($self'master, $self'members, $self'weight, $self'requiredWeight, $self'completed, ($self'request'requested, $self'request'to, $self'request'value, $self'request'timeout, $self'request'bounce, $self'request'mode, $self'request'body)), ());
+}
+
+((int, slice, int, int, cell, cell, cell)) __gen_constructor_SendParameters$value_to_mode_bounce_body(int value, slice to, int mode, int bounce, cell body) inline {
+    return (bounce, to, value, mode, body, null(), null());
+}
+
+(((slice, slice, int, int, int, int, cell))) __gen_constructor_Signed$request((slice, slice, int, int, int, int, cell) request) inline {
+    return (request);
+}
+
+((slice, cell, int, int, int, (slice, slice, int, int, int, int, cell)), ()) $__gen_MultisigSigner_receive_comment_22aee6d0a6dc146577277dd58d06ae3090a3cdd3d8a88561184208ae5f6eb039((slice, cell, int, int, int, (slice, slice, int, int, int, int, cell)) $self) impure inline {
+    var ($self'master, $self'members, $self'weight, $self'requiredWeight, $self'completed, ($self'request'requested, $self'request'to, $self'request'value, $self'request'timeout, $self'request'bounce, $self'request'mode, $self'request'body)) = $self;
+    throw_unless(4755, ($self'request'timeout > now()));
+    throw_unless(40810, (~ $self'completed));
+    slice $sender = __tact_context_get_sender();
+    int $weight = __tact_not_null(__tact_dict_get_slice_int($self'members, 267, $sender, 257));
+    $self'members~__tact_dict_set_slice_int(267, $sender, null(), 257);
+    $self'weight = ($self'weight + $weight);
+    if (($self'weight >= $self'requiredWeight)) {
+        $self'completed = true;
+        $send(__gen_constructor_SendParameters$value_to_mode_bounce_body(0, $self'master, (128 + 2), false, __gen_writecell_Signed(__gen_constructor_Signed$request(($self'request'requested, $self'request'to, $self'request'value, $self'request'timeout, $self'request'bounce, $self'request'mode, $self'request'body)))));
+    }
+    return (($self'master, $self'members, $self'weight, $self'requiredWeight, $self'completed, ($self'request'requested, $self'request'to, $self'request'value, $self'request'timeout, $self'request'bounce, $self'request'mode, $self'request'body)), ());
+}
+
+((slice, cell, int, int, int, (slice, slice, int, int, int, int, cell)), int) __gen_router_MultisigSigner((slice, cell, int, int, int, (slice, slice, int, int, int, int, cell)) self, int msg_bounced, slice in_msg) impure inline_ref {
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Receive empty message
+    if ((op == 0) & (slice_bits(in_msg) <= 32)) {
+        self~$__gen_MultisigSigner_receive();
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "YES" message
+        if (text_op == 0x22aee6d0a6dc146577277dd58d06ae3090a3cdd3d8a88561184208ae5f6eb039) {
+            self~$__gen_MultisigSigner_receive_comment_22aee6d0a6dc146577277dd58d06ae3090a3cdd3d8a88561184208ae5f6eb039();
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = ((msg_flags & 1) == 1 ? true : false);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = __gen_load_MultisigSigner();
+    
+    ;; Handle operation
+    int handled = self~__gen_router_MultisigSigner(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(handled, 130);
+    
+    ;; Persist state
+    __gen_store_MultisigSigner(self);
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() {
+    return "ipfs://QmUFsGQE6VCxREmmb7qoPx758xaju7ukVYgLSwMfTT5AcJ";
+}
+
+_ lazy_deployment_completed() {
+    return get_data().begin_parse().load_int(1);
+}

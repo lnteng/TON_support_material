@@ -1,0 +1,297 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "verifier_Bank.headers.fc";
+#include "verifier_Bank.stdlib.fc";
+#include "verifier_Bank.constants.fc";
+#include "verifier_Bank.storage.fc";
+
+;;
+;; Contract Bank functions
+;;
+
+(slice, slice, int) $Bank$_contract_init(slice $admin, slice $bot) impure inline_ref {
+    var (($self'admin, $self'bot, $self'creditPremium)) = (null(), null(), null());
+    $self'admin = $admin;
+    $self'bot = $bot;
+    $self'creditPremium = 10;
+    return ($self'admin, $self'bot, $self'creditPremium);
+}
+
+((slice, slice, int), slice) $Bank$_fun_account((slice, slice, int) $self, slice $owner) impure inline_ref {
+    var (($self'admin, $self'bot, $self'creditPremium)) = $self;
+    var ($init'code, $init'data) = $Account$_init_child(__tact_context_sys, $owner, my_address());
+    return (($self'admin, $self'bot, $self'creditPremium), $global_contractAddress(($init'code, $init'data)));
+}
+
+((slice, slice, int), slice) $Bank$_fun_credit((slice, slice, int) $self, (int, int, int, cell) $data) impure inline_ref {
+    var (($self'admin, $self'bot, $self'creditPremium)) = $self;
+    var (($data'size, $data'interest, $data'duration, $data'addresses)) = $data;
+    var ($init'code, $init'data) = $Credit$_init_child(__tact_context_sys, ($data'size, $data'interest, $data'duration, $data'addresses));
+    return (($self'admin, $self'bot, $self'creditPremium), $global_contractAddress(($init'code, $init'data)));
+}
+
+((slice, slice, int), int) $Bank$_fun_balance((slice, slice, int) $self) impure inline_ref {
+    var (($self'admin, $self'bot, $self'creditPremium)) = $self;
+    return (($self'admin, $self'bot, $self'creditPremium), (__tact_my_balance() - 10000000));
+}
+
+;;
+;; Receivers of a Contract Bank
+;;
+
+(((slice, slice, int)), ()) $Bank$_internal_binary_CreateAccount((slice, slice, int) $self, tuple $msg) impure inline {
+    var ($self'admin, $self'bot, $self'creditPremium) = $self;
+    var $msg = $msg;
+    var ($init'code, $init'data) = $Account$_init_child(__tact_context_sys, __tact_context_get_sender(), my_address());
+    slice $address = $global_contractAddress(($init'code, $init'data));
+    $global_send($SendParameters$_constructor_to_value_mode_code_data_body($address, 0, 64, $init'code, $init'data, __gen_cell_comment_46787ce7df6d35155a58e03948fb9d9dca53608d27f662c7023e9e99167e541c()));
+    return (($self'admin, $self'bot, $self'creditPremium), ());
+}
+
+(((slice, slice, int)), ()) $Bank$_internal_binary_OwnershipAssignedWithCredit((slice, slice, int) $self, (int, slice, (int, int, int, cell)) $msg) impure inline {
+    var ($self'admin, $self'bot, $self'creditPremium) = $self;
+    var ($msg'queryId, $msg'prevOwner, ($msg'forwardPayload'size, $msg'forwardPayload'interest, $msg'forwardPayload'duration, $msg'forwardPayload'addresses)) = $msg;
+    slice $sender = __tact_context_get_sender();
+    int $value = $Context$_get_value(__tact_context_get());
+    if (($value < 150000000)) {
+        $global_send($SendParameters$_constructor_to_value_bounce_mode_body($sender, 0, true, 64, $Transfer$_store_cell($Transfer$_constructor_queryId_newOwner_responseDestination_customPayload_forwardAmount_forwardPayload($msg'queryId, $msg'prevOwner, $msg'prevOwner, null(), 0, $Cell$_fun_asSlice(end_cell(store_int(begin_cell(), 0, 1)))))));
+        return (($self'admin, $self'bot, $self'creditPremium), ());
+    }
+    var ($payload'size, $payload'interest, $payload'duration, $payload'addresses) = ($msg'forwardPayload'size, $msg'forwardPayload'interest, $msg'forwardPayload'duration, $msg'forwardPayload'addresses);
+    var ($init'code, $init'data) = $Credit$_init_child(__tact_context_sys, ($payload'size, $payload'interest, $payload'duration, $payload'addresses));
+    slice $address = $global_contractAddress(($init'code, $init'data));
+    $global_send($SendParameters$_constructor_to_value_mode_code_data_body($address, 50000000, 2, $init'code, $init'data, __gen_cell_comment_46787ce7df6d35155a58e03948fb9d9dca53608d27f662c7023e9e99167e541c()));
+    raw_reserve((__tact_my_balance() - $value), 0);
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body($sender, 0, true, 128, $Transfer$_store_cell($Transfer$_constructor_queryId_newOwner_responseDestination_customPayload_forwardAmount_forwardPayload($msg'queryId, $address, $msg'prevOwner, null(), 50000000, $Cell$_fun_asSlice(end_cell(store_int(begin_cell(), 0, 1)))))));
+    return (($self'admin, $self'bot, $self'creditPremium), ());
+}
+
+(((slice, slice, int)), ()) $Bank$_internal_binary_Income((slice, slice, int) $self, (int) $msg) impure inline {
+    var ($self'admin, $self'bot, $self'creditPremium) = $self;
+    var ($msg'queryId) = $msg;
+    throw(0);
+    return (($self'admin, $self'bot, $self'creditPremium), ());
+}
+
+(((slice, slice, int)), ()) $Bank$_internal_binary_AccountIssue((slice, slice, int) $self, (int, int, int, slice, slice) $msg) impure inline {
+    var ($self'admin, $self'bot, $self'creditPremium) = $self;
+    var ($msg'size, $msg'interest, $msg'duration, $msg'borrower, $msg'pawn) = $msg;
+    var ($creditAgents'borrower, $creditAgents'lender) = $CreditAgents$_constructor_borrower_lender($msg'borrower, __tact_context_get_sender());
+    var ($creditService'pawn) = $CreditService$_constructor_pawn($msg'pawn);
+    var ($creditData'size, $creditData'interest, $creditData'duration, $creditData'addresses) = $CreditData$_constructor_size_interest_duration_addresses($msg'size, $msg'interest, $msg'duration, end_cell(store_ref(store_ref(begin_cell(), $CreditAgents$_store_cell(($creditAgents'borrower, $creditAgents'lender))), $CreditService$_store_cell(($creditService'pawn)))));
+    var ($init'code, $init'data) = $Credit$_init_child(__tact_context_sys, ($creditData'size, $creditData'interest, $creditData'duration, $creditData'addresses));
+    slice $address = $global_contractAddress(($init'code, $init'data));
+    int $premium = (($msg'size * $self'creditPremium) / 100);
+    $global_send($SendParameters$_constructor_to_value_mode_body(__tact_context_get_sender(), 0, 64, $BankIssueCredit$_store_cell($BankIssueCredit$_constructor_size_address_premium($msg'size, $address, $premium))));
+    return (($self'admin, $self'bot, $self'creditPremium), ());
+}
+
+(((slice, slice, int)), ()) $Bank$_internal_binary_SetProportion((slice, slice, int) $self, (slice, int) $msg) impure inline {
+    var ($self'admin, $self'bot, $self'creditPremium) = $self;
+    var ($msg'user, $msg'proportion) = $msg;
+    throw_unless(36287, ( __tact_slice_eq_bits($self'bot, __tact_context_get_sender()) ));
+    var ($init'code, $init'data) = $Account$_init_child(__tact_context_sys, $msg'user, my_address());
+    slice $address = $global_contractAddress(($init'code, $init'data));
+    $global_send($SendParameters$_constructor_to_value_mode_body($address, 0, 64, $AccountProportion$_store_cell($AccountProportion$_constructor_proportion($msg'proportion))));
+    return (($self'admin, $self'bot, $self'creditPremium), ());
+}
+
+(((slice, slice, int)), ()) $Bank$_internal_binary_Settings((slice, slice, int) $self, (slice, int) $msg) impure inline {
+    var ($self'admin, $self'bot, $self'creditPremium) = $self;
+    var ($msg'bot, $msg'premium) = $msg;
+    throw_unless(36287, ( __tact_slice_eq_bits($self'admin, __tact_context_get_sender()) ));
+    $self'bot = $msg'bot;
+    $self'creditPremium = $msg'premium;
+    return (($self'admin, $self'bot, $self'creditPremium), ());
+}
+
+(((slice, slice, int)), ()) $Bank$_internal_binary_Payout((slice, slice, int) $self, (slice) $msg) impure inline {
+    var ($self'admin, $self'bot, $self'creditPremium) = $self;
+    var ($msg'contract) = $msg;
+    throw_unless(36287, ( __tact_slice_eq_bits($self'admin, __tact_context_get_sender()) ));
+    int $profit = (__tact_my_balance() - 100000000);
+    int $dividends = (($profit * 70) / 100);
+    $global_send($SendParameters$_constructor_to_value_mode_body($msg'contract, $dividends, 0, __gen_cell_comment_a2a7383f4e9e148b1ace6023c7683e653568fb9d85e81df9e1ad5675a24221e5()));
+    $global_send($SendParameters$_constructor_to_value_mode_body($self'admin, ($profit - $dividends), 0, __gen_cell_comment_091a108cdfc9b9e9d69247a8f015623578b3e8b825258bdfece4f89efe4dcd05()));
+    return (($self'admin, $self'bot, $self'creditPremium), ());
+}
+
+(((slice, slice, int)), ()) $Bank$_internal_binary_GetNft((slice, slice, int) $self, (slice, int, slice) $msg) impure inline {
+    var ($self'admin, $self'bot, $self'creditPremium) = $self;
+    var ($msg'nft, $msg'forward, $msg'payload) = $msg;
+    throw_unless(18449, ( __tact_slice_eq_bits($self'admin, __tact_context_get_sender()) ));
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body($msg'nft, 0, true, 64, $Transfer$_store_cell($Transfer$_constructor_queryId_newOwner_responseDestination_customPayload_forwardAmount_forwardPayload(0, $self'admin, $self'admin, null(), $msg'forward, $msg'payload))));
+    return (($self'admin, $self'bot, $self'creditPremium), ());
+}
+
+(((slice, slice, int)), ()) $Bank$_internal_binary_Destroy((slice, slice, int) $self, tuple $msg) impure inline {
+    var ($self'admin, $self'bot, $self'creditPremium) = $self;
+    var $msg = $msg;
+    throw_unless(18449, ( __tact_slice_eq_bits($self'admin, __tact_context_get_sender()) ));
+    $global_send($SendParameters$_constructor_to_value_mode_body($self'admin, 0, 128, __gen_cell_comment_6f8b4fd6a662ffc0f472fbba20d3d9bd086ecd88d043ddae9ae79a0c032625f2()));
+    return (($self'admin, $self'bot, $self'creditPremium), ());
+}
+
+(((slice, slice, int)), ()) $Bank$_internal_binary_Deploy((slice, slice, int) $self, (int) $deploy) impure inline {
+    var ($self'admin, $self'bot, $self'creditPremium) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'admin, $self'bot, $self'creditPremium)~$Bank$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'admin, $self'bot, $self'creditPremium), ());
+}
+
+;;
+;; Get methods of a Contract Bank
+;;
+
+_ %account(slice $$owner) method_id(116095) {
+    slice $owner = __tact_verify_address($$owner);
+    var self = $Bank$_contract_load();
+    var res = self~$Bank$_fun_account($owner);
+    return res;
+}
+
+_ %credit(tuple $$data) method_id(124256) {
+    (int, int, int, cell) $data = $CreditData$_from_tuple($$data);
+    var self = $Bank$_contract_load();
+    var res = self~$Bank$_fun_credit($data);
+    return res;
+}
+
+_ %balance() method_id(104128) {
+    var self = $Bank$_contract_load();
+    var res = self~$Bank$_fun_balance();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.debug.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://Qmc6sF5jGmQPe4kKsqRM2NhC9FL112EjLiGf7qV1wSpFLT";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract Bank
+;;
+
+((slice, slice, int), int) $Bank$_contract_router_internal((slice, slice, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive CreateAccount message
+    if (op == 784) {
+        var msg = in_msg~$CreateAccount$_load();
+        self~$Bank$_internal_binary_CreateAccount(msg);
+        return (self, true);
+    }
+    
+    ;; Receive OwnershipAssignedWithCredit message
+    if (op == 85167505) {
+        var msg = in_msg~$OwnershipAssignedWithCredit$_load();
+        self~$Bank$_internal_binary_OwnershipAssignedWithCredit(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Income message
+    if (op == 789) {
+        var msg = in_msg~$Income$_load();
+        self~$Bank$_internal_binary_Income(msg);
+        return (self, true);
+    }
+    
+    ;; Receive AccountIssue message
+    if (op == 530) {
+        var msg = in_msg~$AccountIssue$_load();
+        self~$Bank$_internal_binary_AccountIssue(msg);
+        return (self, true);
+    }
+    
+    ;; Receive SetProportion message
+    if (op == 787) {
+        var msg = in_msg~$SetProportion$_load();
+        self~$Bank$_internal_binary_SetProportion(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Settings message
+    if (op == 790) {
+        var msg = in_msg~$Settings$_load();
+        self~$Bank$_internal_binary_Settings(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Payout message
+    if (op == 788) {
+        var msg = in_msg~$Payout$_load();
+        self~$Bank$_internal_binary_Payout(msg);
+        return (self, true);
+    }
+    
+    ;; Receive GetNft message
+    if (op == 786) {
+        var msg = in_msg~$GetNft$_load();
+        self~$Bank$_internal_binary_GetNft(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Destroy message
+    if (op == 1028) {
+        var msg = in_msg~$Destroy$_load();
+        self~$Bank$_internal_binary_Destroy(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$Bank$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $Bank$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$Bank$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $Bank$_contract_store(self);
+}

@@ -1,0 +1,112 @@
+{- 
+  TASK 3 - Find and replace binary substring
+  Binary string is represented as a cell linked list: string splitted to chunks,
+  first chunk stored to the root cell, next one to the cell in ref and so on;
+  each cell can have only one ref. 
+  Write the method that find and replaces one flags in the binary string
+  with another value. Flags and values can be can be of any length, but
+  strictly up to 128 bits. The method must replace every flag it finds.
+  Flag and the value to be replaced is guaranteed to be greater than 0.
+  Lets give a simple example. We have the target flag 101110101 and the value
+  to be written 111111111 as inputs, and a linked list of cells, in which the bit
+  value of the first cell ends with ...10100001011, and in the ref we have cell that
+  starts with 10101000111111...
+  The output should be a linked list where the first
+  cell ends with ...10100001111, and the second cell starts with 11111000111111...
+
+-}
+
+int bitsize(int x) asm "BITSIZE";
+int ubitsize(int x) asm "UBITSIZE";
+int pow2(int x) asm "POW2";
+
+() recv_internal() {
+}
+
+;; testable
+(cell) find_and_replace(int flag, int value, cell linked_list) method_id {
+  slice s = linked_list.begin_parse();
+  if (s.slice_empty?()) {
+    return linked_list;
+  }
+  int fs = ubitsize(flag);
+  int fs1 = fs - 1;
+  int vs = ubitsize(value);
+  int mask = pow2(fs) - 1;
+  tuple bstk = null();
+  builder b = begin_cell();
+  int free = 1023;
+  int buf = 0;
+  int len = 0;
+  ;; BLAST PROCESSING
+  do {
+    ;; pump in data
+    int dlen = min(min(s.slice_bits(), 256), 256 - len);
+    buf = (buf << dlen) | s~load_uint(dlen);
+    len += dlen;
+    if (s.slice_data_empty?()) {
+      ifnot (s.slice_refs_empty?()) {
+        s = s~load_ref().begin_parse();
+      }
+    }
+    if ((len == 256) | (s.slice_empty?())) {
+      ;; process data
+      int i = len - fs;
+      do {
+        int part = (buf >> i) & mask;
+        if (part == flag) {
+          int av = min(free, vs);
+          int ke = vs - av;
+          b = b.store_uint(value >> ke, av);
+          if (free > av) {
+            free -= av;
+          } elseif (ke > 0) {
+            bstk = cons(b, bstk);
+            b = begin_cell().store_uint(value & (pow2(ke) - 1), ke);
+            free = 1023 - ke;
+          } else {
+            bstk = cons(b, bstk);
+            b = begin_cell();
+            free = 1023;
+          }
+          i -= fs;
+        } else {
+          b~store_uint(part >> fs1, 1);
+          free -= 1;
+          if (free == 0) {
+            bstk = cons(b, bstk);
+            b = begin_cell();
+            free = 1023;
+          }
+          i -= 1;
+        }
+      } until(i < 0);
+      len = fs + i;
+      buf = buf & (pow2(len) - 1);
+      if (s.slice_empty?() & (len > 0)) {
+        int av = min(free, len);
+        int ke = len - av;
+        b = b.store_uint(buf >> ke, av);
+        if (free > av) {
+          free -= av;
+        } elseif (ke > 0) {
+          bstk = cons(b, bstk);
+          b = begin_cell().store_uint(buf & (pow2(ke) - 1), ke);
+          free = 1023 - ke;
+        } else {
+          bstk = cons(b, bstk);
+          b = begin_cell();
+          free = 1023;
+        }
+      }
+    }
+  } until (s.slice_empty?());
+  if ((free == 1023) & (bstk.null?() == false)) {
+    b = bstk~list_next();
+  }
+  while (bstk.null?() == false) {
+    b = bstk~list_next().store_ref(b.end_cell());
+  }
+  return b.end_cell();
+}
+

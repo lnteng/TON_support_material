@@ -1,0 +1,132 @@
+{-
+  TASK 4 - Caesar Cipher
+  Implement a Caesar cipher encryption and decryption functions.
+  The input is a string (https://docs.ton.org/develop/smart-contracts/guidelines/internal-messages#simple-message-with-comment)
+  where the text is encrypted in a cell (after 32bit 00000000 prefix flag), the algorithm rotates the characters and the last ASCII
+  character should go to the beginning. Return new text encoded in cell.
+-}
+
+() recv_internal() {
+}
+
+builder begin_cell() asm "NEWC";
+cell end_cell(builder b) asm "ENDC";
+slice begin_parse(cell c) asm "CTOS";
+int slice_refs_empty?(slice s) asm "SREMPTY";
+int slice_bits(slice s) asm "SBITS";
+(slice, ()) ~skip_bits(slice s, int len) asm "SDSKIPFIRST";
+forall X -> (tuple, ()) ~tpush(tuple t, X value) asm "TPUSH";
+tuple empty_tuple() asm "NIL";
+(slice, cell) load_ref(slice s) asm(-> 1 0) "LDREF";
+(int) tlen(tuple t) asm "TLEN";
+builder store_ref(builder b, cell c) asm(c b) "STREF";
+forall X -> (tuple, X) ~tpop(tuple t) asm "TPOP";
+(int) tlen(tuple t) asm "TLEN";
+
+(int, int) add_to_begin(int val, int cur_size, int char) {
+    int new_val = (1 << cur_size) * char + val;
+    return (new_val, cur_size + 8);
+}
+
+(int) shifted_char(int shift, int char) {
+    if ((char >= 65) & (char <= 90)) {
+        char = 65 + (char - 65 + shift) % 26;
+    } elseif ((char >= 97) & (char <= 122)) {
+        char = 97 + (char - 97 + shift) % 26;
+    }
+    return char;
+}
+
+(cell) deep_into(builder cur_cell, slice cur_slice, int shift) {
+    if (cur_slice.slice_refs_empty?() != -1) {
+        cell inner_cell = cur_slice~load_ref();
+        slice inner_slice = inner_cell.begin_parse();
+        int sz = slice_bits(inner_slice);
+        tuple characters = empty_tuple();
+        while (sz > 0) {
+            int char = inner_slice~load_uint(8);
+            sz -= 8;
+            char = shifted_char(shift, char);
+            characters~tpush(char);
+        }
+
+        sz = tlen(characters);
+        int last_size = sz;
+        builder inner_cell = begin_cell();
+        while (last_size > 0) {
+            inner_cell~store_uint(characters.at(sz - last_size), 8);
+            last_size -= 1;
+        }
+        cell next_cell = deep_into(inner_cell, inner_slice, shift);
+        cur_cell = cur_cell.store_ref(next_cell);
+    }
+    return cur_cell.end_cell();
+}
+
+;; testable
+(cell) caesar_cipher_encrypt(int shift, cell text) method_id {
+    shift = shift % 26;
+    shift = (shift + 26) % 26;
+    slice cur_slice = text.begin_parse();
+    int sz = slice_bits(cur_slice);
+
+    cur_slice~skip_bits(32);
+    sz -= 32;
+    tuple characters = empty_tuple();
+    characters~tpush(0);
+    characters~tpush(0);
+    characters~tpush(0);
+    characters~tpush(0);
+
+    while (sz > 0) {
+        int char = cur_slice~load_uint(8);
+        sz -= 8;
+        char = shifted_char(shift, char);
+        characters~tpush(char);
+    }
+
+    sz = tlen(characters);
+    int last_size = sz;
+    builder cur_cell = begin_cell();
+    while (last_size > 0) {
+        cur_cell~store_uint(characters.at(sz - last_size), 8);
+        last_size -= 1;
+    }
+
+    return deep_into(cur_cell, cur_slice, shift);
+}
+
+;; testable
+(cell) caesar_cipher_decrypt(int shift, cell text) method_id {
+    shift = shift % 26;
+    shift = (shift + 26) % 26;
+    shift = (26 - shift) % 26;
+    slice cur_slice = text.begin_parse();
+    int sz = slice_bits(cur_slice);
+
+    cur_slice~skip_bits(32);
+    sz -= 32;
+    tuple characters = empty_tuple();
+    characters~tpush(0);
+    characters~tpush(0);
+    characters~tpush(0);
+    characters~tpush(0);
+
+    while (sz > 0) {
+        int char = cur_slice~load_uint(8);
+        sz -= 8;
+        char = shifted_char(shift, char);
+        characters~tpush(char);
+    }
+
+    sz = tlen(characters);
+    int last_size = sz;
+    builder cur_cell = begin_cell();
+    while (last_size > 0) {
+        cur_cell~store_uint(characters.at(sz - last_size), 8);
+        last_size -= 1;
+    }
+
+    return deep_into(cur_cell, cur_slice, shift);
+}
+

@@ -1,0 +1,12 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./akifoq/nominator-pool-contract/func/proxy.fc:7:18: warning: Lack of end_parse.
+    var s_addr = cs~load_msg_addr();
+                   ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./akifoq/nominator-pool-contract/func/proxy.fc:10:23: warning: Lack of end_parse.
+    slice pool_addr = ds~load_msg_addr();
+                        ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./akifoq/nominator-pool-contract/func/proxy.fc:6:13: warning: Local variable 'flags' is not used
+    var flags = cs~load_uint(4);
+              ^

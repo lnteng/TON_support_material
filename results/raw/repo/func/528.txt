@@ -1,0 +1,34 @@
+change_elector_code: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./gridgentoo/reverse_ton/crypto/smartcont/config-code.fc:76:34: warning: Lack of end_parse.
+    var dest_addr = config_param(1).begin_parse().preload_uint(256);
+                                   ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./gridgentoo/reverse_ton/crypto/smartcont/config-code.fc:38:18: warning: Lack of end_parse.
+    var s_addr = cs~load_msg_addr();
+                   ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./gridgentoo/reverse_ton/crypto/smartcont/config-code.fc:51:70: warning: Lack of end_parse.
+      var elector_addr = cell_null?(elector_param) ? -1 : elector_param.begin_parse().preload_uint(256);
+                                                                       ^
+check_validator_set: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./gridgentoo/reverse_ton/crypto/smartcont/config-code.fc:16:16: warning: Lack of end_parse.
+    int main = cs~load_uint(16);
+                 ^
+run_ticktock & recv_external: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./gridgentoo/reverse_ton/crypto/smartcont/config-code.fc:96:35: warning: Cell of get_data and set_data are inconsistent.
+    var cs2 = begin_parse(get_data());
+                                    ^
+/home/lentg/Movebit/ton-datasets1111/repo/./gridgentoo/reverse_ton/crypto/smartcont/config-code.fc:148:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_ref(cfg_dict).store_slice(cs).end_cell());
+                         ^
+set_conf_param & recv_external: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./gridgentoo/reverse_ton/crypto/smartcont/config-code.fc:96:35: warning: Cell of get_data and set_data are inconsistent.
+    var cs2 = begin_parse(get_data());
+                                    ^
+/home/lentg/Movebit/ton-datasets1111/repo/./gridgentoo/reverse_ton/crypto/smartcont/config-code.fc:7:24: warning: Cell of get_data and set_data are inconsistent.
+    set_data(begin_cell().store_ref(cfg_dict).store_slice(cs).end_cell());
+                         ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./gridgentoo/reverse_ton/crypto/smartcont/config-code.fc:86:18: warning: UnHandle bounced message with op: 0x4e436f64
+    .end_cell(), 0);
+                   ^

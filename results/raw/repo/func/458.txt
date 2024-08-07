@@ -1,0 +1,26 @@
+seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./kelvich/mtdns/mtdns.fc:202:20: warning: Lack of end_parse.
+    return get_data().begin_parse().preload_uint(32);
+                     ^
+dnsresolve: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./kelvich/mtdns/mtdns.fc:147:41: warning: Lack of end_parse.
+    var domains = get_data().begin_parse().skip_bits(32 + 256).preload_dict();
+                                          ^
+recv_external: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./kelvich/mtdns/mtdns.fc:133:27: warning: Lack of end_parse.
+      public_key = msg_slice~load_uint(256);
+                            ^
+store_data & dnsresolve: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./kelvich/mtdns/mtdns.fc:147:27: warning: Cell of get_data and set_data are inconsistent.
+    var domains = get_data().begin_parse().skip_bits(32 + 256).preload_dict();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./kelvich/mtdns/mtdns.fc:45:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_uint(seqno, 32)
+      ^
+store_data & dnsresolve: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./kelvich/mtdns/mtdns.fc:147:27: warning: Cell of get_data and set_data are inconsistent.
+    var domains = get_data().begin_parse().skip_bits(32 + 256).preload_dict();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./kelvich/mtdns/mtdns.fc:45:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_uint(seqno, 32)
+      ^

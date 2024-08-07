@@ -1,0 +1,52 @@
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-link/ton-link-contract-v1/func/v1.0/core.func:40:16: warning: Local variable 'query_id' is not used
+  		int query_id = in_msg_body~load_uint(64);
+  		             ^
+get_provider: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-link/ton-link-contract-v1/func/v1.0/get.func:12:60: warning: Local variable 'price' is not used
+          (int price, int time, slice admin, slice provider) = storage::load_data();
+                                                             ^
+get_provider: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-link/ton-link-contract-v1/func/v1.0/get.func:12:60: warning: Local variable 'time' is not used
+          (int price, int time, slice admin, slice provider) = storage::load_data();
+                                                             ^
+get_provider: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-link/ton-link-contract-v1/func/v1.0/get.func:12:60: warning: Local variable 'admin' is not used
+          (int price, int time, slice admin, slice provider) = storage::load_data();
+                                                             ^
+utils::parse_sender_address: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-link/ton-link-contract-v1/func/v1.0/utils.func:17:34: warning: Lack of end_parse.
+          slice sender_address = cs~load_msg_addr(); 
+                                   ^
+utils::parse_sender_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-link/ton-link-contract-v1/func/v1.0/utils.func:16:19: warning: Local variable 'flags' is not used
+          int flags = cs~load_uint(4);
+                    ^
+get_last_update: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-link/ton-link-contract-v1/func/v1.0/get.func:7:60: warning: Local variable 'price' is not used
+          (int price, int time, slice admin, slice provider) = storage::load_data();
+                                                             ^
+get_last_update: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-link/ton-link-contract-v1/func/v1.0/get.func:7:60: warning: Local variable 'admin' is not used
+          (int price, int time, slice admin, slice provider) = storage::load_data();
+                                                             ^
+get_last_update: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-link/ton-link-contract-v1/func/v1.0/get.func:7:60: warning: Local variable 'provider' is not used
+          (int price, int time, slice admin, slice provider) = storage::load_data();
+                                                             ^
+get_last_price: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-link/ton-link-contract-v1/func/v1.0/get.func:2:60: warning: Local variable 'time' is not used
+          (int price, int time, slice admin, slice provider) = storage::load_data();
+                                                             ^
+get_last_price: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-link/ton-link-contract-v1/func/v1.0/get.func:2:60: warning: Local variable 'admin' is not used
+          (int price, int time, slice admin, slice provider) = storage::load_data();
+                                                             ^
+get_last_price: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-link/ton-link-contract-v1/func/v1.0/get.func:2:60: warning: Local variable 'provider' is not used
+          (int price, int time, slice admin, slice provider) = storage::load_data();
+                                                             ^
+storage::load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-link/ton-link-contract-v1/func/v1.0/storage.func:3:75: warning: Lack of end_parse.
+          return (ds~load_uint(64), ds~load_uint(64), ds~load_msg_addr(), ds~load_msg_addr());
+                                                                            ^

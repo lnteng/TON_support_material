@@ -1,0 +1,310 @@
+;; #include "imports/stdlib.fc";
+
+() recv_internal(int my_balance, int msg_value, cell in_msg_full, slice in_msg_body) impure {
+
+}
+
+;; 2 <= N <= 31 & 2 <= M <= 31
+;; 
+;;             min (X)       min (Q)   min (L)
+;; sort by: (X to break, ? on the way, length)
+;; dfs with memo: memo[i][j] = (X, Q, L, step back): best result to reach (i, j)
+
+
+;; global cell memo;  ;; {flatten ind: (X, Q, L, sb)} flatten_ind: 20bit; X,Q,L,sb: 10bit each one
+
+int to_flatten(int i, int j, int m) inline {
+    return m * i + j;
+}
+
+;; S = 83
+;; X = 88
+;; . = 46
+;; E = 69
+;; ? = 63
+;; ! = 33
+
+;; int equal_slices(slice a, slice b) asm "SDEQ";
+() dump_str (slice str) impure asm "STRDUMP" "DROP";
+
+forall X -> (tuple) to_tuple (X x) asm "NOP";
+forall X -> int is_null?(X x) asm "ISNULL";
+
+;; X    Q    L   maze
+(int, int, int, tuple) solve(int n, int m, tuple maze) method_id {
+    (int si, int sj) = (0, 0);
+    (int ei, int ej) = (0, 0);
+    int i = 0;
+    repeat (n) {
+        int j = 0;
+        repeat (m) {
+            int char = maze.at(i).at(j);
+            if (char == 83) {
+                (si, sj) = (i, j);
+            } elseif (char == 69) {
+                (ei, ej) = (i, j);
+            }
+            j += 1;
+        }
+        i += 1;
+    }
+    int key_len = 10;
+    cell memo = new_dict();
+    tuple deque = null();
+
+    int abs_si_ei = abs(si - ei);
+    int abs_sj_ej = abs(sj - ej);
+    int best_X = min(abs_si_ei, abs_sj_ej) + abs(abs_si_ei - abs_sj_ej) - 1;
+    int best_len = n * m / 2 + max(n, m) + 1;
+
+    tuple data = to_tuple([si, sj, 0, 0, -1, 0]);
+    deque = cons(data, deque);
+    do {
+        (data, deque) = uncons(deque);
+        (int i, int j, int X, int Q, int L, int sb) = (data.at(0), data.at(1), data.at(2), data.at(3), data.at(4), data.at(5));
+
+        int char = maze.at(i).at(j);
+        if (char == 88) {
+            X += 1;
+        } elseif (char == 63) {
+            Q += 1;
+        }
+        L += 1;
+        int flatten_pos = to_flatten(i, j, m);
+
+        int skip = 0;
+        if ((X + Q > best_X) | (L > best_len)) {
+            skip = -1;
+        }
+        if (~ skip) {
+            (slice cs, int f) = memo.udict_get?(key_len, flatten_pos);
+            if (f) {
+                (int xX, int qQ, int lL) = (cs~load_uint(key_len), cs~load_uint(key_len), cs~load_uint(key_len));
+                if (xX < X) {
+                    skip = -1;
+                    ;; return ();
+                } elseif (xX > X) {
+                    memo = memo.udict_set_builder(key_len, flatten_pos, begin_cell().store_uint(X, key_len).store_uint(Q, key_len).store_uint(L, key_len).store_uint(sb, key_len));
+                } else {  ;; eq
+                    if (qQ < Q) {
+                        skip = -1;
+                        ;; return ();
+                    } elseif (qQ > Q) {
+                        memo = memo.udict_set_builder(key_len, flatten_pos, begin_cell().store_uint(X, key_len).store_uint(Q, key_len).store_uint(L, key_len).store_uint(sb, key_len));
+                    } else {  ;; eq
+                        if (lL < L) {
+                            skip = -1;
+                            ;; return ();
+                        } elseif (lL > L) {
+                            memo = memo.udict_set_builder(key_len, flatten_pos, begin_cell().store_uint(X, key_len).store_uint(Q, key_len).store_uint(L, key_len).store_uint(sb, key_len));
+                        } else { ;; eq
+                            skip = -1;
+                            ;; return ();
+                        }
+                    }
+                }
+            } else {
+                memo = memo.udict_set_builder(key_len, flatten_pos, begin_cell().store_uint(X, key_len).store_uint(Q, key_len).store_uint(L, key_len).store_uint(sb, key_len));
+            }
+
+        }
+        if (char == 69) {
+            skip = -1;
+            ;; return ();
+        }
+        if (~ skip) {
+            ;;
+            ;; X
+            ;;
+            if ((i - 1 >= 0) & (j - 1 >= 0)) {
+                int nxt = maze.at(i - 1).at(j - 1);
+                if (nxt == 88) {
+                    deque = cons(to_tuple([i - 1, j - 1, X, Q, L, flatten_pos]), deque);
+                }
+            }
+            if (i - 1 >= 0) {
+                int nxt = maze.at(i - 1).at(j);
+                if (nxt == 88) {
+                    deque = cons(to_tuple([i - 1, j    , X, Q, L, flatten_pos]), deque);
+                }
+            }
+            if ((i - 1 >= 0) & (j + 1 < m)) {
+                int nxt = maze.at(i - 1).at(j + 1);
+                if (nxt == 88) {
+                    deque = cons(to_tuple([i - 1, j + 1, X, Q, L, flatten_pos]), deque);
+                }
+            }
+            if (j - 1 >= 0) {
+                int nxt = maze.at(i).at(j - 1);
+                if (nxt == 88) {
+                    deque = cons(to_tuple([i    , j - 1, X, Q, L, flatten_pos]), deque);
+                }
+            }
+            if (j + 1 < m) {
+                int nxt = maze.at(i).at(j + 1);
+                if (nxt == 88) {
+                    deque = cons(to_tuple([i    , j + 1, X, Q, L, flatten_pos]), deque);
+                }
+            }
+            if ((i + 1 < n) & (j - 1 >= 0)) {
+                int nxt = maze.at(i + 1).at(j - 1);
+                if (nxt == 88) {
+                    deque = cons(to_tuple([i + 1, j - 1, X, Q, L, flatten_pos]), deque);
+                }
+            }
+            if (i + 1 < n) {
+                int nxt = maze.at(i + 1).at(j);
+                if (nxt == 88) {
+                    deque = cons(to_tuple([i + 1, j    , X, Q, L, flatten_pos]), deque);
+                }
+            }
+            if ((i + 1 < n) & (j + 1 < m)) {
+                int nxt = maze.at(i + 1).at(j + 1);
+                if (nxt == 88) {
+                    deque = cons(to_tuple([i + 1, j + 1, X, Q, L, flatten_pos]), deque);
+                }
+            }
+            ;;
+            ;; ?
+            ;;
+            if ((i - 1 >= 0) & (j - 1 >= 0)) {
+                int nxt = maze.at(i - 1).at(j - 1);
+                if (nxt == 63) {
+                    deque = cons(to_tuple([i - 1, j - 1, X, Q, L, flatten_pos]), deque);
+                }
+            }
+            if (i - 1 >= 0) {
+                int nxt = maze.at(i - 1).at(j);
+                if (nxt == 63) {
+                    deque = cons(to_tuple([i - 1, j    , X, Q, L, flatten_pos]), deque);
+                }
+            }
+            if ((i - 1 >= 0) & (j + 1 < m)) {
+                int nxt = maze.at(i - 1).at(j + 1);
+                if (nxt == 63) {
+                    deque = cons(to_tuple([i - 1, j + 1, X, Q, L, flatten_pos]), deque);
+                }
+            }
+            if (j - 1 >= 0) {
+                int nxt = maze.at(i).at(j - 1);
+                if (nxt == 63) {
+                    deque = cons(to_tuple([i    , j - 1, X, Q, L, flatten_pos]), deque);
+                }
+            }
+            if (j + 1 < m) {
+                int nxt = maze.at(i).at(j + 1);
+                if (nxt == 63) {
+                    deque = cons(to_tuple([i    , j + 1, X, Q, L, flatten_pos]), deque);
+                }
+            }
+            if ((i + 1 < n) & (j - 1 >= 0)) {
+                int nxt = maze.at(i + 1).at(j - 1);
+                if (nxt == 63) {
+                    deque = cons(to_tuple([i + 1, j - 1, X, Q, L, flatten_pos]), deque);
+                }
+            }
+            if (i + 1 < n) {
+                int nxt = maze.at(i + 1).at(j);
+                if (nxt == 63) {
+                    deque = cons(to_tuple([i + 1, j    , X, Q, L, flatten_pos]), deque);
+                }
+            }
+            if ((i + 1 < n) & (j + 1 < m)) {
+                int nxt = maze.at(i + 1).at(j + 1);
+                if (nxt == 63) {
+                    deque = cons(to_tuple([i + 1, j + 1, X, Q, L, flatten_pos]), deque);
+                }
+            }
+            ;;
+            ;; . E
+            ;;
+            if ((i - 1 >= 0) & (j - 1 >= 0)) {
+                int nxt = maze.at(i - 1).at(j - 1);
+                if ((nxt == 46) | (nxt == 69)) {
+                    deque = cons(to_tuple([i - 1, j - 1, X, Q, L, flatten_pos]), deque);
+                }
+            }
+            if (i - 1 >= 0) {
+                int nxt = maze.at(i - 1).at(j);
+                if ((nxt == 46) | (nxt == 69)) {
+                    deque = cons(to_tuple([i - 1, j    , X, Q, L, flatten_pos]), deque);
+                }
+            }
+            if ((i - 1 >= 0) & (j + 1 < m)) {
+                int nxt = maze.at(i - 1).at(j + 1);
+                if ((nxt == 46) | (nxt == 69)) {
+                    deque = cons(to_tuple([i - 1, j + 1, X, Q, L, flatten_pos]), deque);
+                }
+            }
+            if (j - 1 >= 0) {
+                int nxt = maze.at(i).at(j - 1);
+                if ((nxt == 46) | (nxt == 69)) {
+                    deque = cons(to_tuple([i    , j - 1, X, Q, L, flatten_pos]), deque);
+                }
+            }
+            if (j + 1 < m) {
+                int nxt = maze.at(i).at(j + 1);
+                if ((nxt == 46) | (nxt == 69)) {
+                    deque = cons(to_tuple([i    , j + 1, X, Q, L, flatten_pos]), deque);
+                }
+            }
+            if ((i + 1 < n) & (j - 1 >= 0)) {
+                int nxt = maze.at(i + 1).at(j - 1);
+                if ((nxt == 46) | (nxt == 69)) {
+                    deque = cons(to_tuple([i + 1, j - 1, X, Q, L, flatten_pos]), deque);
+                }
+            }
+            if (i + 1 < n) {
+                int nxt = maze.at(i + 1).at(j);
+                if ((nxt == 46) | (nxt == 69)) {
+                    deque = cons(to_tuple([i + 1, j    , X, Q, L, flatten_pos]), deque);
+                }
+            }
+            if ((i + 1 < n) & (j + 1 < m)) {
+                int nxt = maze.at(i + 1).at(j + 1);
+                if ((nxt == 46) | (nxt == 69)) {
+                    deque = cons(to_tuple([i + 1, j + 1, X, Q, L, flatten_pos]), deque);
+                }
+            }
+        }
+    } until (is_null?(deque));
+
+    (slice cs, int f) = memo.udict_get?(key_len, to_flatten(ei, ej, m));
+    (int X, int Q, int L, int sb) = (cs~load_uint(key_len), cs~load_uint(key_len), cs~load_uint(key_len), cs~load_uint(key_len));
+
+    cell cells_to_mark = new_dict();
+    repeat (L - 1) {
+        cells_to_mark~udict_set_builder(key_len, sb, begin_cell().store_uint(0, 1));
+        (cs, _) = memo.udict_get?(key_len, sb);
+        cs~skip_bits(key_len * 3);
+        sb = cs~load_uint(key_len);
+    }
+
+    tuple new_maze = empty_tuple();
+    int i = 0;
+    repeat (n) {
+        int j = 0;
+        tuple row = empty_tuple();
+        repeat (m) {
+            (_, int f) = cells_to_mark.udict_get?(key_len, to_flatten(i, j, m));
+            if (f) {
+                row~tpush(33);
+                ;; int x = 33;
+                ;; x~dump();
+            } else {
+                row~tpush(maze.at(i).at(j));
+                ;; int x = maze.at(i).at(j);
+                ;; x~dump();
+            }
+            j += 1;
+        }
+        ;; dump_str("----");
+        new_maze~tpush(row);
+        i += 1;
+    }
+
+    ;; X~dump();
+    ;; Q~dump();
+    ;; L~dump();
+    return (X, Q, L, new_maze);
+}

@@ -1,0 +1,44 @@
+handle_admin_messages: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/freelance-exchange-tdb/contracts/master/admin-calls.fc:20:26: warning: Lack of end_parse.
+          cell content = ps~load_ref();
+                           ^
+handle_admin_messages: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/freelance-exchange-tdb/contracts/master/admin-calls.fc:2:22: warning: Local variable 'owner_addr' is not used
+      slice owner_addr = in_msg_body~load_msg_addr();
+                       ^
+handle_root_messages: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/freelance-exchange-tdb/contracts/master/root-calls.fc:38:24: warning: Lack of end_parse.
+          set_c3(new_code.begin_parse().bless());
+                         ^
+handle_root_messages: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/freelance-exchange-tdb/contracts/master/root-calls.fc:37:23: warning: Local variable 'old_code' is not used
+          cont old_code = get_c3();
+                        ^
+deploy_order: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/freelance-exchange-tdb/contracts/master/order-utils.fc:7:49: warning: Lack of end_parse.
+    throw_unless(67, equal_slices(my_address(), cs~load_msg_addr()));
+                                                  ^
+deploy_sbt: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/freelance-exchange-tdb/contracts/master/sbt-utils.fc:5:49: warning: Lack of end_parse.
+    throw_unless(67, equal_slices(my_address(), cs~load_msg_addr()));
+                                                  ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/freelance-exchange-tdb/contracts/master.fc:25:28: warning: Lack of end_parse.
+    slice sender_address = cs~load_msg_addr();
+                             ^
+handle_user_messages: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/freelance-exchange-tdb/contracts/master/user-calls.fc:10:19: warning: Lack of end_parse.
+      int ps_op = ps~load_uint(32);
+                    ^
+deploy_collection: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/freelance-exchange-tdb/contracts/master/common-utils.fc:36:22: warning: Lack of end_parse.
+    cell item_code = ds~load_ref();
+                       ^
+messages::send_log: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/freelance-exchange-tdb/contracts/imports/messages.fc:60:14: warning: Local variable 'msg' is not used
+      cell msg = begin_cell()
+               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./the-real-some-dao/freelance-exchange-tdb/contracts/master/storage.fc:9:30: warning: Lack of end_parse.
+      storage::collections = ds~load_dict();
+                               ^

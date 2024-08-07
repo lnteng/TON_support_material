@@ -1,0 +1,32 @@
+get_players_list_current_round: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCgcmiMffDhYuf3dvGheCLahpin49eLSIa9AtIdOWbcr55T/earnplaying.fc:251:31: warning: Lack of end_parse.
+              int is_winner = ds~load_int(8);
+                                ^
+get_players_list_last_round: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCgcmiMffDhYuf3dvGheCLahpin49eLSIa9AtIdOWbcr55T/earnplaying.fc:273:31: warning: Lack of end_parse.
+              int is_winner = ds~load_int(8);
+                                ^
+recv_internal: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCgcmiMffDhYuf3dvGheCLahpin49eLSIa9AtIdOWbcr55T/earnplaying.fc:177:62: warning: PressionLoss
+          int to_send = (((locked_balance - winner_bet) / 100) * (100 - fee_percent)) + winner_bet;
+                                                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCgcmiMffDhYuf3dvGheCLahpin49eLSIa9AtIdOWbcr55T/earnplaying.fc:58:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCgcmiMffDhYuf3dvGheCLahpin49eLSIa9AtIdOWbcr55T/earnplaying.fc:151:31: warning: Lack of end_parse.
+              int is_winner = ds~load_int(8);
+                                ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCgcmiMffDhYuf3dvGheCLahpin49eLSIa9AtIdOWbcr55T/earnplaying.fc:138:45: warning: Local variable 'success' is not used
+          (int key, cell player, int success) = udict_get_min_ref?(players_list_current_round, 256);
+                                              ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCgcmiMffDhYuf3dvGheCLahpin49eLSIa9AtIdOWbcr55T/earnplaying.fc:151:27: warning: Local variable 'is_winner' is not used
+              int is_winner = ds~load_int(8);
+                            ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCgcmiMffDhYuf3dvGheCLahpin49eLSIa9AtIdOWbcr55T/earnplaying.fc:17:11: warning: Lack of end_parse.
+          ds~load_dict() ;; players_list_last_round
+            ^

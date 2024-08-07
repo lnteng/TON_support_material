@@ -1,0 +1,222 @@
+#include "imports/stdlib.fc";
+#include "constants.fc";
+
+global int storage::created_time;
+global slice storage::author_address;
+global int storage::init?;
+global int storage::goal;
+global int storage::donate_amount;
+global int storage::guarantee_amount;
+global int storage::participants_count;
+global int storage::donated_count;
+global int storage::valid_until;
+global cell storage::donators;
+
+(int) div_floor(int x, int y) impure asm "DIV";
+(int) div_ceil(int x, int y) impure asm "DIVC";
+(slice, int) dict_get?(cell dict, int key_len, slice index) asm(index dict key_len) "DICTGET" "NULLSWAPIFNOT";
+
+() load_data() impure {
+    slice ds = get_data().begin_parse();
+
+    storage::created_time = ds~load_uint(32);
+    storage::author_address = ds~load_msg_addr();
+    storage::init? = false;
+
+    if(slice_bits(ds) > 0) {
+        storage::init? = true;
+        storage::goal = ds~load_coins();
+        storage::donate_amount = ds~load_coins();
+        storage::guarantee_amount = ds~load_coins();
+        storage::participants_count = ds~load_uint(16);
+        storage::donated_count = ds~load_uint(16);
+        storage::valid_until = ds~load_uint(32);
+        storage::donators = ds~load_dict();
+    }
+}
+
+() save_data() impure {
+    set_data(begin_cell()
+            .store_uint(storage::created_time, 32)
+            .store_slice(storage::author_address)
+            .store_coins(storage::goal)
+            .store_coins(storage::donate_amount)
+            .store_coins(storage::guarantee_amount)
+            .store_uint(storage::participants_count, 16)
+            .store_uint(storage::donated_count, 16)
+            .store_uint(storage::valid_until, 32)
+            .store_dict(storage::donators)
+            .end_cell()
+    );
+}
+
+() handle_returns() impure inline {
+    int count = 0;
+    int return_amount = div_floor(storage::guarantee_amount, storage::participants_count);
+    do {
+        (slice addr, _, int f) = storage::donators~dict::delete_get_min(267);
+        if(f) {
+            send_raw_message(begin_cell()
+            .store_uint(0x10, 6)
+            .store_slice(addr)
+            .store_coins(storage::donate_amount + return_amount)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_uint(op::return, 32)
+            .end_cell()
+                , 1);
+
+            count += 1;
+        }
+    } until((~ f) | (count == 160));
+    save_data();
+    if(~ null?(storage::donators)) {
+        send_raw_message(begin_cell()
+        .store_uint(0x10, 6)
+        .store_slice(my_address())
+        .store_coins(10000000)
+        .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+        .store_uint(0x89150cee, 32)
+        .store_uint(0, 64)
+        .end_cell()
+            , 1);
+    } else {
+        send_raw_message(begin_cell()
+        .store_uint(0x10, 6)
+        .store_slice(storage::author_address)
+        .store_coins(0)
+        .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+        .end_cell()
+            , 128);
+    }
+}
+
+() recv_external() {
+    load_data();
+    throw_unless(error::no_donators, storage::donated_count > 0);
+    throw_unless(error::still_active, now() >= storage::valid_until);
+    throw_if(error::funding_ended, storage::donated_count == storage::participants_count);
+    accept_message();
+    storage::donated_count = 0;
+    handle_returns();
+}
+
+() recv_internal(int msg_value, cell in_msg_full, slice in_msg_body) impure {
+    slice cs = in_msg_full.begin_parse();
+    cs~skip_bits(4); ;; flags
+    slice sender = cs~load_msg_addr();
+
+    load_data();
+    if(~ storage::init?) {
+        throw_unless(error::unauthorized, equal_slices(storage::author_address, sender));
+        storage::goal = in_msg_body~load_coins();
+        storage::guarantee_amount = in_msg_body~load_coins();
+        storage::participants_count = in_msg_body~load_uint(16);
+        storage::valid_until = in_msg_body~load_uint(32);
+        storage::donate_amount = div_ceil(storage::goal, storage::participants_count);
+        storage::donated_count = 0;
+        storage::donators = new_dict();
+        throw_unless(error::small_funding_amount, storage::goal >= config::min_funding_amount);
+        throw_unless(error::small_guarantee_amount,
+            storage::guarantee_amount * 100 / storage::goal >= config::min_guarantee_percentage);
+        throw_unless(error::big_guarantee_amount,
+            storage::guarantee_amount * 100 / storage::goal <= config::max_guarantee_percentage);
+        ;; fees are calculated for maximum 500 participants
+        ;; if you want to change this limit, you should recalculate fees
+        throw_unless(error::many_participants, storage::participants_count <= config::max_participants_count);
+        throw_unless(error::big_funding_period, storage::valid_until - now() <= config::max_funding_period);
+        throw_unless(error::small_donate_amount, storage::donate_amount >= config::min_donate_amount);
+        ;; 0.05 TON for fees
+        throw_unless(error::not_enough_coins, msg_value >= storage::guarantee_amount + fee::initilization + 50000000);
+
+        in_msg_body.end_parse();
+        raw_reserve(storage::guarantee_amount + fee::initilization, 4);
+        send_raw_message(begin_cell()
+            .store_uint(0x10, 6)
+            .store_slice(sender)
+            .store_coins(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .end_cell()
+        , 128);
+        save_data();
+        return();
+    }
+
+    int op = in_msg_body~load_uint(32);
+    int query_id = in_msg_body~load_uint(64);
+    if(op == op::donate) {
+        throw_unless(error::not_active,
+            (now() < storage::valid_until) & (storage::participants_count > storage::donated_count));
+        in_msg_body.end_parse();
+        throw_unless(error::not_enough_donate, storage::donate_amount + fee::donate <= msg_value);
+        (_, int f) = storage::donators.dict_get?(267, sender);
+        throw_unless(error::already_donated, f == 0);
+        raw_reserve(storage::donate_amount, 4);
+        send_raw_message(begin_cell()
+            .store_uint(0x10, 6)
+            .store_slice(sender)
+            .store_coins(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .end_cell()
+        , 128);
+        storage::donated_count += 1;
+        storage::donators~dict_set(267, sender, "");
+        save_data();
+        return();
+    }
+
+    if(op == op::claim) {
+        throw_unless(error::unauthorized, equal_slices(storage::author_address, sender));
+        throw_unless(error::underfunded, storage::participants_count == storage::donated_count);
+        send_raw_message(begin_cell()
+            .store_uint(0x10, 6)
+            .store_slice(sender)
+            .store_coins(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .end_cell()
+            , 128);
+        return();
+    }
+
+    if(op == 0x89150cee) {
+        throw_unless(error::unauthorized, equal_slices(sender, my_address()));
+        accept_message();
+        handle_returns();
+        return();
+    }
+
+    throw(0xffff);
+}
+
+(int, int, int, int, int, int, cell) get_funding_data() method_id {
+    load_data();
+    if(~ storage::init?) {
+        return (-1, -1, -1, -1, -1, -1, null());
+    }
+    return (
+            storage::goal,
+            storage::donate_amount,
+            storage::guarantee_amount,
+            storage::participants_count,
+            storage::donated_count,
+            storage::valid_until,
+            storage::donators
+    );
+}
+
+(int) is_active() method_id {
+    load_data();
+
+    if(~ storage::init?) {
+        return 0;
+    }
+
+    if(storage::participants_count == storage::donated_count) {
+        return 0;
+    }
+
+    if(now() >= storage::valid_until) {
+        return 0;
+    }
+
+    return -1;
+}

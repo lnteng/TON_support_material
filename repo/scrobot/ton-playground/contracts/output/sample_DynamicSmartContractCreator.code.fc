@@ -1,0 +1,150 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_DynamicSmartContractCreator.headers.fc";
+#include "sample_DynamicSmartContractCreator.stdlib.fc";
+#include "sample_DynamicSmartContractCreator.storage.fc";
+
+;;
+;; Contract DynamicSmartContractCreator functions
+;;
+
+(int) $DynamicSmartContractCreator$_contract_init() impure inline_ref {
+    var (($self'id)) = (1);
+    return ($self'id);
+}
+
+((int), slice) $DynamicSmartContractCreator$_fun_myAddress((int) $self) impure inline_ref {
+    var (($self'id)) = $self;
+    return (($self'id), my_address());
+}
+
+((int), slice) $DynamicSmartContractCreator$_fun_dynamicContractAddress((int) $self, int $id) impure inline_ref {
+    var (($self'id)) = $self;
+    var ($init'code, $init'data) = $DynamicSmartContract$_init_child(__tact_context_sys, $id);
+    return (($self'id), $global_contractAddress(($init'code, $init'data)));
+}
+
+((int), slice) $DynamicSmartContractCreator$_fun_linkedContractAddress((int) $self) impure inline_ref {
+    var (($self'id)) = $self;
+    var ($init'code, $init'data) = $LinkedSmartContract$_init_child(__tact_context_sys);
+    return (($self'id), $global_contractAddress(($init'code, $init'data)));
+}
+
+;;
+;; Receivers of a Contract DynamicSmartContractCreator
+;;
+
+(((int)), ()) $DynamicSmartContractCreator$_internal_binary_DeployDynamicContract((int) $self, (int) $msg) impure inline {
+    var ($self'id) = $self;
+    var ($msg'id) = $msg;
+    var ($init'code, $init'data) = $DynamicSmartContract$_init_child(__tact_context_sys, $msg'id);
+    slice $address = $global_contractAddress(($init'code, $init'data));
+    $global_send($SendParameters$_constructor_to_value_mode_bounce_code_data_body($address, 0, (64 + 2), true, $init'code, $init'data, $Deploy$_store_cell($Deploy$_constructor_queryId(0))));
+    return (($self'id), ());
+}
+
+(((int)), ()) $DynamicSmartContractCreator$_internal_binary_Deploy((int) $self, (int) $deploy) impure inline {
+    var ($self'id) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'id)~$DynamicSmartContractCreator$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'id), ());
+}
+
+;;
+;; Get methods of a Contract DynamicSmartContractCreator
+;;
+
+_ %myAddress() method_id(77701) {
+    var self = $DynamicSmartContractCreator$_contract_load();
+    var res = self~$DynamicSmartContractCreator$_fun_myAddress();
+    return res;
+}
+
+_ %dynamicContractAddress(int $$id) method_id(76602) {
+    int $id = $$id;
+    var self = $DynamicSmartContractCreator$_contract_load();
+    var res = self~$DynamicSmartContractCreator$_fun_dynamicContractAddress($id);
+    return res;
+}
+
+_ %linkedContractAddress() method_id(98775) {
+    var self = $DynamicSmartContractCreator$_contract_load();
+    var res = self~$DynamicSmartContractCreator$_fun_linkedContractAddress();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmYvZNhLP7onLy9s1RsRcCvAnNsLPzhX8w8XCEa6vcwgzj";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract DynamicSmartContractCreator
+;;
+
+((int), int) $DynamicSmartContractCreator$_contract_router_internal((int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive DeployDynamicContract message
+    if (op == 2783155484) {
+        var msg = in_msg~$DeployDynamicContract$_load();
+        self~$DynamicSmartContractCreator$_internal_binary_DeployDynamicContract(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$DynamicSmartContractCreator$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $DynamicSmartContractCreator$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$DynamicSmartContractCreator$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $DynamicSmartContractCreator$_contract_store(self);
+}

@@ -1,0 +1,35 @@
+$Storage$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDcQY0f9Mxyd3hwtvIYMvnJeZ_2uVEfcBcddY8Wnr3YP6u_/output/sample_Storage.storage.fc:84:19: warning: Lack of end_parse.
+          return $sc~$Storage$_load();
+                    ^
+__tact_dict_set_int_slice: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDcQY0f9Mxyd3hwtvIYMvnJeZ_2uVEfcBcddY8Wnr3YP6u_/output/sample_Storage.stdlib.fc:42:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+__tact_dict_set_int_cell: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDcQY0f9Mxyd3hwtvIYMvnJeZ_2uVEfcBcddY8Wnr3YP6u_/output/sample_Storage.stdlib.fc:24:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+$Storage$_internal_binary_DataInput: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDcQY0f9Mxyd3hwtvIYMvnJeZ_2uVEfcBcddY8Wnr3YP6u_/output/sample_Storage.code.fc:38:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Storage$_internal_binary_DataInput: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDcQY0f9Mxyd3hwtvIYMvnJeZ_2uVEfcBcddY8Wnr3YP6u_/output/sample_Storage.code.fc:38:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Storage$_internal_binary_DataInput: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDcQY0f9Mxyd3hwtvIYMvnJeZ_2uVEfcBcddY8Wnr3YP6u_/output/sample_Storage.code.fc:38:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Data$_load_opt: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDcQY0f9Mxyd3hwtvIYMvnJeZ_2uVEfcBcddY8Wnr3YP6u_/output/sample_Storage.storage.fc:31:33: warning: Lack of end_parse.
+      return $Data$_as_optional(sc~$Data$_load());
+                                  ^
+$Storage$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDcQY0f9Mxyd3hwtvIYMvnJeZ_2uVEfcBcddY8Wnr3YP6u_/output/sample_Storage.code.fc:70:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDcQY0f9Mxyd3hwtvIYMvnJeZ_2uVEfcBcddY8Wnr3YP6u_/output/sample_Storage.storage.fc:93:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

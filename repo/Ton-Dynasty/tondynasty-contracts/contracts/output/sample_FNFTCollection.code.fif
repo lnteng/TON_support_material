@@ -1,0 +1,1095 @@
+PROGRAM{
+  DECLPROC __tact_verify_address
+  DECLPROC __tact_load_address
+  DECLPROC __tact_store_address
+  DECLPROC __tact_create_address
+  DECLPROC __tact_compute_contract_address
+  DECLPROC __tact_my_balance
+  DECLPROC __tact_not_null
+  DECLPROC __tact_context_get
+  DECLPROC __tact_context_get_sender
+  DECLPROC __tact_store_bool
+  DECLPROC __tact_dict_set_code
+  DECLPROC __tact_dict_get_code
+  DECLPROC __tact_string_builder_start
+  DECLPROC __tact_string_builder_start_string
+  DECLPROC __tact_string_builder_end
+  DECLPROC __tact_string_builder_append
+  DECLPROC __tact_int_to_string
+  DECLPROC $Deploy$_load
+  DECLPROC $DeployOk$_store
+  DECLPROC $DeployOk$_store_cell
+  DECLPROC $RoyaltyParams$_store
+  DECLPROC $RoyaltyParams$_load
+  DECLPROC $GetRoyaltyParams$_load
+  DECLPROC $ReportRoyaltyParams$_store
+  DECLPROC $ReportRoyaltyParams$_store_cell
+  DECLPROC $Transfer$_store
+  DECLPROC $Transfer$_store_cell
+  DECLPROC $FractionParams$_store
+  DECLPROC $FNFTCollection$_store
+  DECLPROC $FNFTCollection$_load
+  DECLPROC $StateInit$_not_null
+  DECLPROC $CollectionData$_to_external
+  DECLPROC $RoyaltyParams$_to_external
+  DECLPROC $FractionParams$_to_external
+  DECLPROC $FNFTCollection$init$_load
+  DECLPROC $FNFTItem$init$_store
+  DECLPROC $FNFTCollection$_contract_init
+  DECLPROC $FNFTCollection$_contract_load
+  DECLPROC $FNFTCollection$_contract_store
+  DECLPROC $global_emptyCell
+  DECLPROC $Cell$_fun_asSlice
+  DECLPROC $global_emptySlice
+  DECLPROC $global_contractAddress
+  DECLPROC $global_send
+  DECLPROC $SendParameters$_constructor_bounce_to_value_mode_body_code_data
+  DECLPROC $SendParameters$_constructor_to_value_mode_bounce_body
+  DECLPROC $SendParameters$_constructor_to_value_bounce_mode_body_code_data
+  DECLPROC $FractionParams$_constructor_max_supply_jetton_content
+  DECLPROC $FNFTCollection$_fun_get_fraction_param
+  DECLPROC $FNFTItem$_init_child
+  DECLPROC $FNFTCollection$_fun__get_nft_item_state_init
+  DECLPROC $FNFTCollection$_fun_debug_fraction_param
+  DECLPROC $FNFTCollection$_fun_forward
+  DECLPROC $FNFTCollection$_fun_notify
+  DECLPROC $FNFTCollection$_fun__get_nft_content
+  DECLPROC $CollectionData$_constructor_next_item_index_collection_content_owner_address
+  DECLPROC $FNFTCollection$_fun__get_collection_data
+  DECLPROC $FNFTCollection$_fun_get_collection_data
+  DECLPROC $FNFTCollection$_fun_get_nft_address_by_index
+  DECLPROC $FNFTCollection$_fun_get_nft_content
+  DECLPROC $ReportRoyaltyParams$_constructor_query_id_numerator_denominator_destination
+  DECLPROC $FNFTCollection$_fun_report_royalty_params
+  DECLPROC $FNFTCollection$_fun_royalty_params
+  DECLPROC $FNFTCollection$_fun_estimate_rest_value
+  DECLPROC $Transfer$_constructor_query_id_new_owner_response_destination_custom_payload_forward_amount_forward_payload
+  DECLPROC $DeployOk$_constructor_queryId
+  DECLPROC $FNFTCollection$_internal_text_247c7bd5f39e2258d80ac36a0419a1ab5779757825a6cc0e915368f00610a18a
+  DECLPROC $FNFTCollection$_internal_binary_GetRoyaltyParams
+  DECLPROC $FNFTCollection$_internal_binary_Deploy
+  114146 DECLMETHOD %debug_fraction_param
+  102491 DECLMETHOD %get_collection_data
+  92067 DECLMETHOD %get_nft_address_by_index
+  68445 DECLMETHOD %get_nft_content
+  85719 DECLMETHOD %royalty_params
+  113617 DECLMETHOD supported_interfaces
+  121275 DECLMETHOD get_abi_ipfs
+  115390 DECLMETHOD lazy_deployment_completed
+  DECLPROC $FNFTCollection$_contract_router_internal
+  DECLPROC recv_internal
+  DECLGLOBVAR __tact_context
+  DECLGLOBVAR __tact_context_sender
+  DECLGLOBVAR __tact_context_sys
+  DECLGLOBVAR __tact_randomized
+  __tact_verify_address PROCINLINE:<{
+    DUP
+    SBITS
+    267 PUSHINT
+    EQUAL
+    136 THROWIFNOT
+    DUP
+    11 PLDU
+    DUP
+    1279 PUSHINT
+    EQUAL
+    137 THROWIF
+    10 PUSHPOW2
+    EQUAL
+    136 THROWIFNOT
+  }>
+  __tact_load_address PROCINLINE:<{
+    LDMSGADDR
+    SWAP
+    __tact_verify_address INLINECALLDICT
+  }>
+  __tact_store_address PROCINLINE:<{
+    __tact_verify_address INLINECALLDICT
+    STSLICER
+  }>
+  __tact_create_address PROCINLINE:<{
+    NEWC
+    2 PUSHINT
+    SWAP
+    2 STU
+    0 PUSHINT
+    SWAP
+    1 STU
+    s1 s2 XCHG
+    8 STI
+    256 STU
+    ENDC
+    CTOS
+    __tact_verify_address INLINECALLDICT
+  }>
+  __tact_compute_contract_address PROCINLINE:<{
+    NEWC
+    0 PUSHINT
+    SWAP
+    2 STU
+    3 PUSHINT
+    SWAP
+    2 STU
+    0 PUSHINT
+    SWAP
+    1 STU
+    s1 s2 XCHG
+    STREF
+    STREF
+    ENDC
+    HASHCU
+    __tact_create_address INLINECALLDICT
+  }>
+  __tact_my_balance PROCINLINE:<{
+    BALANCE
+    FIRST
+  }>
+  __tact_not_null PROCINLINE:<{
+    DUP
+    ISNULL
+    128 THROWIF
+  }>
+  __tact_context_get PROCINLINE:<{
+    __tact_context GETGLOB
+    4 UNTUPLE
+  }>
+  __tact_context_get_sender PROCINLINE:<{
+    __tact_context_sender GETGLOB
+  }>
+  __tact_store_bool PROCINLINE:<{
+    SWAP
+    1 STI
+  }>
+  __tact_dict_set_code PROCINLINE:<{
+    s0 s2 XCHG
+    16 PUSHINT
+    DICTUSETREF
+  }>
+  __tact_dict_get_code PROCINLINE:<{
+    SWAP
+    16 PUSHINT
+    DICTUGETREF
+    NULLSWAPIFNOT
+    135 THROWIFNOT
+  }>
+  __tact_string_builder_start PROCINLINE:<{
+    NIL
+    SWAP
+    TPUSH
+    PUSHNULL
+    TPUSH
+  }>
+  __tact_string_builder_start_string PROCINLINE:<{
+    NEWC
+    __tact_string_builder_start INLINECALLDICT
+  }>
+  __tact_string_builder_end PROCINLINE:<{
+    UNCONS
+    SWAP
+    ENDC
+    WHILE:<{
+      OVER
+      ISNULL
+      NOT
+    }>DO<{
+      SWAP
+      UNCONS
+      -ROT
+      STREF
+      ENDC
+    }>
+    NIP
+  }>
+  __tact_string_builder_append PROCREF:<{
+    DUP
+    SREFS
+    OVER
+    SBITS
+    WHILE:<{
+      DUP
+      0 GTINT
+      s2 PUSH
+      0 GTINT
+      OR
+    }>DO<{
+      s0 s3 XCHG
+      UNCONS
+      127 PUSHINT
+      s2 PUSH
+      BBITS
+      3 RSHIFT#
+      SUB
+      s0 s5 XCHG
+      3 RSHIFT#
+      s5 s5 XCPU
+      MIN
+      DUP
+      0 GTINT
+      IF:<{
+        DUP
+        3 LSHIFT#
+        s1 s5 XCHG
+        LDSLICEX
+        s3 s3 XCHG2
+        STSLICER
+        s0 s1 s4 XCHG3
+      }>
+      -ROT
+      CONS
+      s4 s1 PUSH2
+      SUB
+      0 GTINT
+      IF:<{
+        NEWC
+        SWAP
+        CONS
+        s4 s4 XCHG2
+        SUB
+        3 LSHIFT#
+      }>ELSE<{
+        NIP
+        s3 POP
+        0 GTINT
+        IF:<{
+          LDREF
+          DROP
+          CTOS
+          DUP
+          SREFS
+          OVER
+          SBITS
+        }>ELSE<{
+          0 PUSHINT
+          DUP
+        }>
+      }>
+    }>
+    3 BLKDROP
+  }>
+  __tact_int_to_string PROCREF:<{
+    NEWC
+    OVER
+    0 LESSINT
+    IF:<{
+      45 PUSHINT
+      SWAP
+      8 STU
+      SWAP
+      NEGATE
+      SWAP
+    }>
+    OVER
+    1000000000000000000000000000000 PUSHINTX
+    LESS
+    IF:<{
+      0 PUSHINT
+      DUP
+      1 PUSHINT
+      UNTIL:<{
+        s0 s4 XCHG
+        10 PUSHINT
+        DIVMOD
+        48 ADDCONST
+        s5 PUSH
+        MUL
+        s1 s2 XCHG
+        ADD
+        s0 s4 XCHG
+        8 LSHIFT#
+        s0 s2 XCHG
+        INC
+        OVER
+        0 EQINT
+        s5 s3 s0 XCHG3
+      }>
+      DROP
+      s3 POP
+      3 LSHIFT#
+      STUX
+    }>ELSE<{
+      NIL
+      0 PUSHINT
+      UNTIL:<{
+        s3 PUSH
+        10 PUSHINT
+        MOD
+        s1 s2 XCHG
+        TPUSH
+        SWAP
+        INC
+        s0 s3 XCHG
+        10 PUSHINT
+        DIV
+        DUP
+        0 EQINT
+        s1 s4 XCHG
+      }>
+      s3 POP
+      s2 PUSH
+      DEC
+      s0 s3 XCHG
+      REPEAT:<{
+        s0 s2 PUSH2
+        INDEXVAR
+        48 ADDCONST
+        ROT
+        8 STU
+        s0 s2 XCHG
+        DEC
+        -ROT
+      }>
+      DROP
+      NIP
+    }>
+    ENDC
+    CTOS
+  }>
+  $Deploy$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    2490013878 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    64 LDU
+    SWAP
+  }>
+  $DeployOk$_store PROCINLINE:<{
+    2952335191 PUSHINT
+    ROT
+    32 STU
+    64 STU
+  }>
+  $DeployOk$_store_cell PROCINLINE:<{
+    NEWC
+    SWAP
+    $DeployOk$_store INLINECALLDICT
+    ENDC
+  }>
+  $RoyaltyParams$_store PROCINLINE:<{
+    s2 s3 XCHG2
+    16 STU
+    16 STU
+    SWAP
+    __tact_store_address INLINECALLDICT
+  }>
+  $RoyaltyParams$_load PROCINLINE:<{
+    16 LDU
+    16 LDU
+    __tact_load_address INLINECALLDICT
+    s3 s3 s0 XCHG3
+  }>
+  $GetRoyaltyParams$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    1765620048 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    64 LDU
+    SWAP
+  }>
+  $ReportRoyaltyParams$_store PROCINLINE:<{
+    2831876269 PUSHINT
+    s0 s5 XCHG2
+    32 STU
+    s1 s3 XCHG
+    64 STU
+    16 STU
+    16 STU
+    SWAP
+    __tact_store_address INLINECALLDICT
+  }>
+  $ReportRoyaltyParams$_store_cell PROCINLINE:<{
+    NEWC
+    4 -ROLL
+    $ReportRoyaltyParams$_store INLINECALLDICT
+    ENDC
+  }>
+  $Transfer$_store PROCREF:<{
+    1607220500 PUSHINT
+    s0 s7 XCHG2
+    32 STU
+    s1 s5 XCHG
+    64 STU
+    s0 s3 XCHG2
+    __tact_store_address INLINECALLDICT
+    SWAP
+    __tact_store_address INLINECALLDICT
+    OVER
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+      SWAP
+      1 STI
+      STREF
+    }>ELSE<{
+      FALSE
+      s2 POP
+      1 STI
+    }>
+    SWAP
+    STGRAMS
+    SWAP
+    STSLICER
+  }>
+  $Transfer$_store_cell PROCINLINE:<{
+    NEWC
+    6 -ROLL
+    $Transfer$_store INLINECALLDICT
+    ENDC
+  }>
+  $FractionParams$_store PROCINLINE:<{
+    3149070415 PUSHINT
+    s0 s3 XCHG2
+    32 STU
+    SWAP
+    STGRAMS
+    STREF
+  }>
+  $FNFTCollection$_store PROCINLINE:<{
+    s5 s6 XCHG2
+    32 STU
+    s1 s3 XCHG
+    STREF
+    SWAP
+    __tact_store_address INLINECALLDICT
+    s2 s3 XCHG2
+    $RoyaltyParams$_store INLINECALLDICT
+  }>
+  $FNFTCollection$_load PROCINLINE:<{
+    32 LDU
+    LDREF
+    __tact_load_address INLINECALLDICT
+    SWAP
+    $RoyaltyParams$_load INLINECALLDICT
+    s3 s6 XCHG
+    s3 s5 XCHG
+    s3 s4 XCHG
+  }>
+  $StateInit$_not_null PROCINLINE:<{
+    DUP
+    ISNULL
+    128 THROWIF
+    2 UNTUPLE
+  }>
+  $CollectionData$_to_external PROCINLINE:<{
+  }>
+  $RoyaltyParams$_to_external PROCINLINE:<{
+  }>
+  $FractionParams$_to_external PROCINLINE:<{
+  }>
+  $FNFTCollection$init$_load PROCINLINE:<{
+    __tact_load_address INLINECALLDICT
+    SWAP
+    LDREF
+    $RoyaltyParams$_load INLINECALLDICT
+    s3 s5 XCHG
+    s3 s4 XCHG
+  }>
+  $FNFTItem$init$_store PROCINLINE:<{
+    s6 s5 XCHG2
+    __tact_store_address INLINECALLDICT
+    s1 s3 XCHG
+    257 PUSHINT
+    STIX
+    SWAP
+    __tact_store_address INLINECALLDICT
+    STREF
+    -ROT
+    $FractionParams$_store INLINECALLDICT
+  }>
+  $FNFTCollection$_contract_init PROCREF:<{
+    0 PUSHINT
+    s0 s5 XCHG
+    3 -ROLL
+  }>
+  $FNFTCollection$_contract_load PROCREF:<{
+    c4 PUSH
+    CTOS
+    LDREF
+    SWAP
+    __tact_context_sys SETGLOB
+    1 LDI
+    SWAP
+    IFJMP:<{
+      $FNFTCollection$_load INLINECALLDICT
+      1 6 BLKDROP2
+    }>
+    MYADDR
+    11 PLDU
+    10 PUSHPOW2
+    EQUAL
+    137 THROWIFNOT
+    $FNFTCollection$init$_load INLINECALLDICT
+    s0 s5 XCHG
+    ENDS
+    4 ROLL
+    $FNFTCollection$_contract_init INLINECALLDICT
+  }>
+  $FNFTCollection$_contract_store PROCINLINE:<{
+    NEWC
+    __tact_context_sys GETGLOB
+    SWAP
+    STREF
+    TRUE
+    SWAP
+    1 STI
+    6 -ROLL
+    $FNFTCollection$_store INLINECALLDICT
+    ENDC
+    c4 POP
+  }>
+  $global_emptyCell PROCINLINE:<{
+    NEWC
+    ENDC
+  }>
+  $Cell$_fun_asSlice PROCINLINE:<{
+    CTOS
+  }>
+  $global_emptySlice PROCINLINE:<{
+    $global_emptyCell INLINECALLDICT
+    $Cell$_fun_asSlice INLINECALLDICT
+  }>
+  $global_contractAddress PROCINLINE:<{
+    0 PUSHINT
+    -ROT
+    __tact_compute_contract_address INLINECALLDICT
+  }>
+  $global_send PROCREF:<{
+    NEWC
+    1 PUSHINT
+    SWAP
+    2 STI
+    s0 s7 XCHG2
+    __tact_store_bool INLINECALLDICT
+    0 PUSHINT
+    SWAP
+    3 STI
+    s0 s5 XCHG2
+    __tact_store_address INLINECALLDICT
+    s0 s3 XCHG2
+    STGRAMS
+    0 PUSHINT
+    SWAP
+    105 STI
+    s3 PUSH
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+    }>ELSE<{
+      s4 PUSH
+      ISNULL
+      NOT
+    }>
+    IF:<{
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      NEWC
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      s4 PUSH
+      ISNULL
+      NOT
+      IF:<{
+        TRUE
+        __tact_store_bool INLINECALLDICT
+        s0 s4 XCHG
+        __tact_not_null INLINECALLDICT
+        s0 s4 XCHG2
+        STREF
+      }>ELSE<{
+        s4 POP
+        s0 s3 XCHG
+        FALSE
+        __tact_store_bool INLINECALLDICT
+      }>
+      s4 PUSH
+      ISNULL
+      NOT
+      IF:<{
+        TRUE
+        __tact_store_bool INLINECALLDICT
+        s0 s4 XCHG
+        __tact_not_null INLINECALLDICT
+        s0 s4 XCHG2
+        STREF
+      }>ELSE<{
+        s4 POP
+        s0 s3 XCHG
+        FALSE
+        __tact_store_bool INLINECALLDICT
+      }>
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      s0 s2 XCHG
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      s0 s2 XCHG
+      ENDC
+      ROT
+      STREF
+    }>ELSE<{
+      s3 POP
+      s3 POP
+      SWAP
+      FALSE
+      __tact_store_bool INLINECALLDICT
+    }>
+    OVER
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      SWAP
+      __tact_not_null INLINECALLDICT
+      SWAP
+      STREF
+    }>ELSE<{
+      NIP
+      FALSE
+      __tact_store_bool INLINECALLDICT
+    }>
+    ENDC
+    SWAP
+    SENDRAWMSG
+  }>
+  $SendParameters$_constructor_bounce_to_value_mode_body_code_data PROCINLINE:<{
+  }>
+  $SendParameters$_constructor_to_value_mode_bounce_body PROCINLINE:<{
+    s1 s4 XCHG
+    s3 s3 s0 XCHG3
+    PUSHNULL
+    PUSHNULL
+  }>
+  $SendParameters$_constructor_to_value_bounce_mode_body_code_data PROCINLINE:<{
+    s4 s6 XCHG
+    s4 s5 XCHG
+  }>
+  $FractionParams$_constructor_max_supply_jetton_content PROCINLINE:<{
+  }>
+  $FNFTCollection$_fun_get_fraction_param PROCINLINE:<{
+    PUSHNULL
+    NEWC
+    __tact_string_builder_start INLINECALLDICT
+    B{b5ee9c7241010101001000001c462d546f6e44796e617374792023a3f89c32} B>boc <s PUSHSLICE
+    __tact_string_builder_append INLINECALLDICT
+    s2 PUSH
+    __tact_int_to_string INLINECALLDICT
+    __tact_string_builder_append INLINECALLDICT
+    8 PUSHPOW2
+    59089242681608890680090686026688704441792375738894456860693970539822503415433 PUSHINT
+    s0 s2 XCHG
+    __tact_string_builder_end INLINECALLDICT
+    s3 s3 XCHG2
+    DICTUSETREF
+    NEWC
+    __tact_string_builder_start INLINECALLDICT
+    s2 PUSH
+    __tact_int_to_string INLINECALLDICT
+    __tact_string_builder_append INLINECALLDICT
+    8 PUSHPOW2
+    90922719342317012409671596374183159143637506542604000676488204638996496437508 PUSHINT
+    s0 s2 XCHG
+    __tact_string_builder_end INLINECALLDICT
+    s3 s3 XCHG2
+    DICTUSETREF
+    NEWC
+    __tact_string_builder_start INLINECALLDICT
+    B{b5ee9c7241010101000900000e462d5444542023ce728574} B>boc <s PUSHSLICE
+    __tact_string_builder_append INLINECALLDICT
+    s0 s2 XCHG
+    __tact_int_to_string INLINECALLDICT
+    s1 s2 XCHG
+    __tact_string_builder_append INLINECALLDICT
+    8 PUSHPOW2
+    82961397245523513629401799123410942652413991882008909918554405086738284660097 PUSHINT
+    s0 s2 XCHG
+    __tact_string_builder_end INLINECALLDICT
+    s3 s3 XCHG2
+    DICTUSETREF
+    NEWC
+    0 PUSHINT
+    SWAP
+    8 STI
+    1 PUSHINT
+    SWAP
+    1 STU
+    SWAP
+    __tact_not_null INLINECALLDICT
+    SWAP
+    STREF
+    100000000000 PUSHINT
+    SWAP
+    ENDC
+    $FractionParams$_constructor_max_supply_jetton_content INLINECALLDICT
+  }>
+  $FNFTItem$_init_child PROCREF:<{
+    s0 s6 XCHG
+    CTOS
+    LDDICT
+    DROP
+    NEWDICT
+    OVER
+    12877 PUSHINT
+    __tact_dict_get_code INLINECALLDICT
+    SWAP
+    12877 PUSHINT
+    s2 PUSH
+    __tact_dict_set_code INLINECALLDICT
+    s2 PUSH
+    58095 PUSHINT
+    __tact_dict_get_code INLINECALLDICT
+    58095 PUSHINT
+    SWAP
+    __tact_dict_set_code INLINECALLDICT
+    s0 s2 XCHG
+    26611 PUSHINT
+    __tact_dict_get_code INLINECALLDICT
+    s1 s2 XCHG
+    26611 PUSHINT
+    SWAP
+    __tact_dict_set_code INLINECALLDICT
+    NEWC
+    SWAP
+    NEWC
+    STDICT
+    ENDC
+    SWAP
+    STREF
+    FALSE
+    SWAP
+    1 STI
+    6 -ROLL
+    s0 s7 XCHG
+    $FNFTItem$init$_store INLINECALLDICT
+    ENDC
+  }>
+  $FNFTCollection$_fun__get_nft_item_state_init PROCINLINE:<{
+    s6 s5 s4 PUSH3
+    s6 s5 s4 PUSH3
+    __tact_context_sys GETGLOB
+    MYADDR
+    s12 s13 PUSH2
+    s5 16 s() XCHG
+    s4 s15 XCHG
+    s3 s14 XCHG
+    s13 s12 s11 XCHG3
+    s10 PUSH
+    $FNFTCollection$_fun_get_fraction_param INLINECALLDICT
+    6 2 BLKDROP2
+    s6 s10 XCHG
+    s5 s9 XCHG
+    s4 s10 XCHG
+    s3 s8 XCHG
+    s2 s7 XCHG
+    $FNFTItem$_init_child INLINECALLDICT
+    4 4 REVERSE
+    s3 s5 XCHG
+    s2 s4 XCHG
+    s2 s3 XCHG
+  }>
+  $FNFTCollection$_fun_debug_fraction_param PROCREF:<{
+    s6 s5 s4 PUSH3
+    s6 s5 s4 PUSH3
+    s6 s12 XCHG
+    s5 s11 XCHG
+    s4 s10 XCHG
+    s3 s9 XCHG
+    s8 s7 s12 XCHG3
+    $FNFTCollection$_fun_get_fraction_param INLINECALLDICT
+    6 2 BLKDROP2
+    s6 s7 XCHG
+    s5 s6 XCHG
+    s4 s5 XCHG
+    s3 s4 XCHG
+    s2 s3 XCHG
+  }>
+  $FNFTCollection$_fun_forward PROCREF:<{
+    PUSHNULL
+    PUSHNULL
+    s2 PUSH
+    ISNULL
+    NOT
+    IF:<{
+      2DROP
+      $StateInit$_not_null INLINECALLDICT
+      SWAP
+    }>ELSE<{
+      s2 POP
+    }>
+    s2 s4 XCHG
+    0 PUSHINT
+    s0 s3 XCHG
+    s0 s4 XCHG
+    66 PUSHINT
+    s2 s3 XCHG2
+    $SendParameters$_constructor_bounce_to_value_mode_body_code_data INLINECALLDICT
+    $global_send INLINECALLDICT
+  }>
+  $FNFTCollection$_fun_notify PROCINLINE:<{
+    __tact_context_get_sender INLINECALLDICT
+    SWAP
+    FALSE
+    PUSHNULL
+    $FNFTCollection$_fun_forward INLINECALLDICT
+  }>
+  $FNFTCollection$_fun__get_nft_content PROCINLINE:<{
+    NIP
+    __tact_string_builder_start_string INLINECALLDICT
+    SWAP
+    $Cell$_fun_asSlice INLINECALLDICT
+    __tact_string_builder_append INLINECALLDICT
+    __tact_string_builder_end INLINECALLDICT
+  }>
+  $CollectionData$_constructor_next_item_index_collection_content_owner_address PROCINLINE:<{
+  }>
+  $FNFTCollection$_fun__get_collection_data PROCINLINE:<{
+    __tact_string_builder_start_string INLINECALLDICT
+    s5 PUSH
+    $Cell$_fun_asSlice INLINECALLDICT
+    __tact_string_builder_append INLINECALLDICT
+    B{b5ee9c7241010101000b0000126d6574612e6a736f6ebde57607} B>boc <s PUSHSLICE
+    __tact_string_builder_append INLINECALLDICT
+    __tact_string_builder_end INLINECALLDICT
+    s6 s4 s(-1) PU2XC
+    $CollectionData$_constructor_next_item_index_collection_content_owner_address INLINECALLDICT
+  }>
+  $FNFTCollection$_fun_get_collection_data PROCREF:<{
+    s5 s4 s3 PUSH3
+    s5 s4 s3 PUSH3
+    6 6 BLKSWAP
+    $FNFTCollection$_fun__get_collection_data INLINECALLDICT
+    6 3 BLKDROP2
+  }>
+  $FNFTCollection$_fun_get_nft_address_by_index PROCREF:<{
+    $FNFTCollection$_fun__get_nft_item_state_init INLINECALLDICT
+    $global_contractAddress INLINECALLDICT
+  }>
+  $FNFTCollection$_fun_get_nft_content PROCREF:<{
+    s7 s6 s5 PUSH3
+    s7 s6 s5 PUSH3
+    s7 s13 XCHG
+    s6 s12 XCHG
+    s5 s11 XCHG
+    s4 s10 XCHG
+    s3 s9 XCHG
+    s8 s13 s12 XCHG3
+    $FNFTCollection$_fun__get_nft_content INLINECALLDICT
+    6 1 BLKDROP2
+    s4 s6 XCHG
+    s3 s5 XCHG
+    s4 s3 s0 XCHG3
+  }>
+  $ReportRoyaltyParams$_constructor_query_id_numerator_denominator_destination PROCINLINE:<{
+  }>
+  $FNFTCollection$_fun_report_royalty_params PROCINLINE:<{
+    __tact_context_get INLINECALLDICT
+    s2 s3 XCHG
+    3 BLKDROP
+    0 PUSHINT
+    64 PUSHINT
+    FALSE
+    s4 s7 s6 XCPU2
+    s10 PUSH
+    $ReportRoyaltyParams$_constructor_query_id_numerator_denominator_destination INLINECALLDICT
+    $ReportRoyaltyParams$_store_cell INLINECALLDICT
+    s3 s4 XCHG
+    s1 s3 s0 XCHG3
+    $SendParameters$_constructor_to_value_mode_bounce_body INLINECALLDICT
+    $global_send INLINECALLDICT
+  }>
+  $FNFTCollection$_fun_royalty_params PROCREF:<{
+    s2 s1 s0 PUSH3
+  }>
+  $FNFTCollection$_fun_estimate_rest_value PROCREF:<{
+    s1 s3 XCHG
+    3 BLKDROP
+    __tact_my_balance INLINECALLDICT
+    OVER
+    SUB
+    50000000 PUSHINT
+    TUCK
+    MIN
+    SUB
+    50000000 PUSHINT
+    ADD
+    SUB
+  }>
+  $Transfer$_constructor_query_id_new_owner_response_destination_custom_payload_forward_amount_forward_payload PROCINLINE:<{
+  }>
+  $DeployOk$_constructor_queryId PROCINLINE:<{
+  }>
+  $FNFTCollection$_internal_text_247c7bd5f39e2258d80ac36a0419a1ab5779757825a6cc0e915368f00610a18a PROCINLINE:<{
+    __tact_context_get INLINECALLDICT
+    s9 PUSH
+    s0 s6 XCHG
+    s5 s9 XCHG
+    s4 s8 XCHG
+    s3 s7 XCHG
+    s0 s9 s10 XCHG3
+    $FNFTCollection$_fun__get_nft_item_state_init INLINECALLDICT
+    2DUP
+    $global_contractAddress INLINECALLDICT
+    s9 PUSH
+    s3 s11 XCHG
+    s0 s13 s12 XCHG3
+    $FNFTCollection$_fun_estimate_rest_value INLINECALLDICT
+    FALSE
+    2 PUSHINT
+    0 PUSHINT
+    $global_emptyCell INLINECALLDICT
+    OVER
+    $global_emptySlice INLINECALLDICT
+    s13 PUSH
+    s0 s4 XCHG
+    s0 s5 XCHG
+    s0 s14 XCHG
+    3 -ROLL
+    $Transfer$_constructor_query_id_new_owner_response_destination_custom_payload_forward_amount_forward_payload INLINECALLDICT
+    $Transfer$_store_cell INLINECALLDICT
+    s6 s12 XCHG
+    s5 s4 s0 XCHG3
+    s3 s9 XCHG
+    s0 s10 s11 XCHG3
+    $SendParameters$_constructor_to_value_bounce_mode_body_code_data INLINECALLDICT
+    $global_send INLINECALLDICT
+    SWAP
+    INC
+    s0 s5 XCHG
+    3 2 BLKSWAP
+  }>
+  $FNFTCollection$_internal_binary_GetRoyaltyParams PROCINLINE:<{
+    $FNFTCollection$_fun_report_royalty_params INLINECALLDICT
+  }>
+  $FNFTCollection$_internal_binary_Deploy PROCINLINE:<{
+    $DeployOk$_constructor_queryId INLINECALLDICT
+    $DeployOk$_store_cell INLINECALLDICT
+    $FNFTCollection$_fun_notify INLINECALLDICT
+  }>
+  %debug_fraction_param PROC:<{
+    $FNFTCollection$_contract_load INLINECALLDICT
+    6 ROLL
+    $FNFTCollection$_fun_debug_fraction_param INLINECALLDICT
+    6 2 BLKDROP2
+    $FractionParams$_to_external INLINECALLDICT
+  }>
+  %get_collection_data PROC:<{
+    $FNFTCollection$_contract_load INLINECALLDICT
+    $FNFTCollection$_fun_get_collection_data INLINECALLDICT
+    6 3 BLKDROP2
+    $CollectionData$_to_external INLINECALLDICT
+  }>
+  %get_nft_address_by_index PROC:<{
+    $FNFTCollection$_contract_load INLINECALLDICT
+    6 ROLL
+    $FNFTCollection$_fun_get_nft_address_by_index INLINECALLDICT
+    6 1 BLKDROP2
+  }>
+  %get_nft_content PROC:<{
+    $FNFTCollection$_contract_load INLINECALLDICT
+    2 6 BLKSWAP
+    $FNFTCollection$_fun_get_nft_content INLINECALLDICT
+    6 1 BLKDROP2
+  }>
+  %royalty_params PROC:<{
+    $FNFTCollection$_contract_load INLINECALLDICT
+    $FNFTCollection$_fun_royalty_params INLINECALLDICT
+    6 3 BLKDROP2
+    $RoyaltyParams$_to_external INLINECALLDICT
+  }>
+  supported_interfaces PROC:<{
+    123515602279859691144772641439386770278 PUSHINT
+    209801025412363888721030803524359905849 PUSHINT
+    42980537499636128163026532310500881091 PUSHINT
+    209474421377847335869795010607481022628 PUSHINT
+  }>
+  get_abi_ipfs PROC:<{
+    x{697066733a2f2f516d59734e64675a485373703279513339753163397932344a6b794c704c5870524372797a467a366f6642764d75} PUSHSLICE
+  }>
+  lazy_deployment_completed PROC:<{
+    c4 PUSH
+    CTOS
+    1 LDI
+    SWAP
+  }>
+  $FNFTCollection$_contract_router_internal PROCREF:<{
+    c2 SAVE
+    SAMEALTSAVE
+    SWAP
+    IFJMP:<{
+      DROP
+      TRUE
+    }>
+    0 PUSHINT
+    OVER
+    SBITS
+    31 GTINT
+    IF:<{
+      DROP
+      DUP
+      32 PLDU
+    }>
+    DUP
+    1765620048 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $GetRoyaltyParams$_load INLINECALLDICT
+      NIP
+      $FNFTCollection$_internal_binary_GetRoyaltyParams INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    2490013878 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $Deploy$_load INLINECALLDICT
+      NIP
+      $FNFTCollection$_internal_binary_Deploy INLINECALLDICT
+      TRUE
+    }>
+    0 EQINT
+    IF:<{
+      HASHSU
+      16503206267955344479789506433990479957112383025105740036956182953240829141386 PUSHINT
+      EQUAL
+      IFJMP:<{
+        $FNFTCollection$_internal_text_247c7bd5f39e2258d80ac36a0419a1ab5779757825a6cc0e915368f00610a18a INLINECALLDICT
+        TRUE
+        RETALT
+      }>
+    }>ELSE<{
+      DROP
+    }>
+    FALSE
+  }>
+  recv_internal PROC:<{
+    SWAP
+    CTOS
+    4 LDU
+    SWAP
+    1 PUSHINT
+    AND
+    NEGATE
+    SWAP
+    LDMSGADDR
+    SWAP
+    __tact_verify_address INLINECALLDICT
+    s0 s4 s2 PUXCPU
+    s0 s3 XCHG
+    4 TUPLE
+    __tact_context SETGLOB
+    s0 s2 XCHG
+    __tact_context_sender SETGLOB
+    $FNFTCollection$_contract_load INLINECALLDICT
+    2 6 BLKSWAP
+    $FNFTCollection$_contract_router_internal INLINECALLDICT
+    130 THROWIFNOT
+    $FNFTCollection$_contract_store INLINECALLDICT
+  }>
+}END>c

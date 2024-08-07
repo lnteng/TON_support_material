@@ -1,0 +1,143 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_Reserve.headers.fc";
+#include "sample_Reserve.stdlib.fc";
+#include "sample_Reserve.storage.fc";
+
+;;
+;; Contract Reserve functions
+;;
+
+tuple $Reserve$_contract_init(int $seed) impure inline_ref {
+    tuple $self = null();
+    return $self;
+}
+
+(tuple, int) $Reserve$_fun_balance(tuple $self) impure inline_ref {
+    var ($self) = $self;
+    return ($self, __tact_my_balance());
+}
+
+;;
+;; Receivers of a Contract Reserve
+;;
+
+(tuple, ()) $Reserve$_internal_text_a9bfb502b41128f643c6d18730d2b67127072fc6dd52f8166959d5799dcc0886(tuple $self) impure inline {
+    var $self = $self;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    throw_unless(57218, ($ctx'value > 1000000000));
+    raw_reserve(1000000000, 0);
+    $global_send($SendParameters$_constructor_to_value_bounce_mode(__tact_create_address(0, 0), 0, false, (128 + 2)));
+    return ($self, ());
+}
+
+(tuple, ()) $Reserve$_internal_text_528e4479d86599a34be4296efa97417beb89fc62e3804d30c308e56cdcea8826(tuple $self) impure inline {
+    var $self = $self;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    throw_unless(57218, ($ctx'value > 1000000000));
+    $global_send($SendParameters$_constructor_to_value_bounce_mode(__tact_create_address(0, 0), ($ctx'value - 1000000000), false, (1 + 2)));
+    return ($self, ());
+}
+
+((tuple), ()) $Reserve$_internal_binary_Deploy(tuple $self, (int) $deploy) impure inline {
+    var $self = $self;
+    var ($deploy'queryId) = $deploy;
+    $self~$Reserve$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return ($self, ());
+}
+
+;;
+;; Get methods of a Contract Reserve
+;;
+
+_ %balance() method_id(104128) {
+    var self = $Reserve$_contract_load();
+    var res = self~$Reserve$_fun_balance();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmVWaMUPDS24soRcgcGMy5U2Cy5RqgMgMcuRYJNz8zqYNh";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract Reserve
+;;
+
+(tuple, int) $Reserve$_contract_router_internal(tuple self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$Reserve$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "n" message
+        if (text_op == 0xa9bfb502b41128f643c6d18730d2b67127072fc6dd52f8166959d5799dcc0886) {
+            self~$Reserve$_internal_text_a9bfb502b41128f643c6d18730d2b67127072fc6dd52f8166959d5799dcc0886();
+            return (self, true);
+        }
+        
+        ;; Receive "u" message
+        if (text_op == 0x528e4479d86599a34be4296efa97417beb89fc62e3804d30c308e56cdcea8826) {
+            self~$Reserve$_internal_text_528e4479d86599a34be4296efa97417beb89fc62e3804d30c308e56cdcea8826();
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $Reserve$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$Reserve$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $Reserve$_contract_store(self);
+}

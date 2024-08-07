@@ -1,0 +1,40 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./StalinFoundation/token-staking/contracts/token_staking.fc:161:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./StalinFoundation/token-staking/contracts/token_staking.fc:255:19: warning: Lack of end_parse.
+              if(ref~load_uint(32) == op::donate()) {
+                    ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./StalinFoundation/token-staking/contracts/token_staking.fc:336:40: warning: Lack of end_parse.
+          int staked_amount = nft_content~load_coins();
+                                         ^
+get_nft_address_by_index: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./StalinFoundation/token-staking/contracts/token_staking.fc:379:63: warning: Local variable 'next_item_index' is not used
+      var (_, next_item_index, _, _, _, _, _, nft_item_code, _) = load_data();
+                                                                ^
+get_nft_content: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./StalinFoundation/token-staking/contracts/token_staking.fc:393:30: warning: Lack of end_parse.
+      slice common_content = cs~load_ref().begin_parse();
+                               ^
+load_royalty_params: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./StalinFoundation/token-staking/contracts/token_staking.fc:73:51: warning: Lack of end_parse.
+      return (rs~load_uint(16), rs~load_uint(16), rs~load_msg_addr());
+                                                    ^
+get_collection_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./StalinFoundation/token-staking/contracts/token_staking.fc:375:30: warning: Lack of end_parse.
+    return (next_item_index, cs~load_ref(), owner_address);
+                               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./StalinFoundation/token-staking/contracts/token_staking.fc:50:11: warning: Lack of end_parse.
+          ds~load_ref()  ;; royalty_params
+            ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./StalinFoundation/token-staking/contracts/token_staking.fc:355:42: warning: UnHandle bounced message with op: 0x70376a1c
+              send_raw_message(burn_msg, 0); ;; leak here (can not send message and then send message with mode 64)
+                                           ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./StalinFoundation/token-staking/contracts/token_staking.fc:147:41: warning: UnHandle bounced message with op: 0x5fcc3d14
+    send_raw_message(msg.end_cell(), mode); 
+                                          ^

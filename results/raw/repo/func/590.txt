@@ -1,0 +1,16 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/TON-Marketplace-NFT-All/smartcont/sale.func:81:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+load_fees: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/TON-Marketplace-NFT-All/smartcont/sale.func:22:23: warning: Lack of end_parse.
+                      ds~load_coins() ;; royalty_amount
+                        ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/TON-Marketplace-NFT-All/smartcont/sale.func:13:23: warning: Lack of end_parse.
+                      ds~load_ref() ;; fees_cell
+                        ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/TON-Marketplace-NFT-All/smartcont/sale.func:70:51: warning: UnHandle bounced message with op: 0x5fcc3d14
+      send_raw_message(nft_msg.end_cell(), 128 + 32);
+                                                    ^

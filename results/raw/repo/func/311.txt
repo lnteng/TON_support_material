@@ -1,0 +1,19 @@
+get_public_key: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./XP-NETWORK/ton-demo-m1/func/code.func:41:7: warning: Lack of end_parse.
+      cs~load_uint(64);
+        ^
+get_hi_from_cell: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./XP-NETWORK/ton-demo-m1/func/code.func:58:27: warning: Lack of end_parse.
+      int seqno = get_data().begin_parse().preload_uint(32);
+                            ^
+seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./XP-NETWORK/ton-demo-m1/func/code.func:36:22: warning: Lack of end_parse.
+      return get_data().begin_parse().preload_uint(32);
+                       ^
+recv_external & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./XP-NETWORK/ton-demo-m1/func/code.func:40:24: warning: Cell of get_data and set_data are inconsistent.
+      var cs = get_data().begin_parse();
+                         ^
+/home/lentg/Movebit/ton-datasets1111/repo/./XP-NETWORK/ton-demo-m1/func/code.func:27:9: warning: Cell of get_data and set_data are inconsistent.
+          .store_uint(stored_seqno + 1, 32)
+          ^

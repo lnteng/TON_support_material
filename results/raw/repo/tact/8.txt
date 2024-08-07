@@ -1,0 +1,15 @@
+$Todo1$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-calc-contract-address/output/sample_Todo2.storage.fc:64:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$Todo2$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-calc-contract-address/output/sample_Todo2.storage.fc:103:19: warning: Lack of end_parse.
+          return $sc~$Todo2$_load();
+                    ^
+$Todo2$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-calc-contract-address/output/sample_Todo2.code.fc:70:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-calc-contract-address/output/sample_Todo2.storage.fc:112:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

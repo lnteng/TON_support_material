@@ -1,0 +1,20 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./1ton-labs/contracts-func/contracts/treasury_admin.fc:57:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./1ton-labs/contracts-func/contracts/treasury_admin.fc:57:26: warning: Local variable 'sender_address' is not used
+      slice sender_address = cs~load_msg_addr();
+                           ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./1ton-labs/contracts-func/contracts/treasury_admin.fc:61:18: warning: Local variable 'query_id' is not used
+      int query_id = in_msg_body~load_uint(64);
+                   ^
+get_treasury_pool_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./1ton-labs/contracts-func/contracts/treasury_admin.fc:79:43: warning: Local variable 'index' is not used
+      var (index, owner_address, pool_code) = load_data();
+                                            ^
+get_treasury_pool_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./1ton-labs/contracts-func/contracts/treasury_admin.fc:79:43: warning: Local variable 'owner_address' is not used
+      var (index, owner_address, pool_code) = load_data();
+                                            ^

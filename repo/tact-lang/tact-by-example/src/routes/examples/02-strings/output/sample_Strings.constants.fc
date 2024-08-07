@@ -1,0 +1,11 @@
+;; String "hello world"
+slice __gen_slice_string_e3f85eb426d40008090255016d73ef2f09a300fbb999ca2472fdf0f0c1ec6566() asm "B{b5ee9c7241010101000d00001668656c6c6f20776f726c647c7b1c8f} B>boc <s PUSHSLICE";
+
+;; String "yes unicode 😀 😅 你好 no escaping"
+slice __gen_slice_string_32cf4caddee342cb5e768da705885c0593929d1050fb809384143a37452450d2() asm "B{b5ee9c7241010101002a00005079657320756e69636f646520f09f988020f09f988520e4bda0e5a5bd206e6f206573636170696e6791d8759e} B>boc <s PUSHSLICE";
+
+;; String ", your balance is: "
+slice __gen_slice_string_95de91cc456e2efe4166ea52a3475bf51c3ce39198449de8603e33e1271e5657() asm "B{b5ee9c724101010100150000262c20796f75722062616c616e63652069733a204ff4a6de} B>boc <s PUSHSLICE";
+
+;; String "how are you?"
+slice __gen_slice_string_c8d8a8c2e64db653ae28052eeca2271e51f0459913dfac21edc005b5ae4deaf6() asm "B{b5ee9c7241010101000e000018686f772061726520796f753fe5b3dd45} B>boc <s PUSHSLICE";

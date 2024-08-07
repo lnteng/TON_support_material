@@ -1,0 +1,415 @@
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body(int bounce, slice to, int value, int mode, cell body) inline {
+    return (bounce, to, value, mode, body, null(), null());
+}
+
+;;
+;; Type: Deploy
+;; Header: 0x946a98b6
+;; TLB: deploy#946a98b6 queryId:uint64 = Deploy
+;;
+
+(slice, ((int))) $Deploy$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2490013878);
+    var v'queryId = sc_0~load_uint(64);
+    return (sc_0, (v'queryId));
+}
+
+;;
+;; Type: DeployOk
+;; Header: 0xaff90f57
+;; TLB: deploy_ok#aff90f57 queryId:uint64 = DeployOk
+;;
+
+builder $DeployOk$_store(builder build_0, (int) v) inline {
+    var (v'queryId) = v;
+    build_0 = store_uint(build_0, 2952335191, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    return build_0;
+}
+
+cell $DeployOk$_store_cell((int) v) inline {
+    return $DeployOk$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $DeployOk$_constructor_queryId(int queryId) inline {
+    return (queryId);
+}
+
+;;
+;; Type: FactoryDeploy
+;; Header: 0x6d0ff13b
+;; TLB: factory_deploy#6d0ff13b queryId:uint64 cashback:address = FactoryDeploy
+;;
+
+(slice, ((int, slice))) $FactoryDeploy$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 1829761339);
+    var v'queryId = sc_0~load_uint(64);
+    var v'cashback = sc_0~__tact_load_address();
+    return (sc_0, (v'queryId, v'cashback));
+}
+
+;;
+;; Type: ChangeOwner
+;; Header: 0x819dbe99
+;; TLB: change_owner#819dbe99 queryId:uint64 newOwner:address = ChangeOwner
+;;
+
+(slice, ((int, slice))) $ChangeOwner$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2174598809);
+    var v'queryId = sc_0~load_uint(64);
+    var v'newOwner = sc_0~__tact_load_address();
+    return (sc_0, (v'queryId, v'newOwner));
+}
+
+;;
+;; Type: ChangeOwnerOk
+;; Header: 0x327b2b4a
+;; TLB: change_owner_ok#327b2b4a queryId:uint64 newOwner:address = ChangeOwnerOk
+;;
+
+builder $ChangeOwnerOk$_store(builder build_0, (int, slice) v) inline {
+    var (v'queryId, v'newOwner) = v;
+    build_0 = store_uint(build_0, 846932810, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    build_0 = __tact_store_address(build_0, v'newOwner);
+    return build_0;
+}
+
+cell $ChangeOwnerOk$_store_cell((int, slice) v) inline {
+    return $ChangeOwnerOk$_store(begin_cell(), v).end_cell();
+}
+
+((int, slice)) $ChangeOwnerOk$_constructor_queryId_newOwner(int queryId, slice newOwner) inline {
+    return (queryId, newOwner);
+}
+
+;;
+;; Type: DNSResolveResult
+;; TLB: _ prefix:int257 record:Maybe ^cell = DNSResolveResult
+;;
+
+(int, cell) $DNSResolveResult$_to_external(((int, cell)) v) inline {
+    var (v'prefix, v'record) = v; 
+    return (v'prefix, v'record);
+}
+
+((int, cell)) $DNSResolveResult$_constructor_prefix_record(int prefix, cell record) inline {
+    return (prefix, record);
+}
+
+;;
+;; Type: UpdateRecord
+;; Header: 0xd294b726
+;; TLB: update_record#d294b726 domain:^string category:int257 record:Maybe ^cell = UpdateRecord
+;;
+
+(slice, ((slice, int, cell))) $UpdateRecord$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 3532961574);
+    var v'domain = sc_0~load_ref().begin_parse();
+    var v'category = sc_0~load_int(257);
+    var v'record = sc_0~load_int(1) ? sc_0~load_ref() : null();
+    return (sc_0, (v'domain, v'category, v'record));
+}
+
+;;
+;; Type: UpdateSubdomain
+;; Header: 0x5c3678fd
+;; TLB: update_subdomain#5c3678fd domain:^string address:Maybe address = UpdateSubdomain
+;;
+
+(slice, ((slice, slice))) $UpdateSubdomain$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 1547073789);
+    var v'domain = sc_0~load_ref().begin_parse();
+    var v'address = sc_0~__tact_load_address_opt();
+    return (sc_0, (v'domain, v'address));
+}
+
+;;
+;; Type: Permissions
+;; TLB: _ canAdd:bool canRemove:bool canReplace:bool = Permissions
+;;
+
+builder $Permissions$_store(builder build_0, (int, int, int) v) inline {
+    var (v'canAdd, v'canRemove, v'canReplace) = v;
+    build_0 = build_0.store_int(v'canAdd, 1);
+    build_0 = build_0.store_int(v'canRemove, 1);
+    build_0 = build_0.store_int(v'canReplace, 1);
+    return build_0;
+}
+
+(slice, ((int, int, int))) $Permissions$_load(slice sc_0) inline {
+    var v'canAdd = sc_0~load_int(1);
+    var v'canRemove = sc_0~load_int(1);
+    var v'canReplace = sc_0~load_int(1);
+    return (sc_0, (v'canAdd, v'canRemove, v'canReplace));
+}
+
+(int, int, int) $Permissions$_to_external(((int, int, int)) v) inline {
+    var (v'canAdd, v'canRemove, v'canReplace) = v; 
+    return (v'canAdd, v'canRemove, v'canReplace);
+}
+
+((int, int, int)) $Permissions$_constructor_canAdd_canRemove_canReplace(int canAdd, int canRemove, int canReplace) inline {
+    return (canAdd, canRemove, canReplace);
+}
+
+;;
+;; Type: EventPermissionsUpdated
+;; Header: 0x6cd59be6
+;; TLB: event_permissions_updated#6cd59be6 permissions:Permissions{canAdd:bool,canRemove:bool,canReplace:bool} = EventPermissionsUpdated
+;;
+
+builder $EventPermissionsUpdated$_store(builder build_0, ((int, int, int)) v) inline {
+    var ((v'permissions'canAdd, v'permissions'canRemove, v'permissions'canReplace)) = v;
+    build_0 = store_uint(build_0, 1825938406, 32);
+    build_0 = $Permissions$_store(build_0, (v'permissions'canAdd, v'permissions'canRemove, v'permissions'canReplace));
+    return build_0;
+}
+
+cell $EventPermissionsUpdated$_store_cell(((int, int, int)) v) inline {
+    return $EventPermissionsUpdated$_store(begin_cell(), v).end_cell();
+}
+
+(((int, int, int))) $EventPermissionsUpdated$_constructor_permissions((int, int, int) permissions) inline {
+    return (permissions);
+}
+
+;;
+;; Type: EventRecordAdded
+;; Header: 0xa61ddcfd
+;; TLB: event_record_added#a61ddcfd domain:^string category:int257 record:^cell = EventRecordAdded
+;;
+
+builder $EventRecordAdded$_store(builder build_0, (slice, int, cell) v) inline {
+    var (v'domain, v'category, v'record) = v;
+    build_0 = store_uint(build_0, 2786974973, 32);
+    build_0 = build_0.store_ref(begin_cell().store_slice(v'domain).end_cell());
+    build_0 = build_0.store_int(v'category, 257);
+    build_0 = build_0.store_ref(v'record);
+    return build_0;
+}
+
+cell $EventRecordAdded$_store_cell((slice, int, cell) v) inline {
+    return $EventRecordAdded$_store(begin_cell(), v).end_cell();
+}
+
+((slice, int, cell)) $EventRecordAdded$_constructor_domain_category_record(slice domain, int category, cell record) inline {
+    return (domain, category, record);
+}
+
+;;
+;; Type: EventRecordUpdated
+;; Header: 0xef2db883
+;; TLB: event_record_updated#ef2db883 domain:^string category:int257 oldRecord:^cell newRecord:^cell = EventRecordUpdated
+;;
+
+builder $EventRecordUpdated$_store(builder build_0, (slice, int, cell, cell) v) inline {
+    var (v'domain, v'category, v'oldRecord, v'newRecord) = v;
+    build_0 = store_uint(build_0, 4012750979, 32);
+    build_0 = build_0.store_ref(begin_cell().store_slice(v'domain).end_cell());
+    build_0 = build_0.store_int(v'category, 257);
+    build_0 = build_0.store_ref(v'oldRecord);
+    build_0 = build_0.store_ref(v'newRecord);
+    return build_0;
+}
+
+cell $EventRecordUpdated$_store_cell((slice, int, cell, cell) v) inline {
+    return $EventRecordUpdated$_store(begin_cell(), v).end_cell();
+}
+
+((slice, int, cell, cell)) $EventRecordUpdated$_constructor_domain_category_oldRecord_newRecord(slice domain, int category, cell oldRecord, cell newRecord) inline {
+    return (domain, category, oldRecord, newRecord);
+}
+
+;;
+;; Type: EventRecordRemoved
+;; Header: 0xff9494f1
+;; TLB: event_record_removed#ff9494f1 domain:^string category:int257 = EventRecordRemoved
+;;
+
+builder $EventRecordRemoved$_store(builder build_0, (slice, int) v) inline {
+    var (v'domain, v'category) = v;
+    build_0 = store_uint(build_0, 4287927537, 32);
+    build_0 = build_0.store_ref(begin_cell().store_slice(v'domain).end_cell());
+    build_0 = build_0.store_int(v'category, 257);
+    return build_0;
+}
+
+cell $EventRecordRemoved$_store_cell((slice, int) v) inline {
+    return $EventRecordRemoved$_store(begin_cell(), v).end_cell();
+}
+
+((slice, int)) $EventRecordRemoved$_constructor_domain_category(slice domain, int category) inline {
+    return (domain, category);
+}
+
+;;
+;; Type: EventSubdomainAdded
+;; Header: 0xff1b3b14
+;; TLB: event_subdomain_added#ff1b3b14 domain:^string address:address = EventSubdomainAdded
+;;
+
+builder $EventSubdomainAdded$_store(builder build_0, (slice, slice) v) inline {
+    var (v'domain, v'address) = v;
+    build_0 = store_uint(build_0, 4279974676, 32);
+    build_0 = build_0.store_ref(begin_cell().store_slice(v'domain).end_cell());
+    build_0 = __tact_store_address(build_0, v'address);
+    return build_0;
+}
+
+cell $EventSubdomainAdded$_store_cell((slice, slice) v) inline {
+    return $EventSubdomainAdded$_store(begin_cell(), v).end_cell();
+}
+
+((slice, slice)) $EventSubdomainAdded$_constructor_domain_address(slice domain, slice address) inline {
+    return (domain, address);
+}
+
+;;
+;; Type: EventSubdomainRemoved
+;; Header: 0xb5f1b4b5
+;; TLB: event_subdomain_removed#b5f1b4b5 domain:^string = EventSubdomainRemoved
+;;
+
+builder $EventSubdomainRemoved$_store(builder build_0, (slice) v) inline {
+    var (v'domain) = v;
+    build_0 = store_uint(build_0, 3052516533, 32);
+    build_0 = build_0.store_ref(begin_cell().store_slice(v'domain).end_cell());
+    return build_0;
+}
+
+cell $EventSubdomainRemoved$_store_cell((slice) v) inline {
+    return $EventSubdomainRemoved$_store(begin_cell(), v).end_cell();
+}
+
+((slice)) $EventSubdomainRemoved$_constructor_domain(slice domain) inline {
+    return (domain);
+}
+
+;;
+;; Type: EventSubdomainUpdated
+;; Header: 0xab7c80bd
+;; TLB: event_subdomain_updated#ab7c80bd domain:^string oldAddress:address newAddress:address = EventSubdomainUpdated
+;;
+
+builder $EventSubdomainUpdated$_store(builder build_0, (slice, slice, slice) v) inline {
+    var (v'domain, v'oldAddress, v'newAddress) = v;
+    build_0 = store_uint(build_0, 2877063357, 32);
+    build_0 = build_0.store_ref(begin_cell().store_slice(v'domain).end_cell());
+    build_0 = __tact_store_address(build_0, v'oldAddress);
+    build_0 = __tact_store_address(build_0, v'newAddress);
+    return build_0;
+}
+
+cell $EventSubdomainUpdated$_store_cell((slice, slice, slice) v) inline {
+    return $EventSubdomainUpdated$_store(begin_cell(), v).end_cell();
+}
+
+((slice, slice, slice)) $EventSubdomainUpdated$_constructor_domain_oldAddress_newAddress(slice domain, slice oldAddress, slice newAddress) inline {
+    return (domain, oldAddress, newAddress);
+}
+
+;;
+;; Type: DNSRecord
+;; TLB: _ name:^string categories:dict<uint256, ^cell> = DNSRecord
+;;
+
+builder $DNSRecord$_store(builder build_0, (slice, cell) v) inline {
+    var (v'name, v'categories) = v;
+    build_0 = build_0.store_ref(begin_cell().store_slice(v'name).end_cell());
+    build_0 = build_0.store_dict(v'categories);
+    return build_0;
+}
+
+cell $DNSRecord$_store_cell((slice, cell) v) inline {
+    return $DNSRecord$_store(begin_cell(), v).end_cell();
+}
+
+(slice, ((slice, cell))) $DNSRecord$_load(slice sc_0) inline {
+    var v'name = sc_0~load_ref().begin_parse();
+    var v'categories = sc_0~load_dict();
+    return (sc_0, (v'name, v'categories));
+}
+
+tuple $DNSRecord$_as_optional((slice, cell) v) inline {
+    var (v'name, v'categories) = v;
+    return __tact_tuple_create_2(v'name, v'categories);
+}
+
+tuple $DNSRecord$_load_opt(cell cl) inline {
+    if (null?(cl)) {
+        return null();
+    }
+    var sc = cl.begin_parse();
+    return $DNSRecord$_as_optional(sc~$DNSRecord$_load());
+}
+
+_ $DNSRecord$_get_categories((slice, cell) v) inline {
+    var (v'name, v'categories) = v;
+    return v'categories;
+}
+
+((slice, cell)) $DNSRecord$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (slice vvv'name, cell vvv'categories) = __tact_tuple_destroy_2(v);
+    return (vvv'name, vvv'categories);
+}
+
+((slice, cell)) $DNSRecord$_constructor_name_categories(slice name, cell categories) inline {
+    return (name, categories);
+}
+
+;;
+;; Type: SimpleDNSContract
+;;
+
+builder $SimpleDNSContract$_store(builder build_0, (slice, (int, int, int), cell, cell) v) inline {
+    var (v'owner, (v'permissions'canAdd, v'permissions'canRemove, v'permissions'canReplace), v'records, v'subdomains) = v;
+    build_0 = __tact_store_address(build_0, v'owner);
+    build_0 = $Permissions$_store(build_0, (v'permissions'canAdd, v'permissions'canRemove, v'permissions'canReplace));
+    build_0 = build_0.store_dict(v'records);
+    build_0 = build_0.store_dict(v'subdomains);
+    return build_0;
+}
+
+(slice, ((slice, (int, int, int), cell, cell))) $SimpleDNSContract$_load(slice sc_0) inline {
+    var v'owner = sc_0~__tact_load_address();
+    var v'permissions = sc_0~$Permissions$_load();
+    var v'records = sc_0~load_dict();
+    var v'subdomains = sc_0~load_dict();
+    return (sc_0, (v'owner, v'permissions, v'records, v'subdomains));
+}
+
+(slice, ((slice, int))) $SimpleDNSContract$init$_load(slice sc_0) inline {
+    var v'owner = sc_0~__tact_load_address();
+    var v'seed = sc_0~load_int(257);
+    return (sc_0, (v'owner, v'seed));
+}
+
+(slice, (int, int, int), cell, cell) $SimpleDNSContract$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$SimpleDNSContract$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (slice owner, int seed) = $sc~$SimpleDNSContract$init$_load();
+        $sc.end_parse();
+        return $SimpleDNSContract$_contract_init(owner, seed);
+    }
+}
+
+() $SimpleDNSContract$_contract_store((slice, (int, int, int), cell, cell) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $SimpleDNSContract$_store(b, v);
+    set_data(b.end_cell());
+}

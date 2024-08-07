@@ -1,0 +1,36 @@
+restricted_cooldown: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/whitelisted-wallet.fc:105:20: warning: Local variable 'stored_seqno' is not used
+    var stored_seqno = dataSc~load_uint(32);
+                     ^
+restricted_cooldown: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/whitelisted-wallet.fc:106:29: warning: Local variable 'stored_restricted_key' is not used
+    var stored_restricted_key = dataSc~load_uint(256);
+                              ^
+restricted_cooldown: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/whitelisted-wallet.fc:107:25: warning: Local variable 'stored_master_key' is not used
+    var stored_master_key = dataSc~load_uint(256);
+                          ^
+restricted_cooldown: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/whitelisted-wallet.fc:109:56: warning: Local variable 'restricted_address_wc' is not used
+    var (restricted_address_wc, restricted_address_hash) = parse_std_addr(restricted_address);
+                                                         ^
+restricted_cooldown: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/whitelisted-wallet.fc:109:56: warning: Local variable 'restricted_address_hash' is not used
+    var (restricted_address_wc, restricted_address_hash) = parse_std_addr(restricted_address);
+                                                         ^
+get_public_key: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/whitelisted-wallet.fc:99:5: warning: Lack of end_parse.
+    cs~load_uint(32);
+      ^
+seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/whitelisted-wallet.fc:94:20: warning: Lack of end_parse.
+    return get_data().begin_parse().preload_uint(32);
+                     ^
+check_restricted_destination: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/whitelisted-wallet.fc:11:49: warning: Lack of end_parse.
+    var (s_addr, d_addr) = (cs~load_msg_addr(), cs~load_msg_addr());
+                                                  ^
+check_restricted_destination: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/whitelisted-wallet.fc:11:24: warning: Local variable 's_addr' is not used
+    var (s_addr, d_addr) = (cs~load_msg_addr(), cs~load_msg_addr());
+                         ^

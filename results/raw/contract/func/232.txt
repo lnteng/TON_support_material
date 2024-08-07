@@ -1,0 +1,105 @@
+get_plugin_list: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDerEPTIh0O8lBdjWc6aLaJs5HYqlfBN2Ruj1lJQH_6vcaZ/wallet-v4-code.fc:189:19: warning: Lack of end_parse.
+    var plugins = ds~load_dict();
+                    ^
+is_plugin_installed: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDerEPTIh0O8lBdjWc6aLaJs5HYqlfBN2Ruj1lJQH_6vcaZ/wallet-v4-code.fc:181:19: warning: Lack of end_parse.
+    var plugins = ds~load_dict();
+                    ^
+get_public_key: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDerEPTIh0O8lBdjWc6aLaJs5HYqlfBN2Ruj1lJQH_6vcaZ/wallet-v4-code.fc:175:36: warning: Lack of end_parse.
+    var cs = get_data().begin_parse().skip_bits(64);
+                                     ^
+get_subwallet_id: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDerEPTIh0O8lBdjWc6aLaJs5HYqlfBN2Ruj1lJQH_6vcaZ/wallet-v4-code.fc:171:34: warning: Lack of end_parse.
+    return get_data().begin_parse().skip_bits(32).preload_uint(32);
+                                   ^
+seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDerEPTIh0O8lBdjWc6aLaJs5HYqlfBN2Ruj1lJQH_6vcaZ/wallet-v4-code.fc:167:20: warning: Lack of end_parse.
+    return get_data().begin_parse().preload_uint(32);
+                     ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDerEPTIh0O8lBdjWc6aLaJs5HYqlfBN2Ruj1lJQH_6vcaZ/wallet-v4-code.fc:28:19: warning: Lack of end_parse.
+    var plugins = ds~load_dict();
+                    ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDerEPTIh0O8lBdjWc6aLaJs5HYqlfBN2Ruj1lJQH_6vcaZ/wallet-v4-code.fc:24:20: warning: Lack of end_parse.
+    slice s_addr = cs~load_msg_addr();
+                     ^
+recv_external & get_plugin_list: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDerEPTIh0O8lBdjWc6aLaJs5HYqlfBN2Ruj1lJQH_6vcaZ/wallet-v4-code.fc:188:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse().skip_bits(32 + 32 + 256);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDerEPTIh0O8lBdjWc6aLaJs5HYqlfBN2Ruj1lJQH_6vcaZ/wallet-v4-code.fc:85:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_uint(stored_seqno + 1, 32)
+      ^
+recv_external & get_plugin_list: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDerEPTIh0O8lBdjWc6aLaJs5HYqlfBN2Ruj1lJQH_6vcaZ/wallet-v4-code.fc:188:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse().skip_bits(32 + 32 + 256);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDerEPTIh0O8lBdjWc6aLaJs5HYqlfBN2Ruj1lJQH_6vcaZ/wallet-v4-code.fc:85:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_uint(stored_seqno + 1, 32)
+      ^
+recv_external & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDerEPTIh0O8lBdjWc6aLaJs5HYqlfBN2Ruj1lJQH_6vcaZ/wallet-v4-code.fc:175:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse().skip_bits(64);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDerEPTIh0O8lBdjWc6aLaJs5HYqlfBN2Ruj1lJQH_6vcaZ/wallet-v4-code.fc:85:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_uint(stored_seqno + 1, 32)
+      ^
+recv_external & get_plugin_list: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDerEPTIh0O8lBdjWc6aLaJs5HYqlfBN2Ruj1lJQH_6vcaZ/wallet-v4-code.fc:188:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse().skip_bits(32 + 32 + 256);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDerEPTIh0O8lBdjWc6aLaJs5HYqlfBN2Ruj1lJQH_6vcaZ/wallet-v4-code.fc:157:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_uint(stored_seqno + 1, 32)
+      ^
+recv_external & get_plugin_list: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDerEPTIh0O8lBdjWc6aLaJs5HYqlfBN2Ruj1lJQH_6vcaZ/wallet-v4-code.fc:188:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse().skip_bits(32 + 32 + 256);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDerEPTIh0O8lBdjWc6aLaJs5HYqlfBN2Ruj1lJQH_6vcaZ/wallet-v4-code.fc:157:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_uint(stored_seqno + 1, 32)
+      ^
+recv_external & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDerEPTIh0O8lBdjWc6aLaJs5HYqlfBN2Ruj1lJQH_6vcaZ/wallet-v4-code.fc:175:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse().skip_bits(64);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDerEPTIh0O8lBdjWc6aLaJs5HYqlfBN2Ruj1lJQH_6vcaZ/wallet-v4-code.fc:157:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_uint(stored_seqno + 1, 32)
+      ^
+recv_internal & get_plugin_list: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDerEPTIh0O8lBdjWc6aLaJs5HYqlfBN2Ruj1lJQH_6vcaZ/wallet-v4-code.fc:188:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse().skip_bits(32 + 32 + 256);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDerEPTIh0O8lBdjWc6aLaJs5HYqlfBN2Ruj1lJQH_6vcaZ/wallet-v4-code.fc:58:26: warning: Cell of get_data and set_data are inconsistent.
+      set_data(begin_cell().store_slice(ds).store_dict(plugins).end_cell());
+                           ^
+recv_internal & get_plugin_list: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDerEPTIh0O8lBdjWc6aLaJs5HYqlfBN2Ruj1lJQH_6vcaZ/wallet-v4-code.fc:188:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse().skip_bits(32 + 32 + 256);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDerEPTIh0O8lBdjWc6aLaJs5HYqlfBN2Ruj1lJQH_6vcaZ/wallet-v4-code.fc:58:26: warning: Cell of get_data and set_data are inconsistent.
+      set_data(begin_cell().store_slice(ds).store_dict(plugins).end_cell());
+                           ^
+recv_internal & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDerEPTIh0O8lBdjWc6aLaJs5HYqlfBN2Ruj1lJQH_6vcaZ/wallet-v4-code.fc:175:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse().skip_bits(64);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDerEPTIh0O8lBdjWc6aLaJs5HYqlfBN2Ruj1lJQH_6vcaZ/wallet-v4-code.fc:58:26: warning: Cell of get_data and set_data are inconsistent.
+      set_data(begin_cell().store_slice(ds).store_dict(plugins).end_cell());
+                           ^
+recv_internal & get_subwallet_id: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDerEPTIh0O8lBdjWc6aLaJs5HYqlfBN2Ruj1lJQH_6vcaZ/wallet-v4-code.fc:171:20: warning: Cell of get_data and set_data are inconsistent.
+    return get_data().begin_parse().skip_bits(32).preload_uint(32);
+                     ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDerEPTIh0O8lBdjWc6aLaJs5HYqlfBN2Ruj1lJQH_6vcaZ/wallet-v4-code.fc:58:26: warning: Cell of get_data and set_data are inconsistent.
+      set_data(begin_cell().store_slice(ds).store_dict(plugins).end_cell());
+                           ^
+recv_internal & recv_external: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDerEPTIh0O8lBdjWc6aLaJs5HYqlfBN2Ruj1lJQH_6vcaZ/wallet-v4-code.fc:77:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDerEPTIh0O8lBdjWc6aLaJs5HYqlfBN2Ruj1lJQH_6vcaZ/wallet-v4-code.fc:58:26: warning: Cell of get_data and set_data are inconsistent.
+      set_data(begin_cell().store_slice(ds).store_dict(plugins).end_cell());
+                           ^

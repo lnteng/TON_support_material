@@ -1,0 +1,31 @@
+$JettonWallet$_init_child: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson8/build/JettonWallet/tact_JettonWallet.storage.fc:157:22: warning: Lack of end_parse.
+      cell source = sc'~load_dict();
+                       ^
+$JettonWallet$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson8/build/JettonWallet/tact_JettonWallet.storage.fc:137:19: warning: Lack of end_parse.
+          return $sc~$JettonWallet$_load();
+                    ^
+$JettonWallet$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson8/build/JettonWallet/tact_JettonWallet.code.fc:15:54: warning: Local variable '$self'parent' is not used
+      var (($self'parent, $self'owner, $self'balance)) = (null(), null(), null());
+                                                       ^
+$JettonWallet$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson8/build/JettonWallet/tact_JettonWallet.code.fc:15:54: warning: Local variable '$self'owner' is not used
+      var (($self'parent, $self'owner, $self'balance)) = (null(), null(), null());
+                                                       ^
+$JettonWallet$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson8/build/JettonWallet/tact_JettonWallet.code.fc:15:54: warning: Local variable '$self'balance' is not used
+      var (($self'parent, $self'owner, $self'balance)) = (null(), null(), null());
+                                                       ^
+$JettonWallet$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson8/build/JettonWallet/tact_JettonWallet.code.fc:76:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson8/build/JettonWallet/tact_JettonWallet.storage.fc:148:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$JettonWallet$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/lesson8/build/JettonWallet/tact_JettonWallet.code.fc:46:257: warning: UnHandle bounced message with op: 0x12412733
+  ... rnalAdd$_constructor_amount_origin($msg'amount, $self'owner)), 30000000, 2, $init'code, $init'data));
+  ...                                                                                                     ^

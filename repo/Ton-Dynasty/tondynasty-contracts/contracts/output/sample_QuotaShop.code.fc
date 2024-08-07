@@ -1,0 +1,241 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "sample_QuotaShop.headers.fc";
+#include "sample_QuotaShop.stdlib.fc";
+#include "sample_QuotaShop.storage.fc";
+
+;;
+;; Contract QuotaShop functions
+;;
+
+(int, int, slice, int, slice) $QuotaShop$_contract_init(slice $author, slice $nft_item) impure inline_ref {
+    var (($self'quota_amount, $self'quota_price, $self'author, $self'balance, $self'nft_item)) = (0, 0, null(), 0, null());
+    $self'author = $author;
+    $self'nft_item = $nft_item;
+    return ($self'quota_amount, $self'quota_price, $self'author, $self'balance, $self'nft_item);
+}
+
+((int, int, slice, int, slice), int) $QuotaShop$_fun_debug_get_quota_price((int, int, slice, int, slice) $self) impure inline_ref {
+    var (($self'quota_amount, $self'quota_price, $self'author, $self'balance, $self'nft_item)) = $self;
+    return (($self'quota_amount, $self'quota_price, $self'author, $self'balance, $self'nft_item), $self'quota_price);
+}
+
+((int, int, slice, int, slice), int) $QuotaShop$_fun_debug_get_quota_amount((int, int, slice, int, slice) $self) impure inline_ref {
+    var (($self'quota_amount, $self'quota_price, $self'author, $self'balance, $self'nft_item)) = $self;
+    return (($self'quota_amount, $self'quota_price, $self'author, $self'balance, $self'nft_item), $self'quota_amount);
+}
+
+((int, int, slice, int, slice), int) $QuotaShop$_fun_debug_get_balance((int, int, slice, int, slice) $self) impure inline_ref {
+    var (($self'quota_amount, $self'quota_price, $self'author, $self'balance, $self'nft_item)) = $self;
+    return (($self'quota_amount, $self'quota_price, $self'author, $self'balance, $self'nft_item), $self'balance);
+}
+
+((int, int, slice, int, slice), int) $QuotaShop$_fun_estimate_rest_value((int, int, slice, int, slice) $self, (int, slice, int, slice) $ctx) impure inline_ref {
+    var (($self'quota_amount, $self'quota_price, $self'author, $self'balance, $self'nft_item)) = $self;
+    var (($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw)) = $ctx;
+    int $restValue = $ctx'value;
+    int $tonBalanceBeforeMsg = (__tact_my_balance() - $restValue);
+    int $storageFee = (40000000 - min($tonBalanceBeforeMsg, 40000000));
+    return (($self'quota_amount, $self'quota_price, $self'author, $self'balance, $self'nft_item), ($restValue - ($storageFee + 50000000)));
+}
+
+;;
+;; Receivers of a Contract QuotaShop
+;;
+
+(((int, int, slice, int, slice)), ()) $QuotaShop$_internal_binary_IssueQuota((int, int, slice, int, slice) $self, (int, int) $msg) impure inline {
+    var ($self'quota_amount, $self'quota_price, $self'author, $self'balance, $self'nft_item) = $self;
+    var ($msg'amount, $msg'price) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    throw_unless(19932, ( __tact_slice_eq_bits($self'author, $ctx'sender) ));
+    throw_unless(41925, ($self'quota_amount == 0));
+    $self'quota_amount = $msg'amount;
+    $self'quota_price = $msg'price;
+    return (($self'quota_amount, $self'quota_price, $self'author, $self'balance, $self'nft_item), ());
+}
+
+(((int, int, slice, int, slice)), ()) $QuotaShop$_internal_binary_BuyQuota((int, int, slice, int, slice) $self, (int) $msg) impure inline {
+    var ($self'quota_amount, $self'quota_price, $self'author, $self'balance, $self'nft_item) = $self;
+    var ($msg'amount) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    throw_unless(30583, ($self'quota_amount > 0));
+    throw_unless(34380, ($self'quota_amount >= $msg'amount));
+    $self'quota_amount = ($self'quota_amount - $msg'amount);
+    $self'balance = ($self'balance + ($self'quota_price * $msg'amount));
+    int $remain = (($self'quota_amount, $self'quota_price, $self'author, $self'balance, $self'nft_item)~$QuotaShop$_fun_estimate_rest_value($Context$_tensor_cast(($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw))) - ($self'quota_price * $msg'amount));
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body($self'nft_item, $remain, false, (1 + 2), $IncreaseQuota$_store_cell($IncreaseQuota$_constructor_amount_sender($msg'amount, $ctx'sender))));
+    return (($self'quota_amount, $self'quota_price, $self'author, $self'balance, $self'nft_item), ());
+}
+
+((int, int, slice, int, slice), ()) $QuotaShop$_internal_text_250b76e2b9576fc6b4c45129483006b0003a0c39b6f7ae413d177f4e3479dbca((int, int, slice, int, slice) $self) impure inline {
+    var ($self'quota_amount, $self'quota_price, $self'author, $self'balance, $self'nft_item) = $self;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    throw_unless(6078, ( __tact_slice_eq_bits($self'author, $ctx'sender) ));
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body($self'author, $self'balance, true, 64, $WithdrawQuotaShop$_store_cell($WithdrawQuotaShop$_constructor_amount_custom_payload($self'balance, $global_emptyCell()))));
+    $self'balance = 0;
+    return (($self'quota_amount, $self'quota_price, $self'author, $self'balance, $self'nft_item), ());
+}
+
+(((int, int, slice, int, slice)), ()) $QuotaShop$_internal_binary_BuildQuotaShop((int, int, slice, int, slice) $self, (slice) $msg) impure inline {
+    var ($self'quota_amount, $self'quota_price, $self'author, $self'balance, $self'nft_item) = $self;
+    var ($msg'sender) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    if (($ctx'value > 0)) {
+        $global_send($SendParameters$_constructor_to_value_bounce_mode($msg'sender, 0, false, (64 + 2)));
+    }
+    return (($self'quota_amount, $self'quota_price, $self'author, $self'balance, $self'nft_item), ());
+}
+
+(((int, int, slice, int, slice)), ()) $QuotaShop$_receive_binary_bounce_WithdrawQuotaShop((int, int, slice, int, slice) $self, (int) $src) impure inline {
+    var ($self'quota_amount, $self'quota_price, $self'author, $self'balance, $self'nft_item) = $self;
+    var ($src'amount) = $src;
+    $self'balance = ($self'balance + $src'amount);
+    return (($self'quota_amount, $self'quota_price, $self'author, $self'balance, $self'nft_item), ());
+}
+
+(((int, int, slice, int, slice)), ()) $QuotaShop$_internal_binary_Deploy((int, int, slice, int, slice) $self, (int) $deploy) impure inline {
+    var ($self'quota_amount, $self'quota_price, $self'author, $self'balance, $self'nft_item) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'quota_amount, $self'quota_price, $self'author, $self'balance, $self'nft_item)~$QuotaShop$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'quota_amount, $self'quota_price, $self'author, $self'balance, $self'nft_item), ());
+}
+
+;;
+;; Get methods of a Contract QuotaShop
+;;
+
+_ %debug_get_quota_price() method_id(81931) {
+    var self = $QuotaShop$_contract_load();
+    var res = self~$QuotaShop$_fun_debug_get_quota_price();
+    return res;
+}
+
+_ %debug_get_quota_amount() method_id(84464) {
+    var self = $QuotaShop$_contract_load();
+    var res = self~$QuotaShop$_fun_debug_get_quota_amount();
+    return res;
+}
+
+_ %debug_get_balance() method_id(86183) {
+    var self = $QuotaShop$_contract_load();
+    var res = self~$QuotaShop$_fun_debug_get_balance();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmcKL4WumXpuTarfAtzQR3uocyjcrm1bAEriNUFsWVj5FB";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract QuotaShop
+;;
+
+((int, int, slice, int, slice), int) $QuotaShop$_contract_router_internal((int, int, slice, int, slice) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        
+        ;; Skip 0xFFFFFFFF
+        in_msg~skip_bits(32);
+        
+        ;; Parse op
+        int op = 0;
+        if (slice_bits(in_msg) >= 32) {
+            op = in_msg.preload_uint(32);
+        }
+        
+        ;; Bounced handler for WithdrawQuotaShop message
+        if (op == 678215722) {
+            var msg = in_msg~$WithdrawQuotaShop$_load_bounced();
+            self~$QuotaShop$_receive_binary_bounce_WithdrawQuotaShop(msg);
+            return (self, true);
+        }
+        
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive IssueQuota message
+    if (op == 777836759) {
+        var msg = in_msg~$IssueQuota$_load();
+        self~$QuotaShop$_internal_binary_IssueQuota(msg);
+        return (self, true);
+    }
+    
+    ;; Receive BuyQuota message
+    if (op == 1459055192) {
+        var msg = in_msg~$BuyQuota$_load();
+        self~$QuotaShop$_internal_binary_BuyQuota(msg);
+        return (self, true);
+    }
+    
+    ;; Receive BuildQuotaShop message
+    if (op == 277390441) {
+        var msg = in_msg~$BuildQuotaShop$_load();
+        self~$QuotaShop$_internal_binary_BuildQuotaShop(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$QuotaShop$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "Withdraw" message
+        if (text_op == 0x250b76e2b9576fc6b4c45129483006b0003a0c39b6f7ae413d177f4e3479dbca) {
+            self~$QuotaShop$_internal_text_250b76e2b9576fc6b4c45129483006b0003a0c39b6f7ae413d177f4e3479dbca();
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $QuotaShop$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$QuotaShop$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $QuotaShop$_contract_store(self);
+}

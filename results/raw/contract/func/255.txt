@@ -1,0 +1,24 @@
+recv_internal: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCDkrpCu-FFVPQJnManjlf8XCN75wjX_AKrrEFFQ1mfJqZo/issuer.fc:184:62: warning: PressionLoss
+        int in_msg_lt_index = in_msg_lt - ((in_msg_lt / 10000) * 10000);
+                                                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCDkrpCu-FFVPQJnManjlf8XCN75wjX_AKrrEFFQ1mfJqZo/issuer.fc:170:21: warning: Lack of end_parse.
+    int in_msg_lt = cs~load_uint(64); ;; lt of incoming message for abuse protection
+                      ^
+storage::load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCDkrpCu-FFVPQJnManjlf8XCN75wjX_AKrrEFFQ1mfJqZo/issuer.fc:48:30: warning: Lack of end_parse.
+    storage::mine::nstep = mine~load_uint(32);
+                               ^
+random::seed: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCDkrpCu-FFVPQJnManjlf8XCN75wjX_AKrrEFFQ1mfJqZo/imports/intlib.fc:103:7: warning: Lack of end_parse.
+        .begin_parse()
+        ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCDkrpCu-FFVPQJnManjlf8XCN75wjX_AKrrEFFQ1mfJqZo/issuer.fc:327:79: warning: UnHandle bounced message with op: 0xd1735400
+      send_raw_message(message.store_maybe_ref(included_address).end_cell(), 64);
+                                                                                ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCDkrpCu-FFVPQJnManjlf8XCN75wjX_AKrrEFFQ1mfJqZo/issuer.fc:143:42: warning: UnHandle bounced message with op: 0x178d4519
+    send_raw_message(message.end_cell(), 1); ;; pay transfer fees separately, revert on errors
+                                           ^

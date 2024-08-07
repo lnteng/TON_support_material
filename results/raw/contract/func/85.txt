@@ -1,0 +1,28 @@
+get_external_voting_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDF6fj6ydJJX_ArwxINjP-0H8zx982W4XgbkKzGvceUWvXl/votes-collector.fc:113:58: warning: Local variable 'time' is not used
+      (int time, int old_oracles_address, cell signatures) = (voting_data~load_uint(32),
+                                                           ^
+get_external_voting_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDF6fj6ydJJX_ArwxINjP-0H8zx982W4XgbkKzGvceUWvXl/votes-collector.fc:113:58: warning: Local variable 'old_oracles_address' is not used
+      (int time, int old_oracles_address, cell signatures) = (voting_data~load_uint(32),
+                                                           ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDF6fj6ydJJX_ArwxINjP-0H8zx982W4XgbkKzGvceUWvXl/votes-collector.fc:85:22: warning: Lack of end_parse.
+      slice s_addr = cs~load_msg_addr();
+                       ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDF6fj6ydJJX_ArwxINjP-0H8zx982W4XgbkKzGvceUWvXl/votes-collector.fc:10:14: warning: Lack of end_parse.
+      return ds~load_dict();
+               ^
+get_jetton_bridge_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDF6fj6ydJJX_ArwxINjP-0H8zx982W4XgbkKzGvceUWvXl/config.fc:38:42: warning: Lack of end_parse.
+      int discover_gas_consumption = prices~load_coins();
+                                           ^
+get_jetton_bridge_config: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDF6fj6ydJJX_ArwxINjP-0H8zx982W4XgbkKzGvceUWvXl/config.fc:26:32: warning: Lack of end_parse.
+      slice prices = slice_config~load_ref().begin_parse();
+                                 ^
+get_jetton_bridge_config: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDF6fj6ydJJX_ArwxINjP-0H8zx982W4XgbkKzGvceUWvXl/config.fc:15:16: warning: Local variable 'prefix' is not used
+      int prefix = slice_config~load_uint(8);
+                 ^

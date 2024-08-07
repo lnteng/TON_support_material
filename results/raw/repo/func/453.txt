@@ -1,0 +1,104 @@
+get_oracle: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/OracleHub/oracle_hub.fc:345:77: warning: Local variable 'owner_pubkey' is not used
+    (int owner_pubkey, int owner_seqno, cell oracle_dict, cell requests_dict) = load_data();
+                                                                              ^
+get_oracle: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/OracleHub/oracle_hub.fc:345:77: warning: Local variable 'owner_seqno' is not used
+    (int owner_pubkey, int owner_seqno, cell oracle_dict, cell requests_dict) = load_data();
+                                                                              ^
+get_oracle: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/OracleHub/oracle_hub.fc:345:77: warning: Local variable 'requests_dict' is not used
+    (int owner_pubkey, int owner_seqno, cell oracle_dict, cell requests_dict) = load_data();
+                                                                              ^
+get_request: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/OracleHub/oracle_hub.fc:336:77: warning: Local variable 'owner_pubkey' is not used
+    (int owner_pubkey, int owner_seqno, cell oracle_dict, cell requests_dict) = load_data();
+                                                                              ^
+get_request: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/OracleHub/oracle_hub.fc:336:77: warning: Local variable 'owner_seqno' is not used
+    (int owner_pubkey, int owner_seqno, cell oracle_dict, cell requests_dict) = load_data();
+                                                                              ^
+get_request: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/OracleHub/oracle_hub.fc:336:77: warning: Local variable 'oracle_dict' is not used
+    (int owner_pubkey, int owner_seqno, cell oracle_dict, cell requests_dict) = load_data();
+                                                                              ^
+recv_external: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/OracleHub/oracle_hub.fc:269:31: warning: Lack of end_parse.
+              cs = cs~load_ref().begin_parse();
+                                ^
+recv_external: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/OracleHub/oracle_hub.fc:299:99: warning: Local variable 'expiration_time' is not used
+          (int oracle_id, int return_amount, int fee, int expiration_time, slice requester_address) = unpack_request_data(request_data);
+                                                                                                    ^
+~remove_expired: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/OracleHub/oracle_hub.fc:174:92: warning: Local variable 'oracle_id' is not used
+    (int oracle_id, int return_grams, int fee, int expiration_time, slice requester_address) = unpack_request_data(request_data);
+                                                                                             ^
+~remove_expired: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/OracleHub/oracle_hub.fc:174:92: warning: Local variable 'return_grams' is not used
+    (int oracle_id, int return_grams, int fee, int expiration_time, slice requester_address) = unpack_request_data(request_data);
+                                                                                             ^
+~remove_expired: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/OracleHub/oracle_hub.fc:174:92: warning: Local variable 'fee' is not used
+    (int oracle_id, int return_grams, int fee, int expiration_time, slice requester_address) = unpack_request_data(request_data);
+                                                                                             ^
+~remove_expired: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/OracleHub/oracle_hub.fc:174:92: warning: Local variable 'requester_address' is not used
+    (int oracle_id, int return_grams, int fee, int expiration_time, slice requester_address) = unpack_request_data(request_data);
+                                                                                             ^
+consider_request: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/OracleHub/oracle_hub.fc:132:135: warning: Local variable 'public_key' is not used
+    (int public_key, int balance, int price_per_request, int timeout, int oracle_seqno, int total_request_num, int success_request_num) =
+                                                                                                                                        ^
+consider_request: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/OracleHub/oracle_hub.fc:132:135: warning: Local variable 'balance' is not used
+    (int public_key, int balance, int price_per_request, int timeout, int oracle_seqno, int total_request_num, int success_request_num) =
+                                                                                                                                        ^
+consider_request: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/OracleHub/oracle_hub.fc:132:135: warning: Local variable 'oracle_seqno' is not used
+    (int public_key, int balance, int price_per_request, int timeout, int oracle_seqno, int total_request_num, int success_request_num) =
+                                                                                                                                        ^
+consider_request: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/OracleHub/oracle_hub.fc:132:135: warning: Local variable 'total_request_num' is not used
+    (int public_key, int balance, int price_per_request, int timeout, int oracle_seqno, int total_request_num, int success_request_num) =
+                                                                                                                                        ^
+consider_request: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/OracleHub/oracle_hub.fc:132:135: warning: Local variable 'success_request_num' is not used
+    (int public_key, int balance, int price_per_request, int timeout, int oracle_seqno, int total_request_num, int success_request_num) =
+                                                                                                                                        ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/OracleHub/oracle_hub.fc:12:59: warning: Lack of end_parse.
+    (cs~load_uint(256), cs~load_uint(32), cs~load_dict(), cs~load_dict());
+                                                            ^
+get_owner_seqno: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/OracleHub/oracle_hub.fc:354:77: warning: Local variable 'owner_pubkey' is not used
+    (int owner_pubkey, int owner_seqno, cell oracle_dict, cell requests_dict) = load_data();
+                                                                              ^
+get_owner_seqno: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/OracleHub/oracle_hub.fc:354:77: warning: Local variable 'oracle_dict' is not used
+    (int owner_pubkey, int owner_seqno, cell oracle_dict, cell requests_dict) = load_data();
+                                                                              ^
+get_owner_seqno: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/OracleHub/oracle_hub.fc:354:77: warning: Local variable 'requests_dict' is not used
+    (int owner_pubkey, int owner_seqno, cell oracle_dict, cell requests_dict) = load_data();
+                                                                              ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/OracleHub/oracle_hub.fc:210:22: warning: Lack of end_parse.
+      slice s_addr = cs~load_msg_addr();
+                       ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/OracleHub/oracle_hub.fc:223:22: warning: Lack of end_parse.
+      slice s_addr = cs~load_msg_addr();
+                       ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/OracleHub/oracle_hub.fc:222:48: warning: Local variable 'oracle_id' is not used
+      (int handler, int query_id, int oracle_id) = (in_msg~load_uint(32), in_msg~load_uint(64), in_msg~load_uint(32));  
+                                                 ^
+withdraw_request: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/OracleHub/oracle_hub.fc:147:92: warning: Local variable 'requester_address' is not used
+    (int oracle_id, int return_grams, int fee, int expiration_time, slice requester_address) = unpack_request_data(request_data);
+                                                                                             ^
+withdraw_request: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/OracleHub/oracle_hub.fc:150:42: warning: Local variable 'oracle_found?' is not used
+    (slice oracle_data, int oracle_found?) = oracle_dict.udict::get?(32, oracle_id);  
+                                           ^

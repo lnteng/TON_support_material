@@ -1,0 +1,32 @@
+get_offer_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA6rqhL9hxd8c3c1JVYQPohQVicy8PEZibTgF60iQCSEk1c/nft-offer.fc:371:7: warning: Local variable 'can_deploy' is not used
+      ) = load_data();
+        ^
+recv_external: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA6rqhL9hxd8c3c1JVYQPohQVicy8PEZibTgF60iQCSEk1c/nft-offer.fc:322:7: warning: Local variable 'can_deploy' is not used
+      ) = load_data();
+        ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA6rqhL9hxd8c3c1JVYQPohQVicy8PEZibTgF60iQCSEk1c/nft-offer.fc:159:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA6rqhL9hxd8c3c1JVYQPohQVicy8PEZibTgF60iQCSEk1c/nft-offer.fc:199:29: warning: Lack of end_parse.
+          send_raw_message(msg~load_ref(), mode);
+                              ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA6rqhL9hxd8c3c1JVYQPohQVicy8PEZibTgF60iQCSEk1c/nft-offer.fc:36:15: warning: Lack of end_parse.
+              ds~load_uint(1)     ;; can_deploy
+                ^
+load_fees: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA6rqhL9hxd8c3c1JVYQPohQVicy8PEZibTgF60iQCSEk1c/nft-offer.fc:48:15: warning: Lack of end_parse.
+              ds~load_uint(32)    ;; royalty_base,
+                ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA6rqhL9hxd8c3c1JVYQPohQVicy8PEZibTgF60iQCSEk1c/nft-offer.fc:239:53: warning: UnHandle bounced message with op: 0x5fcc3d14
+              send_raw_message(nft_msg.end_cell(), 64);
+                                                      ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA6rqhL9hxd8c3c1JVYQPohQVicy8PEZibTgF60iQCSEk1c/nft-offer.fc:137:46: warning: UnHandle bounced message with op: 0x5fcc3d14
+      send_raw_message(nft_msg.end_cell(), 128);
+                                               ^

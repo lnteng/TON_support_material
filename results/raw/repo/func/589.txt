@@ -1,0 +1,32 @@
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/TON-Marketplace-NFT-All/smartcont/func/sidorovich.fc:13:23: warning: Lack of end_parse.
+                      ds~load_ref() ;; fees_cell
+                        ^
+parse_int_message: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/TON-Marketplace-NFT-All/smartcont/func/utility.fc:82:15: warning: Local variable 'src' is not used
+      slice src = cs~load_msg_addr();
+                ^
+parse_int_message: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/TON-Marketplace-NFT-All/smartcont/func/utility.fc:86:17: warning: Local variable 'ihr_fee' is not used
+      int ihr_fee = cs~load_grams();
+                  ^
+parse_int_message: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/TON-Marketplace-NFT-All/smartcont/func/utility.fc:87:17: warning: Local variable 'fwd_fee' is not used
+      int fwd_fee = cs~load_grams();
+                  ^
+parse_int_message: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/TON-Marketplace-NFT-All/smartcont/func/utility.fc:94:14: warning: Local variable 'body' is not used
+      var body = null();
+               ^
+load_fees: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/TON-Marketplace-NFT-All/smartcont/func/sidorovich.fc:22:23: warning: Lack of end_parse.
+                      ds~load_coins() ;; royalty_amount
+                        ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/TON-Marketplace-NFT-All/smartcont/func/sidorovich.fc:81:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./TegroTON/TON-Marketplace-NFT-All/smartcont/func/sidorovich.fc:70:51: warning: UnHandle bounced message with op: 0x5fcc3d14
+      send_raw_message(nft_msg.end_cell(), 128 + 32);
+                                                    ^

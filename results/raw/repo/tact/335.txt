@@ -1,0 +1,31 @@
+$Reserve$_internal_text_a9bfb502b41128f643c6d18730d2b67127072fc6dd52f8166959d5799dcc0886: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/tact-nativereserve-gas/contracts/output/sample_Reserve.code.fc:29:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Reserve$_internal_text_a9bfb502b41128f643c6d18730d2b67127072fc6dd52f8166959d5799dcc0886: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/tact-nativereserve-gas/contracts/output/sample_Reserve.code.fc:29:59: warning: Local variable '$ctx'sender' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Reserve$_internal_text_a9bfb502b41128f643c6d18730d2b67127072fc6dd52f8166959d5799dcc0886: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/tact-nativereserve-gas/contracts/output/sample_Reserve.code.fc:29:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Reserve$_internal_text_528e4479d86599a34be4296efa97417beb89fc62e3804d30c308e56cdcea8826: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/tact-nativereserve-gas/contracts/output/sample_Reserve.code.fc:38:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Reserve$_internal_text_528e4479d86599a34be4296efa97417beb89fc62e3804d30c308e56cdcea8826: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/tact-nativereserve-gas/contracts/output/sample_Reserve.code.fc:38:59: warning: Local variable '$ctx'sender' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Reserve$_internal_text_528e4479d86599a34be4296efa97417beb89fc62e3804d30c308e56cdcea8826: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/tact-nativereserve-gas/contracts/output/sample_Reserve.code.fc:38:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Reserve$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/tact-nativereserve-gas/contracts/output/sample_Reserve.code.fc:75:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./alan890104/tact-nativereserve-gas/contracts/output/sample_Reserve.storage.fc:83:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

@@ -1,0 +1,329 @@
+#include "imports/stdlib.fc";
+
+forall X -> tuple t:+(tuple t, X value) asm "TPUSH";
+forall X -> (tuple, ()) ~t:+(tuple t, X value) asm "TPUSH";
+forall X -> (tuple, X) t:-(tuple t) asm "TPOP";
+
+forall X -> X t:(tuple t, int index) asm "INDEXVAR";
+forall X -> X t::(tuple t, int index1, int index2) asm(index2 t index1) "INDEXVAR SWAP INDEXVAR";
+
+forall X -> tuple t:=(tuple t, X value, int index) asm "SETINDEXVAR";
+forall X -> (tuple, ()) ~t:=(tuple t, X value, int index) asm "SETINDEXVAR";
+
+;; DICTUGET	i D n - x -1 or 0
+;; DICTUSET	x i D n - D'
+;; DICTUSETGET	x i D n - D' y -1 or D' 0
+;; (cell, slice, int) udict_set_get?(cell dict, int key_len, int index, slice value) asm(value index dict key_len) "DICTUSETGET" "NULLSWAPIFNOT";
+;; (cell, (slice, int)) ~udict_set_get?(cell dict, int key_len, int index, slice value) asm(value index dict key_len) "DICTUSETGET" "NULLSWAPIFNOT";
+
+{-
+    C dc hx   X   ?   .
+    . 46 2E | 0...0...1...0
+    ? 63 3F | 0...1...1...0
+    E 69 45 | 0...0...1...0
+    S 83 53 | 0...0...0...0
+    X 88 58 | 1...0...1...0
+-}
+
+const int  astar_dist_shift = 11;
+const int  empty_tile_shift = 21;
+const int   weak_tile_shift = 10 + empty_tile_shift;  ;; 32
+const int strong_tile_shift = 10 + weak_tile_shift;   ;; 48
+const int    infinity_shift = 10 + strong_tile_shift; ;; 64
+
+const int coord_shift = 6;
+const int coord_mask_upper = (1 << astar_dist_shift) - 1;
+const int coord_mask_lower = (1 << coord_shift) - 1;
+
+const int empty_tile_mask = (1 << (weak_tile_shift - empty_tile_shift)) - 1;
+const int weak_tile_mask = (1 << (strong_tile_shift - weak_tile_shift)) - 1;
+const int strong_tile_mask = (1 << (infinity_shift - strong_tile_shift)) - 1;
+
+const int fin_shift = coord_shift - 1;
+const int fin_bit = 1 << fin_shift;
+
+const int key_len = infinity_shift;
+const int vkeylen = empty_tile_shift;
+
+const int  empty_tile_price =  1 << empty_tile_shift;
+const int   weak_tile_price = (1 <<   weak_tile_shift) | empty_tile_price;
+const int strong_tile_price = (1 << strong_tile_shift) | empty_tile_price;
+const int  final_tile_price = empty_tile_price;
+const int    infinity_price = (1 << infinity_shift) - 1;
+
+(cell, {-cell,-} int, tuple) update(slice empty, cell to_visit, {-cell visited,-} int ch, int cp, tuple tp'y, tuple atp'y, int x', int y') inline {
+    int xy' = y' + (x' << coord_shift);
+    int pr = atp'y.t:(x');
+    int pr' = cp + tp'y.t:(x');
+    if (pr' < pr) {
+        pr' += xy';
+        int fin = pr' & fin_bit;
+        ch |= 1 | fin;
+        ;; pr' -= fin;
+        atp'y~t:=(pr', x');
+        to_visit~udict_set(key_len, pr', empty); ;; fragile existence
+        {-
+        (_, int is_visited) = visited.udict_get?(vkeylen, xy');
+        ifnot (is_visited) {
+            ;; pr += xy';
+            ;; if (pr < infinity_price) {
+            ;;    to_visit~udict_delete?(key_len, pr);
+            ;; }
+            to_visit~udict_set(key_len, pr', empty);
+        }
+        -}
+    }
+    return (to_visit, {-visited,-} ch, atp'y);
+}
+
+(int, int, int) walker(int nx, int ny, int cp, tuple atp'y, int x, int y) inline {
+    int cp' = atp'y.t:(x);
+    if (cp' < cp) {
+        cp = cp';
+        nx = x;
+        ny = y;
+    }
+    return (nx, ny, cp);
+}
+
+(int, int) find_end(int ly, int lx, tuple maze) inline {
+    int y = 0;
+    repeat (ly) {
+        tuple t = maze.t:(y);
+        int x = 0;
+        repeat (lx) {
+            int c = t.t:(x);
+            if (c == "E"u) {
+                return (x, y);
+            }
+            x += 1;
+        }
+        y += 1;
+    }
+    return (-1, -1);
+}
+
+;; (int, int, int, tuple, tuple) solve(int n, int m, tuple maze) method_id {
+(int, int, int, tuple) main(int n, int m, tuple maze) {
+    int ly = n; int lx = m;
+    ;; ###########################################################
+    tuple tile_prices = empty_tuple();
+    int z = 0;
+    repeat(46) { tile_prices~t:+(z); }  ;; 0...45
+    tile_prices~t:+(empty_tile_price);  ;; 46
+    repeat(16) { tile_prices~t:+(z); }  ;; 47..62
+    tile_prices~t:+(weak_tile_price);   ;; 63
+    repeat(5) { tile_prices~t:+(z); }   ;; 64..68
+    tile_prices~t:+(final_tile_price);  ;; 69
+    repeat(18) { tile_prices~t:+(z); }  ;; 70..87
+    tile_prices~t:+(strong_tile_price); ;; 88
+    ;; ###########################################################
+
+    int Sx = 0; int Sy = 0;
+    (int Ex, int Ey) = find_end(ly, lx, maze);
+
+    tuple tp = empty_tuple();
+    int y = 0;
+    repeat(ly) {
+        tuple t = maze.t:(y);
+        tuple r = empty_tuple();
+        int x = 0;
+        repeat(lx) {
+            int c = t.t:(x);
+            int ctp = tile_prices.t:(c) + ((abs(Ex - x) + abs(Ey - y)) << astar_dist_shift);
+            ;; if (c == "E"u) { ctp = ctp | fin_bit;}
+            r~t:+( ctp );
+            if (c == "S"u) { Sx = x; Sy = y; }
+            x += 1;
+        }
+        tp~t:+(r);
+        y += 1;
+    }
+
+    tp~t:=(tp.t:(Ey).t:=(final_tile_price | fin_bit, Ex), Ey);
+
+    tuple atp = empty_tuple();
+    tuple row = atp; ;; empty_tuple();
+    repeat(lx) { row~t:+(infinity_price); }
+    repeat(ly) { atp~t:+(row); }
+    atp~t:=(atp.t:(Sy).t:=(0, Sx), Sy);
+
+    slice empty = get_data().begin_parse();
+
+    cell to_visit = new_dict();
+    ;; cell visited = new_dict();
+
+    ;; to_visit~udict_set(key_len, Sy | (Sx << 8), empty);
+    ;; (int key, _, int ok) = to_visit~udict_delete_get_min(key_len);
+    int key = Sy + (Sx << coord_shift);
+    int ok = true;
+
+    int ly' = ly - 1; int lx' = lx - 1;
+
+    while (ok) {
+
+        int xy = key & coord_mask_upper;
+        int cp = key - xy;
+        int x = xy >> coord_shift;
+        int y = xy & coord_mask_lower;
+
+        ;; visited~udict_set(vkeylen, xy, empty);
+        ;; (_, int already) = visited~udict_set_get?(vkeylen, xy, empty);
+
+        tuple tp'y = tp.t:(y);
+        tuple atp'y = atp.t:(y);
+        int ch = 0;
+
+        if (x) {
+            (to_visit, {-visited,-} ch, atp'y) = update(empty, to_visit, {-visited,-} ch, cp, tp'y, atp'y, x - 1, y);
+        }
+
+        if (x != lx') {
+            (to_visit, {-visited,-} ch, atp'y) = update(empty, to_visit, {-visited,-} ch, cp, tp'y, atp'y, x + 1, y);
+        }
+
+        if (ch) {
+            atp~t:=(atp'y, y);
+            ok &= 1 - (ch >> fin_shift);
+            ch = 0;
+        }
+
+        if (y) {
+            int y' = y - 1;
+            tuple tp'y' = tp.t:(y');
+            tuple atp'y' = atp.t:(y');
+
+            (to_visit, {-visited,-} ch, atp'y') = update(empty, to_visit, {-visited,-} ch, cp, tp'y', atp'y', x, y');
+
+            if (x) {
+                (to_visit, {-visited,-} ch, atp'y') = update(empty, to_visit, {-visited,-} ch, cp, tp'y', atp'y', x - 1, y');
+            }
+
+            if (x != lx') {
+                (to_visit, {-visited,-} ch, atp'y') = update(empty, to_visit, {-visited,-} ch, cp, tp'y', atp'y', x + 1, y');
+            }
+
+            if (ch) {
+                atp~t:=(atp'y', y');
+                ok &= 1 - (ch >> fin_shift);
+                ch = 0;
+            }
+        }
+
+        if (y != ly') {
+            int y' = y + 1;
+            tuple tp'y' = tp.t:(y');
+            tuple atp'y' = atp.t:(y');
+
+            (to_visit, {-visited,-} ch, atp'y') = update(empty, to_visit, {-visited,-} ch, cp, tp'y', atp'y', x, y');
+
+            if (x) {
+                (to_visit, {-visited,-} ch, atp'y') = update(empty, to_visit, {-visited,-} ch, cp, tp'y', atp'y', x - 1, y');
+            }
+
+            if (x != lx') {
+                (to_visit, {-visited,-} ch, atp'y') = update(empty, to_visit, {-visited,-} ch, cp, tp'y', atp'y', x + 1, y');
+            }
+
+            if (ch) {
+                atp~t:=(atp'y', y');
+                ok &= 1 - (ch >> fin_shift);
+                ;; ch = false;
+            }
+        }
+
+        if (ok) {
+            (key, _, ok) = to_visit~udict::delete_get_min(key_len);
+        }
+
+    }
+
+    int finpr = atp.t::(Ey, Ex);
+    int strong = (finpr >> strong_tile_shift) & strong_tile_mask;
+    int weak = (finpr >> weak_tile_shift) & weak_tile_mask;
+    int dist = (finpr >> empty_tile_shift) & empty_tile_mask;
+
+    tuple sol = maze;
+
+    ;; int walk = true;
+    int num_excl = dist - 1;
+    int wx = Ex;
+    int wy = Ey;
+
+    int mask = ~ coord_mask_upper;
+
+    repeat (num_excl) {
+    ;;while (walk) {
+
+        int nx = wx; int ny = wy;
+        int cp = atp.t::(wy, wx) & mask;
+
+        tuple atp'wy = atp.t:(wy);
+
+        if (wx) {
+            (nx, ny, cp) = walker(nx, ny, cp, atp'wy, wx - 1, wy);
+        }
+
+        if (wx != lx') {
+            (nx, ny, cp) = walker(nx, ny, cp, atp'wy, wx + 1, wy);
+        }
+
+        if (wy) {
+            int wy' = wy - 1;
+            tuple atp'wy' = atp.t:(wy');
+
+            (nx, ny, cp) = walker(nx, ny, cp, atp'wy', wx, wy');
+
+            if (wx) {
+                (nx, ny, cp) = walker(nx, ny, cp, atp'wy', wx - 1, wy');
+            }
+
+            if (wx != lx') {
+                (nx, ny, cp) = walker(nx, ny, cp, atp'wy', wx + 1, wy');
+            }
+        }
+
+        if (wy != ly') {
+            int wy' = wy + 1;
+            tuple atp'wy' = atp.t:(wy');
+
+            (nx, ny, cp) = walker(nx, ny, cp, atp'wy', wx, wy');
+
+            if (wx) {
+                (nx, ny, cp) = walker(nx, ny, cp, atp'wy', wx - 1, wy');
+            }
+
+            if (wx != lx') {
+                (nx, ny, cp) = walker(nx, ny, cp, atp'wy', wx + 1, wy');
+            }
+        }
+
+        wx = nx; wy = ny;
+
+        ;; if ((wx == Sx) & (wy == Sy)) {
+        ;;     walk = false;
+        ;; } else {
+            sol~t:=(sol.t:(wy).t:=("!"u, wx), wy);
+        ;; }
+
+    }
+
+    return (strong, weak, dist, sol);
+    ;; return (strong, weak, dist, sol, atp);
+}
+
+() __deep_fifting__() impure asm
+"@atend @ 1 { execute"
+"    current@ context@ current!"
+"    {"
+"        }END> b>"
+"        <{"
+"        SETCP0 IFNOTRET"
+"        swap <s ref@ 0 swap @procdictkeylen idict@ { B{6E6F206D657468203936} B>$ abort } ifnot @addop"
+"        }> b>"
+"    } : }END>c"
+"    current@ context! current!"
+"} does @atend !"
+;
+
+() __do_deep_fifting__() method_id(777) { __deep_fifting__(); }

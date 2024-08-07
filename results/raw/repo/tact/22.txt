@@ -1,0 +1,26 @@
+$TodoChild$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-authenticating-children/output/sample_TodoChild.code.fc:15:39: warning: Local variable '$self'parent' is not used
+      var (($self'parent, $self'seqno)) = (null(), null());
+                                        ^
+$TodoChild$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-authenticating-children/output/sample_TodoChild.code.fc:15:39: warning: Local variable '$self'seqno' is not used
+      var (($self'parent, $self'seqno)) = (null(), null());
+                                        ^
+$TodoChild$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-authenticating-children/output/sample_TodoChild.storage.fc:83:19: warning: Lack of end_parse.
+          return $sc~$TodoChild$_load();
+                    ^
+$TodoChild$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-authenticating-children/output/sample_TodoChild.code.fc:54:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-authenticating-children/output/sample_TodoChild.storage.fc:94:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$TodoChild$_contract_store & $TodoChild$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-authenticating-children/output/sample_TodoChild.storage.fc:79:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact-by-example/src/routes/examples/06-authenticating-children/output/sample_TodoChild.storage.fc:94:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

@@ -1,0 +1,14 @@
+;; get methods
+
+(slice, slice, slice, int, int) get_vote_status_data() method_id {
+    ;; returns vote_status storage
+    load_storage();
+
+    return (
+        storage::vote_address,
+        storage::voter_address,
+        storage::vote_storage_address,
+        storage::positive_vote,
+        storage::negative_vote
+    );
+}

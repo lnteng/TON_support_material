@@ -1,0 +1,35 @@
+$Beacon$_internal_binary_CanPayout: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/payouts_Beacon.code.fc:33:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Beacon$_internal_binary_CanPayout: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/payouts_Beacon.code.fc:33:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Beacon$_internal_binary_CanPayout: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/payouts_Beacon.code.fc:33:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Beacon$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/payouts_Beacon.code.fc:14:56: warning: Local variable '$self'master' is not used
+      var (($self'master, $self'owner, $self'completed)) = (null(), null(), null());
+                                                         ^
+$Beacon$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/payouts_Beacon.code.fc:14:56: warning: Local variable '$self'owner' is not used
+      var (($self'master, $self'owner, $self'completed)) = (null(), null(), null());
+                                                         ^
+$Beacon$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/payouts_Beacon.code.fc:14:56: warning: Local variable '$self'completed' is not used
+      var (($self'master, $self'owner, $self'completed)) = (null(), null(), null());
+                                                         ^
+$Beacon$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/payouts_Beacon.storage.fc:86:19: warning: Lack of end_parse.
+          return $sc~$Beacon$_load();
+                    ^
+$Beacon$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/payouts_Beacon.code.fc:76:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tact-lang/tact/examples/output/payouts_Beacon.storage.fc:97:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

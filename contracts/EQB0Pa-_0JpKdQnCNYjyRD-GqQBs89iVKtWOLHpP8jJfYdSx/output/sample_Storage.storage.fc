@@ -1,0 +1,98 @@
+;;
+;; Type: Data
+;; TLB: _ data:^string = Data
+;;
+
+builder $Data$_store(builder build_0, (slice) v) inline {
+    var (v'data) = v;
+    build_0 = build_0.store_ref(begin_cell().store_slice(v'data).end_cell());
+    return build_0;
+}
+
+cell $Data$_store_cell((slice) v) inline {
+    return $Data$_store(begin_cell(), v).end_cell();
+}
+
+(slice, ((slice))) $Data$_load(slice sc_0) inline {
+    var v'data = sc_0~load_ref().begin_parse();
+    return (sc_0, (v'data));
+}
+
+tuple $Data$_as_optional((slice) v) inline {
+    var (v'data) = v;
+    return __tact_tuple_create_1(v'data);
+}
+
+tuple $Data$_load_opt(cell cl) inline {
+    if (null?(cl)) {
+        return null();
+    }
+    var sc = cl.begin_parse();
+    return $Data$_as_optional(sc~$Data$_load());
+}
+
+_ $Data$_get_data((slice) v) inline {
+    var (v'data) = v;
+    return v'data;
+}
+
+((slice)) $Data$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (slice vvv'data) = __tact_tuple_destroy_1(v);
+    return (vvv'data);
+}
+
+((slice)) $Data$_constructor_data(slice data) inline {
+    return (data);
+}
+
+;;
+;; Type: DataInput
+;; Header: 0x4e0a3ed0
+;; TLB: data_input#4e0a3ed0 index:int257 data:^string = DataInput
+;;
+
+(slice, ((int, slice))) $DataInput$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 1309294288);
+    var v'index = sc_0~load_int(257);
+    var v'data = sc_0~load_ref().begin_parse();
+    return (sc_0, (v'index, v'data));
+}
+
+;;
+;; Type: Storage
+;;
+
+builder $Storage$_store(builder build_0, (cell, cell) v) inline {
+    var (v'data, v'owner) = v;
+    build_0 = build_0.store_dict(v'data);
+    build_0 = build_0.store_dict(v'owner);
+    return build_0;
+}
+
+(slice, ((cell, cell))) $Storage$_load(slice sc_0) inline {
+    var v'data = sc_0~load_dict();
+    var v'owner = sc_0~load_dict();
+    return (sc_0, (v'data, v'owner));
+}
+
+(cell, cell) $Storage$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$Storage$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        return $Storage$_contract_init();
+    }
+}
+
+() $Storage$_contract_store((cell, cell) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $Storage$_store(b, v);
+    set_data(b.end_cell());
+}

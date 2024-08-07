@@ -1,0 +1,51 @@
+$reply: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/examples/output/increment_IncrementContract.code.fc:241:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$reply: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/examples/output/increment_IncrementContract.code.fc:241:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$reply: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/examples/output/increment_IncrementContract.code.fc:241:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+__tact_dict_set_int_cell: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/examples/output/increment_IncrementContract.code.fc:49:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+__tact_dict_set_slice_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/examples/output/increment_IncrementContract.code.fc:67:21: warning: Local variable 'ok' is not used
+          var (r, ok) = __tact_dict_delete(d, kl, k);
+                      ^
+__tact_dict_set_int_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/examples/output/increment_IncrementContract.code.fc:31:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+$__gen_IncrementContract_receive_Increment: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/examples/output/increment_IncrementContract.code.fc:270:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$__gen_IncrementContract_receive_Increment: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/examples/output/increment_IncrementContract.code.fc:270:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$__gen_IncrementContract_receive_Increment: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/examples/output/increment_IncrementContract.code.fc:270:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+__gen_read_IncrementContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/examples/output/increment_IncrementContract.code.fc:160:27: warning: Lack of end_parse.
+      var v'counters5 = sc_1~load_dict();
+                            ^
+__gen_load_IncrementContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/examples/output/increment_IncrementContract.code.fc:179:19: warning: Lack of end_parse.
+          return $sc~__gen_read_IncrementContract();
+                    ^
+__gen_store_IncrementContract & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/examples/output/increment_IncrementContract.code.fc:404:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./Hiyorimi/tact/examples/output/increment_IncrementContract.code.fc:186:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

@@ -1,0 +1,124 @@
+get_nft_address_by_index: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:299:85: warning: Local variable 'total_supply' is not used
+      (int total_supply, int voting_id, _, _, cell royalty, cell content, cell codes) = load_data();
+                                                                                      ^
+get_nft_address_by_index: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:299:85: warning: Local variable 'voting_id' is not used
+      (int total_supply, int voting_id, _, _, cell royalty, cell content, cell codes) = load_data();
+                                                                                      ^
+get_nft_address_by_index: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:299:85: warning: Local variable 'royalty' is not used
+      (int total_supply, int voting_id, _, _, cell royalty, cell content, cell codes) = load_data();
+                                                                                      ^
+get_nft_address_by_index: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:299:85: warning: Local variable 'content' is not used
+      (int total_supply, int voting_id, _, _, cell royalty, cell content, cell codes) = load_data();
+                                                                                      ^
+get_collection_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:294:85: warning: Local variable 'total_supply' is not used
+      (int total_supply, int voting_id, _, _, cell royalty, cell content, cell codes) = load_data();
+                                                                                      ^
+get_collection_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:294:85: warning: Local variable 'royalty' is not used
+      (int total_supply, int voting_id, _, _, cell royalty, cell content, cell codes) = load_data();
+                                                                                      ^
+get_collection_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:294:85: warning: Local variable 'codes' is not used
+      (int total_supply, int voting_id, _, _, cell royalty, cell content, cell codes) = load_data();
+                                                                                      ^
+get_jetton_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:279:85: warning: Local variable 'voting_id' is not used
+      (int total_supply, int voting_id, _, _, cell royalty, cell content, cell codes) = load_data();
+                                                                                      ^
+get_jetton_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:279:85: warning: Local variable 'royalty' is not used
+      (int total_supply, int voting_id, _, _, cell royalty, cell content, cell codes) = load_data();
+                                                                                      ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:235:28: warning: Lack of end_parse.
+      int fwd_fee = muldiv(cs~load_coins(), 3, 2); ;; we use message fwd_fee for estimation of forward_payload costs
+                             ^
+send_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:176:85: warning: Local variable 'total_supply' is not used
+      (int total_supply, int voting_id, _, _, cell royalty, cell content, cell codes) = load_data();
+                                                                                      ^
+send_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:176:85: warning: Local variable 'voting_id' is not used
+      (int total_supply, int voting_id, _, _, cell royalty, cell content, cell codes) = load_data();
+                                                                                      ^
+send_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:176:85: warning: Local variable 'royalty' is not used
+      (int total_supply, int voting_id, _, _, cell royalty, cell content, cell codes) = load_data();
+                                                                                      ^
+send_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:176:85: warning: Local variable 'content' is not used
+      (int total_supply, int voting_id, _, _, cell royalty, cell content, cell codes) = load_data();
+                                                                                      ^
+royalty_params: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:311:51: warning: Lack of end_parse.
+      return (sl~load_uint(16), sl~load_uint(16), sl~load_msg_addr());
+                                                    ^
+royalty_params: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:309:85: warning: Local variable 'total_supply' is not used
+      (int total_supply, int voting_id, _, _, cell royalty, cell content, cell codes) = load_data();
+                                                                                      ^
+royalty_params: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:309:85: warning: Local variable 'voting_id' is not used
+      (int total_supply, int voting_id, _, _, cell royalty, cell content, cell codes) = load_data();
+                                                                                      ^
+royalty_params: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:309:85: warning: Local variable 'content' is not used
+      (int total_supply, int voting_id, _, _, cell royalty, cell content, cell codes) = load_data();
+                                                                                      ^
+royalty_params: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:309:85: warning: Local variable 'codes' is not used
+      (int total_supply, int voting_id, _, _, cell royalty, cell content, cell codes) = load_data();
+                                                                                      ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:285:85: warning: Local variable 'total_supply' is not used
+      (int total_supply, int voting_id, _, _, cell royalty, cell content, cell codes) = load_data();
+                                                                                      ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:285:85: warning: Local variable 'voting_id' is not used
+      (int total_supply, int voting_id, _, _, cell royalty, cell content, cell codes) = load_data();
+                                                                                      ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:285:85: warning: Local variable 'royalty' is not used
+      (int total_supply, int voting_id, _, _, cell royalty, cell content, cell codes) = load_data();
+                                                                                      ^
+get_wallet_address: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:285:85: warning: Local variable 'content' is not used
+      (int total_supply, int voting_id, _, _, cell royalty, cell content, cell codes) = load_data();
+                                                                                      ^
+execute_proposal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:84:125: warning: Local variable 'voting_id' is not used
+      (int total_supply, int voting_id, int quorum_numerator, int quorum_denominator, cell royalty, cell content, cell codes) = load_data();
+                                                                                                                              ^
+execute_proposal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:84:125: warning: Local variable 'royalty' is not used
+      (int total_supply, int voting_id, int quorum_numerator, int quorum_denominator, cell royalty, cell content, cell codes) = load_data();
+                                                                                                                              ^
+execute_proposal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:84:125: warning: Local variable 'content' is not used
+      (int total_supply, int voting_id, int quorum_numerator, int quorum_denominator, cell royalty, cell content, cell codes) = load_data();
+                                                                                                                              ^
+execute_proposal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:85:56: warning: Local variable 'vote_keeper_code' is not used
+      (_, cell nft_proposal_code, cell vote_keeper_code) = unpack_codes(codes);
+                                                         ^
+dao_params: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:318:23: warning: Lack of end_parse.
+      slice sl = royalty.begin_parse();
+                        ^
+dao_params: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:317:125: warning: Local variable 'codes' is not used
+      (int total_supply, int voting_id, int quorum_numerator, int quorum_denominator, cell royalty, cell content, cell codes) = load_data();
+                                                                                                                              ^
+dao_params: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:318:14: warning: Local variable 'sl' is not used
+      slice sl = royalty.begin_parse();
+               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./OpenProduct/jetton-dao-contracts/contracts/dao.func:29:11: warning: Lack of end_parse.
+          ds~load_ref() ;; contract codes
+            ^

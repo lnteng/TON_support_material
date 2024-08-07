@@ -1,0 +1,229 @@
+;;
+;; Type: StateInit
+;; TLB: _ code:^cell data:^cell = StateInit
+;;
+
+((cell, cell)) $StateInit$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (cell vvv'code, cell vvv'data) = __tact_tuple_destroy_2(v);
+    return (vvv'code, vvv'data);
+}
+
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline {
+    return (bounce, to, value, mode, body, code, data);
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_bounce_value_mode(slice to, int bounce, int value, int mode) inline {
+    return (bounce, to, value, mode, null(), null(), null());
+}
+
+;;
+;; Type: Deploy
+;; Header: 0x946a98b6
+;; TLB: deploy#946a98b6 queryId:uint64 = Deploy
+;;
+
+(slice, ((int))) $Deploy$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2490013878);
+    var v'queryId = sc_0~load_uint(64);
+    return (sc_0, (v'queryId));
+}
+
+;;
+;; Type: DeployOk
+;; Header: 0xaff90f57
+;; TLB: deploy_ok#aff90f57 queryId:uint64 = DeployOk
+;;
+
+builder $DeployOk$_store(builder build_0, (int) v) inline {
+    var (v'queryId) = v;
+    build_0 = store_uint(build_0, 2952335191, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    return build_0;
+}
+
+cell $DeployOk$_store_cell((int) v) inline {
+    return $DeployOk$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $DeployOk$_constructor_queryId(int queryId) inline {
+    return (queryId);
+}
+
+;;
+;; Type: HTLC
+;; TLB: _ hashlock:int256 secret:int256 amount:coins timelock:uint256 sender:address _receiver:address redeemed:bool refunded:bool = HTLC
+;;
+
+(slice, ((int, int, int, int, slice, slice, int, int))) $HTLC$_load(slice sc_0) inline_ref {
+    var v'hashlock = sc_0~load_int(256);
+    var v'secret = sc_0~load_int(256);
+    var v'amount = sc_0~load_coins();
+    var v'timelock = sc_0~load_uint(256);
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'sender = sc_1~__tact_load_address();
+    var v'_receiver = sc_1~__tact_load_address();
+    var v'redeemed = sc_1~load_int(1);
+    var v'refunded = sc_1~load_int(1);
+    return (sc_0, (v'hashlock, v'secret, v'amount, v'timelock, v'sender, v'_receiver, v'redeemed, v'refunded));
+}
+
+tuple $HTLC$_as_optional((int, int, int, int, slice, slice, int, int) v) inline {
+    var (v'hashlock, v'secret, v'amount, v'timelock, v'sender, v'_receiver, v'redeemed, v'refunded) = v;
+    return __tact_tuple_create_8(v'hashlock, v'secret, v'amount, v'timelock, v'sender, v'_receiver, v'redeemed, v'refunded);
+}
+
+tuple $HTLC$_load_opt(cell cl) inline {
+    if (null?(cl)) {
+        return null();
+    }
+    var sc = cl.begin_parse();
+    return $HTLC$_as_optional(sc~$HTLC$_load());
+}
+
+((int, int, int, int, slice, slice, int, int)) $HTLC$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (int vvv'hashlock, int vvv'secret, int vvv'amount, int vvv'timelock, slice vvv'sender, slice vvv'_receiver, int vvv'redeemed, int vvv'refunded) = __tact_tuple_destroy_8(v);
+    return (vvv'hashlock, vvv'secret, vvv'amount, vvv'timelock, vvv'sender, vvv'_receiver, vvv'redeemed, vvv'refunded);
+}
+
+tuple $HTLC$_to_tuple(((int, int, int, int, slice, slice, int, int)) v) inline {
+    var (v'hashlock, v'secret, v'amount, v'timelock, v'sender, v'_receiver, v'redeemed, v'refunded) = v;
+    return __tact_tuple_create_8(v'hashlock, v'secret, v'amount, v'timelock, v'sender, v'_receiver, v'redeemed, v'refunded);
+}
+
+tuple $HTLC$_to_opt_tuple(tuple v) inline {
+    if (null?(v)) { return null(); } 
+    return $HTLC$_to_tuple($HTLC$_not_null(v)); 
+}
+
+tuple $HTLC$_to_opt_external(tuple v) inline {
+    var loaded = $HTLC$_to_opt_tuple(v);
+    if (null?(loaded)) {
+        return null();
+    } else {
+        return (loaded);
+    }
+}
+
+((int, int, int, int, slice, slice, int, int)) $HTLC$_constructor_hashlock_secret_amount_timelock_sender__receiver_redeemed_refunded(int hashlock, int secret, int amount, int timelock, slice sender, slice _receiver, int redeemed, int refunded) inline {
+    return (hashlock, secret, amount, timelock, sender, _receiver, redeemed, refunded);
+}
+
+;;
+;; Type: TonTransferInitiated
+;; TLB: _ __hashlock:int256 __amount:coins __chainId:int256 __timelock:int256 __sender:address __receiver:address __targetCurrencyReceiverAddress:^string = TonTransferInitiated
+;;
+
+(slice, ((int, int, int, int, slice, slice, slice))) $TonTransferInitiated$_load(slice sc_0) inline_ref {
+    var v'__hashlock = sc_0~load_int(256);
+    var v'__amount = sc_0~load_coins();
+    var v'__chainId = sc_0~load_int(256);
+    var v'__timelock = sc_0~load_int(256);
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'__sender = sc_1~__tact_load_address();
+    var v'__receiver = sc_1~__tact_load_address();
+    var v'__targetCurrencyReceiverAddress = sc_1~load_ref().begin_parse();
+    return (sc_0, (v'__hashlock, v'__amount, v'__chainId, v'__timelock, v'__sender, v'__receiver, v'__targetCurrencyReceiverAddress));
+}
+
+;;
+;; Type: Create
+;; Header: 0x1de616d0
+;; TLB: create#1de616d0 data:TonTransferInitiated{__hashlock:int256,__amount:coins,__chainId:int256,__timelock:int256,__sender:address,__receiver:address,__targetCurrencyReceiverAddress:^string} = Create
+;;
+
+(slice, (((int, int, int, int, slice, slice, slice)))) $Create$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 501618384);
+    var v'data = sc_0~$TonTransferInitiated$_load();
+    return (sc_0, (v'data));
+}
+
+;;
+;; Type: TonTransferClaimed
+;; TLB: _ __hashlock:int256 __receiver:address __amount:coins = TonTransferClaimed
+;;
+
+(slice, ((int, slice, int))) $TonTransferClaimed$_load(slice sc_0) inline {
+    var v'__hashlock = sc_0~load_int(256);
+    var v'__receiver = sc_0~__tact_load_address();
+    var v'__amount = sc_0~load_coins();
+    return (sc_0, (v'__hashlock, v'__receiver, v'__amount));
+}
+
+;;
+;; Type: Redeem
+;; Header: 0x73add0be
+;; TLB: redeem#73add0be data:TonTransferClaimed{__hashlock:int256,__receiver:address,__amount:coins} = Redeem
+;;
+
+(slice, (((int, slice, int)))) $Redeem$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 1940771006);
+    var v'data = sc_0~$TonTransferClaimed$_load();
+    return (sc_0, (v'data));
+}
+
+;;
+;; Type: TonTransferRefunded
+;; TLB: _ __hashlock:int256 __receiver:address __amount:coins = TonTransferRefunded
+;;
+
+(slice, ((int, slice, int))) $TonTransferRefunded$_load(slice sc_0) inline {
+    var v'__hashlock = sc_0~load_int(256);
+    var v'__receiver = sc_0~__tact_load_address();
+    var v'__amount = sc_0~load_coins();
+    return (sc_0, (v'__hashlock, v'__receiver, v'__amount));
+}
+
+;;
+;; Type: Refund
+;; Header: 0xa9dfd79e
+;; TLB: refund#a9dfd79e data:TonTransferRefunded{__hashlock:int256,__receiver:address,__amount:coins} = Refund
+;;
+
+(slice, (((int, slice, int)))) $Refund$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2850019230);
+    var v'data = sc_0~$TonTransferRefunded$_load();
+    return (sc_0, (v'data));
+}
+
+;;
+;; Type: HashedTimeLockTON
+;;
+
+builder $HashedTimeLockTON$_store(builder build_0, (cell) v) inline {
+    var (v'contracts) = v;
+    build_0 = build_0.store_dict(v'contracts);
+    return build_0;
+}
+
+(slice, ((cell))) $HashedTimeLockTON$_load(slice sc_0) inline {
+    var v'contracts = sc_0~load_dict();
+    return (sc_0, (v'contracts));
+}
+
+(cell) $HashedTimeLockTON$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$HashedTimeLockTON$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        return $HashedTimeLockTON$_contract_init();
+    }
+}
+
+() $HashedTimeLockTON$_contract_store((cell) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $HashedTimeLockTON$_store(b, v);
+    set_data(b.end_cell());
+}

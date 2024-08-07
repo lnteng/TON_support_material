@@ -1,0 +1,12 @@
+find_and_replace: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stspbu/ts4/contracts/3.fc:64:27: warning: Lack of end_parse.
+              slice word = s~load_bits(wlen);
+                            ^
+find_and_replace: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stspbu/ts4/contracts/3.fc:83:37: warning: Lack of end_parse.
+                      int bit = wslice~load_uint(1);
+                                      ^
+find_and_replace: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./stspbu/ts4/contracts/3.fc:94:23: warning: Lack of end_parse.
+              (_, s) = s.sload_ref();
+                        ^

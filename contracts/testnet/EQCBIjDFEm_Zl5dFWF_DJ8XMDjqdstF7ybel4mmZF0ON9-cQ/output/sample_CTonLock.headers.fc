@@ -1,0 +1,121 @@
+;;
+;; Header files for CTonLock
+;; NOTE: declarations are sorted for optimal order
+;;
+
+;; __tact_verify_address
+slice __tact_verify_address(slice address) inline;
+
+;; __tact_load_address
+(slice, slice) __tact_load_address(slice cs) inline;
+
+;; __tact_store_address
+builder __tact_store_address(builder b, slice address) inline;
+
+;; __tact_store_address_opt
+builder __tact_store_address_opt(builder b, slice address) inline;
+
+;; __tact_my_balance
+int __tact_my_balance() inline;
+
+;; __tact_not_null
+forall X -> X __tact_not_null(X x) inline;
+
+;; __tact_context_get
+(int, slice, int, slice) __tact_context_get() inline;
+
+;; __tact_context_get_sender
+slice __tact_context_get_sender() inline;
+
+;; __tact_store_bool
+builder __tact_store_bool(builder b, int v) inline;
+
+;; __tact_dict_set_int_int
+(cell, ()) __tact_dict_set_int_int(cell d, int kl, int k, int v, int vl) inline;
+
+;; __tact_dict_get_int_int
+int __tact_dict_get_int_int(cell d, int kl, int k, int vl) inline;
+
+;; __tact_slice_eq_bits
+int __tact_slice_eq_bits(slice a, slice b) inline;
+
+;; $Deploy$_load
+(slice, ((int))) $Deploy$_load(slice sc_0) inline;
+
+;; $DeployOk$_store
+builder $DeployOk$_store(builder build_0, (int) v) inline;
+
+;; $DeployOk$_store_cell
+cell $DeployOk$_store_cell((int) v) inline;
+
+;; $TokenTransfer$_store
+builder $TokenTransfer$_store(builder build_0, (int, int, slice, slice, cell, int, slice) v) inline_ref;
+
+;; $TokenTransfer$_store_cell
+cell $TokenTransfer$_store_cell((int, int, slice, slice, cell, int, slice) v) inline;
+
+;; $SetLocker$_load
+(slice, ((int, cell, cell))) $SetLocker$_load(slice sc_0) inline;
+
+;; $TokenWithdraw$_load
+(slice, ((int, slice, slice))) $TokenWithdraw$_load(slice sc_0) inline;
+
+;; $CTonLock$_store
+builder $CTonLock$_store(builder build_0, (slice, int, int, int, cell, cell) v) inline;
+
+;; $CTonLock$_load
+(slice, ((slice, int, int, int, cell, cell))) $CTonLock$_load(slice sc_0) inline;
+
+;; $StateInit$_not_null
+((cell, cell)) $StateInit$_not_null(tuple v) inline;
+
+;; $LockerInfo$_to_external
+(slice, int, int, int, cell) $LockerInfo$_to_external(((slice, int, int, int, cell)) v) inline;
+
+;; $CTonLock$init$_load
+(slice, ((slice, int))) $CTonLock$init$_load(slice sc_0) inline;
+
+;; $CTonLock$_contract_init
+(slice, int, int, int, cell, cell) $CTonLock$_contract_init(slice $owner, int $totalAmount) impure inline_ref;
+
+;; $CTonLock$_contract_load
+(slice, int, int, int, cell, cell) $CTonLock$_contract_load() impure inline_ref;
+
+;; $CTonLock$_contract_store
+() $CTonLock$_contract_store((slice, int, int, int, cell, cell) v) impure inline;
+
+;; $global_send
+() $global_send((int, slice, int, int, cell, cell, cell) $params) impure inline_ref;
+
+;; $Cell$_fun_asSlice
+slice $Cell$_fun_asSlice(cell $self) impure inline;
+
+;; $CTonLock$_fun_updateLocker
+((slice, int, int, int, cell, cell), ()) $CTonLock$_fun_updateLocker((slice, int, int, int, cell, cell) $self) impure inline_ref;
+
+;; $LockerInfo$_constructor_owner_totalAmountLocked_totalAmountBalance_lockerLength_lockerMap
+((slice, int, int, int, cell)) $LockerInfo$_constructor_owner_totalAmountLocked_totalAmountBalance_lockerLength_lockerMap(slice owner, int totalAmountLocked, int totalAmountBalance, int lockerLength, cell lockerMap) inline;
+
+;; $CTonLock$_fun_lockerInfo
+((slice, int, int, int, cell, cell), (slice, int, int, int, cell)) $CTonLock$_fun_lockerInfo((slice, int, int, int, cell, cell) $self) impure inline_ref;
+
+;; $SendParameters$_constructor_bounce_to_value_mode_body_code_data
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline;
+
+;; $CTonLock$_fun_forward
+((slice, int, int, int, cell, cell), ()) $CTonLock$_fun_forward((slice, int, int, int, cell, cell) $self, slice $to, cell $body, int $bounce, tuple $init) impure inline_ref;
+
+;; $CTonLock$_fun_notify
+((slice, int, int, int, cell, cell), ()) $CTonLock$_fun_notify((slice, int, int, int, cell, cell) $self, cell $body) impure inline;
+
+;; $SendParameters$_constructor_to_value_bounce_mode_body
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_bounce_mode_body(slice to, int value, int bounce, int mode, cell body) inline;
+
+;; $TokenTransfer$_constructor_query_id_amount_sender_response_destination_custom_payload_forward_ton_amount_forward_payload
+((int, int, slice, slice, cell, int, slice)) $TokenTransfer$_constructor_query_id_amount_sender_response_destination_custom_payload_forward_ton_amount_forward_payload(int query_id, int amount, slice sender, slice response_destination, cell custom_payload, int forward_ton_amount, slice forward_payload) inline;
+
+;; $SendParameters$_constructor_to_value_bounce_mode
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_bounce_mode(slice to, int value, int bounce, int mode) inline;
+
+;; $DeployOk$_constructor_queryId
+((int)) $DeployOk$_constructor_queryId(int queryId) inline;

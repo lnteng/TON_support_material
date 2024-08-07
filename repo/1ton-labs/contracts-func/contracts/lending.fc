@@ -1,0 +1,279 @@
+#include "imports/stdlib.fc";
+#include "imports/utils.fc";
+
+global slice owner_address; 
+global cell deposit_pool;
+global cell loan_pool;
+global slice sender;
+
+int min_tons_for_storage() asm "30000000 PUSHINT"; ;; 0.03 TON
+
+() load_data() impure {
+    var ds = get_data().begin_parse();
+    owner_address = ds~load_msg_addr();
+    deposit_pool = ds~load_dict();
+    loan_pool = ds~load_dict();
+}
+
+() save_data() impure {
+    set_data(begin_cell()
+    .store_slice(owner_address)
+    .store_dict(deposit_pool)
+    .store_dict(loan_pool)
+    .end_cell());
+}
+
+{-
+// transfer_bond - transfer bond from sender to receiver.
+// responser - address of the responser.
+// receiver - address of the receiver.
+// item - the item of the bond.
+-}
+() transfer_bond(slice responser, slice receiver, slice item) impure {
+    var msg = begin_cell()
+     .store_uint(0x18, 6) 
+     .store_slice(item)
+     .store_coins(min_tons_for_storage())
+     .store_uint(1, 1 + 4 + 4 + 64 + 32 + 1 + 1) 
+     .store_ref(
+        begin_cell()
+         .store_uint(0x5fcc3d14, 32)
+         .store_uint(0, 64)
+         .store_slice(receiver)
+         .store_slice(responser)
+         .store_uint(0, 1)
+         .store_coins(0)
+         .store_ref(begin_cell().end_cell())
+        .end_cell()
+    )
+     .end_cell();
+    send_raw_message(msg, 0);
+}
+
+{-
+// This function deposits the amount of tokens into the depositor's address.
+// Parameters: depositor - the address of the user who is depositing the tokens
+//             amount - the amount of tokens that the user is depositing
+// Returns: nothing
+// Throws: 500 if deposit_pool is null
+-}
+() deposit(slice depositor, int amount) impure {
+    int deposit = null?(deposit_pool)? 0 : dict_get_slice_int(deposit_pool, 267, depositor, 257);  
+    amount = deposit + amount; 
+    (deposit_pool, _) = dict_set_slice_int(deposit_pool, 267, depositor, amount, 257);
+    throw_if(500, null?(deposit_pool));
+    save_data();
+}
+
+
+{-
+// This function withdraw the amount of tokens into the withdrawer's address.
+// Parameters: withdrawer - the address of the user who is withdrawer the tokens
+//             amount - the amount of tokens that the user is withdrawing
+// Returns: nothing
+// Throws: 400 if insufficient funds
+-}
+() withdraw(slice receiver, slice withdrawer, int withdraw_amount) impure {
+    int deposit = null?(deposit_pool)? 0 : dict_get_slice_int(deposit_pool, 267, withdrawer, 257);  
+    throw_unless(400, withdraw_amount <= deposit );
+    var msg = begin_cell()
+    .store_uint(0x18, 6) ;; 0b011000 int_msg_info, instant hypercube routing, bounceable message, message is not the result of bouncing itself, addr_none(self)
+    .store_slice(receiver)
+    .store_coins(withdraw_amount)
+    .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1) ;; see more detail in message scheme
+    .end_cell();
+    send_raw_message(msg, 0);
+    int remain = deposit - withdraw_amount ;
+    (deposit_pool, _) = dict_set_slice_int(deposit_pool, 267, withdrawer, remain, 257);
+    save_data();
+}
+
+{-
+// This function starts a loan. It is called by the borrower.
+// The borrower sends the amount of the loan as a message value.
+// The loan is stored in the loan_pool dictionary, indexed by the item being loaned.
+// The borrower is the address of the sender of the message.
+// The lender is the address of the sender of the loan message.
+// The loan amount is the amount of the message value.
+// The repay amount is the amount of the message value.
+// The start time is the current time.
+// The duration is the duration of the loan, in seconds.
+// The borrower sends the item being loaned to the lender.
+-}
+() start_loan(slice in_msg_body) impure { 
+    slice investor = in_msg_body~load_msg_addr();
+    slice item = in_msg_body~load_msg_addr();
+    int amount = in_msg_body~load_uint(120);
+    int repay_amount = in_msg_body~load_uint(120);
+    int duration = in_msg_body~load_uint(64);
+
+    var (loan_cell, ok) = dict_get_ref(loan_pool, 267, item);
+    throw_unless(409, null?(loan_cell));
+
+    transfer_bond(sender ,my_address() ,item);
+    withdraw(sender, investor, amount);
+
+    cell loan = begin_cell()
+    .store_slice(investor)
+    .store_slice(sender)
+    .store_uint(amount, 120)
+    .store_uint(repay_amount, 120)
+    .store_uint(now(), 64)
+    .store_uint(duration, 64)
+    .end_cell();
+    (loan_pool, _) = dict_set_ref(loan_pool ,267 ,item ,loan);
+    save_data();
+}
+
+{-
+// This function parses a loan cell and returns its components.
+// The components are:
+// - The address of the investor
+// - The address of the borrower
+// - The amount of the loan
+// - The amount that must be repaid
+// - The time when the loan starts
+// - The duration of the loan
+// The function parameters are:
+// - The loan cell
+-}
+(slice, slice, int, int, int, int) parse_loan(cell loan_cell) {
+    slice loan = loan_cell.begin_parse();
+    slice investor = loan~load_msg_addr();
+    slice borrower = loan~load_msg_addr();
+    int amount = loan~load_uint(120);
+    int repay_amount = loan~load_uint(120);
+    int start_time = loan~load_uint(64);
+    int duration = loan~load_uint(64);
+    return (investor, borrower, amount, repay_amount, start_time, duration);
+}
+
+() recv_internal(int my_balance, int msg_value, cell in_msg_full, slice in_msg_body) impure {
+    if (in_msg_body.slice_empty?()) { ;; ignore empty messages
+        return ();
+    }
+    slice cs = in_msg_full.begin_parse();
+    int flags = cs~load_uint(4);
+    
+    if (flags & 1) { ;; ignore all bounced messages
+        return ();
+    }
+    sender = cs~load_msg_addr();
+
+    int op = in_msg_body~load_uint(32);
+    int query_id = in_msg_body~load_uint(64);
+    load_data();
+
+    if (op == 1) { ;; start loan
+        start_loan(in_msg_body);
+        return();
+    }
+
+    if (op == 2) { ;; repay
+        slice item = in_msg_body~load_msg_addr();
+        var (loan_cell, ok) = dict_get_ref(loan_pool, 267, item);
+        throw_if(404, null?(loan_cell));
+        var (investor, borrower, amount, repay_amount, start_time, duration) = parse_loan(loan_cell);
+
+        transfer_bond(sender, borrower, item);
+        cs~load_msg_addr(); ;; skip dst
+        int value = cs~load_coins();
+        throw_if(400, value < repay_amount);
+        deposit(investor,repay_amount);
+        withdraw(investor,investor,repay_amount);
+        (loan_pool, ok) = dict_delete(loan_pool, 267, item);
+        save_data();
+    }
+
+    if (op == 3) { ;; claim
+        slice item = in_msg_body~load_msg_addr();
+        var (loan_cell, ok) = dict_get_ref(loan_pool, 267, item);
+        throw_if(404, null?(loan_cell));
+
+        var (investor, borrower, amount, repay_amount, start_time, duration) = parse_loan(loan_cell);
+
+        throw_if(400, (now() < (start_time + duration)) );
+        transfer_bond(borrower, investor, item);
+        (loan_pool, ok) = dict_delete(loan_pool, 267, item);
+        save_data();
+    }
+
+    if (op == 4){ ;; deposit
+        int deposit_amount = in_msg_body~load_uint(120);
+        int transfer_amount = in_msg_body~load_uint(120);
+        throw_if(400, transfer_amount < deposit_amount);
+        deposit(sender,deposit_amount);
+    }
+
+    if (op == 5){ ;; withdraw
+        int withdraw_amount = in_msg_body~load_uint(120);
+        withdraw(sender, sender, withdraw_amount);
+    }
+}
+
+{- 
+// This code loads the deposit pool from the storage and returns it.
+// The deposit pool is used to calculate the total amount of money that
+// has been deposited into the system.
+-}
+cell get_deposit_pool() method_id {
+    load_data();
+    return deposit_pool;
+}
+
+{- 
+// This function loads the loan pool from the storage.
+// The loan pool is a global variable that is used
+// by all functions in this file.
+-}
+cell get_loan_pool() method_id {
+    load_data();
+    return loan_pool;
+}
+
+{-
+// This function gets the deposit value of a user. 
+// It loads the deposit pool from the global state.
+// It returns the deposit value of the user.
+// The deposit pool is a dictionary of addresses (keys) to integers (values).
+// The deposit value is an integer.
+-}
+int get_deposit_value(slice user) method_id {
+    load_data();
+    int deposit = dict_empty?(deposit_pool)? 0 : dict_get_slice_int(deposit_pool, 267, user, 257);  
+    return deposit ;
+}
+
+{-
+// This function returns a cell containing loan information for the specified item.
+// The item is identified by the parameter item, which is a slice containing the item name.
+// The function returns a cell containing loan information for the specified item,
+// or null() if the item is not found.
+// The function uses a global variable loan_pool that contains a dictionary
+// with item names as keys and loan cells as values.
+// The function uses a global variable dict_get_ref that contains a function
+// to get a reference to a value from a dictionary.
+// The function uses a global variable load_data that contains a function
+// to load the loan_pool dictionary.
+-}
+cell get_loan(slice item) method_id {
+    load_data();
+    var (loan_cell, ok) = dict_get_ref(loan_pool, 267, item);
+    if (ok) {
+        return loan_cell;
+    } else {
+        return null();
+    }
+}
+        
+{-
+// This function returns a string containing the version of the contract
+// that is stored in the blockchain. 
+-}
+slice get_version() method_id {
+    return "v0.5";
+} 
+        
+
+        
+                

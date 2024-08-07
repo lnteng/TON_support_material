@@ -1,0 +1,40 @@
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/ton_scheduler/scheduler.fc:178:30: warning: Local variable 's_addr' is not used
+     int addr_int_second_part) = (cs~load_bits(11), 
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/ton_scheduler/scheduler.fc:178:30: warning: Local variable 'addr_int_first_part' is not used
+     int addr_int_second_part) = (cs~load_bits(11), 
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/ton_scheduler/scheduler.fc:195:24: warning: Local variable 'our_address' is not used
+      slice our_address  = cs~load_msg_addr();
+                         ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/ton_scheduler/scheduler.fc:201:46: warning: Local variable 'ref_num' is not used
+      (int cell_num, int bit_num, int ref_num) = order_message.slice_compute_data_size(32);
+                                               ^
+~add_scheduled_order: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/ton_scheduler/scheduler.fc:131:31: warning: Local variable 'value' is not used
+        (cell value, int found) = scheduled_tasks.udict_get_ref?(64, schedule_index);
+                                ^
+loop_body: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/ton_scheduler/scheduler.fc:108:46: warning: Local variable '_unused' is not used
+        (int _next_t, cell _unused, int found) = scheduled_tasks.udict_get_min_ref?(64);
+                                               ^
+set_amount: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/ton_scheduler/scheduler.fc:46:28: warning: Local variable 'source_addr' is not used
+     cell old_curr)          = 
+                             ^
+set_amount: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/ton_scheduler/scheduler.fc:46:28: warning: Local variable 'old_grams' is not used
+     cell old_curr)          = 
+                             ^
+set_amount: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/ton_scheduler/scheduler.fc:46:28: warning: Local variable 'old_curr' is not used
+     cell old_curr)          = 
+                             ^
+load_storage: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/ton_scheduler/scheduler.fc:14:23: warning: Lack of end_parse.
+            storage_data~load_dict()       ;; scheduled_tasks
+                        ^

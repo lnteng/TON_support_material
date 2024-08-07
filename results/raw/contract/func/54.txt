@@ -1,0 +1,71 @@
+get_sale_settings: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDA6v7olSvZCEr2yNhUlM4eBnRF11lsHLrtkkh7MSMICt4r/jetton-minter.fc:590:12: warning: Lack of end_parse.
+          sps~load_uint(64)
+             ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDA6v7olSvZCEr2yNhUlM4eBnRF11lsHLrtkkh7MSMICt4r/jetton-minter.fc:313:28: warning: Lack of end_parse.
+      int fwd_fee = muldiv(cs~load_coins(), 3, 2); ;; we use message fwd_fee for estimation of provide_wallet_address cost
+                             ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDA6v7olSvZCEr2yNhUlM4eBnRF11lsHLrtkkh7MSMICt4r/jetton-minter.fc:355:36: warning: Lack of end_parse.
+          int stable_decimals = value~load_uint(64); ;; like 10**9
+                                     ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDA6v7olSvZCEr2yNhUlM4eBnRF11lsHLrtkkh7MSMICt4r/jetton-minter.fc:365:27: warning: Lack of end_parse.
+          int lock_time = sp~load_uint(64);
+                            ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDA6v7olSvZCEr2yNhUlM4eBnRF11lsHLrtkkh7MSMICt4r/jetton-minter.fc:61:31: warning: Lack of end_parse.
+      store::stable_jettons = ss~load_ref();
+                                ^
+submit_swap: PrecisionLoss
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDA6v7olSvZCEr2yNhUlM4eBnRF11lsHLrtkkh7MSMICt4r/jetton-minter.fc:173:54: warning: PressionLoss
+          (stored_amount - 40000000) * decimals / rate * 1000 / jetton_price,
+                                                       ^
+submit_swap: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDA6v7olSvZCEr2yNhUlM4eBnRF11lsHLrtkkh7MSMICt4r/jetton-minter.fc:162:30: warning: Lack of end_parse.
+      int stored_amount = value~load_coins();
+                               ^
+submit_swap: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDA6v7olSvZCEr2yNhUlM4eBnRF11lsHLrtkkh7MSMICt4r/jetton-minter.fc:170:23: warning: Lack of end_parse.
+      int lock_time = sp~load_uint(64);
+                        ^
+submit_swap: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDA6v7olSvZCEr2yNhUlM4eBnRF11lsHLrtkkh7MSMICt4r/jetton-minter.fc:159:52: warning: Local variable 'success' is not used
+      (cell pending_swaps, slice value, int success) = store::pending_swaps.udict_delete_get?(64, query_id);
+                                                     ^
+get_pending_swap: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDA6v7olSvZCEr2yNhUlM4eBnRF11lsHLrtkkh7MSMICt4r/jetton-minter.fc:604:30: warning: Lack of end_parse.
+      int stored_amount = value~load_coins();
+                               ^
+get_pending_swap: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDA6v7olSvZCEr2yNhUlM4eBnRF11lsHLrtkkh7MSMICt4r/jetton-minter.fc:601:52: warning: Local variable 'pending_swaps' is not used
+      (cell pending_swaps, slice value, int success) = store::pending_swaps.udict_delete_get?(64, query_id);
+                                                     ^
+get_pending_swap: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDA6v7olSvZCEr2yNhUlM4eBnRF11lsHLrtkkh7MSMICt4r/jetton-minter.fc:601:52: warning: Local variable 'success' is not used
+      (cell pending_swaps, slice value, int success) = store::pending_swaps.udict_delete_get?(64, query_id);
+                                                     ^
+create_swap: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDA6v7olSvZCEr2yNhUlM4eBnRF11lsHLrtkkh7MSMICt4r/jetton-minter.fc:243:34: warning: Lack of end_parse.
+      int ico_remaining_amount = sp~load_coins();
+                                   ^
+cancel_swap: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDA6v7olSvZCEr2yNhUlM4eBnRF11lsHLrtkkh7MSMICt4r/jetton-minter.fc:143:30: warning: Lack of end_parse.
+      int stored_amount = value~load_coins();
+                               ^
+cancel_swap: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDA6v7olSvZCEr2yNhUlM4eBnRF11lsHLrtkkh7MSMICt4r/jetton-minter.fc:140:52: warning: Local variable 'success' is not used
+      (cell pending_swaps, slice value, int success) = store::pending_swaps.udict_delete_get?(64, query_id);
+                                                     ^
+save_data & load_data: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDA6v7olSvZCEr2yNhUlM4eBnRF11lsHLrtkkh7MSMICt4r/jetton-minter.fc:54:26: warning: Cell of get_data and set_data are inconsistent.
+      slice gs = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDA6v7olSvZCEr2yNhUlM4eBnRF11lsHLrtkkh7MSMICt4r/jetton-minter.fc:71:13: warning: Cell of get_data and set_data are inconsistent.
+              .store_coins(store::total_supply)
+              ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQDA6v7olSvZCEr2yNhUlM4eBnRF11lsHLrtkkh7MSMICt4r/jetton-minter.fc:498:115: warning: UnHandle bounced message with op: 0xd1735400
+          send_raw_message(msg.store_maybe_ref(included_address).end_cell(), REVERT_ON_ERRORS | CARRY_REMAINING_GAS);
+                                                                                                                    ^

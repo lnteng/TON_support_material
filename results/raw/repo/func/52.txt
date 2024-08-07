@@ -1,0 +1,12 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./krivochenko/t11n-contracts/contracts/authority.fc:62:19: warning: Lack of end_parse.
+      int coins = cs~load_coins();
+                    ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./krivochenko/t11n-contracts/contracts/authority.fc:88:66: warning: Lack of end_parse.
+          slice candidate_version_address = candidate_version_slice~load_msg_addr();
+                                                                   ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./krivochenko/t11n-contracts/contracts/authority.fc:105:28: warning: Local variable 'item_address' is not used
+          slice item_address = calculate_address(item_state_init);
+                             ^

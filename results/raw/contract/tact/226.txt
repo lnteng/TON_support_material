@@ -1,0 +1,15 @@
+$SplitBill$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAnOYruMHzW5AGALru-VX9X6_uro5qwhWW85yFqmaLE1mU-/tact_SplitBill.storage.fc:84:22: warning: Lack of end_parse.
+      int $loaded = $sc~load_int(1);
+                       ^
+$SplitBill$_fun_refundAmount: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAnOYruMHzW5AGALru-VX9X6_uro5qwhWW85yFqmaLE1mU-/tact_SplitBill.code.fc:28:40: warning: Local variable '$refund'take' is not used
+      var ($refund'amount, $refund'take) = $self~$SplitBill$_fun_refund($value);
+                                         ^
+$SplitBill$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAnOYruMHzW5AGALru-VX9X6_uro5qwhWW85yFqmaLE1mU-/tact_SplitBill.code.fc:92:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQAnOYruMHzW5AGALru-VX9X6_uro5qwhWW85yFqmaLE1mU-/tact_SplitBill.storage.fc:95:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

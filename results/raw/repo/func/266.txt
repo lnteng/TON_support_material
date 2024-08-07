@@ -1,0 +1,16 @@
+on_bounce: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/test/jetton_wallet_b.fc:158:16: warning: Local variable 'query_id' is not used
+    int query_id = in_msg_body~load_uint(64);
+                 ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/test/jetton_wallet_b.fc:180:26: warning: Lack of end_parse.
+    int fwd_fee = muldiv(cs~load_coins(), 3, 2);
+                           ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/test/jetton_wallet_b.fc:17:70: warning: Lack of end_parse.
+    return (ds~load_coins(), ds~load_msg_addr(), ds~load_msg_addr(), ds~load_ref());
+                                                                       ^
+send_tokens: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./optus-fi/test-core/contracts/test/jetton_wallet_b.fc:38:23: warning: Local variable 'custom_payload' is not used
+    cell custom_payload = in_msg_body~load_dict();
+                        ^

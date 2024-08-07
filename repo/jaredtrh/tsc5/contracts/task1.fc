@@ -1,0 +1,61 @@
+#include "imports/stdlib.fc";
+
+() recv_internal() impure {
+    
+}
+
+() recv_external(slice in_msg_body) impure {
+    slice ds = get_data().begin_parse();
+    
+    if (in_msg_body~load_uint(32) == 0x9df10277) {
+        in_msg_body~skip_bits(64);
+        slice signature = in_msg_body~load_bits(512);
+        cell ref = in_msg_body.preload_ref();
+        slice rs = ref.begin_parse();
+        int locked_for = rs~load_uint(32);
+        int new_seqno = rs.preload_uint(32);
+        
+        int public_key = ds~load_uint(256);
+        int execution_time = ds~load_uint(32);
+        slice receiver = ds~load_msg_addr();
+
+        throw_if(119, new_seqno != ds.preload_uint(32) + 1);
+        throw_unless(120, check_signature(ref.cell_hash(), signature, public_key));
+        throw_if(121, locked_for <= 0);
+        int time = now();
+        throw_if(122, execution_time < time);
+        int new_execution_time = time + locked_for;
+        throw_if(123, new_execution_time < execution_time);
+        accept_message();
+
+        set_data(
+            begin_cell()
+                .store_uint(public_key, 256)
+                .store_uint(new_execution_time, 32)
+                .store_slice(receiver)
+                .store_uint(new_seqno, 32)
+                .end_cell()
+        );
+    } else {
+        ds~skip_bits(256);
+        throw_if(124, now() <= ds~load_uint(32));
+        accept_message();
+
+        send_raw_message(
+            begin_cell()
+                .store_uint(0x10, 6)
+                .store_slice(ds~load_msg_addr())
+                .store_uint(0, 111)
+                .end_cell(),
+            128
+        );
+    }
+}
+
+int get_seqno() method_id {
+    return get_data().begin_parse().skip_bits(555).preload_uint(32);
+}
+
+int get_execution_time() method_id {
+    return get_data().begin_parse().skip_bits(256).preload_uint(32);
+}

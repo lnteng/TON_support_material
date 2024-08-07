@@ -1,0 +1,232 @@
+#pragma version >=0.4.3;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "verifier_NabiPointMaster.headers.fc";
+#include "verifier_NabiPointMaster.stdlib.fc";
+#include "verifier_NabiPointMaster.storage.fc";
+
+;;
+;; Contract NabiPointMaster functions
+;;
+
+(int, int, slice, cell, cell) $NabiPointMaster$_contract_init(int $totalSupply, int $mintable, slice $owner, cell $content) impure inline_ref {
+    var (($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors)) = (null(), null(), null(), null(), null());
+    $self'totalSupply = $totalSupply;
+    $self'mintable = $mintable;
+    $self'owner = $owner;
+    $self'content = $content;
+    return ($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors);
+}
+
+((int, int, slice, cell, cell), ()) $NabiPointMaster$_fun_requireWhitelistSender((int, int, slice, cell, cell) $self, slice $sender) impure inline_ref {
+    var (($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors)) = $self;
+    throw_unless(17774, (~ null?(__tact_dict_get_slice_int($self'whitelistedDistributors, 267, $sender, 1))));
+    return (($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors), ());
+}
+
+((int, int, slice, cell, cell), (cell, cell)) $NabiPointMaster$_fun_getJettonWalletInit((int, int, slice, cell, cell) $self, slice $address) impure inline_ref {
+    var (($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors)) = $self;
+    return (($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors), $JettonDefaultWallet$_init_child(__tact_context_sys, my_address(), $address));
+}
+
+((int, int, slice, cell, cell), slice) $NabiPointMaster$_fun_get_wallet_address((int, int, slice, cell, cell) $self, slice $owner) impure inline_ref {
+    var (($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors)) = $self;
+    var ($winit'code, $winit'data) = ($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors)~$NabiPointMaster$_fun_getJettonWalletInit($owner);
+    return (($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors), $global_contractAddress(($winit'code, $winit'data)));
+}
+
+((int, int, slice, cell, cell), (int, int, slice, cell, cell)) $NabiPointMaster$_fun_get_jetton_data((int, int, slice, cell, cell) $self) impure inline_ref {
+    var (($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors)) = $self;
+    cell $code = $StateInit$_get_code(($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors)~$NabiPointMaster$_fun_getJettonWalletInit(my_address()));
+    cell $outputContent = $global_emptyCell();
+    if ((~ null?($self'content))) {
+        $outputContent = __tact_not_null($self'content);
+    }
+    return (($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors), $JettonData$_constructor_totalSupply_mintable_owner_content_walletCode($self'totalSupply, $self'mintable, $self'owner, $outputContent, $code));
+}
+
+((int, int, slice, cell, cell), ()) $NabiPointMaster$_fun_mint((int, int, slice, cell, cell) $self, slice $to, int $amount, slice $responseAddress) impure inline_ref {
+    var (($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors)) = $self;
+    $self'totalSupply = ($self'totalSupply + $amount);
+    var ($winit'code, $winit'data) = ($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors)~$NabiPointMaster$_fun_getJettonWalletInit($to);
+    slice $walletAddress = $global_contractAddress(($winit'code, $winit'data));
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body_code_data($walletAddress, 0, false, 64, $TokenTransferInternal$_store_cell($TokenTransferInternal$_constructor_amount_queryId_from_responseAddress_forwardTonAmount_forwardPayload($amount, 0, my_address(), $responseAddress, 0, $global_emptySlice())), $winit'code, $winit'data));
+    return (($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors), ());
+}
+
+((int, int, slice, cell, cell), ()) $NabiPointMaster$_fun_requireWallet((int, int, slice, cell, cell) $self, slice $owner) impure inline_ref {
+    var (($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors)) = $self;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    var ($winit'code, $winit'data) = ($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors)~$NabiPointMaster$_fun_getJettonWalletInit($owner);
+    throw_unless(4429, ( __tact_slice_eq_bits($ctx'sender, $global_contractAddress(($winit'code, $winit'data))) ));
+    return (($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors), ());
+}
+
+((int, int, slice, cell, cell), ()) $NabiPointMaster$_fun_requireOwner((int, int, slice, cell, cell) $self) impure inline_ref {
+    var (($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors)) = $self;
+    throw_unless(132, ( __tact_slice_eq_bits($self'owner, __tact_context_get_sender()) ));
+    return (($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors), ());
+}
+
+((int, int, slice, cell, cell), slice) $NabiPointMaster$_fun_owner((int, int, slice, cell, cell) $self) impure inline_ref {
+    var (($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors)) = $self;
+    return (($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors), $self'owner);
+}
+
+;;
+;; Receivers of a Contract NabiPointMaster
+;;
+
+(((int, int, slice, cell, cell)), ()) $NabiPointMaster$_internal_binary_Mint((int, int, slice, cell, cell) $self, (slice, int) $msg) impure inline {
+    var ($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors) = $self;
+    var ($msg'recipient, $msg'amount) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    ($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors)~$NabiPointMaster$_fun_requireWhitelistSender($ctx'sender);
+    ($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors)~$NabiPointMaster$_fun_mint($msg'recipient, $msg'amount, $msg'recipient);
+    return (($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors), ());
+}
+
+(((int, int, slice, cell, cell)), ()) $NabiPointMaster$_internal_binary_EditWhitelist((int, int, slice, cell, cell) $self, (slice, int) $msg) impure inline {
+    var ($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors) = $self;
+    var ($msg'address, $msg'isWhitelisted) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    ($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors)~$NabiPointMaster$_fun_requireOwner();
+    if ($msg'isWhitelisted) {
+        $self'whitelistedDistributors~__tact_dict_set_slice_int(267, $msg'address, true, 1);
+    } else {
+        $self'whitelistedDistributors~__tact_dict_set_slice_int(267, $msg'address, null(), 1);
+    }
+    return (($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors), ());
+}
+
+(((int, int, slice, cell, cell)), ()) $NabiPointMaster$_internal_binary_TokenUpdateContent((int, int, slice, cell, cell) $self, (cell) $msg) impure inline {
+    var ($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors) = $self;
+    var ($msg'content) = $msg;
+    ($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors)~$NabiPointMaster$_fun_requireOwner();
+    $self'content = $msg'content;
+    return (($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors), ());
+}
+
+(((int, int, slice, cell, cell)), ()) $NabiPointMaster$_internal_binary_TokenBurnNotification((int, int, slice, cell, cell) $self, (int, int, slice, slice) $msg) impure inline {
+    var ($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors) = $self;
+    var ($msg'queryId, $msg'amount, $msg'owner, $msg'responseAddress) = $msg;
+    ($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors)~$NabiPointMaster$_fun_requireWallet($msg'owner);
+    $self'totalSupply = ($self'totalSupply - $msg'amount);
+    if ((~ null?($msg'responseAddress))) {
+        $global_send($SendParameters$_constructor_to_value_bounce_mode_body(__tact_not_null($msg'responseAddress), 0, false, (64 + 2), $TokenExcesses$_store_cell($TokenExcesses$_constructor_queryId($msg'queryId))));
+    }
+    return (($self'totalSupply, $self'mintable, $self'owner, $self'content, $self'whitelistedDistributors), ());
+}
+
+;;
+;; Get methods of a Contract NabiPointMaster
+;;
+
+_ %get_wallet_address(slice $$owner) method_id(103289) {
+    slice $owner = __tact_verify_address($$owner);
+    var self = $NabiPointMaster$_contract_load();
+    var res = self~$NabiPointMaster$_fun_get_wallet_address($owner);
+    return res;
+}
+
+_ %get_jetton_data() method_id(106029) {
+    var self = $NabiPointMaster$_contract_load();
+    var res = self~$NabiPointMaster$_fun_get_jetton_data();
+    return $JettonData$_to_external(res);
+}
+
+_ %owner() method_id(83229) {
+    var self = $NabiPointMaster$_contract_load();
+    var res = self~$NabiPointMaster$_fun_owner();
+    return res;
+}
+
+_ supported_interfaces() method_id {
+    return (
+        "org.ton.introspection.v0"H >> 128,
+        "org.ton.abi.ipfs.v0"H >> 128,
+        "org.ton.deploy.lazy.v0"H >> 128,
+        "org.ton.chain.workchain.v0"H >> 128,
+        "org.ton.ownable"H >> 128
+    );
+}
+
+_ get_abi_ipfs() method_id {
+    return "ipfs://QmSRfJTsgGKHS51UFXYe3n1wpSr23KrPXjCZ7oDFfSECsL";
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract NabiPointMaster
+;;
+
+((int, int, slice, cell, cell), int) $NabiPointMaster$_contract_router_internal((int, int, slice, cell, cell) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive Mint message
+    if (op == 2561766541) {
+        var msg = in_msg~$Mint$_load();
+        self~$NabiPointMaster$_internal_binary_Mint(msg);
+        return (self, true);
+    }
+    
+    ;; Receive EditWhitelist message
+    if (op == 4206030699) {
+        var msg = in_msg~$EditWhitelist$_load();
+        self~$NabiPointMaster$_internal_binary_EditWhitelist(msg);
+        return (self, true);
+    }
+    
+    ;; Receive TokenUpdateContent message
+    if (op == 201882270) {
+        var msg = in_msg~$TokenUpdateContent$_load();
+        self~$NabiPointMaster$_internal_binary_TokenUpdateContent(msg);
+        return (self, true);
+    }
+    
+    ;; Receive TokenBurnNotification message
+    if (op == 2078119902) {
+        var msg = in_msg~$TokenBurnNotification$_load();
+        self~$NabiPointMaster$_internal_binary_TokenBurnNotification(msg);
+        return (self, true);
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $NabiPointMaster$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$NabiPointMaster$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $NabiPointMaster$_contract_store(self);
+}

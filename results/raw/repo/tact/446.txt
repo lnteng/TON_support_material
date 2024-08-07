@@ -1,0 +1,24 @@
+__gen_SampleTactContract_add: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact-template/sources/output/sample_SampleTactContract.fc:68:46: warning: Local variable 'ctx'bounced' is not used
+      var (ctx'bounced, ctx'sender, ctx'value) = __tact_context_get();
+                                               ^
+__gen_SampleTactContract_add: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact-template/sources/output/sample_SampleTactContract.fc:68:46: warning: Local variable 'ctx'value' is not used
+      var (ctx'bounced, ctx'sender, ctx'value) = __tact_context_get();
+                                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact-template/sources/output/sample_SampleTactContract.fc:109:31: warning: Lack of end_parse.
+      slice msg_sender_addr = cs~load_msg_addr();
+                                ^
+__gen_load_SampleTactContract: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact-template/sources/output/sample_SampleTactContract.fc:42:14: warning: Lack of end_parse.
+      return sc~__gen_read_SampleTactContract();
+               ^
+__gen_SampleTactContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact-template/sources/output/sample_SampleTactContract.fc:57:38: warning: Local variable 'self'owner' is not used
+      var ((self'owner, self'counter)) = (null(), null());
+                                       ^
+__gen_SampleTactContract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tactfunc/tact-template/sources/output/sample_SampleTactContract.fc:57:38: warning: Local variable 'self'counter' is not used
+      var ((self'owner, self'counter)) = (null(), null());
+                                       ^

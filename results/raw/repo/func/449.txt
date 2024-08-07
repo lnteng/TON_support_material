@@ -1,0 +1,50 @@
+member_uri: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nft-standard-draft/examples/Conwaylifecollection/nft-collection.fc:152:66: warning: Lack of end_parse.
+      slice uri_prefix = common_content.begin_parse().preload_ref().begin_parse();
+                                                                   ^
+member_uri: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nft-standard-draft/examples/Conwaylifecollection/nft-collection.fc:152:38: warning: Lack of end_parse.
+      slice uri_prefix = common_content.begin_parse().preload_ref().begin_parse();
+                                       ^
+member_uri: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nft-standard-draft/examples/Conwaylifecollection/nft-collection.fc:153:23: warning: Local variable 'wc' is not used
+      (int wc, int adr) = parse_std_addr(get_nft_address_by_index(index));
+                        ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nft-standard-draft/examples/Conwaylifecollection/nft-collection.fc:19:8: warning: Lack of end_parse.
+       ds~load_ref());
+         ^
+recv_external: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nft-standard-draft/examples/Conwaylifecollection/nft-collection.fc:99:22: warning: Lack of end_parse.
+        set_c3(new_code.begin_parse().bless());
+                       ^
+seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nft-standard-draft/examples/Conwaylifecollection/nft-collection.fc:113:20: warning: Lack of end_parse.
+    return get_data().begin_parse().preload_uint(32);
+                     ^
+get_subwallet_id: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nft-standard-draft/examples/Conwaylifecollection/nft-collection.fc:117:34: warning: Lack of end_parse.
+    return get_data().begin_parse().skip_bits(32).preload_uint(32);
+                                   ^
+get_public_key: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nft-standard-draft/examples/Conwaylifecollection/nft-collection.fc:121:36: warning: Lack of end_parse.
+    var cs = get_data().begin_parse().skip_bits(64);
+                                     ^
+get_next_index: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nft-standard-draft/examples/Conwaylifecollection/nft-collection.fc:126:36: warning: Lack of end_parse.
+    var cs = get_data().begin_parse().skip_bits(64 + 256);
+                                     ^
+save_data & get_public_key: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nft-standard-draft/examples/Conwaylifecollection/nft-collection.fc:121:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse().skip_bits(64);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nft-standard-draft/examples/Conwaylifecollection/nft-collection.fc:24:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_uint(seqno, 32)
+      ^
+save_data & get_next_index: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nft-standard-draft/examples/Conwaylifecollection/nft-collection.fc:126:22: warning: Cell of get_data and set_data are inconsistent.
+    var cs = get_data().begin_parse().skip_bits(64 + 256);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/nft-standard-draft/examples/Conwaylifecollection/nft-collection.fc:24:5: warning: Cell of get_data and set_data are inconsistent.
+      .store_uint(seqno, 32)
+      ^

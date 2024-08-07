@@ -1,0 +1,20 @@
+royalty_params: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./somewallet/freelance-exchange-tdb/contracts/user_collection.fc:127:52: warning: Lack of end_parse.
+       return (rs~load_uint(16), rs~load_uint(16), rs~load_msg_addr());
+                                                     ^
+get_collection_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./somewallet/freelance-exchange-tdb/contracts/user_collection.fc:115:30: warning: Lack of end_parse.
+    return (next_item_index, cs~load_ref(), owner_address);
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./somewallet/freelance-exchange-tdb/contracts/user_collection.fc:81:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+messages::send_log: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./somewallet/freelance-exchange-tdb/contracts/imports/messages.fc:60:14: warning: Local variable 'msg' is not used
+      cell msg = begin_cell()
+               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./somewallet/freelance-exchange-tdb/contracts/user_collection.fc:14:7: warning: Lack of end_parse.
+      ds~load_ref()  ;; royalty_params
+        ^

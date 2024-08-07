@@ -1,0 +1,84 @@
+check_verify: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/tonnelJetton.fc:318:39: warning: Lack of end_parse.
+      cell C_cell = withdraw_info_slice1~load_ref();
+                                        ^
+check_verify: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/tonnelJetton.fc:314:38: warning: Lack of end_parse.
+      slice recipient = addresses_slice~load_msg_addr();
+                                       ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/tonnelJetton.fc:108:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/tonnelJetton.fc:125:53: warning: Lack of end_parse.
+              cell JETTON_BYTECODE = jetton_info_slice~load_ref();
+                                                      ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/tonnelJetton.fc:150:48: warning: Lack of end_parse.
+      int const::tx_fee_continue = fee_info_slice~load_coins();
+                                                 ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/tonnelJetton.fc:157:49: warning: Lack of end_parse.
+          cell JETTON_BYTECODE = jetton_info_slice~load_ref();
+                                                  ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/tonnelJetton.fc:175:48: warning: Lack of end_parse.
+          int commitment_value = commitment_slice~load_uint(256);
+                                                 ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/tonnelJetton.fc:262:49: warning: Lack of end_parse.
+          cell JETTON_BYTECODE = jetton_info_slice~load_ref();
+                                                  ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/tonnelJetton.fc:231:43: warning: Lack of end_parse.
+          cell C_cell = withdraw_info_slice1~load_ref();
+                                            ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/tonnelJetton.fc:204:42: warning: Lack of end_parse.
+          slice recipient = addresses_slice~load_msg_addr();
+                                           ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/tonnelJetton.fc:118:18: warning: Local variable 'query_id' is not used
+      int query_id = in_msg_body~load_uint(64); ;; also by convention, the next 64 bits contain the "query id", although this is not always the case
+                   ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/tonnelJetton.fc:136:39: warning: Local variable 'index' is not used
+              (int index, init, merkle) = insert(0, 0, merkle);
+                                        ^
+is_known_root: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/imports/merkleTreeJetton.fc:217:24: warning: Lack of end_parse.
+      cell roots = merkle~load_dict();
+                         ^
+is_known_root: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/imports/merkleTreeJetton.fc:211:43: warning: Local variable 'init' is not used
+      (int init, cell merkle_cell, _, _, _) = load_data();
+                                            ^
+insert: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/imports/merkleTreeJetton.fc:151:30: warning: Lack of end_parse.
+          currentIndex = backup~load_uint(32);
+                               ^
+insert: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/imports/merkleTreeJetton.fc:165:30: warning: Lack of end_parse.
+              left = left_slice~load_uint(256);
+                               ^
+insert: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/imports/merkleTreeJetton.fc:161:32: warning: Lack of end_parse.
+              right = right_slice~load_uint(256);
+                                 ^
+get_last_root: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/imports/merkleTreeJetton.fc:259:24: warning: Lack of end_parse.
+      cell roots = merkle~load_dict();
+                         ^
+get_last_root: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/imports/merkleTreeJetton.fc:253:43: warning: Local variable 'init' is not used
+      (int init, cell merkle_cell, _, _, _) = load_data();
+                                            ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/tonnelJetton.fc:67:40: warning: UnHandle bounced message with op: 0x21
+      send_raw_message(msg.end_cell(), 2); ;; paying fees, don't revert on errors
+                                         ^
+recv_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/tonnelJetton.fc:39:40: warning: UnHandle bounced message with op: 0xf8a7ea5
+      send_raw_message(msg.end_cell(), 1); ;; paying fees, revert on errors
+                                         ^

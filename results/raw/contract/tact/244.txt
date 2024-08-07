@@ -1,0 +1,46 @@
+$Payment$_internal_binary_Order: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA59vxEJlTYciwJae0CwOmTICaW3rateTD1T-3Ou2ASGNol/output/sample_Payment.code.fc:50:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Payment$_internal_binary_Order: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA59vxEJlTYciwJae0CwOmTICaW3rateTD1T-3Ou2ASGNol/output/sample_Payment.code.fc:50:59: warning: Local variable '$ctx'sender' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$Payment$_internal_binary_Order: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA59vxEJlTYciwJae0CwOmTICaW3rateTD1T-3Ou2ASGNol/output/sample_Payment.code.fc:50:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+__tact_dict_set_int_int: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA59vxEJlTYciwJae0CwOmTICaW3rateTD1T-3Ou2ASGNol/output/sample_Payment.stdlib.fc:45:21: warning: Local variable 'ok' is not used
+          var (r, ok) = idict_delete?(d, kl, k);
+                      ^
+$Payment$_internal_binary_ChangeOwner: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA59vxEJlTYciwJae0CwOmTICaW3rateTD1T-3Ou2ASGNol/output/sample_Payment.code.fc:82:32: warning: Local variable '$self'owner' is not used
+      ($self'orders, $self'owner)~$Payment$_fun_requireOwner();
+                                 ^
+$Payment$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA59vxEJlTYciwJae0CwOmTICaW3rateTD1T-3Ou2ASGNol/output/sample_Payment.storage.fc:154:19: warning: Lack of end_parse.
+          return $sc~$Payment$_load();
+                    ^
+$Payment$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA59vxEJlTYciwJae0CwOmTICaW3rateTD1T-3Ou2ASGNol/output/sample_Payment.code.fc:14:39: warning: Local variable '$self'orders' is not used
+      var (($self'orders, $self'owner)) = (null(), null());
+                                        ^
+$Payment$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA59vxEJlTYciwJae0CwOmTICaW3rateTD1T-3Ou2ASGNol/output/sample_Payment.code.fc:14:39: warning: Local variable '$self'owner' is not used
+      var (($self'orders, $self'owner)) = (null(), null());
+                                        ^
+$Payment$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA59vxEJlTYciwJae0CwOmTICaW3rateTD1T-3Ou2ASGNol/output/sample_Payment.code.fc:120:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA59vxEJlTYciwJae0CwOmTICaW3rateTD1T-3Ou2ASGNol/output/sample_Payment.storage.fc:165:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$Payment$_contract_store & $Payment$_contract_load: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA59vxEJlTYciwJae0CwOmTICaW3rateTD1T-3Ou2ASGNol/output/sample_Payment.storage.fc:150:27: warning: Cell of get_data and set_data are inconsistent.
+      slice $sc = get_data().begin_parse();
+                            ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQA59vxEJlTYciwJae0CwOmTICaW3rateTD1T-3Ou2ASGNol/output/sample_Payment.storage.fc:165:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

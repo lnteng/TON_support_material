@@ -1,0 +1,24 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef9ymVquxBIMq3rheG_AzE4WQ7bUGQptF151_yJoEwVyJPZi/contracts/librarian.func:89:22: warning: Lack of end_parse.
+      slice sender = cs~load_msg_addr();
+                       ^
+get_fundamental_addresses: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef9ymVquxBIMq3rheG_AzE4WQ7bUGQptF151_yJoEwVyJPZi/contracts/librarian.func:64:14: warning: Lack of end_parse.
+      return cs~load_dict();
+               ^
+config_address: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef9ymVquxBIMq3rheG_AzE4WQ7bUGQptF151_yJoEwVyJPZi/contracts/librarian.func:58:33: warning: Lack of end_parse.
+      int config = config_param(0).begin_parse().preload_uint(256);
+                                  ^
+get_sender: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef9ymVquxBIMq3rheG_AzE4WQ7bUGQptF151_yJoEwVyJPZi/contracts/librarian.func:48:14: warning: Lack of end_parse.
+      return cs~load_msg_addr();
+               ^
+get_library_payment_period: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef9ymVquxBIMq3rheG_AzE4WQ7bUGQptF151_yJoEwVyJPZi/contracts/librarian.func:30:14: warning: Lack of end_parse.
+      return pp~load_uint(64);
+               ^
+get_blackhole_address: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./Ef9ymVquxBIMq3rheG_AzE4WQ7bUGQptF151_yJoEwVyJPZi/contracts/librarian.func:76:38: warning: Lack of end_parse.
+      return (true, make_address(-1, cs~load_uint(256)));
+                                       ^

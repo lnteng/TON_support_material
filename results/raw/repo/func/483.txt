@@ -1,0 +1,30 @@
+seqno: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/logger.fc:42:20: warning: Lack of end_parse.
+    return get_data().begin_parse().preload_uint(32);
+                     ^
+recv_external: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/logger.fc:20:20: warning: Lack of end_parse.
+    var received = ds~load_dict();
+                     ^
+recv_external: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/logger.fc:23:28: warning: Local variable 'value' is not used
+    (slice value, var found) = received.udict_get?(256, hash);
+                             ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/logger.fc:5:20: warning: Lack of end_parse.
+    var received = ds~load_dict();
+                     ^
+recv_external & recv_external: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/logger.fc:17:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/logger.fc:34:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_uint(seqno + 1, 32)
+        ^
+recv_internal & recv_external: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/logger.fc:17:22: warning: Cell of get_data and set_data are inconsistent.
+    var ds = get_data().begin_parse();
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./tonwhales/ton-contracts/contracts/logger.fc:8:7: warning: Cell of get_data and set_data are inconsistent.
+        .store_uint(seqno + 1, 32)
+        ^

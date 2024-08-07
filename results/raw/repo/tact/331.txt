@@ -1,0 +1,43 @@
+$StorageContract$_internal_binary_SetAddress: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alldayalone/ton-lessons/src/contracts/storage/output/sample_StorageContract.code.fc:43:33: warning: Local variable '$self'address' is not used
+      ($self'owner, $self'address)~$StorageContract$_fun_requireOwner();
+                                  ^
+$StorageContract$_internal_binary_RequestInfo: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alldayalone/ton-lessons/src/contracts/storage/output/sample_StorageContract.code.fc:51:59: warning: Local variable '$ctx'bounced' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$StorageContract$_internal_binary_RequestInfo: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alldayalone/ton-lessons/src/contracts/storage/output/sample_StorageContract.code.fc:51:59: warning: Local variable '$ctx'value' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$StorageContract$_internal_binary_RequestInfo: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alldayalone/ton-lessons/src/contracts/storage/output/sample_StorageContract.code.fc:51:59: warning: Local variable '$ctx'raw' is not used
+      var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+                                                            ^
+$StorageContract$_internal_binary_RequestInfo: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alldayalone/ton-lessons/src/contracts/storage/output/sample_StorageContract.code.fc:52:16: warning: Local variable '$body' is not used
+      cell $body = $ResponseInfo$_store_cell($ResponseInfo$_constructor_op_query_id_owner_address(3, $msg'query_id, $self'owner, $self'address));
+                 ^
+__tact_string_builder_append: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./alldayalone/ton-lessons/src/contracts/storage/output/sample_StorageContract.stdlib.fc:94:31: warning: Lack of end_parse.
+              sc = sc~load_ref().begin_parse();
+                                ^
+$StorageContract$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./alldayalone/ton-lessons/src/contracts/storage/output/sample_StorageContract.storage.fc:137:19: warning: Lack of end_parse.
+          return $sc~$StorageContract$_load();
+                    ^
+$StorageContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alldayalone/ton-lessons/src/contracts/storage/output/sample_StorageContract.code.fc:14:40: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'address)) = (null(), null());
+                                         ^
+$StorageContract$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alldayalone/ton-lessons/src/contracts/storage/output/sample_StorageContract.code.fc:14:40: warning: Local variable '$self'address' is not used
+      var (($self'owner, $self'address)) = (null(), null());
+                                         ^
+$StorageContract$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./alldayalone/ton-lessons/src/contracts/storage/output/sample_StorageContract.code.fc:95:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./alldayalone/ton-lessons/src/contracts/storage/output/sample_StorageContract.storage.fc:148:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^

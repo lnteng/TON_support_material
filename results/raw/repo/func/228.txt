@@ -1,0 +1,12 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/func-sample/contracts/main.fc:18:20: warning: Lack of end_parse.
+    slice cs = in_msg.begin_parse();
+                     ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/func-sample/contracts/main.fc:18:12: warning: Local variable 'cs' is not used
+    slice cs = in_msg.begin_parse();
+             ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./sepezho/func-sample/contracts/main.fc:21:13: warning: Local variable 'query' is not used
+    int query = in_msg_body~load_uint(64);
+              ^

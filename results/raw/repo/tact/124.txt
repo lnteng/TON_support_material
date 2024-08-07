@@ -1,0 +1,35 @@
+$FileInfo$_load_opt: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/BigFiles/ton-drive-contracts/contracts/output/sample_TonDriveUserCollection.storage.fc:114:37: warning: Lack of end_parse.
+      return $FileInfo$_as_optional(sc~$FileInfo$_load());
+                                      ^
+$TonDriveUserCollection$_internal_binary_Create: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/BigFiles/ton-drive-contracts/contracts/output/sample_TonDriveUserCollection.code.fc:53:38: warning: Lack of end_parse.
+      cell $torrentInfo = $payloadSlice~load_ref();
+                                       ^
+$TonDriveUserCollection$_internal_binary_Create: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/BigFiles/ton-drive-contracts/contracts/output/sample_TonDriveUserCollection.code.fc:57:38: warning: Lack of end_parse.
+      int $fileSize = $torrentInfoSlice~load_uint(64);
+                                       ^
+__tact_dict_set_uint_cell: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/BigFiles/ton-drive-contracts/contracts/output/sample_TonDriveUserCollection.stdlib.fc:63:21: warning: Local variable 'ok' is not used
+          var (r, ok) = udict_delete?(d, kl, k);
+                      ^
+$TonDriveUserCollection$_contract_init: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/BigFiles/ton-drive-contracts/contracts/output/sample_TonDriveUserCollection.code.fc:15:49: warning: Local variable '$self'owner' is not used
+      var (($self'owner, $self'hash_to_info_map)) = (null(), null());
+                                                  ^
+$TonDriveUserCollection$_contract_load: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/BigFiles/ton-drive-contracts/contracts/output/sample_TonDriveUserCollection.storage.fc:200:19: warning: Lack of end_parse.
+          return $sc~$TonDriveUserCollection$_load();
+                    ^
+$TonDriveUserCollection$_contract_store & lazy_deployment_completed: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/BigFiles/ton-drive-contracts/contracts/output/sample_TonDriveUserCollection.code.fc:146:22: warning: Cell of get_data and set_data are inconsistent.
+      return get_data().begin_parse().load_int(1);
+                       ^
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/BigFiles/ton-drive-contracts/contracts/output/sample_TonDriveUserCollection.storage.fc:211:29: warning: Cell of get_data and set_data are inconsistent.
+      builder b = begin_cell();
+                              ^
+$TonDriveUserCollection$_contract_router_internal: UnHandleBouncedMessage
+/home/lentg/Movebit/ton-datasets1111/repo/./alefmanvladimir/BigFiles/ton-drive-contracts/contracts/output/sample_TonDriveUserCollection.code.fc:70:238: warning: UnHandle bounced message with op: 0x79f937ea
+  ... _null($storedItem))), end_cell(store_uint(store_uint(begin_cell(), 2046375914, 32), 0, 64)), 0, 64));
+  ...                                                                                                     ^

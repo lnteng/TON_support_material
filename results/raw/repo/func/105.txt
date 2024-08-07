@@ -1,0 +1,36 @@
+get_nft_content: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/jetton/nft-collection.fc:199:30: warning: Lack of end_parse.
+      slice common_content = cs~load_ref().begin_parse();
+                               ^
+royalty_params: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/jetton/nft-collection.fc:192:51: warning: Lack of end_parse.
+      return (rs~load_uint(16), rs~load_uint(16), rs~load_msg_addr());
+                                                    ^
+get_price_many: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/jetton/nft-collection.fc:180:58: warning: Lack of end_parse.
+      return (mint_info_slice~load_coins(), mint_info_slice~load_uint(32));
+                                                           ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/jetton/nft-collection.fc:114:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/jetton/nft-collection.fc:130:38: warning: Lack of end_parse.
+          int howmany = mint_info_slice~load_uint(32);
+                                       ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/jetton/nft-collection.fc:151:25: warning: Local variable 'new_owner' is not used
+          slice new_owner = in_msg_body~load_msg_addr();
+                          ^
+get_collection_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/jetton/nft-collection.fc:173:32: warning: Lack of end_parse.
+      return (next_item_index, cs~load_ref(), owner_address);
+                                 ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/jetton/nft-collection.fc:18:23: warning: Lack of end_parse.
+                      ds~load_ref() ;; price ; howmany left
+                        ^
+deploy_nft_item: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/jetton/nft-collection.fc:82:61: warning: Lack of end_parse.
+                              .store_slice(address_owner_slice~load_msg_addr())
+                                                              ^

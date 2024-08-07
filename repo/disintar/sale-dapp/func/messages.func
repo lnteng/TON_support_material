@@ -1,0 +1,143 @@
+;; Copyright (c) 2022-2023 Disintar LLP Licensed under the Business Source License 1.1
+
+() send_message(slice to_address,
+        int amount,
+        int op,
+        int query_id,
+        builder payload,
+        int send_mode) impure inline {
+
+    var msg = begin_cell()
+            .store_uint(0x10, 6) ;; nobounce
+            .store_slice(to_address)
+            .store_coins(amount)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1)
+            .store_uint(1, 1);
+
+    var msgBody = begin_cell().store_uint(op, 32)
+            .store_uint(query_id, 64);
+
+    if (~ builder_null?(payload)) {
+        msgBody = msgBody.store_builder(payload);
+    }
+
+    msg = msg.store_ref(msgBody.end_cell());
+
+    send_raw_message(msg.end_cell(), send_mode);
+}
+
+() send_message_with_text(slice to_address,
+        int amount,
+        slice text,
+        int send_mode) impure inline {
+
+    var msg = begin_cell()
+            .store_uint(0x10, 6) ;; nobounce
+            .store_slice(to_address)
+            .store_coins(amount)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_uint(0, 32)
+            .store_slice(text);
+
+    send_raw_message(msg.end_cell(), send_mode);
+}
+
+_ send_nft(slice nft_address, slice new_owner_address, int forward_amount) impure inline {
+    ;; transfer#5fcc3d14 query_id:uint64 new_owner:MsgAddress response_destination:MsgAddress
+    ;; custom_payload:(Maybe ^Cell) forward_amount:(VarUInteger 16) forward_payload:(Either Cell ^Cell)
+    ;; = InternalMsgBody;
+
+    int forward_amount_real = 0;
+    int mode = 1;
+    if (forward_amount == -1) {
+        mode = 128;
+    } else {
+        forward_amount_real = forward_amount;
+    }
+
+    send_message(nft_address, ;; to_address
+            forward_amount_real, ;; forward_amount
+            op::nft::transfer, ;; op code
+            0, ;; query id
+            begin_cell().store_slice(new_owner_address) ;; new_owner_address
+                    .store_slice(new_owner_address) ;; response_address;
+                    .store_int(0, 1) ;; empty custom_payload
+                    .store_coins(0) ;; forward amount to new_owner_address
+                    .store_int(0, 1), ;; empty forward_payload
+            mode); ;; send mode
+}
+
+
+() send_jettons_with_text(slice src, slice dest, int send_ton_amount, int forward_ton_amount, int amount, slice text, var change) impure inline_ref {
+    ;;     transfer#0f8a7ea5 query_id:uint64 amount:(VarUInteger 16) destination:MsgAddress
+    ;;                  response_destination:MsgAddress custom_payload:(Maybe ^Cell)
+    ;;                  forward_ton_amount:(VarUInteger 16) forward_payload:(Either Cell ^Cell)
+    ;;                  = InternalMsgBody;
+
+    builder transfer_message = begin_cell();
+    transfer_message = store_coins(transfer_message, amount);
+    transfer_message = store_slice(transfer_message, dest);
+
+    ifnot (is_null(change)){
+        transfer_message = store_slice(transfer_message, change);
+    } else {
+        transfer_message = store_uint(transfer_message, 0, 2);
+    }
+
+    transfer_message = store_uint(transfer_message, 0, 1);
+    ;; Save little amount on gas consumation
+    transfer_message = store_grams(transfer_message, forward_ton_amount);
+    transfer_message = store_uint(transfer_message, 1, 1);
+    transfer_message = store_ref(transfer_message, begin_cell().store_uint(0, 32).store_slice(text).end_cell());
+
+    send_message(src, ;; to_address
+            send_ton_amount, ;; forward_amount
+            op::ft::transfer, ;; op code
+            228, ;; query id
+            transfer_message, ;; payload
+            1); ;; send mode
+}
+
+() send_money_back(slice message_from, int msg_value, int fwd_fee, slice text) impure inline_ref {
+    ;; Send money back
+    int new_fwd_amount = msg_value - fwd_fee - little_gas_amount;
+    throw_unless(57, new_fwd_amount > 0);
+    send_message_with_text(message_from, new_fwd_amount + fwd_fee, text, 2);
+    throw(0);
+}
+
+() send_money_or_jettons_back_op(int op, slice in_msg_body, slice message_from, int msg_value, int fwd_fee, slice text) impure inline {
+    if (op == op::ft::transfer_notification) {
+        ;; TODO: send jettons back
+
+        ;; Ensure that there is enought value for code execution and forward message back
+        int new_fwd_amount = msg_value - fwd_fee - little_gas_amount;
+        throw_unless(57, new_fwd_amount > 0);
+
+        ;;         transfer_notification#7362d09c query_id:uint64 amount:(VarUInteger 16)
+        ;;                               sender:MsgAddress forward_payload:(Either Cell ^Cell)
+        ;;                               = InternalMsgBody;
+
+        int query_id = in_msg_body~load_uint(32);
+        int amount = in_msg_body~load_coins();
+        slice sender = in_msg_body~load_msg_addr();
+
+        send_jettons_with_text(message_from, sender, new_fwd_amount + fwd_fee, new_fwd_amount, amount, text, null());
+        throw(0);
+    } else {
+        send_money_back(message_from, msg_value, fwd_fee, text);
+    }
+}
+
+() send_money_or_jettons_back_body(slice in_msg_body, slice message_from, int msg_value, int fwd_fee, slice text) impure inline {
+    int op = 0;
+    if (slice_bits(in_msg_body) >= 32) {
+        op = in_msg_body~load_uint(32);
+    }
+
+    if (op == op::ft::transfer_notification) {
+        send_money_or_jettons_back_op(op, in_msg_body, message_from, msg_value, fwd_fee, text);
+    } else {
+        send_money_back(message_from, msg_value, fwd_fee, text);
+    }
+}

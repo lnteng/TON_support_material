@@ -1,0 +1,28 @@
+find_and_replace: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./olaf-ideas/tsc4/contracts/3.fc:89:61: warning: Lack of end_parse.
+                w = begin_cell().store_slice(w).store_slice(ds~load_bits(1023 - w.slice_bits())).end_cell().begin_parse();
+                                                              ^
+find_and_replace: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./olaf-ideas/tsc4/contracts/3.fc:89:106: warning: Lack of end_parse.
+                w = begin_cell().store_slice(w).store_slice(ds~load_bits(1023 - w.slice_bits())).end_cell().begin_parse();
+                                                                                                           ^
+find_and_replace: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./olaf-ideas/tsc4/contracts/3.fc:93:100: warning: Lack of end_parse.
+                w = begin_cell().store_slice(w).store_slice(ds~load_bits(ds.slice_bits())).end_cell().begin_parse();
+                                                                                                     ^
+find_and_replace: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./olaf-ideas/tsc4/contracts/3.fc:86:21: warning: Lack of end_parse.
+              ds = (ds~load_ref()).begin_parse();
+                      ^
+find_and_replace: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./olaf-ideas/tsc4/contracts/3.fc:93:61: warning: Lack of end_parse.
+                w = begin_cell().store_slice(w).store_slice(ds~load_bits(ds.slice_bits())).end_cell().begin_parse();
+                                                              ^
+find_and_replace: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./olaf-ideas/tsc4/contracts/3.fc:81:59: warning: Lack of end_parse.
+              w = begin_cell().store_slice(w).store_slice(ds~load_bits(ds.slice_bits())).end_cell().begin_parse();
+                                                            ^
+find_and_replace: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./olaf-ideas/tsc4/contracts/3.fc:81:98: warning: Lack of end_parse.
+              w = begin_cell().store_slice(w).store_slice(ds~load_bits(ds.slice_bits())).end_cell().begin_parse();
+                                                                                                   ^

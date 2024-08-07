@@ -1,0 +1,16 @@
+load_data: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/ton-nft/packages/nft/ton-nft/ton-nft.fc:23:16: warning: Local variable 'inited' is not used
+      int inited = ds~load_uint(1);     ;; inited
+                 ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/ton-nft/packages/nft/ton-nft/ton-nft.fc:168:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/ton-nft/packages/nft/ton-nft/ton-nft.fc:169:24: warning: Local variable 'wc' is not used
+      (int wc, int addr) = parse_std_addr(sender_address);
+                         ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./EmelyanenkoK/ton-nft/packages/nft/ton-nft/ton-nft.fc:169:24: warning: Local variable 'addr' is not used
+      (int wc, int addr) = parse_std_addr(sender_address);
+                         ^

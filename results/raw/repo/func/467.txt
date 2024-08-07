@@ -1,0 +1,8 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./cod1ng-studio/TRC20/distributed-token.fc:109:20: warning: Lack of end_parse.
+    slice sender = cs~load_msg_addr();
+                     ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./cod1ng-studio/TRC20/distributed-token.fc:15:69: warning: Lack of end_parse.
+    return (ds~load_grams(), ds~load_uint(256), ds~load_msg_addr(), ds~load_ref());
+                                                                      ^

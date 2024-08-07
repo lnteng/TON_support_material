@@ -1,0 +1,36 @@
+receive_tokens: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pyAndr3w/wton-contract-optimized/func/jetton-wallet.func:182:92: warning: Local variable 'balance' is not used
+    (int balance, slice owner_address, slice jetton_master_address, cell jetton_wallet_code) = get_wallet_data();
+                                                                                             ^
+send_tokens: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pyAndr3w/wton-contract-optimized/func/jetton-wallet.func:69:23: warning: Local variable 'custom_payload' is not used
+    cell custom_payload = in_msg_body~load_dict();
+                        ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./pyAndr3w/wton-contract-optimized/func/jetton-wallet.func:260:26: warning: Lack of end_parse.
+    int fwd_fee = muldiv(cs~load_coins(), 3, 2); ;; we use message fwd_fee for estimation of forward_payload costs
+                           ^
+burn_tokens: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pyAndr3w/wton-contract-optimized/func/jetton-wallet.func:218:92: warning: Local variable 'jetton_master_address' is not used
+    (int balance, slice owner_address, slice jetton_master_address, cell jetton_wallet_code) = get_wallet_data();
+                                                                                             ^
+burn_tokens: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pyAndr3w/wton-contract-optimized/func/jetton-wallet.func:218:92: warning: Local variable 'jetton_wallet_code' is not used
+    (int balance, slice owner_address, slice jetton_master_address, cell jetton_wallet_code) = get_wallet_data();
+                                                                                             ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./pyAndr3w/wton-contract-optimized/func/jetton-wallet.func:36:53: warning: Lack of end_parse.
+    return (ds~load_msg_addr(), ds~load_msg_addr(), ds~load_ref());
+                                                      ^
+receive_tokens_externally: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pyAndr3w/wton-contract-optimized/func/jetton-wallet.func:205:92: warning: Local variable 'balance' is not used
+    (int balance, slice owner_address, slice jetton_master_address, cell jetton_wallet_code) = get_wallet_data();
+                                                                                             ^
+receive_tokens_externally: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pyAndr3w/wton-contract-optimized/func/jetton-wallet.func:205:92: warning: Local variable 'jetton_master_address' is not used
+    (int balance, slice owner_address, slice jetton_master_address, cell jetton_wallet_code) = get_wallet_data();
+                                                                                             ^
+receive_tokens_externally: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./pyAndr3w/wton-contract-optimized/func/jetton-wallet.func:205:92: warning: Local variable 'jetton_wallet_code' is not used
+    (int balance, slice owner_address, slice jetton_master_address, cell jetton_wallet_code) = get_wallet_data();
+                                                                                             ^

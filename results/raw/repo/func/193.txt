@@ -1,0 +1,20 @@
+get_nft_content: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/TonTune/contracts/tune_nft.fc:161:28: warning: Lack of end_parse.
+    slice common_content = cs~load_ref().begin_parse();
+                             ^
+royalty_params: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/TonTune/contracts/tune_nft.fc:154:52: warning: Lack of end_parse.
+       return (rs~load_uint(16), rs~load_uint(16), rs~load_msg_addr());
+                                                     ^
+get_collection_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/TonTune/contracts/tune_nft.fc:142:30: warning: Lack of end_parse.
+    return (next_item_index, cs~load_ref(), owner_address);
+                               ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/TonTune/contracts/tune_nft.fc:86:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./Cosmodude/TonTune/contracts/tune_nft.fc:24:8: warning: Lack of end_parse.
+       ds~load_ref()  ;; royalty_params
+         ^

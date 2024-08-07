@@ -1,0 +1,8 @@
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/jetton/nft-item.fc:17:70: warning: Lack of end_parse.
+          return (-1, index, collection_address, ds~load_msg_addr(), ds~load_ref());
+                                                                       ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./SaberDoTcodeR/Tonnel-Network/contracts/jetton/nft-item.fc:99:28: warning: Lack of end_parse.
+      int fwd_fee = muldiv(cs~load_coins(), 3, 2); ;; we use message fwd_fee for estimation of forward_payload costs
+                             ^

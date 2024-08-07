@@ -1,0 +1,50 @@
+recv_external: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCuatIi2Xuar9NH0cm9n-q_75axKBrX62llGj-LuW3tBank/dozator.fc:114:25: warning: Lack of end_parse.
+      jwallet_address = ds~load_msg_addr();
+                          ^
+get_next_payouts: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCuatIi2Xuar9NH0cm9n-q_75axKBrX62llGj-LuW3tBank/dozator.fc:142:20: warning: Lack of end_parse.
+      int c_next = ds~load_time();
+                     ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCuatIi2Xuar9NH0cm9n-q_75axKBrX62llGj-LuW3tBank/dozator.fc:57:25: warning: Lack of end_parse.
+      jwallet_address = ds~load_msg_addr();
+                          ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCuatIi2Xuar9NH0cm9n-q_75axKBrX62llGj-LuW3tBank/dozator.fc:50:30: warning: Lack of end_parse.
+      slice sender_address = cs~load_msg_addr();
+                               ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCuatIi2Xuar9NH0cm9n-q_75axKBrX62llGj-LuW3tBank/dozator.fc:50:26: warning: Local variable 'sender_address' is not used
+      slice sender_address = cs~load_msg_addr();
+                           ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCuatIi2Xuar9NH0cm9n-q_75axKBrX62llGj-LuW3tBank/dozator.fc:54:16: warning: Local variable 'a_next' is not used
+      int a_next = ds~load_time();
+                 ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCuatIi2Xuar9NH0cm9n-q_75axKBrX62llGj-LuW3tBank/dozator.fc:55:16: warning: Local variable 'b_next' is not used
+      int b_next = ds~load_time();
+                 ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCuatIi2Xuar9NH0cm9n-q_75axKBrX62llGj-LuW3tBank/dozator.fc:56:16: warning: Local variable 'c_next' is not used
+      int c_next = ds~load_time();
+                 ^
+get_jwallet_address: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCuatIi2Xuar9NH0cm9n-q_75axKBrX62llGj-LuW3tBank/dozator.fc:149:14: warning: Lack of end_parse.
+      return ds~load_msg_addr();
+               ^
+recv_external & get_jwallet_address: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCuatIi2Xuar9NH0cm9n-q_75axKBrX62llGj-LuW3tBank/dozator.fc:147:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCuatIi2Xuar9NH0cm9n-q_75axKBrX62llGj-LuW3tBank/dozator.fc:130:26: warning: Cell of get_data and set_data are inconsistent.
+      set_data(begin_cell().store_time(a_next)
+                           ^
+recv_internal & get_jwallet_address: InconsistentData
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCuatIi2Xuar9NH0cm9n-q_75axKBrX62llGj-LuW3tBank/dozator.fc:147:26: warning: Cell of get_data and set_data are inconsistent.
+      slice ds = get_data().begin_parse();
+                           ^
+/home/lentg/Movebit/ton-datasets1111/contracts/./EQCuatIi2Xuar9NH0cm9n-q_75axKBrX62llGj-LuW3tBank/dozator.fc:70:30: warning: Cell of get_data and set_data are inconsistent.
+          set_data(begin_cell().store_time(zero_time + a_period)
+                               ^

@@ -1,0 +1,16 @@
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/hack-challenge-1/6.vault/database.func:84:36: warning: Lack of end_parse.
+  			slice withdrawal_address = entry~load_msg_addr();
+  			                                ^
+recv_internal: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/hack-challenge-1/6.vault/database.func:37:27: warning: Lack of end_parse.
+  	slice sender_address = cs~load_msg_addr();
+  	                         ^
+recv_internal: UncheckReturn
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/hack-challenge-1/6.vault/database.func:82:19: warning: Local variable 'f' is not used
+  			var (entry, f) = db.udict_get?(256, winner_addr_hash);
+  			               ^
+load_data: LackEndParse
+/home/lentg/Movebit/ton-datasets1111/repo/./ton-blockchain/hack-challenge-1/6.vault/database.func:7:14: warning: Lack of end_parse.
+  	cell db = ds~load_dict();
+  	            ^
