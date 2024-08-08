@@ -1,6 +1,6 @@
 # Enhancing The Open Network: Definition and Automated Detection of Smart Contract Defects
 
-# Supplementary Materials for TONScanner
+## Supplementary Materials for TONScanner
 
 The supplementary materials for TONScanner include the following directories and files:
 
@@ -9,27 +9,27 @@ The supplementary materials for TONScanner include the following directories and
   - `blogs.txt` - 82 related blogs filtered by "func secure" and "func develop".
   - `tips.txt` - 1327 possible safety tips from blogs.
 - `contracts/` - on-chain contract source code obtained from [ton-verifier](https://verifier.ton.org/), including `FunC` and `Tact` contracts on mainnet and testnet.
-  - `unique_fun_compiler_settings.txt` - list of compilation commands for `FunC` contracts.
-  - `unique_tact_compiler_settings.txt` - list of compilation commands for `Tact` contracts.
+  - `uniqueFunCompilerSettings.txt` - list of compilation commands for `FunC` contracts.
+  - `uniqueTactCompilerSettings.txt` - list of compilation commands for `Tact` contracts.
 - `repo/` - smart contract source code obtained from GitHub, including `FunC` and `Tact` contracts.
-  - `unique_fun_compiler_settings.txt` - list of compilation commands for `FunC` contracts.
-  - `unique_tact_compiler_settings.txt` - list of compilation commands for `Tact` contracts.
+  - `uniqueFunCompilerSettings.txt` - list of compilation commands for `FunC` contracts.
+  - `uniqueTactCompilerSettings.txt` - list of compilation commands for `Tact` contracts.
 - `results/` - results of TONScanner.
   - `raw/` - raw results of TONScanner.
     - `contracts/` - raw results of on-chain contracts.
-      - `func/` - from [compiler settings](contracts/unique_fun_compiler_settings.txt)
-      - `tact/` - from [compiler settings](contracts/unique_tact_compiler_settings.txt)
+      - `func/` - from [compiler settings](contracts/uniqueFunCompilerSettings.txt)
+      - `tact/` - from [compiler settings](contracts/uniqueTactCompilerSettings.txt)
     - `repo/` - raw results of GitHub contracts.
-      - `func/` - from [compiler settings](repo/unique_fun_compiler_settings.txt)
-      - `tact/` - from [compiler settings](repo/unique_tact_compiler_settings.txt)
+      - `func/` - from [compiler settings](repo/uniqueFunCompilerSettings.txt)
+      - `tact/` - from [compiler settings](repo/uniqueTactCompilerSettings.txt)
   - `samples/` - sampling results of defects and their labels from the raw results to quantify the false positive rate.
     - `func/` - sample from [contracts func](results/raw/contracts/func) and [repo func](results/raw/repo/func)
     - `tact/` - sample from [contracts tact](results/raw/contracts/tact) and [repo tact](results/raw/repo/tact)
 - `samples/` - results of manual audits of sampled contracts to quantify the false negative rate.
-  - `func/` - source code and labels of [sampled `FunC` contracts](samples/func_sampled_compiler_settings.txt).
-  - `tact/` - source code and labels of [sampled `Tact` contracts](samples/tact_sampled_compiler_settings.txt).
-  - `func_sampled_compiler_settings.txt` - list of sampled `FunC` contracts.
-  - `tact_sampled_compiler_settings.txt` - list of sampled `Tact` contracts.
+  - `func/` - source code and labels of [sampled `FunC` contracts](samples/funcSampledCompilerSettings.txt).
+  - `tact/` - source code and labels of [sampled `Tact` contracts](samples/tactSampledCompilerSettings.txt).
+  - `funcSampledCompilerSettings.txt` - list of sampled `FunC` contracts.
+  - `tactSampledCompilerSettings.txt` - list of sampled `Tact` contracts.
 
 > The defect labels are marked in the source code as comments (e.g., ";; DEFECT: LackEndParse").
 
@@ -88,5 +88,4 @@ In order to analyze the `Tact` contract, you first need to use the `Tact` compil
 
 ```
 $ ./TONScanner -s ./contracts/stdlib.fc	./contracts/stdlib_ex.fc	./contracts/EQC1Mk8fuSBxFdCR4VrENamI5Z4r-u5a88Od1phnSv-2xHd1/output/verifier_Registry.code.fc
-
 ```
