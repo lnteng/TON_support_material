@@ -35,7 +35,7 @@ The supplementary materials for TONScanner include the following directories and
 
 ## Usage
 ```
-$ ./TONScanner -h
+$ ./TONScanner -h # ubuntu20.04
 
 SYNOPSIS
         ./TONScanner -s <source_code_directory>... [-o [<output_directory>]] [-c <cfg_dot_directory>] [-f <function_name>...]
