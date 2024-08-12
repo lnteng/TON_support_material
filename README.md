@@ -35,6 +35,8 @@ The supplementary materials for TONScanner include the following directories and
 
 ## Usage
 ```
+$ export LD_LIBRARY_PATH=$(realpath ./lib64):$LD_LIBRARY_PATH # create a new terminal in the current directory
+$ chmod +x TONScanner
 $ ./TONScanner -h # ubuntu20.04
 
 SYNOPSIS
